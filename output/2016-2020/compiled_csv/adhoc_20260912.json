@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "description": "Ad hoc run: Malaysia 2016-05-04",
+    "sample_scope": "",
+    "generated_date": "2026-09-12",
+    "total_reports_with_value_mismatch": 1,
+    "category_a_count": 1,
+    "category_b_count": 0
+  },
+  "category_a_year_selection_mismatch": {
+    "description": "Value differences explained by the two runs selecting a different last-actual-year column.",
+    "count": 1,
+    "reports": [
+      
+      {
+        "json_file": "Malaysia_2016-05-04_dsa.json",
+        "country": "Malaysia",
+        "date": "2016-05-04"
+      }
+      
+    ]
+  }
+}

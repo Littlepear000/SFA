@@ -1,0 +1,393 @@
+SUBPROMPT 1 – DSA locator
+You are an expert fiscal economist helping locate the Debt Sustainability Analysis (DSA) section in an IMF staff report.
+The input is plain text extracted from a PDF. Formatting, indentation, page layout, and tables may be partially lost during text extraction.
+Your task is NOT to extract the table. You have two tasks only: (A) capture basic report metadata from the opening pages, and (B) identify the narrow physical PDF page range that should be copied into a smaller PDF and sent to the API for direct PDF-based extraction.
+================================================================ 
+TASK 1.1 - REPORT METADATA (from the cover and opening pages) [GH1.1]================================================================ 
+Capture, exactly as printed and only if visible in the text: 
+- country: the country name; - report_title: the report title, e.g. "2025 Article IV Consultation-Press Release; and Staff Report"; 
+- country_report_number: the IMF Country Report number, e.g. "25/270"; 
+- publication_date: the cover date, e.g. "September 2025" (keep the printed granularity; do not invent a day); 
+- consultation_type: e.g. "Article IV", "Request for an Extended Arrangement under the EFF", "First Review". Capture the following from the PDF file (not from the report text):
+- pdf_file_name[AS2.1]: copy verbatim the filename of the PDF. Return exactly the same filename, including the ".pdf" extension. 
+Use null for report metadata that is not visible in the text. Never guess.
+================================================================
+TASK 1.2 — SEARCH THE FULL TEXT PROVIDED
+================================================================
+Look for the DSA section, annex, or TABULAR decomposition table that decomposes the year-over-year change in public debt, public sector debt, gross public debt, or the debt-to-GDP ratio into debt-creating flows.
+
+Relevant titles or nearby text may include:
+- Contribution to Change(s) in Public Debt
+- Baseline Scenario
+- Public DSA - Baseline Scenario
+- Public Sector Debt Sustainability Analysis - Baseline Scenario
+- Public Sector Debt Sustainability Framework, Baseline Scenario
+- Sovereign Risk and Debt Sustainability Framework
+- Sovereign Risk and Debt Sustainability Framework: Baseline Scenario
+- Drivers of Debt Dynamics - Baseline Scenario
+- Debt Sustainability Analysis
+- Public debt decomposition
+- Change in public debt
+- Identified debt-creating flows
+- Automatic debt dynamics
+- Primary deficit
+- Residual
+
+
+HARD TABLE-ONLY ELIGIBILITY RULE:
+- The target must be a genuine table with explicit row labels and aligned year/value columns.
+- The debt-decomposition components must appear as separate table rows with values printed in cells.
+- NEVER select a chart or figure as the target, including a waterfall chart, bridge chart, stacked bar chart, ordinary bar chart, line chart, dot/marker chart, or any other graphical visualization.
+- A figure remains ineligible even when it is titled "debt-creating flows", "drivers of debt dynamics", or similar; even when it displays exact numeric labels; and even when its legend names primary balance, growth, interest, exchange-rate, residual, or other debt components.
+- Do not treat chart legends, axis labels, data labels, or bar segments as table rows or table cells.
+- If the report contains only public-debt decomposition figures/charts and no qualifying tabular public DSA decomposition table, return dsa_section_found = false. In notes, state that only figures/charts were found and that no qualifying table exists.
+
+Target the PUBLIC debt DSA table. Explicit exclusions - never select as the target: 
+- "External Debt Sustainability Analysis" / "External Debt Sustainability Framework" annexes and tables; 
+- any table whose top line is external debt or whose rows read "Identified external debt-creating flows" 
+- the external template reuses wording nearly identical to the public template; 
+- summary charts in the main text when a DSA table exists in an annex. 
+Select external-debt pages only if no public-debt decomposition exists anywhere in the report, and say so in notes.
+If both summary figures and DSA tables are present, select only the qualifying DSA table. Figures are never valid extraction targets.
+Classify the DSA template in framework_hint as exactly one of[GH3.1]: 
+- "SRDSF" - Sovereign Risk and Debt Sustainability Framework, the standard market-access template since 2022. Markers: "Risk of Sovereign Stress", "Debt Fanchart", "GFN Financeability", "Triggered Modules", "Contribution of identified flows". 
+- "MAC_DSA" - the pre-2022 market-access template. Markers: "Public DSA - Baseline Scenario", "heat map", "debt profile vulnerabilities", "Residual, including asset changes". 
+- "LIC_DSF" - the low-income template. Markers: "risk of external debt distress", "risk of overall debt distress", "Public Sector Debt Sustainability Framework, Baseline Scenario", "Composite Indicator". 
+- "UNKNOWN" - none of the above is identifiable. 
+For each candidate range, set likely_image_based: if the pages around the candidate title contain almost no numeric values, or the table body appears only as fragments or garbage, the table is probably embedded as an image; set true. Otherwise set false.
+================================================================
+TASK 1.3 — PAGE SELECTION
+================================================================
+The text is marked with page delimiters such as:
+--- PAGE 43 ---
+These delimiter numbers are the physical PDF page indices. Printed page numbers in headers or footers usually differ from them because of covers and front matter. Every page number you return must be a delimiter number. Never return a printed page number.
+Return a narrow page range that should be copied directly from the original PDF into a smaller PDF for Step 2. Include enough surrounding pages to capture wrapped tables or continuation pages, but avoid unrelated pages so the selected PDF remains small enough to upload.
+
+Rules:
+- Prefer a 2-5 page range.
+- If the DSA section begins on page p, usually return p through p+4.
+- If the exact table page is visible, return it in primary_table_page and center the range around that page.
+- If the table continues on pages marked "(continued)" or "(concluded)", include them.[GH4.1]
+- If several candidates exist, rank them.
+- Do not invent pages not supported by the extracted text.
+
+================================================================
+TASK 1.4 — OUTPUT
+================================================================
+Return ONLY a valid JSON object. No prose, no markdown fences, no trailing commas. Page fields are integers (delimiter numbers). The values below are placeholders that show shape and types, not required content.
+
+Use this schema:
+{
+  "report_metadata": {
+    "country": "",
+    "report_title": "",
+    "country_report_number": null,
+    "publication_date": null,
+    "consultation_type": null,
+    "pdf_file_name": ""
+  },
+  "dsa_section_found": true,
+  "framework_hint": "SRDSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": null,
+      "end_page": null,
+      "reason": "",
+      "matched_phrases": [],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": null,
+  "recommended_start_page": null,
+  "recommended_end_page": null,
+  "confidence": "high",
+  "notes": ""
+}
+
+"confidence" must be exactly one of "high", "medium", "low". "framework_hint" must be exactly one of "SRDSF", "MAC_DSA", "LIC_DSF", "UNKNOWN".
+
+If no likely PUBLIC DSA section is found, return the same object with "dsa_section_found": false, "candidates": [], primary_table_page null, null recommended pages, "confidence": "low", and notes explaining what was searched and why nothing qualified, including whether only an external DSA exists.
+
+SUBPROMPT 2 – DSA extraction from selected PDF pages
+The input is a smaller PDF created by copying only the physical pages identified by SUBPROMPT 1 from the original IMF staff report. When necessary to satisfy API upload limits, the attached PDF may instead be either (i) a visually equivalent compressed rendering of those pages or (ii) a high-resolution crop of the qualifying DSA table from the original page. A cropped fallback may omit surrounding charts, narrative text, headers, footers, or other material outside the table. The pipeline preserves the original physical page mapping.
+
+Read the PUBLIC debt decomposition table directly from the attached selected-page PDF and extract it as JSON. The pipeline supplies a mapping from each page in the smaller PDF to its original physical PDF page number.
+
+You are an expert fiscal economist extracting structured information from IMF staff reports. Use the visible page content as the primary source of information, including tables, indentation, grouping lines, typography, column alignment, and any available PDF text layer.
+
+Use only information visible in the attached selected-page PDF. Never use prior knowledge of IMF DSA templates or other reports to fill missing rows, values, or labels.
+
+Reconstruct the table from the attached PDF using the visible page layout regardless of whether the PDF contains selectable text, is an image-based rendering, or is a high-resolution table crop. Do not interpret the absence of surrounding charts, narrative text, headers, or footers in a cropped fallback as missing table content. Do not infer rows or values that are not visible.
+
+================================================================
+TASK 2.1 - LOCATE THE TABLE
+================================================================
+
+MANDATORY TABLE-VERSUS-FIGURE GATE — APPLY BEFORE ANY EXTRACTION:
+
+A qualifying target must satisfy ALL of the following:
+1. It is laid out as a table with identifiable rows and columns.
+2. Debt components are printed as explicit row labels, not only as legend entries.
+3. The page contains identifiable year columns or another explicit selected-value column.
+4. Component values are printed in corresponding table cells and can be copied directly without estimating bar heights, segment sizes, marker positions, or axis coordinates.
+
+The following are NEVER qualifying DSA tables:
+- waterfall or bridge charts;
+- stacked, grouped, or ordinary bar charts;
+- line, area, dot, or marker charts;
+- graphical "debt-creating flows" or "drivers of debt dynamics" panels;
+- any visualization whose components are identified primarily through a legend;
+- any figure where values would have to be read from bar heights, segment lengths, marker positions, or axes.
+
+This exclusion applies even if:
+- the figure is located in a DSA annex;
+- the title contains "Debt Sustainability Analysis", "Debt-Creating Flows", "Drivers of Debt Dynamics", or similar wording;
+- some totals or endpoint values are printed;
+- the chart shows historical and projected periods;
+- the chart components could be interpreted economically as primary balance, automatic debt dynamics, other flows, or residual.
+
+Do not convert chart legends, plotted series, bars, segments, endpoints, or data labels into decomposition rows or unmapped_rows.
+
+If the selected pages contain only one or more such figures and no qualifying tabular public-debt decomposition table, STOP and return:
+- "table_found": false
+- "failure_reason": "dsa_pages_not_in_input"
+- "source": null
+- "decomposition": null
+- "unmapped_rows": []
+In extraction_notes, identify each rejected figure and state that it is a chart/visualization rather than a qualifying row-and-column DSA table.
+
+Find the TABULAR DSA decomposition table that decomposes the change in public debt, public sector debt, gross public debt, or the debt-to-GDP ratio into contributing flows. It may be titled:
+- "Contribution to Change(s) in Public Debt"
+- "Baseline Scenario"
+- "Public DSA - Baseline Scenario"
+- "Public Sector Debt Sustainability Analysis - Baseline Scenario"
+- "Public Sector Debt Sustainability Framework, Baseline Scenario" (MAC or LIC)
+- "Sovereign Risk and Debt Sustainability Framework: Baseline Scenario"
+- "Drivers of Debt Dynamics - Baseline Scenario"
+
+Treat LIC DSA tables titled "Public Sector Debt Sustainability Framework, Baseline Scenario" as valid equivalents if they decompose public sector debt changes into rows such as primary deficit, automatic debt dynamics, identified debt-creating flows, or other identified debt-creating flows.
+
+Do not reject a table for having a different template or title. The right table is the one that decomposes the change in debt into flows: primary balance/deficit, automatic debt dynamics, other flows, and residual.
+
+Additional selection rules:
+- If both summary figures and DSA tables are present, extract only the qualifying DSA table. Never extract a summary figure.
+- The table may continue on a following page marked "(continued)" or "(concluded)". Treat all parts as one table.
+- NEVER select the external debt sustainability table. Its wording is nearly identical ("Identified external debt-creating flows", "Residual"), but its top line is external debt. If only the external table is present, set table_found to false with failure_reason "only_external_dsa_found".
+- If more than one qualifying public decomposition table appears, extract the full DSA-annex table and mention the other qualifying table in extraction_notes. Graphical figures are not candidates.
+
+SCOPE - the extraction covers the decomposition block only:
+- The block begins at the debt-level row (for example "Public debt", "Public sector debt") when present, otherwise at the change-in-debt row.
+- The block ends at the residual row (or at the last decomposition row if the residual appears earlier).
+- Rows outside this block that share the same table or figure - for example "Gross financing needs", "of which: debt service", memorandum items, and macroeconomic assumptions such as "Real GDP growth (in percent)" - must be ignored entirely. They are NOT part of the decomposition and must NOT appear in unmapped_rows.
+
+================================================================
+TASK 2.2 - TAG EACH ROW BY ROLE (by MEANING, not wording)
+================================================================
+Row labels vary across reports; the underlying accounting identity does not:
+
+    change_in_debt   = identified_flows + residual
+    identified_flows = primary_balance + automatic_debt_dynamics + other_identified_flows
+
+debt_level is a stock, not a flow; it does not enter the identity above.
+
+Tag each row of the block with exactly one role:
+
+- debt_level (when present): the stock of debt being decomposed, usually the first row of the block. Examples: "Public debt", "Public sector debt", "Gross public sector debt". Typical children: "of which: external", "of which: foreign-currency denominated".
+- change_in_debt: the top-line total being decomposed, i.e. the year's change in the debt ratio. Examples: "Change in public sector debt", "Change in gross public debt", "Change in gross public sector debt".
+- identified_flows: subtotal of all explained flows. Examples: "Contribution of identified flows", "Identified debt-creating flows".
+- primary_balance: the primary fiscal position. It may be printed as a balance OR a deficit. Record the wording in label_verbatim and do NOT change the number. Examples: "Primary deficit", "Primary net lending/borrowing".
+- automatic_debt_dynamics: the endogenous r-g block, including interest rate, growth, inflation, and exchange rate effects. Example: "Automatic debt-creating flows".
+- other_identified_flows: the explained stock-flow adjustment, including privatization, contingent liabilities, interest revenues, below-the-line operations, and other transactions. Example: "Other debt-creating flows".
+- residual: the unexplained remainder that closes the identity. Examples: "Residual, including asset changes", "Contribution of residual".
+
+Aliases are examples, not a closed list. Map by meaning. If a row fits NO role, do not force it and do not drop it; put it in unmapped_rows verbatim.
+
+Never invent, infer, reconstruct, or hallucinate rows. Every row in the JSON must correspond to an explicit row present in the selected table.
+
+If identical row labels appear more than once in the table, preserve each occurrence separately. Never merge duplicate labels or discard repeated rows.
+
+If one of the canonical roles does not appear in the table, return that role with label_verbatim null, value null, and children [] if the role normally has children.
+
+Special case - components without a subtotal: if the components of automatic debt dynamics (for example "Contribution from real GDP growth", "Contribution from real exchange rate depreciation") appear WITHOUT an explicit subtotal row, return automatic_debt_dynamics with label_verbatim null and value null, and attach those component rows as its children only when the layout shows them as one contiguous indented group; otherwise leave them in unmapped_rows. Explain the choice in extraction_notes.
+
+Do not normalize primary balances into primary deficits or vice versa. Copy the printed value exactly. Never reverse signs.
+
+================================================================
+TASK 2.3 - CHILDREN RULE (recursive - follow the visible indentation)
+================================================================
+Only five roles carry detail sub-rows: debt_level, primary_balance, automatic_debt_dynamics, other_identified_flows, residual.
+
+change_in_debt and identified_flows are SUBTOTALS. Their only table-children are other roles, which already appear in their own top-level slots. They have NO "children" field. Do not attach anything to them.
+
+For the five roles above, build "children" by mirroring the table's visible indentation and layout exactly.
+
+Determine hierarchy from explicit visual evidence on the page: indentation, bullets, tree structure, spacing, typography, or row grouping. Never infer parent-child relationships from economic meaning alone when the visual evidence is clear.
+
+If the PDF page is partially degraded but the row sequence and hierarchy remain unambiguous, infer the hierarchy conservatively and explain this in extraction_notes.
+
+Rules:
+- A row indented directly beneath a role is a child of that role.
+- A row indented further beneath a child is a child OF THAT CHILD; nest it, do not flatten it up, do not drop it, and do not skip the intermediate row.
+- Each node has the same shape: { "label_verbatim", "value", "children" }.
+- A node with no deeper rows gets "children": [].
+
+Example from a typical table - automatic_debt_dynamics:
+  "Real interest rate and relative inflation" (a child)
+      - "Real interest rate" (a child of that child)
+      - "Relative inflation" (a child of that child)
+  "Real growth rate" (a child)
+  "Real exchange rate" (a child)
+
+Reproduce that nesting; never collapse the three interest/inflation rows to one level.
+
+If a row label wraps across multiple printed lines, concatenate the lines into a single label while preserving the wording exactly.
+
+================================================================
+TASK 2.4 - EXTRACT
+================================================================
+Column selection:
+- Projection-boundary rule:
+	- Before selecting values, first reconstruct the column groups from the table header.
+	- Identify which year columns fall under "Actual", "Historical", "Est.", or similar non-projection headers, and which year columns fall under "Projections", "Proj.", "Forecast", or similar projection headers.
+	- If "Projections" starts above a year column, that year and all years to its right are projections.
+	- The selected column must be the rightmost year under the "Actual", "Historical", or "Est." group.
+	- Never select the first year under "Projections" as last_actual_year.
+
+Example:
+           Actual              Projections
+           2017 2018 2019      2020 2021 2022
+
+Correct:
+last_actual_year = 2019
+actual_column_label = "2019"
+
+Incorrect:
+last_actual_year = 2020
+
+
+- Pull values from the Latest non-projected observation column only: the rightmost column explicitly labeled "Actual", "Historical", or otherwise the year column immediately preceding the first projection column.
+- If multiple historical columns are present, always extract the rightmost historical column immediately preceding the first projection column.
+- Ignore columns that are not years. Columns labeled "Average", "Historical Average", "Standard Deviation", or similar must never be selected, even when they sit between the actual years and the projections (common in LIC DSF tables).
+- If the last pre-projection column is labeled "Est." or "Estimate", extract it and record that label in actual_column_label.
+- Record the selected column header exactly as printed in actual_column_label (for example "2024", "2023/24", "Est."). If the year is a fiscal year such as "2023/24", keep last_actual_year as that exact string.
+- Never extract values from projected years.
+
+Values:
+- Copy each value EXACTLY as printed, including its sign. Do not recompute, normalize, or sign-flip anything.
+- Return all extracted values as JSON strings exactly as printed in the table, including thousands separators (e.g. "1,169.28"), fraction glyphs (e.g. "7 1/2"), and dash characters used as minus signs. Use null only for missing values: blank cells, "...", or "n.a.".
+- If a cell is unreadable or cropped in the selected PDF, use null for that value and record the cell in extraction_notes. Never guess a digit.
+- Build children by indentation/layout per Step 3.
+- Record the table number exactly as labeled, for example "Table 3" or "Annex III. Table 4". A figure number must never be used because figures are not qualifying targets.
+- Record units_verbatim: the units line printed with the table title, for example "(Percent of GDP unless indicated otherwise)". Use null if absent.
+- Record framework as exactly one of "SRDSF", "MAC_DSA", "LIC_DSF", "UNKNOWN", judged only from what is visible in the attached selected-page PDF.
+- page_pdf must use the original physical PDF page number supplied by the pipeline page mapping, not the page position within the smaller selected-page PDF. If the mapping is not supplied, leave it null. Record page_printed: the page number printed on the PDF page if visible, else null.
+- publication_date is usually NOT visible in DSA pages. If it is not visible, use null - the pipeline fills it from the first-step locator output. Do not guess.
+- consultation_type: only if visible in the attached selected-page PDF (for example in a running header); else null.
+- Preserve label_verbatim exactly as printed, including capitalization, punctuation, spacing, abbreviations, and parentheses.
+- Do not treat page numbers, footnotes, notes, sources, legends, axis labels, column headers, units, or surrounding page text as table rows.
+- Only rows belonging to the selected decomposition table may appear in unmapped_rows.
+
+================================================================
+TASK 2.5 - VALIDATION
+================================================================
+Before producing the JSON, verify that:
+- every row of the decomposition block appears exactly once (rows outside the block are excluded by design);
+- every value in the selected historical column of the block appears exactly once and matches the table exactly;
+- no row has been invented;
+- no row has been omitted;
+- every child relationship matches the visible layout, or any conservative hierarchy inference is explained in extraction_notes;
+- every value comes from the selected historical year;
+- every block row that is not assigned to one of the canonical roles appears in unmapped_rows.
+
+Accounting identity check (do not modify values):
+- Verify whether change_in_debt = identified_flows + residual using the extracted values.
+- If the identity does not hold because of rounding or because values are unavailable, preserve the printed values exactly and mention the discrepancy in extraction_notes.
+- Never alter printed values to force the identity to hold.
+
+The JSON should be a faithful structured representation of the selected block. Do not infer missing rows, normalize labels, recompute values, or fill gaps using knowledge of IMF DSA templates.
+
+================================================================
+TASK 2.6 - OUTPUT (return ONLY the JSON object below. No prose, no markdown fences)
+================================================================
+Every { "label_verbatim": "", "value": "", "children": [] } shown is a SHAPE. Each element of unmapped_rows and of any children array has the node shape { "label_verbatim": "", "value": "", "children": [] }.
+If a value is missing, use null.
+
+EXAMPLE, not a required row. If a role or node has no sub-rows, return "children": []. If no rows are unmapped, return "unmapped_rows": []. Never emit a blank-label entry. "children" may nest to any depth the table uses.
+
+{
+  "table_found": true,
+  "source": {
+    "country": "",
+    "publication_date": null,
+    "consultation_type": null,
+    "framework": "",
+    "table_number": "",
+    "table_title": "",
+    "units_verbatim": null,
+    "page_pdf": null,
+    "page_printed": null,
+    "last_actual_year": null,
+    "actual_column_label": "",
+    "confidence": ""
+  },
+  "decomposition": {
+    "debt_level": {
+      "label_verbatim": "",
+      "value": "",
+      "children": []
+    },
+    "change_in_debt": {
+      "label_verbatim": "",
+      "value": ""
+    },
+    "identified_flows": {
+      "label_verbatim": "",
+      "value": ""
+    },
+    "primary_balance": {
+      "label_verbatim": "",
+      "value": "",
+      "children": []
+    },
+    "automatic_debt_dynamics": {
+      "label_verbatim": "",
+      "value": "",
+      "children": []
+    },
+    "other_identified_flows": {
+      "label_verbatim": "",
+      "value": "",
+      "children": []
+    },
+    "residual": {
+      "label_verbatim": "",
+      "value": "",
+      "children": []
+    }
+  },
+  "unmapped_rows": [],
+  "extraction_notes": ""
+}
+
+Set confidence to one of: "high", "medium", or "low". Use "high" when the table was clearly identified and every extracted cell was fully legible in the selected PDF. Do not lower confidence solely because the input is image-based, compressed, or cropped. Lower confidence only when one or more required row labels, column headers, values, or hierarchy relationships are genuinely unclear, degraded, ambiguous, or unreadable. Explain the specific reason in extraction_notes.
+
+IF table_found IS false, return instead:
+
+{
+  "table_found": false,
+  "failure_reason": "",
+  "source": null,
+  "decomposition": null,
+  "unmapped_rows": [],
+  "extraction_notes": ""
+}
+
+failure_reason must be exactly one of:
+
+- "dsa_pages_not_in_input" - the attached selected-page PDF contain no public debt decomposition table;
+- "pages_unreadable" - the selected PDF pages are too degraded, cropped, or otherwise unreadable to reconstruct rows and columns reliably;
+- "only_external_dsa_found" - only the external DSA table is present in the attached selected-page PDF;
+- "other".
+
+Use extraction_notes to list every candidate DSA table reviewed and every figure/chart rejected, including that it failed the mandatory table-versus-figure gate.

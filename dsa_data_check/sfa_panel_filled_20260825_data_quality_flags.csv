@@ -1,0 +1,5 @@
+flag_type,country_key,canonical_country,detail
+duplicate_country_name_variant,KINGDOM OF THE NETHERLANDS-THE NETHERLANDS,Kingdom Of The Netherlands—The Netherlands,"Merged name variants: ['Kingdom Of The Netherlands–The Netherlands', 'Kingdom Of The Netherlands—The Netherlands']"
+duplicate_country_name_variant,LAO PEOPLE'S DEMOCRATIC REPUBLIC,Lao People’S Democratic Republic,"Merged name variants: [""Lao People'S Democratic Republic"", 'Lao People’S Democratic Republic']"
+duplicate_country_name_variant,PEOPLE'S REPUBLIC OF CHINA-HONG KONG SPECIAL ADMINISTRATIVE REGION,People’S Republic Of China—Hong Kong Special Administrative Region,"Merged name variants: [""People'S Republic Of China—Hong Kong Special Administrative Region"", 'People’S Republic Of China—Hong Kong Special Administrative Region']"
+outlier_year_excluded_from_range,REPUBLIC OF TAJIKISTAN,Republic Of Tajikistan,"Excluded isolated year(s) [2012] from min/max range calc (kept full year list otherwise: [2012, 2020, 2021, 2024])"

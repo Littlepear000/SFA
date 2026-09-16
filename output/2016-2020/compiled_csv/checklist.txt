@@ -1,0 +1,8 @@
+checklist
+Burkina Faso_2016-12-22_dsa.json
+Chad_2016-08-17_dsa.json
+
+improvelist
+Burkina Faso_2019-12-30_dsa.json: shelley's original version was incorrect, revised version was correct
+Cambodia_2019-12-23_dsa.json: both orginal version incorrect, revised version incorrect
+Central African Republic_2020-04-28_dsa.json: both orginal versions incorrect, revised version correct

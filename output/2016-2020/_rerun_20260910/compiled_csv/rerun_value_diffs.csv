@@ -1,0 +1,292 @@
+json_file,hierarchy_id,top_category_A,label_verbatim_A,value_A,top_category_B,label_verbatim_B,value_B,_merge,vA,vB,match,both_nan,abs_diff
+Argentina_2019-07-15_dsa.json,1,change_in_debt,Change in gross public sector debt,4.1,change_in_debt,Change in gross public sector debt,28.9,both,4.1,28.9,False,False,24.799999999999997
+Argentina_2019-07-15_dsa.json,2,identified_flows,Identified debt-creating flows,1.1,identified_flows,Identified debt-creating flows,25.1,both,1.1,25.1,False,False,24.0
+Argentina_2019-07-15_dsa.json,3,primary_balance,Primary deficit,3.8,primary_balance,Primary deficit,2.7,both,3.8,2.7,False,False,1.0999999999999996
+Argentina_2019-07-15_dsa.json,3.1,primary_balance,Primary revenue and grants,25.9,primary_balance,Primary revenue and grants,25.2,both,25.9,25.2,False,False,0.6999999999999993
+Argentina_2019-07-15_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,29.7,primary_balance,Primary (noninterest) expenditure,27.8,both,29.7,27.8,False,False,1.8999999999999986
+Argentina_2019-07-15_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics 5/,-2.7,automatic_debt_dynamics,Automatic debt dynamics 5/,18.1,both,-2.7,18.1,False,False,20.8
+Argentina_2019-07-15_dsa.json,4.1,automatic_debt_dynamics,Interest rate/growth differential 6/,-8.3,automatic_debt_dynamics,Interest rate/growth differential 6/,-12.4,both,-8.3,-12.4,False,False,4.1
+Argentina_2019-07-15_dsa.json,4.1.1,automatic_debt_dynamics,Of which: real interest rate,-7.2,automatic_debt_dynamics,Of which: real interest rate,-13.4,both,-7.2,-13.4,False,False,6.2
+Argentina_2019-07-15_dsa.json,4.1.2,automatic_debt_dynamics,Of which: real GDP growth,-1.1,automatic_debt_dynamics,Of which: real GDP growth,1.0,both,-1.1,1.0,False,False,2.1
+Argentina_2019-07-15_dsa.json,4.2,automatic_debt_dynamics,Exchange rate depreciation 7/,5.6,automatic_debt_dynamics,Exchange rate depreciation 7/,30.5,both,5.6,30.5,False,False,24.9
+Argentina_2019-07-15_dsa.json,5,other_identified_flows,Other identified debt-creating flows,0.0,other_identified_flows,Other identified debt-creating flows,4.4,both,0.0,4.4,False,False,4.4
+Argentina_2019-07-15_dsa.json,5.2,other_identified_flows,Contingent liabilities,0.0,other_identified_flows,Contingent liabilities,2.5,both,0.0,2.5,False,False,2.5
+Argentina_2019-07-15_dsa.json,5.3,other_identified_flows,Prefinancing from IFIs and BOP Support 10/,0.0,other_identified_flows,Prefinancing from IFIs and BOP Support 8/,1.8,both,0.0,1.8,False,False,1.8
+Argentina_2019-07-15_dsa.json,6,residual,"Residual, including asset changes 8/",2.9,residual,"Residual, including asset changes 9/",3.8,both,2.9,3.8,False,False,0.8999999999999999
+Bulgaria_2018-02-21_dsa.json,5.1,other_identified_flows,"Please specify (1) (e.g., drawdown of deposits) (negative)",0.0,other_identified_flows,"Please specify (1) (e.g., drawdown of deposits) (negative)",9.3,both,0.0,9.3,False,False,9.3
+Bulgaria_2018-02-21_dsa.json,5.3,other_identified_flows,"Please specify (2) (e.g., ESM and Euroarea loans)",9.3,other_identified_flows,"Please specify (2) (e.g., ESM and Euroarea loans)",0.0,both,9.3,0.0,False,False,9.3
+Burkina Faso_2018-03-15_dsa.json,1,change_in_debt,Change in public sector debt,5.4,change_in_debt,Change in public sector debt,2.5,both,5.4,2.5,False,False,2.9000000000000004
+Burkina Faso_2018-03-15_dsa.json,2,identified_flows,Identified debt-creating flows,5.1,identified_flows,Identified debt-creating flows,1.3,both,5.1,1.3,False,False,3.8
+Burkina Faso_2018-03-15_dsa.json,3,primary_balance,Primary deficit,1.5,primary_balance,Primary deficit,2.4,both,1.5,2.4,False,False,0.8999999999999999
+Burkina Faso_2018-03-15_dsa.json,3.1,primary_balance,Revenue and grants,20.7,primary_balance,Revenue and grants,21.0,both,20.7,21.0,False,False,0.3000000000000007
+Burkina Faso_2018-03-15_dsa.json,3.1.1,primary_balance,of which: grants,3.7,primary_balance,of which: grants,2.7,both,3.7,2.7,False,False,1.0
+Burkina Faso_2018-03-15_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,22.2,primary_balance,Primary (noninterest) expenditure,23.5,both,22.2,23.5,False,False,1.3000000000000007
+Burkina Faso_2018-03-15_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,3.6,automatic_debt_dynamics,Automatic debt dynamics,-1.1,both,3.6,-1.1,False,False,4.7
+Burkina Faso_2018-03-15_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-0.5,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.6,both,-0.5,-1.6,False,False,1.1
+Burkina Faso_2018-03-15_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,0.6,automatic_debt_dynamics,of which: contribution from average real interest rate,0.4,both,0.6,0.4,False,False,0.19999999999999996
+Burkina Faso_2018-03-15_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.1,automatic_debt_dynamics,of which: contribution from real GDP growth,-2.0,both,-1.1,-2.0,False,False,0.8999999999999999
+Burkina Faso_2018-03-15_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,4.1,automatic_debt_dynamics,Contribution from real exchange rate depreciation,0.4,both,4.1,0.4,False,False,3.6999999999999997
+Burkina Faso_2018-03-15_dsa.json,6,residual,"Residual, including asset changes",0.3,residual,"Residual, including asset changes",1.2,both,0.3,1.2,False,False,0.8999999999999999
+Burkina Faso_2019-12-30_dsa.json,2,identified_flows,Identified debt-creating flows,1.5,identified_flows,Identified debt-creating flows,1.8,both,1.5,1.8,False,False,0.30000000000000004
+Burkina Faso_2019-12-30_dsa.json,3.1,primary_balance,Revenue and grants,23.0,primary_balance,Revenue and grants,22.2,both,23.0,22.2,False,False,0.8000000000000007
+Burkina Faso_2019-12-30_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,26.3,primary_balance,Primary (noninterest) expenditure,25.5,both,26.3,25.5,False,False,0.8000000000000007
+Burkina Faso_2019-12-30_dsa.json,5,other_identified_flows,Other identified debt-creating flows,-0.3,other_identified_flows,Other identified debt-creating flows,0.0,both,-0.3,0.0,False,False,0.3
+Burkina Faso_2019-12-30_dsa.json,5.4,other_identified_flows,Other debt creating or reducing flow (please specify),-0.3,other_identified_flows,Other debt creating or reducing flow (please specify),0.0,both,-0.3,0.0,False,False,0.3
+Burkina Faso_2019-12-30_dsa.json,6,residual,Residual,3.3,residual,Residual,2.9,both,3.3,2.9,False,False,0.3999999999999999
+Cambodia_2019-12-23_dsa.json,2,identified_flows,Identified debt-creating flows,-3.7,identified_flows,Identified debt-creating flows,-4.6,both,-3.7,-4.6,False,False,0.8999999999999995
+Cambodia_2019-12-23_dsa.json,3,primary_balance,Primary deficit,-1.1,primary_balance,Primary deficit,-2.0,both,-1.1,-2.0,False,False,0.8999999999999999
+Cambodia_2019-12-23_dsa.json,3.1.1,primary_balance,of which: grants,2.9,primary_balance,of which: grants,2.3,both,2.9,2.3,False,False,0.6000000000000001
+Cambodia_2019-12-23_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,22.8,primary_balance,Primary (noninterest) expenditure,21.9,both,22.8,21.9,False,False,0.9000000000000021
+Cambodia_2019-12-23_dsa.json,6,residual,Residual,2.3,residual,Residual,3.3,both,2.3,3.3,False,False,1.0
+Chad_2019-07-31_dsa.json,1,change_in_debt,Change in public sector debt,0.8,change_in_debt,Change in public sector debt,0.3,both,0.8,0.3,False,False,0.5
+Chad_2019-07-31_dsa.json,2,identified_flows,Identified debt-creating flows,3.1,identified_flows,Identified debt-creating flows,-5.4,both,3.1,-5.4,False,False,8.5
+Chad_2019-07-31_dsa.json,3,primary_balance,Primary deficit,4.3,primary_balance,Primary deficit,-1.2,both,4.3,-1.2,False,False,5.5
+Chad_2019-07-31_dsa.json,3.1.1,primary_balance,of which: grants,1.2,primary_balance,of which: grants,3.2,both,1.2,3.2,False,False,2.0
+Chad_2019-07-31_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,19.4,primary_balance,Primary (noninterest) expenditure,13.9,both,19.4,13.9,False,False,5.499999999999998
+Chad_2019-07-31_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-1.2,automatic_debt_dynamics,Automatic debt dynamics,-4.2,both,-1.2,-4.2,False,False,3.0
+Chad_2019-07-31_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.2,automatic_debt_dynamics,Contribution from interest rate/growth differential,-3.2,both,-1.2,-3.2,False,False,2.0
+Chad_2019-07-31_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,-0.6,automatic_debt_dynamics,of which: contribution from average real interest rate,-2.1,both,-0.6,-2.1,False,False,1.5
+Chad_2019-07-31_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-0.6,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.1,both,-0.6,-1.1,False,False,0.5000000000000001
+Chad_2019-07-31_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,0.0,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-1.0,both,0.0,-1.0,False,False,1.0
+Chad_2019-07-31_dsa.json,6,residual,Residual,-2.3,residual,Residual,5.7,both,-2.3,5.7,False,False,8.0
+Cote d'Ivoire_2017-12-15_dsa.json,1,change_in_debt,Change in public sector debt,4.0,change_in_debt,Change in public sector debt,1.4,both,4.0,1.4,False,False,2.6
+Cote d'Ivoire_2017-12-15_dsa.json,2,identified_flows,Identified debt-creating flows,0.6,identified_flows,Identified debt-creating flows,0.8,both,0.6,0.8,False,False,0.20000000000000007
+Cote d'Ivoire_2017-12-15_dsa.json,3,primary_balance,Primary deficit,1.3,primary_balance,Primary deficit,2.2,both,1.3,2.2,False,False,0.9000000000000001
+Cote d'Ivoire_2017-12-15_dsa.json,3.1,primary_balance,Revenue and grants,20.0,primary_balance,Revenue and grants,19.4,both,20.0,19.4,False,False,0.6000000000000014
+Cote d'Ivoire_2017-12-15_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,21.3,primary_balance,Primary (noninterest) expenditure,21.6,both,21.3,21.6,False,False,0.3000000000000007
+Cote d'Ivoire_2017-12-15_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-0.5,automatic_debt_dynamics,Automatic debt dynamics,-1.3,both,-0.5,-1.3,False,False,0.8
+Cote d'Ivoire_2017-12-15_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-2.2,automatic_debt_dynamics,Contribution from interest rate/growth differential,-2.0,both,-2.2,-2.0,False,False,0.20000000000000018
+Cote d'Ivoire_2017-12-15_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,0.8,automatic_debt_dynamics,of which: contribution from average real interest rate,1.1,both,0.8,1.1,False,False,0.30000000000000004
+Cote d'Ivoire_2017-12-15_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-2.9,automatic_debt_dynamics,of which: contribution from real GDP growth,-3.1,both,-2.9,-3.1,False,False,0.20000000000000018
+Cote d'Ivoire_2017-12-15_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,1.6,automatic_debt_dynamics,Contribution from real exchange rate depreciation,0.6,both,1.6,0.6,False,False,1.0
+Cote d'Ivoire_2017-12-15_dsa.json,5,other_identified_flows,Other identified debt-creating flows,-0.2,other_identified_flows,Other identified debt-creating flows,-0.1,both,-0.2,-0.1,False,False,0.1
+Cote d'Ivoire_2017-12-15_dsa.json,5.1,other_identified_flows,Privatization receipts (negative),-0.2,other_identified_flows,Privatization receipts (negative),-0.1,both,-0.2,-0.1,False,False,0.1
+Cote d'Ivoire_2017-12-15_dsa.json,6,residual,"Residual, including asset changes",3.4,residual,"Residual, including asset changes",0.6,both,3.4,0.6,False,False,2.8
+Cote d'Ivoire_2020-04-23_dsa.json,1,change_in_debt,Change in public sector debt,-2.3,change_in_debt,Change in public sector debt,0.7,both,-2.3,0.7,False,False,3.0
+Cote d'Ivoire_2020-04-23_dsa.json,2,identified_flows,Identified debt-creating flows,0.4,identified_flows,Identified debt-creating flows,0.0,both,0.4,0.0,False,False,0.4
+Cote d'Ivoire_2020-04-23_dsa.json,3,primary_balance,Primary deficit,0.7,primary_balance,Primary deficit,1.3,both,0.7,1.3,False,False,0.6000000000000001
+Cote d'Ivoire_2020-04-23_dsa.json,3.1,primary_balance,Revenue and grants,15.4,primary_balance,Revenue and grants,14.9,both,15.4,14.9,False,False,0.5
+Cote d'Ivoire_2020-04-23_dsa.json,3.1.1,primary_balance,of which: grants,0.5,primary_balance,of which: grants,0.4,both,0.5,0.4,False,False,0.09999999999999998
+Cote d'Ivoire_2020-04-23_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,16.1,primary_balance,Primary (noninterest) expenditure,16.2,both,16.1,16.2,False,False,0.09999999999999787
+Cote d'Ivoire_2020-04-23_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-0.3,automatic_debt_dynamics,Automatic debt dynamics,-1.3,both,-0.3,-1.3,False,False,1.0
+Cote d'Ivoire_2020-04-23_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-0.3,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.8,both,-0.3,-1.8,False,False,1.5
+Cote d'Ivoire_2020-04-23_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,2.1,automatic_debt_dynamics,of which: contribution from average real interest rate,0.6,both,2.1,0.6,False,False,1.5
+Cote d'Ivoire_2020-04-23_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,0.0,automatic_debt_dynamics,Contribution from real exchange rate depreciation,0.5,both,0.0,0.5,False,False,0.5
+Cote d'Ivoire_2020-04-23_dsa.json,6,residual,Residual,-2.7,residual,Residual,0.7,both,-2.7,0.7,False,False,3.4000000000000004
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,2,identified_flows,Identified debt-creating flows,1.8,identified_flows,Identified debt-creating flows,-1.4,both,1.8,-1.4,False,False,3.2
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,3,primary_balance,Primary deficit,8.3,primary_balance,Primary deficit,2.5,both,8.3,2.5,False,False,5.800000000000001
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,33.3,primary_balance,Primary (noninterest) expenditure,27.5,both,33.3,27.5,False,False,5.799999999999997
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-6.5,automatic_debt_dynamics,Automatic debt dynamics,-2.9,both,-6.5,-2.9,False,False,3.6
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-2.9,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.9,both,-2.9,-1.9,False,False,1.0
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,-1.7,automatic_debt_dynamics,of which: contribution from average real interest rate,-0.9,both,-1.7,-0.9,False,False,0.7999999999999999
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.0,both,-1.2,-1.0,False,False,0.19999999999999996
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-3.6,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-1.0,both,-3.6,-1.0,False,False,2.6
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,5,other_identified_flows,Other identified debt-creating flows,0.0,other_identified_flows,Other identified debt-creating flows,-1.0,both,0.0,-1.0,False,False,1.0
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,5.4,other_identified_flows,Other debt creating or reducing flow (please specify),0.0,other_identified_flows,Other debt creating or reducing flow (please specify),-1.0,both,0.0,-1.0,False,False,1.0
+Democratic Republic of São Tomé and Príncipe_2020-08-04_dsa.json,6,residual,Residual,-0.3,residual,Residual,2.9,both,-0.3,2.9,False,False,3.1999999999999997
+Grenada_2016-12-21_dsa.json,1,change_in_debt,Change in public sector debt,-6.3,change_in_debt,Change in public sector debt,-10.0,both,-6.3,-10.0,False,False,3.7
+Grenada_2016-12-21_dsa.json,2,identified_flows,Identified debt-creating flows,-5.4,identified_flows,Identified debt-creating flows,-12.7,both,-5.4,-12.7,False,False,7.299999999999999
+Grenada_2016-12-21_dsa.json,3,primary_balance,Primary deficit,1.1,primary_balance,Primary deficit,-2.2,both,1.1,-2.2,False,False,3.3000000000000003
+Grenada_2016-12-21_dsa.json,3.1,primary_balance,Revenue and grants,24.5,primary_balance,Revenue and grants,24.8,both,24.5,24.8,False,False,0.3000000000000007
+Grenada_2016-12-21_dsa.json,3.1.1,primary_balance,of which: grants,4.1,primary_balance,of which: grants,3.3,both,4.1,3.3,False,False,0.7999999999999998
+Grenada_2016-12-21_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,25.6,primary_balance,Primary (noninterest) expenditure,22.6,both,25.6,22.6,False,False,3.0
+Grenada_2016-12-21_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-4.6,automatic_debt_dynamics,Automatic debt dynamics,-4.1,both,-4.6,-4.1,False,False,0.5
+Grenada_2016-12-21_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-5.3,automatic_debt_dynamics,Contribution from interest rate/growth differential,-3.8,both,-5.3,-3.8,False,False,1.5
+Grenada_2016-12-21_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,2.1,automatic_debt_dynamics,of which: contribution from average real interest rate,2.2,both,2.1,2.2,False,False,0.10000000000000009
+Grenada_2016-12-21_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-7.4,automatic_debt_dynamics,of which: contribution from real GDP growth,-6.0,both,-7.4,-6.0,False,False,1.4000000000000004
+Grenada_2016-12-21_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,0.7,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-0.3,both,0.7,-0.3,False,False,1.0
+Grenada_2016-12-21_dsa.json,5,other_identified_flows,Other identified debt-creating flows,-1.9,other_identified_flows,Other identified debt-creating flows,-6.4,both,-1.9,-6.4,False,False,4.5
+Grenada_2016-12-21_dsa.json,5.3,other_identified_flows,Debt relief (HIPC and other)6/,-1.9,other_identified_flows,Debt relief (HIPC and other)6/,-5.8,both,-1.9,-5.8,False,False,3.9
+Grenada_2016-12-21_dsa.json,5.4,other_identified_flows,"Other (specify, e.g. bank recapitalization)",0.0,other_identified_flows,"Other (specify, e.g. bank recapitalization)",-0.6,both,0.0,-0.6,False,False,0.6
+Grenada_2016-12-21_dsa.json,6,residual,"Residual, including asset changes",-0.9,residual,"Residual, including asset changes",2.7,both,-0.9,2.7,False,False,3.6
+Guatemala_2018-06-08_dsa.json,1,change_in_debt,Change in gross public sector debt,-0.2,change_in_debt,Change in gross public sector debt,-0.8,both,-0.2,-0.8,False,False,0.6000000000000001
+Guatemala_2018-06-08_dsa.json,3,primary_balance,Primary deficit,-0.4,primary_balance,Primary deficit,-0.1,both,-0.4,-0.1,False,False,0.30000000000000004
+Guatemala_2018-06-08_dsa.json,3.1,primary_balance,Primary (noninterest) revenue and grants,11.0,primary_balance,Primary (noninterest) revenue and grants,10.6,both,11.0,10.6,False,False,0.40000000000000036
+Guatemala_2018-06-08_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,10.6,primary_balance,Primary (noninterest) expenditure,10.5,both,10.6,10.5,False,False,0.09999999999999964
+Guatemala_2018-06-08_dsa.json,4.1,automatic_debt_dynamics,Interest rate/growth differential 6/,-0.1,automatic_debt_dynamics,Interest rate/growth differential 6/,-0.3,both,-0.1,-0.3,False,False,0.19999999999999998
+Guatemala_2018-06-08_dsa.json,4.1.1,automatic_debt_dynamics,Of which: real interest rate,0.6,automatic_debt_dynamics,Of which: real interest rate,0.3,both,0.6,0.3,False,False,0.3
+Guatemala_2018-06-08_dsa.json,4.1.2,automatic_debt_dynamics,Of which: real GDP growth,-0.7,automatic_debt_dynamics,Of which: real GDP growth,-0.6,both,-0.7,-0.6,False,False,0.09999999999999998
+Guatemala_2018-06-08_dsa.json,4.2,automatic_debt_dynamics,Exchange rate depreciation 7/,-0.2,automatic_debt_dynamics,Exchange rate depreciation 7/,,both,-0.2,,False,False,
+Guatemala_2018-06-08_dsa.json,5,other_identified_flows,Other identified debt-creating flows,0.5,other_identified_flows,Other identified debt-creating flows,0.2,both,0.5,0.2,False,False,0.3
+Guatemala_2018-06-08_dsa.json,5.1,other_identified_flows,"Fiscal, Central Government, Total financing",0.5,other_identified_flows,"Fiscal, Central Government, Total financing",0.1,both,0.5,0.1,False,False,0.4
+Guatemala_2018-06-08_dsa.json,5.3,other_identified_flows,Privatization receipts (+ reduces financing,0.0,other_identified_flows,Privatization receipts (+ reduces financing,0.1,both,0.0,0.1,False,False,0.1
+Guatemala_2018-06-08_dsa.json,6,residual,"Residual, including asset changes 8/",0.0,residual,"Residual, including asset changes 8/",-0.6,both,0.0,-0.6,False,False,0.6
+Guinea_2017-12-19_dsa.json,1,change_in_debt,Change in public sector debt,-0.9,change_in_debt,Change in public sector debt,6.3,both,-0.9,6.3,False,False,7.2
+Guinea_2017-12-19_dsa.json,2,identified_flows,Identified debt-creating flows,-2.4,identified_flows,Identified debt-creating flows,6.2,both,-2.4,6.2,False,False,8.6
+Guinea_2017-12-19_dsa.json,3,primary_balance,Primary deficit,-0.7,primary_balance,Primary deficit,6.2,both,-0.7,6.2,False,False,6.9
+Guinea_2017-12-19_dsa.json,3.1,primary_balance,Revenue and grants,16.0,primary_balance,Revenue and grants,14.7,both,16.0,14.7,False,False,1.3000000000000007
+Guinea_2017-12-19_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,15.3,primary_balance,Primary (noninterest) expenditure,20.9,both,15.3,20.9,False,False,5.599999999999998
+Guinea_2017-12-19_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-1.7,automatic_debt_dynamics,Automatic debt dynamics,0.9,both,-1.7,0.9,False,False,2.6
+Guinea_2017-12-19_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-4.9,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.4,both,-4.9,-1.4,False,False,3.5000000000000004
+Guinea_2017-12-19_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,-2.1,automatic_debt_dynamics,of which: contribution from average real interest rate,-0.2,both,-2.1,-0.2,False,False,1.9000000000000001
+Guinea_2017-12-19_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-2.7,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.3,both,-2.7,-1.3,False,False,1.4000000000000001
+Guinea_2017-12-19_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,3.1,automatic_debt_dynamics,Contribution from real exchange rate depreciation,2.4,both,3.1,2.4,False,False,0.7000000000000002
+Guinea_2017-12-19_dsa.json,5,other_identified_flows,Other identified debt-creating flows,0.0,other_identified_flows,Other identified debt-creating flows,-1.0,both,0.0,-1.0,False,False,1.0
+Guinea_2017-12-19_dsa.json,5.3,other_identified_flows,Debt relief (HIPC and other),0.0,other_identified_flows,Debt relief (HIPC and other),-1.0,both,0.0,-1.0,False,False,1.0
+Guinea_2017-12-19_dsa.json,6,residual,"Residual, including asset changes",1.6,residual,"Residual, including asset changes",0.1,both,1.6,0.1,False,False,1.5
+Guyana_2018-07-16_dsa.json,1,change_in_debt,Change in public sector debt,0.6,change_in_debt,Change in public sector debt,1.5,both,0.6,1.5,False,False,0.9
+Guyana_2018-07-16_dsa.json,2,identified_flows,Identified debt-creating flows,-1.6,identified_flows,Identified debt-creating flows,4.6,both,-1.6,4.6,False,False,6.199999999999999
+Guyana_2018-07-16_dsa.json,3,primary_balance,Primary deficit,2.1,primary_balance,Primary deficit,4.3,both,2.1,4.3,False,False,2.1999999999999997
+Guyana_2018-07-16_dsa.json,3.1,primary_balance,Revenue and grants,27.5,primary_balance,Revenue and grants,27.9,both,27.5,27.9,False,False,0.3999999999999986
+Guyana_2018-07-16_dsa.json,3.1.1,primary_balance,of which: grants,1.1,primary_balance,of which: grants,1.6,both,1.1,1.6,False,False,0.5
+Guyana_2018-07-16_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,29.5,primary_balance,Primary (noninterest) expenditure,32.2,both,29.5,32.2,False,False,2.700000000000003
+Guyana_2018-07-16_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-3.6,automatic_debt_dynamics,Automatic debt dynamics,0.4,both,-3.6,0.4,False,False,4.0
+Guyana_2018-07-16_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-2.2,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.0,both,-2.2,-1.0,False,False,1.2000000000000002
+Guyana_2018-07-16_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,-0.5,automatic_debt_dynamics,of which: contribution from average real interest rate,0.0,both,-0.5,0.0,False,False,0.5
+Guyana_2018-07-16_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.6,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.1,both,-1.6,-1.1,False,False,0.5
+Guyana_2018-07-16_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-1.5,automatic_debt_dynamics,Contribution from real exchange rate depreciation,1.4,both,-1.5,1.4,False,False,2.9
+Guyana_2018-07-16_dsa.json,6,residual,"Residual, including asset changes",2.2,residual,"Residual, including asset changes",-3.2,both,2.2,-3.2,False,False,5.4
+Islamic Republic of Mauritania_2017-10-16_dsa.json,1,change_in_debt,Change in public sector debt,18.0,change_in_debt,Change in public sector debt,0.9,both,18.0,0.9,False,False,17.1
+Islamic Republic of Mauritania_2017-10-16_dsa.json,2,identified_flows,Identified debt-creating flows,12.8,identified_flows,Identified debt-creating flows,-0.6,both,12.8,-0.6,False,False,13.4
+Islamic Republic of Mauritania_2017-10-16_dsa.json,3,primary_balance,Primary deficit,2.2,primary_balance,Primary deficit,-0.9,both,2.2,-0.9,False,False,3.1
+Islamic Republic of Mauritania_2017-10-16_dsa.json,3.1,primary_balance,Revenue and grants,29.3,primary_balance,Revenue and grants,27.9,both,29.3,27.9,False,False,1.4000000000000021
+Islamic Republic of Mauritania_2017-10-16_dsa.json,3.1.1,primary_balance,of which: grants,1.8,primary_balance,of which: grants,1.9,both,1.8,1.9,False,False,0.09999999999999987
+Islamic Republic of Mauritania_2017-10-16_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,31.5,primary_balance,Primary (noninterest) expenditure,27.0,both,31.5,27.0,False,False,4.5
+Islamic Republic of Mauritania_2017-10-16_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,10.7,automatic_debt_dynamics,Automatic debt dynamics,0.3,both,10.7,0.3,False,False,10.399999999999999
+Islamic Republic of Mauritania_2017-10-16_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-0.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.8,both,-0.1,-1.8,False,False,1.7
+Islamic Republic of Mauritania_2017-10-16_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,0.6,automatic_debt_dynamics,of which: contribution from average real interest rate,-0.1,both,0.6,-0.1,False,False,0.7
+Islamic Republic of Mauritania_2017-10-16_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-0.7,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.7,both,-0.7,-1.7,False,False,1.0
+Islamic Republic of Mauritania_2017-10-16_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,10.7,automatic_debt_dynamics,Contribution from real exchange rate depreciation,2.1,both,10.7,2.1,False,False,8.6
+Islamic Republic of Mauritania_2017-10-16_dsa.json,6,residual,"Residual, including asset changes",5.2,residual,"Residual, including asset changes",1.5,both,5.2,1.5,False,False,3.7
+Kingdom of Lesotho_2018-02-28_dsa.json,1,change_in_debt,Change in public sector debt,-5.8,change_in_debt,Change in public sector debt,4.4,both,-5.8,4.4,False,False,10.2
+Kingdom of Lesotho_2018-02-28_dsa.json,2,identified_flows,Identified debt-creating flows,0.4,identified_flows,Identified debt-creating flows,4.0,both,0.4,4.0,False,False,3.6
+Kingdom of Lesotho_2018-02-28_dsa.json,3,primary_balance,Primary deficit,5.4,primary_balance,Primary deficit,0.2,both,5.4,0.2,False,False,5.2
+Kingdom of Lesotho_2018-02-28_dsa.json,3.1,primary_balance,Revenue and grants,40.9,primary_balance,Revenue and grants,47.2,both,40.9,47.2,False,False,6.300000000000004
+Kingdom of Lesotho_2018-02-28_dsa.json,3.1.1,primary_balance,of which: grants,2.5,primary_balance,of which: grants,3.0,both,2.5,3.0,False,False,0.5
+Kingdom of Lesotho_2018-02-28_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,46.4,primary_balance,Primary (noninterest) expenditure,47.4,both,46.4,47.4,False,False,1.0
+Kingdom of Lesotho_2018-02-28_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-5.0,automatic_debt_dynamics,Automatic debt dynamics,3.8,both,-5.0,3.8,False,False,8.8
+Kingdom of Lesotho_2018-02-28_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-0.8,automatic_debt_dynamics,Contribution from interest rate/growth differential,-0.7,both,-0.8,-0.7,False,False,0.10000000000000009
+Kingdom of Lesotho_2018-02-28_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,0.4,automatic_debt_dynamics,of which: contribution from average real interest rate,0.2,both,0.4,0.2,False,False,0.2
+Kingdom of Lesotho_2018-02-28_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-0.9,both,-1.2,-0.9,False,False,0.29999999999999993
+Kingdom of Lesotho_2018-02-28_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,4.5,both,-4.2,4.5,False,False,8.7
+Kingdom of Lesotho_2018-02-28_dsa.json,6,residual,"Residual, including asset changes",-6.3,residual,"Residual, including asset changes",0.4,both,-6.3,0.4,False,False,6.7
+Kiribati_2019-01-24_dsa.json,2,identified_flows,Identified debt-creating flows,-12.2,identified_flows,Identified debt-creating flows,-52.2,both,-12.2,-52.2,False,False,40.0
+Kiribati_2019-01-24_dsa.json,3,primary_balance,Primary deficit,-11.3,primary_balance,Primary deficit,-50.4,both,-11.3,-50.4,False,False,39.099999999999994
+Kiribati_2019-01-24_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,114.5,primary_balance,Primary (noninterest) expenditure,75.5,both,114.5,75.5,False,False,39.0
+Kiribati_2019-01-24_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-0.9,automatic_debt_dynamics,Automatic debt dynamics,-1.8,both,-0.9,-1.8,False,False,0.9
+Kiribati_2019-01-24_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-0.8,automatic_debt_dynamics,Contribution from interest rate/growth differential,-0.1,both,-0.8,-0.1,False,False,0.7000000000000001
+Kiribati_2019-01-24_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,-0.7,automatic_debt_dynamics,of which: contribution from average real interest rate,0.0,both,-0.7,0.0,False,False,0.7
+Kiribati_2019-01-24_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-0.1,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-1.7,both,-0.1,-1.7,False,False,1.5999999999999999
+Kiribati_2019-01-24_dsa.json,6,residual,Residual,11.7,residual,Residual,51.7,both,11.7,51.7,False,False,40.0
+Liberia_2017-11-20_dsa.json,1,change_in_debt,Change in public sector debt,4.7,change_in_debt,Change in public sector debt,8.7,both,4.7,8.7,False,False,3.999999999999999
+Liberia_2017-11-20_dsa.json,2,identified_flows,Identified debt-creating flows,4.0,identified_flows,Identified debt-creating flows,9.7,both,4.0,9.7,False,False,5.699999999999999
+Liberia_2017-11-20_dsa.json,3,primary_balance,Primary deficit,3.9,primary_balance,Primary deficit,9.5,both,3.9,9.5,False,False,5.6
+Liberia_2017-11-20_dsa.json,3.1,primary_balance,Revenue and grants,31.4,primary_balance,Revenue and grants,32.4,both,31.4,32.4,False,False,1.0
+Liberia_2017-11-20_dsa.json,3.1.1,primary_balance,of which: grants,9.6,primary_balance,of which: grants,10.0,both,9.6,10.0,False,False,0.40000000000000036
+Liberia_2017-11-20_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,35.3,primary_balance,Primary (noninterest) expenditure,41.9,both,35.3,41.9,False,False,6.600000000000001
+Liberia_2017-11-20_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,0.1,automatic_debt_dynamics,Automatic debt dynamics,0.2,both,0.1,0.2,False,False,0.1
+Liberia_2017-11-20_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-0.7,automatic_debt_dynamics,Contribution from interest rate/growth differential,0.5,both,-0.7,0.5,False,False,1.2
+Liberia_2017-11-20_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,-0.1,automatic_debt_dynamics,of which: contribution from average real interest rate,0.0,both,-0.1,0.0,False,False,0.1
+Liberia_2017-11-20_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-0.6,automatic_debt_dynamics,of which: contribution from real GDP growth,0.5,both,-0.6,0.5,False,False,1.1
+Liberia_2017-11-20_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,0.8,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-0.4,both,0.8,-0.4,False,False,1.2000000000000002
+Liberia_2017-11-20_dsa.json,6,residual,"Residual, including asset changes",0.7,residual,"Residual, including asset changes",-1.0,both,0.7,-1.0,False,False,1.7
+Malaysia_2017-04-28_dsa.json,1,change_in_debt,Change in gross public sector debt,1.8,change_in_debt,Change in gross public sector debt,1.82,both,1.8,1.82,False,False,0.020000000000000018
+Malaysia_2017-04-28_dsa.json,2,identified_flows,Identified debt-creating flows,1.2,identified_flows,Identified debt-creating flows,1.28,both,1.2,1.28,False,False,0.08000000000000007
+Malaysia_2019-03-08_dsa.json,1,change_in_debt,Change in gross public sector debt,1.2,change_in_debt,Change in gross public sector debt,-1.9,both,1.2,-1.9,False,False,3.0999999999999996
+Malaysia_2019-03-08_dsa.json,2,identified_flows,Identified debt-creating flows,1.0,identified_flows,Identified debt-creating flows,-1.9,both,1.0,-1.9,False,False,2.9
+Malaysia_2019-03-08_dsa.json,3,primary_balance,Primary deficit,1.6,primary_balance,Primary deficit,0.9,both,1.6,0.9,False,False,0.7000000000000001
+Malaysia_2019-03-08_dsa.json,3.1,primary_balance,Primary (noninterest) revenue and grants,16.6,primary_balance,Primary (noninterest) revenue and grants,16.3,both,16.6,16.3,False,False,0.3000000000000007
+Malaysia_2019-03-08_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,18.1,primary_balance,Primary (noninterest) expenditure,17.2,both,18.1,17.2,False,False,0.9000000000000021
+Malaysia_2019-03-08_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics 5/,-0.5,automatic_debt_dynamics,Automatic debt dynamics 5/,-2.8,both,-0.5,-2.8,False,False,2.3
+Malaysia_2019-03-08_dsa.json,4.1,automatic_debt_dynamics,Interest rate/growth differential 6/,-0.6,automatic_debt_dynamics,Interest rate/growth differential 6/,-2.6,both,-0.6,-2.6,False,False,2.0
+Malaysia_2019-03-08_dsa.json,4.1.1,automatic_debt_dynamics,Of which: real interest rate,1.7,automatic_debt_dynamics,Of which: real interest rate,0.2,both,1.7,0.2,False,False,1.5
+Malaysia_2019-03-08_dsa.json,4.1.2,automatic_debt_dynamics,Of which: real GDP growth,-2.3,automatic_debt_dynamics,Of which: real GDP growth,-2.8,both,-2.3,-2.8,False,False,0.5
+Malaysia_2019-03-08_dsa.json,4.2,automatic_debt_dynamics,Exchange rate depreciation 7/,0.1,automatic_debt_dynamics,Exchange rate depreciation 7/,-0.2,both,0.1,-0.2,False,False,0.30000000000000004
+Malaysia_2019-03-08_dsa.json,6,residual,"Residual, including asset changes 8/",0.1,residual,"Residual, including asset changes 8/",0.0,both,0.1,0.0,False,False,0.1
+Mali_2020-05-08_dsa.json,1,change_in_debt,Change in public sector debt,3.0,change_in_debt,Change in public sector debt,4.5,both,3.0,4.5,False,False,1.5
+Mali_2020-05-08_dsa.json,2,identified_flows,Identified debt-creating flows,0.7,identified_flows,Identified debt-creating flows,3.6,both,0.7,3.6,False,False,2.9000000000000004
+Mali_2020-05-08_dsa.json,3,primary_balance,Primary deficit,2.2,primary_balance,Primary deficit,3.1,both,2.2,3.1,False,False,0.8999999999999999
+Mali_2020-05-08_dsa.json,3.1,primary_balance,Revenue and grants,20.8,primary_balance,Revenue and grants,20.1,both,20.8,20.1,False,False,0.6999999999999993
+Mali_2020-05-08_dsa.json,3.1.1,primary_balance,of which: grants,2.7,primary_balance,of which: grants,2.8,both,2.7,2.8,False,False,0.09999999999999964
+Mali_2020-05-08_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,23.0,primary_balance,Primary (noninterest) expenditure,23.2,both,23.0,23.2,False,False,0.1999999999999993
+Mali_2020-05-08_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-1.5,automatic_debt_dynamics,Automatic debt dynamics,0.5,both,-1.5,0.5,False,False,2.0
+Mali_2020-05-08_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.4,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.6,both,-1.4,-1.6,False,False,0.20000000000000018
+Mali_2020-05-08_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,0.5,automatic_debt_dynamics,of which: contribution from average real interest rate,0.2,both,0.5,0.2,False,False,0.3
+Mali_2020-05-08_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.9,automatic_debt_dynamics,of which: contribution from real GDP growth,-1.8,both,-1.9,-1.8,False,False,0.09999999999999987
+Mali_2020-05-08_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-0.1,automatic_debt_dynamics,Contribution from real exchange rate depreciation,2.1,both,-0.1,2.1,False,False,2.2
+Mali_2020-05-08_dsa.json,6,residual,Residual,2.3,residual,Residual,0.9,both,2.3,0.9,False,False,1.4
+Mexico_2020-11-20_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics 5/,1.2,automatic_debt_dynamics,Automatic debt dynamics 5/,1.3,both,1.2,1.3,False,False,0.10000000000000009
+Myanmar_2020-07-02_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,0.0,automatic_debt_dynamics,of which: contribution from average real interest rate,-0.2,both,0.0,-0.2,False,False,0.2
+Myanmar_2020-07-02_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-2.5,automatic_debt_dynamics,of which: contribution from real GDP growth,-2.3,both,-2.5,-2.3,False,False,0.20000000000000018
+Papua New Guinea_2017-01-30_dsa.json,1,change_in_debt,Change in public sector debt,-7.9,change_in_debt,Change in public sector debt,4.5,both,-7.9,4.5,False,False,12.4
+Papua New Guinea_2017-01-30_dsa.json,2,identified_flows,Identified debt-creating flows,11.9,identified_flows,Identified debt-creating flows,11.6,both,11.9,11.6,False,False,0.3000000000000007
+Papua New Guinea_2017-01-30_dsa.json,3,primary_balance,Primary deficit,3.2,primary_balance,Primary deficit,4.8,both,3.2,4.8,False,False,1.5999999999999996
+Papua New Guinea_2017-01-30_dsa.json,3.1,primary_balance,Revenue and grants,18.3,primary_balance,Revenue and grants,21.7,both,18.3,21.7,False,False,3.3999999999999986
+Papua New Guinea_2017-01-30_dsa.json,3.1.1,primary_balance,of which: grants,1.4,primary_balance,of which: grants,1.6,both,1.4,1.6,False,False,0.20000000000000018
+Papua New Guinea_2017-01-30_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,21.5,primary_balance,Primary (noninterest) expenditure,26.5,both,21.5,26.5,False,False,5.0
+Papua New Guinea_2017-01-30_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,0.0,automatic_debt_dynamics,Automatic debt dynamics,-2.3,both,0.0,-2.3,False,False,2.3
+Papua New Guinea_2017-01-30_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.0,automatic_debt_dynamics,Contribution from interest rate/growth differential,-2.4,both,-1.0,-2.4,False,False,1.4
+Papua New Guinea_2017-01-30_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,1.4,automatic_debt_dynamics,of which: contribution from average real interest rate,0.0,both,1.4,0.0,False,False,1.4
+Papua New Guinea_2017-01-30_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-2.4,automatic_debt_dynamics,of which: contribution from real GDP growth,-2.3,both,-2.4,-2.3,False,False,0.10000000000000009
+Papua New Guinea_2017-01-30_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,1.0,automatic_debt_dynamics,Contribution from real exchange rate depreciation,0.1,both,1.0,0.1,False,False,0.9
+Papua New Guinea_2017-01-30_dsa.json,5,other_identified_flows,Other identified debt-creating flows,8.6,other_identified_flows,Other identified debt-creating flows,9.1,both,8.6,9.1,False,False,0.5
+Papua New Guinea_2017-01-30_dsa.json,5.2,other_identified_flows,Recognition of implicit or contingent liabilities,8.6,other_identified_flows,Recognition of implicit or contingent liabilities,9.1,both,8.6,9.1,False,False,0.5
+Papua New Guinea_2017-01-30_dsa.json,6,residual,"Residual, including asset changes",-19.8,residual,"Residual, including asset changes",-7.1,both,-19.8,-7.1,False,False,12.700000000000001
+Peru_2020-05-29_dsa.json,4.1,automatic_debt_dynamics,Interest rate/growth differential 6/,-0.2,automatic_debt_dynamics,Interest rate/growth differential 6/,0.3,both,-0.2,0.3,False,False,0.5
+Philippines_2018-09-27_dsa.json,4.1.1,automatic_debt_dynamics,Of which: real interest rate,1.3,automatic_debt_dynamics,Of which: real interest rate,1.1,both,1.3,1.1,False,False,0.19999999999999996
+Republic of Armenia_2016-12-13_dsa.json,1,change_in_debt,Change in gross public sector debt,5.1,change_in_debt,Change in gross public sector debt,5.18,both,5.1,5.18,False,False,0.08000000000000007
+Republic of Armenia_2016-12-13_dsa.json,2,identified_flows,Identified debt-creating flows,5.8,identified_flows,Identified debt-creating flows,5.85,both,5.8,5.85,False,False,0.04999999999999982
+Republic of Belarus_2019-01-17_dsa.json,4.1.1,automatic_debt_dynamics,Of which: real interest rate,-1.7,automatic_debt_dynamics,Of which: real interest rate,-1.1,both,-1.7,-1.1,False,False,0.5999999999999999
+Republic of Belarus_2019-01-17_dsa.json,5.1,other_identified_flows,General Government: Net,,other_identified_flows,General Government: Net Privatization Proceeds (negative),0.0,both,,0.0,False,False,
+Republic of Belarus_2019-01-17_dsa.json,5.2,other_identified_flows,Privatization Proceeds (negative),0.0,other_identified_flows,Contingent liabilities,2.1,both,0.0,2.1,False,False,2.1
+Republic of Belarus_2019-01-17_dsa.json,5.3,other_identified_flows,Contingent liabilities,2.1,other_identified_flows,Non-budget support debt flows 8/,1.1,both,2.1,1.1,False,False,1.0
+Republic of Equatorial Guinea_2016-11-16_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,3.1,automatic_debt_dynamics,Automatic debt dynamics,3.8,both,3.1,3.8,False,False,0.6999999999999997
+Republic of Equatorial Guinea_2016-11-16_dsa.json,4.2,automatic_debt_dynamics,Exchange rate depreciation,0.1,automatic_debt_dynamics,Exchange rate depreciation,0.8,both,0.1,0.8,False,False,0.7000000000000001
+Republic of Equatorial Guinea_2019-12-20_dsa.json,1,change_in_debt,Change in gross public sector debt,6.0,change_in_debt,Change in gross public sector debt,5.0,both,6.0,5.0,False,False,1.0
+Republic of Equatorial Guinea_2019-12-20_dsa.json,6,residual,"Residual, including asset changes 8/",6.7,residual,"Residual, including asset changes 8/",5.7,both,6.7,5.7,False,False,1.0
+Republic of Moldova_2019-09-25_dsa.json,2,identified_flows,Identified debt-creating flows,-6.9,identified_flows,Identified debt-creating flows,-0.9,both,-6.9,-0.9,False,False,6.0
+Republic of Moldova_2019-09-25_dsa.json,3,primary_balance,Primary deficit,-0.3,primary_balance,Primary deficit,0.3,both,-0.3,0.3,False,False,0.6
+Republic of Moldova_2019-09-25_dsa.json,3.1,primary_balance,Revenue and grants,-30.5,primary_balance,Revenue and grants,30.5,both,-30.5,30.5,False,False,61.0
+Republic of Moldova_2019-09-25_dsa.json,3.1.1,primary_balance,of which: grants,-0.2,primary_balance,of which: grants,0.2,both,-0.2,0.2,False,False,0.4
+Republic of Moldova_2019-09-25_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,30.2,primary_balance,Primary (noninterest) expenditure,30.8,both,30.2,30.8,False,False,0.6000000000000014
+Republic of Moldova_2019-09-25_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-0.5,automatic_debt_dynamics,Automatic debt dynamics,-1.1,both,-0.5,-1.1,False,False,0.6000000000000001
+Republic of Moldova_2019-09-25_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-0.5,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.0,both,-0.5,-1.0,False,False,0.5
+Republic of Moldova_2019-09-25_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,0.7,automatic_debt_dynamics,of which: contribution from average real interest rate,0.2,both,0.7,0.2,False,False,0.49999999999999994
+Republic of Moldova_2019-09-25_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,0.0,automatic_debt_dynamics,Contribution from real exchange rate depreciation,-0.1,both,0.0,-0.1,False,False,0.1
+Republic of Moldova_2019-09-25_dsa.json,5,other_identified_flows,Other identified debt-creating flows,-6.1,other_identified_flows,Other identified debt-creating flows,-0.1,both,-6.1,-0.1,False,False,6.0
+Republic of Moldova_2019-09-25_dsa.json,5.4,other_identified_flows,Other debt creating or reducing flow (please specify),-6.0,other_identified_flows,Other debt-creating or reducing flow (please specify),0.0,both,-6.0,0.0,False,False,6.0
+Republic of Moldova_2019-09-25_dsa.json,6,residual,Residual,4.9,residual,Residual,-1.3,both,4.9,-1.3,False,False,6.2
+Republic of Nauru_2020-01-29_dsa.json,2,identified_flows,Identified debt-creating flows,-72.6,identified_flows,Identified debt-creating flows,-72.5,both,-72.6,-72.5,False,False,0.09999999999999432
+Senegal_2018-01-12_dsa.json,1,change_in_debt,Change in public sector debt,2.4,change_in_debt,Change in public sector debt,3.5,both,2.4,3.5,False,False,1.1
+Senegal_2018-01-12_dsa.json,2,identified_flows,Identified debt-creating flows,7.2,identified_flows,Identified debt-creating flows,3.9,both,7.2,3.9,False,False,3.3000000000000003
+Senegal_2018-01-12_dsa.json,3,primary_balance,Primary deficit,3.2,primary_balance,Primary deficit,2.2,both,3.2,2.2,False,False,1.0
+Senegal_2018-01-12_dsa.json,3.1,primary_balance,Revenue and grants,25.1,primary_balance,Revenue and grants,26.8,both,25.1,26.8,False,False,1.6999999999999993
+Senegal_2018-01-12_dsa.json,3.1.1,primary_balance,of which: grants,2.9,primary_balance,of which: grants,2.8,both,2.9,2.8,False,False,0.10000000000000009
+Senegal_2018-01-12_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,28.3,primary_balance,Primary (noninterest) expenditure,29.0,both,28.3,29.0,False,False,0.6999999999999993
+Senegal_2018-01-12_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,3.2,automatic_debt_dynamics,Automatic debt dynamics,-0.8,both,3.2,-0.8,False,False,4.0
+Senegal_2018-01-12_dsa.json,4.1,automatic_debt_dynamics,Contribution from interest rate/growth differential,-1.9,automatic_debt_dynamics,Contribution from interest rate/growth differential,-2.0,both,-1.9,-2.0,False,False,0.10000000000000009
+Senegal_2018-01-12_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,1.4,automatic_debt_dynamics,of which: contribution from average real interest rate,1.5,both,1.4,1.5,False,False,0.10000000000000009
+Senegal_2018-01-12_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-3.3,automatic_debt_dynamics,of which: contribution from real GDP growth,-3.6,both,-3.3,-3.6,False,False,0.30000000000000027
+Senegal_2018-01-12_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,5.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,1.3,both,5.2,1.3,False,False,3.9000000000000004
+Senegal_2018-01-12_dsa.json,5,other_identified_flows,Other identified debt-creating flows,0.7,other_identified_flows,Other identified debt-creating flows,2.5,both,0.7,2.5,False,False,1.8
+Senegal_2018-01-12_dsa.json,5.4,other_identified_flows,"Other (specify, e.g. bank recapitalization)",0.7,other_identified_flows,"Other (specify, e.g. bank recapitalization)",2.5,both,0.7,2.5,False,False,1.8
+Senegal_2018-01-12_dsa.json,6,residual,"Residual, including asset changes",-4.7,residual,"Residual, including asset changes",-0.4,both,-4.7,-0.4,False,False,4.3
+Sweden_2019-03-26_dsa.json,4.1.1,automatic_debt_dynamics,Of which: real interest rate,-0.5,automatic_debt_dynamics,Of which: real interest rate,-0.6,both,-0.5,-0.6,False,False,0.09999999999999998
+Thailand_2018-06-04_dsa.json,1,change_in_debt,Change in gross public sector debt,-0.7,change_in_debt,Change in gross public sector debt,0.1,both,-0.7,0.1,False,False,0.7999999999999999
+Thailand_2018-06-04_dsa.json,2,identified_flows,Identified debt-creating flows,-1.0,identified_flows,Identified debt-creating flows,-0.3,both,-1.0,-0.3,False,False,0.7
+Thailand_2018-06-04_dsa.json,3,primary_balance,Primary deficit,-2.5,primary_balance,Primary deficit,-1.4,both,-2.5,-1.4,False,False,1.1
+Thailand_2018-06-04_dsa.json,3.1,primary_balance,Primary (noninterest) revenue and grants,24.7,primary_balance,Primary (noninterest) revenue and grants,23.9,both,24.7,23.9,False,False,0.8000000000000007
+Thailand_2018-06-04_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,22.2,primary_balance,Primary (noninterest) expenditure,22.5,both,22.2,22.5,False,False,0.3000000000000007
+Thailand_2018-06-04_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics 5/,-1.0,automatic_debt_dynamics,Automatic debt dynamics 5/,-1.2,both,-1.0,-1.2,False,False,0.19999999999999996
+Thailand_2018-06-04_dsa.json,4.1,automatic_debt_dynamics,Interest rate/growth differential 6/,-1.0,automatic_debt_dynamics,Interest rate/growth differential 6/,-1.2,both,-1.0,-1.2,False,False,0.19999999999999996
+Thailand_2018-06-04_dsa.json,4.1.2,automatic_debt_dynamics,Of which: real GDP growth,-1.3,automatic_debt_dynamics,Of which: real GDP growth,-1.4,both,-1.3,-1.4,False,False,0.09999999999999987
+Thailand_2018-06-04_dsa.json,4.2,automatic_debt_dynamics,Exchange rate depreciation 7/,0.0,automatic_debt_dynamics,Exchange rate depreciation 7/,-0.1,both,0.0,-0.1,False,False,0.1
+Thailand_2018-06-04_dsa.json,5,other_identified_flows,Other identified debt-creating flows,2.5,other_identified_flows,Other identified debt-creating flows,2.3,both,2.5,2.3,False,False,0.20000000000000018
+Thailand_2018-06-04_dsa.json,5.1,other_identified_flows,"Please specify (1) (e.g., drawdown of deposits) (negative)",2.5,other_identified_flows,"Please specify (1) (e.g., drawdown of deposits) (negative)",2.3,both,2.5,2.3,False,False,0.20000000000000018
+Thailand_2018-06-04_dsa.json,6,residual,"Residual, including asset changes 8/",0.2,residual,"Residual, including asset changes 8/",0.4,both,0.2,0.4,False,False,0.2
+Togo_2017-12-15_dsa.json,1,change_in_debt,Change in public sector debt,10.5,change_in_debt,Change in public sector debt,6.0,both,10.5,6.0,False,False,4.5
+Togo_2017-12-15_dsa.json,2,identified_flows,Identified debt-creating flows,6.2,identified_flows,Identified debt-creating flows,5.0,both,6.2,5.0,False,False,1.2000000000000002
+Togo_2017-12-15_dsa.json,3,primary_balance,Primary deficit,6.8,primary_balance,Primary deficit,7.1,both,6.8,7.1,False,False,0.2999999999999998
+Togo_2017-12-15_dsa.json,3.1,primary_balance,Revenue and grants,22.1,primary_balance,Revenue and grants,21.7,both,22.1,21.7,False,False,0.40000000000000213
+Togo_2017-12-15_dsa.json,3.1.1,primary_balance,of which: grants,2.3,primary_balance,of which: grants,2.9,both,2.3,2.9,False,False,0.6000000000000001
+Togo_2017-12-15_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,28.9,primary_balance,Primary (noninterest) expenditure,28.8,both,28.9,28.8,False,False,0.09999999999999787
+Togo_2017-12-15_dsa.json,4,automatic_debt_dynamics,Automatic debt dynamics,-0.6,automatic_debt_dynamics,Automatic debt dynamics,-2.1,both,-0.6,-2.1,False,False,1.5
+Togo_2017-12-15_dsa.json,4.1.1,automatic_debt_dynamics,of which: contribution from average real interest rate,0.5,automatic_debt_dynamics,of which: contribution from average real interest rate,0.8,both,0.5,0.8,False,False,0.30000000000000004
+Togo_2017-12-15_dsa.json,4.1.2,automatic_debt_dynamics,of which: contribution from real GDP growth,-3.3,automatic_debt_dynamics,of which: contribution from real GDP growth,-3.6,both,-3.3,-3.6,False,False,0.30000000000000027
+Togo_2017-12-15_dsa.json,4.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,2.2,automatic_debt_dynamics,Contribution from real exchange rate depreciation,0.6,both,2.2,0.6,False,False,1.6
+Togo_2017-12-15_dsa.json,6,residual,"Residual, including asset changes",4.3,residual,"Residual, including asset changes",1.0,both,4.3,1.0,False,False,3.3
+Ukraine_2020-06-11_dsa.json,3.1,primary_balance,Primary (noninterest) revenue and grants,39.7,primary_balance,Primary (noninterest) revenue and grants,36.6,both,39.7,36.6,False,False,3.1000000000000014
+Ukraine_2020-06-11_dsa.json,3.2,primary_balance,Primary (noninterest) expenditure,38.7,primary_balance,Primary (noninterest) expenditure,38.4,both,38.7,38.4,False,False,0.30000000000000426
+Ukraine_2020-06-11_dsa.json,4.1,automatic_debt_dynamics,Interest rate/growth differential 6/,-2.9,automatic_debt_dynamics,Interest rate/growth differential 5/,-8.1,both,-2.9,-8.1,False,False,5.199999999999999
+Ukraine_2020-06-11_dsa.json,4.1.2,automatic_debt_dynamics,Of which: real GDP growth,-1.7,automatic_debt_dynamics,Of which: real GDP growth,-1.8,both,-1.7,-1.8,False,False,0.10000000000000009
+Ukraine_2020-06-11_dsa.json,4.2,automatic_debt_dynamics,Exchange rate depreciation 7/,-5.8,automatic_debt_dynamics,Exchange rate depreciation 6/,-0.6,both,-5.8,-0.6,False,False,5.2
