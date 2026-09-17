@@ -1,119 +1,119 @@
-﻿country,publication_date,disagreement_types
-Argentina,July 2019,"last_actual_year, value"
-Bangladesh,January 2016,last_actual_year
-Belize,March 2016,"last_actual_year, value"
-Benin,January 2016,last_actual_year
-Benin,April 2017,"last_actual_year, value"
-Bolivia,May 2020,table_found
-Bulgaria,February 2018,value
-Burkina Faso,December 2016,"last_actual_year, value"
-Burkina Faso,March 2018,"last_actual_year, value"
-Burkina Faso,December 2019,value
-Cabo Verde,November 2016,last_actual_year
-Cambodia,December 2019,value
-Central African Republic,April 2020,value
-Chad,August 2016,"last_actual_year, value"
-Chad,July 2019,value
-Chad,August 2020,value
-Côte D’Ivoire,December 2017,"last_actual_year, value"
-Côte D’Ivoire,June 2018,table_found
-Cyprus,January 2016,"last_actual_year, value"
-Democratic Republic Of São Tomé And Príncipe,December 2017,"last_actual_year, value"
-Democratic Republic Of São Tomé And Príncipe,August 2020,value
-Democratic Republic Of Timor-Leste,May 2019,value
-Djibouti,April 2017,"last_actual_year, value"
-Dominica,July 2016,"last_actual_year, value"
-Dominica,December 2017,"last_actual_year, value"
-Ecuador,March 2019,"last_actual_year, value"
-Ecuador,May 2020,value
-Ghana,April 2020,value
-Greece,July 2017,last_actual_year
-Grenada,December 2016,"last_actual_year, value"
-Guatemala,August 2016,value
-Guatemala,June 2018,"last_actual_year, value"
-Guinea-Bissau,December 2016,"last_actual_year, value"
-Guinea-Bissau,December 2017,"last_actual_year, value"
-Guinea,December 2017,"last_actual_year, value"
-Guyana,July 2016,"last_actual_year, value"
-Guyana,July 2018,"last_actual_year, value"
-Honduras,June 2018,"last_actual_year, value"
-Indonesia,March 2016,value
-Indonesia,February 2018,value
-Islamic Republic Of Afghanistan,November 2020,value
-Islamic Republic Of Mauritania,May 2016,"last_actual_year, value"
-Islamic Republic Of Mauritania,October 2017,"last_actual_year, value"
-Islamic Republic Of Mauritania,December 2017,"last_actual_year, value"
-Israel,March 2017,value
-Italy,July 2017,table_found
-Kingdom Of Lesotho,February 2018,"last_actual_year, value"
-Kiribati,"January 24, 2019",value
-Kyrgyz Republic,February 2018,"last_actual_year, value"
-Lao People'S Democratic Republic,February 2017,"last_actual_year, value"
-Lao People'S Democratic Republic,March 2018,"last_actual_year, value"
-Liberia,January 2016,"last_actual_year, value"
-Liberia,November 2017,"last_actual_year, value"
-Liberia,June 2018,"last_actual_year, value"
-Liberia,June 2019,value
-Luxembourg,May 2017,value
-Malaysia,May 2016,value
-Malaysia,April 2017,"last_actual_year, value"
-Malaysia,March 2019,"last_actual_year, value"
-Maldives,December 2017,"last_actual_year, value"
-Maldives,September 2019,value
-Maldives,April 2020,value
-Mali,December 2016,table_found
-Mali,May 2020,value
-Mexico,November 2018,value
-Mexico,November 2020,value
-Myanmar,February 2017,"last_actual_year, value"
-Myanmar,July 2020,value
-Nepal,April 2020,value
-New Zealand,May 2017,"last_actual_year, value"
-Norway,September 2018,value
-Papua New Guinea,January 2017,"last_actual_year, value"
-Papua New Guinea,December 2017,"last_actual_year, value"
-Peru,May 2020,value
-Philippines,September 2016,value
-Philippines,November 2017,value
-Philippines,September 2018,value
-Republic Of Armenia,July 2016,value
-Republic Of Armenia,December 2016,value
-Republic Of Armenia,July 2017,value
-Republic Of Belarus,January 2019,value
-Republic Of Congo,January 2020,value
-Republic Of Croatia,February 2019,"last_actual_year, value"
-Republic Of Equatorial Guinea,November 2016,value
-Republic Of Equatorial Guinea,December 2019,value
-Republic Of Kosovo,March 2017,value
-Republic Of Lithuania,June 2017,value
-Republic Of Madagascar,July 2018,"last_actual_year, value"
-Republic Of Madagascar,August 2020,value
-Republic Of Moldova,November 2016,"last_actual_year, value"
-Republic Of Moldova,September 2019,value
-Republic Of Nauru,January 2020,"last_actual_year, value"
-Republic Of Poland,January 2017,value
-Republic Of San Marino,April 2017,value
-Republic Of San Marino,April 2020,"last_actual_year, value"
-Republic Of Slovenia,February 2019,value
-Republic Of Timor-Leste,June 2016,"last_actual_year, value"
-Rwanda,January 2016,value
-Rwanda,July 2017,"last_actual_year, value"
-Saudi Arabia,October 2017,value
-Senegal,January 2016,value
-Senegal,January 2017,"last_actual_year, value"
-Senegal,January 2018,"last_actual_year, value"
-Singapore,July 2018,"last_actual_year, value"
-Solomon Islands,March 2016,"last_actual_year, value"
-Solomon Islands,March 2018,"last_actual_year, value"
-Sri Lanka,May 2019,value
-St. Vincent And The Grenadines,May 2020,value
-Sweden,March 2019,value
-Thailand,June 2018,value
-The Federal Democratic Republic Of Ethiopia,October 2016,"last_actual_year, value"
-The Gambia,June 2017,"last_actual_year, value"
-Togo,December 2017,"last_actual_year, value"
-Ukraine,June 2020,value
-United Kingdom,February 2016,"last_actual_year, value"
-United Republic Of Tanzania,February 2016,table_found
-Vanuatu,October 2016,"last_actual_year, value"
-Zambia,August 2019,value
+﻿pdf_file_name,country,disagreement_types
+Argentina_2019-07-15.pdf,Argentina,"last_actual_year, value"
+Bangladesh_2016-02-01.pdf,Bangladesh,last_actual_year
+Belize_2016-03-28.pdf,Belize,"last_actual_year, value"
+Benin_2016-01-07.pdf,Benin,last_actual_year
+Benin_2017-04-26.pdf,Benin,"last_actual_year, value"
+Bolivia_2020-05-29.pdf,Bolivia,table_found
+Bulgaria_2018-02-21.pdf,Bulgaria,value
+Burkina Faso_2016-12-22.pdf,Burkina Faso,"last_actual_year, value"
+Burkina Faso_2018-03-15.pdf,Burkina Faso,"last_actual_year, value"
+Burkina Faso_2019-12-30.pdf,Burkina Faso,value
+Cabo Verde_2016-11-29.pdf,Cabo Verde,last_actual_year
+Cambodia_2019-12-23.pdf,Cambodia,value
+Central African Republic_2020-04-28.pdf,Central African Republic,value
+Chad_2016-08-17.pdf,Chad,"last_actual_year, value"
+Chad_2019-07-31.pdf,Chad,value
+Chad_2020-08-05.pdf,Chad,value
+Cote d'Ivoire_2017-12-15.pdf,Côte D’Ivoire,"last_actual_year, value"
+Cote d'Ivoire_2018-06-25.pdf,Côte D’Ivoire,table_found
+Cyprus_2016-01-29.pdf,Cyprus,"last_actual_year, value"
+Democratic Republic of São Tomé and Príncipe_2017-12-18.pdf,Democratic Republic Of São Tomé And Príncipe,"last_actual_year, value"
+Democratic Republic of São Tomé and Príncipe_2020-08-04.pdf,Democratic Republic Of São Tomé And Príncipe,value
+Democratic Republic of Timor-Leste_2019-05-07.pdf,Democratic Republic Of Timor-Leste,value
+Djibouti_2017-04-06.pdf,Djibouti,"last_actual_year, value"
+Dominica_2016-07-20.pdf,Dominica,"last_actual_year, value"
+Dominica_2017-12-20.pdf,Dominica,"last_actual_year, value"
+Ecuador_2019-03-20.pdf,Ecuador,"last_actual_year, value"
+Ecuador_2020-05-28.pdf,Ecuador,value
+Ghana_2020-04-16.pdf,Ghana,value
+Greece_2017-07-20.pdf,Greece,last_actual_year
+Grenada_2016-12-21.pdf,Grenada,"last_actual_year, value"
+Guatemala_2016-09-01.pdf,Guatemala,value
+Guatemala_2018-06-08.pdf,Guatemala,"last_actual_year, value"
+Guinea-Bissau_2016-12-28.pdf,Guinea-Bissau,"last_actual_year, value"
+Guinea-Bissau_2017-12-18.pdf,Guinea-Bissau,"last_actual_year, value"
+Guinea_2017-12-19.pdf,Guinea,"last_actual_year, value"
+Guyana_2016-07-07.pdf,Guyana,"last_actual_year, value"
+Guyana_2018-07-16.pdf,Guyana,"last_actual_year, value"
+Honduras_2018-07-03.pdf,Honduras,"last_actual_year, value"
+Indonesia_2016-03-15.pdf,Indonesia,value
+Indonesia_2018-02-06.pdf,Indonesia,value
+Islamic Republic of Afghanistan_2020-11-13.pdf,Islamic Republic Of Afghanistan,value
+Islamic Republic of Mauritania_2016-05-11.pdf,Islamic Republic Of Mauritania,"last_actual_year, value"
+Islamic Republic of Mauritania_2017-10-16.pdf,Islamic Republic Of Mauritania,"last_actual_year, value"
+Islamic Republic of Mauritania_2017-12-13.pdf,Islamic Republic Of Mauritania,"last_actual_year, value"
+Israel_2017-03-28.pdf,Israel,value
+Italy_2017-07-27.pdf,Italy,table_found
+Kingdom of Lesotho_2018-02-28.pdf,Kingdom Of Lesotho,"last_actual_year, value"
+Kiribati_2019-01-24.pdf,Kiribati,value
+Kyrgyz Republic_2018-02-22.pdf,Kyrgyz Republic,"last_actual_year, value"
+Lao People's Democratic Republic_2017-02-15.pdf,Lao People'S Democratic Republic,"last_actual_year, value"
+Lao People’s Democratic Republic_2018-03-23.pdf,Lao People'S Democratic Republic,"last_actual_year, value"
+Liberia_2016-01-08.pdf,Liberia,"last_actual_year, value"
+Liberia_2017-11-20.pdf,Liberia,"last_actual_year, value"
+Liberia_2018-06-15.pdf,Liberia,"last_actual_year, value"
+Liberia_2019-06-19.pdf,Liberia,value
+Luxembourg_2017-05-10.pdf,Luxembourg,value
+Malaysia_2016-05-04.pdf,Malaysia,value
+Malaysia_2017-04-28.pdf,Malaysia,"last_actual_year, value"
+Malaysia_2019-03-08.pdf,Malaysia,"last_actual_year, value"
+Maldives_2017-12-01.pdf,Maldives,"last_actual_year, value"
+Maldives_2019-09-03_CR2019-281.pdf,Maldives,value
+Maldives_2020-04-23.pdf,Maldives,value
+Mali_2016-12-07.pdf,Mali,table_found
+Mali_2020-05-08.pdf,Mali,value
+Mexico_2018-11-27.pdf,Mexico,value
+Mexico_2020-11-20.pdf,Mexico,value
+Myanmar_2017-02-02.pdf,Myanmar,"last_actual_year, value"
+Myanmar_2020-07-02.pdf,Myanmar,value
+Nepal_2020-04-06.pdf,Nepal,value
+New Zealand_2017-05-08.pdf,New Zealand,"last_actual_year, value"
+Norway_2018-09-17.pdf,Norway,value
+Papua New Guinea_2017-01-30.pdf,Papua New Guinea,"last_actual_year, value"
+Papua New Guinea_2017-12-29.pdf,Papua New Guinea,"last_actual_year, value"
+Peru_2020-05-29.pdf,Peru,value
+Philippines_2016-09-26.pdf,Philippines,value
+Philippines_2017-11-10.pdf,Philippines,value
+Philippines_2018-09-27.pdf,Philippines,value
+Republic of Armenia_2016-07-21.pdf,Republic Of Armenia,value
+Republic of Armenia_2016-12-13.pdf,Republic Of Armenia,value
+Republic of Armenia_2017-07-19.pdf,Republic Of Armenia,value
+Republic of Belarus_2019-01-17.pdf,Republic Of Belarus,value
+Republic of Congo_2020-01-27.pdf,Republic Of Congo,value
+Republic of Croatia_2019-02-12.pdf,Republic Of Croatia,"last_actual_year, value"
+Republic of Equatorial Guinea_2016-11-16.pdf,Republic Of Equatorial Guinea,value
+Republic of Equatorial Guinea_2019-12-20.pdf,Republic Of Equatorial Guinea,value
+Republic of Kosovo_2017-03-17.pdf,Republic Of Kosovo,value
+Republic of Lithuania_2017-06-30.pdf,Republic Of Lithuania,value
+Republic of Madagascar_2018-07-25.pdf,Republic Of Madagascar,"last_actual_year, value"
+Republic of Madagascar_2020-08-27.pdf,Republic Of Madagascar,value
+Republic of Moldova_2016-11-09.pdf,Republic Of Moldova,"last_actual_year, value"
+Republic of Moldova_2019-09-25.pdf,Republic Of Moldova,value
+Republic of Nauru_2020-01-29.pdf,Republic Of Nauru,"last_actual_year, value"
+Republic of Poland_2017-01-18.pdf,Republic Of Poland,value
+Republic of San Marino_2017-04-06.pdf,Republic Of San Marino,value
+Republic of San Marino_2020-04-02.pdf,Republic Of San Marino,"last_actual_year, value"
+Republic of Slovenia_2019-02-18.pdf,Republic Of Slovenia,value
+Republic of Timor-Leste_2016-06-24.pdf,Republic Of Timor-Leste,"last_actual_year, value"
+Rwanda_2016-01-28.pdf,Rwanda,value
+Rwanda_2017-07-13.pdf,Rwanda,"last_actual_year, value"
+Saudi Arabia_2017-10-05.pdf,Saudi Arabia,value
+Senegal_2016-01-06.pdf,Senegal,value
+Senegal_2017-01-04.pdf,Senegal,"last_actual_year, value"
+Senegal_2018-01-12.pdf,Senegal,"last_actual_year, value"
+Singapore_2018-07-27.pdf,Singapore,"last_actual_year, value"
+Solomon Islands_2016-03-23.pdf,Solomon Islands,"last_actual_year, value"
+Solomon Islands_2018-03-05.pdf,Solomon Islands,"last_actual_year, value"
+Sri Lanka_2019-05-16.pdf,Sri Lanka,value
+St. Vincent and the Grenadines_2020-05-29.pdf,St. Vincent And The Grenadines,value
+Sweden_2019-03-26.pdf,Sweden,value
+Thailand_2018-06-04.pdf,Thailand,value
+The Federal Democratic Republic of Ethiopia_2016-10-04.pdf,The Federal Democratic Republic Of Ethiopia,"last_actual_year, value"
+The Gambia_2017-07-03.pdf,The Gambia,"last_actual_year, value"
+Togo_2017-12-15.pdf,Togo,"last_actual_year, value"
+Ukraine_2020-06-11.pdf,Ukraine,value
+United Kingdom_2016-02-24.pdf,United Kingdom,"last_actual_year, value"
+United Republic of Tanzania_2016-02-01.pdf,United Republic Of Tanzania,table_found
+Vanuatu_2016-10-31.pdf,Vanuatu,"last_actual_year, value"
+Zambia_2019-08-02.pdf,Zambia,value

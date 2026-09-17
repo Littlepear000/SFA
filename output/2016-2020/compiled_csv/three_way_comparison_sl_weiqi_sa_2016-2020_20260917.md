@@ -44,13 +44,14 @@ SL is missing the same 5 reports that were already identified in the original tw
 
 **Reports present only in Weiqi and SA (missing from SL):**
 
-| Country | Report date |
+| PDF file name | Country |
 |---|---|
-| Hong Kong SAR, People's Republic of China | 2016-01-19 |
-| Hong Kong SAR, People's Republic of China | 2017-01-12 |
-| Hong Kong SAR, People's Republic of China | 2018-01-22 |
-| Hong Kong SAR, People's Republic of China | 2019-01-24 |
-| Hong Kong SAR, People's Republic of China | 2019-12-30 |
+| `People's Republic of China-Hong Kong Special Administrative Region_2017-01-12.pdf` | People’S Republic Of China––Hong Kong Special Administrative Region |
+| `People's Republic of China-Hong Kong Special Administrative Region_2018-01-22.pdf` | People’S Republic Of China––Hong Kong Special Administrative Region |
+| `People's Republic of China-Hong Kong Special Administrative Region_2019-01-24.pdf` | People’S Republic Of China–– Hong Kong Special Administrative Region |
+| `People's Republic of China-Hong Kong Special Administrative Region_2019-12-30.pdf` | People’S Republic Of China—Hong Kong Special Administrative Region |
+| `People’s Republic of China—Hong Kong Special Administrative Region_2016-01-19.pdf` | People’S Republic Of China—Hong Kong Special Administrative Region |
+
 
 ---
 
@@ -60,13 +61,14 @@ Across the 907 reports common to all three, 3-way agreement on `table_found` is 
 
 **The 5 disagreeing reports:**
 
-| Report | SL | Weiqi | SA |
+| PDF file name | SL | Weiqi | SA |
 |---|---|---|---|
-| Bolivia — 2020-05-29 | No table | Table found | Table found |
-| Côte d'Ivoire — 2018-06-25 | Table found | Table found | No table |
-| Italy — 2017-07-27 | Table found | No table | Table found |
-| Mali — 2016-12-07 | No table | Table found | Table found |
-| Tanzania — 2016-02-01 | No table | No table | Table found |
+| `Bolivia_2020-05-29.pdf` | No table | Table found | Table found |
+| `Cote d'Ivoire_2018-06-25.pdf` | Table found | Table found | No table |
+| `Italy_2017-07-27.pdf` | Table found | No table | Table found |
+| `Mali_2016-12-07.pdf` | No table | Table found | Table found |
+| `United Republic of Tanzania_2016-02-01.pdf` | No table | No table | Table found |
+
 
 Of the original comparison's 3 `table_found` disagreements (Bolivia, Italy, Mali), SA sides with Weiqi on all three (i.e., SA also finds a table). Côte d'Ivoire 2018-06-25 and Tanzania 2016-02-01 are new disagreements not flagged in the original SL-vs-Weiqi document — worth a manual PDF check (see Recommendations).
 
@@ -78,67 +80,68 @@ Restricting to the **788 reports where all three found a table**, framework clas
 
 Among the 788 jointly-found reports, all three versions select the **same** last-actual year in 729 cases (92.5%). The remaining **59 reports (7.5%)** show at least one version disagreeing with the other two:
 
-| Report | SL year | Weiqi year | SA year |
+| PDF file name | SL year | Weiqi year | SA year |
 |---|---|---|---|
-| Argentina — 2019-07-15 | 2018 | 2017 | 2018 |
-| Bangladesh — 2016-02-01 | — | — | 2014 |
-| Belize — 2016-03-28 | 2013 | 2013 | 2014 |
-| Benin — 2017-04-26 | 2014 | 2014 | 2015 |
-| Benin — 2016-01-07 | — | — | 2014 |
-| Burkina Faso — 2016-12-22 | 2014 | 2015 | 2014 |
-| Burkina Faso — 2018-03-15 | 2016 | 2015 | 2016 |
-| Cabo Verde — 2016-11-29 | 2015 | — | — |
-| Chad — 2016-08-17 | 2014 | 2015 | 2015 |
-| Cyprus — 2016-01-29 | 2015 | 2015 | 2014 |
-| Côte d'Ivoire — 2017-12-15 | 2016 | 2015 | 2016 |
-| São Tomé and Príncipe — 2017-12-18 | 2015 | 2015 | 2016 |
-| Djibouti — 2017-04-06 | 2014 | 2014 | 2015 |
-| Dominica — 2017-12-20 | 2014 | 2014 | 2015 |
-| Dominica — 2016-07-20 | 2014 | 2013 | 2014 |
-| Ecuador — 2019-03-20 | 2018 | 2017 | 2017 |
-| Greece — 2017-07-20 | 2016 | — | 2016 |
-| Grenada — 2016-12-21 | 2015 | 2014 | 2015 |
-| Guatemala — 2018-06-08 | 2016 | 2017 | 2016 |
-| Guinea — 2017-12-19 | 2016 | 2015 | 2015 |
-| Guinea-Bissau — 2016-12-28 | 2014 | 2014 | 2015 |
-| Guinea-Bissau — 2017-12-18 | 2015 | 2016 | 2015 |
-| Guyana — 2016-07-07 | 2015 | 2014 | 2015 |
-| Guyana — 2018-07-16 | 2017 | 2016 | 2016 |
-| Honduras — 2018-07-03 | 2016 | 2016 | 2017 |
-| Mauritania — 2017-12-13 | 2015 | 2015 | 2016 |
-| Mauritania — 2016-05-11 | 2015 | 2014 | 2014 |
-| Mauritania — 2017-10-16 | 2016 | 2015 | 2015 |
-| Lesotho — 2018-02-28 | 2016 | 2015 | 2016 |
-| Kyrgyz Republic — 2018-02-22 | 2015 | 2015 | 2016 |
-| Lao PDR — 2017-02-15 | 2014 | 2015 | 2014 |
-| Lao PDR — 2018-03-23 | 2015 | 2016 | 2016 |
-| Liberia — 2016-01-08 | 2014 | 2013 | 2014 |
-| Liberia — 2018-06-15 | 2017 | 2016 | 2016 |
-| Liberia — 2017-11-20 | 2016 | 2015 | 2016 |
-| Malaysia — 2017-04-28 | 2016 | 2015 | 2015 |
-| Malaysia — 2019-03-08 | 2017 | 2018 | 2018 |
-| Maldives — 2017-12-01 | 2015 | 2016 | 2016 |
-| Myanmar — 2017-02-02 | 2014 | 2014 | 2015 |
-| New Zealand — 2017-05-08 | 2009-2014 | 2015 | 2015 |
-| Papua New Guinea — 2017-12-29 | 2016 | 2015 | 2015 |
-| Papua New Guinea — 2017-01-30 | 2014 | 2015 | 2015 |
-| Croatia — 2019-02-12 | 2018 | 2018 | 2017 |
-| Madagascar — 2018-07-25 | 2017 | 2016 | 2016 |
-| Moldova — 2016-11-09 | 2014 | 2014 | 2015 |
-| Nauru — 2020-01-29 | 2018 | 2019 | 2018 |
-| San Marino — 2020-04-02 | 2019 | 2018 | 2018 |
-| Timor-Leste — 2016-06-24 | 2014 | 2013 | 2014 |
-| Rwanda — 2017-07-13 | 2016 | 2015 | 2016 |
-| Senegal — 2017-01-04 | 2015 | 2014 | 2015 |
-| Senegal — 2018-01-12 | 2015 | 2016 | 2016 |
-| Singapore — 2018-07-27 | 2017 | 2016 | 2017 |
-| Solomon Islands — 2016-03-23 | 2014 | 2014 | 2015 |
-| Solomon Islands — 2018-03-05 | 2015 | 2016 | 2015 |
-| Ethiopia — 2016-10-04 | 2015 | 2014 | 2015 |
-| The Gambia — 2017-07-03 | 2016 | 2015 | 2015 |
-| Togo — 2017-12-15 | 2016 | 2015 | 2016 |
-| United Kingdom — 2016-02-24 | 2014 | 2015 | 2014 |
-| Vanuatu — 2016-10-31 | 2014 | 2014 | 2015 |
+| `Argentina_2019-07-15.pdf` | 2018 | 2017 | 2018 |
+| `Bangladesh_2016-02-01.pdf` | — | — | 2014 |
+| `Belize_2016-03-28.pdf` | 2013 | 2013 | 2014 |
+| `Benin_2016-01-07.pdf` | — | — | 2014 |
+| `Benin_2017-04-26.pdf` | 2014 | 2014 | 2015 |
+| `Burkina Faso_2016-12-22.pdf` | 2014 | 2015 | 2014 |
+| `Burkina Faso_2018-03-15.pdf` | 2016 | 2015 | 2016 |
+| `Cabo Verde_2016-11-29.pdf` | 2015 | — | — |
+| `Chad_2016-08-17.pdf` | 2014 | 2015 | 2015 |
+| `Cote d'Ivoire_2017-12-15.pdf` | 2016 | 2015 | 2016 |
+| `Cyprus_2016-01-29.pdf` | 2015 | 2015 | 2014 |
+| `Democratic Republic of São Tomé and Príncipe_2017-12-18.pdf` | 2015 | 2015 | 2016 |
+| `Djibouti_2017-04-06.pdf` | 2014 | 2014 | 2015 |
+| `Dominica_2016-07-20.pdf` | 2014 | 2013 | 2014 |
+| `Dominica_2017-12-20.pdf` | 2014 | 2014 | 2015 |
+| `Ecuador_2019-03-20.pdf` | 2018 | 2017 | 2017 |
+| `Greece_2017-07-20.pdf` | 2016 | — | 2016 |
+| `Grenada_2016-12-21.pdf` | 2015 | 2014 | 2015 |
+| `Guatemala_2018-06-08.pdf` | 2016 | 2017 | 2016 |
+| `Guinea-Bissau_2016-12-28.pdf` | 2014 | 2014 | 2015 |
+| `Guinea-Bissau_2017-12-18.pdf` | 2015 | 2016 | 2015 |
+| `Guinea_2017-12-19.pdf` | 2016 | 2015 | 2015 |
+| `Guyana_2016-07-07.pdf` | 2015 | 2014 | 2015 |
+| `Guyana_2018-07-16.pdf` | 2017 | 2016 | 2016 |
+| `Honduras_2018-07-03.pdf` | 2016 | 2016 | 2017 |
+| `Islamic Republic of Mauritania_2016-05-11.pdf` | 2015 | 2014 | 2014 |
+| `Islamic Republic of Mauritania_2017-10-16.pdf` | 2016 | 2015 | 2015 |
+| `Islamic Republic of Mauritania_2017-12-13.pdf` | 2015 | 2015 | 2016 |
+| `Kingdom of Lesotho_2018-02-28.pdf` | 2016 | 2015 | 2016 |
+| `Kyrgyz Republic_2018-02-22.pdf` | 2015 | 2015 | 2016 |
+| `Lao People's Democratic Republic_2017-02-15.pdf` | 2014 | 2015 | 2014 |
+| `Lao People’s Democratic Republic_2018-03-23.pdf` | 2015 | 2016 | 2016 |
+| `Liberia_2016-01-08.pdf` | 2014 | 2013 | 2014 |
+| `Liberia_2017-11-20.pdf` | 2016 | 2015 | 2016 |
+| `Liberia_2018-06-15.pdf` | 2017 | 2016 | 2016 |
+| `Malaysia_2017-04-28.pdf` | 2016 | 2015 | 2015 |
+| `Malaysia_2019-03-08.pdf` | 2017 | 2018 | 2018 |
+| `Maldives_2017-12-01.pdf` | 2015 | 2016 | 2016 |
+| `Myanmar_2017-02-02.pdf` | 2014 | 2014 | 2015 |
+| `New Zealand_2017-05-08.pdf` | 2009-2014 | 2015 | 2015 |
+| `Papua New Guinea_2017-01-30.pdf` | 2014 | 2015 | 2015 |
+| `Papua New Guinea_2017-12-29.pdf` | 2016 | 2015 | 2015 |
+| `Republic of Croatia_2019-02-12.pdf` | 2018 | 2018 | 2017 |
+| `Republic of Madagascar_2018-07-25.pdf` | 2017 | 2016 | 2016 |
+| `Republic of Moldova_2016-11-09.pdf` | 2014 | 2014 | 2015 |
+| `Republic of Nauru_2020-01-29.pdf` | 2018 | 2019 | 2018 |
+| `Republic of San Marino_2020-04-02.pdf` | 2019 | 2018 | 2018 |
+| `Republic of Timor-Leste_2016-06-24.pdf` | 2014 | 2013 | 2014 |
+| `Rwanda_2017-07-13.pdf` | 2016 | 2015 | 2016 |
+| `Senegal_2017-01-04.pdf` | 2015 | 2014 | 2015 |
+| `Senegal_2018-01-12.pdf` | 2015 | 2016 | 2016 |
+| `Singapore_2018-07-27.pdf` | 2017 | 2016 | 2017 |
+| `Solomon Islands_2016-03-23.pdf` | 2014 | 2014 | 2015 |
+| `Solomon Islands_2018-03-05.pdf` | 2015 | 2016 | 2015 |
+| `The Federal Democratic Republic of Ethiopia_2016-10-04.pdf` | 2015 | 2014 | 2015 |
+| `The Gambia_2017-07-03.pdf` | 2016 | 2015 | 2015 |
+| `Togo_2017-12-15.pdf` | 2016 | 2015 | 2016 |
+| `United Kingdom_2016-02-24.pdf` | 2014 | 2015 | 2014 |
+| `Vanuatu_2016-10-31.pdf` | 2014 | 2014 | 2015 |
+
 
 *(Full machine-readable version: `three_way_sl_weiqi_sa_report_level_20260917.csv`.)*
 
@@ -194,28 +197,29 @@ As in the original two-way comparison, aggregate/subtotal line items (identified
 
 ### Top 20 largest value discrepancies
 
-| Report | Category | Line item | SL | Weiqi | SA | Max spread |
+| PDF file name | Category | Line item | SL | Weiqi | SA | Max spread |
 |---|---|---|---:|---:|---:|---:|
-| Kiribati — 2019-01-24 | primary_balance | Primary deficit | -0.3 | -18.3 | -48.3 | 48.0 |
-| Kiribati — 2019-01-24 | primary_balance | Primary (noninterest) expenditure | 125.4 | 110.5 | 78.5 | 46.9 |
-| Kiribati — 2019-01-24 | identified_flows | Identified debt-creating flows | -2.2 | -22.2 | -48.3 | 46.1 |
-| Kiribati — 2019-01-24 | residual | Residual | 1.7 | 21.7 | 47.7 | 46.0 |
-| Nauru — 2020-01-29 | residual | Residual, including asset changes | 68.9 | 34.0 | 68.9 | 34.9 |
-| Nauru — 2020-01-29 | identified_flows | Identified debt-creating flows | -72.6 | -42.4 | -72.6 | 30.2 |
-| Nauru — 2020-01-29 | primary_balance | Primary (noninterest) expenditure | 96.6 | 125.6 | 96.6 | 29.0 |
-| Argentina — 2019-07-15 | automatic_debt_dynamics | Exchange rate depreciation | 30.5 | 5.6 | 30.5 | 24.9 |
-| Argentina — 2019-07-15 | change_in_debt | Change in gross public sector debt | 28.9 | 4.1 | 28.9 | 24.8 |
-| Argentina — 2019-07-15 | identified_flows | Identified debt-creating flows | 25.1 | 1.1 | 25.1 | 24.0 |
-| Argentina — 2019-07-15 | automatic_debt_dynamics | Automatic debt dynamics | 18.1 | -2.7 | 18.1 | 20.8 |
-| Republic of Congo — 2020-01-27 | automatic_debt_dynamics | Automatic debt dynamics | -18.5 | 1.1 | -18.5 | 19.6 |
-| Republic of Congo — 2020-01-27 | residual | Residual | -3.1 | -22.7 | -3.1 | 19.6 |
-| Republic of Congo — 2020-01-27 | identified_flows | Identified debt-creating flows | -27.3 | -7.8 | -27.3 | 19.5 |
-| Republic of Congo — 2020-01-27 | automatic_debt_dynamics | Contribution from real exchange rate depreciation | -10.5 | 9.0 | -10.5 | 19.5 |
-| Kyrgyz Republic — 2018-02-22 | change_in_debt | Change in public sector debt | 12.6 | 12.6 | -6.8 | 19.4 |
-| Kyrgyz Republic — 2018-02-22 | automatic_debt_dynamics | Automatic debt dynamics | 11.0 | 11.0 | -8.0 | 19.0 |
-| Djibouti — 2017-04-06 | primary_balance | Primary (noninterest) expenditure | 39.8 | 39.8 | 58.1 | 18.3 |
-| Kyrgyz Republic — 2018-02-22 | automatic_debt_dynamics | Contribution from real exchange rate depreciation | 12.7 | 12.7 | -5.6 | 18.3 |
-| Mauritania — 2017-12-13 | change_in_debt | Change in public sector debt | 18.1 | 18.1 | 0.3 | 17.8 |
+| `Kiribati_2019-01-24.pdf` | primary_balance | Primary deficit | -0.3 | -18.3 | -48.3 | 48.0 |
+| `Kiribati_2019-01-24.pdf` | primary_balance | Primary (noninterest) expenditure | 125.4 | 110.5 | 78.5 | 46.9 |
+| `Kiribati_2019-01-24.pdf` | identified_flows | Identified debt-creating flows | -2.2 | -22.2 | -48.3 | 46.1 |
+| `Kiribati_2019-01-24.pdf` | residual | Residual | 1.7 | 21.7 | 47.7 | 46.0 |
+| `Republic of Nauru_2020-01-29.pdf` | residual | Residual, including asset changes 8/ | 68.9 | 34.0 | 68.9 | 34.9 |
+| `Republic of Nauru_2020-01-29.pdf` | identified_flows | Identified debt-creating flows | -72.6 | -42.4 | -72.6 | 30.2 |
+| `Republic of Nauru_2020-01-29.pdf` | primary_balance | Primary (noninterest) expenditure | 96.6 | 125.6 | 96.6 | 29.0 |
+| `Argentina_2019-07-15.pdf` | automatic_debt_dynamics | Exchange rate depreciation 7/ | 30.5 | 5.6 | 30.5 | 24.9 |
+| `Argentina_2019-07-15.pdf` | change_in_debt | Change in gross public sector debt | 28.9 | 4.1 | 28.9 | 24.8 |
+| `Argentina_2019-07-15.pdf` | identified_flows | Identified debt-creating flows | 25.1 | 1.1 | 25.1 | 24.0 |
+| `Argentina_2019-07-15.pdf` | automatic_debt_dynamics | Automatic debt dynamics 5/ | 18.1 | -2.7 | 18.1 | 20.8 |
+| `Republic of Congo_2020-01-27.pdf` | automatic_debt_dynamics | Automatic debt dynamics | -18.5 | 1.1 | -18.5 | 19.6 |
+| `Republic of Congo_2020-01-27.pdf` | residual | Residual | -3.1 | -22.7 | -3.1 | 19.6 |
+| `Republic of Congo_2020-01-27.pdf` | identified_flows | Identified debt-creating flows | -27.3 | -7.8 | -27.3 | 19.5 |
+| `Republic of Congo_2020-01-27.pdf` | automatic_debt_dynamics | Contribution from real exchange rate depreciation | -10.5 | 9.0 | -10.5 | 19.5 |
+| `Kyrgyz Republic_2018-02-22.pdf` | change_in_debt | Change in public sector debt | 12.6 | 12.6 | -6.8 | 19.4 |
+| `Kyrgyz Republic_2018-02-22.pdf` | automatic_debt_dynamics | Automatic debt dynamics | 11.0 | 11.0 | -8.0 | 19.0 |
+| `Djibouti_2017-04-06.pdf` | primary_balance | Primary (noninterest) expenditure | 39.8 | 39.8 | 58.1 | 18.3 |
+| `Kyrgyz Republic_2018-02-22.pdf` | automatic_debt_dynamics | Contribution from real exchange rate depreciation | 12.7 | 12.7 | -5.6 | 18.3 |
+| `Islamic Republic of Mauritania_2017-12-13.pdf` | change_in_debt | Change in public sector debt | 18.1 | 18.1 | 0.3 | 17.8 |
+
 
 *(Full set of 877 rows: `three_way_sl_weiqi_sa_value_diffs_20260917.csv`.)*
 
@@ -236,128 +240,129 @@ Rolling up Sections 3–5 into a single per-report verdict: a report **fully mat
 
 ### The 118 reports with at least one disagreement
 
-| Country | Report date | Disagreement type(s) |
+| PDF file name | Country | Disagreement type(s) |
 |---|---|---|
-| Argentina | July 2019 | last_actual_year, value |
-| Bangladesh | January 2016 | last_actual_year |
-| Belize | March 2016 | last_actual_year, value |
-| Benin | January 2016 | last_actual_year |
-| Benin | April 2017 | last_actual_year, value |
-| Bolivia | May 2020 | table_found |
-| Bulgaria | February 2018 | value |
-| Burkina Faso | December 2016 | last_actual_year, value |
-| Burkina Faso | March 2018 | last_actual_year, value |
-| Burkina Faso | December 2019 | value |
-| Cabo Verde | November 2016 | last_actual_year |
-| Cambodia | December 2019 | value |
-| Central African Republic | April 2020 | value |
-| Chad | August 2016 | last_actual_year, value |
-| Chad | July 2019 | value |
-| Chad | August 2020 | value |
-| Côte D'Ivoire | December 2017 | last_actual_year, value |
-| Côte D'Ivoire | June 2018 | table_found |
-| Cyprus | January 2016 | last_actual_year, value |
-| São Tomé and Príncipe | December 2017 | last_actual_year, value |
-| São Tomé and Príncipe | August 2020 | value |
-| Timor-Leste | May 2019 | value |
-| Djibouti | April 2017 | last_actual_year, value |
-| Dominica | July 2016 | last_actual_year, value |
-| Dominica | December 2017 | last_actual_year, value |
-| Ecuador | March 2019 | last_actual_year, value |
-| Ecuador | May 2020 | value |
-| Ghana | April 2020 | value |
-| Greece | July 2017 | last_actual_year |
-| Grenada | December 2016 | last_actual_year, value |
-| Guatemala | August 2016 | value |
-| Guatemala | June 2018 | last_actual_year, value |
-| Guinea-Bissau | December 2016 | last_actual_year, value |
-| Guinea-Bissau | December 2017 | last_actual_year, value |
-| Guinea | December 2017 | last_actual_year, value |
-| Guyana | July 2016 | last_actual_year, value |
-| Guyana | July 2018 | last_actual_year, value |
-| Honduras | June 2018 | last_actual_year, value |
-| Indonesia | March 2016 | value |
-| Indonesia | February 2018 | value |
-| Afghanistan | November 2020 | value |
-| Mauritania | May 2016 | last_actual_year, value |
-| Mauritania | October 2017 | last_actual_year, value |
-| Mauritania | December 2017 | last_actual_year, value |
-| Israel | March 2017 | value |
-| Italy | July 2017 | table_found |
-| Lesotho | February 2018 | last_actual_year, value |
-| Kiribati | January 24, 2019 | value |
-| Kyrgyz Republic | February 2018 | last_actual_year, value |
-| Lao PDR | February 2017 | last_actual_year, value |
-| Lao PDR | March 2018 | last_actual_year, value |
-| Liberia | January 2016 | last_actual_year, value |
-| Liberia | November 2017 | last_actual_year, value |
-| Liberia | June 2018 | last_actual_year, value |
-| Liberia | June 2019 | value |
-| Luxembourg | May 2017 | value |
-| Malaysia | May 2016 | value |
-| Malaysia | April 2017 | last_actual_year, value |
-| Malaysia | March 2019 | last_actual_year, value |
-| Maldives | December 2017 | last_actual_year, value |
-| Maldives | September 2019 | value |
-| Maldives | April 2020 | value |
-| Mali | December 2016 | table_found |
-| Mali | May 2020 | value |
-| Mexico | November 2018 | value |
-| Mexico | November 2020 | value |
-| Myanmar | February 2017 | last_actual_year, value |
-| Myanmar | July 2020 | value |
-| Nepal | April 2020 | value |
-| New Zealand | May 2017 | last_actual_year, value |
-| Norway | September 2018 | value |
-| Papua New Guinea | January 2017 | last_actual_year, value |
-| Papua New Guinea | December 2017 | last_actual_year, value |
-| Peru | May 2020 | value |
-| Philippines | September 2016 | value |
-| Philippines | November 2017 | value |
-| Philippines | September 2018 | value |
-| Armenia | July 2016 | value |
-| Armenia | December 2016 | value |
-| Armenia | July 2017 | value |
-| Belarus | January 2019 | value |
-| Republic of Congo | January 2020 | value |
-| Croatia | February 2019 | last_actual_year, value |
-| Equatorial Guinea | November 2016 | value |
-| Equatorial Guinea | December 2019 | value |
-| Kosovo | March 2017 | value |
-| Lithuania | June 2017 | value |
-| Madagascar | July 2018 | last_actual_year, value |
-| Madagascar | August 2020 | value |
-| Moldova | November 2016 | last_actual_year, value |
-| Moldova | September 2019 | value |
-| Nauru | January 2020 | last_actual_year, value |
-| Poland | January 2017 | value |
-| San Marino | April 2017 | value |
-| San Marino | April 2020 | last_actual_year, value |
-| Slovenia | February 2019 | value |
-| Timor-Leste | June 2016 | last_actual_year, value |
-| Rwanda | January 2016 | value |
-| Rwanda | July 2017 | last_actual_year, value |
-| Saudi Arabia | October 2017 | value |
-| Senegal | January 2016 | value |
-| Senegal | January 2017 | last_actual_year, value |
-| Senegal | January 2018 | last_actual_year, value |
-| Singapore | July 2018 | last_actual_year, value |
-| Solomon Islands | March 2016 | last_actual_year, value |
-| Solomon Islands | March 2018 | last_actual_year, value |
-| Sri Lanka | May 2019 | value |
-| St. Vincent and the Grenadines | May 2020 | value |
-| Sweden | March 2019 | value |
-| Thailand | June 2018 | value |
-| Ethiopia | October 2016 | last_actual_year, value |
-| The Gambia | June 2017 | last_actual_year, value |
-| Togo | December 2017 | last_actual_year, value |
-| Ukraine | June 2020 | value |
-| United Kingdom | February 2016 | last_actual_year, value |
-| Tanzania | February 2016 | table_found |
-| Vanuatu | October 2016 | last_actual_year, value |
-| Zambia | August 2019 | value |
+| `Argentina_2019-07-15.pdf` | Argentina | last_actual_year, value |
+| `Bangladesh_2016-02-01.pdf` | Bangladesh | last_actual_year |
+| `Belize_2016-03-28.pdf` | Belize | last_actual_year, value |
+| `Benin_2016-01-07.pdf` | Benin | last_actual_year |
+| `Benin_2017-04-26.pdf` | Benin | last_actual_year, value |
+| `Bolivia_2020-05-29.pdf` | Bolivia | table_found |
+| `Bulgaria_2018-02-21.pdf` | Bulgaria | value |
+| `Burkina Faso_2016-12-22.pdf` | Burkina Faso | last_actual_year, value |
+| `Burkina Faso_2018-03-15.pdf` | Burkina Faso | last_actual_year, value |
+| `Burkina Faso_2019-12-30.pdf` | Burkina Faso | value |
+| `Cabo Verde_2016-11-29.pdf` | Cabo Verde | last_actual_year |
+| `Cambodia_2019-12-23.pdf` | Cambodia | value |
+| `Central African Republic_2020-04-28.pdf` | Central African Republic | value |
+| `Chad_2016-08-17.pdf` | Chad | last_actual_year, value |
+| `Chad_2019-07-31.pdf` | Chad | value |
+| `Chad_2020-08-05.pdf` | Chad | value |
+| `Cote d'Ivoire_2017-12-15.pdf` | Côte D’Ivoire | last_actual_year, value |
+| `Cote d'Ivoire_2018-06-25.pdf` | Côte D’Ivoire | table_found |
+| `Cyprus_2016-01-29.pdf` | Cyprus | last_actual_year, value |
+| `Democratic Republic of São Tomé and Príncipe_2017-12-18.pdf` | Democratic Republic Of São Tomé And Príncipe | last_actual_year, value |
+| `Democratic Republic of São Tomé and Príncipe_2020-08-04.pdf` | Democratic Republic Of São Tomé And Príncipe | value |
+| `Democratic Republic of Timor-Leste_2019-05-07.pdf` | Democratic Republic Of Timor-Leste | value |
+| `Djibouti_2017-04-06.pdf` | Djibouti | last_actual_year, value |
+| `Dominica_2016-07-20.pdf` | Dominica | last_actual_year, value |
+| `Dominica_2017-12-20.pdf` | Dominica | last_actual_year, value |
+| `Ecuador_2019-03-20.pdf` | Ecuador | last_actual_year, value |
+| `Ecuador_2020-05-28.pdf` | Ecuador | value |
+| `Ghana_2020-04-16.pdf` | Ghana | value |
+| `Greece_2017-07-20.pdf` | Greece | last_actual_year |
+| `Grenada_2016-12-21.pdf` | Grenada | last_actual_year, value |
+| `Guatemala_2016-09-01.pdf` | Guatemala | value |
+| `Guatemala_2018-06-08.pdf` | Guatemala | last_actual_year, value |
+| `Guinea-Bissau_2016-12-28.pdf` | Guinea-Bissau | last_actual_year, value |
+| `Guinea-Bissau_2017-12-18.pdf` | Guinea-Bissau | last_actual_year, value |
+| `Guinea_2017-12-19.pdf` | Guinea | last_actual_year, value |
+| `Guyana_2016-07-07.pdf` | Guyana | last_actual_year, value |
+| `Guyana_2018-07-16.pdf` | Guyana | last_actual_year, value |
+| `Honduras_2018-07-03.pdf` | Honduras | last_actual_year, value |
+| `Indonesia_2016-03-15.pdf` | Indonesia | value |
+| `Indonesia_2018-02-06.pdf` | Indonesia | value |
+| `Islamic Republic of Afghanistan_2020-11-13.pdf` | Islamic Republic Of Afghanistan | value |
+| `Islamic Republic of Mauritania_2016-05-11.pdf` | Islamic Republic Of Mauritania | last_actual_year, value |
+| `Islamic Republic of Mauritania_2017-10-16.pdf` | Islamic Republic Of Mauritania | last_actual_year, value |
+| `Islamic Republic of Mauritania_2017-12-13.pdf` | Islamic Republic Of Mauritania | last_actual_year, value |
+| `Israel_2017-03-28.pdf` | Israel | value |
+| `Italy_2017-07-27.pdf` | Italy | table_found |
+| `Kingdom of Lesotho_2018-02-28.pdf` | Kingdom Of Lesotho | last_actual_year, value |
+| `Kiribati_2019-01-24.pdf` | Kiribati | value |
+| `Kyrgyz Republic_2018-02-22.pdf` | Kyrgyz Republic | last_actual_year, value |
+| `Lao People's Democratic Republic_2017-02-15.pdf` | Lao People'S Democratic Republic | last_actual_year, value |
+| `Lao People’s Democratic Republic_2018-03-23.pdf` | Lao People'S Democratic Republic | last_actual_year, value |
+| `Liberia_2016-01-08.pdf` | Liberia | last_actual_year, value |
+| `Liberia_2017-11-20.pdf` | Liberia | last_actual_year, value |
+| `Liberia_2018-06-15.pdf` | Liberia | last_actual_year, value |
+| `Liberia_2019-06-19.pdf` | Liberia | value |
+| `Luxembourg_2017-05-10.pdf` | Luxembourg | value |
+| `Malaysia_2016-05-04.pdf` | Malaysia | value |
+| `Malaysia_2017-04-28.pdf` | Malaysia | last_actual_year, value |
+| `Malaysia_2019-03-08.pdf` | Malaysia | last_actual_year, value |
+| `Maldives_2017-12-01.pdf` | Maldives | last_actual_year, value |
+| `Maldives_2019-09-03_CR2019-281.pdf` | Maldives | value |
+| `Maldives_2020-04-23.pdf` | Maldives | value |
+| `Mali_2016-12-07.pdf` | Mali | table_found |
+| `Mali_2020-05-08.pdf` | Mali | value |
+| `Mexico_2018-11-27.pdf` | Mexico | value |
+| `Mexico_2020-11-20.pdf` | Mexico | value |
+| `Myanmar_2017-02-02.pdf` | Myanmar | last_actual_year, value |
+| `Myanmar_2020-07-02.pdf` | Myanmar | value |
+| `Nepal_2020-04-06.pdf` | Nepal | value |
+| `New Zealand_2017-05-08.pdf` | New Zealand | last_actual_year, value |
+| `Norway_2018-09-17.pdf` | Norway | value |
+| `Papua New Guinea_2017-01-30.pdf` | Papua New Guinea | last_actual_year, value |
+| `Papua New Guinea_2017-12-29.pdf` | Papua New Guinea | last_actual_year, value |
+| `Peru_2020-05-29.pdf` | Peru | value |
+| `Philippines_2016-09-26.pdf` | Philippines | value |
+| `Philippines_2017-11-10.pdf` | Philippines | value |
+| `Philippines_2018-09-27.pdf` | Philippines | value |
+| `Republic of Armenia_2016-07-21.pdf` | Republic Of Armenia | value |
+| `Republic of Armenia_2016-12-13.pdf` | Republic Of Armenia | value |
+| `Republic of Armenia_2017-07-19.pdf` | Republic Of Armenia | value |
+| `Republic of Belarus_2019-01-17.pdf` | Republic Of Belarus | value |
+| `Republic of Congo_2020-01-27.pdf` | Republic Of Congo | value |
+| `Republic of Croatia_2019-02-12.pdf` | Republic Of Croatia | last_actual_year, value |
+| `Republic of Equatorial Guinea_2016-11-16.pdf` | Republic Of Equatorial Guinea | value |
+| `Republic of Equatorial Guinea_2019-12-20.pdf` | Republic Of Equatorial Guinea | value |
+| `Republic of Kosovo_2017-03-17.pdf` | Republic Of Kosovo | value |
+| `Republic of Lithuania_2017-06-30.pdf` | Republic Of Lithuania | value |
+| `Republic of Madagascar_2018-07-25.pdf` | Republic Of Madagascar | last_actual_year, value |
+| `Republic of Madagascar_2020-08-27.pdf` | Republic Of Madagascar | value |
+| `Republic of Moldova_2016-11-09.pdf` | Republic Of Moldova | last_actual_year, value |
+| `Republic of Moldova_2019-09-25.pdf` | Republic Of Moldova | value |
+| `Republic of Nauru_2020-01-29.pdf` | Republic Of Nauru | last_actual_year, value |
+| `Republic of Poland_2017-01-18.pdf` | Republic Of Poland | value |
+| `Republic of San Marino_2017-04-06.pdf` | Republic Of San Marino | value |
+| `Republic of San Marino_2020-04-02.pdf` | Republic Of San Marino | last_actual_year, value |
+| `Republic of Slovenia_2019-02-18.pdf` | Republic Of Slovenia | value |
+| `Republic of Timor-Leste_2016-06-24.pdf` | Republic Of Timor-Leste | last_actual_year, value |
+| `Rwanda_2016-01-28.pdf` | Rwanda | value |
+| `Rwanda_2017-07-13.pdf` | Rwanda | last_actual_year, value |
+| `Saudi Arabia_2017-10-05.pdf` | Saudi Arabia | value |
+| `Senegal_2016-01-06.pdf` | Senegal | value |
+| `Senegal_2017-01-04.pdf` | Senegal | last_actual_year, value |
+| `Senegal_2018-01-12.pdf` | Senegal | last_actual_year, value |
+| `Singapore_2018-07-27.pdf` | Singapore | last_actual_year, value |
+| `Solomon Islands_2016-03-23.pdf` | Solomon Islands | last_actual_year, value |
+| `Solomon Islands_2018-03-05.pdf` | Solomon Islands | last_actual_year, value |
+| `Sri Lanka_2019-05-16.pdf` | Sri Lanka | value |
+| `St. Vincent and the Grenadines_2020-05-29.pdf` | St. Vincent And The Grenadines | value |
+| `Sweden_2019-03-26.pdf` | Sweden | value |
+| `Thailand_2018-06-04.pdf` | Thailand | value |
+| `The Federal Democratic Republic of Ethiopia_2016-10-04.pdf` | The Federal Democratic Republic Of Ethiopia | last_actual_year, value |
+| `The Gambia_2017-07-03.pdf` | The Gambia | last_actual_year, value |
+| `Togo_2017-12-15.pdf` | Togo | last_actual_year, value |
+| `Ukraine_2020-06-11.pdf` | Ukraine | value |
+| `United Kingdom_2016-02-24.pdf` | United Kingdom | last_actual_year, value |
+| `United Republic of Tanzania_2016-02-01.pdf` | United Republic Of Tanzania | table_found |
+| `Vanuatu_2016-10-31.pdf` | Vanuatu | last_actual_year, value |
+| `Zambia_2019-08-02.pdf` | Zambia | value |
 
-*(Machine-readable version, with the raw country-name spelling from each source file preserved: `three_way_sl_weiqi_sa_disagreement_list_20260917.csv`.)*
+
+*(Machine-readable version: `three_way_sl_weiqi_sa_disagreement_list_20260917.csv`. Reports are identified by the literal source PDF filename (`pdf_file_name`, verbatim, preferring SL's spelling, then SA's, then Weiqi's) rather than the model-extracted `publication_date` field, which can be an imprecise or inconsistently-worded paraphrase — use the PDF filename to locate the source file directly for manual review.)*
 
 Of the 118: 59 (50%) involve a `last_actual_year` disagreement (with or without a resulting value mismatch), 54 (46%) are pure value-read inconsistencies with an identical selected year on all three, and 5 (4%) are `table_found` disagreements. The year-selection issue remains the single largest identifiable driver (see Recommendations).
 
@@ -382,106 +387,107 @@ This does not necessarily mean Weiqi's run is "worse" — it only shows that, wh
 
 **All 96 reports where two versions fully match and one is the outlier:**
 
-| Country | Report date | Fully-matching pair | Outlier | Note |
+| PDF file name | Country | Fully-matching pair | Outlier | Note |
 |---|---|---|---|---|
-| Argentina | July 2019 | SL=SA | Weiqi | |
-| Armenia | December 2016 | Weiqi=SA | SL | |
-| Armenia | July 2016 | Weiqi=SA | SL | |
-| Armenia | July 2017 | Weiqi=SA | SL | |
-| Belize | March 2016 | SL=Weiqi | SA | |
-| Benin | April 2017 | SL=Weiqi | SA | |
-| Bolivia | May 2020 | Weiqi=SA | SL | SL found no table; Weiqi & SA agree on year 2019 and all 15 values |
-| Bulgaria | February 2018 | Weiqi=SA | SL | |
-| Burkina Faso | December 2016 | SL=SA | Weiqi | |
-| Burkina Faso | December 2019 | Weiqi=SA | SL | |
-| Burkina Faso | March 2018 | SL=SA | Weiqi | |
-| Chad | August 2016 | Weiqi=SA | SL | |
-| Croatia | February 2019 | SL=Weiqi | SA | |
-| Cyprus | January 2016 | SL=Weiqi | SA | |
-| Côte d'Ivoire | December 2017 | SL=SA | Weiqi | |
-| Côte d'Ivoire | June 2018 | SL=Weiqi | SA | SA found no table; SL & Weiqi agree on year 2016 and all 17 values |
-| Djibouti | April 2017 | SL=Weiqi | SA | |
-| Dominica | December 2017 | SL=Weiqi | SA | |
-| Dominica | July 2016 | SL=SA | Weiqi | |
-| Ecuador | March 2019 | Weiqi=SA | SL | |
-| Ecuador | May 2020 | SL=SA | Weiqi | |
-| Equatorial Guinea | December 2019 | SL=SA | Weiqi | |
-| Equatorial Guinea | November 2016 | SL=SA | Weiqi | |
-| Ethiopia | October 2016 | SL=SA | Weiqi | |
-| Ghana | April 2020 | Weiqi=SA | SL | |
-| Grenada | December 2016 | SL=SA | Weiqi | |
-| Guatemala | August 2016 | Weiqi=SA | SL | |
-| Guatemala | June 2018 | SL=SA | Weiqi | |
-| Guinea | December 2017 | Weiqi=SA | SL | |
-| Guinea-Bissau | December 2016 | SL=Weiqi | SA | |
-| Guinea-Bissau | December 2017 | SL=SA | Weiqi | |
-| Guyana | July 2018 | Weiqi=SA | SL | |
-| Honduras | June 2018 | SL=Weiqi | SA | |
-| Indonesia | February 2018 | SL=SA | Weiqi | |
-| Indonesia | March 2016 | SL=SA | Weiqi | |
-| Israel | March 2017 | SL=SA | Weiqi | |
-| Italy | July 2017 | SL=SA | Weiqi | Weiqi found no table; SL & SA agree on year 2016 and all 15 values |
-| Kosovo | March 2017 | SL=SA | Weiqi | |
-| Kyrgyz Republic | February 2018 | SL=Weiqi | SA | |
-| Lao PDR | February 2017 | SL=SA | Weiqi | |
-| Lao PDR | March 2018 | Weiqi=SA | SL | |
-| Lesotho | February 2018 | SL=SA | Weiqi | |
-| Liberia | January 2016 | SL=SA | Weiqi | |
-| Liberia | June 2018 | Weiqi=SA | SL | |
-| Liberia | November 2017 | SL=SA | Weiqi | |
-| Lithuania | June 2017 | SL=Weiqi | SA | |
-| Luxembourg | May 2017 | SL=SA | Weiqi | |
-| Madagascar | August 2020 | SL=Weiqi | SA | |
-| Madagascar | July 2018 | Weiqi=SA | SL | |
-| Malaysia | March 2019 | Weiqi=SA | SL | |
-| Malaysia | May 2016 | SL=SA | Weiqi | |
-| Maldives | December 2017 | Weiqi=SA | SL | |
-| Maldives | September 2019 | SL=SA | Weiqi | |
-| Mauritania | December 2017 | SL=Weiqi | SA | |
-| Mauritania | May 2016 | Weiqi=SA | SL | |
-| Mauritania | October 2017 | Weiqi=SA | SL | |
-| Mexico | November 2018 | SL=Weiqi | SA | |
-| Mexico | November 2020 | SL=SA | Weiqi | |
-| Moldova | November 2016 | SL=Weiqi | SA | |
-| Myanmar | February 2017 | SL=Weiqi | SA | |
-| Myanmar | July 2020 | SL=SA | Weiqi | |
-| Nauru | January 2020 | SL=SA | Weiqi | |
-| Nepal | April 2020 | Weiqi=SA | SL | |
-| New Zealand | May 2017 | Weiqi=SA | SL | |
-| Norway | September 2018 | SL=Weiqi | SA | |
-| Papua New Guinea | December 2017 | Weiqi=SA | SL | |
-| Papua New Guinea | January 2017 | Weiqi=SA | SL | |
-| Peru | May 2020 | SL=SA | Weiqi | |
-| Philippines | November 2017 | SL=Weiqi | SA | |
-| Philippines | September 2016 | SL=SA | Weiqi | |
-| Philippines | September 2018 | Weiqi=SA | SL | |
-| Poland | January 2017 | Weiqi=SA | SL | |
-| Rwanda | January 2016 | SL=SA | Weiqi | |
-| Rwanda | July 2017 | SL=SA | Weiqi | |
-| San Marino | April 2017 | SL=SA | Weiqi | |
-| San Marino | April 2020 | Weiqi=SA | SL | |
-| Saudi Arabia | October 2017 | Weiqi=SA | SL | |
-| Senegal | January 2016 | Weiqi=SA | SL | |
-| Senegal | January 2017 | SL=SA | Weiqi | |
-| Senegal | January 2018 | Weiqi=SA | SL | |
-| Singapore | July 2018 | SL=SA | Weiqi | |
-| Slovenia | February 2019 | SL=SA | Weiqi | |
-| Solomon Islands | March 2016 | SL=Weiqi | SA | |
-| Solomon Islands | March 2018 | SL=SA | Weiqi | |
-| Sri Lanka | May 2019 | SL=SA | Weiqi | |
-| St. Vincent and the Grenadines | May 2020 | Weiqi=SA | SL | |
-| Sweden | March 2019 | SL=SA | Weiqi | |
-| São Tomé and Príncipe | December 2017 | SL=Weiqi | SA | |
-| Tanzania | February 2016 | SL=Weiqi | SA | SL & Weiqi both concluded no DSA table exists; SA found one (no values to compare) |
-| Thailand | June 2018 | SL=SA | Weiqi | |
-| The Gambia | June 2017 | Weiqi=SA | SL | |
-| Timor-Leste | June 2016 | SL=SA | Weiqi | |
-| Togo | December 2017 | SL=SA | Weiqi | |
-| United Kingdom | February 2016 | SL=SA | Weiqi | |
-| Vanuatu | October 2016 | SL=Weiqi | SA | |
-| Zambia | August 2019 | SL=SA | Weiqi | |
+| `Argentina_2019-07-15.pdf` | Argentina | SL=SA | Weiqi |  |
+| `Belize_2016-03-28.pdf` | Belize | SL=Weiqi | SA |  |
+| `Benin_2017-04-26.pdf` | Benin | SL=Weiqi | SA |  |
+| `Bolivia_2020-05-29.pdf` | Bolivia | Weiqi=SA | SL | SL found no table; Weiqi & SA agree on year 2019 and all 15 values |
+| `Bulgaria_2018-02-21.pdf` | Bulgaria | Weiqi=SA | SL |  |
+| `Burkina Faso_2016-12-22.pdf` | Burkina Faso | SL=SA | Weiqi |  |
+| `Burkina Faso_2018-03-15.pdf` | Burkina Faso | SL=SA | Weiqi |  |
+| `Burkina Faso_2019-12-30.pdf` | Burkina Faso | Weiqi=SA | SL |  |
+| `Chad_2016-08-17.pdf` | Chad | Weiqi=SA | SL |  |
+| `Cote d'Ivoire_2017-12-15.pdf` | Côte D’Ivoire | SL=SA | Weiqi |  |
+| `Cote d'Ivoire_2018-06-25.pdf` | Côte d'Ivoire | SL=Weiqi | SA | SA found no table; SL & Weiqi agree on year 2016 and all 17 values |
+| `Cyprus_2016-01-29.pdf` | Cyprus | SL=Weiqi | SA |  |
+| `Democratic Republic of São Tomé and Príncipe_2017-12-18.pdf` | Democratic Republic Of São Tomé And Príncipe | SL=Weiqi | SA |  |
+| `Djibouti_2017-04-06.pdf` | Djibouti | SL=Weiqi | SA |  |
+| `Dominica_2016-07-20.pdf` | Dominica | SL=SA | Weiqi |  |
+| `Dominica_2017-12-20.pdf` | Dominica | SL=Weiqi | SA |  |
+| `Ecuador_2019-03-20.pdf` | Ecuador | Weiqi=SA | SL |  |
+| `Ecuador_2020-05-28.pdf` | Ecuador | SL=SA | Weiqi |  |
+| `Ghana_2020-04-16.pdf` | Ghana | Weiqi=SA | SL |  |
+| `Grenada_2016-12-21.pdf` | Grenada | SL=SA | Weiqi |  |
+| `Guatemala_2016-09-01.pdf` | Guatemala | Weiqi=SA | SL |  |
+| `Guatemala_2018-06-08.pdf` | Guatemala | SL=SA | Weiqi |  |
+| `Guinea-Bissau_2016-12-28.pdf` | Guinea-Bissau | SL=Weiqi | SA |  |
+| `Guinea-Bissau_2017-12-18.pdf` | Guinea-Bissau | SL=SA | Weiqi |  |
+| `Guinea_2017-12-19.pdf` | Guinea | Weiqi=SA | SL |  |
+| `Guyana_2018-07-16.pdf` | Guyana | Weiqi=SA | SL |  |
+| `Honduras_2018-07-03.pdf` | Honduras | SL=Weiqi | SA |  |
+| `Indonesia_2016-03-15.pdf` | Indonesia | SL=SA | Weiqi |  |
+| `Indonesia_2018-02-06.pdf` | Indonesia | SL=SA | Weiqi |  |
+| `Islamic Republic of Mauritania_2016-05-11.pdf` | Islamic Republic Of Mauritania | Weiqi=SA | SL |  |
+| `Islamic Republic of Mauritania_2017-10-16.pdf` | Islamic Republic Of Mauritania | Weiqi=SA | SL |  |
+| `Islamic Republic of Mauritania_2017-12-13.pdf` | Islamic Republic Of Mauritania | SL=Weiqi | SA |  |
+| `Israel_2017-03-28.pdf` | Israel | SL=SA | Weiqi |  |
+| `Italy_2017-07-27.pdf` | Italy | SL=SA | Weiqi | Weiqi found no table; SL & SA agree on year 2016 and all 15 values |
+| `Kingdom of Lesotho_2018-02-28.pdf` | Kingdom Of Lesotho | SL=SA | Weiqi |  |
+| `Kyrgyz Republic_2018-02-22.pdf` | Kyrgyz Republic | SL=Weiqi | SA |  |
+| `Lao People's Democratic Republic_2017-02-15.pdf` | Lao People'S Democratic Republic | SL=SA | Weiqi |  |
+| `Lao People’s Democratic Republic_2018-03-23.pdf` | Lao People'S Democratic Republic | Weiqi=SA | SL |  |
+| `Liberia_2016-01-08.pdf` | Liberia | SL=SA | Weiqi |  |
+| `Liberia_2017-11-20.pdf` | Liberia | SL=SA | Weiqi |  |
+| `Liberia_2018-06-15.pdf` | Liberia | Weiqi=SA | SL |  |
+| `Luxembourg_2017-05-10.pdf` | Luxembourg | SL=SA | Weiqi |  |
+| `Malaysia_2016-05-04.pdf` | Malaysia | SL=SA | Weiqi |  |
+| `Malaysia_2019-03-08.pdf` | Malaysia | Weiqi=SA | SL |  |
+| `Maldives_2017-12-01.pdf` | Maldives | Weiqi=SA | SL |  |
+| `Maldives_2019-09-03_CR2019-281.pdf` | Maldives | SL=SA | Weiqi |  |
+| `Mexico_2018-11-27.pdf` | Mexico | SL=Weiqi | SA |  |
+| `Mexico_2020-11-20.pdf` | Mexico | SL=SA | Weiqi |  |
+| `Myanmar_2017-02-02.pdf` | Myanmar | SL=Weiqi | SA |  |
+| `Myanmar_2020-07-02.pdf` | Myanmar | SL=SA | Weiqi |  |
+| `Nepal_2020-04-06.pdf` | Nepal | Weiqi=SA | SL |  |
+| `New Zealand_2017-05-08.pdf` | New Zealand | Weiqi=SA | SL |  |
+| `Norway_2018-09-17.pdf` | Norway | SL=Weiqi | SA |  |
+| `Papua New Guinea_2017-01-30.pdf` | Papua New Guinea | Weiqi=SA | SL |  |
+| `Papua New Guinea_2017-12-29.pdf` | Papua New Guinea | Weiqi=SA | SL |  |
+| `Peru_2020-05-29.pdf` | Peru | SL=SA | Weiqi |  |
+| `Philippines_2016-09-26.pdf` | Philippines | SL=SA | Weiqi |  |
+| `Philippines_2017-11-10.pdf` | Philippines | SL=Weiqi | SA |  |
+| `Philippines_2018-09-27.pdf` | Philippines | Weiqi=SA | SL |  |
+| `Republic of Armenia_2016-07-21.pdf` | Republic Of Armenia | Weiqi=SA | SL |  |
+| `Republic of Armenia_2016-12-13.pdf` | Republic Of Armenia | Weiqi=SA | SL |  |
+| `Republic of Armenia_2017-07-19.pdf` | Republic Of Armenia | Weiqi=SA | SL |  |
+| `Republic of Croatia_2019-02-12.pdf` | Republic Of Croatia | SL=Weiqi | SA |  |
+| `Republic of Equatorial Guinea_2016-11-16.pdf` | Republic Of Equatorial Guinea | SL=SA | Weiqi |  |
+| `Republic of Equatorial Guinea_2019-12-20.pdf` | Republic Of Equatorial Guinea | SL=SA | Weiqi |  |
+| `Republic of Kosovo_2017-03-17.pdf` | Republic Of Kosovo | SL=SA | Weiqi |  |
+| `Republic of Lithuania_2017-06-30.pdf` | Republic Of Lithuania | SL=Weiqi | SA |  |
+| `Republic of Madagascar_2018-07-25.pdf` | Republic Of Madagascar | Weiqi=SA | SL |  |
+| `Republic of Madagascar_2020-08-27.pdf` | Republic Of Madagascar | SL=Weiqi | SA |  |
+| `Republic of Moldova_2016-11-09.pdf` | Republic Of Moldova | SL=Weiqi | SA |  |
+| `Republic of Nauru_2020-01-29.pdf` | Republic Of Nauru | SL=SA | Weiqi |  |
+| `Republic of Poland_2017-01-18.pdf` | Republic Of Poland | Weiqi=SA | SL |  |
+| `Republic of San Marino_2017-04-06.pdf` | Republic Of San Marino | SL=SA | Weiqi |  |
+| `Republic of San Marino_2020-04-02.pdf` | Republic Of San Marino | Weiqi=SA | SL |  |
+| `Republic of Slovenia_2019-02-18.pdf` | Republic Of Slovenia | SL=SA | Weiqi |  |
+| `Republic of Timor-Leste_2016-06-24.pdf` | Republic Of Timor-Leste | SL=SA | Weiqi |  |
+| `Rwanda_2016-01-28.pdf` | Rwanda | SL=SA | Weiqi |  |
+| `Rwanda_2017-07-13.pdf` | Rwanda | SL=SA | Weiqi |  |
+| `Saudi Arabia_2017-10-05.pdf` | Saudi Arabia | Weiqi=SA | SL |  |
+| `Senegal_2016-01-06.pdf` | Senegal | Weiqi=SA | SL |  |
+| `Senegal_2017-01-04.pdf` | Senegal | SL=SA | Weiqi |  |
+| `Senegal_2018-01-12.pdf` | Senegal | Weiqi=SA | SL |  |
+| `Singapore_2018-07-27.pdf` | Singapore | SL=SA | Weiqi |  |
+| `Solomon Islands_2016-03-23.pdf` | Solomon Islands | SL=Weiqi | SA |  |
+| `Solomon Islands_2018-03-05.pdf` | Solomon Islands | SL=SA | Weiqi |  |
+| `Sri Lanka_2019-05-16.pdf` | Sri Lanka | SL=SA | Weiqi |  |
+| `St. Vincent and the Grenadines_2020-05-29.pdf` | St. Vincent And The Grenadines | Weiqi=SA | SL |  |
+| `Sweden_2019-03-26.pdf` | Sweden | SL=SA | Weiqi |  |
+| `Thailand_2018-06-04.pdf` | Thailand | SL=SA | Weiqi |  |
+| `The Federal Democratic Republic of Ethiopia_2016-10-04.pdf` | The Federal Democratic Republic Of Ethiopia | SL=SA | Weiqi |  |
+| `The Gambia_2017-07-03.pdf` | The Gambia | Weiqi=SA | SL |  |
+| `Togo_2017-12-15.pdf` | Togo | SL=SA | Weiqi |  |
+| `United Kingdom_2016-02-24.pdf` | United Kingdom | SL=SA | Weiqi |  |
+| `United Republic of Tanzania_2016-02-01.pdf` | Tanzania | SL=Weiqi | SA | SL & Weiqi both concluded no DSA table exists; SA found one (no values to compare) |
+| `Vanuatu_2016-10-31.pdf` | Vanuatu | SL=Weiqi | SA |  |
+| `Zambia_2019-08-02.pdf` | Zambia | SL=SA | Weiqi |  |
 
-*(Machine-readable version: `three_way_sl_weiqi_sa_two_of_three_match_20260917.csv`. The 22 reports with no two-way agreement — a genuine 3-way scatter, or a missing year selection on more than one side — are: Afghanistan Nov 2020, Bangladesh Jan 2016, Belarus Jan 2019, Benin Jan 2016, Cabo Verde Nov 2016, Cambodia Dec 2019, Central African Republic Apr 2020, Chad Jul 2019, Chad Aug 2020, Congo Jan 2020, Greece Jul 2017, Guyana Jul 2016, Kiribati Jan 2019, Liberia Jun 2019, Malaysia Apr 2017, Maldives Apr 2020, Mali May 2020, Mali Dec 2016 — a table_found split where Weiqi found a table with no values and no year, so it cannot pairwise-match SA's year either — Moldova Sep 2019, São Tomé and Príncipe Aug 2020, Timor-Leste May 2019, and Ukraine Jun 2020.)*
+
+*(Machine-readable version: `three_way_sl_weiqi_sa_two_of_three_match_20260917.csv`. Reports are identified by the literal source PDF filename, same convention as Section 6. The 22 reports with no two-way agreement — a genuine 3-way scatter, or a missing year selection on more than one side — are: `Bangladesh_2016-02-01.pdf`, `Benin_2016-01-07.pdf`, `Cabo Verde_2016-11-29.pdf`, `Cambodia_2019-12-23.pdf`, `Central African Republic_2020-04-28.pdf`, `Chad_2019-07-31.pdf`, `Chad_2020-08-05.pdf`, `Democratic Republic of São Tomé and Príncipe_2020-08-04.pdf`, `Democratic Republic of Timor-Leste_2019-05-07.pdf`, `Greece_2017-07-20.pdf`, `Guyana_2016-07-07.pdf`, `Islamic Republic of Afghanistan_2020-11-13.pdf`, `Kiribati_2019-01-24.pdf`, `Liberia_2019-06-19.pdf`, `Malaysia_2017-04-28.pdf`, `Maldives_2020-04-23.pdf`, `Mali_2016-12-07.pdf` (a `table_found` split where Weiqi found a table with no values and no year, so it cannot pairwise-match SA's year either), `Mali_2020-05-08.pdf`, `Republic of Belarus_2019-01-17.pdf`, `Republic of Congo_2020-01-27.pdf`, `Republic of Moldova_2019-09-25.pdf`, and `Ukraine_2020-06-11.pdf`.)*
 
 ---
 
@@ -532,4 +538,4 @@ SA's export formatting is closer to SL's than to Weiqi's on every cosmetic dimen
 
 ---
 
-*Data sources: `dsa_decomposition_sl_20260901.csv` (SL), `dsa_decomposition_labels_BH_run5_flexible_actual_thinking_weiqi.csv` (Weiqi), and `dsa_decomposition_labels_2016-2020_sa.csv` + `dsa_decomposition_labels_2016-2020_errors_sa.csv` (SA), all in `output/2016-2020/compiled_csv/`. Detail files generated for this comparison: `three_way_sl_weiqi_sa_report_level_20260917.csv`, `three_way_sl_weiqi_sa_value_diffs_20260917.csv`. Builds on the earlier `comparison_summary.md` (SL vs. Weiqi only).*
+*Data sources: `dsa_decomposition_sl_20260901.csv` (SL), `dsa_decomposition_labels_BH_run5_flexible_actual_thinking_weiqi.csv` (Weiqi), and `dsa_decomposition_labels_2016-2020_sa.csv` + `dsa_decomposition_labels_2016-2020_errors_sa.csv` (SA), all in `output/2016-2020/compiled_csv/`. Detail files generated for this comparison: `three_way_sl_weiqi_sa_report_level_20260917.csv`, `three_way_sl_weiqi_sa_value_diffs_20260917.csv`, `three_way_sl_weiqi_sa_disagreement_list_20260917.csv`, `three_way_sl_weiqi_sa_two_of_three_match_20260917.csv`. All detail CSVs identify reports by the literal source PDF filename (`pdf_file_name`). Builds on the earlier `comparison_summary.md` (SL vs. Weiqi only).*
