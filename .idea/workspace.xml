@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="299023fa-34fe-4c7d-93e7-1bede52fe858" name="Changes" comment="add git files">
-      <change afterPath="$PROJECT_DIR$/code/json_to_excel_dsa_v6_flexible_actual.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/step_1_revised_on_problematic_reports_sl.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code/two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dsa_data_check/sfa_panel_filled_20260825.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dsa_data_check/sfa_panel_filled_20260825_data_quality_flags.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dsa_data_check/sfa_panel_filled_20260825_gap_summary.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notes20260819_for AI review.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notes20260831.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2011-2015/compiled_csv/dsa_decomposition_sl_20260914.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/_rerun_20260910/compiled_csv/dsa_decomposition_labels_new_prompt_weiqi.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/_rerun_20260910/compiled_csv/dsa_decomposition_sl_20260910.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/_rerun_20260910/compiled_csv/dsa_decomposition_sl_20260912.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/_rerun_20260910/compiled_csv/rerun_comparison_summary.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/_rerun_20260910/compiled_csv/rerun_value_diffs.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/compiled_csv/adhoc_20260912.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/compiled_csv/checklist.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/compiled_csv/comparison_summary.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/compiled_csv/dsa_decomposition_labels_BH_run5_flexible_actual_thinking_weiqi.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/compiled_csv/dsa_decomposition_sl_20260901.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/compiled_csv/value_mismatch_92_reports_20260908 - Copy.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2016-2020/compiled_csv/value_mismatch_92_reports_20260908.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sl_revised_prompt_step_one.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/two_step_selected_pdf_prompt_table_only_cropfallback_v3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt" afterDir="false" />
+    <list default="true" id="299023fa-34fe-4c7d-93e7-1bede52fe858" name="Changes" comment="reorganize git files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +89,15 @@
       <option name="project" value="LOCAL" />
       <updated>1789571668696</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="reorganize git files">
+      <option name="closed" value="true" />
+      <created>1789573025259</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1789573025259</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,6 +106,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="revised prompt" />
     <MESSAGE value="add git files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add git files" />
+    <MESSAGE value="reorganize git files" />
+    <option name="LAST_COMMIT_MESSAGE" value="reorganize git files" />
   </component>
 </project>
