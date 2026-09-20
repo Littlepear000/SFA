@@ -1,0 +1,761 @@
+﻿country,year,status,source_report,source_report_date,n_reports_for_year,duplicate_reports_superseded,duplicate_values_agree,year_uncertain,year_parse_note,gap_id,gap_span,gap_primary_cause,gap_fill_status,gap_preferred_source_report,change_in_debt,identified_flows,primary_balance,automatic_debt_dynamics,other_identified_flows,residual
+Afghanistan,2016,observed,Islamic Republic of Afghanistan_2017-12-14.pdf,2017-12-14,1,,,False,,,,,,,-1.1,-1.0,-0.1,-0.7,-0.2,-0.1
+Afghanistan,2017,observed,Islamic Republic of Afghanistan_2018-12-11.pdf,2018-12-11,1,,,False,,,,,,,-0.8,0.3,0.6,-0.1,-0.2,-1.1
+Afghanistan,2018,observed,Islamic Republic of Afghanistan_2019-12-20.pdf,2019-12-20,1,,,False,,,,,,,-0.7,-1.4,-1.6,0.2,0.0,0.7
+Afghanistan,2019,observed,Islamic Republic of Afghanistan_2020-05-01.pdf,2020-05-01,1,,,False,,,,,,,-0.5,0.9,0.9,0.0,0.0,-1.4
+Albania,2015,observed,Albania_2016-06-09.pdf,2016-06-09,1,,,False,,,,,,,0.2,1.1,1.8,1.0,-1.7,-0.9
+Albania,2016,observed,Albania_2017-12-13.pdf,2017-12-13,1,,,False,,,,,,,-0.7,0.3,-0.2,0.1,0.4,-1.1
+Albania,2017,observed,Albania_2019-01-28.pdf,2019-01-28,2,Albania_2018-05-21.pdf,Yes,False,,,,,,,-1.4,-1.5,-0.1,-3.2,1.8,0.1
+Albania,2018,observed,Albania_2019-07-03.pdf,2019-07-03,1,,,False,,,,,,,-1.9,-1.8,-0.6,-3.0,1.8,-0.1
+Albania,2019,observed,Albania_2020-11-30.pdf,2020-11-30,2,Albania_2020-04-17.pdf,No,False,,,,,,,-1.7,-0.9,-0.1,0.2,-1.0,-0.7
+Algeria,2015,observed,Algeria_2016-05-18.pdf,2016-05-18,1,,,False,,,,,,,1.0,2.5,17.0,0.6,-15.1,-1.5
+Algeria,2016,observed,Algeria_2017-06-01.pdf,2017-06-01,1,,,False,,,,,,,14.7,14.2,14.0,0.1,0.1,0.5
+Algeria,2017,observed,Algeria_2018-06-13.pdf,2018-06-13,1,,,False,,,,,,,9.3,1.4,8.5,-1.5,-5.6,7.9
+Angola,2015,observed,Angola_2017-02-06.pdf,2017-02-06,1,,,False,,,,,,,24.8,15.6,1.3,11.9,2.4,9.2
+Angola,2016,GAP,,,0,,,,,G0001,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Angola_2018-06-11.pdf,,,,,,
+Angola,2017,observed,Angola_2018-06-11.pdf,2018-06-11,1,,,False,,,,,,,-15.8,-13.2,2.7,-16.2,0.4,-2.6
+Angola,2018,observed,Angola_2019-12-19.pdf,2019-12-19,2,Angola_2019-06-19.pdf,No,False,,,,,,,19.7,9.2,-6.6,14.5,1.3,10.5
+Angola,2019,observed,Angola_2020-09-21.pdf,2020-09-21,1,,,False,,,,,,,20.2,9.0,-6.0,17.1,-2.1,11.2
+Argentina,2015,observed,Argentina_2016-11-10.pdf,2016-11-10,1,,,False,,,,,,,8.5,12.1,7.2,4.9,0.0,-3.5
+Argentina,2016,observed,Argentina_2017-12-29.pdf,2017-12-29,1,,,False,,,,,,,-1.7,-2.4,4.3,-6.7,0.0,0.7
+Argentina,2017,observed,Argentina_2018-12-19.pdf,2018-12-19,3,Argentina_2018-07-13.pdf; Argentina_2018-10-26.pdf,No,False,,,,,,,3.8,1.3,3.8,-2.5,0.0,2.5
+Argentina,2018,observed,Argentina_2019-07-15.pdf,2019-07-15,2,Argentina_2019-04-05.pdf,No,False,,,,,,,28.9,25.1,2.7,18.1,4.4,3.8
+Armenia,2015,observed,Republic of Armenia_2016-12-13.pdf,2016-12-13,2,Republic of Armenia_2016-07-21.pdf,No,False,,,,,,,5.18,5.85,4.5,0.4,0.9,-0.7
+Armenia,2016,observed,Republic of Armenia_2017-07-19.pdf,2017-07-19,1,,,False,,,,,,,6.45,9.54,5.2,1.6,2.7,-3.1
+Armenia,2017,GAP,,,0,,,,,G0002,2017,no_table_report_in_between,fillable_actual_column_visible,Republic of Armenia_2019-06-05.pdf,,,,,,
+Armenia,2018,observed,Republic of Armenia_2019-06-05.pdf,2019-06-05,1,,,False,,,,,,,-3.1,-1.6,0.1,-2.0,0.2,-1.5
+Armenia,2019,observed,Republic of Armenia_2020-12-16.pdf,2020-12-16,2,Republic of Armenia_2020-05-22.pdf,No,False,,,,,,,-2.2,-2.3,-0.3,-2.6,0.6,0.2
+Aruba,2016,observed,Kingdom of the Netherlands—Aruba_2017-06-15.pdf,2017-06-15,1,,,False,,,,,,,3.8,0.8,-2.9,3.7,0.0,3.0
+Aruba,2017,GAP,,,0,,,,,G0003,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of the Netherlands—Aruba_2019-06-05.pdf,,,,,,
+Aruba,2018,observed,Kingdom of the Netherlands—Aruba_2019-06-05.pdf,2019-06-05,1,,,False,,,,,,,-2.2,-2.0,-1.9,-0.1,0.0,-0.2
+Australia,2015,observed,Australia_2017-02-09.pdf,2017-02-09,1,,,False,,,,,,,3.4,3.7,1.8,0.9,1.1,-0.3
+Australia,2016,observed,Australia_2018-02-20.pdf,2018-02-20,1,,,False,,,,,,,3.1,3.7,1.7,0.1,1.9,-0.6
+Australia,2017,observed,Australia_2019-02-21.pdf,2019-02-21,1,,,False,,,,,,,0.1,0.6,0.6,-0.9,1.0,-0.5
+Australia,2018,observed,Australia_2020-03-05.pdf,2020-03-05,1,,,False,,,,,,,0.4,0.9,0.1,-0.6,1.4,-0.5
+Austria,2015,observed,Austria_2016-02-12.pdf,2016-02-12,1,,,False,,,,,,,1.9,2.4,-0.3,0.4,2.3,-0.5
+Austria,2016,observed,Austria_2017-02-02.pdf,2017-02-02,1,,,False,,,,,,,-1.9,-1.5,-0.4,-0.4,-0.7,-0.4
+Austria,2017,observed,Austria_2018-09-12.pdf,2018-09-12,1,,,False,,,,,,,-5.0,-4.7,-0.8,-1.9,-2.0,-0.4
+Azerbaijan,2015,observed,Republic of Azerbaijan_2016-09-14.pdf,2016-09-14,1,,,False,,,,,,,17.1,17.3,6.5,10.7,0.1,-0.1
+Azerbaijan,2016,GAP,,,0,,,,,G0004,2016-2017,lag_between_consecutive_reports,only_in_merged_range_column,,,,,,,
+Azerbaijan,2017,GAP,,,0,,,,,G0004,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Azerbaijan_2019-09-18.pdf,,,,,,
+Azerbaijan,2018,observed,Republic of Azerbaijan_2019-09-18.pdf,2019-09-18,1,,,False,,,,,,,-3.8,-6.5,-6.3,-2.7,2.5,2.7
+Bahamas,2015,observed,The Bahamas_2016-07-13.pdf,2016-07-13,1,,,False,,,,,,,4.2,3.2,1.7,1.5,0.0,1.0
+Bahamas,2016,observed,The Bahamas_2017-10-06.pdf,2017-10-06,1,,,False,,,,,,,3.5,3.7,0.9,2.8,0.0,-0.2
+Bahamas,2017,observed,The Bahamas_2018-05-14.pdf,2018-05-14,1,,,False,,,,,,,4.2,4.9,3.5,1.4,0.0,-0.7
+Bahamas,2018,observed,The Bahamas_2019-07-01.pdf,2019-07-01,1,,,False,,,,,,,8.9,3.7,0.8,1.5,1.4,5.2
+Bahamas,2019,observed,The Bahamas_2020-06-05.pdf,2020-06-05,1,,,False,,,,,,,-1.5,-1.3,-0.9,0.2,-0.6,-0.3
+Bangladesh,2014,observed,Bangladesh_2016-02-01.pdf,2016-02-01,1,,,True,,,,,,,-0.5,-0.8,1.0,-1.8,0.0,0.3
+Bangladesh,2015,observed,Bangladesh_2017-06-08.pdf,2017-06-08,1,,,False,,,,,,,-0.7,-0.1,1.8,-1.8,0.0,-0.7
+Bangladesh,2016,observed,Bangladesh_2018-06-08.pdf,2018-06-08,1,,,False,,,,,,,-0.4,-0.7,1.4,-2.1,0.1,0.3
+Bangladesh,2017,GAP,,,0,,,,,G0005,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Bangladesh_2019-09-18.pdf,,,,,,
+Bangladesh,2018,observed,Bangladesh_2019-09-18.pdf,2019-09-18,1,,,False,,,,,,,1.4,1.3,2.8,-1.5,0.0,0.1
+Bangladesh,2019,observed,Bangladesh_2020-06-03.pdf,2020-06-03,1,,,False,,,,,,,1.3,1.1,3.2,-2.1,0.0,0.2
+Barbados,2015,observed,Barbados_2016-08-26.pdf,2016-08-26,1,,,False,,,,,,,7.4,5.5,-0.7,7.0,-0.8,2.0
+Barbados,2016,observed,Barbados_2018-05-30.pdf,2018-05-30,1,,,False,,,,,,,-0.1,1.2,-2.2,5.2,-1.9,-1.3
+Barbados,2017,observed,Barbados_2018-10-04.pdf,2018-10-04,1,,,False,,,,,,,8.2,0.3,-3.3,3.6,0.0,7.9
+Barbados,2018,observed,Barbados_2020-06-08.pdf,2020-06-08,3,Barbados_2019-06-26.pdf; Barbados_2019-12-18.pdf,No,False,,,,,,,-32.7,-2.9,-3.5,0.5,0.0,-29.8
+Barbados,2019,observed,Barbados_2020-12-11.pdf,2020-12-11,1,,,False,,,,,,,-0.2,-1.3,-6.3,5.1,0.0,1.1
+Belarus,2015,observed,Republic of Belarus_2016-09-21.pdf,2016-09-21,1,,,True,,,,,,,16.4,10.5,-3.6,9.3,4.8,5.9
+Belarus,2016,observed,Republic of Belarus_2017-12-18.pdf,2017-12-18,1,,,False,,,,,,,0.8,4.5,-1.7,0.8,5.3,-3.7
+Belarus,2017,observed,Republic of Belarus_2019-01-17.pdf,2019-01-17,1,,,False,,,,,,,0.0,-2.9,-3.7,-2.4,3.2,2.9
+Belgium,2015,observed,Belgium_2017-03-17.pdf,2017-03-17,2,Belgium_2016-03-07.pdf,No,False,,,,,,,-0.7,-0.4,-0.1,0.5,-0.7,-0.3
+Belgium,2016,observed,Belgium_2018-03-08.pdf,2018-03-08,1,,,False,,,,,,,-0.2,-0.3,-0.1,-0.3,0.0,0.1
+Belgium,2017,observed,Belgium_2019-03-11.pdf,2019-03-11,1,,,False,,,,,,,-2.5,-2.3,-1.3,-1.0,0.0,-0.3
+Belgium,2018,observed,Belgium_2020-03-31.pdf,2020-03-31,1,,,False,,,,,,,-1.7,-2.0,-1.1,-0.9,0.0,0.2
+Belize,2014,observed,Belize_2016-03-28.pdf,2016-03-28,1,,,True,,,,,,,-0.1,0.0,1.0,-0.9,0.0,-0.1
+Belize,2015,observed,Belize_2016-10-27.pdf,2016-10-27,1,,,False,,,,,,,4.5,4.1,4.1,1.0,-1.0,0.4
+Belize,2016,observed,Belize_2017-09-19.pdf,2017-09-19,1,,,False,,,,,,,17.7,18.6,2.2,3.5,12.9,-0.9
+Belize,2017,observed,Belize_2018-11-16.pdf,2018-11-16,1,,,False,,,,,,,0.3,1.6,2.5,0.2,-1.1,-1.3
+Belize,2018,observed,Belize_2019-12-09.pdf,2019-12-09,1,,,False,,,,,,,-0.7,-2.6,-2.1,-0.2,-0.3,1.9
+Benin,2014,observed,Benin_2016-01-07.pdf,2016-01-07,1,,,True,,,,,,,5.5,2.5,1.6,0.9,0.0,3.0
+Benin,2015,observed,Benin_2017-04-26.pdf,2017-04-26,1,,,False,,,,,,,12.0,10.0,7.3,2.7,0.0,2.0
+Benin,2016,observed,Benin_2018-01-05.pdf,2018-01-05,1,,,False,,,,,,,7.1,5.2,4.8,0.4,0.0,1.9
+Benin,2017,observed,Benin_2018-12-13.pdf,2018-12-13,2,Benin_2018-07-11.pdf,No,False,,,,,,,4.8,0.7,3.8,-3.1,0.0,4.1
+Benin,2018,observed,Benin_2019-12-26.pdf,2019-12-26,2,Benin_2019-07-02.pdf,No,False,,,,,,,1.8,0.7,1.3,-0.5,0.0,1.0
+Benin,2019,observed,Benin_2020-05-20.pdf,2020-05-20,1,,,False,,,,,,,0.1,-1.5,-1.1,-0.4,0.0,1.6
+Bhutan,2017,observed,Bhutan_2018-10-30.pdf,2018-10-30,1,,,False,,,,,,,-7.9,-15.0,1.7,-16.7,0.0,7.2
+Bolivia,2015,observed,Bolivia_2016-12-22.pdf,2016-12-22,1,,,False,,,,,,,3.6,6.9,5.9,1.0,0.0,-3.2
+Bolivia,2016,observed,Bolivia_2017-12-22.pdf,2017-12-22,1,,,False,,,,,,,5.6,5.7,5.6,0.0,0.0,-0.1
+Bolivia,2017,observed,Bolivia_2018-12-21.pdf,2018-12-21,1,,,False,,,,,,,4.5,3.4,6.7,-3.3,0.0,1.1
+Bolivia,2018,GAP,,,0,,,,,G0006,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Bolivia_2020-05-29.pdf,,,,,,
+Bolivia,2019,observed,Bolivia_2020-05-29.pdf,2020-05-29,1,,,False,,,,,,,3.6,4.5,5.7,-1.2,0.0,-0.9
+Bosnia and Herzegovina,2015,observed,Bosnia and Herzegovina_2016-09-09.pdf,2016-09-09,1,,,False,,,,,,,0.7,-1.3,-0.5,-0.8,0.0,2.1
+Bosnia and Herzegovina,2016,observed,Bosnia and Herzegovina_2018-02-13.pdf,2018-02-13,1,,,False,,,,,,,-1.8,-2.0,-1.2,-0.7,0.0,0.2
+Bosnia and Herzegovina,2017,GAP,,,0,,,,,G0007,2017-2018,lag_between_consecutive_reports,only_in_merged_range_column,,,,,,,
+Bosnia and Herzegovina,2018,GAP,,,0,,,,,G0007,2017-2018,lag_between_consecutive_reports,fillable_actual_column_visible,Bosnia and Herzegovina_2020-04-23.pdf,,,,,,
+Bosnia and Herzegovina,2019,observed,Bosnia and Herzegovina_2020-04-23.pdf,2020-04-23,1,,,False,,,,,,,-1.5,-1.9,-2.1,0.2,0.0,0.4
+Botswana,2015,observed,Botswana_2016-04-11.pdf,2016-04-11,1,,,False,,,,,,,1.97,6.1,2.5,5.9,-2.3,-4.1
+Botswana,2016,observed,Botswana_2017-08-08.pdf,2017-08-08,1,,,False,,,,,,,-1.54,-3.96,0.6,-3.2,-1.3,2.4
+Botswana,2017,observed,Botswana_2018-09-05.pdf,2018-09-05,1,,,False,,,,,,,-1.9,-3.27,-0.6,-1.7,-0.9,1.4
+Botswana,2018,observed,Botswana_2020-03-27.pdf,2020-03-27,1,,,False,,,,,,,0.8,-2.2,4.1,0.6,-7.0,3.0
+Brazil,2015,observed,Brazil_2016-11-15.pdf,2016-11-15,1,,,False,,,,,,,,9.2,1.9,6.2,1.1,1.2
+Brazil,2016,observed,Brazil_2017-07-13.pdf,2017-07-13,1,,,False,,,,,,,,7.4,2.5,4.9,-0.1,-1.6
+Brazil,2017,observed,Brazil_2018-08-03.pdf,2018-08-03,1,,,False,,,,,,,,5.1,1.7,4.2,-0.8,0.4
+Brazil,2018,observed,Brazil_2019-07-23.pdf,2019-07-23,1,,,False,,,,,,,,4.4,1.7,4.6,-1.9,-0.5
+Brazil,2019,observed,Brazil_2020-12-02.pdf,2020-12-02,1,,,False,,,,,,,2.4,2.3,1.0,2.7,-1.4,0.1
+Bulgaria,2015,observed,Bulgaria_2016-11-10.pdf,2016-11-10,1,,,False,,,,,,,-0.1,-1.4,2.5,0.0,-3.8,1.2
+Bulgaria,2016,observed,Bulgaria_2018-02-21.pdf,2018-02-21,1,,,False,,,,,,,1.7,6.7,-1.9,-0.7,9.3,-5.0
+Bulgaria,2017,GAP,,,0,,,,,G0008,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Bulgaria_2019-03-22.pdf,,,,,,
+Bulgaria,2018,observed,Bulgaria_2019-03-22.pdf,2019-03-22,1,,,False,,,,,,,-2.8,-3.1,-0.3,-0.8,-1.9,0.3
+Burkina Faso,2014,observed,Burkina Faso_2016-06-16.pdf,2016-06-16,1,,,False,,,,,,,-1.5,2.0,-0.4,2.4,0.0,-3.5
+Burkina Faso,2015,GAP,,,0,,,,,G0009,2015,errors_file_report_in_between,fillable_actual_column_visible,Burkina Faso_2018-03-15.pdf,,,,,,
+Burkina Faso,2016,observed,Burkina Faso_2018-03-15.pdf,2018-03-15,1,,,False,,,,,,,2.5,1.3,2.4,-1.1,0.0,1.2
+Burkina Faso,2017,observed,Burkina Faso_2019-01-22.pdf,2019-01-22,1,,,False,,,,,,,-0.7,0.9,6.9,-6.0,0.0,-1.6
+Burkina Faso,2018,observed,Burkina Faso_2020-04-23.pdf,2020-04-23,1,,,False,,,,,,,4.2,1.6,3.3,-1.3,-0.4,2.6
+Burkina Faso,2019,observed,Burkina Faso_2020-11-18.pdf,2020-11-18,1,,,False,,,,,,,5.0,2.6,2.2,0.7,-0.3,2.4
+Cabo Verde,2016,observed,Cabo Verde_2018-04-18.pdf,2018-04-18,1,,,False,,,,,,,3.5,6.2,3.3,2.0,0.9,-2.7
+Cabo Verde,2017,GAP,,,0,,,,,G0010,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Cabo Verde_2019-07-31.pdf,,,,,,
+Cabo Verde,2018,observed,Cabo Verde_2019-07-31.pdf,2019-07-31,1,,,False,,,,,,,-3.1,-1.0,0.3,-2.3,1.0,-2.1
+Cabo Verde,2019,observed,Cabo Verde_2020-04-23.pdf,2020-04-23,1,,,False,,,,,,,-1.4,-0.3,-0.7,-2.8,3.3,-1.1
+Cambodia,2015,observed,Cambodia_2016-11-03.pdf,2016-11-03,1,,,False,,,,,,,0.3,-0.8,0.6,-1.4,0.0,1.1
+Cambodia,2016,observed,Cambodia_2017-10-20.pdf,2017-10-20,1,,,False,,,,,,,1.0,-0.3,2.5,-2.8,0.0,1.4
+Cambodia,2017,observed,Cambodia_2018-12-17.pdf,2018-12-17,1,,,False,,,,,,,1.2,-1.4,0.7,-2.2,0.0,2.6
+Cambodia,2018,observed,Cambodia_2019-12-23.pdf,2019-12-23,1,,,False,,,,,,,-1.4,-3.7,-1.1,-2.6,0.0,2.3
+Cameroon,2015,observed,Cameroon_2017-07-05.pdf,2017-07-05,1,,,False,,,,,,,6.7,3.1,2.1,1.0,0.0,3.6
+Cameroon,2016,GAP,,,0,,,,,G0011,2016,no_table_report_in_between,fillable_actual_column_visible,Cameroon_2018-07-23.pdf,,,,,,
+Cameroon,2017,observed,Cameroon_2018-12-27.pdf,2018-12-27,2,Cameroon_2018-07-23.pdf,No,False,,,,,,,4.4,0.8,4.0,-3.3,0.0,3.6
+Cameroon,2018,observed,Cameroon_2020-06-04.pdf,2020-06-04,2,Cameroon_2020-02-18.pdf,No,True,,,,,,,1.8,-0.3,1.5,-0.4,-1.4,2.1
+Cameroon,2019,observed,Cameroon_2020-11-09.pdf,2020-11-09,1,,,False,,,,,,,2.2,2.0,2.5,-0.8,0.2,0.2
+Canada,2015,observed,Canada_2016-06-13.pdf,2016-06-13,1,,,False,,,,,,,5.3,4.7,0.7,4.0,0.0,0.6
+Canada,2016,observed,Canada_2017-07-13.pdf,2017-07-13,1,,,False,,,,,,,0.7,2.0,1.1,0.9,0.0,-1.2
+Canada,2017,observed,Canada_2018-07-16.pdf,2018-07-16,1,,,True,,,,,,,-1.5,-1.4,0.8,-2.1,0.0,-0.1
+Canada,2018,observed,Canada_2019-06-24.pdf,2019-06-24,1,,,False,,,,,,,-0.4,0.2,0.1,0.2,0.0,-0.6
+Central African Republic,2015,observed,Central African Republic_2016-08-10.pdf,2016-08-10,1,,,False,,,,,,,-2.6,-4.1,0.1,-3.2,-1.0,1.5
+Central African Republic,2016,observed,Central African Republic_2017-12-27.pdf,2017-12-27,2,Central African Republic_2017-07-31.pdf,No,False,,,,,,,-8.0,-6.9,-2.1,-4.7,-0.1,-1.1
+Central African Republic,2017,GAP,,,0,,,,,G0012,2017,errors_file_report_in_between,fillable_actual_column_visible,Central African Republic_2019-07-09.pdf,,,,,,
+Central African Republic,2018,observed,Central African Republic_2020-01-13.pdf,2020-01-13,2,Central African Republic_2019-07-09.pdf,No,False,,,,,,,-0.3,-0.1,0.6,-0.8,0.2,-0.2
+Chad,2015,observed,Chad_2016-11-28.pdf,2016-11-28,2,Chad_2016-08-17.pdf,No,False,,,,,,,3.4,5.2,2.8,3.1,-0.7,-1.9
+Chad,2016,observed,Chad_2018-08-22.pdf,2018-08-22,2,Chad_2018-04-27.pdf,No,False,,,,,,,8.5,3.9,-0.4,4.8,-0.5,4.6
+Chad,2017,observed,Chad_2019-01-24.pdf,2019-01-24,1,,,False,,,,,,,0.6,-2.7,-1.4,0.5,-1.8,3.3
+Chad,2018,GAP,,,0,,,,,G0013,2018,errors_file_report_in_between,fillable_actual_column_visible,Chad_2020-04-23.pdf,,,,,,
+Chad,2019,observed,Chad_2020-04-23.pdf,2020-04-23,1,,,False,,,,,,,-4.2,-1.7,-0.8,-0.4,-0.4,-2.5
+Chile,2015,observed,Chile_2016-12-09.pdf,2016-12-09,1,,,False,,,,,,,2.4,1.8,1.9,0.1,-0.2,0.6
+Chile,2016,GAP,,,0,,,,,G0014,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Chile_2018-11-09.pdf,,,,,,
+Chile,2017,observed,Chile_2018-11-09.pdf,2018-11-09,1,,,False,,,,,,,2.5,2.4,2.4,-0.7,0.7,0.2
+Chile,2018,GAP,,,0,,,,,G0015,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Chile_2020-05-29.pdf,,,,,,
+Chile,2019,observed,Chile_2020-05-29.pdf,2020-05-29,1,,,False,,,,,,,2.3,2.4,2.5,0.3,-0.4,0.0
+China,2015,observed,People's Republic of China_2016-08-12.pdf,2016-08-12,1,,,False,,,,,,,-0.2,-0.6,0.2,0.2,-1.1,0.4
+China,2016,observed,People's Republic of China_2017-08-08.pdf,2017-08-08,1,,,False,,,,,,,0.2,2.0,5.0,-0.9,-2.0,-1.8
+China,2017,observed,People’s Republic of China_2018-07-26.pdf,2018-07-26,1,,,False,,,,,,,0.2,1.2,3.0,-1.8,0.0,-1.0
+China,2018,observed,People’s Republic of China_2019-08-09.pdf,2019-08-09,1,,,False,,,,,,,5.5,5.8,8.0,-2.2,0.0,-0.3
+Colombia,2015,observed,Colombia_2016-06-15.pdf,2016-06-15,2,Colombia_2016-05-20.pdf,Yes,False,,,,,,,6.4,5.3,-0.8,6.0,0.0,1.1
+Colombia,2016,observed,Colombia_2017-06-29.pdf,2017-06-29,2,Colombia_2017-05-31.pdf,Yes,False,,,,,,,-0.3,-4.5,0.3,-4.8,0.0,4.1
+Colombia,2017,observed,Colombia_2018-06-07.pdf,2018-06-07,2,Colombia_2018-05-29.pdf,Yes,False,,,,,,,-0.1,-3.1,0.2,-3.3,0.0,2.9
+Colombia,2018,observed,Colombia_2019-05-22.pdf,2019-05-22,2,Colombia_2019-04-29.pdf,Yes,False,,,,,,,2.4,-2.3,-0.5,-1.7,0.0,4.7
+Colombia,2019,observed,Colombia_2020-09-25.pdf,2020-09-25,3,Colombia_2020-04-17.pdf; Colombia_2020-05-04.pdf,No,False,,,,,,,-1.4,-0.8,0.0,-0.5,-0.3,-0.6
+Comoros,2015,observed,Union of the Comoros_2016-12-22.pdf,2016-12-22,1,,,False,,,,,,,4.0,-2.7,-5.9,3.2,0.0,6.7
+Comoros,2016,GAP,,,0,,,,,G0016,2016-2017,errors_file_report_in_between,fillable_actual_column_visible,Union of the Comoros_2019-08-14.pdf,,,,,,
+Comoros,2017,GAP,,,0,,,,,G0016,2016-2017,errors_file_report_in_between,fillable_actual_column_visible,Union of the Comoros_2019-08-14.pdf,,,,,,
+Comoros,2018,observed,Union of the Comoros_2020-05-07.pdf,2020-05-07,2,Union of the Comoros_2019-08-14.pdf,No,False,,,,,,,2.5,3.3,3.3,0.0,0.0,-0.7
+Costa Rica,2015,observed,Costa Rica_2016-05-23.pdf,2016-05-23,1,,,False,,,,,,,3.1,3.6,3.0,0.5,0.1,-0.5
+Costa Rica,2016,observed,Costa Rica_2017-06-27.pdf,2017-06-27,1,,,False,,,,,,,3.9,3.5,2.4,0.7,0.4,0.3
+Costa Rica,2017,GAP,,,0,,,,,G0017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Costa Rica_2019-04-13.pdf,,,,,,
+Costa Rica,2018,observed,Costa Rica_2019-04-13.pdf,2019-04-13,1,,,False,,,,,,,5.0,4.8,2.4,2.8,-0.3,0.1
+Costa Rica,2019,observed,Costa Rica_2020-05-01.pdf,2020-05-01,1,,,False,,,,,,,5.3,5.1,2.8,1.0,1.3,0.2
+Croatia,2015,observed,Republic of Croatia_2016-06-28.pdf,2016-06-28,1,,,False,,,,,,,0.1,2.3,0.1,2.0,0.3,-2.2
+Croatia,2016,observed,Republic of Croatia_2018-01-16.pdf,2018-01-16,1,,,False,,,,,,,-2.6,-1.3,-2.0,0.4,0.3,-1.2
+Croatia,2017,observed,Republic of Croatia_2019-02-12.pdf,2019-02-12,1,,,False,,,,,,,-4.6,-3.7,-3.5,-0.6,0.3,-0.9
+Croatia,2018,GAP,,,0,,,,,G0018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Croatia_2020-02-19.pdf,,,,,,
+Croatia,2019,observed,Republic of Croatia_2020-02-19.pdf,2020-02-19,1,,,False,,,,,,,-3.2,-2.6,-2.1,-0.8,0.3,-0.5
+Curaçao and Sint Maarten,2015,observed,Kingdom of the Netherlands—Curaçao and Sint Maarten_2016-08-22.pdf,2016-08-22,1,,,False,,,,,,,5.7,3.0,1.7,1.3,0.0,2.8
+Curaçao and Sint Maarten,2016,GAP,,,0,,,,,G0019,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of the Netherlands—Curaçao and Sint Maarten_2019-01-25.pdf,,,,,,
+Curaçao and Sint Maarten,2017,observed,Kingdom of the Netherlands—Curaçao and Sint Maarten_2019-01-25.pdf,2019-01-25,1,,,False,,,,,,,4.9,3.5,2.3,1.2,0.0,1.3
+Curaçao and Sint Maarten,2018,GAP,,,0,,,,,G0020,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of the Netherlands-Curacao and Sint Maarten_2020-04-01.pdf,,,,,,
+Curaçao and Sint Maarten,2019,observed,Kingdom of the Netherlands-Curacao and Sint Maarten_2020-04-01.pdf,2020-04-01,1,,,False,,,,,,,-0.7,2.2,1.3,0.9,0.0,-2.9
+Cyprus,2014,observed,Cyprus_2016-01-29.pdf,2016-01-29,1,,,False,,,,,,,5.7,5.7,-2.8,7.0,1.5,0.0
+Cyprus,2015,GAP,,,0,,,,,G0021,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Cyprus_2017-06-08.pdf,,,,,,
+Cyprus,2016,observed,Cyprus_2017-12-14.pdf,2017-12-14,2,Cyprus_2017-06-08.pdf,No,False,,,,,,,-0.4,-0.9,-3.0,0.3,1.8,0.6
+Cyprus,2017,observed,Cyprus_2018-12-03.pdf,2018-12-03,2,Cyprus_2018-06-06.pdf,No,True,,,,,,,-9.4,-9.4,-4.3,-3.3,-1.8,0.0
+Cyprus,2018,observed,Cyprus_2019-12-09.pdf,2019-12-09,2,Cyprus_2019-06-03.pdf,No,True,,,,,,,6.7,8.8,2.1,-2.5,9.2,-2.1
+Czech Republic,2015,observed,Czech Republic_2016-07-07.pdf,2016-07-07,1,,,True,,,,,,,-1.6,-0.7,-0.5,-0.2,0.0,-0.9
+Czech Republic,2016,observed,Czech Republic_2017-06-26.pdf,2017-06-26,1,,,True,,,,,,,-3.1,-0.9,-1.4,0.5,0.0,-2.2
+Czech Republic,2017,observed,Czech Republic_2018-06-26.pdf,2018-06-26,1,,,False,,,,,,,-2.2,-2.9,-2.2,-0.6,0.0,0.7
+Czech Republic,2018,observed,Czech Republic_2019-06-13.pdf,2019-06-13,1,,,False,,,,,,,-2.0,-2.2,-1.5,-0.7,0.0,0.2
+Côte d'Ivoire,2016,observed,Cote d'Ivoire_2017-12-15.pdf,2017-12-15,1,,,False,,,,,,,1.4,0.8,2.2,-1.3,-0.1,0.6
+Côte d'Ivoire,2017,observed,Cote d'Ivoire_2018-12-14.pdf,2018-12-14,1,,,False,,,,,,,2.2,-0.6,2.8,-3.3,-0.1,2.8
+Côte d'Ivoire,2018,observed,Cote d'Ivoire_2019-12-18.pdf,2019-12-18,1,,,False,,,,,,,4.4,1.3,2.1,-0.8,0.0,3.0
+Côte d'Ivoire,2019,observed,Cote d'Ivoire_2020-12-21.pdf,2020-12-21,1,,,False,,,,,,,1.6,0.5,0.8,-0.2,0.0,1.1
+Democratic Republic of the Congo,2018,observed,Democratic Republic of the Congo_2020-05-01.pdf,2020-05-01,3,Democratic Republic of the Congo_2019-09-04.pdf; Democratic Republic of the Congo_2019-12-23.pdf,No,False,,,,,,,3.4,-4.6,-0.4,-4.2,0.0,8.0
+Denmark,2015,observed,Denmark_2016-06-27.pdf,2016-06-27,1,,,False,,,,,,,1.2,0.2,1.3,1.1,-2.2,1.0
+Denmark,2016,observed,Denmark_2017-06-20.pdf,2017-06-20,1,,,False,,,,,,,-1.8,1.1,0.4,0.7,0.0,-2.9
+Denmark,2017,observed,Denmark_2018-06-20.pdf,2018-06-20,1,,,False,,,,,,,-2.3,-1.6,-1.2,-0.4,0.0,-0.7
+Denmark,2018,observed,Denmark_2019-06-25.pdf,2019-06-25,1,,,False,,,,,,,-1.4,0.0,-0.4,0.4,0.0,-1.5
+Djibouti,2014,observed,Djibouti_2016-09-01.pdf,2016-09-01,1,,,False,,,,,,,2.3,7.3,11.7,-4.4,0.0,-5.0
+Djibouti,2015,observed,Djibouti_2017-04-06.pdf,2017-04-06,1,,,True,,,,,,,18.4,17.4,20.8,-3.5,0.0,1.0
+Djibouti,2016,GAP,,,0,,,,,G0022,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Djibouti_2019-10-23.pdf,,,,,,
+Djibouti,2017,GAP,,,0,,,,,G0022,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Djibouti_2019-10-23.pdf,,,,,,
+Djibouti,2018,observed,Djibouti_2019-10-23.pdf,2019-10-23,1,,,False,,,,,,,0.9,1.0,3.7,-2.7,0.0,0.0
+Djibouti,2019,observed,Djibouti_2020-05-12.pdf,2020-05-12,1,,,False,,,,,,,-3.5,-3.5,2.6,-6.1,0.0,0.0
+Dominica,2014,observed,Dominica_2016-07-20.pdf,2016-07-20,1,,,False,,,,,,,9.2,4.4,1.6,2.7,0.0,4.8
+Dominica,2015,observed,Dominica_2017-12-20.pdf,2017-12-20,1,,,True,,,,,,,2.0,3.1,-0.8,4.0,0.0,-1.2
+Dominica,2016,observed,Dominica_2018-09-05.pdf,2018-09-05,1,,,False,,,,,,,-3.5,-5.3,-5.9,0.6,0.0,1.8
+Dominican Republic,2014,observed,Dominican Republic_2016-11-10.pdf,2016-11-10,1,,,False,,,,,,,-0.2,1.5,0.7,0.8,0.0,-1.7
+Dominican Republic,2015,GAP,,,0,,,,,G0023,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Dominican Republic_2017-08-16.pdf,,,,,,
+Dominican Republic,2016,observed,Dominican Republic_2018-10-24.pdf,2018-10-24,2,Dominican Republic_2017-08-16.pdf,No,False,,,,,,,2.7,1.5,0.0,1.5,0.0,1.2
+Dominican Republic,2017,observed,Dominican Republic_2019-08-15.pdf,2019-08-15,1,,,False,,,,,,,2.7,0.3,0.6,-0.3,0.0,2.4
+Dominican Republic,2018,GAP,,,0,,,,,G0024,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Dominican Republic_2020-05-07.pdf,,,,,,
+Dominican Republic,2019,observed,Dominican Republic_2020-05-07.pdf,2020-05-07,1,,,False,,,,,,,3.1,1.1,-0.8,1.9,0.0,2.0
+Ecuador,2015,observed,Ecuador_2016-09-09.pdf,2016-09-09,1,,,False,,,,,,,2.6,5.5,3.8,1.4,0.3,-2.9
+Ecuador,2016,GAP,,,0,,,,,G0025,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Ecuador_2019-03-20.pdf,,,,,,
+Ecuador,2017,observed,Ecuador_2019-03-20.pdf,2019-03-20,1,,,False,,,,,,,1.5,1.2,2.4,0.3,-1.5,0.2
+Ecuador,2018,observed,Ecuador_2019-12-20.pdf,2019-12-20,1,,,False,,,,,,,1.5,0.7,-1.3,1.1,0.9,0.8
+Ecuador,2019,observed,Ecuador_2020-12-23.pdf,2020-12-23,3,Ecuador_2020-05-28.pdf; Ecuador_2020-10-05.pdf,No,False,,,,,,,5.7,3.2,0.5,2.8,0.0,2.4
+Egypt,2016,observed,Arab Republic of Egypt_2017-09-26.pdf,2017-09-26,1,,,False,,,,,,,8.4,3.9,3.2,0.7,0.0,4.5
+Egypt,2017,observed,Arab Republic of Egypt_2018-07-12.pdf,2018-07-12,2,Arab Republic of Egypt_2018-01-22.pdf,No,False,,,,,,,6.2,-3.8,2.5,-6.5,0.1,10.0
+Egypt,2018,observed,Arab Republic of Egypt_2019-10-10.pdf,2019-10-10,2,Arab Republic of Egypt_2019-04-06.pdf,No,False,,,,,,,-10.5,-12.9,0.4,-13.4,0.1,2.4
+Egypt,2019,observed,Arab Republic of Egypt_2020-09-01.pdf,2020-09-01,2,Arab Republic of Egypt_2020-08-10.pdf,Yes,False,,,,,,,-8.9,-9.4,-1.2,-8.2,0.0,0.6
+El Salvador,2015,observed,El Salvador_2016-07-01.pdf,2016-07-01,1,,,False,,,,,,,1.4,1.0,0.9,0.5,-0.4,0.4
+El Salvador,2016,GAP,,,0,,,,,G0026,2016,lag_between_consecutive_reports,fillable_actual_column_visible,El Salvador_2018-06-07.pdf,,,,,,
+El Salvador,2017,observed,El Salvador_2018-06-07.pdf,2018-06-07,1,,,False,,,,,,,1.1,0.0,-0.9,0.9,0.0,1.2
+El Salvador,2018,observed,El Salvador_2019-05-23.pdf,2019-05-23,1,,,False,,,,,,,-0.4,-0.4,-0.9,0.5,0.0,-0.1
+El Salvador,2019,observed,El Salvador_2020-04-16.pdf,2020-04-16,1,,,True,,,,,,,0.6,0.7,-0.6,1.3,0.0,-0.2
+Equatorial Guinea,2015,observed,Republic of Equatorial Guinea_2016-11-16.pdf,2016-11-16,1,,,True,,,,,,,5.3,6.0,2.8,3.8,-0.6,-0.7
+Equatorial Guinea,2016,GAP,,,0,,,,,G0027,2016-2017,no_table_report_in_between,only_in_merged_range_column,,,,,,,
+Equatorial Guinea,2017,GAP,,,0,,,,,G0027,2016-2017,no_table_report_in_between,fillable_actual_column_visible,Republic of Equatorial Guinea_2019-12-20.pdf,,,,,,
+Equatorial Guinea,2018,observed,Republic of Equatorial Guinea_2019-12-20.pdf,2019-12-20,1,,,False,,,,,,,5.0,-0.7,-1.0,-1.3,1.6,5.7
+Estonia,2015,observed,Republic of Estonia_2017-01-13.pdf,2017-01-13,1,,,False,,,,,,,-0.6,-0.2,0.0,-0.2,0.0,-0.4
+Estonia,2016,GAP,,,0,,,,,G0028,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Estonia_2018-05-24.pdf,,,,,,
+Estonia,2017,observed,Republic of Estonia_2018-05-24.pdf,2018-05-24,1,,,False,,,,,,,-1.0,-0.4,0.3,-0.8,0.0,-0.6
+Estonia,2018,observed,Republic of Estonia_2020-01-22.pdf,2020-01-22,1,,,False,,,,,,,-0.9,-0.2,0.5,-0.8,0.0,-0.7
+Eswatini,2016,observed,Kingdom of Swaziland_2017-09-11.pdf,2017-09-11,1,,,False,,,,,,,6.7,6.5,9.0,-1.5,-1.0,0.2
+Eswatini,2017,GAP,,,0,,,,,G0029,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of Eswatini_2020-02-11.pdf,,,,,,
+Eswatini,2018,observed,Kingdom of Eswatini_2020-02-11.pdf,2020-02-11,1,,,False,,,,,,,8.3,9.5,9.9,1.7,-2.0,-1.2
+Eswatini,2019,observed,Kingdom of Eswatini_2020-07-30.pdf,2020-07-30,1,,,False,,,,,,,4.6,3.4,5.5,-0.1,-1.9,1.2
+Ethiopia,2015,observed,The Federal Democratic Republic of Ethiopia_2016-10-04.pdf,2016-10-04,1,,,True,,,,,,,9.3,3.3,7.1,-3.8,0.0,6.1
+Ethiopia,2016,GAP,,,0,,,,,G0030,2016,lag_between_consecutive_reports,fillable_actual_column_visible,The Federal Democratic Republic of Ethiopia_2018-01-24.pdf,,,,,,
+Ethiopia,2017,observed,The Federal Democratic Republic of Ethiopia_2018-01-24.pdf,2018-01-24,1,,,False,fiscal_year_end_of_2016/17,,,,,,-5.8,-7.6,5.2,-12.2,-0.6,1.8
+Ethiopia,2018,observed,The Federal Democratic Republic of Ethiopia_2018-12-04.pdf,2018-12-04,1,,,False,,,,,,,5.6,0.1,3.2,-2.7,-0.5,5.6
+Ethiopia,2019,observed,The Federal Democratic Republic of Ethiopia_2020-05-06.pdf,2020-05-06,2,The Federal Democratic Republic of Ethiopia_2020-01-28.pdf,No,False,,,,,,,-3.9,-4.5,3.3,-7.8,0.0,0.6
+Fiji,2014,observed,Republic of Fiji_2016-02-22.pdf,2016-02-22,1,,,False,,,,,,,-1.8,-1.2,1.1,-1.8,-0.5,-0.5
+Fiji,2015,GAP,,,0,,,,,G0031,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Fiji_2018-02-08.pdf,,,,,,
+Fiji,2016,observed,Republic of Fiji_2018-02-08.pdf,2018-02-08,1,,,False,,,,,,,0.3,-0.9,-1.3,0.4,0.0,1.2
+Fiji,2017,observed,Republic of Fiji_2019-02-15.pdf,2019-02-15,1,,,False,,,,,,,0.7,-0.1,-0.7,0.6,0.0,0.8
+Fiji,2018,observed,Republic of Fiji_2020-03-25.pdf,2020-03-25,1,,,False,,,,,,,2.4,3.3,2.8,0.4,0.0,-0.9
+Finland,2015,observed,Finland_2016-12-07.pdf,2016-12-07,1,,,False,,,,,,,3.4,3.9,2.5,1.4,0.0,-0.5
+Finland,2016,observed,Finland_2017-12-13.pdf,2017-12-13,1,,,False,,,,,,,-0.5,0.9,1.6,-0.7,0.0,-1.4
+Finland,2017,observed,Finland_2019-01-15.pdf,2019-01-15,1,,,False,,,,,,,-1.7,-0.9,0.4,-1.3,0.0,-0.8
+Finland,2018,observed,Finland_2020-01-16.pdf,2020-01-16,1,,,False,,,,,,,-1.9,-0.7,0.7,-1.3,0.0,-1.2
+France,2015,observed,France_2016-07-12.pdf,2016-07-12,1,,,False,,,,,,,0.8,1.9,1.7,0.2,0.0,-1.1
+France,2016,observed,France_2017-09-21.pdf,2017-09-21,1,,,False,,,,,,,0.7,2.1,1.7,0.4,0.0,-1.3
+France,2017,observed,France_2018-07-26.pdf,2018-07-26,1,,,False,,,,,,,0.2,0.1,0.9,-0.8,0.0,0.2
+France,2018,observed,France_2019-07-24.pdf,2019-07-24,1,,,False,,,,,,,0.0,0.2,0.9,-0.7,0.0,-0.2
+Gabon,2015,observed,Gabon_2016-03-18.pdf,2016-03-18,1,,,False,,,,,,,10.8,8.7,0.9,7.8,0.0,2.1
+Gabon,2016,observed,Gabon_2017-07-11.pdf,2017-07-11,1,,,False,,,,,,,19.5,6.9,2.4,4.5,0.0,12.6
+Gabon,2017,observed,Gabon_2018-09-12.pdf,2018-09-12,1,,,False,,,,,,,-1.5,-4.3,-0.1,-4.2,0.0,2.8
+Gabon,2018,observed,Gabon_2019-12-23.pdf,2019-12-23,1,,,True,,,,,,,-2.3,-3.0,-2.2,-0.8,0.0,0.7
+Gabon,2019,observed,Gabon_2020-08-13.pdf,2020-08-13,2,Gabon_2020-04-16.pdf,No,False,,,,,,,1.5,-4.3,-4.4,0.1,0.0,5.8
+Gambia,2016,observed,The Gambia_2018-04-04.pdf,2018-04-04,1,,,False,,,,,,,13.1,5.5,2.3,3.1,0.0,7.7
+Gambia,2017,GAP,,,0,,,,,G0032,2017,errors_file_report_in_between,fillable_actual_column_visible,The Gambia_2019-05-08.pdf,,,,,,
+Gambia,2018,observed,The Gambia_2019-05-08.pdf,2019-05-08,1,,,False,,,,,,,-0.9,-2.3,3.1,-5.3,0.0,1.3
+Gambia,2019,observed,The Gambia_2020-04-23.pdf,2020-04-23,2,The Gambia_2020-04-20.pdf,Yes,False,,,,,,,-4.1,-5.3,-0.6,-4.7,0.0,1.2
+Georgia,2016,observed,Georgia_2017-12-07.pdf,2017-12-07,2,Georgia_2017-04-13.pdf,No,False,,,,,,,3.1,3.8,2.9,1.8,-0.9,-0.7
+Georgia,2017,observed,Georgia_2018-12-19.pdf,2018-12-19,2,Georgia_2018-06-28.pdf,Yes,False,,,,,,,0.4,-2.8,-0.7,-3.9,1.8,3.3
+Georgia,2018,observed,Republic of Georgia_2019-12-18.pdf,2019-12-18,2,Georgia_2019-06-19.pdf,Yes,False,,,,,,,-0.2,-0.7,-0.4,-1.6,1.3,0.5
+Georgia,2019,observed,Georgia_2020-12-20.pdf,2020-12-20,2,Georgia_2020-05-05.pdf,No,False,,,,,,,2.8,1.4,0.6,0.3,0.5,1.3
+Germany,2015,observed,Germany_2016-06-29.pdf,2016-06-29,1,,,False,,,,,,,-3.5,-3.1,-1.9,-1.1,0.0,-0.5
+Germany,2016,observed,Germany_2017-07-07.pdf,2017-07-07,1,,,False,,,,,,,-2.9,-2.8,-1.9,-0.9,0.0,-0.1
+Germany,2017,observed,Germany_2018-07-04.pdf,2018-07-04,1,,,False,,,,,,,-4.1,-3.4,-2.0,-1.5,0.0,-0.7
+Germany,2018,observed,Germany_2019-07-10.pdf,2019-07-10,1,,,False,,,,,,,-3.6,-3.5,-2.4,-1.1,0.0,-0.1
+Ghana,2014,observed,Ghana_2016-01-20.pdf,2016-01-20,1,,,False,,,,,,,14.0,11.6,3.3,8.3,0.0,2.4
+Ghana,2015,GAP,,,0,,,,,G0033,2015,errors_file_report_in_between,fillable_actual_column_visible,Ghana_2018-05-02.pdf,,,,,,
+Ghana,2016,observed,Ghana_2018-05-02.pdf,2018-05-02,1,,,False,,,,,,,0.9,-0.5,0.8,-1.3,0.0,1.4
+Ghana,2017,observed,Ghana_2019-04-05.pdf,2019-04-05,1,,,False,,,,,,,0.2,-1.7,-0.5,-1.1,0.0,1.9
+Ghana,2018,observed,Ghana_2019-12-18.pdf,2019-12-18,1,,,False,,,,,,,4.8,0.7,1.4,-0.1,-0.5,4.1
+Ghana,2019,observed,Ghana_2020-04-16.pdf,2020-04-16,1,,,True,,,,,,,1.0,2.9,1.8,1.2,0.0,-1.9
+Greece,2015,observed,Greece_2017-02-07_CR2017-040.pdf,2017-02-07,1,,,False,,,,,,,-1.6,4.1,-0.2,7.7,-3.4,-5.7
+Greece,2016,observed,Greece_2017-07-20.pdf,2017-07-20,1,,,False,,,,,,,2.3,0.0,-4.2,2.2,1.9,2.3
+Greece,2017,observed,Greece_2019-03-12.pdf,2019-03-12,2,Greece_2018-07-31.pdf,No,False,,,,,,,-1.8,-4.7,-4.4,-1.1,0.8,2.9
+Greece,2018,observed,Greece_2019-11-15.pdf,2019-11-15,1,,,False,,,,,,,5.6,6.2,-3.3,-0.7,10.2,-0.6
+Greece,2019,observed,Greece_2020-11-30.pdf,2020-11-30,1,,,False,,,,,,,-3.8,-0.3,0.0,0.8,-1.1,-3.6
+Grenada,2015,observed,Grenada_2016-12-21.pdf,2016-12-21,1,,,False,,,,,,,-10.0,-12.7,-2.2,-4.1,-6.4,2.7
+Grenada,2016,GAP,,,0,,,,,G0034,2016,errors_file_report_in_between,fillable_actual_column_visible,Grenada_2018-07-25.pdf,,,,,,
+Grenada,2017,observed,Grenada_2018-07-25.pdf,2018-07-25,1,,,False,,,,,,,-11.2,-12.4,-5.7,-1.5,-5.2,1.2
+Grenada,2018,observed,Grenada_2019-07-03.pdf,2019-07-03,1,,,False,,,,,,,-6.6,-8.3,-6.8,-1.5,0.0,1.7
+Grenada,2019,observed,Grenada_2020-05-13.pdf,2020-05-13,1,,,False,,,,,,,-5.3,-7.5,-6.8,-0.7,0.0,2.3
+Guatemala,2015,observed,Guatemala_2016-09-01.pdf,2016-09-01,1,,,False,,,,,,,-0.1,0.0,-0.1,0.0,0.1,0.0
+Guatemala,2016,observed,Guatemala_2018-06-08.pdf,2018-06-08,1,,,False,,,,,,,-0.2,-0.2,-0.4,-0.3,0.5,0.0
+Guatemala,2017,GAP,,,0,,,,,G0035,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Guatemala_2019-06-18.pdf,,,,,,
+Guatemala,2018,observed,Guatemala_2019-06-18.pdf,2019-06-18,1,,,False,,,,,,,1.0,1.1,0.3,0.7,0.1,-0.1
+Guatemala,2019,observed,Guatemala_2020-06-11.pdf,2020-06-11,1,,,False,,,,,,,0.1,0.2,0.6,-0.2,-0.2,-0.1
+Guinea,2015,observed,Guinea_2016-04-04.pdf,2016-04-04,1,,,False,,,,,,,8.6,7.9,8.1,1.1,-1.3,0.7
+Guinea,2016,GAP,,,0,,,,,G0036,2016,errors_file_report_in_between,fillable_actual_column_visible,Guinea_2019-01-28.pdf,,,,,,
+Guinea,2017,observed,Guinea_2019-01-28.pdf,2019-01-28,1,,,False,,,,,,,-2.7,-5.8,1.1,-6.9,0.0,3.1
+Guinea,2018,observed,Guinea_2019-08-23.pdf,2019-08-23,1,,,False,,,,,,,-2.0,-4.4,0.1,-4.6,0.0,2.4
+Guinea,2019,observed,Guinea_2020-12-14.pdf,2020-12-14,3,Guinea_2020-04-16.pdf; Guinea_2020-07-16.pdf,No,False,,,,,,,-1.3,-4.0,0.0,-4.0,0.0,2.7
+Guinea-Bissau,2015,observed,Guinea-Bissau_2016-12-28.pdf,2016-12-28,1,,,False,,,,,,,-2.0,-4.1,0.8,-4.5,-0.5,2.1
+Guinea-Bissau,2016,GAP,,,0,,,,,G0037,2016,errors_file_report_in_between,fillable_actual_column_visible,Guinea-Bissau_2018-06-06.pdf,,,,,,
+Guinea-Bissau,2017,observed,Guinea-Bissau_2018-06-06.pdf,2018-06-06,1,,,False,,,,,,,-3.1,-8.8,1.0,-6.8,-3.0,5.7
+Guyana,2015,observed,Guyana_2016-07-07.pdf,2016-07-07,1,,,True,,,,,,,-3.3,-1.2,-0.8,-0.4,0.0,-2.0
+Guyana,2016,observed,Guyana_2017-06-28.pdf,2017-06-28,1,,,False,,,,,,,0.9,-0.7,2.0,-2.6,0.0,1.6
+Guyana,2017,GAP,,,0,,,,,G0038,2017,errors_file_report_in_between,fillable_actual_column_visible,Guyana_2019-09-17.pdf,,,,,,
+Guyana,2018,observed,Guyana_2019-09-17.pdf,2019-09-17,1,,,False,,,,,,,3.6,-0.7,2.4,-3.1,0.0,4.3
+Haiti,2015,observed,Haiti_2017-02-06.pdf,2017-02-06,1,,,False,,,,,,,2.1,1.4,2.2,1.2,-1.9,0.7
+Haiti,2016,GAP,,,0,,,,,G0039,2016-2018,lag_between_consecutive_reports,only_preliminary_or_estimate,Haiti_2017-02-06.pdf,,,,,,
+Haiti,2017,GAP,,,0,,,,,G0039,2016-2018,lag_between_consecutive_reports,fillable_actual_column_visible,Haiti_2020-04-20_CR2020-121.pdf,,,,,,
+Haiti,2018,GAP,,,0,,,,,G0039,2016-2018,lag_between_consecutive_reports,fillable_actual_column_visible,Haiti_2020-04-20_CR2020-121.pdf,,,,,,
+Haiti,2019,observed,Haiti_2020-04-20_CR2020-123.pdf,2020-04-20,2,Haiti_2020-04-20_CR2020-121.pdf,No,False,,,,,,,7.7,4.8,3.0,1.8,0.0,3.0
+Honduras,2014,observed,Honduras_2016-01-07.pdf,2016-01-07,1,,,False,,,,,,,0.7,3.3,3.8,-0.5,0.0,-2.6
+Honduras,2015,observed,Honduras_2016-11-22.pdf,2016-11-22,1,,,False,,,,,,,0.0,-0.2,-0.1,-0.3,0.2,0.2
+Honduras,2016,observed,Honduras_2017-11-21.pdf,2017-11-21,1,,,False,,,,,,,1.2,1.8,0.3,1.2,0.2,-0.5
+Honduras,2017,observed,Honduras_2018-07-03.pdf,2018-07-03,1,,,False,,,,,,,0.3,-0.3,0.4,-0.9,0.2,0.6
+Honduras,2018,observed,Honduras_2019-07-19.pdf,2019-07-19,1,,,False,,,,,,,1.9,1.1,0.0,1.5,-0.4,0.8
+Honduras,2019,observed,Honduras_2020-06-03.pdf,2020-06-03,1,,,False,,,,,,,1.3,-1.7,-0.2,-1.1,-0.4,3.0
+"Hong Kong SAR, China",2014,observed,People’s Republic of China—Hong Kong Special Administrative Region_2016-01-19.pdf,2016-01-19,1,,,False,,,,,,,-0.5,,-3.5,0.0,3.2,-0.2
+"Hong Kong SAR, China",2015,observed,People's Republic of China-Hong Kong Special Administrative Region_2017-01-12.pdf,2017-01-12,1,,,False,,,,,,,0.0,,-0.6,0.0,0.6,0.0
+"Hong Kong SAR, China",2016,observed,People's Republic of China-Hong Kong Special Administrative Region_2018-01-22.pdf,2018-01-22,1,,,False,,,,,,,0.0,,-3.6,0.0,0.0,-0.8
+"Hong Kong SAR, China",2017,observed,People's Republic of China-Hong Kong Special Administrative Region_2019-01-24.pdf,2019-01-24,1,,,False,,,,,,,0.0,,-4.8,0.0,5.6,-0.8
+"Hong Kong SAR, China",2018,observed,People's Republic of China-Hong Kong Special Administrative Region_2019-12-30.pdf,2019-12-30,1,,,False,,,,,,,0.0,,-1.0,0.0,2.4,-1.4
+Hungary,2015,observed,Hungary_2017-05-12.pdf,2017-05-12,2,Hungary_2016-04-29.pdf,No,False,,,,,,,-1.0,0.4,-1.9,2.3,0.0,-1.4
+Hungary,2016,GAP,,,0,,,,,G0040,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Hungary_2018-08-03.pdf,,,,,,
+Hungary,2017,observed,Hungary_2018-08-03.pdf,2018-08-03,1,,,False,,,,,,,-2.4,-3.9,-0.8,-3.1,0.0,1.5
+Hungary,2018,observed,Hungary_2019-12-05.pdf,2019-12-05,1,,,False,,,,,,,-2.7,-3.6,0.0,-3.6,0.0,0.9
+Iceland,2015,observed,Iceland_2016-06-22.pdf,2016-06-22,1,,,False,,,,,,,-14.9,-5.9,-3.2,-2.9,0.2,-9.1
+Iceland,2016,observed,Iceland_2017-06-22.pdf,2017-06-22,1,,,False,,,,,,,-14.1,-22.1,-15.7,-4.0,-2.4,8.0
+Iceland,2017,observed,Iceland_2018-11-14.pdf,2018-11-14,1,,,False,,,,,,,-11.7,-3.4,-4.6,1.2,0.1,-8.4
+Iceland,2018,observed,Iceland_2019-12-19.pdf,2019-12-19,1,,,False,,,,,,,-7.4,-4.2,-3.0,0.4,-1.6,-3.2
+India,2014,observed,India_2016-03-02.pdf,2016-03-02,1,,,False,,,,,,,0.3,0.7,2.5,-1.6,-0.2,-0.4
+India,2015,observed,India_2017-02-22.pdf,2017-02-22,1,,,False,,,,,,,1.5,1.5,2.3,-0.6,-0.2,0.0
+India,2016,GAP,,,0,,,,,G0041,2016,lag_between_consecutive_reports,fillable_actual_column_visible,India_2018-08-06.pdf,,,,,,
+India,2017,observed,India_2018-08-06.pdf,2018-08-06,1,,,False,,,,,,,1.5,0.1,2.1,-1.2,-0.7,1.4
+India,2018,observed,India_2019-12-23.pdf,2019-12-23,1,,,False,,,,,,,-0.4,-1.2,1.3,-2.0,-0.4,0.8
+Indonesia,2014,observed,Indonesia_2016-03-15.pdf,2016-03-15,1,,,False,,,,,,,-0.2,0.1,0.9,-0.9,0.1,-0.2
+Indonesia,2015,observed,Indonesia_2017-02-03.pdf,2017-02-03,1,,,False,,,,,,,2.2,2.4,1.1,0.3,1.0,-0.3
+Indonesia,2016,observed,Indonesia_2018-02-06.pdf,2018-02-06,1,,,False,,,,,,,0.9,1.2,1.0,-0.7,0.9,-0.3
+Indonesia,2017,GAP,,,0,,,,,G0042,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Indonesia_2019-07-31.pdf,,,,,,
+Indonesia,2018,observed,Indonesia_2019-07-31.pdf,2019-07-31,1,,,False,,,,,,,0.7,0.6,0.0,0.1,0.4,0.1
+Iran,2015,observed,Islamic Republic of Iran_2017-02-27.pdf,2017-02-27,1,,,False,,,,,,,30.4,0.8,1.7,0.1,-1.0,29.5
+Iran,2016,observed,Islamic Republic of Iran_2018-03-29.pdf,2018-03-29,1,,,False,,,,,,,6.8,-3.6,2.2,-5.1,-0.7,10.4
+Iraq,2015,observed,Iraq_2016-12-13.pdf,2016-12-13,2,Iraq_2016-07-14.pdf,No,False,,,,,,,22.3,21.4,11.7,9.8,0.0,0.9
+Iraq,2016,observed,Iraq_2017-08-09.pdf,2017-08-09,1,,,False,,,,,,,11.7,16.1,13.4,2.7,0.0,-4.4
+Iraq,2017,GAP,,,0,,,,,G0043,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Iraq_2019-07-26.pdf,,,,,,
+Iraq,2018,observed,Iraq_2019-07-26.pdf,2019-07-26,1,,,False,,,,,,,-9.7,-15.4,-9.2,-6.1,0.0,5.7
+Ireland,2015,observed,Ireland_2016-07-28.pdf,2016-07-28,1,,,False,,,,,,,-13.8,-7.9,-0.4,-8.8,1.3,-5.8
+Ireland,2016,observed,Ireland_2017-06-26.pdf,2017-06-26,1,,,False,,,,,,,-3.2,-3.8,-1.7,-0.6,-1.6,0.6
+Ireland,2017,observed,Ireland_2018-06-28.pdf,2018-06-28,1,,,False,,,,,,,-4.9,-6.2,-1.6,-3.1,-1.5,1.3
+Ireland,2018,observed,Ireland_2019-06-17.pdf,2019-06-17,1,,,False,,,,,,,-3.8,-4.8,-1.6,-3.7,0.5,1.0
+Israel,2016,observed,Israel_2017-03-28.pdf,2017-03-28,1,,,False,,,,,,,-1.9,-0.1,0.2,-0.1,-0.2,-1.8
+Israel,2017,observed,Israel_2018-05-01.pdf,2018-05-01,1,,,False,,,,,,,-1.4,-0.6,-0.6,0.1,-0.2,-0.8
+Italy,2015,observed,Italy_2016-07-11.pdf,2016-07-11,1,,,False,,,,,,,0.2,0.4,-1.4,2.2,-0.4,-0.2
+Italy,2016,observed,Italy_2017-07-27.pdf,2017-07-27,1,,,False,,,,,,,0.6,0.3,-1.5,1.8,-0.1,0.3
+Italy,2017,observed,Italy_2019-02-06.pdf,2019-02-06,1,,,False,,,,,,,-0.1,0.3,-1.4,1.1,0.6,-0.4
+Italy,2018,observed,Italy_2020-03-20.pdf,2020-03-20,1,,,False,,,,,,,0.7,1.0,-1.5,1.5,1.0,-0.3
+Jamaica,2015,observed,Jamaica_2016-11-15.pdf,2016-11-15,2,Jamaica_2016-06-21.pdf,No,False,,,,,,,-17.4,-4.7,-7.1,3.4,-0.9,-12.8
+Jamaica,2016,GAP,,,0,,,,,G0044,2016,no_table_report_in_between,fillable_actual_column_visible,Jamaica_2018-04-16.pdf,,,,,,
+Jamaica,2017,observed,Jamaica_2019-04-23.pdf,2019-04-23,2,Jamaica_2018-04-16.pdf,No,False,,,,,,,-12.5,-10.7,-7.5,-2.6,-0.6,-1.9
+Jamaica,2018,GAP,,,0,,,,,G0045,2018,no_table_report_in_between,fillable_actual_column_visible,Jamaica_2020-05-18.pdf,,,,,,
+Jamaica,2019,observed,Jamaica_2020-05-18.pdf,2020-05-18,1,,,False,,,,,,,-0.9,-2.1,-7.0,6.3,-1.4,1.2
+Japan,2015,observed,Japan_2016-08-02.pdf,2016-08-02,1,,,False,,,,,,,-1.1,0.6,4.9,-4.3,0.0,-1.7
+Japan,2016,observed,Japan_2017-07-31.pdf,2017-07-31,1,,,False,,,,,,,1.2,2.5,4.0,-1.4,0.0,-1.3
+Japan,2017,observed,Japan_2018-11-27.pdf,2018-11-27,1,,,False,,,,,,,2.1,2.2,3.8,-1.6,0.0,-0.1
+Japan,2018,observed,Japan_2020-02-10.pdf,2020-02-10,1,,,False,,,,,,,3.2,4.4,3.3,1.2,0.0,-1.2
+Jordan,2015,observed,Jordan_2016-09-14.pdf,2016-09-14,1,,,False,,,,,,,4.3,5.5,0.7,-0.1,4.9,-1.1
+Jordan,2016,observed,Jordan_2017-07-24.pdf,2017-07-24,1,,,False,,,,,,,1.7,2.7,0.4,0.8,1.6,-1.0
+Jordan,2017,GAP,,,0,,,,,G0046,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Jordan_2019-05-15.pdf,,,,,,
+Jordan,2018,observed,Jordan_2019-05-15.pdf,2019-05-15,1,,,False,,,,,,,0.1,3.2,1.1,0.4,1.6,-3.1
+Jordan,2019,observed,Jordan_2020-05-29.pdf,2020-05-29,2,Jordan_2020-04-16.pdf,No,False,,,,,,,3.0,1.7,-0.5,1.1,1.1,1.3
+Kazakhstan,2016,observed,Republic of Kazakhstan_2017-05-09.pdf,2017-05-09,1,,,False,,,,,,,-0.8,2.9,4.4,-1.4,0.0,-3.7
+Kazakhstan,2017,observed,Republic of Kazakhstan_2018-09-14.pdf,2018-09-14,1,,,False,,,,,,,1.1,5.6,6.7,-1.1,0.0,-4.5
+Kazakhstan,2018,observed,Republic of Kazakhstan_2020-01-29.pdf,2020-01-29,1,,,False,,,,,,,0.4,-0.6,-0.9,-0.1,0.4,1.0
+Kenya,2014,observed,Kenya_2016-03-22.pdf,2016-03-22,1,,,False,,,,,,,5.1,3.1,4.6,-1.5,0.0,2.0
+Kenya,2015,observed,Kenya_2017-02-02.pdf,2017-02-02,1,,,False,,,,,,,3.8,4.1,4.9,-0.8,0.0,-0.3
+Kenya,2016,observed,Kenya_2018-10-23.pdf,2018-10-23,1,,,False,,,,,,,1.8,1.8,4.9,-3.1,0.0,0.0
+Kenya,2017,GAP,,,0,,,,,G0047,2017-2018,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Kenya_2020-05-11.pdf,,,,,,
+Kenya,2018,GAP,,,0,,,,,G0047,2017-2018,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Kenya_2020-05-11.pdf,,,,,,
+Kenya,2019,observed,Republic of Kenya_2020-05-11.pdf,2020-05-11,1,,,False,,,,,,,1.5,4.8,4.0,0.7,0.0,-3.3
+Kiribati,2015,observed,Kiribati_2016-09-09.pdf,2016-09-09,1,,,False,,,,,,,12.3,-30.7,-56.1,2.0,23.5,43.0
+Kiribati,2016,observed,Kiribati_2017-12-18.pdf,2017-12-18,1,,,False,,,,,,,1.2,-6.2,-4.5,-1.7,0.0,7.4
+Korea,2014,observed,Republic of Korea_2016-08-26.pdf,2016-08-26,1,,,False,,,,,,,1.4,2.5,1.6,-0.3,1.1,-1.1
+Korea,2015,GAP,,,0,,,,,G0048,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Korea_2018-02-13.pdf,,,,,,
+Korea,2016,observed,Republic of Korea_2018-02-13.pdf,2018-02-13,1,,,False,,,,,,,0.6,-1.0,0.6,-1.6,0.0,1.6
+Korea,2017,GAP,,,0,,,,,G0049,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Korea_2019-05-13.pdf,,,,,,
+Korea,2018,observed,Republic of Korea_2019-05-13.pdf,2019-05-13,1,,,False,,,,,,,0.3,-2.1,-1.1,-1.0,0.0,2.4
+Kosovo,2015,observed,Republic of Kosovo_2017-03-17.pdf,2017-03-17,1,,,False,,,,,,,2.2,2.5,1.7,0.4,0.5,-0.3
+Kosovo,2016,observed,Republic of Kosovo_2018-02-04.pdf,2018-02-04,1,,,False,,,,,,,0.7,1.4,1.5,-0.4,0.3,-0.7
+Kosovo,2017,observed,Republic of Kosovo_2018-12-18.pdf,2018-12-18,1,,,False,,,,,,,2.0,1.5,0.9,-0.7,1.3,0.4
+Kosovo,2018,GAP,,,0,,,,,G0050,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Kosovo_2020-04-16.pdf,,,,,,
+Kosovo,2019,observed,Republic of Kosovo_2020-04-16.pdf,2020-04-16,1,,,False,,,,,,,0.6,0.6,2.6,-0.5,-1.4,-0.1
+Kuwait,2015,observed,Kuwait_2017-01-17.pdf,2017-01-17,1,,,False,,,,,,,1.4,1.2,-3.9,1.3,3.8,0.2
+Kuwait,2016,observed,Kuwait_2018-01-26.pdf,2018-01-26,1,,,False,,,,,,,5.2,1.0,0.9,0.4,-0.3,4.3
+Kuwait,2017,GAP,,,0,,,,,G0051,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Kuwait_2019-04-02.pdf,,,,,,
+Kuwait,2018,observed,Kuwait_2019-04-02.pdf,2019-04-02,1,,,False,,,,,,,-5.9,-3.1,-12.0,-2.4,11.3,-2.8
+Kuwait,2019,observed,Kuwait_2020-03-30.pdf,2020-03-30,1,,,False,,,,,,,-3.2,0.4,-6.9,1.0,6.3,-3.6
+Kyrgyz Republic,2014,observed,Kyrgyz Republic_2016-02-22.pdf,2016-02-22,1,,,False,,,,,,,6.9,6.8,3.0,3.8,0.0,0.2
+Kyrgyz Republic,2015,observed,Kyrgyz Republic_2017-06-02.pdf,2017-06-02,1,,,False,,,,,,,12.7,13.3,2.3,11.0,0.0,-0.6
+Kyrgyz Republic,2016,observed,Kyrgyz Republic_2018-02-22.pdf,2018-02-22,1,,,False,,,,,,,-6.8,-2.6,5.9,-8.0,-0.5,-4.1
+Kyrgyz Republic,2017,observed,Kyrgyz Republic_2019-07-03.pdf,2019-07-03,1,,,False,,,,,,,-0.3,-2.6,3.5,-5.7,-0.4,2.3
+Kyrgyz Republic,2018,GAP,,,0,,,,,G0052,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Kyrgyz Republic_2020-03-27.pdf,,,,,,
+Kyrgyz Republic,2019,observed,Kyrgyz Republic_2020-03-27.pdf,2020-03-27,1,,,False,,,,,,,-0.7,-2.2,-0.8,-1.4,-0.1,1.5
+Lao PDR,2016,observed,Lao People’s Democratic Republic_2018-03-23.pdf,2018-03-23,1,,,False,,,,,,,0.8,-0.6,3.7,-4.3,0.0,1.4
+Lao PDR,2017,observed,Lao People’s Democratic Republic_2019-08-08.pdf,2019-08-08,1,,,False,,,,,,,1.6,1.8,4.1,-2.3,0.0,-0.3
+Latvia,2015,observed,Republic of Latvia_2016-06-16.pdf,2016-06-16,1,,,False,,,,,,,-4.1,0.6,0.2,0.4,0.0,-4.7
+Latvia,2016,observed,Republic of Latvia_2017-07-07.pdf,2017-07-07,1,,,False,,,,,,,2.4,-0.9,-0.7,-0.3,0.0,3.4
+Latvia,2017,observed,Republic of Latvia_2018-09-05.pdf,2018-09-05,1,,,False,,,,,,,-1.1,-3.5,-0.1,-3.3,0.0,2.4
+Latvia,2018,observed,Republic of Latvia_2019-08-07.pdf,2019-08-07,1,,,False,,,,,,,-4.0,-2.7,-0.1,-2.7,0.0,-1.3
+Lebanon,2015,observed,Lebanon_2017-01-24.pdf,2017-01-24,1,,,False,,,,,,,4.9,4.9,-1.4,6.3,0.0,0.0
+Lebanon,2016,GAP,,,0,,,,,G0053,2016-2017,lag_between_consecutive_reports,only_in_merged_range_column,,,,,,,
+Lebanon,2017,GAP,,,0,,,,,G0053,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Lebanon_2019-10-17.pdf,,,,,,
+Lebanon,2018,observed,Lebanon_2019-10-17.pdf,2019-10-17,1,,,False,,,,,,,2.1,3.1,1.4,1.7,0.0,-1.1
+Lesotho,2014,observed,Kingdom of Lesotho_2016-02-03.pdf,2016-02-03,1,,,False,,,,,,,-0.7,0.3,-1.3,1.6,0.0,-0.9
+Lesotho,2015,GAP,,,0,,,,,G0054,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of Lesotho_2018-02-28.pdf,,,,,,
+Lesotho,2016,observed,Kingdom of Lesotho_2018-02-28.pdf,2018-02-28,1,,,False,,,,,,,-5.8,0.4,5.4,-5.0,0.0,-6.3
+Lesotho,2017,observed,Kingdom of Lesotho_2019-04-30.pdf,2019-04-30,1,,,False,,,,,,,1.2,-0.8,2.5,-3.3,0.0,2.1
+Lesotho,2018,GAP,,,0,,,,,G0055,2018,lag_between_consecutive_reports,only_projection,,,,,,,
+Lesotho,2019,observed,Kingdom of Lesotho_2020-07-30.pdf,2020-07-30,1,,,False,,,,,,,6.1,11.7,4.3,7.4,0.0,-5.5
+Liberia,2014,observed,Liberia_2016-12-22.pdf,2016-12-22,3,Liberia_2016-01-08.pdf; Liberia_2016-07-20.pdf,Yes,False,,,,,,,3.8,1.0,1.8,-0.8,0.0,2.8
+Liberia,2015,GAP,,,0,,,,,G0056,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Liberia_2017-11-20.pdf,,,,,,
+Liberia,2016,observed,Liberia_2017-11-20.pdf,2017-11-20,1,,,False,,,,,,,4.7,4.0,3.9,0.1,0.0,0.7
+Liberia,2017,GAP,,,0,,,,,G0057,2017,errors_file_report_in_between,fillable_actual_column_visible,Liberia_2019-06-19.pdf,,,,,,
+Liberia,2018,observed,Liberia_2019-06-19.pdf,2019-06-19,1,,,False,,,,,,,4.6,5.3,4.9,0.4,0.0,-0.7
+Liberia,2019,observed,Liberia_2020-06-12.pdf,2020-06-12,2,Liberia_2019-12-20.pdf,No,False,,,,,,,14.5,6.7,5.2,1.6,0.0,7.8
+Lithuania,2015,observed,Republic of Lithuania_2016-05-18.pdf,2016-05-18,1,,,False,,,,,,,2.0,3.7,-1.1,4.8,0.0,-1.7
+Lithuania,2016,observed,Republic of Lithuania_2017-06-30.pdf,2017-06-30,1,,,False,,,,,,,-2.5,-1.1,-1.4,0.3,0.0,-1.4
+Lithuania,2017,observed,Republic of Lithuania_2018-06-25.pdf,2018-06-25,1,,,False,,,,,,,-0.4,-4.6,-1.5,-3.1,0.0,4.2
+Lithuania,2018,observed,Republic of Lithuania_2019-07-31.pdf,2019-07-31,1,,,False,,,,,,,-5.2,-1.7,-0.5,-1.2,0.0,-3.5
+Luxembourg,2015,observed,Luxembourg_2016-05-16.pdf,2016-05-16,1,,,False,,,,,,,-1.3,-0.7,0.3,-1.1,0.0,-0.5
+Luxembourg,2016,observed,Luxembourg_2018-04-03.pdf,2018-04-03,2,Luxembourg_2017-05-10.pdf,No,False,,,,,,,-1.2,0.2,0.2,-0.1,0.0,-1.3
+Luxembourg,2017,observed,Luxembourg_2019-05-10.pdf,2019-05-10,1,,,False,,,,,,,2.3,-0.2,0.2,-0.4,0.0,2.5
+Madagascar,2015,observed,Republic of Madagascar_2016-08-16.pdf,2016-08-16,1,,,False,,,,,,,5.2,4.4,2.4,2.5,-0.5,0.8
+Madagascar,2016,observed,Republic of Madagascar_2017-07-18.pdf,2017-07-18,1,,,False,,,,,,,-2.5,-2.8,0.4,-2.0,-1.2,0.3
+Madagascar,2017,GAP,,,0,,,,,G0058,2017,errors_file_report_in_between,fillable_actual_column_visible,Republic of Madagascar_2019-08-01.pdf,,,,,,
+Madagascar,2018,observed,Republic of Madagascar_2020-08-27.pdf,2020-08-27,4,Republic of Madagascar_2019-08-01.pdf; Republic of Madagascar_2020-03-02.pdf; Republic of Madagascar_2020-04-10.pdf,No,False,,,,,,,-0.1,-1.9,0.6,-2.5,0.0,1.8
+Malawi,2016,observed,Malawi_2017-07-05.pdf,2017-07-05,1,,,False,,,,,,,-0.3,-0.9,1.9,-2.5,-0.3,0.6
+Malawi,2017,observed,Malawi_2018-11-30.pdf,2018-11-30,1,,,False,,,,,,,2.1,0.4,3.6,-3.2,0.0,1.7
+Malawi,2018,observed,Malawi_2019-12-06.pdf,2019-12-06,1,,,False,,,,,,,2.5,0.4,2.1,-1.7,0.0,2.0
+Malawi,2019,observed,Malawi_2020-10-21.pdf,2020-10-21,2,Malawi_2020-05-15.pdf,No,False,,,,,,,-0.2,-0.4,2.0,-2.4,0.0,0.2
+Malaysia,2015,observed,Malaysia_2017-04-28.pdf,2017-04-28,2,Malaysia_2016-05-04.pdf,No,False,,,,,,,1.82,1.28,1.0,0.1,0.1,0.5
+Malaysia,2016,GAP,,,0,,,,,G0059,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Malaysia_2018-03-07.pdf,,,,,,
+Malaysia,2017,observed,Malaysia_2018-03-07.pdf,2018-03-07,1,,,False,,,,,,,-2.0,-1.8,1.1,-2.8,-0.1,-0.2
+Malaysia,2018,observed,Malaysia_2019-03-08.pdf,2019-03-08,1,,,False,,,,,,,1.2,1.0,1.6,-0.5,0.0,0.1
+Malaysia,2019,observed,Malaysia_2020-02-28.pdf,2020-02-28,1,,,False,,,,,,,1.5,0.8,1.2,-0.4,0.0,0.7
+Maldives,2014,observed,Maldives_2016-05-31.pdf,2016-05-31,1,,,True,,,,,,,1.8,3.3,6.3,-2.9,0.0,-1.6
+Maldives,2015,GAP,,,0,,,,,G0060,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Maldives_2017-12-01.pdf,,,,,,
+Maldives,2016,observed,Maldives_2017-12-01.pdf,2017-12-01,1,,,True,,,,,,,8.8,7.3,8.2,-1.0,0.0,1.5
+Maldives,2017,observed,Maldives_2019-06-10.pdf,2019-06-10,1,,,False,,,,,,,2.2,-2.6,1.5,-4.1,0.0,4.8
+Maldives,2018,GAP,,,0,,,,,G0061,2018,no_table_report_in_between,fillable_actual_column_visible,Maldives_2020-04-23.pdf,,,,,,
+Maldives,2019,observed,Maldives_2020-04-23.pdf,2020-04-23,1,,,True,,,,,,,5.7,1.0,3.9,-2.9,0.0,4.7
+Mali,2015,observed,Mali_2016-12-07.pdf,2016-12-07,1,,,True,,,,,,,3.6,2.1,1.2,0.9,-0.1,1.5
+Mali,2016,GAP,,,0,,,,,G0062,2016,errors_file_report_in_between,fillable_actual_column_visible,Mali_2018-05-31.pdf,,,,,,
+Mali,2017,observed,Mali_2018-05-31.pdf,2018-05-31,1,,,False,,,,,,,-0.3,-2.1,2.0,-4.1,-0.1,1.8
+Mali,2018,observed,Mali_2019-09-05.pdf,2019-09-05,1,,,False,,,,,,,1.3,3.4,3.9,-0.6,0.1,-2.1
+Malta,2014,observed,Malta_2016-01-20.pdf,2016-01-20,1,,,False,,,,,,,-1.4,-1.5,-0.8,-0.7,0.0,0.1
+Malta,2015,observed,Malta_2017-02-21.pdf,2017-02-21,1,,,False,,,,,,,-3.6,-4.3,-1.0,-3.3,0.0,0.8
+Malta,2016,observed,Malta_2018-01-29.pdf,2018-01-29,1,,,False,,,,,,,-2.6,-5.2,-3.3,-1.8,0.0,2.5
+Malta,2017,observed,Malta_2019-02-27.pdf,2019-02-27,1,,,False,,,,,,,-5.2,-6.1,-5.3,-2.9,2.0,0.9
+Malta,2018,observed,Malta_2020-04-10.pdf,2020-04-10,1,,,False,,,,,,,-4.7,-6.3,-3.4,-2.9,0.0,1.6
+Mauritania,2016,observed,Islamic Republic of Mauritania_2017-12-13.pdf,2017-12-13,1,,,False,,,,,,,0.3,-1.1,-0.8,-0.3,0.0,1.4
+Mauritania,2017,observed,Islamic Republic of Mauritania_2018-12-13.pdf,2018-12-13,1,,,False,,,,,,,-2.0,-6.7,-1.2,-5.5,0.0,4.8
+Mauritania,2018,observed,Islamic Republic of Mauritania_2019-05-31.pdf,2019-05-31,1,,,False,,,,,,,6.4,-7.0,-5.0,-1.8,-0.3,13.4
+Mauritania,2019,observed,Islamic Republic of Mauritania_2020-09-16.pdf,2020-09-16,2,Islamic Republic of Mauritania_2020-04-29.pdf,No,False,,,,,,,-4.3,-8.0,-3.1,-4.6,-0.3,3.6
+Mauritius,2016,observed,Mauritius_2017-12-08.pdf,2017-12-08,1,,,False,,,,,,,-0.8,-0.6,1.0,-1.9,0.2,-0.2
+Mauritius,2017,observed,Mauritius_2019-04-29.pdf,2019-04-29,1,,,False,,,,,,,-1.3,-0.6,1.0,-1.6,0.0,-0.7
+Mexico,2015,observed,Mexico_2016-11-22.pdf,2016-11-22,1,,,False,,,,,,,4.57,3.67,1.3,2.4,0.0,0.9
+Mexico,2016,observed,Mexico_2017-11-30.pdf,2017-11-30,3,Mexico_2017-05-23.pdf; Mexico_2017-11-13.pdf,No,False,,,,,,,3.9,4.0,-0.5,2.2,2.3,0.0
+Mexico,2017,observed,Mexico_2018-11-27.pdf,2018-11-27,2,Mexico_2018-11-08.pdf,Yes,False,,,,,,,-2.4,-3.3,-3.0,-1.1,0.8,0.8
+Mexico,2018,observed,Mexico_2019-11-25.pdf,2019-11-25,2,Mexico_2019-11-05.pdf,Yes,False,,,,,,,-0.3,-0.4,-1.6,0.4,0.8,0.1
+Mexico,2019,observed,Mexico_2020-11-20.pdf,2020-11-20,2,Mexico_2020-11-04.pdf,Yes,False,,,,,,,0.1,0.3,-1.3,1.2,0.3,-0.1
+Micronesia,2018,observed,Federated States of Micronesia_2019-09-06.pdf,2019-09-06,1,,,False,,,,,,,-1.9,-27.6,-27.6,0.0,0.0,25.7
+Moldova,2014,observed,The Republic of Moldova_2016-01-20.pdf,2016-01-20,1,,,False,,,,,,,7.8,8.1,1.2,1.6,5.3,-0.3
+Moldova,2015,observed,Republic of Moldova_2016-11-09.pdf,2016-11-09,1,,,False,,,,,,,8.9,10.8,1.4,3.6,5.7,-1.8
+Moldova,2016,GAP,,,0,,,,,G0063,2016-2017,errors_file_report_in_between,only_preliminary_or_estimate,Republic of Moldova_2016-11-09.pdf,,,,,,
+Moldova,2017,GAP,,,0,,,,,G0063,2016-2017,errors_file_report_in_between,only_projection,,,,,,,
+Moldova,2018,observed,Republic of Moldova_2020-03-18.pdf,2020-03-18,1,,,False,,,,,,,-2.1,-0.9,0.3,-1.0,-0.1,-1.2
+Moldova,2019,observed,Republic of Moldova_2020-04-22.pdf,2020-04-22,1,,,False,,,,,,,-2.7,-1.4,0.7,-2.0,0.0,-1.3
+Mongolia,2016,observed,Mongolia_2017-12-21.pdf,2017-12-21,2,Mongolia_2017-05-31.pdf,No,False,,,,,,,25.5,26.7,13.0,13.6,0.0,-1.2
+Mongolia,2017,observed,Mongolia_2018-11-02.pdf,2018-11-02,3,Mongolia_2018-04-04.pdf; Mongolia_2018-07-05.pdf,No,False,,,,,,,-4.1,-8.3,-0.4,-7.9,0.0,4.2
+Mongolia,2018,observed,Mongolia_2019-09-17.pdf,2019-09-17,1,,,False,,,,,,,-8.1,-8.4,-5.9,-2.6,0.0,0.3
+Mongolia,2019,observed,Mongolia_2020-06-16.pdf,2020-06-16,1,,,False,,,,,,,-3.0,-8.1,-3.7,-4.4,0.0,5.1
+Montenegro,2014,observed,Montenegro_2016-03-08.pdf,2016-03-08,1,,,False,,,,,,,4.7,2.1,0.3,1.0,0.7,2.7
+Montenegro,2015,GAP,,,0,,,,,G0064,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Montenegro_2017-09-14.pdf,,,,,,
+Montenegro,2016,observed,Montenegro_2017-09-14.pdf,2017-09-14,1,,,False,,,,,,,1.2,2.9,3.8,0.0,-0.9,-1.7
+Montenegro,2017,observed,Montenegro_2018-05-21.pdf,2018-05-21,1,,,False,,,,,,,0.7,0.8,4.6,-3.2,-0.6,-0.1
+Montenegro,2018,observed,Montenegro_2019-09-10.pdf,2019-09-10,1,,,False,,,,,,,5.2,6.0,4.1,-2.6,4.5,-0.7
+Montenegro,2019,observed,Montenegro_2020-06-25.pdf,2020-06-25,1,,,False,,,,,,,7.5,7.6,0.2,-1.2,8.6,-0.1
+Morocco,2014,observed,Morocco_2016-02-08_CR2016-035.pdf,2016-02-08,1,,,False,,,,,,,1.9,5.2,2.2,2.8,0.2,-3.3
+Morocco,2015,observed,Morocco_2017-02-03.pdf,2017-02-03,2,Morocco_2016-08-02.pdf,Yes,False,,,,,,,0.6,2.0,1.6,0.4,0.0,-1.4
+Morocco,2016,observed,Morocco_2018-03-12_CR2018-075.pdf,2018-03-12,2,Morocco_2017-09-08_CR2017-264.pdf,Yes,False,,,,,,,1.0,2.8,1.4,1.2,0.2,-1.7
+Morocco,2017,observed,Morocco_2019-01-24.pdf,2019-01-24,1,,,False,,,,,,,0.3,-0.3,1.0,-1.3,0.0,0.6
+Morocco,2018,observed,Morocco_2019-07-16.pdf,2019-07-16,1,,,False,,,,,,,-0.2,1.1,1.3,-0.2,0.0,-1.3
+Mozambique,2014,observed,Republic of Mozambique_2016-01-08.pdf,2016-01-08,1,,,False,,,,,,,5.6,10.0,9.6,0.4,0.0,-4.4
+Mozambique,2015,GAP,,,0,,,,,G0065,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Mozambique_2018-03-07.pdf,,,,,,
+Mozambique,2016,observed,Republic of Mozambique_2018-03-07.pdf,2018-03-07,1,,,False,,,,,,,40.2,32.0,5.0,26.9,0.0,8.2
+Mozambique,2017,observed,Republic of Mozambique_2019-05-16.pdf,2019-05-16,1,,,False,,,,,,,-27.3,-29.7,3.1,-32.8,0.0,2.4
+Mozambique,2018,observed,Republic of Mozambique_2020-04-29.pdf,2020-04-29,1,,,False,,,,,,,3.5,4.1,2.3,1.7,0.0,-0.6
+Myanmar,2015,observed,Myanmar_2017-02-02.pdf,2017-02-02,1,,,True,,,,,,,4.9,3.1,2.4,1.0,-0.3,1.8
+Myanmar,2016,GAP,,,0,,,,,G0066,2016,errors_file_report_in_between,fillable_actual_column_visible,Myanmar_2019-04-10.pdf,,,,,,
+Myanmar,2017,observed,Myanmar_2019-04-10.pdf,2019-04-10,1,,,False,,,,,,,-1.8,-1.8,1.3,-3.0,-0.1,0.0
+Myanmar,2018,observed,Myanmar_2020-03-26.pdf,2020-03-26,1,,,False,,,,,,,1.4,0.6,1.1,-0.4,-0.1,0.8
+Myanmar,2019,observed,Myanmar_2020-07-02.pdf,2020-07-02,1,,,False,,,,,,,-1.5,-0.8,2.5,-3.3,0.0,-0.7
+Namibia,2015,observed,Namibia_2016-12-08.pdf,2016-12-08,1,,,False,,,,,,,15.9,11.5,7.0,4.6,0.0,4.4
+Namibia,2016,observed,Namibia_2018-02-28.pdf,2018-02-28,1,,,False,,,,,,,4.8,3.9,6.7,-2.8,0.0,1.0
+Namibia,2017,GAP,,,0,,,,,G0067,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Namibia_2019-09-13.pdf,,,,,,
+Namibia,2018,observed,Namibia_2019-09-13.pdf,2019-09-13,1,,,False,,,,,,,4.8,4.0,2.2,1.8,0.0,0.8
+Nauru,2016,observed,Republic of Nauru_2017-04-03.pdf,2017-04-03,1,,,False,,,,,,,-12.8,-25.8,-23.6,-10.7,8.6,13.0
+Nauru,2017,GAP,,,0,,,,,G0068,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Nauru_2020-01-29.pdf,,,,,,
+Nauru,2018,observed,Republic of Nauru_2020-01-29.pdf,2020-01-29,1,,,True,,,,,,,-3.6,-72.6,-31.9,-8.1,-32.5,68.9
+Nepal,2016,observed,Nepal_2017-03-27.pdf,2017-03-27,1,,,False,fiscal_year_end_of_2015/16,,,,,,2.1,-0.7,-0.7,0.0,0.0,2.8
+Nepal,2017,GAP,,,0,,,,,G0069,2017,lag_between_consecutive_reports,only_preliminary_or_estimate,Nepal_2017-03-27.pdf,,,,,,
+Nepal,2018,observed,Nepal_2019-02-17.pdf,2019-02-17,1,,,False,,,,,,,4.0,4.3,6.0,-1.7,0.0,-0.2
+Nepal,2019,observed,Nepal_2020-05-11.pdf,2020-05-11,2,Nepal_2020-04-06.pdf,No,False,,,,,,,-0.2,0.8,4.0,-3.2,0.0,-0.9
+Netherlands,2014,observed,Kingdom of the Netherlands_2016-02-11.pdf,2016-02-11,1,,,False,,,,,,,0.3,1.5,1.2,0.4,0.0,-1.2
+Netherlands,2015,observed,Kingdom of the Netherlands—Netherlands_2017-04-03.pdf,2017-04-03,1,,,False,,,,,,,-2.8,0.9,0.9,0.0,0.0,-3.7
+Netherlands,2016,GAP,,,0,,,,,G0070,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of the Netherlands—Netherlands_2018-05-28.pdf,,,,,,
+Netherlands,2017,observed,Kingdom of the Netherlands—Netherlands_2018-05-28.pdf,2018-05-28,1,,,False,,,,,,,-5.3,-3.0,-1.3,-1.7,0.0,-2.3
+Netherlands,2018,observed,Kingdom of the Netherlands—Netherlands_2019-02-12.pdf,2019-02-12,1,,,False,,,,,,,-2.4,-3.2,-1.7,-1.5,0.0,0.8
+New Zealand,2014,observed,New Zealand_2016-02-08.pdf,2016-02-08,1,,,False,,,,,,,-0.6,-1.3,-0.4,-0.9,0.0,0.7
+New Zealand,2015,observed,New Zealand_2017-05-08.pdf,2017-05-08,1,,,False,,,,,,,0.1,-2.2,-1.1,-1.1,0.0,2.3
+New Zealand,2016,GAP,,,0,,,,,G0071,2016,lag_between_consecutive_reports,fillable_actual_column_visible,New Zealand_2018-07-03.pdf,,,,,,
+New Zealand,2017,observed,New Zealand_2018-07-03.pdf,2018-07-03,1,,,False,,,,,,,-1.8,-1.0,-2.2,-0.5,1.7,-0.8
+New Zealand,2018,observed,New Zealand_2019-09-20.pdf,2019-09-20,1,,,False,,,,,,,-2.2,-2.8,-1.0,-1.2,-0.6,0.7
+Nicaragua,2014,observed,Nicaragua_2016-02-04.pdf,2016-02-04,1,,,False,,,,,,,-2.2,-1.6,0.9,-2.4,0.0,-0.6
+Nicaragua,2015,GAP,,,0,,,,,G0072,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Nicaragua_2017-06-27.pdf,,,,,,
+Nicaragua,2016,observed,Nicaragua_2017-06-27.pdf,2017-06-27,1,,,False,,,,,,,1.1,0.9,1.2,-0.4,0.0,0.3
+Nicaragua,2017,GAP,,,0,,,,,G0073,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Nicaragua_2020-02-27.pdf,,,,,,
+Nicaragua,2018,observed,Nicaragua_2020-02-27.pdf,2020-02-27,1,,,False,,,,,,,3.6,3.6,2.5,3.4,-2.3,0.0
+Nicaragua,2019,observed,Nicaragua_2020-11-20.pdf,2020-11-20,1,,,False,,,,,,,2.6,3.0,-0.2,2.8,0.3,-0.4
+Niger,2015,observed,Niger_2017-02-24.pdf,2017-02-24,1,,,True,,,,,,,8.2,11.0,8.8,2.3,0.0,-2.8
+Niger,2016,GAP,,,0,,,,,G0074,2016-2017,no_table_report_in_between,fillable_actual_column_visible,Niger_2019-07-22.pdf,,,,,,
+Niger,2017,GAP,,,0,,,,,G0074,2016-2017,no_table_report_in_between,fillable_actual_column_visible,Niger_2019-07-22.pdf,,,,,,
+Niger,2018,observed,Niger_2019-07-22.pdf,2019-07-22,1,,,False,,,,,,,-0.5,0.3,2.8,-2.5,0.0,-0.9
+Niger,2019,observed,Niger_2020-11-03.pdf,2020-11-03,2,Niger_2020-04-23.pdf,No,False,,,,,,,2.9,2.0,2.6,-0.6,0.0,0.9
+Nigeria,2015,observed,Nigeria_2016-04-08.pdf,2016-04-08,1,,,False,,,,,,,1.9,3.9,2.9,1.0,0.0,-2.0
+Nigeria,2016,observed,Nigeria_2018-03-07.pdf,2018-03-07,2,Nigeria_2017-04-05.pdf,No,False,,,,,,,3.6,4.3,3.0,1.2,0.0,-0.6
+Nigeria,2017,GAP,,,0,,,,,G0075,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Nigeria_2019-04-01.pdf,,,,,,
+Nigeria,2018,observed,Nigeria_2019-04-01.pdf,2019-04-01,1,,,False,,,,,,,3.1,1.9,2.8,-0.8,-0.1,1.1
+Nigeria,2019,observed,Nigeria_2020-04-29.pdf,2020-04-29,1,,,False,,,,,,,1.5,1.6,3.3,-1.8,0.0,-0.1
+North Macedonia,2015,observed,Former Yugoslav Republic of Macedonia_2016-11-21.pdf,2016-11-21,1,,,False,,,,,,,0.1,-0.7,2.3,-1.1,-1.9,0.8
+North Macedonia,2016,observed,Former Yugoslav Republic of Macedonia_2017-11-22.pdf,2017-11-22,1,,,False,,,,,,,0.8,0.4,1.5,-2.0,0.9,0.5
+North Macedonia,2017,GAP,,,0,,,,,G0076,2017-2018,errors_file_report_in_between,fillable_actual_column_visible,Former Yugoslav Republic of Macedonia_2019-01-29.pdf,,,,,,
+North Macedonia,2018,GAP,,,0,,,,,G0076,2017-2018,errors_file_report_in_between,fillable_actual_column_visible,Republic of North Macedonia_2020-04-21.pdf,,,,,,
+North Macedonia,2019,observed,Republic of North Macedonia_2020-04-21.pdf,2020-04-21,1,,,False,,,,,,,0.2,0.0,1.7,-1.4,-0.3,0.2
+Norway,2015,observed,Norway_2016-07-05.pdf,2016-07-05,1,,,False,,,,,,,0.2,-1.6,-3.0,1.5,0.0,1.8
+Norway,2016,observed,Norway_2017-07-05.pdf,2017-07-05,1,,,False,,,,,,,1.2,0.3,-0.8,1.0,0.0,0.9
+Norway,2017,observed,Norway_2018-09-17.pdf,2018-09-17,1,,,False,,,,,,,0.7,-3.3,-1.9,-1.5,0.0,4.0
+Norway,2018,observed,Norway_2019-06-12.pdf,2019-06-12,1,,,False,,,,,,,0.3,-6.4,-5.0,-1.4,0.0,6.7
+Pakistan,2015,observed,Pakistan_2016-01-12.pdf,2016-01-12,1,,,False,,,,,,,0.1,-1.6,0.3,-1.9,0.0,1.7
+Pakistan,2016,observed,Pakistan_2017-07-13.pdf,2017-07-13,1,,,False,,,,,,,4.4,2.9,0.1,1.3,1.6,1.5
+Pakistan,2017,observed,Pakistan_2018-03-14.pdf,2018-03-14,1,,,False,,,,,,,-0.4,-0.5,1.4,-1.6,-0.3,0.1
+Pakistan,2018,observed,Pakistan_2019-12-23.pdf,2019-12-23,2,Pakistan_2019-07-08.pdf,No,False,,,,,,,5.2,4.4,2.1,1.8,0.4,0.9
+Pakistan,2019,observed,Pakistan_2020-04-17.pdf,2020-04-17,1,,,False,,,,,,,12.3,11.7,3.4,5.0,3.3,0.5
+Palau,2015,observed,Republic of Palau_2016-10-19.pdf,2016-10-19,1,,,False,,,,,,,-6.6,-4.4,-5.2,-4.0,4.8,-2.2
+Palau,2016,GAP,,,0,,,,,G0077,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Palau_2019-02-05.pdf,,,,,,
+Palau,2017,observed,Republic of Palau_2019-02-05.pdf,2019-02-05,1,,,False,,,,,,,1.8,-1.7,-5.3,2.2,1.4,3.5
+Panama,2015,observed,Panama_2016-11-02.pdf,2016-11-02,1,,,False,,,,,,,1.7,0.8,1.1,-0.3,0.0,0.9
+Panama,2016,observed,Panama_2017-05-04.pdf,2017-05-04,1,,,False,,,,,,,0.1,0.2,0.6,-0.5,0.0,-0.1
+Panama,2017,observed,Panama_2019-01-17.pdf,2019-01-17,1,,,False,,,,,,,0.4,-0.7,-0.1,-0.7,0.0,1.2
+Panama,2018,GAP,,,0,,,,,G0078,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Panama_2020-04-21.pdf,,,,,,
+Panama,2019,observed,Panama_2020-05-01.pdf,2020-05-01,2,Panama_2020-04-21.pdf,No,False,,,,,,,4.3,2.5,1.5,1.0,0.0,1.8
+Papua New Guinea,2015,observed,Papua New Guinea_2017-01-30.pdf,2017-01-30,1,,,False,,,,,,,-7.9,11.9,3.2,0.0,8.6,-19.8
+Papua New Guinea,2016,GAP,,,0,,,,,G0079,2016,errors_file_report_in_between,fillable_actual_column_visible,Papua New Guinea_2018-12-03.pdf,,,,,,
+Papua New Guinea,2017,observed,Papua New Guinea_2018-12-03.pdf,2018-12-03,1,,,False,,,,,,,-0.2,-0.4,0.4,-0.8,0.0,0.1
+Papua New Guinea,2018,observed,Papua New Guinea_2020-04-06.pdf,2020-04-06,1,,,False,,,,,,,4.3,0.1,0.2,-0.2,0.0,4.2
+Papua New Guinea,2019,observed,Papua New Guinea_2020-06-26.pdf,2020-06-26,1,,,False,,,,,,,2.2,0.6,1.7,-1.1,0.0,1.6
+Paraguay,2015,observed,Paraguay_2016-05-11.pdf,2016-05-11,1,,,False,,,,,,,3.6,6.8,1.4,3.5,1.8,-3.2
+Paraguay,2016,observed,Paraguay_2017-07-24.pdf,2017-07-24,1,,,False,,,,,,,0.6,0.5,0.0,-1.1,1.5,0.2
+Paraguay,2017,observed,Paraguay_2019-04-30.pdf,2019-04-30,1,,,False,,,,,,,0.4,0.0,-0.1,-0.8,0.9,0.5
+Paraguay,2018,GAP,,,0,,,,,G0080,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Paraguay_2020-04-22.pdf,,,,,,
+Paraguay,2019,observed,Paraguay_2020-04-22.pdf,2020-04-22,1,,,False,,,,,,,4.1,5.6,2.6,2.9,0.1,-1.4
+Peru,2014,observed,Peru_2016-07-15.pdf,2016-07-15,1,,,False,,,,,,,0.4,-0.1,-0.7,0.6,0.0,0.5
+Peru,2015,observed,Peru_2017-06-28.pdf,2017-06-28,1,,,False,,,,,,,3.3,2.0,1.1,0.9,0.0,1.3
+Peru,2016,observed,Peru_2018-07-25.pdf,2018-07-25,1,,,False,,,,,,,0.4,0.7,1.5,-0.8,0.0,-0.3
+Peru,2017,GAP,,,0,,,,,G0081,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Peru_2020-01-13.pdf,,,,,,
+Peru,2018,observed,Peru_2020-01-13.pdf,2020-01-13,1,,,False,,,,,,,0.7,1.5,1.0,0.4,0.0,-0.7
+Peru,2019,observed,Peru_2020-05-29.pdf,2020-05-29,1,,,False,,,,,,,1.0,0.5,0.3,0.2,0.0,0.5
+Philippines,2015,observed,Philippines_2016-09-26.pdf,2016-09-26,1,,,False,,,,,,,-0.1,0.7,-2.6,1.3,2.0,-0.9
+Philippines,2016,observed,Philippines_2017-11-10.pdf,2017-11-10,1,,,False,,,,,,,-2.6,-2.0,-1.7,-0.7,0.5,-0.7
+Philippines,2017,observed,Philippines_2018-09-27.pdf,2018-09-27,1,,,True,,,,,,,0.9,1.5,-1.6,-1.3,4.4,-0.7
+Philippines,2018,observed,Philippines_2020-02-06.pdf,2020-02-06,1,,,False,,,,,,,-1.0,-0.5,-0.2,-1.0,0.7,-0.5
+Poland,2014,observed,Republic of Poland_2016-01-13.pdf,2016-01-13,1,,,False,,,,,,,-5.5,-4.9,1.4,2.8,-9.1,-0.6
+Poland,2015,observed,Republic of Poland_2017-01-18.pdf,2017-01-18,2,Republic of Poland_2016-07-05.pdf,No,False,,,,,,,0.9,2.2,0.8,1.4,0.0,-1.3
+Poland,2016,observed,Republic of Poland_2017-07-17.pdf,2017-07-17,1,,,False,,,,,,,3.3,1.7,0.7,1.5,-0.5,1.6
+Poland,2017,observed,Republic of Poland_2019-02-06.pdf,2019-02-06,1,,,False,,,,,,,-3.5,-5.2,-0.2,-4.8,-0.2,1.7
+Portugal,2014,observed,Portugal_2016-09-22_CR2016-300.pdf,2016-09-22,2,Portugal_2016-04-01.pdf,No,False,,,,,,,1.2,4.3,2.3,2.5,-0.5,-3.2
+Portugal,2015,GAP,,,0,,,,,G0082,2015,errors_file_report_in_between,fillable_actual_column_visible,Portugal_2017-09-15.pdf,,,,,,
+Portugal,2016,observed,Portugal_2017-09-15.pdf,2017-09-15,1,,,False,,,,,,,1.4,0.3,-2.2,0.5,2.1,1.0
+Portugal,2017,observed,Portugal_2018-09-12.pdf,2018-09-12,2,Portugal_2018-02-22.pdf,No,False,,,,,,,-4.2,-3.5,-0.9,-1.3,-1.3,-0.7
+Portugal,2018,observed,Portugal_2019-07-12.pdf,2019-07-12,1,,,False,,,,,,,-3.3,-5.0,-3.0,-0.9,-1.1,1.7
+Qatar,2015,observed,Qatar_2017-04-10.pdf,2017-04-10,1,,,False,,,,,,,2.7,2.5,-7.1,9.6,0.0,0.2
+Qatar,2016,observed,Qatar_2018-05-30.pdf,2018-05-30,1,,,False,,,,,,,11.6,12.1,7.8,4.3,0.0,-0.5
+Qatar,2017,observed,Qatar_2019-06-03.pdf,2019-06-03,1,,,False,,,,,,,3.0,2.3,5.2,-2.9,0.0,0.7
+Republic of Congo,2018,observed,Republic of Congo_2020-01-27.pdf,2020-01-27,2,Republic of Congo_2019-07-24.pdf,No,False,,,,,,,-30.4,-27.3,-8.9,-18.5,0.0,-3.1
+Romania,2015,observed,Romania_2016-05-11.pdf,2016-05-11,1,,,False,,,,,,,-1.2,3.2,0.2,1.7,1.2,-4.4
+Romania,2016,observed,Romania_2017-05-25_CR2017-133.pdf,2017-05-25,1,,,False,,,,,,,-0.3,1.8,1.1,-0.4,1.1,-2.2
+Romania,2017,observed,Romania_2018-06-06.pdf,2018-06-06,1,,,False,,,,,,,-2.2,-2.2,1.7,-4.9,1.0,0.0
+Romania,2018,observed,Romania_2019-08-30.pdf,2019-08-30,1,,,False,,,,,,,-0.1,-0.5,1.5,-1.9,0.0,0.3
+Russian Federation,2015,observed,Russian Federation_2016-07-13.pdf,2016-07-13,1,,,False,,,,,,,0.5,5.6,3.2,1.6,0.8,-5.1
+Russian Federation,2016,observed,Russian Federation_2017-07-10.pdf,2017-07-10,1,,,False,,,,,,,-0.3,2.8,3.1,0.0,-0.3,-3.1
+Russian Federation,2017,observed,Russian Federation_2018-09-12.pdf,2018-09-12,1,,,False,,,,,,,-0.5,0.8,1.0,-0.1,-0.1,-1.3
+Russian Federation,2018,observed,Russian Federation_2019-08-02.pdf,2019-08-02,1,,,False,,,,,,,-0.9,-3.4,-3.4,-0.2,0.2,2.5
+Rwanda,2014,observed,Rwanda_2016-01-28.pdf,2016-01-28,1,,,False,,,,,,,2.8,0.1,4.3,-0.7,-3.5,2.7
+Rwanda,2015,observed,Rwanda_2016-06-16.pdf,2016-06-16,1,,,False,,,,,,,6.1,1.7,3.9,0.5,-2.7,4.4
+Rwanda,2016,observed,Rwanda_2017-07-13.pdf,2017-07-13,1,,,False,,,,,,,8.0,1.7,2.7,-0.2,-0.8,6.3
+Rwanda,2017,GAP,,,0,,,,,G0083,2017,no_table_report_in_between,fillable_actual_column_visible,Rwanda_2019-07-03.pdf,,,,,,
+Rwanda,2018,observed,Rwanda_2020-04-16.pdf,2020-04-16,2,Rwanda_2019-07-03.pdf,Yes,False,,,,,,,4.2,2.9,3.5,-0.6,0.0,1.3
+Rwanda,2019,observed,Rwanda_2020-06-18.pdf,2020-06-18,1,,,False,,,,,,,6.1,5.5,6.8,-1.4,0.0,0.6
+Samoa,2016,observed,Samoa_2018-06-04.pdf,2018-06-04,1,,,False,,,,,,,-5.6,-3.4,-0.8,-2.6,0.0,-2.3
+Samoa,2017,GAP,,,0,,,,,G0084,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Samoa_2019-05-17.pdf,,,,,,
+Samoa,2018,observed,Samoa_2019-05-17.pdf,2019-05-17,1,,,False,,,,,,,0.3,1.5,-0.1,1.6,0.0,-1.3
+Samoa,2019,observed,Samoa_2020-04-28.pdf,2020-04-28,1,,,False,,,,,,,-5.4,-3.7,-2.7,-1.0,0.0,-1.7
+San Marino,2014,observed,Republic of San Marino_2016-05-10.pdf,2016-05-10,1,,,False,,,,,,,1.4,9.1,0.9,0.5,7.8,-7.8
+San Marino,2015,observed,Republic of San Marino_2017-04-06.pdf,2017-04-06,1,,,False,,,,,,,0.7,0.4,0.0,-0.1,0.5,0.3
+San Marino,2016,observed,Republic of San Marino_2018-04-11.pdf,2018-04-11,1,,,False,,,,,,,2.2,2.0,0.0,-0.3,2.3,0.2
+San Marino,2017,GAP,,,0,,,,,G0085,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of San Marino_2019-03-25.pdf,,,,,,
+San Marino,2018,observed,Republic of San Marino_2020-04-02.pdf,2020-04-02,2,Republic of San Marino_2019-03-25.pdf,No,False,,,,,,,1.8,0.3,1.2,-2.3,1.4,1.6
+Saudi Arabia,2015,observed,Saudi Arabia_2016-10-13.pdf,2016-10-13,1,,,False,,,,,,,3.4,1.2,15.8,0.4,-15.0,2.2
+Saudi Arabia,2016,observed,Saudi Arabia_2017-10-05.pdf,2017-10-05,1,,,False,,,,,,,7.3,12.7,20.4,0.3,-8.0,-5.5
+Saudi Arabia,2017,observed,Saudi Arabia_2018-08-24.pdf,2018-08-24,1,,,False,,,,,,,4.1,6.9,11.1,-0.4,-3.8,-2.8
+Saudi Arabia,2018,observed,Saudi Arabia_2019-09-09.pdf,2019-09-09,1,,,False,,,,,,,1.9,3.0,6.6,-1.5,-2.0,-1.1
+Senegal,2014,observed,Senegal_2016-01-06.pdf,2016-01-06,1,,,False,,,,,,,6.6,6.3,3.2,3.1,0.0,0.3
+Senegal,2015,observed,Senegal_2017-01-04.pdf,2017-01-04,1,,,False,,,,,,,2.6,6.6,2.8,3.7,0.0,-4.0
+Senegal,2016,observed,Senegal_2018-01-12.pdf,2018-01-12,1,,,False,,,,,,,3.5,3.9,2.2,-0.8,2.5,-0.4
+Senegal,2017,observed,Senegal_2019-01-28.pdf,2019-01-28,1,,,False,,,,,,,13.0,-6.5,0.9,-6.0,-1.4,19.5
+Senegal,2018,observed,Senegal_2020-04-16.pdf,2020-04-16,2,Senegal_2020-01-17.pdf,No,False,,,,,,,1.0,2.9,2.2,0.6,0.0,-1.9
+Serbia,2015,observed,Republic of Serbia_2016-09-02.pdf,2016-09-02,1,,,False,,,,,,,5.4,4.8,0.5,4.4,-0.1,0.7
+Serbia,2016,observed,Republic of Serbia_2017-09-06.pdf,2017-09-06,1,,,False,,,,,,,-1.9,0.5,-1.8,2.1,0.2,-2.4
+Serbia,2017,observed,Republic of Serbia_2018-07-24.pdf,2018-07-24,1,,,False,,,,,,,-10.5,-10.9,-3.9,-8.9,1.8,0.4
+Serbia,2018,observed,Republic of Serbia_2019-07-22.pdf,2019-07-22,1,,,False,,,,,,,-4.2,-5.0,-2.8,-0.6,-1.6,0.8
+Serbia,2019,observed,Republic of Serbia_2020-08-28.pdf,2020-08-28,1,,,False,,,,,,,-1.6,-0.9,-2.0,-0.7,1.8,-0.7
+Seychelles,2015,observed,Seychelles_2017-02-21.pdf,2017-02-21,1,,,False,,,,,,,0.1,-5.7,-4.3,-2.6,1.2,5.8
+Seychelles,2016,observed,Seychelles_2017-12-22.pdf,2017-12-22,1,,,False,,,,,,,2.9,1.7,-3.3,2.3,2.7,1.3
+Seychelles,2017,observed,Seychelles_2019-01-07.pdf,2019-01-07,1,,,False,,,,,,,-5.4,-8.1,-3.0,-1.1,-4.0,2.7
+Seychelles,2018,GAP,,,0,,,,,G0086,2018,no_table_report_in_between,fillable_actual_column_visible,Seychelles_2020-05-19.pdf,,,,,,
+Seychelles,2019,observed,Seychelles_2020-05-19.pdf,2020-05-19,1,,,False,,,,,,,-1.8,-3.0,-2.6,-0.2,-0.2,1.2
+Sierra Leone,2015,observed,Sierra Leone_2017-06-22.pdf,2017-06-22,1,,,False,,,,,,,10.3,10.4,3.9,6.5,-0.1,-0.1
+Sierra Leone,2016,GAP,,,0,,,,,G0087,2016-2018,no_table_report_in_between,only_preliminary_or_estimate,Sierra Leone_2017-06-22.pdf,,,,,,
+Sierra Leone,2017,GAP,,,0,,,,,G0087,2016-2018,no_table_report_in_between,only_projection,,,,,,,
+Sierra Leone,2018,GAP,,,0,,,,,G0087,2016-2018,no_table_report_in_between,only_projection,,,,,,,
+Sierra Leone,2019,observed,Sierra Leone_2020-06-10.pdf,2020-06-10,1,,,False,,,,,,,0.3,-1.7,0.2,-1.9,0.0,2.0
+Singapore,2015,observed,Singapore_2016-07-29.pdf,2016-07-29,1,,,False,,,,,,,4.9,-2.3,-0.3,-3.5,1.5,7.3
+Singapore,2016,observed,Singapore_2017-07-28.pdf,2017-07-28,1,,,False,,,,,,,9.7,-1.4,-2.3,-0.5,1.5,11.1
+Singapore,2017,observed,Singapore_2018-07-27.pdf,2018-07-27,1,,,False,,,,,,,4.0,-1.1,,-4.7,3.5,5.2
+Singapore,2018,observed,Singapore_2019-07-15.pdf,2019-07-15,1,,,False,,,,,,,4.1,-8.6,-7.2,-1.3,0.0,12.7
+Slovak Republic,2014,observed,Slovak Republic_2016-01-14.pdf,2016-01-14,1,,,False,,,,,,,-1.1,2.3,1.1,1.0,0.2,-3.3
+Slovak Republic,2015,observed,Slovak Republic_2017-03-23.pdf,2017-03-23,1,,,False,,,,,,,-1.1,2.2,1.2,0.3,0.7,-3.3
+Slovak Republic,2016,GAP,,,0,,,,,G0088,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Slovak Republic_2018-07-26.pdf,,,,,,
+Slovak Republic,2017,observed,Slovak Republic_2018-07-26.pdf,2018-07-26,1,,,False,,,,,,,-1.0,-1.0,1.0,-1.2,-0.8,0.0
+Slovak Republic,2018,observed,Slovak Republic_2019-07-12.pdf,2019-07-12,1,,,False,,,,,,,-2.1,-1.3,-0.4,-1.6,0.7,-0.8
+Slovenia,2015,observed,Republic of Slovenia_2016-05-16.pdf,2016-05-16,1,,,False,,,,,,,2.3,4.0,0.5,3.2,0.3,-1.8
+Slovenia,2016,observed,Republic of Slovenia_2017-05-15.pdf,2017-05-15,1,,,False,,,,,,,-3.5,-3.5,-1.0,1.0,-3.5,0.0
+Slovenia,2017,observed,Republic of Slovenia_2019-02-18.pdf,2019-02-18,1,,,True,,,,,,,-4.6,-6.0,-1.6,-4.7,0.3,1.4
+Solomon Islands,2015,observed,Solomon Islands_2016-03-23.pdf,2016-03-23,1,,,False,,,,,,,-2.9,0.2,0.1,0.0,0.0,-3.1
+Solomon Islands,2016,GAP,,,0,,,,,G0089,2016,errors_file_report_in_between,fillable_actual_column_visible,Solomon Islands_2018-11-08.pdf,,,,,,
+Solomon Islands,2017,observed,Solomon Islands_2018-11-08.pdf,2018-11-08,1,,,False,,,,,,,1.5,3.1,3.7,-0.6,0.0,-1.6
+Solomon Islands,2018,observed,Solomon Islands_2020-06-04.pdf,2020-06-04,2,Solomon Islands_2020-02-18.pdf,No,False,,,,,,,-0.2,-1.7,-1.4,-0.3,0.0,1.5
+Somalia,2018,observed,Somalia_2019-08-01.pdf,2019-08-01,1,,,False,,,,,,,-3.9,-4.7,0.0,-4.6,0.0,0.8
+Somalia,2019,observed,Somalia_2020-11-30.pdf,2020-11-30,1,,,False,,,,,,,-3.9,-5.5,-0.5,-5.1,0.0,1.6
+South Africa,2015,observed,South Africa_2016-07-07.pdf,2016-07-07,1,,,False,,,,,,,2.9,4.2,1.2,1.2,1.8,-1.3
+South Africa,2016,observed,South Africa_2017-07-06.pdf,2017-07-06,1,,,False,,,,,,,2.4,2.2,1.4,-0.7,1.5,0.2
+South Africa,2017,observed,South Africa_2018-07-30.pdf,2018-07-30,1,,,False,,,,,,,1.5,2.2,1.4,-0.5,1.3,-0.7
+South Africa,2018,observed,South Africa_2020-01-30.pdf,2020-01-30,1,,,False,,,,,,,3.7,4.8,0.6,2.0,2.2,-1.1
+South Sudan,2018,observed,South Sudan_2019-06-04.pdf,2019-06-04,1,,,False,,,,,,,-14.3,-12.9,3.1,-16.0,0.0,-1.5
+South Sudan,2019,GAP,,,0,,,,,G0090,2019,lag_between_consecutive_reports,only_projection,,,,,,,
+South Sudan,2020,observed,Republic of South Sudan_2020-11-16.pdf,2020-11-16,1,,,False,,,,,,,8.1,4.6,5.1,-0.5,0.0,3.5
+Spain,2015,observed,Spain_2017-01-30.pdf,2017-01-30,1,,,False,,,,,,,-0.6,1.9,2.4,-0.5,0.0,-2.5
+Spain,2016,observed,Spain_2017-10-06.pdf,2017-10-06,1,,,False,,,,,,,-0.5,1.4,2.0,-0.6,0.0,-1.9
+Spain,2017,observed,Spain_2018-11-21.pdf,2018-11-21,1,,,False,,,,,,,-0.8,-0.7,0.7,-1.5,0.0,-0.1
+Spain,2018,GAP,,,0,,,,,G0091,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Spain_2020-11-13.pdf,,,,,,
+Spain,2019,observed,Spain_2020-11-13.pdf,2020-11-13,1,,,False,,,,,,,-2.1,-0.3,0.8,-1.1,0.0,-1.8
+Sri Lanka,2014,observed,Sri Lanka_2016-06-14_CR2016-152.pdf,2016-06-14,1,,,False,,,,,,,1.0,1.3,1.6,-0.3,0.0,-0.3
+Sri Lanka,2015,observed,Sri Lanka_2016-12-09.pdf,2016-12-09,2,Sri Lanka_2016-06-14_CR2016-150.pdf,No,False,,,,,,,3.9,5.4,2.2,3.2,0.0,-1.5
+Sri Lanka,2016,observed,Sri Lanka_2018-01-12.pdf,2018-01-12,2,Sri Lanka_2017-08-10.pdf,No,False,,,,,,,2.0,1.0,0.2,0.7,0.0,1.0
+Sri Lanka,2017,observed,Sri Lanka_2019-11-04.pdf,2019-11-04,3,Sri Lanka_2018-06-20.pdf; Sri Lanka_2019-05-16.pdf,No,False,,,,,,,-1.4,-2.6,0.0,-2.2,-0.3,1.2
+St. Kitts and Nevis,2015,observed,St. Kitts and Nevis_2016-07-26.pdf,2016-07-26,1,,,False,,,,,,,-12.0,-8.5,-8.1,-1.9,1.6,-3.5
+St. Kitts and Nevis,2016,observed,St. Kitts and Nevis_2017-07-05.pdf,2017-07-05,1,,,False,,,,,,,-5.0,-5.3,-6.9,0.2,1.4,0.3
+St. Lucia,2014,observed,St. Lucia_2016-02-18.pdf,2016-02-18,1,,,False,,,,,,,1.0,-0.4,-0.1,0.8,-1.1,1.5
+St. Lucia,2015,observed,St. Lucia_2017-03-31.pdf,2017-03-31,1,,,False,,,,,,,-0.3,1.3,-1.5,2.8,0.0,-1.7
+St. Lucia,2016,GAP,,,0,,,,,G0092,2016,lag_between_consecutive_reports,fillable_actual_column_visible,St. Lucia_2018-06-20.pdf,,,,,,
+St. Lucia,2017,observed,St. Lucia_2018-06-20.pdf,2018-06-20,1,,,False,,,,,,,1.5,0.7,-0.6,1.3,0.0,0.8
+St. Lucia,2018,observed,St. Lucia_2020-02-24.pdf,2020-02-24,1,,,False,,,,,,,-1.2,-2.4,-2.1,-0.3,0.0,1.3
+St. Lucia,2019,observed,St. Lucia_2020-05-12.pdf,2020-05-12,1,,,False,,,,,,,2.3,2.9,0.2,2.7,0.0,-0.7
+St. Vincent and the Grenadines,2014,observed,St. Vincent and the Grenadines_2016-07-19.pdf,2016-07-19,1,,,True,,,,,,,4.8,1.3,-0.8,2.1,0.0,3.6
+St. Vincent and the Grenadines,2015,GAP,,,0,,,,,G0093,2015,lag_between_consecutive_reports,fillable_actual_column_visible,St. Vincent and the Grenadines_2017-12-21.pdf,,,,,,
+St. Vincent and the Grenadines,2016,observed,St. Vincent and the Grenadines_2017-12-21.pdf,2017-12-21,1,,,False,,,,,,,3.5,-2.1,-3.3,1.1,0.0,5.7
+St. Vincent and the Grenadines,2017,observed,St. Vincent and the Grenadines_2019-02-25.pdf,2019-02-25,1,,,False,,,,,,,-8.7,-7.1,-1.9,1.0,-6.2,-1.6
+St. Vincent and the Grenadines,2018,GAP,,,0,,,,,G0094,2018,lag_between_consecutive_reports,fillable_actual_column_visible,St. Vincent and the Grenadines_2020-05-29.pdf,,,,,,
+St. Vincent and the Grenadines,2019,observed,St. Vincent and the Grenadines_2020-05-29.pdf,2020-05-29,1,,,False,,,,,,,-0.4,1.3,0.0,1.4,0.0,-1.8
+Sudan,2016,observed,Sudan_2017-12-11.pdf,2017-12-11,1,,,False,,,,,,,25.7,26.8,1.1,25.6,0.0,-1.0
+Sudan,2017,GAP,,,0,,,,,G0095,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Sudan_2020-03-10.pdf,,,,,,
+Sudan,2018,observed,Sudan_2020-03-10.pdf,2020-03-10,1,,,False,,,,,,,26.0,26.0,7.6,18.4,0.0,0.0
+Sudan,2019,observed,Sudan_2020-10-23.pdf,2020-10-23,1,,,False,,,,,,,14.9,20.4,10.7,9.7,0.0,-5.5
+Suriname,2015,observed,Suriname_2016-06-07.pdf,2016-06-07,1,,,False,,,,,,,14.1,12.3,7.4,5.0,0.0,1.8
+Suriname,2016,GAP,,,0,,,,,G0096,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Suriname_2018-12-20.pdf,,,,,,
+Suriname,2017,observed,Suriname_2018-12-20.pdf,2018-12-20,1,,,False,,,,,,,-1.3,-5.5,3.7,-7.1,-2.2,4.2
+Suriname,2018,observed,Suriname_2019-12-23.pdf,2019-12-23,1,,,False,,,,,,,-2.5,-9.1,3.5,-1.3,-11.4,6.6
+Sweden,2015,observed,Sweden_2016-11-17.pdf,2016-11-17,1,,,False,,,,,,,-1.6,-0.9,0.0,-0.9,0.0,-0.7
+Sweden,2016,observed,Sweden_2017-11-17.pdf,2017-11-17,1,,,False,,,,,,,-2.4,-1.4,-0.8,-0.6,,-1.0
+Sweden,2017,observed,Sweden_2019-03-26.pdf,2019-03-26,1,,,False,,,,,,,-1.5,-3.9,-1.4,-2.5,0.0,2.4
+Switzerland,2015,observed,Switzerland_2016-12-15.pdf,2016-12-15,1,,,False,,,,,,,0.0,0.2,-0.3,0.5,0.0,-0.2
+Switzerland,2016,GAP,,,0,,,,,G0097,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Switzerland_2018-06-18.pdf,,,,,,
+Switzerland,2017,observed,Switzerland_2018-06-18.pdf,2018-06-18,1,,,False,,,,,,,-0.1,-0.7,-0.7,0.0,0.0,0.6
+Switzerland,2018,observed,Switzerland_2019-06-26.pdf,2019-06-26,1,,,False,,,,,,,-2.2,-2.2,-1.5,-0.8,0.0,0.1
+São Tomé and Príncipe,2016,observed,Democratic Republic of São Tomé and Príncipe_2017-12-18.pdf,2017-12-18,1,,,True,,,,,,,5.9,0.1,3.3,-3.2,0.0,5.7
+São Tomé and Príncipe,2017,GAP,,,0,,,,,G0098,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Democratic Republic of Sao Tome and Principe_2019-10-29.pdf,,,,,,
+São Tomé and Príncipe,2018,observed,Democratic Republic of Sao Tome and Principe_2019-10-29.pdf,2019-10-29,1,,,False,,,,,,,11.1,4.8,7.9,-2.7,-0.4,6.4
+Tajikistan,2019,observed,Republic of Tajikistan_2020-05-07.pdf,2020-05-07,1,,,False,,,,,,,-3.3,-3.0,1.2,-3.7,-0.6,-0.3
+Tanzania,2014,observed,United Republic of Tanzania_2016-02-01.pdf,2016-02-01,1,,,True,,,,,,,-0.7,1.4,2.0,-1.6,1.0,-2.1
+Tanzania,2015,observed,United Republic of Tanzania_2016-07-27.pdf,2016-07-27,1,,,False,,,,,,,-0.8,4.2,1.6,1.9,0.7,-5.0
+Tanzania,2016,observed,Republic of Tanzania_2018-01-16.pdf,2018-01-16,1,,,False,,,,,,,0.7,2.6,2.1,-0.3,0.8,-1.8
+Thailand,2015,observed,Thailand_2016-06-07.pdf,2016-06-07,1,,,False,,,,,,,-0.5,0.8,0.3,0.5,0.0,-1.3
+Thailand,2016,observed,Thailand_2017-05-31.pdf,2017-05-31,1,,,False,,,,,,,-0.5,-3.2,-2.4,-0.8,0.0,2.7
+Thailand,2017,observed,Thailand_2018-06-04.pdf,2018-06-04,1,,,False,,,,,,,0.1,-0.3,-1.4,-1.2,2.3,0.4
+Thailand,2018,observed,Thailand_2019-10-07.pdf,2019-10-07,1,,,False,,,,,,,0.2,0.2,-1.6,-1.2,2.9,0.0
+Timor-Leste,2014,observed,Republic of Timor-Leste_2016-06-24.pdf,2016-06-24,1,,,False,,,,,,,0.4,19.0,19.0,0.0,0.0,-18.7
+Timor-Leste,2015,GAP,,,0,,,,,G0099,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Democratic Republic of Timor-Leste_2017-12-07.pdf,,,,,,
+Timor-Leste,2016,observed,Democratic Republic of Timor-Leste_2017-12-07.pdf,2017-12-07,1,,,False,,,,,,,1.3,37.1,36.9,0.2,0.0,-35.8
+Timor-Leste,2017,observed,Democratic Republic of Timor-Leste_2019-05-07.pdf,2019-05-07,1,,,True,,,,,,,0.8,2.6,2.9,-0.3,0.0,-1.8
+Togo,2016,observed,Togo_2017-12-15.pdf,2017-12-15,1,,,False,,,,,,,6.0,5.0,7.1,-2.1,0.0,1.0
+Togo,2017,observed,Togo_2018-12-12.pdf,2018-12-12,1,,,False,,,,,,,-5.5,-5.3,-1.5,-3.8,0.0,-0.2
+Togo,2018,observed,Togo_2019-10-31.pdf,2019-10-31,2,Togo_2019-07-02.pdf,No,False,,,,,,,0.2,-1.8,-1.6,-1.4,1.2,2.0
+Togo,2019,observed,Togo_2020-04-16.pdf,2020-04-16,1,,,False,,,,,,,-5.3,-7.8,-4.8,-1.9,-1.1,2.5
+Tonga,2016,observed,Tonga_2018-01-17.pdf,2018-01-17,1,,,False,,,,,,,-2.2,-2.7,-0.4,-2.2,0.0,0.5
+Trinidad and Tobago,2015,observed,Trinidad and Tobago_2016-06-29.pdf,2016-06-29,1,,,False,,,,,,,2.1,5.9,2.8,3.0,0.0,-3.8
+Trinidad and Tobago,2016,observed,Trinidad and Tobago_2017-11-21.pdf,2017-11-21,1,,,False,,,,,,,10.5,8.2,10.6,4.9,-7.2,2.2
+Trinidad and Tobago,2017,observed,Trinidad and Tobago_2018-09-25.pdf,2018-09-25,1,,,False,,,,,,,4.8,7.1,8.1,2.5,-3.5,-2.3
+Tunisia,2015,observed,Tunisia_2016-06-02.pdf,2016-06-02,1,,,False,,,,,,,4.3,6.7,4.0,2.0,0.7,-2.5
+Tunisia,2016,observed,Tunisia_2017-07-10.pdf,2017-07-10,1,,,False,,,,,,,5.6,6.5,3.9,3.7,-1.1,-0.9
+Tunisia,2017,GAP,,,0,,,,,G0100,2017-2018,no_table_report_in_between,only_in_merged_range_column,,,,,,,
+Tunisia,2018,GAP,,,0,,,,,G0100,2017-2018,no_table_report_in_between,fillable_actual_column_visible,Tunisia_2020-04-14.pdf,,,,,,
+Tunisia,2019,observed,Tunisia_2020-04-14.pdf,2020-04-14,1,,,False,,,,,,,-5.8,-7.3,1.0,-6.6,-1.7,1.4
+Turkey,2015,observed,Turkey_2017-02-03.pdf,2017-02-03,2,Turkey_2016-04-22.pdf,No,False,,,,,,,-0.6,0.5,-1.0,1.9,-0.4,-1.1
+Turkey,2016,observed,Turkey_2018-04-30.pdf,2018-04-30,1,,,False,,,,,,,0.7,2.2,1.0,1.3,0.0,-1.5
+Turkey,2017,GAP,,,0,,,,,G0101,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Turkey_2019-12-26.pdf,,,,,,
+Turkey,2018,observed,Turkey_2019-12-26.pdf,2019-12-26,1,,,False,,,,,,,1.9,4.1,2.3,2.1,-0.2,-2.2
+Tuvalu,2016,observed,Tuvalu_2018-07-05.pdf,2018-07-05,1,,,False,,,,,,,-9.7,-7.6,-7.3,-0.3,-0.1,-2.0
+Uganda,2018,observed,Uganda_2019-05-07.pdf,2019-05-07,1,,,False,fiscal_year_end_of_2017/18,,,,,,3.5,3.6,2.5,1.1,0.0,-0.1
+Uganda,2019,observed,Uganda_2020-05-14.pdf,2020-05-14,1,,,False,fiscal_year_end_of_2018/19,,,,,,2.3,2.0,3.1,-1.1,0.0,0.3
+Ukraine,2015,observed,Ukraine_2016-10-03.pdf,2016-10-03,1,,,False,,,,,,,9.8,11.3,-3.0,11.0,3.3,-1.5
+Ukraine,2016,observed,Ukraine_2017-04-04.pdf,2017-04-04,1,,,False,,,,,,,5.2,4.4,-2.0,0.7,5.6,0.9
+Ukraine,2017,observed,Ukraine_2019-01-08.pdf,2019-01-08,1,,,False,,,,,,,-9.3,-9.6,-1.6,-10.3,2.3,0.3
+United Arab Emirates,2015,observed,United Arab Emirates_2016-07-27.pdf,2016-07-27,1,,,False,,,,,,,2.3,3.3,1.3,2.0,0.0,-1.0
+United Arab Emirates,2016,observed,United Arab Emirates_2017-07-14.pdf,2017-07-14,1,,,False,,,,,,,3.1,4.7,3.5,1.3,0.0,-1.6
+United Arab Emirates,2017,observed,United Arab Emirates_2019-02-01.pdf,2019-02-01,1,,,False,,,,,,,2.4,0.3,0.5,-0.2,0.0,2.2
+United Kingdom,2014,observed,United Kingdom_2016-02-24.pdf,2016-02-24,1,,,False,,,,,,,0.6,3.9,3.5,-1.6,2.0,-3.3
+United Kingdom,2015,observed,United Kingdom_2016-06-17.pdf,2016-06-17,1,,,False,,,,,,,0.4,0.5,2.3,-0.2,-1.5,-0.1
+United Kingdom,2016,observed,United Kingdom_2018-02-13.pdf,2018-02-13,1,,,False,,,,,,,3.6,2.8,0.6,-1.8,4.0,0.8
+United Kingdom,2017,observed,United Kingdom_2018-11-14.pdf,2018-11-14,1,,,False,,,,,,,-0.8,-1.8,0.1,-0.8,-1.1,1.0
+United Kingdom,2018,GAP,,,0,,,,,G0102,2018,lag_between_consecutive_reports,fillable_actual_column_visible,United Kingdom_2020-12-18.pdf,,,,,,
+United Kingdom,2019,observed,United Kingdom_2020-12-18.pdf,2020-12-18,1,,,False,,,,,,,5.4,-0.9,1.3,-0.8,-1.4,6.3
+United States,2015,observed,United States_2016-07-12.pdf,2016-07-12,1,,,False,,,,,,,0.9,0.3,1.5,-1.1,0.0,0.5
+United States,2016,observed,United States_2017-07-26.pdf,2017-07-26,1,,,False,,,,,,,1.7,1.8,2.3,-0.5,0.0,-0.1
+United States,2017,observed,United States_2018-07-03.pdf,2018-07-03,1,,,False,,,,,,,-1.6,0.8,2.5,-1.7,0.0,-2.4
+United States,2018,observed,United States_2019-06-24.pdf,2019-06-24,1,,,False,,,,,,,-0.4,0.6,3.0,-2.4,0.0,-1.0
+United States,2019,observed,United States_2020-08-10.pdf,2020-08-10,1,,,False,,,,,,,1.8,2.6,4.1,-1.5,0.0,-0.8
+Uruguay,2014,observed,Uruguay_2016-02-24.pdf,2016-02-24,1,,,False,,,,,,,1.1,1.4,0.6,-1.2,1.9,-0.3
+Uruguay,2015,observed,Uruguay_2017-02-01.pdf,2017-02-01,1,,,False,,,,,,,2.9,0.3,0.0,3.7,-3.4,2.5
+Uruguay,2016,observed,Uruguay_2018-01-31.pdf,2018-01-31,1,,,False,,,,,,,-2.7,-5.3,0.8,-2.6,-3.4,2.5
+Uruguay,2017,observed,Uruguay_2019-02-22.pdf,2019-02-22,1,,,False,,,,,,,4.2,4.6,0.2,-0.4,4.8,-0.5
+Uruguay,2018,observed,Uruguay_2020-02-21.pdf,2020-02-21,1,,,False,,,,,,,2.4,1.0,0.7,1.5,-1.2,1.5
+Uzbekistan,2018,observed,Republic of Uzbekistan_2019-05-09.pdf,2019-05-09,1,,,False,,,,,,,0.4,-3.0,1.6,-4.5,0.0,3.4
+Uzbekistan,2019,observed,Republic of Uzbekistan_2020-05-19.pdf,2020-05-19,1,,,False,,,,,,,8.8,8.9,3.7,-1.3,6.5,0.0
+Vanuatu,2015,observed,Vanuatu_2016-10-31.pdf,2016-10-31,1,,,False,,,,,,,6.2,-6.7,-8.0,1.3,0.0,12.9
+Vanuatu,2016,observed,Vanuatu_2018-04-26.pdf,2018-04-26,1,,,False,,,,,,,6.4,4.9,5.1,-0.2,0.0,1.5
+Vanuatu,2017,GAP,,,0,,,,,G0103,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Vanuatu_2019-06-13.pdf,,,,,,
+Vanuatu,2018,observed,Vanuatu_2019-06-13.pdf,2019-06-13,1,,,False,,,,,,,-0.7,-5.6,-5.8,0.2,0.0,4.9
+Vietnam,2015,observed,Vietnam_2016-07-18.pdf,2016-07-18,1,,,False,,,,,,,3.1,2.8,3.9,0.4,-1.5,0.3
+Vietnam,2016,observed,Vietnam_2017-07-05.pdf,2017-07-05,1,,,False,,,,,,,4.2,4.8,4.4,-1.0,1.3,-0.6
+Vietnam,2017,observed,Vietnam_2018-07-10.pdf,2018-07-10,1,,,False,,,,,,,-1.5,-1.0,2.7,-3.8,0.1,-0.4
+Vietnam,2018,observed,Vietnam_2019-07-16.pdf,2019-07-16,1,,,False,,,,,,,-2.7,-2.0,2.4,-2.7,-1.6,-0.7
+Zambia,2015,observed,Zambia_2017-10-25.pdf,2017-10-25,1,,,True,,,,,,,25.8,22.2,6.1,13.0,3.1,3.6
+Zambia,2016,GAP,,,0,,,,,G0104,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Zambia_2019-08-02.pdf,,,,,,
+Zambia,2017,GAP,,,0,,,,,G0104,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Zambia_2019-08-02.pdf,,,,,,
+Zambia,2018,observed,Zambia_2019-08-02.pdf,2019-08-02,1,,,False,,,,,,,15.3,6.9,2.7,4.2,0.0,8.3
+Zimbabwe,2018,observed,Zimbabwe_2020-03-26.pdf,2020-03-26,1,,,False,,,,,,,-7.2,-2.4,4.0,-8.2,1.8,-4.8

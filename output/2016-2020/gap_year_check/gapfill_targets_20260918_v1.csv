@@ -1,0 +1,121 @@
+﻿gap_id,country,gap_year,gap_span,primary_cause,audit_fill_status,audit_expected_source_report,run_flag,hold_reason
+G0001,Angola,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Angola_2018-06-11.pdf,True,
+G0002,Armenia,2017,2017,no_table_report_in_between,fillable_actual_column_visible,Republic of Armenia_2019-06-05.pdf,True,
+G0003,Aruba,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of the Netherlands—Aruba_2019-06-05.pdf,True,
+G0004,Azerbaijan,2016,2016-2017,lag_between_consecutive_reports,only_in_merged_range_column,,True,
+G0004,Azerbaijan,2017,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Azerbaijan_2019-09-18.pdf,True,
+G0005,Bangladesh,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Bangladesh_2019-09-18.pdf,True,
+G0006,Bolivia,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Bolivia_2020-05-29.pdf,True,
+G0007,Bosnia and Herzegovina,2017,2017-2018,lag_between_consecutive_reports,only_in_merged_range_column,,True,
+G0007,Bosnia and Herzegovina,2018,2017-2018,lag_between_consecutive_reports,fillable_actual_column_visible,Bosnia and Herzegovina_2020-04-23.pdf,True,
+G0008,Bulgaria,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Bulgaria_2019-03-22.pdf,True,
+G0009,Burkina Faso,2015,2015,errors_file_report_in_between,fillable_actual_column_visible,Burkina Faso_2018-03-15.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0010,Cabo Verde,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Cabo Verde_2019-07-31.pdf,True,
+G0011,Cameroon,2016,2016,no_table_report_in_between,fillable_actual_column_visible,Cameroon_2018-07-23.pdf,True,
+G0012,Central African Republic,2017,2017,errors_file_report_in_between,fillable_actual_column_visible,Central African Republic_2019-07-09.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0013,Chad,2018,2018,errors_file_report_in_between,fillable_actual_column_visible,Chad_2020-04-23.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0014,Chile,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Chile_2018-11-09.pdf,True,
+G0015,Chile,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Chile_2020-05-29.pdf,True,
+G0016,Comoros,2016,2016-2017,errors_file_report_in_between,fillable_actual_column_visible,Union of the Comoros_2019-08-14.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0016,Comoros,2017,2016-2017,errors_file_report_in_between,fillable_actual_column_visible,Union of the Comoros_2019-08-14.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0017,Costa Rica,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Costa Rica_2019-04-13.pdf,True,
+G0018,Croatia,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Croatia_2020-02-19.pdf,True,
+G0019,Curaçao and Sint Maarten,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of the Netherlands—Curaçao and Sint Maarten_2019-01-25.pdf,True,
+G0020,Curaçao and Sint Maarten,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of the Netherlands-Curacao and Sint Maarten_2020-04-01.pdf,True,
+G0021,Cyprus,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Cyprus_2017-06-08.pdf,True,
+G0022,Djibouti,2016,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Djibouti_2019-10-23.pdf,True,
+G0022,Djibouti,2017,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Djibouti_2019-10-23.pdf,True,
+G0023,Dominican Republic,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Dominican Republic_2017-08-16.pdf,True,
+G0024,Dominican Republic,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Dominican Republic_2020-05-07.pdf,True,
+G0025,Ecuador,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Ecuador_2019-03-20.pdf,True,
+G0026,El Salvador,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,El Salvador_2018-06-07.pdf,True,
+G0027,Equatorial Guinea,2016,2016-2017,no_table_report_in_between,only_in_merged_range_column,,True,
+G0027,Equatorial Guinea,2017,2016-2017,no_table_report_in_between,fillable_actual_column_visible,Republic of Equatorial Guinea_2019-12-20.pdf,True,
+G0028,Estonia,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Estonia_2018-05-24.pdf,True,
+G0029,Eswatini,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of Eswatini_2020-02-11.pdf,True,
+G0030,Ethiopia,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,The Federal Democratic Republic of Ethiopia_2018-01-24.pdf,True,
+G0031,Fiji,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Fiji_2018-02-08.pdf,True,
+G0032,Gambia,2017,2017,errors_file_report_in_between,fillable_actual_column_visible,The Gambia_2019-05-08.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0033,Ghana,2015,2015,errors_file_report_in_between,fillable_actual_column_visible,Ghana_2018-05-02.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0034,Grenada,2016,2016,errors_file_report_in_between,fillable_actual_column_visible,Grenada_2018-07-25.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0035,Guatemala,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Guatemala_2019-06-18.pdf,True,
+G0036,Guinea,2016,2016,errors_file_report_in_between,fillable_actual_column_visible,Guinea_2019-01-28.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0037,Guinea-Bissau,2016,2016,errors_file_report_in_between,fillable_actual_column_visible,Guinea-Bissau_2018-06-06.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0038,Guyana,2017,2017,errors_file_report_in_between,fillable_actual_column_visible,Guyana_2019-09-17.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0039,Haiti,2016,2016-2018,lag_between_consecutive_reports,only_preliminary_or_estimate,Haiti_2017-02-06.pdf,True,
+G0039,Haiti,2017,2016-2018,lag_between_consecutive_reports,fillable_actual_column_visible,Haiti_2020-04-20_CR2020-121.pdf,True,
+G0039,Haiti,2018,2016-2018,lag_between_consecutive_reports,fillable_actual_column_visible,Haiti_2020-04-20_CR2020-121.pdf,True,
+G0040,Hungary,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Hungary_2018-08-03.pdf,True,
+G0041,India,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,India_2018-08-06.pdf,True,
+G0042,Indonesia,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Indonesia_2019-07-31.pdf,True,
+G0043,Iraq,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Iraq_2019-07-26.pdf,True,
+G0044,Jamaica,2016,2016,no_table_report_in_between,fillable_actual_column_visible,Jamaica_2018-04-16.pdf,True,
+G0045,Jamaica,2018,2018,no_table_report_in_between,fillable_actual_column_visible,Jamaica_2020-05-18.pdf,True,
+G0046,Jordan,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Jordan_2019-05-15.pdf,True,
+G0047,Kenya,2017,2017-2018,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Kenya_2020-05-11.pdf,True,
+G0047,Kenya,2018,2017-2018,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Kenya_2020-05-11.pdf,True,
+G0048,Korea,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Korea_2018-02-13.pdf,True,
+G0049,Korea,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Korea_2019-05-13.pdf,True,
+G0050,Kosovo,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Kosovo_2020-04-16.pdf,True,
+G0051,Kuwait,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Kuwait_2019-04-02.pdf,True,
+G0052,Kyrgyz Republic,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Kyrgyz Republic_2020-03-27.pdf,True,
+G0053,Lebanon,2016,2016-2017,lag_between_consecutive_reports,only_in_merged_range_column,,True,
+G0053,Lebanon,2017,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Lebanon_2019-10-17.pdf,True,
+G0054,Lesotho,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of Lesotho_2018-02-28.pdf,True,
+G0055,Lesotho,2018,2018,lag_between_consecutive_reports,only_projection,,True,
+G0056,Liberia,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Liberia_2017-11-20.pdf,True,
+G0057,Liberia,2017,2017,errors_file_report_in_between,fillable_actual_column_visible,Liberia_2019-06-19.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0058,Madagascar,2017,2017,errors_file_report_in_between,fillable_actual_column_visible,Republic of Madagascar_2019-08-01.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0059,Malaysia,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Malaysia_2018-03-07.pdf,True,
+G0060,Maldives,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Maldives_2017-12-01.pdf,True,
+G0061,Maldives,2018,2018,no_table_report_in_between,fillable_actual_column_visible,Maldives_2020-04-23.pdf,True,
+G0062,Mali,2016,2016,errors_file_report_in_between,fillable_actual_column_visible,Mali_2018-05-31.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0063,Moldova,2016,2016-2017,errors_file_report_in_between,only_preliminary_or_estimate,Republic of Moldova_2016-11-09.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0063,Moldova,2017,2016-2017,errors_file_report_in_between,only_projection,,False,errors_sa file report between the bounding reports; verify it first
+G0064,Montenegro,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Montenegro_2017-09-14.pdf,True,
+G0065,Mozambique,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Mozambique_2018-03-07.pdf,True,
+G0066,Myanmar,2016,2016,errors_file_report_in_between,fillable_actual_column_visible,Myanmar_2019-04-10.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0067,Namibia,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Namibia_2019-09-13.pdf,True,
+G0068,Nauru,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Nauru_2020-01-29.pdf,True,
+G0069,Nepal,2017,2017,lag_between_consecutive_reports,only_preliminary_or_estimate,Nepal_2017-03-27.pdf,True,
+G0070,Netherlands,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Kingdom of the Netherlands—Netherlands_2018-05-28.pdf,True,
+G0071,New Zealand,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,New Zealand_2018-07-03.pdf,True,
+G0072,Nicaragua,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Nicaragua_2017-06-27.pdf,True,
+G0073,Nicaragua,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Nicaragua_2020-02-27.pdf,True,
+G0074,Niger,2016,2016-2017,no_table_report_in_between,fillable_actual_column_visible,Niger_2019-07-22.pdf,True,
+G0074,Niger,2017,2016-2017,no_table_report_in_between,fillable_actual_column_visible,Niger_2019-07-22.pdf,True,
+G0075,Nigeria,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Nigeria_2019-04-01.pdf,True,
+G0076,North Macedonia,2017,2017-2018,errors_file_report_in_between,fillable_actual_column_visible,Former Yugoslav Republic of Macedonia_2019-01-29.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0076,North Macedonia,2018,2017-2018,errors_file_report_in_between,fillable_actual_column_visible,Republic of North Macedonia_2020-04-21.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0077,Palau,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of Palau_2019-02-05.pdf,True,
+G0078,Panama,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Panama_2020-04-21.pdf,True,
+G0079,Papua New Guinea,2016,2016,errors_file_report_in_between,fillable_actual_column_visible,Papua New Guinea_2018-12-03.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0080,Paraguay,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Paraguay_2020-04-22.pdf,True,
+G0081,Peru,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Peru_2020-01-13.pdf,True,
+G0082,Portugal,2015,2015,errors_file_report_in_between,fillable_actual_column_visible,Portugal_2017-09-15.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0083,Rwanda,2017,2017,no_table_report_in_between,fillable_actual_column_visible,Rwanda_2019-07-03.pdf,True,
+G0084,Samoa,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Samoa_2019-05-17.pdf,True,
+G0085,San Marino,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Republic of San Marino_2019-03-25.pdf,True,
+G0086,Seychelles,2018,2018,no_table_report_in_between,fillable_actual_column_visible,Seychelles_2020-05-19.pdf,True,
+G0087,Sierra Leone,2016,2016-2018,no_table_report_in_between,only_preliminary_or_estimate,Sierra Leone_2017-06-22.pdf,True,
+G0087,Sierra Leone,2017,2016-2018,no_table_report_in_between,only_projection,,True,
+G0087,Sierra Leone,2018,2016-2018,no_table_report_in_between,only_projection,,True,
+G0088,Slovak Republic,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Slovak Republic_2018-07-26.pdf,True,
+G0089,Solomon Islands,2016,2016,errors_file_report_in_between,fillable_actual_column_visible,Solomon Islands_2018-11-08.pdf,False,errors_sa file report between the bounding reports; verify it first
+G0090,South Sudan,2019,2019,lag_between_consecutive_reports,only_projection,,True,
+G0091,Spain,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,Spain_2020-11-13.pdf,True,
+G0092,St. Lucia,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,St. Lucia_2018-06-20.pdf,True,
+G0093,St. Vincent and the Grenadines,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,St. Vincent and the Grenadines_2017-12-21.pdf,True,
+G0094,St. Vincent and the Grenadines,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,St. Vincent and the Grenadines_2020-05-29.pdf,True,
+G0095,Sudan,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Sudan_2020-03-10.pdf,True,
+G0096,Suriname,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Suriname_2018-12-20.pdf,True,
+G0097,Switzerland,2016,2016,lag_between_consecutive_reports,fillable_actual_column_visible,Switzerland_2018-06-18.pdf,True,
+G0098,São Tomé and Príncipe,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Democratic Republic of Sao Tome and Principe_2019-10-29.pdf,True,
+G0099,Timor-Leste,2015,2015,lag_between_consecutive_reports,fillable_actual_column_visible,Democratic Republic of Timor-Leste_2017-12-07.pdf,True,
+G0100,Tunisia,2017,2017-2018,no_table_report_in_between,only_in_merged_range_column,,True,
+G0100,Tunisia,2018,2017-2018,no_table_report_in_between,fillable_actual_column_visible,Tunisia_2020-04-14.pdf,True,
+G0101,Turkey,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Turkey_2019-12-26.pdf,True,
+G0102,United Kingdom,2018,2018,lag_between_consecutive_reports,fillable_actual_column_visible,United Kingdom_2020-12-18.pdf,True,
+G0103,Vanuatu,2017,2017,lag_between_consecutive_reports,fillable_actual_column_visible,Vanuatu_2019-06-13.pdf,True,
+G0104,Zambia,2016,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Zambia_2019-08-02.pdf,True,
+G0104,Zambia,2017,2016-2017,lag_between_consecutive_reports,fillable_actual_column_visible,Zambia_2019-08-02.pdf,True,

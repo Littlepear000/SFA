@@ -1,0 +1,913 @@
+﻿pdf_file_name,country,report_date,source_file,report_status,table_found,last_actual_year,obs_year,year_parse_note,year_uncertain,year_after_report_year,manual_review_required,actual_column_validation_status,confidence,framework
+Islamic Republic of Afghanistan_2016-05-13.pdf,Afghanistan,2016-05-13,main,no_table,False,,,missing,False,False,No,,,
+Islamic Republic of Afghanistan_2016-07-27.pdf,Afghanistan,2016-07-27,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Islamic Republic of Afghanistan_2017-06-05.pdf,Afghanistan,2017-06-05,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Islamic Republic of Afghanistan_2017-12-14.pdf,Afghanistan,2017-12-14,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Islamic Republic of Afghanistan_2018-05-29.pdf,Afghanistan,2018-05-29,main,no_table,False,,,missing,False,False,No,,,
+Islamic Republic of Afghanistan_2018-12-11.pdf,Afghanistan,2018-12-11,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Islamic Republic of Afghanistan_2019-06-10.pdf,Afghanistan,2019-06-10,main,no_table,False,,,missing,False,False,No,,,
+Islamic Republic of Afghanistan_2019-12-20.pdf,Afghanistan,2019-12-20,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Islamic Republic of Afghanistan_2020-05-01.pdf,Afghanistan,2020-05-01,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Islamic Republic of Afghanistan_2020-11-13.pdf,Afghanistan,2020-11-13,errors,errors_file_not_used,True,2019,2019.0,,True,False,Yes,manual_review,medium,LIC_DSF
+Albania_2016-02-24.pdf,Albania,2016-02-24,main,no_table,False,,,missing,False,False,No,,,
+Albania_2016-06-09.pdf,Albania,2016-06-09,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Albania_2016-09-09.pdf,Albania,2016-09-09,main,no_table,False,,,missing,False,False,No,,,
+Albania_2017-02-28.pdf,Albania,2017-02-28,main,no_table,False,,,missing,False,False,No,,,
+Albania_2017-12-13.pdf,Albania,2017-12-13,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Albania_2018-05-21.pdf,Albania,2018-05-21,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Albania_2019-01-28.pdf,Albania,2019-01-28,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Albania_2019-07-03.pdf,Albania,2019-07-03,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Albania_2020-04-17.pdf,Albania,2020-04-17,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Albania_2020-11-30.pdf,Albania,2020-11-30,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Algeria_2016-05-18.pdf,Algeria,2016-05-18,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Algeria_2017-06-01.pdf,Algeria,2017-06-01,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Algeria_2018-06-13.pdf,Algeria,2018-06-13,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Angola_2017-02-06.pdf,Angola,2017-02-06,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Angola_2018-06-11.pdf,Angola,2018-06-11,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Angola_2019-06-19.pdf,Angola,2019-06-19,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Angola_2019-12-19.pdf,Angola,2019-12-19,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Angola_2020-09-21.pdf,Angola,2020-09-21,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Argentina_2016-11-10.pdf,Argentina,2016-11-10,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Argentina_2017-12-29.pdf,Argentina,2017-12-29,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Argentina_2018-07-13.pdf,Argentina,2018-07-13,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Argentina_2018-10-26.pdf,Argentina,2018-10-26,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Argentina_2018-12-19.pdf,Argentina,2018-12-19,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Argentina_2019-04-05.pdf,Argentina,2019-04-05,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Argentina_2019-07-15.pdf,Argentina,2019-07-15,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Armenia_2016-07-21.pdf,Armenia,2016-07-21,main,observation_superseded_by_later_report,True,2015,2015.0,,True,False,Yes,manual_review,high,MAC_DSA
+Republic of Armenia_2016-12-13.pdf,Armenia,2016-12-13,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Armenia_2017-07-19.pdf,Armenia,2017-07-19,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Armenia_2018-12-12.pdf,Armenia,2018-12-12,main,no_table,False,,,missing,False,False,No,,,
+Republic of Armenia_2019-06-05.pdf,Armenia,2019-06-05,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Armenia_2019-12-30.pdf,Armenia,2019-12-30,main,no_table,False,,,missing,False,False,No,,,
+Republic of Armenia_2020-05-22.pdf,Armenia,2020-05-22,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Armenia_2020-12-16.pdf,Armenia,2020-12-16,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Kingdom of the Netherlands—Aruba_2017-06-15.pdf,Aruba,2017-06-15,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Kingdom of the Netherlands—Aruba_2019-06-05.pdf,Aruba,2019-06-05,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Australia_2017-02-09.pdf,Australia,2017-02-09,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Australia_2018-02-20.pdf,Australia,2018-02-20,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Australia_2019-02-21.pdf,Australia,2019-02-21,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Australia_2020-03-05.pdf,Australia,2020-03-05,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Austria_2016-02-12.pdf,Austria,2016-02-12,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Austria_2017-02-02.pdf,Austria,2017-02-02,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Austria_2018-09-12.pdf,Austria,2018-09-12,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Austria_2020-02-03.pdf,Austria,2020-02-03,main,no_table,False,,,missing,False,False,No,,,
+Republic of Azerbaijan_2016-09-14.pdf,Azerbaijan,2016-09-14,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Azerbaijan_2019-09-18.pdf,Azerbaijan,2019-09-18,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+The Bahamas_2016-07-13.pdf,Bahamas,2016-07-13,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+The Bahamas_2017-10-06.pdf,Bahamas,2017-10-06,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+The Bahamas_2018-05-14.pdf,Bahamas,2018-05-14,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+The Bahamas_2019-07-01.pdf,Bahamas,2019-07-01,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+The Bahamas_2020-06-05.pdf,Bahamas,2020-06-05,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Bangladesh_2016-02-01.pdf,Bangladesh,2016-02-01,main,observation,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Bangladesh_2017-06-08.pdf,Bangladesh,2017-06-08,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Bangladesh_2018-06-08.pdf,Bangladesh,2018-06-08,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Bangladesh_2019-09-18.pdf,Bangladesh,2019-09-18,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Bangladesh_2020-06-03.pdf,Bangladesh,2020-06-03,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Barbados_2016-08-26.pdf,Barbados,2016-08-26,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Barbados_2018-05-30.pdf,Barbados,2018-05-30,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Barbados_2018-10-04.pdf,Barbados,2018-10-04,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Barbados_2019-06-26.pdf,Barbados,2019-06-26,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Barbados_2019-12-18.pdf,Barbados,2019-12-18,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Barbados_2020-06-08.pdf,Barbados,2020-06-08,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Barbados_2020-12-11.pdf,Barbados,2020-12-11,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Belarus_2016-09-21.pdf,Belarus,2016-09-21,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,high,MAC_DSA
+Republic of Belarus_2017-12-18.pdf,Belarus,2017-12-18,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Belarus_2019-01-17.pdf,Belarus,2019-01-17,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Belgium_2016-03-07.pdf,Belgium,2016-03-07,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Belgium_2017-03-17.pdf,Belgium,2017-03-17,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Belgium_2018-03-08.pdf,Belgium,2018-03-08,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Belgium_2019-03-11.pdf,Belgium,2019-03-11,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Belgium_2020-03-31.pdf,Belgium,2020-03-31,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Belize_2016-03-28.pdf,Belize,2016-03-28,main,observation,True,2014,2014.0,,True,False,Yes,manual_review,high,MAC_DSA
+Belize_2016-10-27.pdf,Belize,2016-10-27,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Belize_2017-09-19.pdf,Belize,2017-09-19,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Belize_2018-11-16.pdf,Belize,2018-11-16,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Belize_2019-12-09.pdf,Belize,2019-12-09,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Benin_2016-01-07.pdf,Benin,2016-01-07,main,observation,True,2014,2014.0,,True,False,Yes,manual_review,medium,LIC_DSF
+Benin_2017-04-26.pdf,Benin,2017-04-26,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Benin_2018-01-05.pdf,Benin,2018-01-05,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Benin_2018-07-11.pdf,Benin,2018-07-11,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Benin_2018-12-13.pdf,Benin,2018-12-13,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Benin_2019-07-02.pdf,Benin,2019-07-02,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Benin_2019-12-26.pdf,Benin,2019-12-26,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Benin_2020-05-20.pdf,Benin,2020-05-20,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Bhutan_2016-06-30.pdf,Bhutan,2016-06-30,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Bhutan_2018-10-30.pdf,Bhutan,2018-10-30,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Bolivia_2016-12-22.pdf,Bolivia,2016-12-22,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Bolivia_2017-12-22.pdf,Bolivia,2017-12-22,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Bolivia_2018-12-21.pdf,Bolivia,2018-12-21,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Bolivia_2020-05-29.pdf,Bolivia,2020-05-29,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Bosnia and Herzegovina_2016-09-09.pdf,Bosnia and Herzegovina,2016-09-09,main,observation,True,2015,2015.0,,False,False,No,accepted,medium,MAC_DSA
+Bosnia and Herzegovina_2018-02-13.pdf,Bosnia and Herzegovina,2018-02-13,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Bosnia and Herzegovina_2020-04-23.pdf,Bosnia and Herzegovina,2020-04-23,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Botswana_2016-04-11.pdf,Botswana,2016-04-11,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Botswana_2017-08-08.pdf,Botswana,2017-08-08,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Botswana_2018-09-05.pdf,Botswana,2018-09-05,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Botswana_2020-03-27.pdf,Botswana,2020-03-27,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Brazil_2016-11-15.pdf,Brazil,2016-11-15,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Brazil_2017-07-13.pdf,Brazil,2017-07-13,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Brazil_2018-08-03.pdf,Brazil,2018-08-03,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Brazil_2019-07-23.pdf,Brazil,2019-07-23,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Brazil_2020-12-02.pdf,Brazil,2020-12-02,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Brunei Darussalam_2019-10-10.pdf,Brunei,2019-10-10,main,no_table,False,,,missing,False,False,No,,,
+Bulgaria_2016-11-10.pdf,Bulgaria,2016-11-10,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Bulgaria_2017-05-23.pdf,Bulgaria,2017-05-23,main,no_table,False,,,missing,False,False,No,,,
+Bulgaria_2018-02-21.pdf,Bulgaria,2018-02-21,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Bulgaria_2019-03-22.pdf,Bulgaria,2019-03-22,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Burkina Faso_2016-06-16.pdf,Burkina Faso,2016-06-16,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Burkina Faso_2016-12-22.pdf,Burkina Faso,2016-12-22,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Burkina Faso_2017-07-18.pdf,Burkina Faso,2017-07-18,main,no_table,False,,,missing,False,False,No,,,
+Burkina Faso_2018-03-15.pdf,Burkina Faso,2018-03-15,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Burkina Faso_2019-01-22.pdf,Burkina Faso,2019-01-22,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Burkina Faso_2019-07-31.pdf,Burkina Faso,2019-07-31,main,no_table,False,,,missing,False,False,No,,,
+Burkina Faso_2019-12-30.pdf,Burkina Faso,2019-12-30,errors,errors_file_not_used,True,2018,2018.0,,True,False,Yes,manual_review,medium,LIC_DSF
+Burkina Faso_2020-04-23.pdf,Burkina Faso,2020-04-23,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Burkina Faso_2020-11-18.pdf,Burkina Faso,2020-11-18,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Burundi_2020-07-27.pdf,Burundi,2020-07-27,main,no_table,False,,,missing,False,False,No,,,
+Cabo Verde_2016-11-29.pdf,Cabo Verde,2016-11-29,main,table_but_year_unusable,True,,,missing,True,False,Yes,manual_review,low,UNKNOWN
+Cabo Verde_2018-04-18.pdf,Cabo Verde,2018-04-18,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Cabo Verde_2019-07-31.pdf,Cabo Verde,2019-07-31,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Cabo Verde_2020-04-23.pdf,Cabo Verde,2020-04-23,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Cambodia_2016-11-03.pdf,Cambodia,2016-11-03,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Cambodia_2017-10-20.pdf,Cambodia,2017-10-20,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Cambodia_2018-12-17.pdf,Cambodia,2018-12-17,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Cambodia_2019-12-23.pdf,Cambodia,2019-12-23,main,observation,True,2018,2018.0,,False,False,No,accepted,medium,LIC_DSF
+Cameroon_2017-07-05.pdf,Cameroon,2017-07-05,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Cameroon_2018-01-16.pdf,Cameroon,2018-01-16,main,no_table,False,,,missing,False,False,No,,,
+Cameroon_2018-07-23.pdf,Cameroon,2018-07-23,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Cameroon_2018-12-27.pdf,Cameroon,2018-12-27,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Cameroon_2019-07-25.pdf,Cameroon,2019-07-25,main,no_table,False,,,missing,False,False,No,,,
+Cameroon_2020-02-18.pdf,Cameroon,2020-02-18,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Cameroon_2020-06-04.pdf,Cameroon,2020-06-04,main,observation,True,2018,2018.0,,True,False,Yes,manual_review,high,LIC_DSF
+Cameroon_2020-11-09.pdf,Cameroon,2020-11-09,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Canada_2016-06-13.pdf,Canada,2016-06-13,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Canada_2017-07-13.pdf,Canada,2017-07-13,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Canada_2018-07-16.pdf,Canada,2018-07-16,main,observation,True,2017,2017.0,,True,False,Yes,manual_review,high,MAC_DSA
+Canada_2019-06-24.pdf,Canada,2019-06-24,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Central African Republic_2016-08-10.pdf,Central African Republic,2016-08-10,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Central African Republic_2017-07-31.pdf,Central African Republic,2017-07-31,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Central African Republic_2017-12-27.pdf,Central African Republic,2017-12-27,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Central African Republic_2018-07-09.pdf,Central African Republic,2018-07-09,errors,errors_file_not_used,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+Central African Republic_2019-07-09.pdf,Central African Republic,2019-07-09,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Central African Republic_2020-01-13.pdf,Central African Republic,2020-01-13,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Central African Republic_2020-04-28.pdf,Central African Republic,2020-04-28,errors,errors_file_not_used,True,2019,2019.0,,True,False,Yes,manual_review,medium,LIC_DSF
+Chad_2016-08-17.pdf,Chad,2016-08-17,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Chad_2016-11-28.pdf,Chad,2016-11-28,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Chad_2017-08-04.pdf,Chad,2017-08-04,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Chad_2018-04-27.pdf,Chad,2018-04-27,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Chad_2018-08-22.pdf,Chad,2018-08-22,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Chad_2019-01-24.pdf,Chad,2019-01-24,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Chad_2019-07-31.pdf,Chad,2019-07-31,errors,errors_file_not_used,True,2018,2018.0,,True,False,Yes,manual_review,medium,LIC_DSF
+Chad_2019-12-27.pdf,Chad,2019-12-27,main,no_table,False,,,missing,False,False,No,,,
+Chad_2020-04-23.pdf,Chad,2020-04-23,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Chad_2020-08-05.pdf,Chad,2020-08-05,errors,errors_file_not_used,True,2019,2019.0,,True,False,Yes,manual_review,high,LIC_DSF
+Chile_2016-12-09.pdf,Chile,2016-12-09,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Chile_2018-11-09.pdf,Chile,2018-11-09,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Chile_2020-05-29.pdf,Chile,2020-05-29,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+People's Republic of China_2016-08-12.pdf,China,2016-08-12,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+People's Republic of China_2017-08-08.pdf,China,2017-08-08,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+People’s Republic of China_2018-07-26.pdf,China,2018-07-26,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+People’s Republic of China_2019-08-09.pdf,China,2019-08-09,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Colombia_2016-05-20.pdf,Colombia,2016-05-20,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Colombia_2016-06-15.pdf,Colombia,2016-06-15,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Colombia_2017-05-31.pdf,Colombia,2017-05-31,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Colombia_2017-06-29.pdf,Colombia,2017-06-29,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Colombia_2018-05-29.pdf,Colombia,2018-05-29,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Colombia_2018-06-07.pdf,Colombia,2018-06-07,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Colombia_2019-04-29.pdf,Colombia,2019-04-29,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Colombia_2019-05-22.pdf,Colombia,2019-05-22,main,observation,True,2018,2018.0,,False,False,No,accepted,medium,MAC_DSA
+Colombia_2020-04-17.pdf,Colombia,2020-04-17,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Colombia_2020-05-04.pdf,Colombia,2020-05-04,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Colombia_2020-09-25.pdf,Colombia,2020-09-25,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Union of the Comoros_2016-12-22.pdf,Comoros,2016-12-22,main,observation,True,2015,2015.0,,False,False,No,accepted,medium,LIC_DSF
+Union of the Comoros_2018-06-29.pdf,Comoros,2018-06-29,errors,errors_file_not_used,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+Union of the Comoros_2019-08-14.pdf,Comoros,2019-08-14,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Union of the Comoros_2020-05-07.pdf,Comoros,2020-05-07,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Costa Rica_2016-05-23.pdf,Costa Rica,2016-05-23,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Costa Rica_2017-06-27.pdf,Costa Rica,2017-06-27,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Costa Rica_2019-04-13.pdf,Costa Rica,2019-04-13,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Costa Rica_2020-05-01.pdf,Costa Rica,2020-05-01,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Croatia_2016-06-28.pdf,Croatia,2016-06-28,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Croatia_2018-01-16.pdf,Croatia,2018-01-16,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Croatia_2019-02-12.pdf,Croatia,2019-02-12,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Croatia_2020-02-19.pdf,Croatia,2020-02-19,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Kingdom of the Netherlands—Curaçao and Sint Maarten_2016-08-22.pdf,Curaçao and Sint Maarten,2016-08-22,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Kingdom of the Netherlands—Curaçao and Sint Maarten_2019-01-25.pdf,Curaçao and Sint Maarten,2019-01-25,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Kingdom of the Netherlands-Curacao and Sint Maarten_2020-04-01.pdf,Curaçao and Sint Maarten,2020-04-01,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Cyprus_2016-01-29.pdf,Cyprus,2016-01-29,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Cyprus_2017-06-08.pdf,Cyprus,2017-06-08,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,medium,MAC_DSA
+Cyprus_2017-12-14.pdf,Cyprus,2017-12-14,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Cyprus_2018-06-06.pdf,Cyprus,2018-06-06,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Cyprus_2018-12-03.pdf,Cyprus,2018-12-03,main,observation,True,2017,2017.0,,True,False,Yes,manual_review,high,MAC_DSA
+Cyprus_2019-06-03.pdf,Cyprus,2019-06-03,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Cyprus_2019-12-09.pdf,Cyprus,2019-12-09,main,observation,True,2018,2018.0,,True,False,Yes,manual_review,high,MAC_DSA
+Czech Republic_2016-07-07.pdf,Czech Republic,2016-07-07,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,high,MAC_DSA
+Czech Republic_2017-06-26.pdf,Czech Republic,2017-06-26,main,observation,True,2016,2016.0,,True,False,Yes,manual_review,high,MAC_DSA
+Czech Republic_2018-06-26.pdf,Czech Republic,2018-06-26,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Czech Republic_2019-06-13.pdf,Czech Republic,2019-06-13,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Côte d’Ivoire_2016-06-10.pdf,Côte d'Ivoire,2016-06-10,main,no_table,False,,,missing,False,False,No,,,
+Cote d'Ivoire_2017-06-22.pdf,Côte d'Ivoire,2017-06-22,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Cote d'Ivoire_2017-12-15.pdf,Côte d'Ivoire,2017-12-15,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Cote d'Ivoire_2018-06-25.pdf,Côte d'Ivoire,2018-06-25,errors,errors_file_not_used,False,,,missing,False,False,No,,,
+Cote d'Ivoire_2018-12-14.pdf,Côte d'Ivoire,2018-12-14,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Cote d'Ivoire_2019-07-01.pdf,Côte d'Ivoire,2019-07-01,main,no_table,False,,,missing,False,False,No,,,
+Cote d'Ivoire_2019-12-18.pdf,Côte d'Ivoire,2019-12-18,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Cote d'Ivoire_2020-04-23.pdf,Côte d'Ivoire,2020-04-23,errors,errors_file_not_used,True,2019,2019.0,,True,False,Yes,manual_review,medium,LIC_DSF
+Cote d'Ivoire_2020-12-21.pdf,Côte d'Ivoire,2020-12-21,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Democratic Republic of the Congo_2019-09-04.pdf,Democratic Republic of the Congo,2019-09-04,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Democratic Republic of the Congo_2019-12-23.pdf,Democratic Republic of the Congo,2019-12-23,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Democratic Republic of the Congo_2020-05-01.pdf,Democratic Republic of the Congo,2020-05-01,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Denmark_2016-06-27.pdf,Denmark,2016-06-27,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Denmark_2017-06-20.pdf,Denmark,2017-06-20,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Denmark_2018-06-20.pdf,Denmark,2018-06-20,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Denmark_2019-06-25.pdf,Denmark,2019-06-25,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Djibouti_2016-09-01.pdf,Djibouti,2016-09-01,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Djibouti_2017-04-06.pdf,Djibouti,2017-04-06,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Djibouti_2019-10-23.pdf,Djibouti,2019-10-23,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Djibouti_2020-05-12.pdf,Djibouti,2020-05-12,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Dominica_2016-07-20.pdf,Dominica,2016-07-20,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Dominica_2017-12-20.pdf,Dominica,2017-12-20,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Dominica_2018-09-05.pdf,Dominica,2018-09-05,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Dominican Republic_2016-11-10.pdf,Dominican Republic,2016-11-10,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Dominican Republic_2017-08-16.pdf,Dominican Republic,2017-08-16,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Dominican Republic_2018-10-24.pdf,Dominican Republic,2018-10-24,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Dominican Republic_2019-08-15.pdf,Dominican Republic,2019-08-15,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Dominican Republic_2020-05-07.pdf,Dominican Republic,2020-05-07,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Ecuador_2016-09-09.pdf,Ecuador,2016-09-09,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Ecuador_2019-03-20.pdf,Ecuador,2019-03-20,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Ecuador_2019-03-21.pdf,Ecuador,2019-03-21,main,year_implausible_vs_report_date,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Ecuador_2019-07-03.pdf,Ecuador,2019-07-03,main,no_table,False,,,missing,False,False,No,,,
+Ecuador_2019-12-20.pdf,Ecuador,2019-12-20,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Ecuador_2020-05-28.pdf,Ecuador,2020-05-28,main,observation_superseded_by_later_report,True,2019,2019.0,,True,False,Yes,manual_review,high,MAC_DSA
+Ecuador_2020-10-05.pdf,Ecuador,2020-10-05,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Ecuador_2020-12-23.pdf,Ecuador,2020-12-23,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Arab Republic of Egypt_2017-01-18.pdf,Egypt,2017-01-18,main,no_table,False,,,missing,False,False,No,,,
+Arab Republic of Egypt_2017-09-26.pdf,Egypt,2017-09-26,main,observation,True,2016,2016.0,,False,False,No,accepted,medium,MAC_DSA
+Arab Republic of Egypt_2018-01-22.pdf,Egypt,2018-01-22,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Arab Republic of Egypt_2018-07-12.pdf,Egypt,2018-07-12,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Arab Republic of Egypt_2019-04-06.pdf,Egypt,2019-04-06,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Arab Republic of Egypt_2019-10-10.pdf,Egypt,2019-10-10,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Arab Republic of Egypt_2020-08-10.pdf,Egypt,2020-08-10,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Arab Republic of Egypt_2020-09-01.pdf,Egypt,2020-09-01,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+El Salvador_2016-07-01.pdf,El Salvador,2016-07-01,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+El Salvador_2018-06-07.pdf,El Salvador,2018-06-07,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+El Salvador_2019-05-23.pdf,El Salvador,2019-05-23,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+El Salvador_2020-04-16.pdf,El Salvador,2020-04-16,main,observation,True,2019,2019.0,,True,False,Yes,manual_review,medium,MAC_DSA
+Republic of Equatorial Guinea_2016-11-16.pdf,Equatorial Guinea,2016-11-16,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,medium,MAC_DSA
+Republic of Equatorial Guinea_2018-11-12.pdf,Equatorial Guinea,2018-11-12,main,no_table,False,,,missing,False,False,No,,,
+Republic of Equatorial Guinea_2019-12-20.pdf,Equatorial Guinea,2019-12-20,main,observation,True,2018,2018.0,,False,False,No,accepted,medium,MAC_DSA
+Republic of Estonia_2017-01-13.pdf,Estonia,2017-01-13,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Estonia_2018-05-24.pdf,Estonia,2018-05-24,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Republic of Estonia_2020-01-22.pdf,Estonia,2020-01-22,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Kingdom of Swaziland_2017-09-11.pdf,Eswatini,2017-09-11,main,observation,True,2016,2016.0,,False,False,No,accepted,medium,MAC_DSA
+Kingdom of Eswatini_2020-02-11.pdf,Eswatini,2020-02-11,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Kingdom of Eswatini_2020-07-30.pdf,Eswatini,2020-07-30,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+The Federal Democratic Republic of Ethiopia_2016-10-04.pdf,Ethiopia,2016-10-04,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+The Federal Democratic Republic of Ethiopia_2018-01-24.pdf,Ethiopia,2018-01-24,main,observation,True,2016/17,2017.0,fiscal_year_end_of_2016/17,False,False,No,accepted,high,LIC_DSF
+The Federal Democratic Republic of Ethiopia_2018-12-04.pdf,Ethiopia,2018-12-04,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+The Federal Democratic Republic of Ethiopia_2020-01-28.pdf,Ethiopia,2020-01-28,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+The Federal Democratic Republic of Ethiopia_2020-05-06.pdf,Ethiopia,2020-05-06,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Fiji_2016-02-22.pdf,Fiji,2016-02-22,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Fiji_2018-02-08.pdf,Fiji,2018-02-08,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Fiji_2019-02-15.pdf,Fiji,2019-02-15,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Republic of Fiji_2020-03-25.pdf,Fiji,2020-03-25,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Finland_2016-12-07.pdf,Finland,2016-12-07,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Finland_2017-12-13.pdf,Finland,2017-12-13,main,observation,True,2016,2016.0,,False,False,No,accepted,medium,MAC_DSA
+Finland_2019-01-15.pdf,Finland,2019-01-15,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Finland_2020-01-16.pdf,Finland,2020-01-16,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+France_2016-07-12.pdf,France,2016-07-12,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+France_2017-09-21.pdf,France,2017-09-21,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+France_2018-07-26.pdf,France,2018-07-26,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+France_2019-07-24.pdf,France,2019-07-24,main,observation,True,2018,2018.0,,False,False,No,accepted,medium,MAC_DSA
+Gabon_2016-03-18.pdf,Gabon,2016-03-18,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Gabon_2017-07-11.pdf,Gabon,2017-07-11,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Gabon_2017-12-28.pdf,Gabon,2017-12-28,main,no_table,False,,,missing,False,False,No,,,
+Gabon_2018-09-12.pdf,Gabon,2018-09-12,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Gabon_2019-01-22.pdf,Gabon,2019-01-22,main,no_table,False,,,missing,False,False,No,,,
+Gabon_2019-12-23.pdf,Gabon,2019-12-23,main,observation,True,2018,2018.0,,True,False,Yes,manual_review,medium,MAC_DSA
+Gabon_2020-04-16.pdf,Gabon,2020-04-16,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,medium,MAC_DSA
+Gabon_2020-08-13.pdf,Gabon,2020-08-13,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+The Gambia_2017-07-03.pdf,Gambia,2017-07-03,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+The Gambia_2018-04-04.pdf,Gambia,2018-04-04,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+The Gambia_2018-06-28.pdf,Gambia,2018-06-28,errors,errors_file_not_used,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+The Gambia_2019-05-08.pdf,Gambia,2019-05-08,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+The Gambia_2020-04-20.pdf,Gambia,2020-04-20,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+The Gambia_2020-04-23.pdf,Gambia,2020-04-23,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Georgia_2017-04-13.pdf,Georgia,2017-04-13,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Georgia_2017-12-07.pdf,Georgia,2017-12-07,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Georgia_2018-06-28.pdf,Georgia,2018-06-28,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Georgia_2018-12-19.pdf,Georgia,2018-12-19,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Georgia_2019-06-19.pdf,Georgia,2019-06-19,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Georgia_2019-12-18.pdf,Georgia,2019-12-18,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Georgia_2020-05-05.pdf,Georgia,2020-05-05,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Georgia_2020-12-20.pdf,Georgia,2020-12-20,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Germany_2016-06-29.pdf,Germany,2016-06-29,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Germany_2017-07-07.pdf,Germany,2017-07-07,main,observation,True,2016,2016.0,,False,False,No,accepted,medium,MAC_DSA
+Germany_2018-07-04.pdf,Germany,2018-07-04,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Germany_2019-07-10.pdf,Germany,2019-07-10,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Ghana_2016-01-20.pdf,Ghana,2016-01-20,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Ghana_2016-10-03.pdf,Ghana,2016-10-03,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Ghana_2017-09-06.pdf,Ghana,2017-09-06,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Ghana_2018-05-02.pdf,Ghana,2018-05-02,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Ghana_2019-04-05.pdf,Ghana,2019-04-05,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Ghana_2019-12-18.pdf,Ghana,2019-12-18,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Ghana_2020-04-16.pdf,Ghana,2020-04-16,main,observation,True,2019,2019.0,,True,False,Yes,manual_review,high,LIC_DSF
+Greece_2017-02-07_CR2017-040.pdf,Greece,2017-02-07,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Greece_2017-02-07_CR2017-044.pdf,Greece,2017-02-07,main,no_table,False,,,missing,False,False,No,,,
+Greece_2017-07-20.pdf,Greece,2017-07-20,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Greece_2018-07-31.pdf,Greece,2018-07-31,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Greece_2019-03-12.pdf,Greece,2019-03-12,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Greece_2019-11-15.pdf,Greece,2019-11-15,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Greece_2020-11-30.pdf,Greece,2020-11-30,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Grenada_2016-05-24.pdf,Grenada,2016-05-24,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Grenada_2016-12-21.pdf,Grenada,2016-12-21,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Grenada_2017-05-23.pdf,Grenada,2017-05-23,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Grenada_2018-07-25.pdf,Grenada,2018-07-25,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Grenada_2019-07-03.pdf,Grenada,2019-07-03,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Grenada_2020-05-13.pdf,Grenada,2020-05-13,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Guatemala_2016-09-01.pdf,Guatemala,2016-09-01,main,observation,True,2015,2015.0,,False,False,No,accepted,medium,MAC_DSA
+Guatemala_2018-06-08.pdf,Guatemala,2018-06-08,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Guatemala_2019-06-18.pdf,Guatemala,2019-06-18,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Guatemala_2020-06-11.pdf,Guatemala,2020-06-11,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Guinea_2016-04-04.pdf,Guinea,2016-04-04,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Guinea_2016-07-29.pdf,Guinea,2016-07-29,main,no_table,False,,,missing,False,False,No,,,
+Guinea_2016-11-28.pdf,Guinea,2016-11-28,main,no_table,False,,,missing,False,False,No,,,
+Guinea_2017-12-19.pdf,Guinea,2017-12-19,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Guinea_2018-07-20.pdf,Guinea,2018-07-20,errors,errors_file_not_used,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+Guinea_2019-01-28.pdf,Guinea,2019-01-28,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Guinea_2019-08-23.pdf,Guinea,2019-08-23,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Guinea_2020-04-16.pdf,Guinea,2020-04-16,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Guinea_2020-07-16.pdf,Guinea,2020-07-16,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Guinea_2020-12-14.pdf,Guinea,2020-12-14,main,observation,True,2019,2019.0,,False,False,No,accepted,medium,LIC_DSF
+Guinea-Bissau_2016-12-28.pdf,Guinea-Bissau,2016-12-28,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Guinea-Bissau_2017-07-20.pdf,Guinea-Bissau,2017-07-20,main,no_table,False,,,missing,False,False,No,,,
+Guinea-Bissau_2017-12-18.pdf,Guinea-Bissau,2017-12-18,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Guinea-Bissau_2018-06-06.pdf,Guinea-Bissau,2018-06-06,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Guyana_2016-07-07.pdf,Guyana,2016-07-07,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Guyana_2017-06-28.pdf,Guyana,2017-06-28,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Guyana_2018-07-16.pdf,Guyana,2018-07-16,errors,errors_file_not_used,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+Guyana_2019-09-17.pdf,Guyana,2019-09-17,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Haiti_2017-02-06.pdf,Haiti,2017-02-06,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Haiti_2020-04-20_CR2020-121.pdf,Haiti,2020-04-20,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Haiti_2020-04-20_CR2020-123.pdf,Haiti,2020-04-20,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Honduras_2016-01-07.pdf,Honduras,2016-01-07,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Honduras_2016-11-22.pdf,Honduras,2016-11-22,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Honduras_2017-11-21.pdf,Honduras,2017-11-21,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Honduras_2018-07-03.pdf,Honduras,2018-07-03,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Honduras_2019-07-19.pdf,Honduras,2019-07-19,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Honduras_2019-12-20.pdf,Honduras,2019-12-20,main,no_table,False,,,missing,False,False,No,,,
+Honduras_2020-06-03.pdf,Honduras,2020-06-03,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Honduras_2020-12-16.pdf,Honduras,2020-12-16,main,no_table,False,,,missing,False,False,No,,,
+People’s Republic of China—Hong Kong Special Administrative Region_2016-01-19.pdf,"Hong Kong SAR, China",2016-01-19,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+People's Republic of China-Hong Kong Special Administrative Region_2017-01-12.pdf,"Hong Kong SAR, China",2017-01-12,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+People's Republic of China-Hong Kong Special Administrative Region_2018-01-22.pdf,"Hong Kong SAR, China",2018-01-22,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+People's Republic of China-Hong Kong Special Administrative Region_2019-01-24.pdf,"Hong Kong SAR, China",2019-01-24,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+People's Republic of China-Hong Kong Special Administrative Region_2019-12-30.pdf,"Hong Kong SAR, China",2019-12-30,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Hungary_2016-04-29.pdf,Hungary,2016-04-29,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Hungary_2017-05-12.pdf,Hungary,2017-05-12,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Hungary_2018-08-03.pdf,Hungary,2018-08-03,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Hungary_2019-12-05.pdf,Hungary,2019-12-05,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Iceland_2016-06-22.pdf,Iceland,2016-06-22,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Iceland_2017-06-22.pdf,Iceland,2017-06-22,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Iceland_2018-11-14.pdf,Iceland,2018-11-14,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Iceland_2019-12-19.pdf,Iceland,2019-12-19,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+India_2016-03-02.pdf,India,2016-03-02,main,observation,True,2014,2014.0,,False,False,No,accepted,medium,MAC_DSA
+India_2017-02-22.pdf,India,2017-02-22,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+India_2018-08-06.pdf,India,2018-08-06,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+India_2019-12-23.pdf,India,2019-12-23,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Indonesia_2016-03-15.pdf,Indonesia,2016-03-15,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Indonesia_2017-02-03.pdf,Indonesia,2017-02-03,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Indonesia_2018-02-06.pdf,Indonesia,2018-02-06,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Indonesia_2019-07-31.pdf,Indonesia,2019-07-31,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Islamic Republic of Iran_2017-02-27.pdf,Iran,2017-02-27,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Islamic Republic of Iran_2018-03-29.pdf,Iran,2018-03-29,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Iraq_2016-01-12.pdf,Iraq,2016-01-12,main,no_table,False,,,missing,False,False,No,,,
+Iraq_2016-07-14.pdf,Iraq,2016-07-14,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Iraq_2016-12-13.pdf,Iraq,2016-12-13,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Iraq_2017-08-09.pdf,Iraq,2017-08-09,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Iraq_2019-07-26.pdf,Iraq,2019-07-26,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Ireland_2016-01-19.pdf,Ireland,2016-01-19,main,no_table,False,,,missing,False,False,No,,,
+Ireland_2016-07-28.pdf,Ireland,2016-07-28,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Ireland_2017-02-03.pdf,Ireland,2017-02-03,main,no_table,False,,,missing,False,False,No,,,
+Ireland_2017-06-26.pdf,Ireland,2017-06-26,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Ireland_2018-06-28.pdf,Ireland,2018-06-28,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Ireland_2019-06-17.pdf,Ireland,2019-06-17,main,observation,True,2018,2018.0,,False,False,No,accepted,medium,MAC_DSA
+Israel_2017-03-28.pdf,Israel,2017-03-28,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Israel_2018-05-01.pdf,Israel,2018-05-01,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Italy_2016-07-11.pdf,Italy,2016-07-11,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Italy_2017-07-27.pdf,Italy,2017-07-27,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Italy_2019-02-06.pdf,Italy,2019-02-06,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Italy_2020-03-20.pdf,Italy,2020-03-20,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Jamaica_2016-06-21.pdf,Jamaica,2016-06-21,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Jamaica_2016-09-19.pdf,Jamaica,2016-09-19,main,no_table,False,,,missing,False,False,No,,,
+Jamaica_2016-11-15.pdf,Jamaica,2016-11-15,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Jamaica_2017-11-02.pdf,Jamaica,2017-11-02,main,no_table,False,,,missing,False,False,No,,,
+Jamaica_2018-04-16.pdf,Jamaica,2018-04-16,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Jamaica_2018-11-07.pdf,Jamaica,2018-11-07,main,no_table,False,,,missing,False,False,No,,,
+Jamaica_2019-04-23.pdf,Jamaica,2019-04-23,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Jamaica_2019-11-07.pdf,Jamaica,2019-11-07,main,no_table,False,,,missing,False,False,No,,,
+Jamaica_2020-05-18.pdf,Jamaica,2020-05-18,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Japan_2016-08-02.pdf,Japan,2016-08-02,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Japan_2017-07-31.pdf,Japan,2017-07-31,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Japan_2018-11-27.pdf,Japan,2018-11-27,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Japan_2020-02-10.pdf,Japan,2020-02-10,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Jordan_2016-09-14.pdf,Jordan,2016-09-14,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Jordan_2017-07-24.pdf,Jordan,2017-07-24,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Jordan_2019-05-15.pdf,Jordan,2019-05-15,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Jordan_2020-04-16.pdf,Jordan,2020-04-16,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Jordan_2020-05-29.pdf,Jordan,2020-05-29,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Kazakhstan_2017-05-09.pdf,Kazakhstan,2017-05-09,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Kazakhstan_2018-09-14.pdf,Kazakhstan,2018-09-14,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Republic of Kazakhstan_2020-01-29.pdf,Kazakhstan,2020-01-29,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Kenya_2016-02-02.pdf,Kenya,2016-02-02,main,no_table,False,,,missing,False,False,No,,,
+Kenya_2016-03-22.pdf,Kenya,2016-03-22,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Kenya_2017-02-02.pdf,Kenya,2017-02-02,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Kenya_2018-03-16.pdf,Kenya,2018-03-16,main,no_table,False,,,missing,False,False,No,,,
+Kenya_2018-10-23.pdf,Kenya,2018-10-23,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Kenya_2020-05-11.pdf,Kenya,2020-05-11,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Kiribati_2016-09-09.pdf,Kiribati,2016-09-09,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Kiribati_2017-12-18.pdf,Kiribati,2017-12-18,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Kiribati_2019-01-24.pdf,Kiribati,2019-01-24,errors,errors_file_not_used,True,2017,2017.0,,True,False,Yes,manual_review,medium,LIC_DSF
+Republic of Korea_2016-08-26.pdf,Korea,2016-08-26,main,observation,True,2014,2014.0,,False,False,No,accepted,medium,MAC_DSA
+Republic of Korea_2018-02-13.pdf,Korea,2018-02-13,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Korea_2019-05-13.pdf,Korea,2019-05-13,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Kosovo_2016-01-25.pdf,Kosovo,2016-01-25,main,no_table,False,,,missing,False,False,No,,,
+Republic of Kosovo_2017-03-17.pdf,Kosovo,2017-03-17,main,observation,True,2015,2015.0,,False,False,No,accepted,medium,MAC_DSA
+Republic of Kosovo_2018-02-04.pdf,Kosovo,2018-02-04,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Kosovo_2018-12-18.pdf,Kosovo,2018-12-18,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Kosovo_2020-04-16.pdf,Kosovo,2020-04-16,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Kuwait_2017-01-17.pdf,Kuwait,2017-01-17,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Kuwait_2018-01-26.pdf,Kuwait,2018-01-26,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Kuwait_2019-04-02.pdf,Kuwait,2019-04-02,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Kuwait_2020-03-30.pdf,Kuwait,2020-03-30,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Kyrgyz Republic_2016-02-22.pdf,Kyrgyz Republic,2016-02-22,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Kyrgyz Republic_2016-06-29.pdf,Kyrgyz Republic,2016-06-29,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Kyrgyz Republic_2017-06-02.pdf,Kyrgyz Republic,2017-06-02,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Kyrgyz Republic_2018-02-22.pdf,Kyrgyz Republic,2018-02-22,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Kyrgyz Republic_2019-07-03.pdf,Kyrgyz Republic,2019-07-03,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Kyrgyz Republic_2020-03-27.pdf,Kyrgyz Republic,2020-03-27,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Kyrgyz Republic_2020-05-12.pdf,Kyrgyz Republic,2020-05-12,main,no_table,False,,,missing,False,False,No,,,
+Lao People's Democratic Republic_2017-02-15.pdf,Lao PDR,2017-02-15,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Lao People’s Democratic Republic_2018-03-23.pdf,Lao PDR,2018-03-23,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Lao People’s Democratic Republic_2019-08-08.pdf,Lao PDR,2019-08-08,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Latvia_2016-06-16.pdf,Latvia,2016-06-16,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Latvia_2017-07-07.pdf,Latvia,2017-07-07,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Latvia_2018-09-05.pdf,Latvia,2018-09-05,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Latvia_2019-08-07.pdf,Latvia,2019-08-07,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Lebanon_2017-01-24.pdf,Lebanon,2017-01-24,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Lebanon_2019-10-17.pdf,Lebanon,2019-10-17,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Kingdom of Lesotho_2016-02-03.pdf,Lesotho,2016-02-03,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Kingdom of Lesotho_2018-02-28.pdf,Lesotho,2018-02-28,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Kingdom of Lesotho_2019-04-30.pdf,Lesotho,2019-04-30,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Kingdom of Lesotho_2020-07-30.pdf,Lesotho,2020-07-30,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Liberia_2016-01-08.pdf,Liberia,2016-01-08,main,observation_superseded_by_later_report,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Liberia_2016-07-20.pdf,Liberia,2016-07-20,main,observation_superseded_by_later_report,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Liberia_2016-12-22.pdf,Liberia,2016-12-22,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Liberia_2017-11-20.pdf,Liberia,2017-11-20,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Liberia_2018-06-15.pdf,Liberia,2018-06-15,errors,errors_file_not_used,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+Liberia_2019-06-19.pdf,Liberia,2019-06-19,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Liberia_2019-12-20.pdf,Liberia,2019-12-20,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Liberia_2020-06-12.pdf,Liberia,2020-06-12,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Lithuania_2016-05-18.pdf,Lithuania,2016-05-18,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Lithuania_2017-06-30.pdf,Lithuania,2017-06-30,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Lithuania_2018-06-25.pdf,Lithuania,2018-06-25,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Republic of Lithuania_2019-07-31.pdf,Lithuania,2019-07-31,main,observation,True,2018,2018.0,,False,False,No,accepted,medium,MAC_DSA
+Luxembourg_2016-05-16.pdf,Luxembourg,2016-05-16,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Luxembourg_2017-05-10.pdf,Luxembourg,2017-05-10,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Luxembourg_2018-04-03.pdf,Luxembourg,2018-04-03,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Luxembourg_2019-05-10.pdf,Luxembourg,2019-05-10,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+People's Republic of China-Macao Special Administrative Region_2017-02-14.pdf,"Macao SAR, China",2017-02-14,main,no_table,False,,,missing,False,False,No,,,
+People’s Republic of China—Macao Special Administrative Region_2019-05-06.pdf,"Macao SAR, China",2019-05-06,main,no_table,False,,,missing,False,False,No,,,
+Republic of Madagascar_2016-08-16.pdf,Madagascar,2016-08-16,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Madagascar_2017-07-18.pdf,Madagascar,2017-07-18,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Madagascar_2017-12-18.pdf,Madagascar,2017-12-18,main,no_table,False,,,missing,False,False,No,,,
+Republic of Madagascar_2018-07-25.pdf,Madagascar,2018-07-25,errors,errors_file_not_used,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+Republic of Madagascar_2019-03-29.pdf,Madagascar,2019-03-29,main,no_table,False,,,missing,False,False,No,,,
+Republic of Madagascar_2019-08-01.pdf,Madagascar,2019-08-01,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Madagascar_2020-03-02.pdf,Madagascar,2020-03-02,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Madagascar_2020-04-10.pdf,Madagascar,2020-04-10,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Madagascar_2020-08-27.pdf,Madagascar,2020-08-27,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Malawi_2016-05-17.pdf,Malawi,2016-05-17,main,no_table,False,,,missing,False,False,No,,,
+Malawi_2016-06-24.pdf,Malawi,2016-06-24,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Malawi_2017-07-05.pdf,Malawi,2017-07-05,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Malawi_2018-11-30.pdf,Malawi,2018-11-30,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Malawi_2019-12-06.pdf,Malawi,2019-12-06,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Malawi_2020-05-15.pdf,Malawi,2020-05-15,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Malawi_2020-10-21.pdf,Malawi,2020-10-21,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Malaysia_2016-05-04.pdf,Malaysia,2016-05-04,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Malaysia_2017-04-28.pdf,Malaysia,2017-04-28,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Malaysia_2018-03-07.pdf,Malaysia,2018-03-07,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Malaysia_2019-03-08.pdf,Malaysia,2019-03-08,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Malaysia_2020-02-28.pdf,Malaysia,2020-02-28,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Maldives_2016-05-31.pdf,Maldives,2016-05-31,main,observation,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Maldives_2017-12-01.pdf,Maldives,2017-12-01,main,observation,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+Maldives_2019-06-10.pdf,Maldives,2019-06-10,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Maldives_2019-09-03_CR2019-279.pdf,Maldives,2019-09-03,main,no_table,False,,,missing,False,False,No,,,
+Maldives_2019-09-03_CR2019-280.pdf,Maldives,2019-09-03,main,no_table,False,,,missing,False,False,No,,,
+Maldives_2019-09-03_CR2019-281.pdf,Maldives,2019-09-03,main,year_implausible_vs_report_date,True,2004,2004.0,,False,False,No,accepted,medium,MAC_DSA
+Maldives_2019-09-03_CR2019-282.pdf,Maldives,2019-09-03,main,year_implausible_vs_report_date,True,2006,2006.0,,False,False,No,accepted,high,MAC_DSA
+Maldives_2019-09-03_CR2019-283.pdf,Maldives,2019-09-03,main,year_implausible_vs_report_date,True,2011,2011.0,,False,False,No,accepted,high,LIC_DSF
+Maldives_2020-04-23.pdf,Maldives,2020-04-23,main,observation,True,2019,2019.0,,True,False,Yes,manual_review,high,LIC_DSF
+Mali_2016-06-13.pdf,Mali,2016-06-13,main,no_table,False,,,missing,False,False,No,,,
+Mali_2016-12-07.pdf,Mali,2016-12-07,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Mali_2017-07-12.pdf,Mali,2017-07-12,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Mali_2018-05-31.pdf,Mali,2018-05-31,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Mali_2018-12-12.pdf,Mali,2018-12-12,main,no_table,False,,,missing,False,False,No,,,
+Mali_2019-09-05.pdf,Mali,2019-09-05,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Mali_2020-01-16.pdf,Mali,2020-01-16,main,no_table,False,,,missing,False,False,No,,,
+Mali_2020-05-08.pdf,Mali,2020-05-08,errors,errors_file_not_used,True,2019,2019.0,,True,False,Yes,manual_review,medium,LIC_DSF
+Malta_2016-01-20.pdf,Malta,2016-01-20,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Malta_2017-02-21.pdf,Malta,2017-02-21,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Malta_2018-01-29.pdf,Malta,2018-01-29,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Malta_2019-02-27.pdf,Malta,2019-02-27,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Malta_2020-04-10.pdf,Malta,2020-04-10,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of the Marshall Islands_2016-07-28.pdf,Marshall Islands,2016-07-28,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Republic of the Marshall Islands_2018-09-10.pdf,Marshall Islands,2018-09-10,errors,errors_file_not_used,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+Islamic Republic of Mauritania_2016-05-11.pdf,Mauritania,2016-05-11,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Islamic Republic of Mauritania_2017-10-16.pdf,Mauritania,2017-10-16,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Islamic Republic of Mauritania_2017-12-13.pdf,Mauritania,2017-12-13,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Islamic Republic of Mauritania_2018-05-30.pdf,Mauritania,2018-05-30,main,no_table,False,,,missing,False,False,No,,,
+Islamic Republic of Mauritania_2018-12-13.pdf,Mauritania,2018-12-13,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Islamic Republic of Mauritania_2019-05-31.pdf,Mauritania,2019-05-31,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Islamic Republic of Mauritania_2020-04-29.pdf,Mauritania,2020-04-29,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Islamic Republic of Mauritania_2020-09-16.pdf,Mauritania,2020-09-16,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Islamic Republic of Mauritania_2020-12-11.pdf,Mauritania,2020-12-11,main,no_table,False,,,missing,False,False,No,,,
+Mauritius_2016-03-22.pdf,Mauritius,2016-03-22,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,MAC_DSA
+Mauritius_2017-12-08.pdf,Mauritius,2017-12-08,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Mauritius_2019-04-29.pdf,Mauritius,2019-04-29,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Mexico_2016-05-27.pdf,Mexico,2016-05-27,main,no_table,False,,,missing,False,False,No,,,
+Mexico_2016-11-22.pdf,Mexico,2016-11-22,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Mexico_2017-05-23.pdf,Mexico,2017-05-23,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Mexico_2017-11-13.pdf,Mexico,2017-11-13,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Mexico_2017-11-30.pdf,Mexico,2017-11-30,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Mexico_2018-11-08.pdf,Mexico,2018-11-08,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Mexico_2018-11-27.pdf,Mexico,2018-11-27,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Mexico_2019-11-05.pdf,Mexico,2019-11-05,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Mexico_2019-11-25.pdf,Mexico,2019-11-25,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Mexico_2020-11-04.pdf,Mexico,2020-11-04,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Mexico_2020-11-20.pdf,Mexico,2020-11-20,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Federated States of Micronesia_2017-09-15.pdf,Micronesia,2017-09-15,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Federated States of Micronesia_2019-09-06.pdf,Micronesia,2019-09-06,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+The Republic of Moldova_2016-01-20.pdf,Moldova,2016-01-20,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Moldova_2016-11-09.pdf,Moldova,2016-11-09,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Moldova_2017-05-01.pdf,Moldova,2017-05-01,main,no_table,False,,,missing,False,False,No,,,
+Republic of Moldova_2017-12-21.pdf,Moldova,2017-12-21,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Republic of Moldova_2018-07-05.pdf,Moldova,2018-07-05,main,no_table,False,,,missing,False,False,No,,,
+Republic of Moldova_2019-09-25.pdf,Moldova,2019-09-25,errors,errors_file_not_used,True,2018,2018.0,,True,False,Yes,manual_review,medium,LIC_DSF
+Republic of Moldova_2020-03-18.pdf,Moldova,2020-03-18,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Moldova_2020-04-22.pdf,Moldova,2020-04-22,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Mongolia_2017-05-31.pdf,Mongolia,2017-05-31,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Mongolia_2017-12-21.pdf,Mongolia,2017-12-21,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Mongolia_2018-04-04.pdf,Mongolia,2018-04-04,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Mongolia_2018-07-05.pdf,Mongolia,2018-07-05,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Mongolia_2018-11-02.pdf,Mongolia,2018-11-02,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Mongolia_2019-09-17.pdf,Mongolia,2019-09-17,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Mongolia_2020-06-16.pdf,Mongolia,2020-06-16,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Montenegro_2016-03-08.pdf,Montenegro,2016-03-08,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Montenegro_2017-09-14.pdf,Montenegro,2017-09-14,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Montenegro_2018-05-21.pdf,Montenegro,2018-05-21,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Montenegro_2019-09-10.pdf,Montenegro,2019-09-10,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Montenegro_2020-06-25.pdf,Montenegro,2020-06-25,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Morocco_2016-02-08_CR2016-035.pdf,Morocco,2016-02-08,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Morocco_2016-02-08_CR2016-038.pdf,Morocco,2016-02-08,main,no_table,False,,,missing,False,False,No,,,
+Morocco_2016-08-02.pdf,Morocco,2016-08-02,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Morocco_2017-02-03.pdf,Morocco,2017-02-03,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Morocco_2017-06-07.pdf,Morocco,2017-06-07,main,no_table,False,,,missing,False,False,No,,,
+Morocco_2017-09-08_CR2017-264.pdf,Morocco,2017-09-08,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Morocco_2017-09-08_CR2017-265.pdf,Morocco,2017-09-08,main,no_table,False,,,missing,False,False,No,,,
+Morocco_2018-03-12_CR2018-058.pdf,Morocco,2018-03-12,main,no_table,False,,,missing,False,False,No,,,
+Morocco_2018-03-12_CR2018-075.pdf,Morocco,2018-03-12,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Morocco_2019-01-24.pdf,Morocco,2019-01-24,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Morocco_2019-07-16.pdf,Morocco,2019-07-16,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Morocco_2019-10-23.pdf,Morocco,2019-10-23,main,no_table,False,,,missing,False,False,No,,,
+Morocco_2020-01-28.pdf,Morocco,2020-01-28,main,no_table,False,,,missing,False,False,No,,,
+Republic of Mozambique_2016-01-08.pdf,Mozambique,2016-01-08,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Mozambique_2018-03-07.pdf,Mozambique,2018-03-07,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Mozambique_2019-05-16.pdf,Mozambique,2019-05-16,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Mozambique_2019-06-18.pdf,Mozambique,2019-06-18,main,no_table,False,,,missing,False,False,No,,,
+Republic of Mozambique_2020-04-29.pdf,Mozambique,2020-04-29,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Multi-Country Report_2017-06-14.pdf,Multi-Country Report,2017-06-14,main,excluded_non_country,False,,,missing,False,False,No,,,
+Multi-Country Report_2017-06-20.pdf,Multi-Country Report,2017-06-20,main,excluded_non_country,False,,,missing,False,False,No,,,
+Myanmar_2017-02-02.pdf,Myanmar,2017-02-02,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Myanmar_2018-03-28.pdf,Myanmar,2018-03-28,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Myanmar_2019-04-10.pdf,Myanmar,2019-04-10,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Myanmar_2020-03-26.pdf,Myanmar,2020-03-26,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Myanmar_2020-07-02.pdf,Myanmar,2020-07-02,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Namibia_2016-12-08.pdf,Namibia,2016-12-08,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Namibia_2018-02-28.pdf,Namibia,2018-02-28,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Namibia_2019-09-13.pdf,Namibia,2019-09-13,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Nauru_2017-04-03.pdf,Nauru,2017-04-03,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Nauru_2020-01-29.pdf,Nauru,2020-01-29,main,observation,True,2018,2018.0,,True,False,Yes,manual_review,high,MAC_DSA
+Nepal_2017-03-27.pdf,Nepal,2017-03-27,main,observation,True,2015/16,2016.0,fiscal_year_end_of_2015/16,False,False,No,accepted,high,LIC_DSF
+Nepal_2019-02-17.pdf,Nepal,2019-02-17,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Nepal_2020-04-06.pdf,Nepal,2020-04-06,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Nepal_2020-05-11.pdf,Nepal,2020-05-11,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Kingdom of the Netherlands_2016-02-11.pdf,Netherlands,2016-02-11,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Kingdom of the Netherlands—Netherlands_2017-04-03.pdf,Netherlands,2017-04-03,main,observation,True,2015,2015.0,,False,False,No,accepted,medium,MAC_DSA
+Kingdom of the Netherlands—Netherlands_2018-05-28.pdf,Netherlands,2018-05-28,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Kingdom of the Netherlands—Netherlands_2019-02-12.pdf,Netherlands,2019-02-12,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+New Zealand_2016-02-08.pdf,New Zealand,2016-02-08,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+New Zealand_2017-05-08.pdf,New Zealand,2017-05-08,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+New Zealand_2018-07-03.pdf,New Zealand,2018-07-03,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+New Zealand_2019-09-20.pdf,New Zealand,2019-09-20,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Nicaragua_2016-02-04.pdf,Nicaragua,2016-02-04,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Nicaragua_2017-06-27.pdf,Nicaragua,2017-06-27,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Nicaragua_2020-02-27.pdf,Nicaragua,2020-02-27,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Nicaragua_2020-11-20.pdf,Nicaragua,2020-11-20,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Niger_2016-07-21.pdf,Niger,2016-07-21,main,no_table,False,,,missing,False,False,No,,,
+Niger_2017-02-24.pdf,Niger,2017-02-24,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Niger_2017-12-20.pdf,Niger,2017-12-20,main,no_table,False,,,missing,False,False,No,,,
+Niger_2018-06-12.pdf,Niger,2018-06-12,main,no_table,False,,,missing,False,False,No,,,
+Niger_2019-07-22.pdf,Niger,2019-07-22,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Niger_2020-01-14.pdf,Niger,2020-01-14,main,no_table,False,,,missing,False,False,No,,,
+Niger_2020-04-23.pdf,Niger,2020-04-23,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Niger_2020-11-03.pdf,Niger,2020-11-03,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Nigeria_2016-04-08.pdf,Nigeria,2016-04-08,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Nigeria_2017-04-05.pdf,Nigeria,2017-04-05,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Nigeria_2018-03-07.pdf,Nigeria,2018-03-07,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Nigeria_2019-04-01.pdf,Nigeria,2019-04-01,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Nigeria_2020-04-29.pdf,Nigeria,2020-04-29,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Former Yugoslav Republic of Macedonia_2016-11-21.pdf,North Macedonia,2016-11-21,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Former Yugoslav Republic of Macedonia_2017-11-22.pdf,North Macedonia,2017-11-22,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Former Yugoslav Republic of Macedonia_2019-01-29.pdf,North Macedonia,2019-01-29,errors,errors_file_not_used,True,2017,2017.0,,True,False,Yes,manual_review,high,MAC_DSA
+Republic of North Macedonia_2020-01-27.pdf,North Macedonia,2020-01-27,errors,errors_file_not_used,True,2018,2018.0,,True,False,Yes,manual_review,high,MAC_DSA
+Republic of North Macedonia_2020-04-21.pdf,North Macedonia,2020-04-21,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Norway_2016-07-05.pdf,Norway,2016-07-05,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Norway_2017-07-05.pdf,Norway,2017-07-05,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Norway_2018-09-17.pdf,Norway,2018-09-17,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Norway_2019-06-12.pdf,Norway,2019-06-12,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Pakistan_2016-01-12.pdf,Pakistan,2016-01-12,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Pakistan_2016-04-01.pdf,Pakistan,2016-04-01,main,no_table,False,,,missing,False,False,No,,,
+Pakistan_2016-07-05.pdf,Pakistan,2016-07-05,main,no_table,False,,,missing,False,False,No,,,
+Pakistan_2016-10-13.pdf,Pakistan,2016-10-13,main,no_table,False,,,missing,False,False,No,,,
+Pakistan_2017-07-13.pdf,Pakistan,2017-07-13,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Pakistan_2018-03-14.pdf,Pakistan,2018-03-14,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Pakistan_2019-07-08.pdf,Pakistan,2019-07-08,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Pakistan_2019-12-23.pdf,Pakistan,2019-12-23,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Pakistan_2020-04-17.pdf,Pakistan,2020-04-17,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Palau_2016-10-19.pdf,Palau,2016-10-19,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Palau_2019-02-05.pdf,Palau,2019-02-05,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Panama_2016-11-02.pdf,Panama,2016-11-02,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Panama_2017-05-04.pdf,Panama,2017-05-04,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Panama_2019-01-17.pdf,Panama,2019-01-17,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Panama_2020-04-21.pdf,Panama,2020-04-21,main,observation_superseded_by_later_report,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Panama_2020-05-01.pdf,Panama,2020-05-01,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Papua New Guinea_2017-01-30.pdf,Papua New Guinea,2017-01-30,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Papua New Guinea_2017-12-29.pdf,Papua New Guinea,2017-12-29,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Papua New Guinea_2018-12-03.pdf,Papua New Guinea,2018-12-03,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Papua New Guinea_2020-04-06.pdf,Papua New Guinea,2020-04-06,main,observation,True,2018,2018.0,,False,False,No,accepted,medium,LIC_DSF
+Papua New Guinea_2020-06-26.pdf,Papua New Guinea,2020-06-26,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Paraguay_2016-05-11.pdf,Paraguay,2016-05-11,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Paraguay_2017-07-24.pdf,Paraguay,2017-07-24,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Paraguay_2019-04-30.pdf,Paraguay,2019-04-30,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Paraguay_2020-04-22.pdf,Paraguay,2020-04-22,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Peru_2016-07-15.pdf,Peru,2016-07-15,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Peru_2017-06-28.pdf,Peru,2017-06-28,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Peru_2018-07-25.pdf,Peru,2018-07-25,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Peru_2020-01-13.pdf,Peru,2020-01-13,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Peru_2020-05-29.pdf,Peru,2020-05-29,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Philippines_2016-09-26.pdf,Philippines,2016-09-26,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Philippines_2017-11-10.pdf,Philippines,2017-11-10,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Philippines_2018-09-27.pdf,Philippines,2018-09-27,main,observation,True,2017,2017.0,,True,False,Yes,manual_review,high,MAC_DSA
+Philippines_2020-02-06.pdf,Philippines,2020-02-06,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Poland_2016-01-13.pdf,Poland,2016-01-13,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Poland_2016-07-05.pdf,Poland,2016-07-05,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Poland_2017-01-18.pdf,Poland,2017-01-18,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Poland_2017-07-17.pdf,Poland,2017-07-17,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Poland_2019-02-06.pdf,Poland,2019-02-06,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Portugal_2016-04-01.pdf,Portugal,2016-04-01,main,observation_superseded_by_later_report,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Portugal_2016-09-22_CR2016-300.pdf,Portugal,2016-09-22,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Portugal_2016-09-22_CR2016-302.pdf,Portugal,2016-09-22,main,no_table,False,,,missing,False,False,No,,,
+Portugal_2017-02-22.pdf,Portugal,2017-02-22,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,MAC_DSA
+Portugal_2017-09-15.pdf,Portugal,2017-09-15,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Portugal_2018-02-22.pdf,Portugal,2018-02-22,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Portugal_2018-09-12.pdf,Portugal,2018-09-12,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Portugal_2019-07-12.pdf,Portugal,2019-07-12,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Qatar_2017-04-10.pdf,Qatar,2017-04-10,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Qatar_2018-05-30.pdf,Qatar,2018-05-30,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Qatar_2019-06-03.pdf,Qatar,2019-06-03,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Congo_2019-07-24.pdf,Republic of Congo,2019-07-24,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Congo_2020-01-27.pdf,Republic of Congo,2020-01-27,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Romania_2016-05-11.pdf,Romania,2016-05-11,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Romania_2017-05-25_CR2017-133.pdf,Romania,2017-05-25,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Romania_2017-05-25_CR2017-135.pdf,Romania,2017-05-25,main,no_table,False,,,missing,False,False,No,,,
+Romania_2018-06-06.pdf,Romania,2018-06-06,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Romania_2019-08-30.pdf,Romania,2019-08-30,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Russian Federation_2016-07-13.pdf,Russian Federation,2016-07-13,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Russian Federation_2017-07-10.pdf,Russian Federation,2017-07-10,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Russian Federation_2018-09-12.pdf,Russian Federation,2018-09-12,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Russian Federation_2019-08-02.pdf,Russian Federation,2019-08-02,main,observation,True,2018,2018.0,,False,False,No,accepted,medium,MAC_DSA
+Rwanda_2016-01-28.pdf,Rwanda,2016-01-28,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Rwanda_2016-06-16.pdf,Rwanda,2016-06-16,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Rwanda_2017-01-10.pdf,Rwanda,2017-01-10,main,no_table,False,,,missing,False,False,No,,,
+Rwanda_2017-07-13.pdf,Rwanda,2017-07-13,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Rwanda_2017-11-30.pdf,Rwanda,2017-11-30,main,no_table,False,,,missing,False,False,No,,,
+Rwanda_2018-01-18.pdf,Rwanda,2018-01-18,main,no_table,False,,,missing,False,False,No,,,
+Rwanda_2018-11-30.pdf,Rwanda,2018-11-30,main,no_table,False,,,missing,False,False,No,,,
+Rwanda_2019-07-03.pdf,Rwanda,2019-07-03,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Rwanda_2020-01-17.pdf,Rwanda,2020-01-17,main,no_table,False,,,missing,False,False,No,,,
+Rwanda_2020-04-16.pdf,Rwanda,2020-04-16,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Rwanda_2020-06-18.pdf,Rwanda,2020-06-18,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Rwanda_2020-10-02.pdf,Rwanda,2020-10-02,main,no_table,False,,,missing,False,False,No,,,
+Samoa_2017-05-15.pdf,Samoa,2017-05-15,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Samoa_2018-06-04.pdf,Samoa,2018-06-04,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Samoa_2019-05-17.pdf,Samoa,2019-05-17,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Samoa_2020-04-28.pdf,Samoa,2020-04-28,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Republic of San Marino_2016-05-10.pdf,San Marino,2016-05-10,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Republic of San Marino_2017-04-06.pdf,San Marino,2017-04-06,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of San Marino_2018-04-11.pdf,San Marino,2018-04-11,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of San Marino_2019-03-25.pdf,San Marino,2019-03-25,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of San Marino_2020-04-02.pdf,San Marino,2020-04-02,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Saudi Arabia_2016-10-13.pdf,Saudi Arabia,2016-10-13,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Saudi Arabia_2017-10-05.pdf,Saudi Arabia,2017-10-05,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Saudi Arabia_2018-08-24.pdf,Saudi Arabia,2018-08-24,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Saudi Arabia_2019-09-09.pdf,Saudi Arabia,2019-09-09,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Senegal_2016-01-06.pdf,Senegal,2016-01-06,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Senegal_2016-06-08.pdf,Senegal,2016-06-08,main,no_table,False,,,missing,False,False,No,,,
+Senegal_2017-01-04.pdf,Senegal,2017-01-04,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Senegal_2017-07-24.pdf,Senegal,2017-07-24,main,no_table,False,,,missing,False,False,No,,,
+Senegal_2018-01-12.pdf,Senegal,2018-01-12,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Senegal_2018-07-09.pdf,Senegal,2018-07-09,main,no_table,False,,,missing,False,False,No,,,
+Senegal_2019-01-28.pdf,Senegal,2019-01-28,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Senegal_2020-01-17.pdf,Senegal,2020-01-17,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Senegal_2020-04-16.pdf,Senegal,2020-04-16,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Senegal_2020-07-24.pdf,Senegal,2020-07-24,main,no_table,False,,,missing,False,False,No,,,
+Republic of Serbia_2016-09-02.pdf,Serbia,2016-09-02,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Serbia_2016-12-21.pdf,Serbia,2016-12-21,main,no_table,False,,,missing,False,False,No,,,
+Republic of Serbia_2017-09-06.pdf,Serbia,2017-09-06,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Serbia_2017-12-21.pdf,Serbia,2017-12-21,main,no_table,False,,,missing,False,False,No,,,
+Republic of Serbia_2018-07-24.pdf,Serbia,2018-07-24,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Serbia_2018-12-19.pdf,Serbia,2018-12-19,main,no_table,False,,,missing,False,False,No,,,
+Republic of Serbia_2019-07-22.pdf,Serbia,2019-07-22,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Serbia_2019-12-19.pdf,Serbia,2019-12-19,main,no_table,False,,,missing,False,False,No,,,
+Republic of Serbia_2020-08-28.pdf,Serbia,2020-08-28,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Seychelles_2016-01-14.pdf,Seychelles,2016-01-14,main,no_table,False,,,missing,False,False,No,,,
+Seychelles_2017-02-21.pdf,Seychelles,2017-02-21,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Seychelles_2017-06-20.pdf,Seychelles,2017-06-20,main,no_table,False,,,missing,False,False,No,,,
+Seychelles_2017-12-22.pdf,Seychelles,2017-12-22,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Seychelles_2018-06-29.pdf,Seychelles,2018-06-29,main,no_table,False,,,missing,False,False,No,,,
+Seychelles_2019-01-07.pdf,Seychelles,2019-01-07,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Seychelles_2019-07-01.pdf,Seychelles,2019-07-01,main,no_table,False,,,missing,False,False,No,,,
+Seychelles_2020-05-19.pdf,Seychelles,2020-05-19,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Seychelles_2020-09-03.pdf,Seychelles,2020-09-03,main,no_table,False,,,missing,False,False,No,,,
+Sierra Leone_2016-07-21.pdf,Sierra Leone,2016-07-21,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Sierra Leone_2016-12-22.pdf,Sierra Leone,2016-12-22,main,no_table,False,,,missing,False,False,No,,,
+Sierra Leone_2017-06-22.pdf,Sierra Leone,2017-06-22,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Sierra Leone_2019-07-09.pdf,Sierra Leone,2019-07-09,main,no_table,False,,,missing,False,False,No,,,
+Sierra Leone_2020-06-10.pdf,Sierra Leone,2020-06-10,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Singapore_2016-07-29.pdf,Singapore,2016-07-29,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Singapore_2017-07-28.pdf,Singapore,2017-07-28,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Singapore_2018-07-27.pdf,Singapore,2018-07-27,main,observation,True,2017,2017.0,,False,False,No,accepted_with_warning,medium,MAC_DSA
+Singapore_2019-07-15.pdf,Singapore,2019-07-15,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Slovak Republic_2016-01-14.pdf,Slovak Republic,2016-01-14,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Slovak Republic_2017-03-23.pdf,Slovak Republic,2017-03-23,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Slovak Republic_2018-07-26.pdf,Slovak Republic,2018-07-26,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Slovak Republic_2019-07-12.pdf,Slovak Republic,2019-07-12,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Slovenia_2016-05-16.pdf,Slovenia,2016-05-16,main,observation,True,2015,2015.0,,False,False,No,accepted,medium,MAC_DSA
+Republic of Slovenia_2017-05-15.pdf,Slovenia,2017-05-15,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Slovenia_2019-02-18.pdf,Slovenia,2019-02-18,main,observation,True,2017,2017.0,,True,False,Yes,manual_review,high,MAC_DSA
+Solomon Islands_2016-03-23.pdf,Solomon Islands,2016-03-23,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Solomon Islands_2018-03-05.pdf,Solomon Islands,2018-03-05,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Solomon Islands_2018-11-08.pdf,Solomon Islands,2018-11-08,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Solomon Islands_2020-02-18.pdf,Solomon Islands,2020-02-18,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Solomon Islands_2020-06-04.pdf,Solomon Islands,2020-06-04,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Somalia_2016-05-27.pdf,Somalia,2016-05-27,main,no_table,False,,,missing,False,False,No,,,
+Somalia_2017-02-27.pdf,Somalia,2017-02-27,main,no_table,False,,,missing,False,False,No,,,
+Somalia_2017-07-11.pdf,Somalia,2017-07-11,main,no_table,False,,,missing,False,False,No,,,
+Somalia_2018-02-26.pdf,Somalia,2018-02-26,main,no_table,False,,,missing,False,False,No,,,
+Somalia_2018-07-06.pdf,Somalia,2018-07-06,main,no_table,False,,,missing,False,False,No,,,
+Somalia_2019-02-26.pdf,Somalia,2019-02-26,main,no_table,False,,,missing,False,False,No,,,
+Somalia_2019-08-01.pdf,Somalia,2019-08-01,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Somalia_2019-11-18.pdf,Somalia,2019-11-18,main,no_table,False,,,missing,False,False,No,,,
+Somalia_2020-03-26.pdf,Somalia,2020-03-26,main,no_table,False,,,missing,False,False,No,,,
+Somalia_2020-11-30.pdf,Somalia,2020-11-30,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+South Africa_2016-07-07.pdf,South Africa,2016-07-07,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+South Africa_2017-07-06.pdf,South Africa,2017-07-06,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+South Africa_2018-07-30.pdf,South Africa,2018-07-30,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+South Africa_2020-01-30.pdf,South Africa,2020-01-30,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+South Sudan_2017-03-23.pdf,South Sudan,2017-03-23,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+South Sudan_2019-06-04.pdf,South Sudan,2019-06-04,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Republic of South Sudan_2020-11-16.pdf,South Sudan,2020-11-16,main,observation,True,2020,2020.0,,False,False,No,accepted,high,LIC_DSF
+Spain_2017-01-30.pdf,Spain,2017-01-30,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Spain_2017-10-06.pdf,Spain,2017-10-06,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Spain_2018-11-21.pdf,Spain,2018-11-21,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Spain_2020-11-13.pdf,Spain,2020-11-13,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Sri Lanka_2016-06-14_CR2016-150.pdf,Sri Lanka,2016-06-14,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Sri Lanka_2016-06-14_CR2016-152.pdf,Sri Lanka,2016-06-14,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Sri Lanka_2016-12-09.pdf,Sri Lanka,2016-12-09,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Sri Lanka_2017-08-10.pdf,Sri Lanka,2017-08-10,main,observation_superseded_by_later_report,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Sri Lanka_2018-01-12.pdf,Sri Lanka,2018-01-12,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Sri Lanka_2018-06-20.pdf,Sri Lanka,2018-06-20,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Sri Lanka_2019-05-16.pdf,Sri Lanka,2019-05-16,main,observation_superseded_by_later_report,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Sri Lanka_2019-11-04.pdf,Sri Lanka,2019-11-04,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+St. Kitts and Nevis_2016-07-26.pdf,St. Kitts and Nevis,2016-07-26,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+St. Kitts and Nevis_2017-07-05.pdf,St. Kitts and Nevis,2017-07-05,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+St. Lucia_2016-02-18.pdf,St. Lucia,2016-02-18,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+St. Lucia_2017-03-31.pdf,St. Lucia,2017-03-31,main,observation,True,2015,2015.0,,False,False,No,accepted,medium,MAC_DSA
+St. Lucia_2018-06-20.pdf,St. Lucia,2018-06-20,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+St. Lucia_2020-02-24.pdf,St. Lucia,2020-02-24,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+St. Lucia_2020-05-12.pdf,St. Lucia,2020-05-12,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+St. Vincent and the Grenadines_2016-07-19.pdf,St. Vincent and the Grenadines,2016-07-19,main,observation,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+St. Vincent and the Grenadines_2017-12-21.pdf,St. Vincent and the Grenadines,2017-12-21,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+St. Vincent and the Grenadines_2019-02-25.pdf,St. Vincent and the Grenadines,2019-02-25,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+St. Vincent and the Grenadines_2020-05-29.pdf,St. Vincent and the Grenadines,2020-05-29,main,observation,True,2019,2019.0,,False,False,No,accepted,medium,LIC_DSF
+Sudan_2016-10-04.pdf,Sudan,2016-10-04,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Sudan_2017-12-11.pdf,Sudan,2017-12-11,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Sudan_2020-03-10.pdf,Sudan,2020-03-10,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Sudan_2020-10-23.pdf,Sudan,2020-10-23,main,observation,True,2019,2019.0,,False,False,No,accepted,medium,LIC_DSF
+Suriname_2016-06-07.pdf,Suriname,2016-06-07,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Suriname_2018-12-20.pdf,Suriname,2018-12-20,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Suriname_2019-12-23.pdf,Suriname,2019-12-23,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Sweden_2016-11-17.pdf,Sweden,2016-11-17,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Sweden_2017-11-17.pdf,Sweden,2017-11-17,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Sweden_2019-03-26.pdf,Sweden,2019-03-26,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Switzerland_2016-12-15.pdf,Switzerland,2016-12-15,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Switzerland_2018-06-18.pdf,Switzerland,2018-06-18,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Switzerland_2019-06-26.pdf,Switzerland,2019-06-26,main,observation,True,2018,2018.0,,False,False,No,accepted,medium,MAC_DSA
+Democratic Republic of São Tomé and Príncipe_2016-06-17.pdf,São Tomé and Príncipe,2016-06-17,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Democratic Republic of São Tomé and Príncipe_2016-12-20.pdf,São Tomé and Príncipe,2016-12-20,main,no_table,False,,,missing,False,False,No,,,
+Democratic Republic of São Tomé and Príncipe_2017-12-18.pdf,São Tomé and Príncipe,2017-12-18,main,observation,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+Democratic Republic of Sao Tome and Principe_2019-10-29.pdf,São Tomé and Príncipe,2019-10-29,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Democratic Republic of São Tomé and Príncipe_2020-08-04.pdf,São Tomé and Príncipe,2020-08-04,errors,errors_file_not_used,True,2019,2019.0,,True,False,Yes,manual_review,high,LIC_DSF
+Republic of Tajikistan_2020-05-07.pdf,Tajikistan,2020-05-07,main,observation,True,2019,2019.0,,False,False,No,accepted,medium,LIC_DSF
+United Republic of Tanzania_2016-02-01.pdf,Tanzania,2016-02-01,main,observation,True,2014,2014.0,,True,False,Yes,manual_review,medium,LIC_DSF
+United Republic of Tanzania_2016-07-27.pdf,Tanzania,2016-07-27,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+United Republic of Tanzania_2017-01-12.pdf,Tanzania,2017-01-12,main,no_table,False,,,missing,False,False,No,,,
+United Republic of Tanzania_2017-06-30.pdf,Tanzania,2017-06-30,main,no_table,False,,,missing,False,False,No,,,
+Republic of Tanzania_2018-01-16.pdf,Tanzania,2018-01-16,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+United Republic of Tanzania_2018-12-04.pdf,Tanzania,2018-12-04,main,no_table,False,,,missing,False,False,No,,,
+United Republic of Tanzania_2020-06-12.pdf,Tanzania,2020-06-12,main,no_table,False,,,missing,False,False,No,,,
+Thailand_2016-06-07.pdf,Thailand,2016-06-07,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Thailand_2017-05-31.pdf,Thailand,2017-05-31,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Thailand_2018-06-04.pdf,Thailand,2018-06-04,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Thailand_2019-10-07.pdf,Thailand,2019-10-07,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Timor-Leste_2016-06-24.pdf,Timor-Leste,2016-06-24,main,observation,True,2014,2014.0,,False,False,No,accepted,high,LIC_DSF
+Democratic Republic of Timor-Leste_2017-12-07.pdf,Timor-Leste,2017-12-07,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Democratic Republic of Timor-Leste_2019-05-07.pdf,Timor-Leste,2019-05-07,main,observation,True,2017,2017.0,,True,False,Yes,manual_review,medium,LIC_DSF
+Togo_2017-05-17.pdf,Togo,2017-05-17,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Togo_2017-12-15.pdf,Togo,2017-12-15,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Togo_2018-12-12.pdf,Togo,2018-12-12,main,observation,True,2017,2017.0,,False,False,No,accepted,high,LIC_DSF
+Togo_2019-07-02.pdf,Togo,2019-07-02,main,observation_superseded_by_later_report,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Togo_2019-10-31.pdf,Togo,2019-10-31,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Togo_2020-04-16.pdf,Togo,2020-04-16,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Tonga_2016-06-21.pdf,Tonga,2016-06-21,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Tonga_2018-01-17.pdf,Tonga,2018-01-17,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Trinidad and Tobago_2016-06-29.pdf,Trinidad and Tobago,2016-06-29,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Trinidad and Tobago_2017-11-21.pdf,Trinidad and Tobago,2017-11-21,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Trinidad and Tobago_2018-09-25.pdf,Trinidad and Tobago,2018-09-25,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Tunisia_2016-06-02.pdf,Tunisia,2016-06-02,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Tunisia_2017-07-10.pdf,Tunisia,2017-07-10,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Tunisia_2018-10-08.pdf,Tunisia,2018-10-08,main,no_table,False,,,missing,False,False,No,,,
+Tunisia_2020-04-14.pdf,Tunisia,2020-04-14,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Turkey_2016-04-22.pdf,Turkey,2016-04-22,main,observation_superseded_by_later_report,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Turkey_2017-02-03.pdf,Turkey,2017-02-03,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Turkey_2018-04-30.pdf,Turkey,2018-04-30,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Turkey_2019-12-26.pdf,Turkey,2019-12-26,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Tuvalu_2016-10-04.pdf,Tuvalu,2016-10-04,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Tuvalu_2018-07-05.pdf,Tuvalu,2018-07-05,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Uganda_2016-06-09.pdf,Uganda,2016-06-09,main,no_table,False,,,missing,False,False,No,,,
+Uganda_2017-01-10.pdf,Uganda,2017-01-10,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Uganda_2017-07-12.pdf,Uganda,2017-07-12,main,no_table,False,,,missing,False,False,No,,,
+Uganda_2019-05-07.pdf,Uganda,2019-05-07,main,observation,True,2017/18,2018.0,fiscal_year_end_of_2017/18,False,False,No,accepted,high,LIC_DSF
+Uganda_2020-05-14.pdf,Uganda,2020-05-14,main,observation,True,2018/19,2019.0,fiscal_year_end_of_2018/19,False,False,No,accepted,high,LIC_DSF
+Ukraine_2016-10-03.pdf,Ukraine,2016-10-03,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Ukraine_2017-04-04.pdf,Ukraine,2017-04-04,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Ukraine_2019-01-08.pdf,Ukraine,2019-01-08,main,observation,True,2017,2017.0,,False,False,No,accepted,medium,MAC_DSA
+Ukraine_2020-06-11.pdf,Ukraine,2020-06-11,errors,errors_file_not_used,True,2019,2019.0,,True,False,Yes,manual_review,medium,MAC_DSA
+Ukraine_2020-06-15.pdf,Ukraine,2020-06-15,main,no_table,False,,,missing,False,False,No,,,
+United Arab Emirates_2016-07-27.pdf,United Arab Emirates,2016-07-27,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+United Arab Emirates_2017-07-14.pdf,United Arab Emirates,2017-07-14,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+United Arab Emirates_2019-02-01.pdf,United Arab Emirates,2019-02-01,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+United Kingdom_2016-02-24.pdf,United Kingdom,2016-02-24,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+United Kingdom_2016-06-17.pdf,United Kingdom,2016-06-17,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+United Kingdom_2018-02-13.pdf,United Kingdom,2018-02-13,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+United Kingdom_2018-11-14.pdf,United Kingdom,2018-11-14,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+United Kingdom_2020-12-18.pdf,United Kingdom,2020-12-18,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+United States_2016-07-12.pdf,United States,2016-07-12,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+United States_2017-07-26.pdf,United States,2017-07-26,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+United States_2018-07-03.pdf,United States,2018-07-03,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+United States_2019-06-24.pdf,United States,2019-06-24,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+United States_2020-08-10.pdf,United States,2020-08-10,main,observation,True,2019,2019.0,,False,False,No,accepted,high,MAC_DSA
+Uruguay_2016-02-24.pdf,Uruguay,2016-02-24,main,observation,True,2014,2014.0,,False,False,No,accepted,high,MAC_DSA
+Uruguay_2017-02-01.pdf,Uruguay,2017-02-01,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Uruguay_2018-01-31.pdf,Uruguay,2018-01-31,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Uruguay_2019-02-22.pdf,Uruguay,2019-02-22,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Uruguay_2020-02-21.pdf,Uruguay,2020-02-21,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Republic of Uzbekistan_2018-05-11.pdf,Uzbekistan,2018-05-11,errors,errors_file_not_used,True,2016,2016.0,,True,False,Yes,manual_review,high,LIC_DSF
+Republic of Uzbekistan_2019-05-09.pdf,Uzbekistan,2019-05-09,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Republic of Uzbekistan_2020-05-19.pdf,Uzbekistan,2020-05-19,main,observation,True,2019,2019.0,,False,False,No,accepted,high,LIC_DSF
+Vanuatu_2016-10-31.pdf,Vanuatu,2016-10-31,main,observation,True,2015,2015.0,,False,False,No,accepted,high,LIC_DSF
+Vanuatu_2018-04-26.pdf,Vanuatu,2018-04-26,main,observation,True,2016,2016.0,,False,False,No,accepted,high,LIC_DSF
+Vanuatu_2019-06-13.pdf,Vanuatu,2019-06-13,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Vietnam_2016-07-18.pdf,Vietnam,2016-07-18,main,observation,True,2015,2015.0,,False,False,No,accepted,high,MAC_DSA
+Vietnam_2017-07-05.pdf,Vietnam,2017-07-05,main,observation,True,2016,2016.0,,False,False,No,accepted,high,MAC_DSA
+Vietnam_2018-07-10.pdf,Vietnam,2018-07-10,main,observation,True,2017,2017.0,,False,False,No,accepted,high,MAC_DSA
+Vietnam_2019-07-16.pdf,Vietnam,2019-07-16,main,observation,True,2018,2018.0,,False,False,No,accepted,high,MAC_DSA
+Zambia_2017-10-25.pdf,Zambia,2017-10-25,main,observation,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Zambia_2019-08-02.pdf,Zambia,2019-08-02,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
+Zimbabwe_2016-05-04.pdf,Zimbabwe,2016-05-04,errors,errors_file_not_used,True,2014,2014.0,,True,False,Yes,manual_review,high,LIC_DSF
+Zimbabwe_2016-12-19.pdf,Zimbabwe,2016-12-19,main,no_table,False,,,missing,False,False,No,,,
+Zimbabwe_2017-07-07.pdf,Zimbabwe,2017-07-07,errors,errors_file_not_used,True,2015,2015.0,,True,False,Yes,manual_review,high,LIC_DSF
+Zimbabwe_2019-05-30.pdf,Zimbabwe,2019-05-30,main,no_table,False,,,missing,False,False,No,,,
+Zimbabwe_2020-03-26.pdf,Zimbabwe,2020-03-26,main,observation,True,2018,2018.0,,False,False,No,accepted,high,LIC_DSF
