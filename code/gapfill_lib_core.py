@@ -1,7 +1,7 @@
 """
 Pure logic for the gap-year fill run (no API, no PDF, no network).
 
-Kept separate from gapfill_run_api.py so it can be unit-tested on any machine:
+Kept separate from gapfill_3_run_api.py so it can be unit-tested on any machine:
   * candidate report ordering (T+2 first, then T+3; latest report of a year first)
   * the resolve/cascade loop across rounds
   * validation that an extracted column is an ACTUAL / HISTORICAL year
@@ -16,7 +16,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
 
-from build_panel_gap_flags import normalize_country, parse_year_label
+from gapfill_1_build_panel_gap_flags import normalize_country, parse_year_label
 
 # ------------------------------------------------------------------ settings
 OFFSETS = (2, 3)  # report year = gap year + 2, then + 3. Stop after that.

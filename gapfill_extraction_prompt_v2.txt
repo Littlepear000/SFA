@@ -1,0 +1,466 @@
+GAP-YEAR EXTRACTION PROMPT (single step, PDF input). Tasks 2.1-2.6 reuse SUBPROMPT 2 of sl_revised_prompt_step_one.txt; only the column-selection logic (Task 2.4) and the output schema (Task 2.6) are changed, because the year to read is now supplied (TARGET YEARS) instead of chosen (last_actual_year).
+
+The input is a smaller PDF created by copying only the physical pages of an IMF staff report that contain the PUBLIC debt decomposition table (the location step has already been done). When necessary to satisfy API upload limits, the attached PDF may instead be either (i) a visually equivalent compressed rendering of those pages or (ii) a high-resolution crop of the qualifying DSA table from the original page. A cropped fallback may omit surrounding charts, narrative text, headers, footers, or other material outside the table. The pipeline preserves the original physical page mapping.
+
+Read the PUBLIC debt decomposition table directly from the attached selected-page PDF and extract it as JSON. The pipeline supplies a mapping from each page in the smaller PDF to its original physical PDF page number.
+
+You are an expert fiscal economist extracting structured information from IMF staff reports. Use the visible page content as the primary source of information, including tables, indentation, grouping lines, typography, column alignment, and any available PDF text layer.
+
+Use only information visible in the attached selected-page PDF. Never use prior knowledge of IMF DSA templates or other reports to fill missing rows, values, or labels.
+
+Reconstruct the table from the attached PDF using the visible page layout regardless of whether the PDF contains selectable text, is an image-based rendering, or is a high-resolution table crop. Do not interpret the absence of surrounding charts, narrative text, headers, or footers in a cropped fallback as missing table content. Do not infer rows or values that are not visible.
+
+GAP-YEAR CONTEXT AND THE ABSOLUTE RULE
+A country panel is built from one column of the decomposition table of each staff report: the last ACTUAL year. For some countries a year in the middle of the panel is missing because no report used it as its last actual year. This report was chosen because its table should still show that missing year as a completed, historical column. The input lists one or more TARGET YEARS. For each target year, read that column and nothing else. You do NOT select a year yourself.
+
+ABSOLUTE RULE: extract values ONLY from a column that is an actual or historical (completed, observed) year. NEVER extract values from a preliminary, provisional, estimate, or projection column, even if that is the only column for the target year and even if its numbers look complete. In that case return extractable = false with the matching reason code and decomposition = null. Returning null is the correct answer; a preliminary, estimated or projected number in the panel is an error.
+
+================================================================
+TASK 2.1 - LOCATE THE TABLE
+================================================================
+
+MANDATORY TABULAR-STRUCTURE GATE — APPLY BEFORE ANY EXTRACTION:
+
+A qualifying target must satisfy ALL of the following:
+1. It is visibly laid out as a table with identifiable rows and columns.
+2. Debt components are printed as explicit row labels, not only as legend entries.
+3. The page contains identifiable year columns or another explicit selected-value column.
+4. Component values are printed in corresponding cells and can be copied directly without estimating bar heights, segment sizes, marker positions, or axis coordinates.
+
+Eligibility depends on visible structure, not the numbering label:
+- A figure-numbered object IS eligible when it is visibly a row-and-column table with explicit row labels, year columns, and printed cell values.
+- In that case, preserve the printed object number verbatim in table_number, even if it says "Figure".
+
+The following are NEVER qualifying targets:
+- waterfall or bridge charts;
+- stacked, grouped, or ordinary bar charts;
+- line, area, dot, or marker charts;
+- graphical "debt-creating flows" or "drivers of debt dynamics" panels;
+- any visualization whose components are identified primarily through a legend;
+- any object where values would have to be read from bar heights, segment lengths, marker positions, or axes.
+
+This exclusion applies even if the graphical object is located in a DSA annex, has a relevant title, prints some totals, or displays historical and projected periods.
+
+Do not convert chart legends, plotted series, bars, segments, endpoints, or data labels into decomposition rows or unmapped_rows.
+
+If the selected pages contain only one or more such figures and no qualifying tabular public-debt decomposition table, STOP and return:
+- "table_found": false
+- "failure_reason": "dsa_pages_not_in_input"
+- "source": null
+- "targets": []
+In extraction_notes, identify each rejected figure and state that it is a chart/visualization rather than a qualifying row-and-column DSA table.
+
+Find the TABULAR DSA decomposition table that decomposes the change in public debt, public sector debt, gross public debt, or the debt-to-GDP ratio into contributing flows. It may be titled:
+- "Contribution to Change(s) in Public Debt"
+- "Baseline Scenario"
+- "Public DSA - Baseline Scenario"
+- "Public Sector Debt Sustainability Analysis - Baseline Scenario"
+- "Public Sector Debt Sustainability Framework, Baseline Scenario" (MAC or LIC)
+- "Sovereign Risk and Debt Sustainability Framework: Baseline Scenario"
+- "Drivers of Debt Dynamics - Baseline Scenario"
+
+Treat LIC DSA tables titled "Public Sector Debt Sustainability Framework, Baseline Scenario" as valid equivalents if they decompose public sector debt changes into rows such as primary deficit, automatic debt dynamics, identified debt-creating flows, or other identified debt-creating flows.
+
+Do not reject a table for having a different template or title. The right table is the one that decomposes the change in debt into flows: primary balance/deficit, automatic debt dynamics, other flows, and residual.
+
+Additional selection rules:
+- If both summary figures and DSA tables are present, extract only the qualifying DSA table. Never extract a summary figure.
+- The table may continue on a following page marked "(continued)" or "(concluded)". Treat all parts as one table.
+- NEVER select the external debt sustainability table. Its wording is nearly identical ("Identified external debt-creating flows", "Residual"), but its top line is external debt. If only the external table is present, set table_found to false with failure_reason "only_external_dsa_found".
+- If more than one qualifying public decomposition table appears, extract the full DSA-annex table and mention the other qualifying table in extraction_notes. Graphical figures are not candidates.
+
+SCOPE - the extraction covers the decomposition block only:
+- The block begins at the debt-level row (for example "Public debt", "Public sector debt") when present, otherwise at the change-in-debt row.
+- The block ends at the residual row (or at the last decomposition row if the residual appears earlier).
+- Rows outside this block that share the same table or figure - for example "Gross financing needs", "of which: debt service", memorandum items, and macroeconomic assumptions such as "Real GDP growth (in percent)" - must be ignored entirely. They are NOT part of the decomposition and must NOT appear in unmapped_rows.
+
+================================================================
+TASK 2.2 - TAG EACH ROW BY ROLE (by MEANING, not wording)
+================================================================
+Row labels vary across reports; the underlying accounting identity does not:
+
+    change_in_debt   = identified_flows + residual
+    identified_flows = primary_balance + automatic_debt_dynamics + other_identified_flows
+
+debt_level is a stock, not a flow; it does not enter the identity above.
+
+Tag each row of the block with exactly one role:
+
+- debt_level (when present): the stock of debt being decomposed, usually the first row of the block. Examples: "Public debt", "Public sector debt", "Gross public sector debt". Typical children: "of which: external", "of which: foreign-currency denominated".
+- change_in_debt: the top-line total being decomposed, i.e. the year's change in the debt ratio. Examples: "Change in public sector debt", "Change in gross public debt", "Change in gross public sector debt".
+- identified_flows: subtotal of all explained flows. Examples: "Contribution of identified flows", "Identified debt-creating flows".
+- primary_balance: the primary fiscal position. It may be printed as a balance OR a deficit. Record the wording in label_verbatim and do NOT change the number. Examples: "Primary deficit", "Primary net lending/borrowing".
+- automatic_debt_dynamics: the endogenous r-g block, including interest rate, growth, inflation, and exchange rate effects. Example: "Automatic debt-creating flows".
+- other_identified_flows: the explained stock-flow adjustment, including privatization, contingent liabilities, interest revenues, below-the-line operations, and other transactions. Example: "Other debt-creating flows".
+- residual: the unexplained remainder that closes the identity. Examples: "Residual, including asset changes", "Contribution of residual".
+
+Aliases are examples, not a closed list. Map by meaning. If a row fits NO role, do not force it and do not drop it; put it in unmapped_rows verbatim.
+
+Never invent, infer, reconstruct, or hallucinate rows. Every row in the JSON must correspond to an explicit row present in the selected table.
+
+If identical row labels appear more than once in the table, preserve each occurrence separately. Never merge duplicate labels or discard repeated rows.
+
+If one of the canonical roles does not appear in the table, return that role with label_verbatim null, value null, and children [] if the role normally has children.
+
+Special case - components without a subtotal: if the components of automatic debt dynamics (for example "Contribution from real GDP growth", "Contribution from real exchange rate depreciation") appear WITHOUT an explicit subtotal row, return automatic_debt_dynamics with label_verbatim null and value null, and attach those component rows as its children only when the layout shows them as one contiguous indented group; otherwise leave them in unmapped_rows. Explain the choice in extraction_notes.
+
+Do not normalize primary balances into primary deficits or vice versa. Copy the printed value exactly. Never reverse signs.
+
+================================================================
+TASK 2.3 - CHILDREN RULE (recursive - follow the visible indentation)
+================================================================
+Only five roles carry detail sub-rows: debt_level, primary_balance, automatic_debt_dynamics, other_identified_flows, residual.
+
+change_in_debt and identified_flows are SUBTOTALS. Their only table-children are other roles, which already appear in their own top-level slots. They have NO "children" field. Do not attach anything to them.
+
+For the five roles above, build "children" by mirroring the table's visible indentation and layout exactly.
+
+Determine hierarchy from explicit visual evidence on the page: indentation, bullets, tree structure, spacing, typography, or row grouping. Never infer parent-child relationships from economic meaning alone when the visual evidence is clear.
+
+If the PDF page is partially degraded but the row sequence and hierarchy remain unambiguous, infer the hierarchy conservatively and explain this in extraction_notes.
+
+Rules:
+- A row indented directly beneath a role is a child of that role.
+- A row indented further beneath a child is a child OF THAT CHILD; nest it, do not flatten it up, do not drop it, and do not skip the intermediate row.
+- Each node has the same shape: { "label_verbatim", "value", "children" }.
+- A node with no deeper rows gets "children": [].
+
+Example from a typical table - automatic_debt_dynamics:
+  "Real interest rate and relative inflation" (a child)
+      - "Real interest rate" (a child of that child)
+      - "Relative inflation" (a child of that child)
+  "Real growth rate" (a child)
+  "Real exchange rate" (a child)
+
+Reproduce that nesting; never collapse the three interest/inflation rows to one level.
+
+If a row label wraps across multiple printed lines, concatenate the lines into a single label while preserving the wording exactly.
+
+The row labels, indentation and order are the same for every target year of the same table; only the values differ.
+
+================================================================
+TASK 2.4 - EXTRACT
+================================================================
+Column selection — evidence-based actual-year rule, applied to each TARGET YEAR:
+- Before extracting any values, reconstruct the COMPLETE multi-level column header.
+- List every visible year column from left to right before judging any target year.
+- For every year column, combine the year label, group heading, footnote markers,
+  spacing, separator lines, and its position relative to preliminary, estimate,
+  and projection columns.
+- Classify each year column as exactly one of:
+  - "actual"
+  - "historical"
+  - "preliminary"
+  - "estimate"
+  - "projection"
+  - "unknown"
+
+Status definitions:
+- "actual": explicitly labeled Actual, Outturn, Final, or equivalent.
+- "historical": a completed observed year that is clearly part of the historical
+  block even if the word Actual is not printed directly above that year.
+- "preliminary": Prel., Preliminary, provisional, or equivalent.
+- "estimate": Est., Estimate, estimated, or equivalent.
+- "projection": Proj., Projection, Projections, Forecast, Medium-term projection,
+  Extended projection, or equivalent.
+- "unknown": the status cannot be determined reliably from the visible header.
+
+TARGET-YEAR MATCHING:
+- Year convention: a fiscal-year label with two parts (for example "2015/16" or
+  "2015-16") stands for its END year (2016). A label such as "FY2016" or "2016"
+  stands for 2016.
+- A target year is matched only by a single-year column whose label is exactly
+  that year. Never use a neighbouring year's column as a substitute for a target
+  year and never compute a target year's values from other columns.
+- If the target year does not appear as a column at all, return extractable =
+  false with not_extractable_reason "year_not_in_table".
+
+MERGED MULTI-YEAR RANGE COLUMNS (for example "2008-2016"):
+- A column whose header prints a year RANGE summarizes multiple years, not one
+  discrete year. It commonly appears as the leftmost column of the
+  Actual/Historical group, immediately followed by one or more individual
+  single-year columns that are still under the same Actual/Historical group
+  heading, before the Projections group begins.
+- List the range column in column_header_audit like any other column, with an
+  eligible status (actual/historical) when the header shows it belongs to that
+  group. A range column is NEVER the column of a target year: if a target year
+  falls only inside a range column, return extractable = false with
+  not_extractable_reason "year_only_in_merged_range".
+- After a range column, KEEP SCANNING RIGHTWARD. Do not stop at the range
+  column and do not stop at the first individual year immediately after it:
+  one or more further single-year columns (for example "2017", then "2018")
+  may still belong to the same Actual/Historical group. Each such single-year
+  column is a valid column for a target year that equals its year, as long as it
+  remains under the Actual/Historical group heading or underline, before the
+  first Projections column.
+- This is different from "Ignore non-year columns such as Average, Historical
+  Average, Standard Deviation": a year-RANGE column such as "2008-2016" is a
+  real summarized-year column and must be listed, not skipped - it is simply
+  never itself the column of a target year.
+- THIS PATTERN VARIES BY REPORT AND IS NOT FIXED. Do not assume every table has
+  a range column, and do not assume a fixed number of individual-year columns
+  follow one when it is present:
+  - Many tables have NO range column at all - every Actual/Historical column
+    is already a single year. In that case this section does not apply and the
+    EVIDENCE HIERARCHY below is used directly.
+  - When a range column IS present, it may be followed by exactly one
+    individual-year column, two, three, or more before Projections begins -
+    the count is whatever the specific report's header actually shows, never
+    assumed from another report or from an example.
+  - Some tables even show more than one range column (for example a longer
+    average range followed by a shorter one) before the individual years
+    begin; apply the same rule - list every column, never treat a range
+    column as a target-year column, and keep scanning rightward across every
+    individual-year column of the Actual/Historical group.
+  - Always re-derive the column count and boundary from THIS table's own
+    visible header on every extraction. Never carry over the column count or
+    layout from a previously seen report.
+
+EVIDENCE HIERARCHY FOR CLASSIFYING THE COLUMN OF EACH TARGET YEAR:
+1. The column is explicitly labeled Actual, Outturn, Final, or Historical
+   (directly, or through a group heading that spans it): status "actual"
+   (or "historical" for a Historical label).
+2. Otherwise, the column clearly belongs to the historical block and is
+   clearly separated from any Preliminary, Estimate, or Projection column:
+   status "historical".
+3. Otherwise, the column is the year immediately before the first explicitly
+   projected year AND no Preliminary or Estimate marker applies to it AND the
+   visual header clearly treats it as historical: status "historical".
+4. Otherwise, do not force a classification. Use status "unknown", set
+   extractable = false with not_extractable_reason "status_unclear", and do not
+   extract values.
+
+Visual evidence may include:
+- a group heading spanning multiple years;
+- a status label attached directly to one year;
+- an underline, vertical separator, spacing gap, or column-group boundary;
+- a table note defining actual, preliminary, estimate, or projection years;
+- consistent alignment of adjacent year columns.
+
+CRITICAL RULES:
+- Preliminary, provisional, estimate, and projection columns are not eligible
+  for extraction. If the target year's column has one of these statuses, return
+  extractable = false with not_extractable_reason "column_is_preliminary",
+  "column_is_estimate" or "column_is_projection" respectively.
+- Do not assume that a column that is not marked projection is actual.
+- Do not require the word "Actual" to be printed above every eligible historical
+  year when the header structure clearly identifies a historical block.
+- Eligible statuses for extraction are "actual" and "historical".
+- Status order check: statuses run in time order actual/historical, then
+  preliminary/estimate, then projection. A column called "actual" or
+  "historical" must not sit to the right of a preliminary, estimate or
+  projection column. If your reading violates this order, re-read the header; if
+  it still does, use status "unknown".
+- Ignore non-year columns such as Average, Historical Average, Standard
+  Deviation, or similar summary columns. They can never be a target-year column.
+- If evidence is conflicting or insufficient, return extractable = false rather
+  than guessing.
+
+Examples (T = target year):
+1. Header:
+       Actual     Prel.     Medium-term projection
+        2025       2026       2027 2028 2029
+   T = 2025: column status "actual", extract.
+   T = 2026: status "preliminary", return "column_is_preliminary", no values.
+   T = 2028: status "projection", return "column_is_projection", no values.
+
+2. Header:
+       2021 2022 2023 | Projections: 2024 2025
+   If the separator and group layout clearly show 2021-2023 as historical,
+   T = 2022 and T = 2023 are status "historical", extract. T = 2024 is a
+   projection, no values.
+
+3. Header:
+       Actual       Estimate       Projections
+        2023          2024          2025 2026
+   T = 2023: "actual", extract. T = 2024: "estimate", return
+   "column_is_estimate", no values.
+
+4. Header:
+       Actual                        Projections
+       2008-2016   2017   2018       2019 2020 2021
+   The Actual group contains a merged range column (2008-2016) followed by two
+   individual-year columns (2017, 2018) before Projections begins at 2019.
+   T = 2017 and T = 2018: single-year columns under Actual, extract.
+   T = 2014: only inside the range column, return "year_only_in_merged_range".
+   T = 2019: projection, no values.
+   This example shows a range column followed by two individual-year columns.
+   A different report may show a range column followed by only one
+   individual-year column, or by three or more, or no range column at all -
+   always determine the actual count from that report's own header, never
+   from this or any other example.
+
+Output-field meanings (per target):
+- target_year: the requested year, exactly as given in the input.
+- column_found: true if a single-year column exists for the target year.
+- matched_year_label: the year label printed on that column (for example
+  "2016" or "2015/16"); null if there is no such column.
+- column_status: status of that column ("actual", "historical", "preliminary",
+  "estimate", "projection", "unknown"), or null when there is no column.
+- column_header_verbatim: complete visible header associated with that column,
+  including status text and footnote markers.
+- status_basis: the visible evidence used for the status.
+- extractable: true only if column_status is "actual" or "historical" and the
+  cells are readable.
+- not_extractable_reason: null when extractable; otherwise one reason code
+  listed in Task 2.6.
+- column_header_audit (in source): list every visible year column with:
+  position, year_label, group_label, status, status_basis.
+
+Never extract values from preliminary, estimate, or projection columns.
+
+Values:
+- Copy each value EXACTLY as printed, including its sign. Do not recompute, normalize, or sign-flip anything.
+- Return all extracted values as JSON strings exactly as printed in the table, including thousands separators (e.g. "1,169.28"), fraction glyphs (e.g. "7 1/2"), and dash characters used as minus signs. Use null only for missing values: blank cells, "...", or "n.a.".
+- If a cell is unreadable or cropped in the selected PDF, use null for that value and record the cell in extraction_notes. Never guess a digit.
+- Build children by indentation/layout per Task 2.3.
+- Record the object number exactly as labeled, for example "Table 3", "Annex III. Table 4", or "Annex IV. Figure 4". A figure number is permitted only when the object itself passes the mandatory tabular-structure gate and is visibly a row-and-column table.
+- Record units_verbatim: the units line printed with the table title, for example "(Percent of GDP unless indicated otherwise)". Use null if absent.
+- Record framework as exactly one of "SRDSF", "MAC_DSA", "LIC_DSF", "UNKNOWN", judged only from what is visible in the attached selected-page PDF.
+- page_pdf must use the original physical PDF page number supplied by the pipeline page mapping, not the page position within the smaller selected-page PDF. If the mapping is not supplied, leave it null. Record page_printed: the page number printed on the PDF page if visible, else null.
+- publication_date is usually NOT visible in DSA pages. If it is not visible, use null - the pipeline fills it from the first-step locator output. Do not guess.
+- consultation_type: only if visible in the attached selected-page PDF (for example in a running header); else null.
+- Preserve label_verbatim exactly as printed, including capitalization, punctuation, spacing, abbreviations, and parentheses.
+- Do not treat page numbers, footnotes, notes, sources, legends, axis labels, column headers, units, or surrounding page text as table rows.
+- Only rows belonging to the selected decomposition table may appear in unmapped_rows.
+
+================================================================
+TASK 2.5 - VALIDATION
+================================================================
+Before producing the JSON, verify that:
+- every row of the decomposition block appears exactly once (rows outside the block are excluded by design);
+- for every extractable target year, every value in that year's column of the block appears exactly once and matches the table exactly;
+- no row has been invented;
+- no row has been omitted;
+- every child relationship matches the visible layout, or any conservative hierarchy inference is explained in extraction_notes;
+- every value of a target comes from the column of that same target year;
+- matched_year_label identifies the target year under the year convention of Task 2.4;
+- column_status of every extractable target is either "actual" or "historical";
+- the column of every extractable target is classified as either "actual" or "historical" in column_header_audit, with the same status;
+- no preliminary, estimate, or projection column was used for any value;
+- every block row that is not assigned to one of the canonical roles appears in unmapped_rows.
+
+Accounting identity check (do not modify values):
+- Verify whether change_in_debt = identified_flows + residual using the extracted values of each target.
+- If the identity does not hold because of rounding or because values are unavailable, preserve the printed values exactly and mention the discrepancy in extraction_notes.
+- Never alter printed values to force the identity to hold.
+
+The JSON should be a faithful structured representation of the selected block. Do not infer missing rows, normalize labels, recompute values, or fill gaps using knowledge of IMF DSA templates.
+
+================================================================
+TASK 2.6 - OUTPUT (return ONLY the JSON object below. No prose, no markdown fences)
+================================================================
+Every { "label_verbatim": "", "value": "", "children": [] } shown is a SHAPE. Each element of unmapped_rows and of any children array has the node shape { "label_verbatim": "", "value": "", "children": [] }.
+If a value is missing, use null.
+
+EXAMPLE, not a required row. If a role or node has no sub-rows, return "children": []. If no rows are unmapped, return "unmapped_rows": []. Never emit a blank-label entry. "children" may nest to any depth the table uses.
+
+{
+  "table_found": true,
+  "source": {
+    "country": "",
+    "publication_date": null,
+    "consultation_type": null,
+    "framework": "",
+    "table_number": "",
+    "table_title": "",
+    "units_verbatim": null,
+    "page_pdf": null,
+    "page_printed": null,
+    "column_header_audit": {
+      "columns": [
+        {
+          "position": 1,
+          "year_label": "",
+          "group_label": null,
+          "status": "historical",
+          "status_basis": ""
+        }
+      ]
+    },
+    "confidence": ""
+  },
+  "targets": [
+    {
+      "target_year": 2016,
+      "column_found": true,
+      "matched_year_label": "",
+      "column_status": "actual",
+      "column_header_verbatim": "",
+      "status_basis": "",
+      "extractable": true,
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "",
+          "value": "",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "",
+          "value": ""
+        },
+        "identified_flows": {
+          "label_verbatim": "",
+          "value": ""
+        },
+        "primary_balance": {
+          "label_verbatim": "",
+          "value": "",
+          "children": []
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "",
+          "value": "",
+          "children": []
+        },
+        "other_identified_flows": {
+          "label_verbatim": "",
+          "value": "",
+          "children": []
+        },
+        "residual": {
+          "label_verbatim": "",
+          "value": "",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": ""
+    }
+  ],
+  "extraction_notes": ""
+}
+
+Rules for the output:
+- "targets" has exactly one element per TARGET YEAR in the input, in the same order.
+- column_status must be exactly one of "actual", "historical", "preliminary", "estimate", "projection", "unknown", or null when the year has no column. The status of every column in column_header_audit uses the same vocabulary.
+- column_header_audit lists EVERY visible year column of the table, not only the target years.
+- If extractable is false: decomposition must be null, unmapped_rows must be [], and not_extractable_reason must be exactly one of:
+  - "year_not_in_table" - no single-year column exists for the target year;
+  - "year_only_in_merged_range" - the target year is covered only by a merged multi-year range column;
+  - "column_is_preliminary", "column_is_estimate", "column_is_projection" - the column exists but has that status;
+  - "status_unclear" - the column exists but its status cannot be established reliably;
+  - "values_unreadable" - the column is actual/historical but its cells are unreadable or cropped.
+- If extractable is true: column_status must be "actual" or "historical" and not_extractable_reason must be null.
+
+Set confidence to one of: "high", "medium", or "low". Use "high" when the table was clearly identified and every extracted cell was fully legible in the selected PDF. Do not lower confidence solely because the input is image-based, compressed, or cropped. Lower confidence only when one or more required row labels, column headers, values, or hierarchy relationships are genuinely unclear, degraded, ambiguous, or unreadable. Explain the specific reason in extraction_notes.
+
+IF table_found IS false, return instead:
+
+{
+  "table_found": false,
+  "failure_reason": "",
+  "source": null,
+  "targets": [],
+  "extraction_notes": ""
+}
+
+failure_reason must be exactly one of:
+
+- "dsa_pages_not_in_input" - the attached selected-page PDF contain no public debt decomposition table;
+- "pages_unreadable" - the selected PDF pages are too degraded, cropped, or otherwise unreadable to reconstruct rows and columns reliably;
+- "only_external_dsa_found" - only the external DSA table is present in the attached selected-page PDF;
+- "other".
+
+Use extraction_notes to list every candidate DSA table reviewed and every figure/chart rejected, including that it failed the mandatory table-versus-figure gate.

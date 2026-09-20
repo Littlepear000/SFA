@@ -16,12 +16,12 @@ API call is skipped.
 
 Before running: edit the CONFIG block below, then
 
-    python gapfill_run_api.py --dry-run                 # list what would be called, no API
-    python gapfill_run_api.py --limit-gaps 5            # small pilot
-    python gapfill_run_api.py                           # full run (resumable)
-    python gapfill_run_api.py --collect-only            # rebuild outputs from saved JSONs, no API
+    python gapfill_3_run_api.py --dry-run                 # list what would be called, no API
+    python gapfill_3_run_api.py --limit-gaps 5            # small pilot
+    python gapfill_3_run_api.py                           # full run (resumable)
+    python gapfill_3_run_api.py --collect-only            # rebuild outputs from saved JSONs, no API
 
-Inputs (made offline by gapfill_build_targets.py): the targets CSV and the skip CSV.
+Inputs (made offline by gapfill_2_build_targets.py): the targets CSV and the skip CSV.
 """
 from __future__ import annotations
 
@@ -36,7 +36,7 @@ from typing import Any, Dict, List, Optional
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import gapfill_core as core  # noqa: E402
+import gapfill_lib_core as core  # noqa: E402
 
 # =============================================================== CONFIG (edit)
 BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
@@ -59,7 +59,7 @@ LOCATOR_DIRS: List[Path] = [
 
 STEP1_SCRIPT = Path(__file__).resolve().parent / "step_1_revised_on_problematic_reports_sl.py"
 STEP1_PROMPT_FILE = BASE_DIR / "sl_revised_prompt_step_one.txt"      # only used to re-run a locator
-GAPFILL_PROMPT_FILE = BASE_DIR / "gapfill_extraction_prompt_v1.txt"
+GAPFILL_PROMPT_FILE = BASE_DIR / "gapfill_extraction_prompt_v2.txt"
 ENV_FILE = BASE_DIR / ".env"
 
 STAMP = "20260918_v1"

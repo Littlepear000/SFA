@@ -12,8 +12,8 @@ from the per-report column_header_audit_json (every visible year column with
 its actual/estimate/projection status).
 
 Usage:
-    python build_panel_gap_flags.py            # 2016-2020 defaults below
-    python build_panel_gap_flags.py MAIN.csv OUT_DIR [ERRORS.csv]
+    python gapfill_1_build_panel_gap_flags.py            # 2016-2020 defaults below
+    python gapfill_1_build_panel_gap_flags.py MAIN.csv OUT_DIR [ERRORS.csv]
 """
 from __future__ import annotations
 

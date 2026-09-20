@@ -2,7 +2,7 @@
 
 **Date generated:** 2026-09-18  
 **Input:** `dsa_decomposition_labels_2016-2020_sa.csv` (851 reports). The 61 reports in `dsa_decomposition_labels_2016-2020_errors_sa.csv` are **not** used as observations; they are only used to explain gaps (see cause below).  
-**Script:** `code/build_panel_gap_flags.py`
+**Script:** `code/gapfill_1_build_panel_gap_flags.py`
 
 ## 1. Rules applied
 

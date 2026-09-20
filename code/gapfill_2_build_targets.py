@@ -1,11 +1,11 @@
 """
 Build the input files for the gap-year API run (offline, no PDFs needed).
 
-Reads the outputs of build_panel_gap_flags.py and writes, next to them:
+Reads the outputs of gapfill_1_build_panel_gap_flags.py and writes, next to them:
   gapfill_targets_<stamp>.csv       one row per gap year; run_flag=False rows are held out
   gapfill_skip_reports_<stamp>.csv  reports that must never be used as a source
 
-Copy both files to the machine that runs gapfill_run_api.py.
+Copy both files to the machine that runs gapfill_3_run_api.py.
 """
 from __future__ import annotations
 

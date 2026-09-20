@@ -1,4 +1,4 @@
-"""Offline tests for the gap-year fill logic. Run: python test_gapfill_logic.py"""
+"""Offline tests for the gap-year fill logic. Run: python gapfill_test_logic.py"""
 import json
 import sys
 import tempfile
@@ -7,8 +7,8 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import gapfill_core as core  # noqa: E402
-import gapfill_run_api as run  # noqa: E402
+import gapfill_lib_core as core  # noqa: E402
+import gapfill_3_run_api as run  # noqa: E402
 
 
 def rep(name, country, date):
