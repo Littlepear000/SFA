@@ -1,0 +1,37 @@
+{
+  "n_reports": 851,
+  "status_counts": {
+    "observation": 640,
+    "no_table": 112,
+    "observation_superseded_by_later_report": 92,
+    "year_implausible_vs_report_date": 4,
+    "excluded_non_country": 2,
+    "table_but_year_unusable": 1
+  },
+  "n_countries_in_panel": 180,
+  "n_observed_country_years": 640,
+  "n_countries_with_gap": 94,
+  "n_gap_years": 120,
+  "n_gap_spans": 104,
+  "gap_years_certain_only": 112,
+  "countries_with_gap_certain_only": 89,
+  "span_length_dist": {
+    "1": 90,
+    "2": 12,
+    "3": 2
+  },
+  "cause_counts_by_span": {
+    "lag_between_consecutive_reports": 87,
+    "no_table_report_in_between": 17
+  },
+  "fill_status_by_gap_year": {
+    "fillable_actual_column_visible": 105,
+    "only_in_merged_range_column": 6,
+    "only_projection": 5,
+    "only_preliminary_or_estimate": 4
+  },
+  "n_dup_country_years": 80,
+  "n_dup_values_disagree": 64,
+  "n_year_after_report_year": 0,
+  "n_uncertain_obs": 32
+}

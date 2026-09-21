@@ -1,6 +1,6 @@
 # Gap year 填补流程
 
-更新日期：2026-09-20　｜　当前批次：2016-2020（SA输出）
+更新日期：2026-09-20　｜　当前批次：2016-2020（SA主文件）。errors文件不在本流程内，流程只处理你传入的那一个CSV。
 
 **目的**：同一国家相邻两份staff report的`last_actual_year`不连续时，panel里会缺中间的年份（gap year）。本流程先找出gap year，再通过内部API到后续报告（T+2、T+3年）里读取该年的actual数据补进panel。
 
@@ -20,9 +20,9 @@
 
 | 步骤 | 文件（`code/`） | 运行位置 | Input | Output |
 |---|---|---|---|---|
-| ① | `gapfill_1_build_panel_gap_flags.py` | Mac | `output/2016-2020/compiled_csv/`下的`dsa_decomposition_labels_2016-2020_sa.csv`（主文件）和`..._errors_sa.csv` | `output/2016-2020/gap_year_check/`：`panel_structure_country_year`、`gap_years`、`report_inventory`、`coverage_matrix_country_year`、`panel_children_long`、`summary_stats.json`（后缀`_20260918_v1`） |
-| ② | `gapfill_2_build_targets.py` | Mac | ①的`gap_years`、`report_inventory` | 同一文件夹：`gapfill_targets`（每个gap year一行，含`run_flag`）、`gapfill_skip_reports`（不能当来源的报告） |
-| ③ | `gapfill_3_run_api.py` | IMF电脑 | ②的两个CSV；各批次PDF文件夹；Step 1的`*_step1_locator.json`；`gapfill_extraction_prompt_v2.txt`；`.env`；（可选）①的`panel_structure` | `output/gapfill/2016-2020_20260918_v1/`：`reports/<报告名>_gapfill.json`、`gapfill_resolution`、`gapfill_attempts`、`gapfill_values_long`、`gapfill_values_wide`、`panel_structure_filled`、`RUN_SUMMARY_*.json` |
+| ① | `gapfill_1_build_panel_gap_flags.py` | Mac | **一个**compiled CSV（如`output/2016-2020/compiled_csv/dsa_decomposition_labels_2016-2020_sa.csv`），路径在文件顶部`INPUT_CSV`或用`--input`指定 | `output/2016-2020/gap_year_check/`：`panel_structure_country_year`、`gap_years`、`report_inventory`、`coverage_matrix_country_year`、`panel_children_long`、`summary_stats.json`（后缀`_20260920_v2`） |
+| ② | `gapfill_2_build_targets.py` | Mac | ①的`gap_years`、`report_inventory` | 同一文件夹：`gapfill_targets`（每个gap year一行）、`gapfill_skip_reports`（不能当来源的报告） |
+| ③ | `gapfill_3_run_api.py` | IMF电脑 | ②的两个CSV；各批次PDF文件夹；Step 1的`*_step1_locator.json`；`gapfill_extraction_prompt_v2.txt`；`.env`；（可选）①的`panel_structure` | `output/gapfill/2016-2020_20260920_v2/`：`reports/<报告名>_gapfill.json`、`gapfill_resolution`、`gapfill_attempts`、`gapfill_values_long`、`gapfill_values_wide`、`panel_structure_filled`、`RUN_SUMMARY_*.json` |
 | 库 | `gapfill_lib_core.py` | — | — | 被③调用：候选报告排序、级联流程、actual校验、结果输出。**不直接运行** |
 | 测试 | `gapfill_test_logic.py` | Mac | 无 | 打印测试结果。`python gapfill_test_logic.py` |
 
@@ -39,8 +39,8 @@
 - 每个gap标注成因，并用各报告的column-header audit预判"哪份报告里该年是actual列"（不读PDF）。
 
 **② 生成任务清单**
-- gap中间夹着errors文件报告的22个gap year标为`run_flag=False`，暂不运行。
-- errors文件报告、Step 1没找到表的报告、多国文件，列入skip清单。
+- 每个gap year一行。
+- Step 1没找到DSA表的报告、多国文件，列入skip清单（不当来源）。
 
 **③ 调API填补**
 - 每个gap year（T）按顺序尝试：**T+2年的报告（同年最晚的先试）→ T+3年的报告**，命中第一个"T为actual/historical列"的报告即停；T+3也失败则标`unresolved`，不再试T+4。
@@ -78,23 +78,25 @@
    python gapfill_3_run_api.py                    # 全量运行（可中断重跑）
    python gapfill_3_run_api.py --collect-only     # 用已保存JSON重新生成汇总表，不调API
    ```
-4. 把`output/gapfill/2016-2020_20260918_v1/`拷回Mac。
+4. 把`output/gapfill/2016-2020_20260920_v2/`拷回Mac。
+
+在IPython/Spyder里运行也可以；如提示找不到文件，先`%cd`到`code`文件夹，或直接修改脚本顶部的路径配置。
 
 ## 7. 当前结果与待办（2016-2020）
 
 - 851份报告 → 640个观测值、180个国家；94个国家有gap，共**120个gap year**（104段）。
-- 成因：相邻报告年份直接跳年74段；中间夹errors文件报告19段；中间报告无DSA表11段。
-- 任务清单：**98个待运行**，22个暂缓；不能当来源的报告175份。
-- audit预判：106个gap year能在其他报告里找到actual列，14个只有estimate/projection/合并区间列。
-- 只用2016-2020的PDF做dry-run：第一轮约84次API调用，3个gap year无候选报告（含South Sudan 2019，需2021年后的报告）。
+- 成因：相邻报告年份直接跳年87段；中间报告无DSA表17段。
+- 任务清单：**120个gap year全部运行**；不能当来源的报告114份。
+- audit预判：105个gap year能在其他报告里找到actual列，15个只有estimate/projection/合并区间列。
+- 只用2016-2020的PDF做dry-run：第一轮约103次API调用，4个gap year无候选报告（含South Sudan 2019，需2021年后的报告）。
 
 待办与注意：
 - 脚本**尚未用真实API和PDF跑过**，只做了离线测试和dry-run；首次务必先`--limit-gaps 5`并人工核对JSON。
-- 22个暂缓gap year：等errors文件里的报告核实后，先重跑①②，很多gap可能自动消失。
 - 同国家同年有多份报告的80个country-year里，64个数值不一致（已按规则取最新），后续可能需单独核查。
 - 批次边缘的gap（跨2015/16、2020/21）在单批次里看不到，合并多批次后重跑①即可。
 
 ## 8. 用于其他批次
 
-- ①：`python gapfill_1_build_panel_gap_flags.py MAIN.csv OUT_DIR [ERRORS.csv]`。
-- ①②③文件里各有一个`STAMP`（当前`20260918_v1`）和默认路径，换批次或版本时需同步修改。
+- ①：`python gapfill_1_build_panel_gap_flags.py --input 某个CSV [--out-dir 输出文件夹]`，输出文件夹默认是该CSV所在批次文件夹下的`gap_year_check`。
+- ②：`python gapfill_2_build_targets.py --check-dir 上一步的输出文件夹 --stamp 版本号`。
+- ①②③文件里各有一个`STAMP`（当前`20260920_v2`），必须一致；换批次或版本时同步修改，③里还要改PDF文件夹等路径。

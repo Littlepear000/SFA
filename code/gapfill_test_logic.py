@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()))
 import gapfill_lib_core as core  # noqa: E402
 import gapfill_3_run_api as run  # noqa: E402
 

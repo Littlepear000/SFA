@@ -11,9 +11,9 @@ Nothing here re-reads PDFs. Which report could supply a gap year is inferred
 from the per-report column_header_audit_json (every visible year column with
 its actual/estimate/projection status).
 
-Usage:
-    python gapfill_1_build_panel_gap_flags.py            # 2016-2020 defaults below
-    python gapfill_1_build_panel_gap_flags.py MAIN.csv OUT_DIR [ERRORS.csv]
+Input is ONE compiled CSV. Usage:
+    python gapfill_1_build_panel_gap_flags.py --input path/to/compiled.csv [--out-dir DIR]
+or edit INPUT_CSV below and just run the file (also works from IPython / Spyder).
 """
 from __future__ import annotations
 
@@ -24,11 +24,31 @@ from pathlib import Path
 
 import pandas as pd
 
-BASE = Path(__file__).resolve().parent.parent
-DEFAULT_MAIN = BASE / "output" / "2016-2020" / "compiled_csv" / "dsa_decomposition_labels_2016-2020_sa.csv"
-DEFAULT_ERRORS = BASE / "output" / "2016-2020" / "compiled_csv" / "dsa_decomposition_labels_2016-2020_errors_sa.csv"
-DEFAULT_OUT = BASE / "output" / "2016-2020" / "gap_year_check"
-STAMP = "20260918_v1"
+
+
+def _here() -> Path:
+    """Folder of this script; falls back to the working folder when __file__ is
+    not defined (code pasted or run as a cell in IPython / Spyder)."""
+    try:
+        return Path(__file__).resolve().parent
+    except NameError:
+        return Path.cwd()
+
+
+HERE = _here()
+BASE = HERE.parent if HERE.name == "code" else HERE
+
+# ------------------------------------------------------------------ CONFIG
+INPUT_CSV = BASE / "output" / "2016-2020" / "compiled_csv" / "dsa_decomposition_labels_2016-2020_sa.csv"
+OUT_DIR = None  # None -> "gap_year_check" folder next to the CSV's batch folder
+STAMP = "20260920_v2"
+
+
+def default_out_dir(input_csv: Path) -> Path:
+    parent = Path(input_csv).resolve().parent
+    base = parent.parent if parent.name == "compiled_csv" else parent
+    return base / "gap_year_check"
+
 
 TOP_CATEGORIES = [
     "change_in_debt", "identified_flows", "primary_balance",
@@ -147,12 +167,6 @@ def to_float(x):
 
 
 # ------------------------------------------------------------------ loading
-def load_reports(path: Path, source_tag: str):
-    df = pd.read_csv(path, dtype=str)
-    df["source_file"] = source_tag
-    return df
-
-
 def build_report_table(df: pd.DataFrame) -> pd.DataFrame:
     r = df.sort_values("json_file").drop_duplicates("json_file", keep="first").copy()
     m = r["pdf_file_name"].str.extract(r"^(?P<prefix>.*?)_(?P<date>\d{4}-\d{2}-\d{2})")
@@ -214,14 +228,15 @@ def audit_columns(audit_json):
     return out
 
 
-def main(main_csv: Path, out_dir: Path, errors_csv: Path | None):
+def main(input_csv: Path = INPUT_CSV, out_dir: Path | None = OUT_DIR):
+    input_csv = Path(input_csv)
+    if not input_csv.exists():
+        raise FileNotFoundError(f"Input CSV not found: {input_csv}  (edit INPUT_CSV or pass --input)")
+    out_dir = Path(out_dir) if out_dir else default_out_dir(input_csv)
     out_dir.mkdir(parents=True, exist_ok=True)
+    print(f"Input : {input_csv}\nOutput: {out_dir}")
 
-    main_df = load_reports(main_csv, "main")
-    frames = [main_df]
-    if errors_csv is not None and errors_csv.exists():
-        frames.append(load_reports(errors_csv, "errors"))
-    all_df = pd.concat(frames, ignore_index=True)
+    all_df = pd.read_csv(input_csv, dtype=str)
 
     reports = build_report_table(all_df)
     wide = top_level_values(all_df)
@@ -232,8 +247,6 @@ def main(main_csv: Path, out_dir: Path, errors_csv: Path | None):
     def status(row):
         if row["country"] == "Multi-Country Report":
             return "excluded_non_country"
-        if row["source_file"] == "errors":
-            return "errors_file_not_used"
         if not row["table_found_bool"]:
             return "no_table"
         if row["year_kind"] != "single":
@@ -312,9 +325,7 @@ def main(main_csv: Path, out_dir: Path, errors_csv: Path | None):
             next_rep = next_rows.iloc[0]           # earliest report giving next year
             between = creps[(creps["report_date"] > prev_rep["report_date"]) & (creps["report_date"] < next_rep["report_date"])]
             causes = []
-            if (between["source_file"] == "errors").any():
-                causes.append("errors_file_report_in_between")
-            if ((between["source_file"] == "main") & (~between["table_found_bool"]) & (between["report_status"] != "excluded_non_country")).any():
+            if ((~between["table_found_bool"]) & (between["report_status"] != "excluded_non_country")).any():
                 causes.append("no_table_report_in_between")
             if (between["report_status"] == "table_but_year_unusable").any():
                 causes.append("unusable_year_report_in_between")
@@ -352,7 +363,7 @@ def main(main_csv: Path, out_dir: Path, errors_csv: Path | None):
                 else:
                     fill_status = "not_visible_in_any_report"
                 pool = actual or prelim or []
-                pool_sorted = sorted(pool, key=lambda t: (t[0]["source_file"] != "main", t[0]["report_date"]))
+                pool_sorted = sorted(pool, key=lambda t: t[0]["report_date"])
                 pref = pool_sorted[0] if pool_sorted else None
                 gap_rows.append({
                     "gap_id": span_id,
@@ -374,7 +385,6 @@ def main(main_csv: Path, out_dir: Path, errors_csv: Path | None):
                     "preferred_source_report": pref[0]["pdf_file_name"] if pref else None,
                     "preferred_source_col_label": pref[1]["label"] if pref else None,
                     "preferred_source_col_status": pref[1]["status"] if pref else None,
-                    "preferred_source_in_errors_file": bool(pref and pref[0]["source_file"] == "errors"),
                     "n_reports_actual_column_visible": len({t[0]["pdf_file_name"] for t in actual}),
                     "all_actual_source_reports": "; ".join(sorted({t[0]["pdf_file_name"] for t in actual})),
                 })
@@ -441,7 +451,7 @@ def main(main_csv: Path, out_dir: Path, errors_csv: Path | None):
 
     # ----------------------------------------------------- report inventory
     inv = reports[[
-        "pdf_file_name", "country", "report_date", "source_file", "report_status",
+        "pdf_file_name", "country", "report_date", "report_status",
         "table_found", "last_actual_year", "obs_year", "year_parse_note",
         "year_uncertain", "year_after_report_year", "manual_review_required",
         "actual_column_validation_status", "confidence", "framework",
@@ -459,8 +469,7 @@ def main(main_csv: Path, out_dir: Path, errors_csv: Path | None):
 
     # ------------------------------------------------------------- summary
     stats = {
-        "n_reports_main": int((reports["source_file"] == "main").sum()),
-        "n_reports_errors": int((reports["source_file"] == "errors").sum()),
+        "n_reports": int(len(reports)),
         "status_counts": reports["report_status"].value_counts().to_dict(),
         "n_countries_in_panel": len(all_countries),
         "n_observed_country_years": int((panel["status"] == "observed").sum()),
@@ -483,8 +492,10 @@ def main(main_csv: Path, out_dir: Path, errors_csv: Path | None):
 
 
 if __name__ == "__main__":
-    args = sys.argv[1:]
-    main_csv = Path(args[0]) if len(args) >= 1 else DEFAULT_MAIN
-    out_dir = Path(args[1]) if len(args) >= 2 else DEFAULT_OUT
-    errors_csv = Path(args[2]) if len(args) >= 3 else (DEFAULT_ERRORS if len(args) == 0 else None)
-    main(main_csv, out_dir, errors_csv)
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--input", default=None, help="compiled CSV to analyse (default: INPUT_CSV above)")
+    ap.add_argument("--out-dir", default=None, help="output folder (default: gap_year_check next to the CSV's batch folder)")
+    a, _ = ap.parse_known_args()  # tolerant: extra args injected by IPython/Spyder are ignored
+    main(Path(a.input) if a.input else INPUT_CSV, Path(a.out_dir) if a.out_dir else OUT_DIR)

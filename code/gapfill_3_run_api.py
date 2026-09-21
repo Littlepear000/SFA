@@ -35,7 +35,15 @@ from typing import Any, Dict, List, Optional
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+def _here() -> Path:
+    try:
+        return Path(__file__).resolve().parent
+    except NameError:  # IPython / Spyder cell: run from the code folder, or set HERE by hand
+        return Path.cwd()
+
+
+HERE = _here()
+sys.path.insert(0, str(HERE))
 import gapfill_lib_core as core  # noqa: E402
 
 # =============================================================== CONFIG (edit)
@@ -57,12 +65,12 @@ LOCATOR_DIRS: List[Path] = [
     BASE_DIR / "output" / "json_dsa" / "2021-2026",
 ]
 
-STEP1_SCRIPT = Path(__file__).resolve().parent / "step_1_revised_on_problematic_reports_sl.py"
+STEP1_SCRIPT = HERE / "step_1_revised_on_problematic_reports_sl.py"
 STEP1_PROMPT_FILE = BASE_DIR / "sl_revised_prompt_step_one.txt"      # only used to re-run a locator
 GAPFILL_PROMPT_FILE = BASE_DIR / "gapfill_extraction_prompt_v2.txt"
 ENV_FILE = BASE_DIR / ".env"
 
-STAMP = "20260918_v1"
+STAMP = "20260920_v2"  # must match the STAMP of gapfill_1 / gapfill_2
 CHECK_DIR = BASE_DIR / "output" / "2016-2020" / "gap_year_check"
 TARGETS_CSV = CHECK_DIR / f"gapfill_targets_{STAMP}.csv"
 SKIP_CSV = CHECK_DIR / f"gapfill_skip_reports_{STAMP}.csv"
@@ -360,10 +368,10 @@ def main() -> None:
     ap.add_argument("--collect-only", action="store_true", help="rebuild outputs from saved JSONs; no API")
     ap.add_argument("--limit-gaps", type=int, default=None, help="only the first N gap years (pilot)")
     ap.add_argument("--countries", type=str, default=None, help="comma-separated country names to run")
-    args = ap.parse_args()
+    args, _ = ap.parse_known_args()  # tolerant of extra args injected by IPython/Spyder
 
     targets = pd.read_csv(TARGETS_CSV)
-    run = targets[targets["run_flag"].astype(str).str.lower() == "true"].copy()
+    run = targets.copy()
     if args.countries:
         wanted = {c.strip() for c in args.countries.split(",")}
         run = run[run["country"].isin(wanted)]
@@ -372,7 +380,7 @@ def main() -> None:
         run = run.head(args.limit_gaps)
     skip = set(pd.read_csv(SKIP_CSV)["pdf_file_name"]) if SKIP_CSV.exists() else set()
 
-    print(f"Gap years selected: {len(run)} (held out in targets file: {int((targets['run_flag'].astype(str).str.lower() != 'true').sum())})")
+    print(f"Gap years selected: {len(run)} of {len(targets)}")
     reports = scan_reports()
     idx = core.index_by_country_year(reports)
     print(f"PDFs found: {len(reports)} in {len(PDF_FOLDERS)} folder(s); reports never used as a source: {len(skip)}")
