@@ -1854,11 +1854,12 @@ def load_target_report_stems(
 
 
 def main() -> None:
-    global OUTPUT_DIR, SELECTED_PDF_DIR
+    global OUTPUT_DIR
 
     if REPORT_LIST_FILE:
         OUTPUT_DIR = RERUN_OUTPUT_DIR or OUTPUT_DIR.with_name(OUTPUT_DIR.name + "_rerun")
-    SELECTED_PDF_DIR = OUTPUT_DIR / "selected_pdf_pages"
+    # SELECTED_PDF_DIR is used as set in the CONFIG (it is no longer derived from OUTPUT_DIR),
+    # so the selected PDFs can live in their own folder next to the JSON output folder.
 
     run_start = time.perf_counter()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

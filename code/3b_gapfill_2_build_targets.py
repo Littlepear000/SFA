@@ -1,15 +1,28 @@
 """
-Build the input files for the gap-year API run (offline, no PDFs needed).
+【3b_gapfill_2】生成 API 运行的任务清单
+    第 2 步 ｜ 手动运行 ｜ 不读 PDF，不调 API，几秒钟跑完
 
-Reads the outputs of gapfill_1_build_panel_gap_flags.py and writes, next to them:
-  gapfill_targets_<stamp>.csv       one row per gap year (what to fill)
-  gapfill_skip_reports_<stamp>.csv  reports that must never be used as a source
-                                    (Step 1 found no DSA table / multi-country document)
+作用
+    把第 1 步得到的 gap 清单，整理成第 3 步要用的两个文件。
 
-Usage:
-    python gapfill_2_build_targets.py [--check-dir DIR] [--stamp STAMP]
-or edit CHECK_DIR / STAMP below and just run the file (also works in IPython / Spyder).
-Copy both output files to the machine that runs gapfill_3_run_api.py.
+Input（第 1 步的输出，在 CHECK_DIR 下，文件名带 STAMP）
+    gap_years_<STAMP>.csv
+    report_inventory_<STAMP>.csv
+
+Output（写到同一个文件夹）
+    gapfill_targets_<STAMP>.csv        每个 gap year 一行：gap_id, country, gap_year, gap_span, primary_cause,
+                                       audit_fill_status（第 1 步的预判）, audit_expected_source_report（预判的来源报告）
+    gapfill_skip_reports_<STAMP>.csv   不能当来源的报告：Step 1 没找到 DSA 表的、多国文件（pdf_file_name, reason）
+    -> 这两个文件是第 3 步的输入。
+
+核心步骤
+    1. 读 gap_years，每个 gap year 整理成 targets 的一行。
+    2. 读 report_inventory，挑出没有 DSA 表的报告和多国文件，列入 skip。
+    3. 写出两个 CSV。
+
+用法
+    python 3b_gapfill_2_build_targets.py [--check-dir 第1步的输出文件夹] [--stamp 版本号]
+    或直接改文件顶部的 CHECK_DIR / STAMP 后运行。STAMP 必须与第 1 步一致。
 """
 from __future__ import annotations
 
@@ -36,7 +49,7 @@ BASE = HERE.parent if HERE.name == "code" else HERE
 
 # ------------------------------------------------------------------ CONFIG
 CHECK_DIR = BASE / "output" / "2016-2020" / "gap_year_check"  # folder with the step-1 outputs
-STAMP = "20260920_v2"  # must match the STAMP used by gapfill_1_build_panel_gap_flags.py
+STAMP = "20260920_v2"  # must match the STAMP used by 3a_gapfill_1_build_panel_gap_flags.py
 
 
 def main(check_dir: Path = CHECK_DIR, stamp: str = STAMP) -> None:

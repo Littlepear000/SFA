@@ -1,7 +1,7 @@
 """
 Pure logic for the gap-year fill run (no API, no PDF, no network).
 
-Kept separate from gapfill_3_run_api.py so it can be unit-tested on any machine:
+Kept separate from 3c_gapfill_3_run_api.py so it can be unit-tested on any machine:
   * candidate report ordering (T+2 first, then T+3; latest report of a year first)
   * the resolve/cascade loop across rounds
   * validation that an extracted column is an ACTUAL / HISTORICAL year
@@ -16,7 +16,99 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
 
-from gapfill_1_build_panel_gap_flags import normalize_country, parse_year_label
+# ------------------------------------------------ country names and year labels
+_ALIASES = {
+    "cote d'ivoire": "Côte d'Ivoire",
+    "côte d'ivoire": "Côte d'Ivoire",
+    "democratic republic of sao tome and principe": "São Tomé and Príncipe",
+    "democratic republic of são tomé and príncipe": "São Tomé and Príncipe",
+    "democratic republic of timor-leste": "Timor-Leste",
+    "republic of timor-leste": "Timor-Leste",
+    "democratic republic of the congo": "Democratic Republic of the Congo",
+    "republic of congo": "Republic of Congo",
+    "islamic republic of afghanistan": "Afghanistan",
+    "islamic republic of iran": "Iran",
+    "islamic republic of mauritania": "Mauritania",
+    "kingdom of eswatini": "Eswatini",
+    "kingdom of swaziland": "Eswatini",
+    "kingdom of lesotho": "Lesotho",
+    "lao people's democratic republic": "Lao PDR",
+    "people's republic of china": "China",
+    "former yugoslav republic of macedonia": "North Macedonia",
+    "republic of north macedonia": "North Macedonia",
+    "republic of the marshall islands": "Marshall Islands",
+    "union of comoros": "Comoros",
+    "union of the comoros": "Comoros",
+    "united republic of tanzania": "Tanzania",
+    "republic of tanzania": "Tanzania",
+    "federated states of micronesia": "Micronesia",
+    "arab republic of egypt": "Egypt",
+    "federal democratic republic of ethiopia": "Ethiopia",
+    "brunei darussalam": "Brunei",
+    "republic of korea": "Korea",
+}
+_REPUBLIC_OF = re.compile(r"^republic of (.+)$", re.I)
+
+
+def normalize_country(raw: str) -> str:
+    """Canonical country label from the PDF-filename prefix."""
+    s = str(raw).strip().replace("’", "'")
+    s = re.sub(r"[–—]+", "-", s)
+    s = re.sub(r"\s*-\s*", "-", s)
+    s = re.sub(r"^the\s+", "", s, flags=re.I)
+    low = s.lower()
+    m = re.match(r"^people's republic of china-(.+)$", low)
+    if m:
+        return "Hong Kong SAR, China" if "hong kong" in m.group(1) else "Macao SAR, China"
+    m = re.match(r"^kingdom of the netherlands-(.+)$", low)
+    if m:
+        t = m.group(1)
+        if t == "netherlands":
+            return "Netherlands"
+        if t == "aruba":
+            return "Aruba"
+        return "Curaçao and Sint Maarten"
+    if low == "kingdom of the netherlands":
+        return "Netherlands"
+    if low in _ALIASES:
+        return _ALIASES[low]
+    m = _REPUBLIC_OF.match(s)
+    if m:
+        return m.group(1).strip()
+    return s
+
+
+# -------------------------------------------------------------------- years
+def parse_year_label(value):
+    """Return (kind, y0, y1, note); kind in single | range | invalid.
+
+    Fiscal-year labels (2012/13, 2012-13, FY2012) map to the fiscal-year END year
+    for the two-part forms; FY2012 is taken as 2012. Multi-year spans
+    (2002-2010) are ranges and are never a single observation year.
+    """
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return "invalid", None, None, "missing"
+    text = re.sub(r"\s+", " ", str(value)).strip()
+    if not text or text.lower() == "nan":
+        return "invalid", None, None, "missing"
+    m = re.fullmatch(r"(?:FY\s?)?(\d{4})\s*[/-]\s*(\d{2}|\d{4})", text, flags=re.I)
+    if m:
+        a = int(m.group(1))
+        b_txt = m.group(2)
+        b = int(b_txt) if len(b_txt) == 4 else int(str(a)[:2] + b_txt)
+        if b - a == 1:
+            return "single", b, b, f"fiscal_year_end_of_{text}"
+        if b > a:
+            return "range", a, b, f"multi_year_range_{text}"
+        return "invalid", None, None, f"unparsed_{text}"
+    m = re.fullmatch(r"(?:FY\s?)?(\d{4})", text, flags=re.I)
+    if m:
+        return "single", int(m.group(1)), int(m.group(1)), "fy_label" if text.upper().startswith("FY") else ""
+    years = re.findall(r"\b(\d{4})\b", text)
+    if len(set(years)) == 1:
+        y = int(years[0])
+        return "single", y, y, f"extracted_from_text_{text}"
+    return "invalid", None, None, f"unparsed_{text}"
 
 # ------------------------------------------------------------------ settings
 OFFSETS = (2, 3)  # report year = gap year + 2, then + 3. Stop after that.

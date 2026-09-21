@@ -1,19 +1,45 @@
 """
-Step 1 of the "fill missing year gap" exercise.
+【3a_gapfill_1】找出 gap year，并搭出 panel 骨架
+    第 1 步 ｜ 手动运行 ｜ 不读 PDF，不调 API
 
-Reads one batch of extraction output (the compiled CSV produced by
-json_to_excel_dsa_*.py), builds a country x year panel of the SFA decomposition
-values (one observation per report = its last actual year), and flags interior
-gap years, i.e. years between a country's first and last observed year that no
-report supplies.
+作用
+    从一份 compiled CSV（Step 1 的抽取结果，长格式：一行 = 一份报告里的一个分解项）里，
+    为每份报告取出一个观测值（国家 + last_actual_year 那一年的数值），拼成"国家×年份"的
+    panel 骨架，并标出每个国家在首末观测年之间"中间缺失"的年份，即 gap year。
 
-Nothing here re-reads PDFs. Which report could supply a gap year is inferred
-from the per-report column_header_audit_json (every visible year column with
-its actual/estimate/projection status).
+Input（只需要一个 CSV）
+    文件顶部的 INPUT_CSV，或命令行 --input。例如
+    output/2016-2020/compiled_csv/dsa_decomposition_labels_2016-2020_sa.csv
+    用到的列：json_file, pdf_file_name, table_found, last_actual_year, level, top_category, value,
+    hierarchy_id, parent_label, label_verbatim, column_header_audit_json,
+    manual_review_required, actual_column_validation_status, confidence, framework
 
-Input is ONE compiled CSV. Usage:
-    python gapfill_1_build_panel_gap_flags.py --input path/to/compiled.csv [--out-dir DIR]
-or edit INPUT_CSV below and just run the file (also works from IPython / Spyder).
+Output（默认写到 <批次文件夹>/gap_year_check/，文件名后缀 _<STAMP>）
+    panel_structure_country_year   国家×年份骨架。status = observed（有数据）或 GAP（缺失）
+    gap_years                      每个 gap year 一行：前后两份报告、成因、能否在其他报告里找到该年的
+                                   actual 列、首选来源报告                          -> 第 2 步的输入
+    report_inventory               每份报告如何被使用（有效观测 / 被更新报告取代 / 无表 / 年份异常 ...）
+                                                                                   -> 第 2 步的输入
+    coverage_matrix_country_year   国家×年份矩阵：O = 有数据，O? = 有数据但年份待人工复核，GAP = 缺失
+    panel_children_long            有效观测值对应的子项明细（level 1-2）
+    summary_stats_<STAMP>.json     汇总数字
+
+核心步骤
+    1. 读 CSV，每份报告只留一行报告级信息；国家名和报告日期取自 pdf_file_name（国家名统一拼写）。
+    2. 解析 last_actual_year：2015/16 这类财年写法取财年结束年（2016）；多年区间（如 2009-2014）无效。
+    3. 给每份报告定用途：
+         有效观测 / 与同国家同年的报告重复而被更新的一份取代（同年多份保留最新）/ 没找到 DSA 表 /
+         有表但年份无法解析 / 年份不合理（报告年份 − 该年 ≥ 4 或为负，视为误读，不入 panel）/ 多国文件。
+    4. gap year = 国家在首末观测年之间、没有任何报告提供的年份（首尾年份不算）。
+    5. 给每个 gap 标成因：相邻报告的年份直接跳年 / 中间有报告但没有表 / 中间有报告但年份不可用。
+    6. 用每份报告自带的 column_header_audit_json（表里所有年份列及其 actual/estimate/projection 状态）预判：
+       哪份报告里该年是单独的 actual/historical 列（可填补），还是只有 estimate / projection / 合并区间列。
+    7. 写出以上文件。
+
+用法
+    python 3a_gapfill_1_build_panel_gap_flags.py --input 某个CSV [--out-dir 输出文件夹]
+    或直接改文件顶部的 INPUT_CSV 后运行（IPython / PyCharm console 里也可以）。
+    STAMP 是版本号，必须与第 2、3 步里的 STAMP 一致。
 """
 from __future__ import annotations
 
@@ -65,100 +91,10 @@ ELIGIBLE = {"actual", "historical"}
 MAX_PLAUSIBLE_LAG = 4
 PRELIM_EST = {"preliminary", "estimate"}
 
-# ---------------------------------------------------------------- countries
-_ALIASES = {
-    "cote d'ivoire": "Côte d'Ivoire",
-    "côte d'ivoire": "Côte d'Ivoire",
-    "democratic republic of sao tome and principe": "São Tomé and Príncipe",
-    "democratic republic of são tomé and príncipe": "São Tomé and Príncipe",
-    "democratic republic of timor-leste": "Timor-Leste",
-    "republic of timor-leste": "Timor-Leste",
-    "democratic republic of the congo": "Democratic Republic of the Congo",
-    "republic of congo": "Republic of Congo",
-    "islamic republic of afghanistan": "Afghanistan",
-    "islamic republic of iran": "Iran",
-    "islamic republic of mauritania": "Mauritania",
-    "kingdom of eswatini": "Eswatini",
-    "kingdom of swaziland": "Eswatini",
-    "kingdom of lesotho": "Lesotho",
-    "lao people's democratic republic": "Lao PDR",
-    "people's republic of china": "China",
-    "former yugoslav republic of macedonia": "North Macedonia",
-    "republic of north macedonia": "North Macedonia",
-    "republic of the marshall islands": "Marshall Islands",
-    "union of comoros": "Comoros",
-    "union of the comoros": "Comoros",
-    "united republic of tanzania": "Tanzania",
-    "republic of tanzania": "Tanzania",
-    "federated states of micronesia": "Micronesia",
-    "arab republic of egypt": "Egypt",
-    "federal democratic republic of ethiopia": "Ethiopia",
-    "brunei darussalam": "Brunei",
-    "republic of korea": "Korea",
-}
-_REPUBLIC_OF = re.compile(r"^republic of (.+)$", re.I)
-
-
-def normalize_country(raw: str) -> str:
-    """Canonical country label from the PDF-filename prefix."""
-    s = str(raw).strip().replace("’", "'")
-    s = re.sub(r"[–—]+", "-", s)
-    s = re.sub(r"\s*-\s*", "-", s)
-    s = re.sub(r"^the\s+", "", s, flags=re.I)
-    low = s.lower()
-    m = re.match(r"^people's republic of china-(.+)$", low)
-    if m:
-        return "Hong Kong SAR, China" if "hong kong" in m.group(1) else "Macao SAR, China"
-    m = re.match(r"^kingdom of the netherlands-(.+)$", low)
-    if m:
-        t = m.group(1)
-        if t == "netherlands":
-            return "Netherlands"
-        if t == "aruba":
-            return "Aruba"
-        return "Curaçao and Sint Maarten"
-    if low == "kingdom of the netherlands":
-        return "Netherlands"
-    if low in _ALIASES:
-        return _ALIASES[low]
-    m = _REPUBLIC_OF.match(s)
-    if m:
-        return m.group(1).strip()
-    return s
-
-
-# -------------------------------------------------------------------- years
-def parse_year_label(value):
-    """Return (kind, y0, y1, note); kind in single | range | invalid.
-
-    Fiscal-year labels (2012/13, 2012-13, FY2012) map to the fiscal-year END year
-    for the two-part forms; FY2012 is taken as 2012. Multi-year spans
-    (2002-2010) are ranges and are never a single observation year.
-    """
-    if value is None or (isinstance(value, float) and pd.isna(value)):
-        return "invalid", None, None, "missing"
-    text = re.sub(r"\s+", " ", str(value)).strip()
-    if not text or text.lower() == "nan":
-        return "invalid", None, None, "missing"
-    m = re.fullmatch(r"(?:FY\s?)?(\d{4})\s*[/-]\s*(\d{2}|\d{4})", text, flags=re.I)
-    if m:
-        a = int(m.group(1))
-        b_txt = m.group(2)
-        b = int(b_txt) if len(b_txt) == 4 else int(str(a)[:2] + b_txt)
-        if b - a == 1:
-            return "single", b, b, f"fiscal_year_end_of_{text}"
-        if b > a:
-            return "range", a, b, f"multi_year_range_{text}"
-        return "invalid", None, None, f"unparsed_{text}"
-    m = re.fullmatch(r"(?:FY\s?)?(\d{4})", text, flags=re.I)
-    if m:
-        return "single", int(m.group(1)), int(m.group(1)), "fy_label" if text.upper().startswith("FY") else ""
-    years = re.findall(r"\b(\d{4})\b", text)
-    if len(set(years)) == 1:
-        y = int(years[0])
-        return "single", y, y, f"extracted_from_text_{text}"
-    return "invalid", None, None, f"unparsed_{text}"
-
+# ------------------------------------------------ country names and year labels
+# normalize_country() and parse_year_label() live in gapfill_lib_core.py (same folder).
+sys.path.insert(0, str(HERE))
+from gapfill_lib_core import normalize_country, parse_year_label  # noqa: E402
 
 def to_float(x):
     if x is None or (isinstance(x, float) and pd.isna(x)):

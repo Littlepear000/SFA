@@ -9,7 +9,19 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent if "__file__" in globals() else
                        next((c for c in (Path.cwd(), Path.cwd() / "code") if (c / "gapfill_lib_core.py").exists()), Path.cwd())))
 import gapfill_lib_core as core  # noqa: E402
-import gapfill_3_run_api as run  # noqa: E402
+import importlib.util  # noqa: E402
+
+
+def _load(path, name):
+    spec = importlib.util.spec_from_file_location(name, str(path))
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[name] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+_HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+run = _load(_HERE / "3c_gapfill_3_run_api.py", "gapfill_run_api")
 
 
 def rep(name, country, date):
@@ -192,39 +204,92 @@ def test_cascade():
         assert filled.loc[filled.year == 2017, "status"].iloc[0] == "observed"
 
 
-# ----------------------------------------- end-to-end with a fake Step 1 module
-class FakePdfReader:
-    def __init__(self, p): self.pages = [0] * 12
+# ----------------------------------------- selected PDF lookup and the processor
+def touch(path, size=10):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(b"x" * size)
+
+
+def test_selected_name_parsing():
+    assert run.parse_selected_name("Angola_2017-02-06_pages_45_49.pdf") == ("Angola_2017-02-06", "selected_pdf_direct")
+    assert run.parse_selected_name("Angola_2017-02-06_pages_45_49_image_compressed.pdf")[1] == "selected_pdf_image_compressed"
+    assert run.parse_selected_name("Angola_2017-02-06_page_47_table_crop_fallback.pdf")[1] == "pymupdf_pillow_table_crop_fallback"
+    assert run.parse_selected_name("Angola_2017-02-06_pages_45_49_vision_fallback.pdf")[1] == "pymupdf_pillow_visual_fallback"
+    assert run.parse_selected_name("Angola_2017-02-06_timing.json") is None
+    # any other suffix still maps to the right report
+    assert run.parse_selected_name("Angola_2017-02-06_pages_45_49_v2_final.pdf") == ("Angola_2017-02-06", "selected_pdf_direct")
+    assert run.parse_selected_name("Angola_2017-02-06.pdf") == ("Angola_2017-02-06", "selected_pdf_direct")
+    assert run.parse_selected_name("Angola_2017-02-06_selected.PDF") == ("Angola_2017-02-06", "selected_pdf_direct")
+    assert run.parse_selected_name("Angola_2017-02-06_p47_cropped.pdf")[1] == "pymupdf_pillow_table_crop_fallback"
+    # names with a Country Report number keep it in the stem; names with several words / an apostrophe work too
+    assert run.parse_selected_name("Maldives_2019-09-03_CR2019-283_pages_5_8.pdf") == ("Maldives_2019-09-03_CR2019-283", "selected_pdf_direct")
+    assert run.parse_selected_name("Maldives_2019-09-03_pages_5_8.pdf")[0] == "Maldives_2019-09-03"
+    assert run.parse_selected_name("Democratic Republic of São Tomé and Príncipe_2017-12-18_pages_3_6.pdf")[0] == "Democratic Republic of São Tomé and Príncipe_2017-12-18"
+    assert run.parse_selected_name("Kingdom of the Netherlands—Aruba_2019-06-05_page_8_table_crop_fallback.pdf")[0] == "Kingdom of the Netherlands—Aruba_2019-06-05"
+    assert run.parse_selected_name("notes.pdf") is None
+
+
+def test_selected_pdf_resolution():
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        rerun, orig = d / "rerun" / "selected_pdf_pages", d / "orig" / "selected_pdf_pages"
+        # A: timing.json in the original batch says the crop was sent, although a direct PDF also exists
+        touch(orig / "A_2018-03-01_pages_5_8.pdf"); touch(orig / "A_2018-03-01_page_6_table_crop_fallback.pdf")
+        (d / "orig" / "A_2018-03-01_timing.json").write_text(json.dumps({
+            "pdf_sent_to_api": "C:\\Users\\x\\out\\selected_pdf_pages\\A_2018-03-01_page_6_table_crop_fallback.pdf",
+            "extraction_method": "pymupdf_pillow_table_crop_fallback", "selected_original_pages": [6],
+            "vision_fallback_dpi": 240, "vision_fallback_jpeg_quality": 92, "table_crop_box_points": [1, 2, 3, 4]}))
+        # B: no timing.json -> best fidelity by file name
+        touch(orig / "B_2019-01-01_page_6_table_crop_fallback.pdf"); touch(orig / "B_2019-01-01_pages_5_8_image_compressed.pdf")
+        # C: exists in both folders; the re-run folder is listed first and wins
+        touch(rerun / "C_2019-01-01_pages_9_12.pdf"); touch(orig / "C_2019-01-01_pages_5_8.pdf")
+        # D: timing.json in the "json_output" folder next to selected_pdf_pages (current layout)
+        cur = d / "cur" / "selected_pdf_pages"
+        touch(cur / "D_2019-01-01_pages_5_8.pdf"); touch(cur / "D_2019-01-01_page_6_table_crop_fallback.pdf")
+        (d / "cur" / "json_output").mkdir(parents=True)
+        (d / "cur" / "json_output" / "D_2019-01-01_timing.json").write_text(json.dumps({
+            "pdf_sent_to_api": str(cur / "D_2019-01-01_page_6_table_crop_fallback.pdf"), "extraction_method": "pymupdf_pillow_table_crop_fallback",
+            "selected_original_pages": [6]}))
+        idx = run.index_selected_pdfs([rerun, orig, cur])
+        dd = run.resolve_selected_pdf("D_2019-01-01", idx)
+        assert dd["source"] == "timing" and dd["path"].name.endswith("table_crop_fallback.pdf") and dd["pages"] == [6], dd
+        a = run.resolve_selected_pdf("A_2018-03-01", idx)
+        assert a["source"] == "timing" and a["path"].name.endswith("table_crop_fallback.pdf") and a["pages"] == [6] and a["box"] == [1, 2, 3, 4]
+        b = run.resolve_selected_pdf("B_2019-01-01", idx)
+        assert b["source"] == "filename" and b["method"] == "selected_pdf_image_compressed" and b["pages"] is None
+        c = run.resolve_selected_pdf("C_2019-01-01", idx)
+        assert c["path"].parent == rerun, c
+        assert run.resolve_selected_pdf("nope_2019-01-01", idx) is None
+        reports = run.reports_from_selected(idx)
+        assert {r["pdf_file_name"] for r in reports} == {"A_2018-03-01.pdf", "B_2019-01-01.pdf", "C_2019-01-01.pdf", "D_2019-01-01.pdf"}
+        assert {r["country"] for r in reports} == {"A", "B", "C", "D"}
 
 
 class FakeStep1:
-    PdfReader = FakePdfReader
-
-    def __init__(self, answers):
-        self.answers, self.api_calls = answers, []
-
-    def create_uploadable_subset(self, src, out, start, end, primary):
-        out.write_bytes(b"%PDF fake"); return list(range(start, end + 1)), []
+    def __init__(self, answers, fail_with=None):
+        self.answers, self.api_calls, self.fail_with, self.last_text = answers, [], fail_with, ""
 
     def add_table_crop_header_instruction(self, text, method): return text
 
     def call_pdf_json(self, url, tm, model, prompt, user_text, pdf_path):
+        if self.fail_with:
+            raise RuntimeError(self.fail_with)
         self.api_calls.append("audit" if "INDEPENDENT HEADER AUDIT" in prompt else "extract")
-        if "INDEPENDENT HEADER AUDIT" in prompt:
-            return self.answers["audit"]
-        return self.answers["extract"]
+        self.last_text = user_text
+        return self.answers["audit"] if "INDEPENDENT HEADER AUDIT" in prompt else self.answers["extract"]
 
 
 def test_processor_end_to_end():
     with tempfile.TemporaryDirectory() as d:
         d = Path(d)
         run.OUTPUT_DIR = d / "out"
-        run.LOCATOR_DIRS = [d / "loc"]
-        (d / "loc").mkdir()
-        (d / "loc" / "A_2018-03-01_step1_locator.json").write_text(json.dumps(
-            {"dsa_section_found": True, "recommended_start_page": 5, "recommended_end_page": 8, "primary_table_page": 6}))
-        pdf = d / "A_2018-03-01.pdf"; pdf.write_bytes(b"x")
-        report = {"pdf_file_name": pdf.name, "path": str(pdf), "country": "A", "date": "2018-03-01", "year": 2018}
+        sel_dir = d / "step1" / "selected_pdf_pages"
+        touch(sel_dir / "A_2018-03-01_pages_5_8.pdf")
+        (d / "step1" / "A_2018-03-01_timing.json").write_text(json.dumps({
+            "pdf_sent_to_api": str(sel_dir / "A_2018-03-01_pages_5_8.pdf"), "extraction_method": "selected_pdf_direct",
+            "selected_original_pages": [5, 6, 7, 8]}))
+        idx = run.index_selected_pdfs([sel_dir])
+        report = {"pdf_file_name": "A_2018-03-01.pdf", "country": "A", "date": "2018-03-01", "year": 2018}
 
         extract = {
             "table_found": True,
@@ -236,18 +301,18 @@ def test_processor_end_to_end():
             ],
         }
         s1 = FakeStep1({"extract": extract, "audit": audit(("2017", "estimate"))})
-        proc = run.ReportProcessor(s1, "u", None, "m", "prompt", "")
+        proc = run.ReportProcessor(s1, "u", None, "m", "prompt", idx)
         out = proc(report, [2014, 2016, 2017])
         assert out[2016]["status"] == "resolved" and out[2016]["decomposition"]
         assert out[2017]["status"] == "rejected_not_actual" and out[2017]["decomposition"] is None
         assert out[2014]["status"] == "year_not_in_table"
         assert s1.api_calls == ["extract", "audit"], s1.api_calls
+        assert "Selected PDF page 1 = original physical PDF page 5" in s1.last_text  # mapping from timing.json is passed on
 
         # resume: same request again must not call the API
         s1.api_calls.clear()
         out2 = proc(report, [2014, 2016, 2017])
         assert s1.api_calls == [] and out2[2016]["status"] == "resolved"
-        # cache-only collect
         co = run.cache_only_process(report, [2016, 2099])
         assert co[2016]["status"] == "resolved" and co[2099]["status"] == "not_run"
 
@@ -255,17 +320,22 @@ def test_processor_end_to_end():
         (d / "out" / "reports" / "A_2018-03-01_gapfill.json").unlink()
         extract["source"]["column_header_audit"] = audit(("2015", "actual"))["column_header_audit"]
         s1.answers["audit"] = audit(("2015", "actual"), ("2016", "historical"))
-        out3 = proc(report, [2016])
-        assert out3[2016]["status"] == "resolved_with_warning", out3[2016]
+        assert proc(report, [2016])[2016]["status"] == "resolved_with_warning"
 
-        # a report with no DSA table
-        (d / "loc" / "B_2019-01-01_step1_locator.json").write_text(json.dumps({"dsa_section_found": False}))
-        rb = {"pdf_file_name": "B_2019-01-01.pdf", "path": str(d / "B_2019-01-01.pdf"), "country": "B", "date": "2019-01-01", "year": 2019}
-        (d / "B_2019-01-01.pdf").write_bytes(b"x")
-        assert proc(rb, [2016])[2016]["status"] == "no_dsa_table"
-        # missing PDF
-        rc = {"pdf_file_name": "C.pdf", "path": str(d / "nope.pdf"), "country": "C", "date": "2019-01-01", "year": 2019}
-        assert proc(rc, [2016])[2016]["status"] == "pdf_not_found"
+        # no selected PDF for this report -> non-stopping status, no API call
+        s1.api_calls.clear()
+        rb = {"pdf_file_name": "B_2019-01-01.pdf", "country": "B", "date": "2019-01-01", "year": 2019}
+        assert proc(rb, [2016])[2016]["status"] == "selected_pdf_not_found" and s1.api_calls == []
+
+        # request too large for the gateway -> pdf_too_large (cascade moves on), other errors -> api_error (cascade stops)
+        touch(sel_dir / "C_2019-01-01_pages_5_8.pdf"); idx.update(run.index_selected_pdfs([sel_dir]))
+        rc = {"pdf_file_name": "C_2019-01-01.pdf", "country": "C", "date": "2019-01-01", "year": 2019}
+        big = run.ReportProcessor(FakeStep1({}, fail_with="The complete encoded request is 1,200,000 bytes, which is too close to or above the 1 MB gateway limit"), "u", None, "m", "p", idx)
+        assert big(rc, [2016])[2016]["status"] == "pdf_too_large"
+        (d / "out" / "reports" / "C_2019-01-01_gapfill.json").unlink()
+        bad = run.ReportProcessor(FakeStep1({}, fail_with="API error 500"), "u", None, "m", "p", idx)
+        assert bad(rc, [2016])[2016]["status"] == "api_error"
+        assert "pdf_too_large" not in core.STOP_STATUSES and "api_error" in core.STOP_STATUSES
 
 
 if __name__ == "__main__":

@@ -1,0 +1,700 @@
+﻿pdf_file_name,country,sa_group,tf_sl,tf_weiqi,tf_sa,year_sl,year_weiqi,year_sa,framework_sl,framework_weiqi,framework_sa,confidence_sl,confidence_weiqi,confidence_sa,manual_review_required_sl,manual_review_required_weiqi,manual_review_required_sa,extraction_method_sl,extraction_method_weiqi,extraction_method_sa,disagreement_types
+Albania_2011-10-21.pdf,Albania,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Albania_2014-03-19.pdf,Albania,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Algeria_2011-02-03.pdf,Algeria,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Algeria_2012-01-31.pdf,Algeria,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Algeria_2014-02-04.pdf,Algeria,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Algeria_2014-12-11.pdf,Algeria,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Angola_2011-12-08.pdf,Angola,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Angola_2012-05-09.pdf,Angola,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Angola_2012-08-02.pdf,Angola,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Angola_2014-09-05.pdf,Angola,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,medium,medium,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Angola_2015-11-03.pdf,Angola,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Antigua and Barbuda_2013-03-22.pdf,Antigua and Barbuda,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Antigua and Barbuda_2015-07-17.pdf,Antigua and Barbuda,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Arab Republic of Egypt_2015-02-11.pdf,Egypt,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,medium,medium,medium,No,No,No,selected_pdf_direct,pymupdf_pillow_table_crop_fallback,selected_pdf_direct,
+Australia_2011-10-06.pdf,Australia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Australia_2012-11-15.pdf,Australia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Australia_2014-02-12.pdf,Australia,main,True,True,True,2013,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Australia_2015-09-30.pdf,Australia,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Austria_2011-09-06.pdf,Austria,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Austria_2012-08-28.pdf,Austria,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Austria_2014-09-15.pdf,Austria,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Baltic Cluster Report_2014-05-08.pdf,Baltic Cluster Report,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Bangladesh_2011-11-03.pdf,Bangladesh,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bangladesh_2013-03-11.pdf,Bangladesh,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bangladesh_2013-06-05.pdf,Bangladesh,errors,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bangladesh_2013-12-05.pdf,Bangladesh,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bangladesh_2015-11-10.pdf,Bangladesh,main,False,False,True,,,2013,,,LIC_DSF,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Barbados_2012-01-19.pdf,Barbados,main,True,True,True,2010,2010,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Barbados_2014-02-12.pdf,Barbados,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Belgium_2011-04-06.pdf,Belgium,main,False,False,True,,,2009,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Belgium_2012-03-20.pdf,Belgium,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Belgium_2014-03-12.pdf,Belgium,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Belgium_2015-03-12.pdf,Belgium,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Belize_2011-01-14.pdf,Belize,main,True,True,True,2008,2008,2008,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Belize_2011-12-02.pdf,Belize,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Belize_2013-07-23.pdf,Belize,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Belize_2014-09-17.pdf,Belize,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Benin_2011-03-02.pdf,Benin,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Benin_2011-09-22.pdf,Benin,main,True,True,True,2010,2009,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Benin_2013-01-11.pdf,Benin,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bhutan_2011-06-02.pdf,Bhutan,main,True,True,True,2008,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Bhutan_2014-07-01.pdf,Bhutan,errors,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bolivia_2011-06-02.pdf,Bolivia,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bolivia_2012-06-15.pdf,Bolivia,errors,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bolivia_2014-02-10.pdf,Bolivia,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bolivia_2015-12-18.pdf,Bolivia,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Bosnia and Herzegovina_2012-10-05.pdf,Bosnia and Herzegovina,main,True,True,True,,,2011,UNKNOWN,MAC_DSA,MAC_DSA,low,low,high,Yes,Yes,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,last_actual_year
+Bosnia and Herzegovina_2012-12-27.pdf,Bosnia and Herzegovina,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Bosnia and Herzegovina_2013-05-17.pdf,Bosnia and Herzegovina,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Bosnia and Herzegovina_2013-07-03.pdf,Bosnia and Herzegovina,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Bosnia and Herzegovina_2015-10-28.pdf,Bosnia and Herzegovina,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Botswana_2011-08-04.pdf,Botswana,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Botswana_2012-08-10.pdf,Botswana,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Botswana_2014-07-15.pdf,Botswana,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Brazil_2012-07-20.pdf,Brazil,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Brazil_2013-10-23.pdf,Brazil,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Brazil_2015-05-12.pdf,Brazil,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Bulgaria_2011-07-15.pdf,Bulgaria,main,True,True,True,,,2010,UNKNOWN,MAC_DSA,MAC_DSA,low,low,high,Yes,Yes,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,last_actual_year
+Bulgaria_2012-12-13.pdf,Bulgaria,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bulgaria_2014-01-30.pdf,Bulgaria,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Bulgaria_2015-05-13.pdf,Bulgaria,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Burkina Faso_2011-08-11.pdf,Burkina Faso,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Burkina Faso_2012-07-02_CR2012-158.pdf,Burkina Faso,main,True,True,True,2010,2009,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Burkina Faso_2012-07-02_CR2012-159.pdf,Burkina Faso,errors,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Burkina Faso_2013-01-25.pdf,Burkina Faso,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Burkina Faso_2013-07-25.pdf,Burkina Faso,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Burkina Faso_2014-07-21.pdf,Burkina Faso,errors,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Burundi_2011-05-11.pdf,Burundi,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Burundi_2011-07-25.pdf,Burundi,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Burundi_2012-02-02.pdf,Burundi,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Burundi_2012-08-06.pdf,Burundi,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Burundi_2013-03-11.pdf,Burundi,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Burundi_2013-09-18.pdf,Burundi,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Burundi_2014-09-23.pdf,Burundi,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Cabo Verde_2014-09-25.pdf,Cabo Verde,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Cambodia_2011-02-07.pdf,Cambodia,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Cambodia_2012-02-27.pdf,Cambodia,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Cambodia_2014-02-04.pdf,Cambodia,main,True,True,True,,,2012,LIC_DSF,LIC_DSF,LIC_DSF,low,low,high,Yes,Yes,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,last_actual_year
+Cambodia_2015-11-16.pdf,Cambodia,main,False,False,True,,,2014,,,LIC_DSF,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Cameroon_2011-09-01.pdf,Cameroon,errors,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Cameroon_2012-08-13.pdf,Cameroon,main,True,True,True,2010,2010,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Cameroon_2014-07-17.pdf,Cameroon,main,True,True,True,2012,2012,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,low,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Cameroon_2015-12-03.pdf,Cameroon,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Canada_2011-12-21.pdf,Canada,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Canada_2015-01-30.pdf,Canada,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Cape Verde_2011-07-20.pdf,Cape Verde,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Cape Verde_2012-02-03.pdf,Cape Verde,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,low,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Central African Republic_2012-08-13_CR2012-238.pdf,Central African Republic,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Central African Republic_2012-08-13_CR2012-240.pdf,Central African Republic,errors,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Central and Eastern Europe_2015-04-07.pdf,Central and Eastern Europe,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Chad_2011-10-12.pdf,Chad,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Chad_2013-05-14.pdf,Chad,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,medium,medium,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Chad_2014-04-17.pdf,Chad,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Chad_2015-12-21.pdf,Chad,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Chile_2011-08-24.pdf,Chile,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Chile_2014-07-22.pdf,Chile,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Chile_2015-08-06.pdf,Chile,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Colombia_2011-07-05.pdf,Colombia,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Colombia_2011-08-02.pdf,Colombia,main,True,False,True,,,2010,MAC_DSA,,MAC_DSA,low,,high,Yes,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Colombia_2012-09-20.pdf,Colombia,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Colombia_2013-07-10.pdf,Colombia,main,True,True,True,,,2011,MAC_DSA,MAC_DSA,MAC_DSA,low,low,high,Yes,Yes,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,last_actual_year
+Colombia_2014-05-28.pdf,Colombia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Colombia_2015-06-08.pdf,Colombia,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Costa Rica_2011-07-05.pdf,Costa Rica,main,True,True,True,2010,2010,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Costa Rica_2015-02-04.pdf,Costa Rica,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Cyprus_2011-11-29.pdf,Cyprus,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Cyprus_2014-04-01.pdf,Cyprus,main,True,True,True,2012,2013,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,"last_actual_year, value"
+Cyprus_2014-10-22.pdf,Cyprus,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Cyprus_2015-09-25.pdf,Cyprus,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Czech Republic_2011-04-07.pdf,Czech Republic,main,True,False,True,,,2010,MAC_DSA,,MAC_DSA,low,,high,Yes,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Czech Republic_2012-05-18.pdf,Czech Republic,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Czech Republic_2014-09-02.pdf,Czech Republic,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Czech Republic_2015-07-23.pdf,Czech Republic,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Côte d'Ivoire_2011-11-22.pdf,Côte d'Ivoire,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Côte d’Ivoire_2012-12-12.pdf,Côte d'Ivoire,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Democratic Republic of São Tomé and Príncipe_2012-02-08.pdf,São Tomé and Príncipe,main,True,True,True,2010,2009,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Democratic Republic of São Tomé and Príncipe_2014-01-06.pdf,São Tomé and Príncipe,errors,True,True,True,2012,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Democratic Republic of Timor-Leste_2011-03-08.pdf,Timor-Leste,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Democratic Republic of Timor-Leste_2012-02-01.pdf,Timor-Leste,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Democratic Republic of the Congo_2011-02-22.pdf,Democratic Republic of the Congo,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Democratic Republic of the Congo_2011-07-20.pdf,Democratic Republic of the Congo,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Democratic Republic of the Congo_2013-04-03.pdf,Democratic Republic of the Congo,main,True,True,True,2010,2010,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Democratic Republic of the Congo_2014-09-30.pdf,Democratic Republic of the Congo,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Democratic Republic of the Congo_2015-10-13.pdf,Democratic Republic of the Congo,errors,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Denmark_2014-12-09.pdf,Denmark,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Djibouti_2012-07-10.pdf,Djibouti,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Djibouti_2012-07-24.pdf,Djibouti,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Djibouti_2013-03-21.pdf,Djibouti,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Djibouti_2015-12-15.pdf,Djibouti,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Dominica_2011-11-14.pdf,Dominica,errors,True,True,True,2009,2010,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Dominica_2012-02-27.pdf,Dominica,main,True,False,True,,,2010,LIC_DSF,,LIC_DSF,low,,high,Yes,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Dominica_2015-11-18.pdf,Dominica,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Dominican Republic_2011-03-22_CR2011-070.pdf,Dominican Republic,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Dominican Republic_2011-03-22_CR2011-071.pdf,Dominican Republic,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Dominican Republic_2011-07-13.pdf,Dominican Republic,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Ecuador_2015-10-21.pdf,Ecuador,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+El Salvador_2011-04-19.pdf,El Salvador,main,True,False,True,,,2009,MAC_DSA,,MAC_DSA,low,,high,Yes,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+El Salvador_2011-10-12.pdf,El Salvador,main,True,False,True,,,2010,UNKNOWN,,MAC_DSA,low,,high,Yes,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+El Salvador_2013-05-22.pdf,El Salvador,errors,True,True,True,2012,2012,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+El Salvador_2015-01-12.pdf,El Salvador,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Federated States of Micronesia_2011-02-04.pdf,Micronesia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Federated States of Micronesia_2015-05-15.pdf,Micronesia,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Finland_2012-08-31.pdf,Finland,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Finland_2014-05-28.pdf,Finland,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Finland_2015-11-17.pdf,Finland,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Former Yugoslav Republic of Macedonia_2012-06-08.pdf,North Macedonia,main,True,True,True,,,2011,MAC_DSA,MAC_DSA,MAC_DSA,low,low,high,Yes,Yes,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,last_actual_year
+Former Yugoslav Republic of Macedonia_2014-07-25.pdf,North Macedonia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Former Yugoslav Republic of Macedonia_2015-09-03.pdf,North Macedonia,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+France_2011-07-27.pdf,France,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+France_2014-07-03.pdf,France,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+France_2015-07-10.pdf,France,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Gabon_2011-05-04.pdf,Gabon,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Gabon_2015-02-25.pdf,Gabon,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Georgia_2011-01-28.pdf,Georgia,main,False,False,True,,,2009,,,LIC_DSF,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Georgia_2011-04-21.pdf,Georgia,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Georgia_2011-06-27.pdf,Georgia,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Georgia_2012-04-24.pdf,Georgia,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Georgia_2013-04-03.pdf,Georgia,main,False,True,True,,,2011,,MAC_DSA,MAC_DSA,,low,high,No,Yes,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Georgia_2015-01-20.pdf,Georgia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+German-Central European Supply Chain-Cluster Report_2013-08-20.pdf,German-Central European Supply Chain-Cluster Report,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Germany_2011-07-12.pdf,Germany,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Germany_2012-07-03.pdf,Germany,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Germany_2014-07-21.pdf,Germany,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Germany_2015-07-15.pdf,Germany,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Ghana_2011-06-10_CR2011-128.pdf,Ghana,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Ghana_2011-06-10_CR2011-129.pdf,Ghana,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Ghana_2012-02-08.pdf,Ghana,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Ghana_2012-07-27.pdf,Ghana,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Ghana_2014-05-30.pdf,Ghana,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Ghana_2015-09-04.pdf,Ghana,errors,True,True,True,2014,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Greece_2011-03-16.pdf,Greece,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Greece_2012-03-16.pdf,Greece,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Greece_2013-01-18.pdf,Greece,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Greece_2013-06-05.pdf,Greece,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Greece_2013-07-31.pdf,Greece,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Grenada_2014-07-14.pdf,Grenada,errors,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Grenada_2015-12-03.pdf,Grenada,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Guatemala_2012-06-11.pdf,Guatemala,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Guatemala_2014-09-18.pdf,Guatemala,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Guinea-Bissau_2011-05-26.pdf,Guinea-Bissau,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Guinea-Bissau_2011-12-14.pdf,Guinea-Bissau,main,True,True,True,2009,2009,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Guinea-Bissau_2013-07-03.pdf,Guinea-Bissau,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Guinea-Bissau_2015-07-21.pdf,Guinea-Bissau,errors,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Guinea_2012-03-26.pdf,Guinea,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Guinea_2012-11-07.pdf,Guinea,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Guinea_2014-02-27.pdf,Guinea,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Guinea_2015-05-01.pdf,Guinea,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Guyana_2011-06-28.pdf,Guyana,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Guyana_2014-09-25.pdf,Guyana,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Haiti_2011-05-13.pdf,Haiti,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Haiti_2011-06-14.pdf,Haiti,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Haiti_2012-04-02.pdf,Haiti,errors,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Haiti_2012-08-03.pdf,Haiti,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Haiti_2015-06-24.pdf,Haiti,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Honduras_2011-05-10.pdf,Honduras,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Honduras_2015-10-14.pdf,Honduras,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Hungary_2011-02-03.pdf,Hungary,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Hungary_2012-01-25.pdf,Hungary,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Hungary_2013-03-29.pdf,Hungary,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Hungary_2014-06-06.pdf,Hungary,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Hungary_2015-04-03.pdf,Hungary,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Iceland_2011-01-14.pdf,Iceland,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Iceland_2011-06-06.pdf,Iceland,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Iceland_2011-08-31.pdf,Iceland,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Iceland_2012-04-12.pdf,Iceland,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Iceland_2015-03-13.pdf,Iceland,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,UNKNOWN,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+India_2011-02-14.pdf,India,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+India_2012-04-18.pdf,India,main,True,True,True,2011,2011,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+India_2014-02-20.pdf,India,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+India_2015-03-11.pdf,India,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,medium,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Indonesia_2011-10-21.pdf,Indonesia,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Indonesia_2012-09-25.pdf,Indonesia,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Indonesia_2013-12-15.pdf,Indonesia,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Indonesia_2015-03-19.pdf,Indonesia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Iraq_2011-03-28.pdf,Iraq,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,medium,medium,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Iraq_2015-08-18.pdf,Iraq,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Ireland_2011-05-20.pdf,Ireland,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Ireland_2011-09-07.pdf,Ireland,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Ireland_2011-12-20.pdf,Ireland,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Ireland_2012-03-02.pdf,Ireland,errors,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Ireland_2012-06-15.pdf,Ireland,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Ireland_2012-09-10.pdf,Ireland,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Ireland_2012-12-19.pdf,Ireland,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,high,No,No,No,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,
+Ireland_2015-01-29.pdf,Ireland,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Ireland_2015-03-25.pdf,Ireland,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Ireland_2015-06-22.pdf,Ireland,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Islamic Republic of Afghanistan_2011-11-23.pdf,Afghanistan,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Islamic Republic of Afghanistan_2012-08-20.pdf,Afghanistan,errors,False,False,True,,,2011,,,LIC_DSF,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Islamic Republic of Afghanistan_2014-05-21.pdf,Afghanistan,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Islamic Republic of Iran_2011-08-03.pdf,Iran,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Islamic Republic of Iran_2014-04-04.pdf,Iran,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Islamic Republic of Iran_2015-12-21.pdf,Iran,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Islamic Republic of Mauritania_2011-07-19.pdf,Mauritania,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Islamic Republic of Mauritania_2011-12-23.pdf,Mauritania,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Islamic Republic of Mauritania_2012-08-01.pdf,Mauritania,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Islamic Republic of Mauritania_2012-12-04.pdf,Mauritania,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Islamic Republic of Mauritania_2013-07-02.pdf,Mauritania,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Islamic Republic of Mauritania_2015-02-12.pdf,Mauritania,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Israel_2011-01-24.pdf,Israel,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Israel_2012-04-02.pdf,Israel,main,True,True,True,,,2011,MAC_DSA,MAC_DSA,MAC_DSA,low,low,high,Yes,Yes,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,last_actual_year
+Israel_2014-02-12.pdf,Israel,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Israel_2015-09-16.pdf,Israel,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Italy_2011-07-12.pdf,Italy,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Italy_2012-07-10.pdf,Italy,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Italy_2014-09-18.pdf,Italy,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Italy_2015-07-07.pdf,Italy,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Jamaica_2011-02-11.pdf,Jamaica,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Jamaica_2014-06-20.pdf,Jamaica,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Jamaica_2015-04-03.pdf,Jamaica,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Jamaica_2015-09-24.pdf,Jamaica,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Jamaica_2015-12-17.pdf,Jamaica,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Japan_2011-07-19.pdf,Japan,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,medium,medium,medium,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Japan_2012-08-01.pdf,Japan,main,False,False,False,,,,,,,,,,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Japan_2014-07-31.pdf,Japan,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Japan_2015-07-23.pdf,Japan,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Jordan_2012-05-22.pdf,Jordan,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Jordan_2012-12-27.pdf,Jordan,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Jordan_2013-05-23.pdf,Jordan,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Jordan_2014-06-09.pdf,Jordan,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kenya_2011-02-10.pdf,Kenya,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kenya_2011-07-07.pdf,Kenya,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kenya_2012-01-26.pdf,Kenya,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kenya_2012-04-24.pdf,Kenya,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kenya_2012-11-05.pdf,Kenya,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kenya_2013-04-30.pdf,Kenya,main,True,True,True,2011,2011,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Kenya_2014-10-02.pdf,Kenya,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kenya_2015-09-23.pdf,Kenya,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kingdom of Lesotho_2011-04-11.pdf,Lesotho,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kingdom of Lesotho_2012-05-11.pdf,Lesotho,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kingdom of Lesotho_2014-07-11.pdf,Lesotho,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kingdom of Swaziland_2011-01-24.pdf,Eswatini,main,False,False,True,,,2009,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Kingdom of Swaziland_2011-04-08.pdf,Eswatini,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kingdom of Swaziland_2012-02-08.pdf,Eswatini,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kingdom of Swaziland_2014-07-23.pdf,Eswatini,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,medium,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kingdom of Swaziland_2015-12-23.pdf,Eswatini,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kingdom of the Netherlands_2011-06-21.pdf,Netherlands,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kingdom of the Netherlands_2011-12-08.pdf,Netherlands,errors,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kingdom of the Netherlands_2013-08-09.pdf,Netherlands,main,False,False,True,,,2012,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Kingdom of the Netherlands—Aruba_2015-05-07.pdf,Aruba,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Kingdom of the Netherlands—Netherlands_2014-12-05.pdf,Netherlands,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kiribati_2011-05-24.pdf,Kiribati,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kiribati_2013-06-06.pdf,Kiribati,errors,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kiribati_2014-05-27.pdf,Kiribati,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kiribati_2015-07-29.pdf,Kiribati,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Kuwait_2011-08-01.pdf,Kuwait,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kuwait_2012-06-18.pdf,Kuwait,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kuwait_2014-12-09.pdf,Kuwait,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kuwait_2015-12-02.pdf,Kuwait,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Kyrgyz Republic_2011-06-28.pdf,Kyrgyz Republic,errors,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kyrgyz Republic_2011-12-14.pdf,Kyrgyz Republic,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kyrgyz Republic_2012-05-15.pdf,Kyrgyz Republic,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Kyrgyz Republic_2012-12-12.pdf,Kyrgyz Republic,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Kyrgyz Republic_2013-06-25.pdf,Kyrgyz Republic,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Lao People's Democratic Republic_2011-02-07.pdf,Lao PDR,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Lao People's Democratic Republic_2011-08-19.pdf,Lao PDR,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Lao People's Democratic Republic_2012-10-18.pdf,Lao PDR,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Lao People's Democratic Republic_2013-12-20.pdf,Lao PDR,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Lao People’s Democratic Republic_2015-02-26.pdf,Lao PDR,errors,True,True,True,2013,2013,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Lebanon_2012-02-09.pdf,Lebanon,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Lebanon_2014-07-31.pdf,Lebanon,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Lebanon_2015-07-17.pdf,Lebanon,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Liberia_2011-07-13.pdf,Liberia,main,True,True,True,,,,LIC_DSF,LIC_DSF,LIC_DSF,low,low,low,Yes,Yes,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Liberia_2012-05-22.pdf,Liberia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Liberia_2015-11-09.pdf,Liberia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Libya_2013-05-31.pdf,Libya,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Luxembourg_2011-05-17.pdf,Luxembourg,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Luxembourg_2012-07-03.pdf,Luxembourg,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Luxembourg_2014-05-09.pdf,Luxembourg,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Luxembourg_2015-06-08.pdf,Luxembourg,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Malawi_2012-08-03.pdf,Malawi,errors,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Malawi_2013-05-20.pdf,Malawi,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Malawi_2014-02-07.pdf,Malawi,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Malawi_2015-12-18.pdf,Malawi,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Malaysia_2012-02-10.pdf,Malaysia,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Malaysia_2014-03-14.pdf,Malaysia,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Malaysia_2015-03-03.pdf,Malaysia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,medium,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Maldives_2011-09-26.pdf,Maldives,main,True,True,True,2008,2008,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Maldives_2015-03-11.pdf,Maldives,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mali_2011-02-04.pdf,Mali,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mali_2011-06-17.pdf,Mali,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Mali_2011-06-28.pdf,Mali,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Mali_2012-01-04.pdf,Mali,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mali_2013-02-26.pdf,Mali,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mali_2013-06-21.pdf,Mali,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Mali_2013-12-31.pdf,Mali,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mali_2015-12-17.pdf,Mali,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Malta_2011-01-28.pdf,Malta,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Malta_2012-05-07.pdf,Malta,main,True,True,True,2011,2010,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Malta_2015-02-26.pdf,Malta,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mauritius_2011-05-04.pdf,Mauritius,main,True,False,True,,,2010,UNKNOWN,,MAC_DSA,low,,high,Yes,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Mauritius_2012-03-23.pdf,Mauritius,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mauritius_2014-05-05.pdf,Mauritius,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mexico_2011-08-08.pdf,Mexico,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mexico_2011-12-22.pdf,Mexico,errors,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Mexico_2012-11-28.pdf,Mexico,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mexico_2012-12-07.pdf,Mexico,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Mexico_2013-11-26.pdf,Mexico,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mexico_2014-11-12.pdf,Mexico,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Mexico_2015-11-17.pdf,Mexico,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Mexico_2015-11-24.pdf,Mexico,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Mongolia_2011-03-30.pdf,Mongolia,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mongolia_2014-03-06.pdf,Mongolia,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Mongolia_2015-04-30.pdf,Mongolia,errors,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Montenegro_2011-05-06.pdf,Montenegro,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Montenegro_2012-05-23.pdf,Montenegro,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Montenegro_2015-02-04.pdf,Montenegro,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Morocco_2011-12-02.pdf,Morocco,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Morocco_2012-08-13.pdf,Morocco,main,True,True,True,2011,2011,2011,UNKNOWN,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Morocco_2013-04-05.pdf,Morocco,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Morocco_2014-03-06.pdf,Morocco,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Morocco_2015-02-23.pdf,Morocco,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Morocco_2015-07-30.pdf,Morocco,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Myanmar_2012-05-07.pdf,Myanmar,main,True,True,True,2009,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Myanmar_2014-03-28.pdf,Myanmar,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Myanmar_2014-10-06.pdf,Myanmar,main,True,True,True,2013,2013,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Myanmar_2015-09-18.pdf,Myanmar,errors,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Namibia_2012-02-10.pdf,Namibia,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Namibia_2014-02-10.pdf,Namibia,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Namibia_2015-10-01.pdf,Namibia,main,True,True,True,2013,2014,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,"last_actual_year, value"
+Nepal_2011-11-09.pdf,Nepal,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Nepal_2012-12-06.pdf,Nepal,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Nepal_2014-07-18.pdf,Nepal,main,True,True,True,2013,2012,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Nepal_2015-11-18.pdf,Nepal,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+New Zealand_2011-05-09.pdf,New Zealand,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+New Zealand_2012-06-07.pdf,New Zealand,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+New Zealand_2014-06-09.pdf,New Zealand,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,medium,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Nicaragua_2011-05-26.pdf,Nicaragua,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Nicaragua_2011-11-14.pdf,Nicaragua,errors,True,True,True,2010,2010,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Nicaragua_2013-12-27.pdf,Nicaragua,main,True,True,True,2011,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Niger_2011-12-19.pdf,Niger,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Niger_2012-05-14.pdf,Niger,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Niger_2013-04-30.pdf,Niger,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Niger_2015-03-11.pdf,Niger,main,True,True,True,2012,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Niger_2015-12-17.pdf,Niger,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Nigeria_2011-02-28.pdf,Nigeria,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Nigeria_2012-07-24.pdf,Nigeria,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Nigeria_2014-04-22.pdf,Nigeria,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Nigeria_2015-03-30.pdf,Nigeria,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,medium,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Norway_2012-02-02.pdf,Norway,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Norway_2014-08-29.pdf,Norway,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Norway_2015-09-09.pdf,Norway,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Pakistan_2012-02-07.pdf,Pakistan,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Pakistan_2014-01-03.pdf,Pakistan,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,medium,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Pakistan_2015-04-07.pdf,Pakistan,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Pakistan_2015-10-06.pdf,Pakistan,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Panama_2012-04-10.pdf,Panama,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Panama_2014-06-09.pdf,Panama,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Panama_2015-08-19.pdf,Panama,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Papua New Guinea_2011-05-25.pdf,Papua New Guinea,errors,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Papua New Guinea_2012-06-01.pdf,Papua New Guinea,errors,True,True,True,2011,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,medium,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Papua New Guinea_2013-12-03.pdf,Papua New Guinea,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Papua New Guinea_2014-12-02.pdf,Papua New Guinea,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Papua New Guinea_2015-11-18.pdf,Papua New Guinea,errors,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Paraguay_2011-08-02.pdf,Paraguay,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Paraguay_2012-08-01.pdf,Paraguay,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Paraguay_2014-02-21.pdf,Paraguay,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Paraguay_2015-02-20.pdf,Paraguay,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+People's Republic of China_2012-07-24.pdf,China,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+People’s Republic of China_2014-07-30.pdf,China,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+People’s Republic of China_2015-08-14.pdf,China,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+People’s Republic of China—Hong Kong Special Administrative Region_2014-05-22.pdf,"Hong Kong SAR, China",main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+People’s Republic of China—Macao Special Administrative Region_2014-07-24.pdf,"Macao SAR, China",main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Peru_2012-02-01.pdf,Peru,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Peru_2014-01-29.pdf,Peru,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Peru_2015-05-27.pdf,Peru,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Philippines_2011-03-01.pdf,Philippines,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Philippines_2012-03-05.pdf,Philippines,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Philippines_2014-08-08.pdf,Philippines,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Philippines_2015-09-04.pdf,Philippines,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,
+Portugal_2012-04-05.pdf,Portugal,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Portugal_2012-07-17.pdf,Portugal,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Portugal_2012-10-25.pdf,Portugal,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Portugal_2013-01-18.pdf,Portugal,main,False,True,True,,,2011,,UNKNOWN,MAC_DSA,,low,high,No,Yes,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Portugal_2013-06-13.pdf,Portugal,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Portugal_2015-05-18.pdf,Portugal,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Qatar_2011-03-09.pdf,Qatar,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Qatar_2012-01-31.pdf,Qatar,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Qatar_2014-05-06.pdf,Qatar,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,
+Qatar_2015-04-02.pdf,Qatar,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Armenia_2011-07-13.pdf,Armenia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Armenia_2011-12-22.pdf,Armenia,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Armenia_2012-06-26.pdf,Armenia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Armenia_2013-02-05.pdf,Armenia,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Armenia_2015-03-11.pdf,Armenia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Armenia_2015-11-19.pdf,Armenia,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Republic of Azerbaijan_2012-01-18.pdf,Azerbaijan,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Azerbaijan_2014-06-11.pdf,Azerbaijan,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,medium,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Belarus_2011-03-09.pdf,Belarus,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Belarus_2012-05-17.pdf,Belarus,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Belarus_2014-07-25.pdf,Belarus,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Belarus_2015-05-29.pdf,Belarus,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Republic of Congo_2011-03-03.pdf,Republic of Congo,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Congo_2011-03-15.pdf,Republic of Congo,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Congo_2011-08-17.pdf,Republic of Congo,main,True,True,True,2009,2009,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Republic of Congo_2012-10-12.pdf,Republic of Congo,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Congo_2014-09-04.pdf,Republic of Congo,errors,True,True,True,2013,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Republic of Congo_2015-09-16.pdf,Republic of Congo,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Croatia_2011-07-01.pdf,Croatia,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Croatia_2014-05-19.pdf,Croatia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Croatia_2015-07-02.pdf,Croatia,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Equatorial Guinea_2013-03-28.pdf,Equatorial Guinea,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Equatorial Guinea_2015-09-15.pdf,Equatorial Guinea,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,UNKNOWN,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Estonia_2011-02-02.pdf,Estonia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Estonia_2011-11-29.pdf,Estonia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Estonia_2014-05-08.pdf,Estonia,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Estonia_2015-12-14.pdf,Estonia,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Fiji_2011-04-08.pdf,Fiji,main,False,False,True,,,2009,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Republic of Fiji_2013-12-20.pdf,Fiji,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Fiji_2014-11-12.pdf,Fiji,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,medium,medium,medium,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Kazakhstan_2011-06-28.pdf,Kazakhstan,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Kazakhstan_2012-07-05.pdf,Kazakhstan,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Kazakhstan_2014-08-05.pdf,Kazakhstan,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Kazakhstan_2015-09-03.pdf,Kazakhstan,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Korea_2011-08-04.pdf,Korea,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Korea_2012-09-20.pdf,Korea,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Korea_2014-04-17.pdf,Korea,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,medium,medium,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Korea_2015-05-22.pdf,Korea,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Kosovo_2011-08-01.pdf,Kosovo,main,True,True,True,2009,2009,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Republic of Kosovo_2011-12-30.pdf,Kosovo,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Kosovo_2012-05-09.pdf,Kosovo,errors,True,True,True,2011,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Republic of Kosovo_2012-07-17.pdf,Kosovo,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Kosovo_2015-05-21.pdf,Kosovo,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Kosovo_2015-07-31.pdf,Kosovo,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Latvia_2014-05-08.pdf,Latvia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Latvia_2015-05-04.pdf,Latvia,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Lithuania_2013-03-28.pdf,Lithuania,main,True,True,True,2011,2012,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Republic of Lithuania_2014-05-08.pdf,Lithuania,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Lithuania_2015-06-01.pdf,Lithuania,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Madagascar_2015-01-30.pdf,Madagascar,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Madagascar_2015-12-01.pdf,Madagascar,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Moldova_2011-04-15.pdf,Moldova,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Moldova_2011-07-25.pdf,Moldova,errors,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Moldova_2012-02-09.pdf,Moldova,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Moldova_2012-10-22.pdf,Moldova,main,False,False,True,,,2011,,,LIC_DSF,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Republic of Moldova_2014-07-08.pdf,Moldova,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Mozambique_2011-06-28.pdf,Mozambique,errors,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Mozambique_2011-12-12.pdf,Mozambique,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Mozambique_2012-06-15.pdf,Mozambique,main,True,True,True,2010,2010,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Republic of Mozambique_2013-07-09.pdf,Mozambique,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Mozambique_2014-01-28.pdf,Mozambique,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Mozambique_2014-05-30.pdf,Mozambique,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Mozambique_2015-08-04.pdf,Mozambique,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Palau_2012-03-14.pdf,Palau,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Palau_2014-05-06.pdf,Palau,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Republic of Poland_2011-01-21.pdf,Poland,main,False,False,True,,,2009,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Republic of Poland_2011-07-08.pdf,Poland,main,False,True,True,,,2009,,MAC_DSA,MAC_DSA,,low,high,No,Yes,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Republic of Poland_2012-01-25.pdf,Poland,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Republic of Poland_2012-07-05.pdf,Poland,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Republic of Poland_2013-01-24.pdf,Poland,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Republic of Poland_2014-06-26.pdf,Poland,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Poland_2015-01-20.pdf,Poland,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Poland_2015-07-14.pdf,Poland,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of San Marino_2011-03-30.pdf,San Marino,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,
+Republic of San Marino_2012-05-08.pdf,San Marino,errors,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of San Marino_2014-04-29.pdf,San Marino,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of San Marino_2015-04-08.pdf,San Marino,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Republic of Serbia_2011-07-27.pdf,Serbia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Serbia_2011-10-20.pdf,Serbia,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Serbia_2015-02-26.pdf,Serbia,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Serbia_2015-10-27.pdf,Serbia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Serbia_2015-12-18.pdf,Serbia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Slovenia_2011-05-31.pdf,Slovenia,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Republic of Slovenia_2012-11-29.pdf,Slovenia,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Slovenia_2014-01-17.pdf,Slovenia,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,medium,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Republic of Slovenia_2015-02-19.pdf,Slovenia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of South Sudan_2014-12-17.pdf,South Sudan,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of Tajikistan_2011-06-13.pdf,Tajikistan,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Tajikistan_2012-02-07.pdf,Tajikistan,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Tajikistan_2012-05-15.pdf,Tajikistan,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of Yemen_2014-09-24.pdf,Yemen,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Republic of the Marshall Islands_2011-12-02.pdf,Marshall Islands,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Republic of the Marshall Islands_2014-02-03.pdf,Marshall Islands,main,True,True,True,2012,2011,2012,LIC_DSF,LIC_DSF,LIC_DSF,low,low,low,Yes,Yes,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Romania_2011-01-11.pdf,Romania,errors,False,False,False,,,,,,,,,,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Romania_2011-01-20.pdf,Romania,errors,False,True,False,,,,,UNKNOWN,,,low,,No,Yes,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,table_found
+Romania_2011-04-01.pdf,Romania,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Romania_2011-06-29.pdf,Romania,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Romania_2011-10-05.pdf,Romania,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Romania_2012-01-23.pdf,Romania,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Romania_2012-04-02.pdf,Romania,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Romania_2012-07-02.pdf,Romania,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Romania_2012-10-23.pdf,Romania,errors,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Romania_2015-03-27.pdf,Romania,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Russian Federation_2011-09-27.pdf,Russian Federation,main,False,False,True,,,2009,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Russian Federation_2012-08-03.pdf,Russian Federation,main,True,False,True,,,2010,UNKNOWN,,MAC_DSA,low,,high,Yes,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Russian Federation_2014-07-01.pdf,Russian Federation,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,medium,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Russian Federation_2015-08-03.pdf,Russian Federation,errors,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,medium,high,medium,No,No,Yes,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,value
+Rwanda_2011-01-14.pdf,Rwanda,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Rwanda_2011-07-07.pdf,Rwanda,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Rwanda_2012-01-26.pdf,Rwanda,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Rwanda_2012-06-20.pdf,Rwanda,errors,False,False,True,,,2011,,,LIC_DSF,,,medium,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Rwanda_2013-03-21.pdf,Rwanda,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Rwanda_2013-06-25.pdf,Rwanda,main,False,False,False,,,,,,,,,,No,No,No,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,
+Rwanda_2014-12-12.pdf,Rwanda,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Samoa_2012-08-29.pdf,Samoa,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Samoa_2013-06-14.pdf,Samoa,main,True,True,True,2012,2011,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Samoa_2015-07-20.pdf,Samoa,errors,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Saudi Arabia_2011-09-21.pdf,Saudi Arabia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Saudi Arabia_2014-09-23.pdf,Saudi Arabia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Saudi Arabia_2015-09-09.pdf,Saudi Arabia,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Senegal_2011-06-16.pdf,Senegal,errors,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Senegal_2011-12-29.pdf,Senegal,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Senegal_2012-08-06.pdf,Senegal,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Senegal_2012-12-19.pdf,Senegal,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Senegal_2013-06-24.pdf,Senegal,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,value
+Senegal_2014-01-08.pdf,Senegal,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Senegal_2015-01-14.pdf,Senegal,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Senegal_2015-09-29.pdf,Senegal,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,medium,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Seychelles_2011-01-04.pdf,Seychelles,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Seychelles_2011-06-14_CR2011-133.pdf,Seychelles,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Seychelles_2011-06-14_CR2011-134.pdf,Seychelles,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Seychelles_2012-02-06.pdf,Seychelles,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Seychelles_2012-09-06.pdf,Seychelles,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Seychelles_2013-01-30.pdf,Seychelles,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Seychelles_2014-01-31.pdf,Seychelles,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Seychelles_2015-07-22.pdf,Seychelles,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,medium,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Sierra Leone_2011-12-20.pdf,Sierra Leone,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Sierra Leone_2012-10-16.pdf,Sierra Leone,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Sierra Leone_2014-06-26.pdf,Sierra Leone,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Sierra Leone_2015-11-24.pdf,Sierra Leone,main,True,True,True,2013,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Singapore_2012-02-10.pdf,Singapore,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Singapore_2012-08-27.pdf,Singapore,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Singapore_2013-11-14.pdf,Singapore,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Singapore_2014-10-17.pdf,Singapore,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Singapore_2015-07-22.pdf,Singapore,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Slovak Republic_2011-06-01.pdf,Slovak Republic,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Slovak Republic_2012-07-17.pdf,Slovak Republic,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Slovak Republic_2014-09-02.pdf,Slovak Republic,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Solomon Islands_2011-07-15.pdf,Solomon Islands,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Solomon Islands_2011-12-19.pdf,Solomon Islands,main,True,True,True,2010,2009,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Solomon Islands_2012-06-29.pdf,Solomon Islands,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Solomon Islands_2012-12-12.pdf,Solomon Islands,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Solomon Islands_2013-08-02.pdf,Solomon Islands,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Solomon Islands_2014-01-22.pdf,Solomon Islands,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Solomon Islands_2014-06-23.pdf,Solomon Islands,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Solomon Islands_2015-12-23.pdf,Solomon Islands,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Somalia_2015-07-29.pdf,Somalia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+South Africa_2011-08-25.pdf,South Africa,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+South Africa_2012-08-17.pdf,South Africa,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+South Africa_2014-12-11.pdf,South Africa,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,medium,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Spain_2011-07-29.pdf,Spain,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Spain_2012-07-27.pdf,Spain,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Spain_2014-07-10.pdf,Spain,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Spain_2015-08-14.pdf,Spain,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Sri Lanka_2012-04-19.pdf,Sri Lanka,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Sri Lanka_2012-07-25.pdf,Sri Lanka,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Sri Lanka_2014-09-18.pdf,Sri Lanka,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Sri Lanka_2015-12-10.pdf,Sri Lanka,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+St. Kitts and Nevis_2011-09-02.pdf,St. Kitts and Nevis,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+St. Kitts and Nevis_2012-03-07.pdf,St. Kitts and Nevis,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+St. Kitts and Nevis_2012-07-24.pdf,St. Kitts and Nevis,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+St. Kitts and Nevis_2012-10-15.pdf,St. Kitts and Nevis,main,False,True,True,,,2011,,MAC_DSA,MAC_DSA,,low,high,No,Yes,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+St. Kitts and Nevis_2013-02-21.pdf,St. Kitts and Nevis,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+St. Kitts and Nevis_2014-02-18.pdf,St. Kitts and Nevis,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+St. Kitts and Nevis_2014-03-27.pdf,St. Kitts and Nevis,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+St. Kitts and Nevis_2015-09-04.pdf,St. Kitts and Nevis,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+St. Kitts and Nevis_2015-10-29.pdf,St. Kitts and Nevis,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+St. Lucia_2011-09-09.pdf,St. Lucia,main,True,True,True,2009,2009,2009,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+St. Vincent and the Grenadines_2014-08-21.pdf,St. Vincent and the Grenadines,main,True,True,True,2010,2010,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+St. Vincent and the Grenadines_2015-09-14.pdf,St. Vincent and the Grenadines,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+St.Vincent and the Grenadines_2011-12-06.pdf,St.Vincent and the Grenadines,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Sudan_2011-04-11.pdf,Sudan,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Sudan_2012-11-05.pdf,Sudan,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Sudan_2014-12-30.pdf,Sudan,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Suriname_2011-08-18.pdf,Suriname,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Suriname_2012-10-03.pdf,Suriname,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Suriname_2014-10-31.pdf,Suriname,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Sweden_2011-07-13.pdf,Sweden,main,True,True,True,2009,2009,2009,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Sweden_2012-06-27.pdf,Sweden,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Sweden_2014-08-29.pdf,Sweden,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Sweden_2015-12-02.pdf,Sweden,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+Switzerland_2011-05-26.pdf,Switzerland,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Switzerland_2012-05-08.pdf,Switzerland,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Switzerland_2014-05-28.pdf,Switzerland,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Switzerland_2015-05-27.pdf,Switzerland,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Thailand_2012-06-01.pdf,Thailand,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Thailand_2015-05-07.pdf,Thailand,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+The Bahamas_2011-12-02.pdf,Bahamas,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+The Bahamas_2014-03-07.pdf,Bahamas,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,value
+The Bahamas_2015-07-27.pdf,Bahamas,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+The Federal Democratic Republic of Ethiopia_2012-10-18.pdf,Ethiopia,errors,True,True,True,2011,2011,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+The Federal Democratic Republic of Ethiopia_2014-10-03.pdf,Ethiopia,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+The Federal Democratic Republic of Ethiopia_2015-10-30.pdf,Ethiopia,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+The Gambia_2011-01-21.pdf,Gambia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+The Gambia_2012-01-30.pdf,Gambia,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+The Gambia_2012-06-06.pdf,Gambia,main,True,True,True,2011,2010,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+The Gambia_2013-09-18.pdf,Gambia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+The Gambia_2015-04-22.pdf,Gambia,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+The Gambia_2015-09-28.pdf,Gambia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+The Republic of Croatia_2012-11-13.pdf,Croatia,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Togo_2011-01-12.pdf,Togo,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Togo_2011-08-02.pdf,Togo,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Togo_2014-02-07.pdf,Togo,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Togo_2015-11-13.pdf,Togo,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Tonga_2011-05-19.pdf,Tonga,main,True,True,True,2010,2010,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Tonga_2012-07-09.pdf,Tonga,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Tonga_2014-08-06.pdf,Tonga,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Tonga_2015-04-30.pdf,Tonga,main,True,True,True,2014,2014,2014,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Trinidad and Tobago_2011-03-30.pdf,Trinidad and Tobago,main,False,False,True,,,2010,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Trinidad and Tobago_2012-06-01.pdf,Trinidad and Tobago,main,False,False,True,,,2011,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Trinidad and Tobago_2013-10-03.pdf,Trinidad and Tobago,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Trinidad and Tobago_2014-09-03.pdf,Trinidad and Tobago,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Tunisia_2012-09-04.pdf,Tunisia,main,True,True,True,2011,2011,2011,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Tunisia_2013-06-17.pdf,Tunisia,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Tunisia_2014-12-29.pdf,Tunisia,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Tunisia_2015-06-01.pdf,Tunisia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Tunisia_2015-10-15.pdf,Tunisia,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Turkey_2012-01-27.pdf,Turkey,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Turkey_2013-12-20.pdf,Turkey,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Turkey_2014-12-05.pdf,Turkey,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,value
+Tuvalu_2011-02-08.pdf,Tuvalu,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Tuvalu_2012-09-04.pdf,Tuvalu,errors,True,True,True,2010,2011,2010,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Tuvalu_2014-08-28.pdf,Tuvalu,main,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Uganda_2011-10-19.pdf,Uganda,main,False,False,False,,,,,,,,,,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Uganda_2012-06-05.pdf,Uganda,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Uganda_2012-06-08.pdf,Uganda,main,True,True,True,2011,2011,2011,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Uganda_2013-01-25.pdf,Uganda,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Uganda_2013-07-19.pdf,Uganda,main,True,True,True,2012,2012,2012,LIC_DSF,LIC_DSF,LIC_DSF,medium,medium,high,No,No,No,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,pymupdf_pillow_visual_fallback,
+Uganda_2014-12-12.pdf,Uganda,errors,True,True,True,2013,2014,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,"last_actual_year, value"
+Uganda_2015-07-07.pdf,Uganda,errors,True,True,True,2013,2013,2013,LIC_DSF,LIC_DSF,LIC_DSF,high,high,high,No,No,Yes,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Uganda_2015-11-20.pdf,Uganda,main,False,True,True,,2014,2015,,LIC_DSF,LIC_DSF,,medium,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Ukraine_2011-02-17.pdf,Ukraine,main,False,False,True,,,2009,,,MAC_DSA,,,high,No,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Ukraine_2012-11-27.pdf,Ukraine,main,True,False,True,,,2011,MAC_DSA,,MAC_DSA,low,,high,Yes,No,Yes,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_multi_orientation_retry,table_found
+Ukraine_2014-06-11.pdf,Ukraine,main,True,True,True,2012,2012,2012,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+Ukraine_2015-08-04.pdf,Ukraine,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+Union of the Comoros_2011-03-24.pdf,Comoros,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Union of the Comoros_2013-02-08.pdf,Comoros,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Union of the Comoros_2015-02-13.pdf,Comoros,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+United Arab Emirates_2011-05-23.pdf,United Arab Emirates,main,False,False,False,,,,,,,,,,No,No,No,pymupdf_pillow_visual_fallback,step1_no_dsa_found,pymupdf_pillow_visual_fallback,
+United Arab Emirates_2012-05-18.pdf,United Arab Emirates,main,False,False,False,,,,,,,,,,No,No,No,pymupdf_pillow_visual_fallback,step1_no_dsa_found,step1_no_dsa_found,
+United Arab Emirates_2014-07-03.pdf,United Arab Emirates,main,True,True,True,2013,2013,2013,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+United Arab Emirates_2015-08-04.pdf,United Arab Emirates,main,True,True,True,2014,2014,2014,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,pymupdf_pillow_table_crop_fallback,
+United Kingdom-Anguilla-British Overseas Territory_2012-01-20.pdf,United Kingdom-Anguilla-British Overseas Territory,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+United Kingdom_2011-08-01.pdf,United Kingdom,main,True,True,True,2010,2010,2010,MAC_DSA,MAC_DSA,MAC_DSA,high,high,high,No,No,No,selected_pdf_direct,selected_pdf_direct,selected_pdf_direct,
+United Kingdom_2014-07-28.pdf,United Kingdom,main,False,True,True,,2013,2013,,MAC_DSA,MAC_DSA,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+United Republic of Tanzania_2011-05-11.pdf,Tanzania,main,False,True,True,,2010,2010,,LIC_DSF,LIC_DSF,,high,high,No,No,Yes,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+United Republic of Tanzania_2012-01-31.pdf,Tanzania,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+United Republic of Tanzania_2012-07-18.pdf,Tanzania,errors,False,True,True,,2010,2010,,LIC_DSF,LIC_DSF,,high,high,No,No,Yes,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+United Republic of Tanzania_2013-01-17.pdf,Tanzania,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+United Republic of Tanzania_2013-06-19.pdf,Tanzania,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+United Republic of Tanzania_2014-05-15.pdf,Tanzania,errors,False,True,True,,2013,2012,,LIC_DSF,LIC_DSF,,high,high,No,No,Yes,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+United States_2011-07-25.pdf,United States,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+United States_2012-08-02.pdf,United States,main,False,True,True,,2011,2011,,MAC_DSA,MAC_DSA,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+United States_2014-07-23.pdf,United States,main,False,True,True,,2013,2013,,MAC_DSA,MAC_DSA,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+United States_2015-07-07.pdf,United States,main,False,True,True,,2014,2014,,MAC_DSA,MAC_DSA,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Uruguay_2011-03-03.pdf,Uruguay,main,False,True,True,,2009,2009,,MAC_DSA,MAC_DSA,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Uruguay_2014-01-10.pdf,Uruguay,main,False,True,True,,2012,2012,,MAC_DSA,MAC_DSA,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Uruguay_2015-03-26.pdf,Uruguay,main,False,True,True,,2013,2013,,MAC_DSA,MAC_DSA,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Vanuatu_2011-05-31.pdf,Vanuatu,main,False,True,True,,2009,2009,,LIC_DSF,LIC_DSF,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Vanuatu_2015-06-16.pdf,Vanuatu,errors,False,True,True,,2014,2013,,LIC_DSF,LIC_DSF,,high,high,No,No,Yes,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Vietnam_2012-07-06.pdf,Vietnam,main,False,True,True,,2010,2010,,LIC_DSF,LIC_DSF,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Vietnam_2014-10-16.pdf,Vietnam,main,False,True,True,,2013,2013,,LIC_DSF,LIC_DSF,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Zambia_2011-07-20.pdf,Zambia,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Zambia_2012-07-26.pdf,Zambia,errors,False,True,True,,2010,2010,,LIC_DSF,LIC_DSF,,high,high,No,No,Yes,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Zambia_2015-06-16.pdf,Zambia,errors,False,True,True,,2013,2013,,LIC_DSF,LIC_DSF,,high,high,No,No,Yes,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Zimbabwe_2011-06-14.pdf,Zimbabwe,main,False,True,True,,2009,2009,,LIC_DSF,LIC_DSF,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Zimbabwe_2012-09-28.pdf,Zimbabwe,main,False,True,True,,2011,2011,,LIC_DSF,LIC_DSF,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Zimbabwe_2014-07-11.pdf,Zimbabwe,main,False,True,True,,2012,2012,,LIC_DSF,LIC_DSF,,high,high,No,No,No,step1_no_dsa_found,selected_pdf_direct,selected_pdf_direct,table_found
+Zimbabwe_2015-04-28.pdf,Zimbabwe,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
+Zimbabwe_2015-10-08.pdf,Zimbabwe,main,False,False,False,,,,,,,,,,No,No,No,step1_no_dsa_found,step1_no_dsa_found,step1_no_dsa_found,
