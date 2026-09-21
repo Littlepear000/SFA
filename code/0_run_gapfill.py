@@ -24,13 +24,14 @@ If any script stops with an error, the next one is not started.
 import runpy
 from pathlib import Path
 
-try:
-    HERE = Path(__file__).resolve().parent
-except NameError:  # run from an IPython / PyCharm console
-    HERE = Path.cwd()
-
 # =============================================================== CONFIG
 BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
+try:
+    HERE = Path(__file__).resolve().parent
+except NameError:  # run from an IPython / PyCharm console: look for the code folder
+    HERE = next((c for c in (Path.cwd(), Path.cwd() / "code", BASE_DIR / "code") if (c / "3a_gapfill_1_build_panel_gap_flags.py").exists()),
+                BASE_DIR / "code")
+
 BATCH = "2016-2020"
 STAMP = "20260920_v2"  # version tag added to every file name written by 3a, 3b and 3c
 

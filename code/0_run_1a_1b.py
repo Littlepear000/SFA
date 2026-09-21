@@ -61,8 +61,9 @@ SCRIPT_CHECK = "1c_round_check_compare_runs.py"
 # ================================================================= RUN
 try:
     HERE = Path(__file__).resolve().parent
-except NameError:  # run from an IPython / PyCharm console
-    HERE = Path.cwd()
+except NameError:  # run from an IPython / PyCharm console: look for the code folder
+    HERE = next((c for c in (Path.cwd(), Path.cwd() / "code", BASE_DIR / "code") if (c / SCRIPTS[0]).exists()),
+                BASE_DIR / "code")
 
 BATCH_DIR = BASE_DIR / "output" / BATCH
 run_dirs = {n: BATCH_DIR / f"round1_{RUN_DATE}_run{n}" for n in range(FIRST_RUN_NO, FIRST_RUN_NO + N_RUNS)}
