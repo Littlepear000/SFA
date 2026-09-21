@@ -19,11 +19,17 @@ import pandas as pd
 
 
 def _here() -> Path:
+    """Folder holding the gapfill scripts. Uses __file__ when the file is run
+    normally; in an IPython / PyCharm console (no __file__) it looks for the
+    folder that contains gapfill_lib_core.py, starting from the working folder."""
     try:
         return Path(__file__).resolve().parent
-    except NameError:  # IPython / Spyder cell
-        return Path.cwd()
-
+    except NameError:
+        cwd = Path.cwd()
+        for cand in (cwd, cwd / "code", cwd.parent / "code", cwd.parent):
+            if (cand / "gapfill_lib_core.py").exists():
+                return cand
+        return cwd
 
 HERE = _here()
 BASE = HERE.parent if HERE.name == "code" else HERE

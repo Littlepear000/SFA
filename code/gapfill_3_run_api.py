@@ -36,15 +36,27 @@ from typing import Any, Dict, List, Optional
 import pandas as pd
 
 def _here() -> Path:
+    """Folder holding the gapfill scripts. Uses __file__ when the file is run
+    normally; in an IPython / PyCharm console (no __file__) it looks for the
+    folder that contains gapfill_lib_core.py, starting from the working folder."""
     try:
         return Path(__file__).resolve().parent
-    except NameError:  # IPython / Spyder cell: run from the code folder, or set HERE by hand
-        return Path.cwd()
-
+    except NameError:
+        cwd = Path.cwd()
+        for cand in (cwd, cwd / "code", cwd.parent / "code", cwd.parent):
+            if (cand / "gapfill_lib_core.py").exists():
+                return cand
+        return cwd
 
 HERE = _here()
 sys.path.insert(0, str(HERE))
-import gapfill_lib_core as core  # noqa: E402
+try:
+    import gapfill_lib_core as core  # noqa: E402
+except ModuleNotFoundError as exc:
+    raise ModuleNotFoundError(
+        f"{exc}. gapfill_lib_core.py and gapfill_1_build_panel_gap_flags.py must be in the same folder as this script; "
+        f"looked in {HERE}. In a console, first run  %cd <path to the code folder>  or set HERE by hand."
+    ) from exc
 
 # =============================================================== CONFIG (edit)
 BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
