@@ -57,17 +57,17 @@ from typing import Any, Dict, List, Optional
 import pandas as pd
 
 # =============================================================== CONFIG
-BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
-BATCH = "2011-2015"
-ROUND = "round1"  # "round1" or "round2"
-RUN_DATE = "20260921"
-CSV_PREFIX = "sl"
-BATCH_DIR = BASE_DIR / "output" / BATCH
-RUN_CSVS = sorted(
-    BATCH_DIR.glob(f"{ROUND}_{RUN_DATE}_run*/compiled_csv/dsa_decomposition_{CSV_PREFIX}_{ROUND}_{RUN_DATE}_run*.csv"),
-    key=lambda p: int(re.search(r"_run(\d+)\.csv$", p.name).group(1)),
-)
-CHECK_DIR = BATCH_DIR / f"{ROUND}_check_{RUN_DATE}"
+# BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
+# BATCH = "2011-2015"
+# ROUND = "round1"  # "round1" or "round2"
+# RUN_DATE = "20260921"
+# CSV_PREFIX = "sl"
+# BATCH_DIR = BASE_DIR / "output" / BATCH
+# RUN_CSVS = sorted(
+#     BATCH_DIR.glob(f"{ROUND}_{RUN_DATE}_run*/compiled_csv/dsa_decomposition_{CSV_PREFIX}_{ROUND}_{RUN_DATE}_run*.csv"),
+#     key=lambda p: int(re.search(r"_run(\d+)\.csv$", p.name).group(1)),
+# )
+# CHECK_DIR = BATCH_DIR / f"{ROUND}_check_{RUN_DATE}"
 # ==============================================================================
 
 SOURCE_RUN_INDEX = 0  # the matched rows are taken from this run (0 = the first run)

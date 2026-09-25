@@ -3,10 +3,10 @@ from pathlib import Path
 import pandas as pd
 
 
-BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
-JSON_DIR = BASE_DIR / "output" / "json_dsa" / "2011-2015"
-OUTPUT_FILE = BASE_DIR / "output" / "json_dsa" / "2011-2015"/ "compiled_csv" / "dsa_decomposition_sl_20260914.csv"
-
+# BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
+# JSON_DIR = BASE_DIR / "output" / "json_dsa" / "2011-2015"
+# OUTPUT_FILE = BASE_DIR / "output" / "json_dsa" / "2011-2015"/ "compiled_csv" / "dsa_decomposition_sl_20260914.csv"
+#
 
 TOP_LEVEL_CATEGORIES = [
     "change_in_debt",

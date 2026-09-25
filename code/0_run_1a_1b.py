@@ -39,9 +39,9 @@ from pathlib import Path
 
 # =============================================================== CONFIG
 BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
-BATCH = "2011-2015"
+BATCH = "2006-2010"
 
-RUN_DATE = "20260921"  # set by hand; goes into the run folder and CSV names
+RUN_DATE = "20260924"  # set by hand; goes into the run folder and CSV names
 N_RUNS = 3             # how many times to repeat 1a + 1b
 FIRST_RUN_NO = 1       # number of the first run (folders are named run1, run2, ...)
 CSV_PREFIX = "sl"      # compiled CSV: dsa_decomposition_<CSV_PREFIX>_round1_<RUN_DATE>_run<N>.csv

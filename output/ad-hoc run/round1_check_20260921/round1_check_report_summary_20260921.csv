@@ -1,0 +1,11 @@
+﻿json_file,pdf_file_name,country,group,needs_check,runs_present,table_found_by_run,last_actual_year_by_run,rows_compared,rows_matching,rows_differing
+Albania_2021-12-07_dsa.json,Albania_2021-12-07.pdf,Albania,fully_match,No,yes|yes|yes,True|True|True,2020|2020|2020,15,15,0
+Albania_2022-12-09_dsa.json,Albania_2022-12-09.pdf,Albania,fully_match,No,yes|yes|yes,True|True|True,2021|2021|2021,15,15,0
+Algeria_2021-12-02_dsa.json,Algeria_2021-12-02.pdf,Algeria,fully_match,No,yes|yes|yes,True|True|True,2020|2020|2020,15,15,0
+Algeria_2023-02-02_dsa.json,Algeria_2023-02-02.pdf,Algeria,fully_match,No,yes|yes|yes,True|True|True,2021|2021|2021,15,15,0
+Angola_2021-01-19_dsa.json,Angola_2021-01-19.pdf,Angola,fully_match,No,yes|yes|yes,True|True|True,2019|2019|2019,15,15,0
+Angola_2021-06-30_dsa.json,Angola_2021-06-30.pdf,Angola,fully_match,No,yes|yes|yes,True|True|True,2020|2020|2020,15,15,0
+Angola_2022-01-18_dsa.json,Angola_2022-01-18.pdf,Angola,fully_match,No,yes|yes|yes,True|True|True,2020|2020|2020,15,15,0
+Angola_2024-07-15_dsa.json,Angola_2024-07-15.pdf,Angola,no_table_in_all_runs,Yes,yes|yes|yes,False|False|False,||,0,0,0
+Angola_2025-09-18_dsa.json,Angola_2025-09-18.pdf,Angola,no_table_in_all_runs,Yes,yes|yes|yes,False|False|False,||,0,0,0
+Angola_2026-05-08_dsa.json,Angola_2026-05-08.pdf,Angola,fully_match,No,yes|yes|yes,True|True|True,2025|2025|2025,16,16,0

@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "round": "round1",
+    "run_date": "20260921",
+    "n_runs": 3,
+    "run_csvs": [
+      "dsa_decomposition_sl_round1_20260921_run1.csv",
+      "dsa_decomposition_sl_round1_20260921_run2.csv",
+      "dsa_decomposition_sl_round1_20260921_run3.csv"
+    ],
+    "n_reports_total": 10,
+    "counts_by_group": {
+      "fully_match": 8,
+      "partial_match": 0,
+      "table_found_differs": 0,
+      "last_actual_year_differs": 0,
+      "missing_in_run": 0,
+      "no_table_in_all_runs": 2
+    },
+    "compared": "presence in every run, table_found, last_actual_year, and every line item (row present, value equal), lined up by hierarchy_id",
+    "not_compared": "label text, confidence, manual_review_required, extraction_notes, extraction_method, audit and validation fields",
+    "n_to_check": 2,
+    "matched_rows_source_run": "dsa_decomposition_sl_round1_20260921_run1.csv"
+  },
+  "category_a_disagreement": {
+    "description": "Reports where the runs disagree: some rows differ (partial_match), a different table_found or last_actual_year, or the report is missing from a run's CSV.",
+    "count": 0,
+    "reports": []
+  },
+  "category_b_no_table_in_all_runs": {
+    "description": "Reports for which no run found a DSA table.",
+    "count": 2,
+    "reports": [
+      {
+        "json_file": "Angola_2024-07-15_dsa.json",
+        "pdf_file_name": "Angola_2024-07-15.pdf",
+        "country": "Angola",
+        "group": "no_table_in_all_runs",
+        "rows_differing": 0
+      },
+      {
+        "json_file": "Angola_2025-09-18_dsa.json",
+        "pdf_file_name": "Angola_2025-09-18.pdf",
+        "country": "Angola",
+        "group": "no_table_in_all_runs",
+        "rows_differing": 0
+      }
+    ]
+  }
+}

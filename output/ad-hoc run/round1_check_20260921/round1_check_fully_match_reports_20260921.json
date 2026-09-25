@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "round": "round1",
+    "run_date": "20260921",
+    "n_runs": 3,
+    "run_csvs": [
+      "dsa_decomposition_sl_round1_20260921_run1.csv",
+      "dsa_decomposition_sl_round1_20260921_run2.csv",
+      "dsa_decomposition_sl_round1_20260921_run3.csv"
+    ],
+    "n_reports_total": 10,
+    "counts_by_group": {
+      "fully_match": 8,
+      "partial_match": 0,
+      "table_found_differs": 0,
+      "last_actual_year_differs": 0,
+      "missing_in_run": 0,
+      "no_table_in_all_runs": 2
+    },
+    "compared": "presence in every run, table_found, last_actual_year, and every line item (row present, value equal), lined up by hierarchy_id",
+    "not_compared": "label text, confidence, manual_review_required, extraction_notes, extraction_method, audit and validation fields",
+    "n_fully_match": 8
+  },
+  "fully_match_reports": [
+    "Albania_2021-12-07.pdf",
+    "Albania_2022-12-09.pdf",
+    "Algeria_2021-12-02.pdf",
+    "Algeria_2023-02-02.pdf",
+    "Angola_2021-01-19.pdf",
+    "Angola_2021-06-30.pdf",
+    "Angola_2022-01-18.pdf",
+    "Angola_2026-05-08.pdf"
+  ]
+}

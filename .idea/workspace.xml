@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="299023fa-34fe-4c7d-93e7-1bede52fe858" name="Changes" comment="Alexandra results 2016-20">
-      <change afterPath="$PROJECT_DIR$/output/2011-2015/compiled_csv/dsa_decomposition_labels_2011-2015_errors_sa.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2011-2015/compiled_csv/dsa_decomposition_labels_2011-2015_sa.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/2011-2015/compiled_csv/dsa_decomposition_labels_2011_2015_Weiqi.csv" afterDir="false" />
+    <list default="true" id="299023fa-34fe-4c7d-93e7-1bede52fe858" name="Changes" comment="Alexandra and Weiqi results 2011-2015">
+      <change afterPath="$PROJECT_DIR$/output/ad-hoc run/round1_check_20260921/round1_check_disagreement_reports_20260921.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/ad-hoc run/round1_check_20260921/round1_check_fully_match_reports_20260921.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/ad-hoc run/round1_check_20260921/round1_check_matched_rows_20260921.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/ad-hoc run/round1_check_20260921/round1_check_report_summary_20260921.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/ad-hoc run/round1_check_20260921/round1_check_value_diffs_20260921.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/2016-2020/compiled_csv/three_way_sl_weiqi_sa_two_of_three_match_20260917_v2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/2016-2020/compiled_csv/three_way_sl_weiqi_sa_value_diffs_20260917_v2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/2016-2020/compiled_csv/three_way_sl_weiqi_sa_value_diffs_20260917_v2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/2016-2020/compiled_csv/value_mismatch_92_reports_20260908 - Copy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/0_run_1a_1b.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/0_run_1a_1b.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/1a_two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/1a_two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/1b_json_to_excel_dsa_v6_flexible_actual.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/1b_json_to_excel_dsa_v6_flexible_actual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/1c_round_check_compare_runs.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/1c_round_check_compare_runs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1789654488670</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Alexandra and Weiqi results 2011-2015">
+      <option name="closed" value="true" />
+      <created>1789767997494</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1789767997494</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,6 +133,7 @@
     <MESSAGE value="add git files" />
     <MESSAGE value="reorganize git files" />
     <MESSAGE value="Alexandra results 2016-20" />
-    <option name="LAST_COMMIT_MESSAGE" value="Alexandra results 2016-20" />
+    <MESSAGE value="Alexandra and Weiqi results 2011-2015" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alexandra and Weiqi results 2011-2015" />
   </component>
 </project>
