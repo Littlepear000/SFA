@@ -71,13 +71,14 @@ def make_runs():
     return [pd.DataFrame(r, columns=COLS) for r in (r1, r2, r3)]
 
 
-def run_check(dfs, d):
+def run_check(dfs, d, round_name="round1"):
     paths = []
     for i, df in enumerate(dfs, start=1):
         p = d / f"run{i}.csv"; df.to_csv(p, index=False, encoding="utf-8-sig"); paths.append(p)
     chk.RUN_CSVS = paths
     chk.CHECK_DIR = d / "check"
     chk.RUN_DATE = "20260101"
+    chk.ROUND = round_name
     chk.main()
     return d / "check"
 
@@ -180,17 +181,74 @@ def test_two_runs_and_guards():
 def test_round2_names():
     with tempfile.TemporaryDirectory() as d:
         d = Path(d)
-        chk.ROUND = "round2"
-        try:
-            out = run_check(make_runs(), d)
-            names = sorted(p.name for p in out.glob("*"))
-            assert names == ["round2_check_disagreement_reports_20260101.json", "round2_check_fully_match_reports_20260101.json",
-                             "round2_check_matched_rows_20260101.csv", "round2_check_report_summary_20260101.csv",
-                             "round2_check_value_diffs_20260101.csv"], names
-            meta = json.loads((out / "round2_check_fully_match_reports_20260101.json").read_text(encoding="utf-8"))["meta"]
-            assert meta["round"] == "round2"
-        finally:
-            chk.ROUND = "round1"
+        out = run_check(make_runs(), d, round_name="round2")
+        names = sorted(p.name for p in out.glob("*"))
+        assert names == ["round2_check_disagreement_reports_20260101.json", "round2_check_fully_match_reports_20260101.json",
+                         "round2_check_matched_rows_20260101.csv", "round2_check_report_summary_20260101.csv",
+                         "round2_check_value_diffs_20260101.csv"], names
+        meta = json.loads((out / "round2_check_fully_match_reports_20260101.json").read_text(encoding="utf-8"))["meta"]
+        assert meta["round"] == "round2"
+
+
+def test_extraction_failures():
+    """A report that never produced a *_dsa.json in any run must still show up (not silently vanish)."""
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        dfs = make_runs()
+        paths = []
+        for i, df in enumerate(dfs, start=1):
+            run_dir = d / f"run{i}"
+            (run_dir / "compiled_csv").mkdir(parents=True)
+            p = run_dir / "compiled_csv" / f"run{i}.csv"
+            df.to_csv(p, index=False, encoding="utf-8-sig")
+            paths.append(p)
+            json_out = run_dir / "json_output"
+            json_out.mkdir()
+            # Z fails in every run
+            (json_out / "Z_2016-01-01_ERROR.json").write_text(json.dumps({"error": f"boom in run {i}"}), encoding="utf-8")
+        # W fails in run 1 and run 2, and was not even attempted in run 3 (no file of any kind for it there)
+        (d / "run1" / "json_output" / "W_2016-01-01_ERROR.json").write_text(json.dumps({"error": "w fail 1"}), encoding="utf-8")
+        (d / "run2" / "json_output" / "W_2016-01-01_ERROR.json").write_text(json.dumps({"error": "w fail 2"}), encoding="utf-8")
+
+        chk.RUN_CSVS = paths
+        chk.CHECK_DIR = d / "check"
+        chk.RUN_DATE = "20260101"
+        chk.ROUND = "round1"
+        chk.main()
+        out = d / "check"
+
+        summ = pd.read_csv(out / "round1_check_report_summary_20260101.csv").set_index("pdf_file_name")
+        assert summ.loc["Z_2016-01-01.pdf", "group"] == "extraction_failed_in_all_runs"
+        assert summ.loc["Z_2016-01-01.pdf", "needs_check"] == "Yes"
+        z_err = summ.loc["Z_2016-01-01.pdf", "error_by_run"]
+        assert "run1: boom in run 1" in z_err and "run2: boom in run 2" in z_err and "run3: boom in run 3" in z_err
+        assert summ.loc["Z_2016-01-01.pdf", "country"] == "Z"          # filename-derived
+        assert summ.loc["Z_2016-01-01.pdf", "runs_present"] == "no|no|no"
+        w_err = summ.loc["W_2016-01-01.pdf", "error_by_run"]
+        assert "run1: w fail 1" in w_err and "run2: w fail 2" in w_err
+        assert "run3: (no _ERROR.json or _dsa.json found)" in w_err
+        # every other report (A-H, from make_runs) must be unaffected
+        assert summ.loc["A_2016-01-01.pdf", "group"] == "fully_match"
+        assert summ.loc["A_2016-01-01.pdf", "error_by_run"] == "" or pd.isna(summ.loc["A_2016-01-01.pdf", "error_by_run"])
+
+        # not counted as fully matching, no rows anywhere
+        fm = json.loads((out / "round1_check_fully_match_reports_20260101.json").read_text(encoding="utf-8"))
+        assert "Z_2016-01-01.pdf" not in fm["fully_match_reports"] and "W_2016-01-01.pdf" not in fm["fully_match_reports"]
+        assert fm["meta"]["n_reports_total"] == 10                     # A-H (8) + Z + W, now correctly counted
+        mr = pd.read_csv(out / "round1_check_matched_rows_20260101.csv")
+        assert not {"Z_2016-01-01_dsa.json", "W_2016-01-01_dsa.json"} & set(mr.json_file)
+        vd = pd.read_csv(out / "round1_check_value_diffs_20260101.csv")
+        assert not {"Z_2016-01-01.pdf", "W_2016-01-01.pdf"} & set(vd.pdf_file_name)
+
+        # usable by 2a: category C, separate from category A
+        dj = json.loads((out / "round1_check_disagreement_reports_20260101.json").read_text(encoding="utf-8"))
+        assert dj["category_c_extraction_failed_in_all_runs"]["count"] == 2
+        c_pdfs = {r["pdf_file_name"] for r in dj["category_c_extraction_failed_in_all_runs"]["reports"]}
+        assert c_pdfs == {"Z_2016-01-01.pdf", "W_2016-01-01.pdf"}
+        assert not c_pdfs & {r["pdf_file_name"] for r in dj["category_a_disagreement"]["reports"]}
+        loader = extract_loader()
+        stems_c = loader(out / "round1_check_disagreement_reports_20260101.json", "category_c_extraction_failed_in_all_runs")
+        assert sorted(stems_c) == ["W_2016-01-01", "Z_2016-01-01"]
 
 
 def test_normalisers():

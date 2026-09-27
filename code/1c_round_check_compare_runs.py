@@ -18,13 +18,17 @@ What is compared, report by report (a report = one staff report PDF, key = json_
     the rows after it inside that category; those rows are then reported as differing (never missed).
 
 Every report ends up in exactly one of these groups
-    fully_match              table found in every run, same last actual year, every row identical
-    partial_match            table found in every run, same last actual year, but some rows differ
-                             or are missing in some run
-    table_found_differs      some runs found the table and some did not
-    last_actual_year_differs the runs chose different last actual years
-    missing_in_run           the report is absent from the CSV of at least one run
-    no_table_in_all_runs     no run found a table (needs a check as well)
+    fully_match                    table found in every run, same last actual year, every row identical
+    partial_match                  table found in every run, same last actual year, but some rows differ
+                                   or are missing in some run
+    table_found_differs            some runs found the table and some did not
+    last_actual_year_differs       the runs chose different last actual years
+    missing_in_run                 the report is absent from the CSV of at least one run
+    extraction_failed_in_all_runs  no run produced a *_dsa.json for this report at all (each run's json_output
+                                   folder has a *_ERROR.json instead). Found separately from every other group:
+                                   a report like this never appears in any run's compiled CSV (1a/1b skip it
+                                   silently), so it would otherwise vanish from this comparison without a trace.
+    no_table_in_all_runs           every run's *_dsa.json says table_found = false (needs a check as well)
 
 Rows are split in two, so that matched rows + differing rows together cover every row of a report:
     matched rows    fully_match reports: all rows.  partial_match reports: the rows that are identical in every run.
@@ -37,9 +41,13 @@ Output (all in CHECK_DIR; <ROUND> is round1 or round2; file names end with _<RUN
     <ROUND>_check_fully_match_reports_<RUN_DATE>.json     PDF file names of the fully_match reports
     <ROUND>_check_matched_rows_<RUN_DATE>.csv             the matched rows, taken from run 1, same format as the run CSVs
     <ROUND>_check_disagreement_reports_<RUN_DATE>.json    reports to check again; usable as REPORT_LIST_FILE of 2a
-                                                         (category_a_disagreement, category_b_no_table_in_all_runs)
+                                                         (category_a_disagreement, category_b_no_table_in_all_runs,
+                                                          category_c_extraction_failed_in_all_runs)
     <ROUND>_check_value_diffs_<RUN_DATE>.csv              the differing rows with the value of every run
-    <ROUND>_check_report_summary_<RUN_DATE>.csv           one row per report: its group and why
+    <ROUND>_check_report_summary_<RUN_DATE>.csv           one row per report: its group and why. For
+                                                         extraction_failed_in_all_runs rows, error_by_run holds
+                                                         each run's *_ERROR.json message (found by scanning each
+                                                         run's json_output folder; not derived from the CSVs).
 
 When it is run by a controller (0_run_1a_1b.py or 0_run_2a_1b.py), comment out the CONFIG block below
 (BASE_DIR ... CHECK_DIR): the controller provides ROUND, RUN_CSVS, CHECK_DIR and RUN_DATE.
@@ -77,8 +85,12 @@ REQUIRED_COLUMNS = ["json_file", "pdf_file_name", "table_found", "last_actual_ye
 
 CATEGORY_A = "category_a_disagreement"
 CATEGORY_B = "category_b_no_table_in_all_runs"
+CATEGORY_C = "category_c_extraction_failed_in_all_runs"
 GROUP_ORDER = ["fully_match", "partial_match", "table_found_differs", "last_actual_year_differs",
-               "missing_in_run", "no_table_in_all_runs"]
+               "missing_in_run", "extraction_failed_in_all_runs", "no_table_in_all_runs"]
+SUMMARY_COLUMNS = ["json_file", "pdf_file_name", "country", "group", "needs_check", "runs_present",
+                   "table_found_by_run", "last_actual_year_by_run", "rows_compared", "rows_matching",
+                   "rows_differing", "error_by_run"]
 
 
 # ------------------------------------------------------------ normalisation
@@ -251,8 +263,62 @@ def check_reports(dfs: List[pd.DataFrame]):
             "table_found_by_run": "|".join("" if t is None else str(t) for t in tf),
             "last_actual_year_by_run": "|".join(y or "" for y in yr),
             "rows_compared": n_union, "rows_matching": n_match, "rows_differing": n_diff,
+            "error_by_run": "",
         })
-    return pd.DataFrame(summary), diff_rows, matched_keys
+    return pd.DataFrame(summary, columns=SUMMARY_COLUMNS), diff_rows, matched_keys
+
+
+# --------------------------------------------------- reports missing from every run's CSV
+def error_folder(csv_path: Path) -> Path:
+    """The json_output folder of the run whose compiled CSV is csv_path (run_dir/compiled_csv/x.csv)."""
+    return Path(csv_path).parent.parent / "json_output"
+
+
+def find_extraction_failures(run_csv_paths: List[Path], known_json_files: set) -> pd.DataFrame:
+    """
+    Reports that never produced a *_dsa.json in ANY run, so check_reports() never sees them (it only reads the
+    compiled CSVs, and 1b silently drops a report that has no *_dsa.json). Found here by scanning each run's
+    json_output folder for a *_ERROR.json whose report is not in known_json_files (the json_file values that
+    check_reports() did find, i.e. that succeeded in at least one run).
+    """
+    per_run_errors: List[Dict[str, str]] = []
+    for csv_path in run_csv_paths:
+        folder = error_folder(csv_path)
+        if not folder.exists():
+            print(f"  NOTE: {folder} not found; cannot check it for extraction failures.")
+        errs: Dict[str, str] = {}
+        for p in sorted(folder.glob("*_ERROR.json")):
+            stem = p.name[: -len("_ERROR.json")]
+            try:
+                data = json.loads(p.read_text(encoding="utf-8"))
+                msg = str(data.get("error") or "").strip()
+            except (json.JSONDecodeError, OSError) as exc:
+                msg = f"(could not read {p.name}: {exc})"
+            errs[stem] = msg or "(no error message)"
+        per_run_errors.append(errs)
+
+    stems = sorted({s for errs in per_run_errors for s in errs})
+    rows = []
+    for stem in stems:
+        jf = f"{stem}_dsa.json"
+        if jf in known_json_files:
+            continue  # it succeeded in at least one other run; already covered by check_reports()
+        m = re.match(r"^(.+?)_\d{4}-\d{2}-\d{2}", stem)
+        country_guess = m.group(1) if m else None
+        error_by_run = " | ".join(
+            f"run{i + 1}: {errs[stem]}" if stem in errs else f"run{i + 1}: (no _ERROR.json or _dsa.json found)"
+            for i, errs in enumerate(per_run_errors)
+        )
+        rows.append({
+            "json_file": jf, "pdf_file_name": f"{stem}.pdf", "country": country_guess,
+            "group": "extraction_failed_in_all_runs", "needs_check": "Yes",
+            "runs_present": "|".join("no" for _ in per_run_errors),
+            "table_found_by_run": "|".join("" for _ in per_run_errors),
+            "last_actual_year_by_run": "|".join("" for _ in per_run_errors),
+            "rows_compared": 0, "rows_matching": 0, "rows_differing": 0,
+            "error_by_run": error_by_run,
+        })
+    return pd.DataFrame(rows, columns=SUMMARY_COLUMNS)
 
 
 # ------------------------------------------------------------------- output
@@ -280,6 +346,10 @@ def main() -> None:
             raise SystemExit(f"{name} does not have the same columns as {run_names[0]}.")
 
     summary, diff_rows, matched_keys = check_reports(dfs)
+    fails = find_extraction_failures(RUN_CSVS, set(summary["json_file"]))
+    if len(fails):
+        print(f"  {len(fails)} report(s) never produced a *_dsa.json in any run (see extraction_failed_in_all_runs)")
+        summary = pd.concat([summary, fails], ignore_index=True)
     counts = {g: int((summary["group"] == g).sum()) for g in GROUP_ORDER}
     n_runs = len(RUN_CSVS)
     meta_common = {
@@ -307,8 +377,9 @@ def main() -> None:
                  "rows_differing": int(r.rows_differing)} for r in sub.itertuples()]
     a = summary[summary["group"].isin(["partial_match", "table_found_differs", "last_actual_year_differs", "missing_in_run"])]
     b = summary[summary["group"] == "no_table_in_all_runs"]
+    c = summary[summary["group"] == "extraction_failed_in_all_runs"]
     write_json(out_dir / f"{ROUND}_check_disagreement_reports_{RUN_DATE}.json", {
-        "meta": {**meta_common, "n_to_check": int(len(a) + len(b)), "matched_rows_source_run": run_names[SOURCE_RUN_INDEX]},
+        "meta": {**meta_common, "n_to_check": int(len(a) + len(b) + len(c)), "matched_rows_source_run": run_names[SOURCE_RUN_INDEX]},
         CATEGORY_A: {
             "description": "Reports where the runs disagree: some rows differ (partial_match), a different table_found or "
                            "last_actual_year, or the report is missing from a run's CSV.",
@@ -317,6 +388,12 @@ def main() -> None:
         CATEGORY_B: {
             "description": "Reports for which no run found a DSA table.",
             "count": int(len(b)), "reports": entries(b),
+        },
+        CATEGORY_C: {
+            "description": "Reports for which no run produced a successful extraction (*_dsa.json); each run's "
+                           "json_output folder has a *_ERROR.json for them instead. See error_by_run in the "
+                           "report summary CSV for the failure reason.",
+            "count": int(len(c)), "reports": entries(c),
         },
     })
 

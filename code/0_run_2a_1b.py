@@ -10,6 +10,8 @@ compares the runs:
        (merge the *_dsa.json files written by 2a -> one compiled CSV)
     3. 1c_round_check_compare_runs.py   (once, after all runs; the same script as in round 1)
        (compare the compiled CSVs of the runs of RUN_DATE -> matched rows, and the reports to check again)
+    4. 1d_round_check_summary.py   (once, after 1c; the same script as in round 1)
+       (turn the check into one Markdown file of summary tables: report and data-point totals)
 
 The reports to re-run come from the Round 1 check: REPORT_LIST_FILE is its
 round1_check_disagreement_reports_<ROUND1_RUN_DATE>.json (run the round-1 controller first).
@@ -23,6 +25,7 @@ model output is. Each run writes to its own folder, so nothing is overwritten:
         compiled_csv/         the compiled CSV written by 1b: dsa_decomposition_<CSV_PREFIX>_round2_<RUN_DATE>_run<N>.csv
     output/<BATCH>/round2_check_<RUN_DATE>/
         the result of 1c (fully-match list, matched rows, reports to check again, differing rows, report summary)
+        round2_check_summary_<RUN_DATE>.md, from 1d (one Markdown file of summary tables)
 
 All settings shared by the scripts are declared once, in the CONFIG section below.
 Before running, comment out the CONFIG block at the top of 2a and of 1b:
@@ -30,6 +33,7 @@ Before running, comment out the CONFIG block at the top of 2a and of 1b:
            REPORT_LIST_FILE, REPORT_LIST_CATEGORY and RERUN_OUTPUT_DIR
     in 1b: the lines that define BASE_DIR, JSON_DIR and OUTPUT_FILE
     in 1c: the CONFIG block (the lines from BASE_DIR to CHECK_DIR)
+    in 1d: the CONFIG block (same lines as 1c)
 Otherwise their own values overwrite the ones given here.
 
 1c compares every run folder of RUN_DATE that it finds in the batch folder, so runs made in an earlier
@@ -73,6 +77,7 @@ SCRIPTS = [
     "1b_json_to_excel_dsa_v6_flexible_actual.py",
 ]
 SCRIPT_CHECK = "1c_round_check_compare_runs.py"
+SCRIPT_SUMMARY = "1d_round_check_summary.py"
 
 # ================================================================= RUN
 try:
@@ -120,3 +125,7 @@ run_csvs = sorted(
 )
 print(f"\n{'=' * 78}\nRunning {SCRIPT_CHECK}\n{'=' * 78}", flush=True)
 runpy.run_path(str(HERE / SCRIPT_CHECK), init_globals={"ROUND": "round2", "RUN_CSVS": run_csvs, "CHECK_DIR": check_dir, "RUN_DATE": RUN_DATE}, run_name="__main__")
+
+# ---- summarise the check into one Markdown file of tables
+print(f"\n{'=' * 78}\nRunning {SCRIPT_SUMMARY}\n{'=' * 78}", flush=True)
+runpy.run_path(str(HERE / SCRIPT_SUMMARY), init_globals={"ROUND": "round2", "CHECK_DIR": check_dir, "RUN_DATE": RUN_DATE}, run_name="__main__")
