@@ -66,9 +66,9 @@ import pandas as pd
 
 # =============================================================== CONFIG
 # BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
-# BATCH = "2011-2015"
+# BATCH = "2006-2010"
 # ROUND = "round1"  # "round1" or "round2"
-# RUN_DATE = "20260921"
+# RUN_DATE = "20260924"
 # CSV_PREFIX = "sl"
 # BATCH_DIR = BASE_DIR / "output" / BATCH
 # RUN_CSVS = sorted(
