@@ -26,7 +26,7 @@
 | 库 | `gapfill_lib_core.py` | — | 被③调用：候选报告排序、级联流程、actual校验、结果输出。**不直接运行** |
 | 测试 | `gapfill_test_logic.py` | 无 | 打印测试结果，可选。`python gapfill_test_logic.py` |
 
-其他依赖：③会导入Step 1脚本`2a_step_1_revised_on_problematic_reports_sl.py`，复用它的API认证、重试和调用函数（不会运行Step 1本身）。国家名标准化和年份解析函数放在库文件里，①和库都要放在同一文件夹。
+其他依赖：③会导入`1a_two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py`，复用它的API认证、重试和调用函数（不会运行1a本身）。用1a不用2a/round2的新pipeline，是因为gap fill只需要`call_pdf_json`/`make_api_session`/`add_table_crop_header_instruction`这三个函数，两边完全一样；2a/新pipeline比1a多出来的能力主要是更准确地**选**last_actual_year，而gap fill是直接指定目标年份去抽，用不上这部分。国家名标准化和年份解析函数放在库文件里，①和库都要放在同一文件夹。
 
 ## 3. 各步骤做什么
 

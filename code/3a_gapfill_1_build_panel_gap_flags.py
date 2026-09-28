@@ -1,45 +1,56 @@
 """
-【3a_gapfill_1】找出 gap year，并搭出 panel 骨架
-    第 1 步 ｜ 手动运行 ｜ 不读 PDF，不调 API
+[3a_gapfill_1] Find gap years and build the panel skeleton.
+    Step 1 | run by hand | does not read PDFs, does not call the API
 
-作用
-    从一份 compiled CSV（Step 1 的抽取结果，长格式：一行 = 一份报告里的一个分解项）里，
-    为每份报告取出一个观测值（国家 + last_actual_year 那一年的数值），拼成"国家×年份"的
-    panel 骨架，并标出每个国家在首末观测年之间"中间缺失"的年份，即 gap year。
+Purpose
+    From a compiled CSV (Step 1's extraction output, long format: one row = one
+    decomposition line item from one report), take one observation per report
+    (country + the value for its last_actual_year), assemble a "country x year"
+    panel skeleton, and flag the years "missing in the middle" of each country's
+    span of observed years, i.e. gap years.
 
-Input（只需要一个 CSV）
-    文件顶部的 INPUT_CSV，或命令行 --input。例如
+Input (needs only one CSV)
+    INPUT_CSV at the top of the file, or --input on the command line. E.g.
     output/2016-2020/compiled_csv/dsa_decomposition_labels_2016-2020_sa.csv
-    用到的列：json_file, pdf_file_name, table_found, last_actual_year, level, top_category, value,
+    Columns used: json_file, pdf_file_name, table_found, last_actual_year, level, top_category, value,
     hierarchy_id, parent_label, label_verbatim, column_header_audit_json,
     manual_review_required, actual_column_validation_status, confidence, framework
 
-Output（默认写到 <批次文件夹>/gap_year_check/，文件名后缀 _<STAMP>）
-    panel_structure_country_year   国家×年份骨架。status = observed（有数据）或 GAP（缺失）
-    gap_years                      每个 gap year 一行：前后两份报告、成因、能否在其他报告里找到该年的
-                                   actual 列、首选来源报告                          -> 第 2 步的输入
-    report_inventory               每份报告如何被使用（有效观测 / 被更新报告取代 / 无表 / 年份异常 ...）
-                                                                                   -> 第 2 步的输入
-    coverage_matrix_country_year   国家×年份矩阵：O = 有数据，O? = 有数据但年份待人工复核，GAP = 缺失
-    panel_children_long            有效观测值对应的子项明细（level 1-2）
-    summary_stats_<STAMP>.json     汇总数字
+Output (written by default to <batch folder>/gap_year_check/, filenames suffixed _<STAMP>)
+    panel_structure_country_year   country x year skeleton. status = observed (has data) or GAP (missing)
+    gap_years                      one row per gap year: the bounding reports, cause, whether an actual
+                                   column for that year can be found in another report, preferred source
+                                   report                                          -> input to Step 2
+    report_inventory               how each report was used (valid observation / superseded by a later
+                                   report / no table / year unusable ...)          -> input to Step 2
+    coverage_matrix_country_year   country x year matrix: O = has data, O? = has data but year needs manual
+                                   review, GAP = missing
+    panel_children_long            child-item detail (level 1-2) for the valid observations
+    summary_stats_<STAMP>.json     summary numbers
 
-核心步骤
-    1. 读 CSV，每份报告只留一行报告级信息；国家名和报告日期取自 pdf_file_name（国家名统一拼写）。
-    2. 解析 last_actual_year：2015/16 这类财年写法取财年结束年（2016）；多年区间（如 2009-2014）无效。
-    3. 给每份报告定用途：
-         有效观测 / 与同国家同年的报告重复而被更新的一份取代（同年多份保留最新）/ 没找到 DSA 表 /
-         有表但年份无法解析 / 年份不合理（报告年份 − 该年 ≥ 4 或为负，视为误读，不入 panel）/ 多国文件。
-    4. gap year = 国家在首末观测年之间、没有任何报告提供的年份（首尾年份不算）。
-    5. 给每个 gap 标成因：相邻报告的年份直接跳年 / 中间有报告但没有表 / 中间有报告但年份不可用。
-    6. 用每份报告自带的 column_header_audit_json（表里所有年份列及其 actual/estimate/projection 状态）预判：
-       哪份报告里该年是单独的 actual/historical 列（可填补），还是只有 estimate / projection / 合并区间列。
-    7. 写出以上文件。
+Core steps
+    1. Read the CSV, keep one report-level row per report; country name and report date come from
+       pdf_file_name (country names are normalized to one spelling).
+    2. Parse last_actual_year: a fiscal-year label like 2015/16 takes the fiscal year's end year (2016);
+       a multi-year range (e.g. 2009-2014) is invalid.
+    3. Classify each report's usage:
+         valid observation / superseded by a later report for the same country-year (the latest of
+         several reports for the same year is kept) / no DSA table found / has a table but the year
+         could not be parsed / year implausible (report year - that year >= 4, or negative, treated as
+         a misread and kept out of the panel) / multi-country document.
+    4. gap year = a year with no report at all, between a country's first and last observed years
+       (the first and last years themselves don't count).
+    5. Tag each gap with a cause: adjacent reports jump straight over the year / there is a report in
+       between but it has no table / there is a report in between but its year is unusable.
+    6. Use each report's own column_header_audit_json (every year column in the table and its
+       actual/estimate/projection status) to predict: in which report is that year a standalone
+       actual/historical column (fillable), versus only an estimate / projection / merged-range column.
+    7. Write out the files above.
 
-用法
-    python 3a_gapfill_1_build_panel_gap_flags.py --input 某个CSV [--out-dir 输出文件夹]
-    或直接改文件顶部的 INPUT_CSV 后运行（IPython / PyCharm console 里也可以）。
-    STAMP 是版本号，必须与第 2、3 步里的 STAMP 一致。
+Usage
+    python 3a_gapfill_1_build_panel_gap_flags.py --input <some CSV> [--out-dir <output folder>]
+    or just edit INPUT_CSV at the top of the file and run (also works from an IPython / PyCharm console).
+    STAMP is the version tag; it must match the STAMP used in Steps 2 and 3.
 """
 from __future__ import annotations
 

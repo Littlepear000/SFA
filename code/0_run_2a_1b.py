@@ -3,8 +3,8 @@ Round 2 controller.
 
 Runs the round-2 scripts, in this order, with runpy. The pair 2a + 1b is repeated N_RUNS times, then 1c
 compares the runs:
-    1. 2a_step_1_revised_on_problematic_reports_sl.py
-       (re-run the revised extraction on the reports in REPORT_LIST_FILE -> one *_dsa.json per report,
+    1. 2a_dsa_pipeline_260924.py (merged SL + AL pipeline; see DSA_updating_updated_code_summary.md)
+       (re-run the extraction on the reports in REPORT_LIST_FILE -> one *_dsa.json per report,
         plus the selected PDF pages; if REPORT_LIST_FILE is None it re-runs the whole batch)
     2. 1b_json_to_excel_dsa_v6_flexible_actual.py
        (merge the *_dsa.json files written by 2a -> one compiled CSV)
@@ -60,7 +60,7 @@ CSV_PREFIX = "sl"      # compiled CSV: dsa_decomposition_<CSV_PREFIX>_round2_<RU
 
 # used by 2a
 PDF_DIR = BASE_DIR / "staff_reports" / "pdf staff reports" / BATCH
-PROMPT_FILE = BASE_DIR / "sl_revised_prompt_step_one.txt"
+PROMPT_FILE = BASE_DIR / "dsa_prompt_20260924.txt"
 ENV_FILE = BASE_DIR / ".env"
 
 # Only the reports listed in this JSON file are re-processed: the result of the Round 1 check. None = the whole batch.
@@ -73,7 +73,7 @@ REPORT_LIST_CATEGORY: Optional[str] = None
 # ==============================================================================
 
 SCRIPTS = [
-    "2a_step_1_revised_on_problematic_reports_sl.py",
+    "2a_dsa_pipeline_260924.py",
     "1b_json_to_excel_dsa_v6_flexible_actual.py",
 ]
 SCRIPT_CHECK = "1c_round_check_compare_runs.py"
