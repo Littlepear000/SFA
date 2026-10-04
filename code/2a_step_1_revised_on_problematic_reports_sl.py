@@ -48,12 +48,12 @@ except ImportError:
 from dotenv import dotenv_values
 from pypdf import PdfReader, PdfWriter
 
-BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
-PDF_DIR = BASE_DIR / "staff_reports" / "pdf staff reports" / "2016-2020"
-OUTPUT_DIR = BASE_DIR / "output" / "json_dsa" / "2016-2020"
-SELECTED_PDF_DIR = OUTPUT_DIR / "selected_pdf_pages"
-PROMPT_FILE = BASE_DIR / "sl_revised_prompt_step_one.txt"
-ENV_FILE = BASE_DIR / ".env"
+# BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
+# PDF_DIR = BASE_DIR / "staff_reports" / "pdf staff reports" / "2016-2020"
+# OUTPUT_DIR = BASE_DIR / "output" / "json_dsa" / "2016-2020"
+# SELECTED_PDF_DIR = OUTPUT_DIR / "selected_pdf_pages"
+# PROMPT_FILE = BASE_DIR / "sl_revised_prompt_step_one.txt"
+# ENV_FILE = BASE_DIR / ".env"
 
 # Optional: point this at a JSON file (e.g. a two-version comparison export)
 # to (re-)process only the reports it lists, instead of every PDF in PDF_DIR.
@@ -64,7 +64,7 @@ ENV_FILE = BASE_DIR / ".env"
 #
 # Example:
 # REPORT_LIST_FILE = BASE_DIR / "mismatch_reruns" / "04_value_mismatch_92_reports.json"
-REPORT_LIST_FILE: Optional[Path] = OUTPUT_DIR / "compiled_csv" / "adhoc_20260912.json"
+# REPORT_LIST_FILE: Optional[Path] = OUTPUT_DIR / "compiled_csv" / "adhoc_20260912.json"
 
 # Optional: when REPORT_LIST_FILE has more than one named category (like the
 # comparison export's "category_a_year_selection_mismatch" and
@@ -76,7 +76,7 @@ REPORT_LIST_FILE: Optional[Path] = OUTPUT_DIR / "compiled_csv" / "adhoc_20260912
 # Example - run the year-selection-mismatch wave first, then switch this to
 # the other category name and rerun for the second wave:
 # REPORT_LIST_CATEGORY = "category_a_year_selection_mismatch"
-REPORT_LIST_CATEGORY: Optional[str] = None
+# REPORT_LIST_CATEGORY: Optional[str] = None
 
 # Where results go when REPORT_LIST_FILE is set. Leave as None to fall back to
 # a sibling "<OUTPUT_DIR>_rerun" folder automatically; set it to any path to
@@ -84,7 +84,7 @@ REPORT_LIST_CATEGORY: Optional[str] = None
 #
 # Example:
 # RERUN_OUTPUT_DIR = BASE_DIR / "output" / "json_dsa" / "2016-2020_mismatch_recheck"
-RERUN_OUTPUT_DIR: Optional[Path] = OUTPUT_DIR / "rerun_20260910"
+# RERUN_OUTPUT_DIR: Optional[Path] = OUTPUT_DIR / "rerun_20260910"
 
 # Gateway limit is 1,048,576 bytes. Base64 encoding expands the PDF by about one-third,
 # so keep the selected PDF comfortably below the gateway limit. 700,000 bytes still

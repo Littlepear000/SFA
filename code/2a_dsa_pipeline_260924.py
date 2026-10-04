@@ -60,22 +60,22 @@ except ImportError:  # PyMuPDF < 1.24
 # =============================================================================
 # Configuration
 # =============================================================================
-
-BASE_DIR = Path(r"Q:\DATA\FP\Staff Working Files\Whan\SFA")
-PDF_DIR = BASE_DIR / "staff_reports" / "test_updated_prompt"
-OUTPUT_DIR = BASE_DIR / "output" / "json_dsa" / "test_updated_prompt_2016-2020_5"
-SELECTED_PDF_DIR = OUTPUT_DIR / "selected_pdf_pages"
-PROMPT_FILE = BASE_DIR / "dsa_prompt_20260924.txt"
-ENV_FILE = BASE_DIR / ".env"
+#
+# BASE_DIR = Path(r"Q:\DATA\FP\Staff Working Files\Whan\SFA")
+# PDF_DIR = BASE_DIR / "staff_reports" / "test_updated_prompt"
+# OUTPUT_DIR = BASE_DIR / "output" / "json_dsa" / "test_updated_prompt_2016-2020_5"
+# SELECTED_PDF_DIR = OUTPUT_DIR / "selected_pdf_pages"
+# PROMPT_FILE = BASE_DIR / "dsa_prompt_20260924.txt"
+# ENV_FILE = BASE_DIR / ".env"
 
 # Optional targeted run: a JSON file listing reports to (re)process, e.g. a
 # mismatch export. Accepts a flat list of stems / "<stem>.pdf" / "<stem>_dsa.json",
 # or nested objects with "json_file" or "report" keys (inside "reports" lists).
 # REPORT_LIST_CATEGORY restricts processing to one top-level key of that file.
 # Targeted runs write to RERUN_OUTPUT_DIR (default: "<OUTPUT_DIR>_rerun").
-REPORT_LIST_FILE: Optional[Path] = None
-REPORT_LIST_CATEGORY: Optional[str] = None
-RERUN_OUTPUT_DIR: Optional[Path] = None
+# REPORT_LIST_FILE: Optional[Path] = None
+# REPORT_LIST_CATEGORY: Optional[str] = None
+# RERUN_OUTPUT_DIR: Optional[Path] = None
 
 # Skip reports whose <stem>_dsa.json already exists (resume an interrupted run).
 SKIP_EXISTING = False

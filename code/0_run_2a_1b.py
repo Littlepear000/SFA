@@ -52,8 +52,8 @@ from typing import Optional
 BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
 BATCH = "2016-2020"
 
-ROUND1_RUN_DATE = "20260921"  # the Round 1 runs and check whose disagreement list is re-run here
-RUN_DATE = "20260921"         # date of THIS round; set by hand; goes into the run folder and CSV names
+ROUND1_RUN_DATE = "20261002"  # the Round 1 runs and check whose disagreement list is re-run here
+RUN_DATE = "20261002"         # date of THIS round; set by hand; goes into the run folder and CSV names
 N_RUNS = 3             # how many times to repeat 2a + 1b
 FIRST_RUN_NO = 1       # number of the first run (folders are named run1, run2, ...)
 CSV_PREFIX = "sl"      # compiled CSV: dsa_decomposition_<CSV_PREFIX>_round2_<RUN_DATE>_run<N>.csv
