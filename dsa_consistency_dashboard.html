@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DSA Consistency Dashboard</title>
+<style>
+  :root{
+    color-scheme: light dark;
+    --color-fg: #1b1b1f; --color-fg-muted:#6b6b76; --color-bg:#f7f7f8; --color-panel:#ffffff;
+    --color-border-line:#e3e3e8; --accent:#1d4ed8; --color-danger:#c0392b;
+    --col-matchrate:#15803d;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --pad-xs:.35rem; --pad-sm:.55rem; --pad-md:.85rem; --pad-lg:1.25rem;
+    --gap-sm:.6rem; --gap-md:1rem; --gap-lg:1.5rem;
+    --radius:10px;
+    --fs-caption:.78rem; --fs-body:.95rem; --fs-heading:1.05rem; --fs-title:1.6rem;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --color-fg:#f0f0f3; --color-fg-muted:#9a9aa5; --color-bg:#17171b; --color-panel:#1f1f24;
+      --color-border-line:#303039; --accent:#5577e0; --color-danger:#f87171;
+      --col-matchrate:#4ade80;
+    }
+  }
+  :root[data-theme="dark"]{
+    --color-fg:#f0f0f3; --color-fg-muted:#9a9aa5; --color-bg:#17171b; --color-panel:#1f1f24;
+    --color-border-line:#303039; --accent:#5577e0; --color-danger:#f87171;
+    --col-matchrate:#4ade80;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--color-bg); color:var(--color-fg); font-family:var(--font-sans);
+    padding: 1.5rem clamp(16px, 4vw, 2.5rem) 3rem;
+  }
+  .dash-page{ display:flex; flex-direction:column; gap: var(--gap-lg); max-width:76rem; margin:0 auto; font-family:var(--font-sans); }
+
+  .dp-topbar{ display:flex; justify-content:space-between; align-items:flex-start; gap:var(--gap-md); flex-wrap:wrap; }
+  .dp-head h1{ font-family:var(--font-sans); font-weight:600; font-size:var(--fs-title); margin:0; text-wrap:balance; }
+
+  button.dp-btn{
+    font-family:var(--font-sans); font-size:var(--fs-caption); font-weight:600; cursor:pointer;
+    border:1px solid var(--color-border-line); background:var(--color-panel); color:var(--color-fg);
+    border-radius:999px; padding:.5em 1.1em; white-space:nowrap;
+  }
+  button.dp-btn:hover{ border-color:var(--accent); color:var(--accent); }
+  button.dp-btn.primary{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .dp-editbar{ display:flex; flex-direction:column; gap:.4em; align-items:flex-end; }
+  .dp-editbar .meta{ font-size:var(--fs-caption); color:var(--color-fg-muted); }
+  .dp-editbar .meta a{ color:var(--accent); cursor:pointer; text-decoration:underline; }
+
+  .dp-tiles{ display:grid; gap:var(--gap-md); grid-template-columns:repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); align-items:stretch; }
+  .dp-tile{ background:var(--color-panel); border:1px solid var(--color-border-line); border-radius:var(--radius); padding:var(--pad-lg); display:flex; flex-direction:column; gap:.3em; }
+  .dp-tile .lbl{ font-size:var(--fs-caption); color:var(--color-fg-muted); letter-spacing:.02em; }
+  .dp-tile .val{ font-family:var(--font-sans); font-weight:600; font-size:var(--fs-title); line-height:1.15; font-variant-numeric:tabular-nums; color:var(--color-fg); }
+  .dp-tile .sub{ font-size:var(--fs-caption); color:var(--color-fg-muted); }
+  .dp-tile.match .val{ color:var(--col-matchrate); }
+
+  .dp-card{ background:var(--color-panel); border:1px solid var(--color-border-line); border-radius:var(--radius); padding:var(--pad-lg); display:flex; flex-direction:column; gap:var(--gap-sm); }
+  .dp-card h2{
+    font-size:1.35rem; font-weight:700; color:var(--accent); margin:0 0 .1em 0;
+    padding-bottom:.35em; border-bottom:2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    display:inline-block; letter-spacing:-.01em;
+  }
+  .dp-card .note{ font-size:var(--fs-caption); color:var(--color-fg-muted); margin:0 0 .2em 0; }
+
+  .dp-tablewrap{ overflow-x:auto; }
+  table.dp-table{ border-collapse:collapse; width:100%; font-variant-numeric:tabular-nums; }
+  table.dp-table th, table.dp-table td{ padding:var(--pad-sm) var(--pad-md); text-align:right; white-space:nowrap; border-bottom:1px solid var(--color-border-line); color:var(--color-fg); }
+  table.dp-table th{ font-size:var(--fs-caption); color:var(--color-fg-muted); font-weight:600; vertical-align:bottom; }
+  table.dp-table th.lh, table.dp-table td.lh, table.dp-table td.batch-cell{ text-align:left; }
+  table.dp-table th.grp-start, table.dp-table td.grp-start{ border-left:1px solid var(--color-border-line); }
+  table.dp-table tbody tr:last-child td{ border-bottom:none; }
+  table.dp-table tfoot td{ border-top:2px solid var(--color-border-line); border-bottom:none; font-weight:700; }
+  table.dp-table tr.edited{ background:color-mix(in srgb, var(--accent) 6%, transparent); }
+  table.dp-table tr.editing{ background:color-mix(in srgb, var(--accent) 10%, transparent); }
+  .dp-editedtag{ font-size:.7em; color:var(--accent); font-weight:600; margin-left:.4em; }
+
+  table.dp-table th.col-matchrate, table.dp-table td.col-matchrate{ color:var(--col-matchrate); }
+  table.dp-table th.col-muted, table.dp-table td.col-muted{ color:var(--color-fg-muted); }
+  table.dp-table tfoot td.col-matchrate, table.dp-table tfoot td.col-muted{ color:inherit; }
+
+  table.dp-table input[type=number]{
+    font:inherit; font-size:var(--fs-body); font-variant-numeric:tabular-nums; text-align:right;
+    width:4.6rem; padding:.3em .4em; border-radius:6px; border:1px solid var(--color-border-line);
+    background:var(--color-bg); color:var(--color-fg);
+  }
+  table.dp-table input[type=number]::placeholder{ color:var(--color-fg-muted); }
+  .dp-calc{ color:var(--color-fg-muted); }
+
+  .dp-actions{ display:flex; gap:.3em; justify-content:flex-end; }
+  button.dp-rowbtn{
+    border:1px solid var(--color-border-line); background:var(--color-panel); color:var(--color-fg-muted);
+    border-radius:6px; width:1.8em; height:1.8em; line-height:1; cursor:pointer; font-size:.95em; padding:0;
+  }
+  button.dp-rowbtn:hover{ border-color:var(--accent); color:var(--accent); }
+  button.dp-rowbtn.danger:hover{ border-color:var(--color-danger); color:var(--color-danger); }
+  button.dp-rowbtn.save{ border-color:var(--col-matchrate); color:var(--col-matchrate); }
+
+  .dp-foot{ font-size:var(--fs-caption); color:var(--color-fg-muted); line-height:1.6; }
+  .dp-foot code{ font-size:.95em; } .dp-foot ul{ margin:.3em 0 0 0; padding-left:1.2em; }
+
+  @media (max-width: 640px){
+    table.dp-table th, table.dp-table td{ padding:.4em .55em; }
+    table.dp-table input[type=number]{ width:3.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="dash-page">
+
+  <div class="dp-topbar">
+    <div class="dp-head">
+      <h1>DSA extraction: two-round consistency check</h1>
+    </div>
+    <div class="dp-editbar">
+      <button class="dp-btn primary" id="dp-add-btn" type="button">+ Add batch</button>
+      <span class="meta" id="dp-edit-meta"></span>
+    </div>
+  </div>
+
+  <div class="dp-tiles">
+    <div class="dp-tile">
+      <span class="lbl">Staff Reports Compared</span>
+      <span class="val" id="t-total">—</span>
+      <span class="sub">across all batches on this page</span>
+    </div>
+    <div class="dp-tile match">
+      <span class="lbl">Staff Reports Matched</span>
+      <span class="val" id="t-matched">—</span>
+      <span class="sub">of comparable reports, after Round 2 where run</span>
+    </div>
+    <div class="dp-tile">
+      <span class="lbl">Data Points Compared</span>
+      <span class="val" id="t-dp-total">—</span>
+      <span class="sub">line items across comparable reports</span>
+    </div>
+    <div class="dp-tile match">
+      <span class="lbl">Data Points Matched</span>
+      <span class="val" id="t-dp-matched">—</span>
+      <span class="sub">identical across all 3 runs</span>
+    </div>
+  </div>
+
+  <div class="dp-card">
+    <h2>Reports, by batch</h2>
+    <p class="note">Left to right: the full sample, how much of it is even comparable (has a DSA table, extracted without error), then what happened to that comparable set across Round 1 and Round 2. Round 2 only re-runs the reports Round 1 did not fully match (disagreement + no-table + failed); Round 1's fully-matched reports are taken as final and never re-run. Click the pencil to edit a row; type a number into "Round 2 matched" to mark Round 2 as done for that batch.</p>
+    <div class="dp-tablewrap">
+      <table class="dp-table" id="dp-table-reports">
+        <thead><tr>
+          <th class="lh">Batch</th>
+          <th class="grp-start">Full<br>sample</th>
+          <th class="col-muted">No table<br>found</th>
+          <th class="col-muted">Extraction<br>failed</th>
+          <th class="grp-start">Comparable<br>(has table)</th>
+          <th class="grp-start">Round 1<br>matched</th>
+          <th>Round 2<br>matched</th>
+          <th>Total<br>matched</th>
+          <th>Needs<br>review</th>
+          <th class="col-matchrate">Match<br>rate</th>
+          <th class="lh"></th>
+        </tr></thead>
+        <tbody id="dp-tbody-reports"></tbody>
+        <tfoot id="dp-tfoot-reports"></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="dp-card">
+    <h2>Data points, by batch</h2>
+    <p class="note">A data point is one line item of one report's DSA decomposition table. Reports with no table or a failed extraction contribute none, so there is no "full sample" step here. Once a batch's Round 2 data points are edited in, its Round 1 fully-match-only breakdown is no longer used for that batch (it falls back to Round 1's plain total/matched/differing from <code>round1_check_summary_*.md</code>).</p>
+    <div class="dp-tablewrap">
+      <table class="dp-table" id="dp-table-points">
+        <thead><tr>
+          <th class="lh">Batch</th>
+          <th class="grp-start">Comparable<br>data points</th>
+          <th>Round 1<br>matched</th>
+          <th>Round 2<br>matched</th>
+          <th>Total<br>matched</th>
+          <th>Still<br>differing</th>
+          <th class="col-matchrate">Match<br>rate</th>
+          <th class="lh"></th>
+        </tr></thead>
+        <tbody id="dp-tbody-points"></tbody>
+        <tfoot id="dp-tfoot-points"></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <p class="dp-foot" id="dp-foot">Loading…</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- built-in data (snapshot from the claude.ai dashboard, 2026-10-19) ----
+  var BUILTIN = [
+    {"batch":"2006-2010","r1_run_date":"2026-09-24","r1_total":844,"r1_fully_match":304,"r1_disagreement":136,"r1_no_table":402,"r1_extraction_failed":2,
+     "r2_status":"done","r2_run_date":"2026-09-27","r2_fully_match":78,"r2_disagreement":75,"r2_no_table":386,"r2_extraction_failed":1,
+     "dp_r1_total":6769,"dp_r1_matched":4901,"dp_r1_differing":1868,"dp_r1_fm_points":4783,"dp_r2_total":2327,"dp_r2_matched":1279,"dp_r2_differing":1048},
+    {"batch":"2011-2015","r1_run_date":"2026-10-05","r1_total":702,"r1_fully_match":364,"r1_disagreement":169,"r1_no_table":169,"r1_extraction_failed":0,
+     "r2_status":"pending","r2_run_date":null,"r2_fully_match":null,"r2_disagreement":null,"r2_no_table":null,"r2_extraction_failed":null,
+     "dp_r1_total":8307,"dp_r1_matched":6194,"dp_r1_differing":2113,"dp_r1_fm_points":null,"dp_r2_total":null,"dp_r2_matched":null,"dp_r2_differing":null},
+    {"batch":"2016-2020","r1_run_date":"2026-10-02","r1_total":912,"r1_fully_match":668,"r1_disagreement":130,"r1_no_table":114,"r1_extraction_failed":0,
+     "r2_status":"done","r2_run_date":"2026-10-02","r2_fully_match":54,"r2_disagreement":72,"r2_no_table":111,"r2_extraction_failed":7,
+     "dp_r1_total":12395,"dp_r1_matched":11036,"dp_r1_differing":1359,"dp_r1_fm_points":10326,"dp_r2_total":2002,"dp_r2_matched":1117,"dp_r2_differing":885},
+    {"batch":"2021-2026","r1_run_date":"2026-10-16","r1_total":1060,"r1_fully_match":845,"r1_disagreement":96,"r1_no_table":117,"r1_extraction_failed":2,
+     "r2_status":"done","r2_run_date":"2026-10-17","r2_fully_match":46,"r2_disagreement":52,"r2_no_table":115,"r2_extraction_failed":2,
+     "dp_r1_total":14947,"dp_r1_matched":14085,"dp_r1_differing":862,"dp_r1_fm_points":13384,"dp_r2_total":1584,"dp_r2_matched":1236,"dp_r2_differing":348}
+  ];
+
+  var LS_KEY = "dsa_dashboard_overrides_v1";
+
+  function loadOverrides(){
+    try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); }
+    catch (e) { return {}; }
+  }
+  function saveOverrides(obj){
+    try { localStorage.setItem(LS_KEY, JSON.stringify(obj)); } catch (e) { /* storage unavailable: edits won't persist across reloads */ }
+  }
+  function patchOverride(batch, fields){
+    var overrides = loadOverrides();
+    overrides[batch] = Object.assign({}, overrides[batch]||{}, fields);
+    saveOverrides(overrides);
+  }
+  function removeOverride(batch){
+    var overrides = loadOverrides();
+    delete overrides[batch];
+    saveOverrides(overrides);
+  }
+
+  function blankRow(batch){
+    return {batch:batch, r1_run_date:null, r1_total:0, r1_fully_match:0, r1_disagreement:0, r1_no_table:0, r1_extraction_failed:0,
+      r2_status:"pending", r2_run_date:null, r2_fully_match:null, r2_disagreement:null, r2_no_table:null, r2_extraction_failed:null,
+      dp_r1_total:0, dp_r1_matched:0, dp_r1_differing:0, dp_r1_fm_points:null, dp_r2_total:null, dp_r2_matched:null, dp_r2_differing:null};
+  }
+
+  function mergedRows(){
+    var overrides = loadOverrides();
+    var builtinByBatch = {}; BUILTIN.forEach(function(r){ builtinByBatch[r.batch] = r; });
+    var batches = Object.keys(builtinByBatch);
+    Object.keys(overrides).forEach(function(b){ if (batches.indexOf(b) === -1) batches.push(b); });
+    batches.sort();
+    return batches.map(function(b){
+      var base = builtinByBatch[b] || blankRow(b);
+      var row = Object.assign({}, base, overrides[b] || {});
+      row._edited = !!overrides[b];
+      return row;
+    });
+  }
+
+  // ---- derived numbers ----
+  function computeFinal(row){
+    var r2done = row.r2_status === "done";
+    var final_matched = row.r1_fully_match + (r2done ? (row.r2_fully_match||0) : 0);
+    var final_review = r2done ? (row.r2_disagreement||0) : row.r1_disagreement;
+    var final_no_table = r2done ? (row.r2_no_table||0) : row.r1_no_table;
+    var final_extraction_failed = r2done ? (row.r2_extraction_failed||0) : row.r1_extraction_failed;
+    var comparable = row.r1_total - final_no_table - final_extraction_failed;
+    var match_rate = comparable > 0 ? final_matched / comparable : null;
+    return {
+      batch: row.batch, r1_total: row.r1_total, r1_fully_match: row.r1_fully_match,
+      r2_status: row.r2_status, r2_gain: r2done ? (row.r2_fully_match||0) : null,
+      final_matched: final_matched, final_review: final_review,
+      final_no_table: final_no_table, final_extraction_failed: final_extraction_failed,
+      comparable: comparable, match_rate: match_rate
+    };
+  }
+
+  function computeDpFinal(row){
+    var haveDp2Precise = row.r2_status === "done" && row.dp_r1_fm_points != null && row.dp_r2_total != null;
+    if (haveDp2Precise){
+      var total = row.dp_r1_fm_points + row.dp_r2_total;
+      var matched = row.dp_r1_fm_points + row.dp_r2_matched;
+      return { batch: row.batch, r1_matched: row.dp_r1_fm_points, r2_gain: row.dp_r2_matched,
+        total: total, matched: matched, differing: row.dp_r2_differing,
+        match_rate: total > 0 ? matched / total : null };
+    }
+    var r2done = row.r2_status === "done" && row.dp_r2_matched != null;
+    var matched2 = r2done ? row.dp_r2_matched : row.dp_r1_matched;
+    var differing2 = r2done ? (row.dp_r2_differing||0) : row.dp_r1_differing;
+    var total2 = (matched2||0) + (differing2||0);
+    return { batch: row.batch, r1_matched: r2done ? null : row.dp_r1_matched, r2_gain: r2done ? row.dp_r2_matched : null,
+      total: total2, matched: matched2, differing: differing2,
+      match_rate: total2 > 0 ? matched2/total2 : null };
+  }
+
+  function fmtN(n){ return (n === null || n === undefined || isNaN(n)) ? "—" : Math.round(n).toLocaleString("en-US"); }
+  function fmtPct(x){ return (x === null || x === undefined || isNaN(x)) ? "—" : (100*x).toFixed(1) + "%"; }
+  function num(v){ return (v === null || v === undefined) ? 0 : v; }
+  function val(v){ return (v === null || v === undefined) ? "" : v; }
+
+  // =========================================================== REPORTS TABLE
+  function reportViewRowHTML(row, f){
+    return '<td class="batch-cell">' + row.batch + (row._edited ? '<span class="dp-editedtag">edited</span>' : '') + '</td>' +
+      '<td class="grp-start">' + fmtN(row.r1_total) + '</td>' +
+      '<td class="col-muted">' + fmtN(f.final_no_table) + '</td>' +
+      '<td class="col-muted">' + fmtN(f.final_extraction_failed) + '</td>' +
+      '<td class="grp-start">' + fmtN(f.comparable) + '</td>' +
+      '<td class="grp-start">' + fmtN(row.r1_fully_match) + '</td>' +
+      '<td>' + (f.r2_gain !== null ? fmtN(f.r2_gain) : "—") + '</td>' +
+      '<td>' + fmtN(f.final_matched) + '</td>' +
+      '<td>' + fmtN(f.final_review) + '</td>' +
+      '<td class="col-matchrate">' + fmtPct(f.match_rate) + '</td>' +
+      '<td class="lh"><div class="dp-actions"><button type="button" class="dp-rowbtn" data-edit-r="' + row.batch + '" title="Edit">✎</button></div></td>';
+  }
+
+  function reportEditRowHTML(row){
+    var r2done = row.r2_status === "done";
+    var noTable = r2done ? row.r2_no_table : row.r1_no_table;
+    var extFailed = r2done ? row.r2_extraction_failed : row.r1_extraction_failed;
+    var review = r2done ? row.r2_disagreement : row.r1_disagreement;
+    var r2val = r2done ? row.r2_fully_match : null;
+    var canDelete = row._edited || BUILTIN.every(function(r){ return r.batch !== row.batch; });
+    return '<td class="batch-cell">' + row.batch + '</td>' +
+      '<td class="grp-start"><input type="number" min="0" step="1" data-f="r1_total" value="' + num(row.r1_total) + '"></td>' +
+      '<td class="col-muted"><input type="number" min="0" step="1" data-f="no_table" value="' + num(noTable) + '"></td>' +
+      '<td class="col-muted"><input type="number" min="0" step="1" data-f="ext_failed" value="' + num(extFailed) + '"></td>' +
+      '<td class="grp-start dp-calc" data-calc="comparable">—</td>' +
+      '<td class="grp-start"><input type="number" min="0" step="1" data-f="r1_fully_match" value="' + num(row.r1_fully_match) + '"></td>' +
+      '<td><input type="number" min="0" step="1" data-f="r2_fully_match" placeholder="pending" value="' + val(r2val) + '"></td>' +
+      '<td class="dp-calc" data-calc="final_matched">—</td>' +
+      '<td><input type="number" min="0" step="1" data-f="review" value="' + num(review) + '"></td>' +
+      '<td class="col-matchrate dp-calc" data-calc="match_rate">—</td>' +
+      '<td class="lh"><div class="dp-actions">' +
+        '<button type="button" class="dp-rowbtn save" data-save-r="' + row.batch + '" title="Done">✓</button>' +
+        (canDelete ? '<button type="button" class="dp-rowbtn danger" data-del-r="' + row.batch + '" title="Remove">🗑</button>' : '') +
+      '</div></td>';
+  }
+
+  function recomputeReportRowLive(tr){
+    var get = function(f){ var el = tr.querySelector('[data-f="' + f + '"]'); return el ? Number(el.value || 0) : 0; };
+    var r1Total = get('r1_total'), noTable = get('no_table'), extFailed = get('ext_failed'),
+        r1fm = get('r1_fully_match'), review = get('review');
+    var r2el = tr.querySelector('[data-f="r2_fully_match"]');
+    var r2raw = r2el ? r2el.value : "";
+    var r2done = r2raw !== "";
+    var finalMatched = r1fm + (r2done ? Number(r2raw || 0) : 0);
+    var comparable = r1Total - noTable - extFailed;
+    var matchRate = comparable > 0 ? finalMatched / comparable : null;
+    tr.querySelector('[data-calc="comparable"]').textContent = fmtN(comparable);
+    tr.querySelector('[data-calc="final_matched"]').textContent = fmtN(finalMatched);
+    tr.querySelector('[data-calc="match_rate"]').textContent = fmtPct(matchRate);
+  }
+
+  function saveReportRow(tr, batch){
+    var get = function(f){ var el = tr.querySelector('[data-f="' + f + '"]'); return el ? Number(el.value || 0) : 0; };
+    var r2el = tr.querySelector('[data-f="r2_fully_match"]');
+    var r2raw = r2el ? r2el.value : "";
+    var nowR2Done = r2raw !== "";
+    var fields = { r1_total: get('r1_total'), r1_fully_match: get('r1_fully_match') };
+    if (nowR2Done){
+      fields.r2_status = "done";
+      fields.r2_fully_match = Number(r2raw || 0);
+      fields.r2_no_table = get('no_table');
+      fields.r2_extraction_failed = get('ext_failed');
+      fields.r2_disagreement = get('review');
+    } else {
+      fields.r2_status = "pending";
+      fields.r1_no_table = get('no_table');
+      fields.r1_extraction_failed = get('ext_failed');
+      fields.r1_disagreement = get('review');
+    }
+    patchOverride(batch, fields);
+  }
+
+  // ======================================================= DATA POINTS TABLE
+  function dpViewRowHTML(row, dp){
+    return '<td class="batch-cell">' + row.batch + (row._edited ? '<span class="dp-editedtag">edited</span>' : '') + '</td>' +
+      '<td class="grp-start">' + fmtN(dp.total) + '</td>' +
+      '<td>' + fmtN(dp.r1_matched) + '</td>' +
+      '<td>' + (dp.r2_gain !== null ? fmtN(dp.r2_gain) : "—") + '</td>' +
+      '<td>' + fmtN(dp.matched) + '</td>' +
+      '<td>' + fmtN(dp.differing) + '</td>' +
+      '<td class="col-matchrate">' + fmtPct(dp.match_rate) + '</td>' +
+      '<td class="lh"><div class="dp-actions"><button type="button" class="dp-rowbtn" data-edit-p="' + row.batch + '" title="Edit">✎</button></div></td>';
+  }
+
+  function dpEditRowHTML(row){
+    var r2done = row.r2_status === "done" && row.dp_r2_matched != null;
+    var differing = r2done ? row.dp_r2_differing : row.dp_r1_differing;
+    var canDelete = row._edited || BUILTIN.every(function(r){ return r.batch !== row.batch; });
+    return '<td class="batch-cell">' + row.batch + '</td>' +
+      '<td class="grp-start dp-calc" data-calc="total">—</td>' +
+      '<td><input type="number" min="0" step="1" data-f="dp_r1_matched" value="' + num(row.dp_r1_matched) + '"></td>' +
+      '<td><input type="number" min="0" step="1" data-f="dp_r2_matched" placeholder="pending" value="' + val(r2done ? row.dp_r2_matched : null) + '"></td>' +
+      '<td class="dp-calc" data-calc="matched">—</td>' +
+      '<td><input type="number" min="0" step="1" data-f="dp_differing" value="' + num(differing) + '"></td>' +
+      '<td class="col-matchrate dp-calc" data-calc="match_rate">—</td>' +
+      '<td class="lh"><div class="dp-actions">' +
+        '<button type="button" class="dp-rowbtn save" data-save-p="' + row.batch + '" title="Done">✓</button>' +
+        (canDelete ? '<button type="button" class="dp-rowbtn danger" data-del-p="' + row.batch + '" title="Remove">🗑</button>' : '') +
+      '</div></td>';
+  }
+
+  function recomputeDpRowLive(tr){
+    var get = function(f){ var el = tr.querySelector('[data-f="' + f + '"]'); return el ? Number(el.value || 0) : 0; };
+    var r2el = tr.querySelector('[data-f="dp_r2_matched"]');
+    var r2raw = r2el ? r2el.value : "";
+    var r2done = r2raw !== "";
+    var matched = r2done ? Number(r2raw || 0) : get('dp_r1_matched');
+    var differing = get('dp_differing');
+    var total = matched + differing;
+    var matchRate = total > 0 ? matched / total : null;
+    tr.querySelector('[data-calc="total"]').textContent = fmtN(total);
+    tr.querySelector('[data-calc="matched"]').textContent = fmtN(matched);
+    tr.querySelector('[data-calc="match_rate"]').textContent = fmtPct(matchRate);
+  }
+
+  function saveDpRow(tr, batch){
+    var get = function(f){ var el = tr.querySelector('[data-f="' + f + '"]'); return el ? Number(el.value || 0) : 0; };
+    var r2el = tr.querySelector('[data-f="dp_r2_matched"]');
+    var r2raw = r2el ? r2el.value : "";
+    var nowR2Done = r2raw !== "";
+    var fields = { dp_r1_fm_points: null, dp_r1_matched: get('dp_r1_matched') };
+    if (nowR2Done){
+      fields.r2_status = "done";
+      fields.dp_r2_matched = Number(r2raw || 0);
+      fields.dp_r2_differing = get('dp_differing');
+    } else {
+      fields.dp_r1_differing = get('dp_differing');
+    }
+    patchOverride(batch, fields);
+  }
+
+  // ================================================================ RENDER
+  function render(){
+    var rows = mergedRows();
+    var finals = rows.map(computeFinal);
+    var dpFinals = rows.map(computeDpFinal);
+
+    var totalReports = rows.reduce(function(a,b){ return a + b.r1_total; }, 0);
+    var totalComparable = finals.reduce(function(a,b){ return a + b.comparable; }, 0);
+    var totalMatched = finals.reduce(function(a,b){ return a + b.final_matched; }, 0);
+    var totalReview = finals.reduce(function(a,b){ return a + b.final_review; }, 0);
+    var totalDpTotal = dpFinals.reduce(function(a,b){ return a + (b.total||0); }, 0);
+    var totalDpMatched = dpFinals.reduce(function(a,b){ return a + (b.matched||0); }, 0);
+
+    document.getElementById("t-total").textContent = fmtN(totalReports);
+    document.getElementById("t-matched").textContent = fmtPct(totalComparable > 0 ? totalMatched/totalComparable : null);
+    document.getElementById("t-dp-total").textContent = fmtN(totalDpTotal);
+    document.getElementById("t-dp-matched").textContent = fmtPct(totalDpTotal > 0 ? totalDpMatched/totalDpTotal : null);
+
+    var edited = rows.filter(function(r){ return r._edited; }).length;
+    document.getElementById("dp-edit-meta").innerHTML = edited
+      ? edited + " batch" + (edited===1?"":"es") + ' edited locally <a id="dp-reset-all">(reset all)</a>'
+      : "";
+    var resetAll = document.getElementById("dp-reset-all");
+    if (resetAll) resetAll.addEventListener("click", function(){
+      if (confirm("Discard all local edits and go back to the built-in numbers?")){ saveOverrides({}); render(); }
+    });
+
+    var tbodyR = document.getElementById("dp-tbody-reports"); tbodyR.innerHTML = "";
+    rows.forEach(function(row, i){
+      var tr = document.createElement("tr");
+      tr.dataset.batch = row.batch;
+      if (row._edited) tr.className = "edited";
+      tr.innerHTML = reportViewRowHTML(row, finals[i]);
+      tbodyR.appendChild(tr);
+    });
+    document.getElementById("dp-tfoot-reports").innerHTML = '<tr>' +
+      '<td class="lh">All batches</td>' +
+      '<td class="grp-start">' + fmtN(totalReports) + '</td>' +
+      '<td class="col-muted">' + fmtN(finals.reduce(function(a,b){return a+b.final_no_table;},0)) + '</td>' +
+      '<td class="col-muted">' + fmtN(finals.reduce(function(a,b){return a+b.final_extraction_failed;},0)) + '</td>' +
+      '<td class="grp-start">' + fmtN(totalComparable) + '</td>' +
+      '<td class="grp-start">' + fmtN(rows.reduce(function(a,b){return a+b.r1_fully_match;},0)) + '</td>' +
+      '<td>' + fmtN(finals.reduce(function(a,b){return a+(b.r2_gain||0);},0)) + '</td>' +
+      '<td>' + fmtN(totalMatched) + '</td>' +
+      '<td>' + fmtN(totalReview) + '</td>' +
+      '<td class="col-matchrate">' + fmtPct(totalComparable>0?totalMatched/totalComparable:null) + '</td>' +
+      '<td class="lh"></td></tr>';
+
+    var tbodyP = document.getElementById("dp-tbody-points"); tbodyP.innerHTML = "";
+    rows.forEach(function(row, i){
+      var tr = document.createElement("tr");
+      tr.dataset.batch = row.batch;
+      if (row._edited) tr.className = "edited";
+      tr.innerHTML = dpViewRowHTML(row, dpFinals[i]);
+      tbodyP.appendChild(tr);
+    });
+    document.getElementById("dp-tfoot-points").innerHTML = '<tr>' +
+      '<td class="lh">All batches</td>' +
+      '<td class="grp-start">' + fmtN(totalDpTotal) + '</td>' +
+      '<td>' + fmtN(dpFinals.reduce(function(a,b){return a+(b.r1_matched||0);},0)) + '</td>' +
+      '<td>' + fmtN(dpFinals.reduce(function(a,b){return a+(b.r2_gain||0);},0)) + '</td>' +
+      '<td>' + fmtN(totalDpMatched) + '</td>' +
+      '<td>' + fmtN(dpFinals.reduce(function(a,b){return a+(b.differing||0);},0)) + '</td>' +
+      '<td class="col-matchrate">' + fmtPct(totalDpTotal>0?totalDpMatched/totalDpTotal:null) + '</td>' +
+      '<td class="lh"></td></tr>';
+
+    var r1Dates = {}, r2Dates = {};
+    rows.forEach(function(r){ r1Dates[r.batch]=r.r1_run_date; if (r.r2_run_date) r2Dates[r.batch]=r.r2_run_date; });
+    document.getElementById("dp-foot").innerHTML =
+      "Compiled by hand from each batch's <code>round1_check_summary_*.md</code> / <code>round2_check_summary_*.md</code> " +
+      "(3 repeated runs per round, same prompt each time)." +
+      "<ul><li>Edits made here are saved in this browser only (<code>localStorage</code>), on this computer — they do not travel with this file if you send it to someone else, and a different browser or a private window won't see them.</li>" +
+      "<li>“Comparable” excludes reports where all 3 runs agree there is no DSA table, and reports where every run failed outright — shown on their own, not folded into the match rate.</li></ul>";
+  }
+
+  // ========================================================= INTERACTIONS
+  var tbodyR = document.getElementById("dp-tbody-reports");
+  var tbodyP = document.getElementById("dp-tbody-points");
+
+  function findRow(batch){ return mergedRows().filter(function(r){ return r.batch === batch; })[0]; }
+
+  tbodyR.addEventListener("click", function(e){
+    var editBtn = e.target.closest("[data-edit-r]");
+    var saveBtn = e.target.closest("[data-save-r]");
+    var delBtn = e.target.closest("[data-del-r]");
+    if (editBtn){
+      var tr = editBtn.closest("tr");
+      tr.classList.add("editing");
+      tr.innerHTML = reportEditRowHTML(findRow(editBtn.getAttribute("data-edit-r")));
+      recomputeReportRowLive(tr);
+      var firstInput = tr.querySelector("input"); if (firstInput) firstInput.focus();
+    } else if (saveBtn){
+      var tr2 = saveBtn.closest("tr");
+      saveReportRow(tr2, saveBtn.getAttribute("data-save-r"));
+      render();
+    } else if (delBtn){
+      var batch = delBtn.getAttribute("data-del-r");
+      if (confirm("Remove the local edit for " + batch + "? This reverts it to the built-in numbers (or deletes the row, if it isn't a built-in batch).")){
+        removeOverride(batch); render();
+      }
+    }
+  });
+  tbodyR.addEventListener("input", function(e){
+    var tr = e.target.closest("tr.editing"); if (tr) recomputeReportRowLive(tr);
+  });
+
+  tbodyP.addEventListener("click", function(e){
+    var editBtn = e.target.closest("[data-edit-p]");
+    var saveBtn = e.target.closest("[data-save-p]");
+    var delBtn = e.target.closest("[data-del-p]");
+    if (editBtn){
+      var tr = editBtn.closest("tr");
+      tr.classList.add("editing");
+      tr.innerHTML = dpEditRowHTML(findRow(editBtn.getAttribute("data-edit-p")));
+      recomputeDpRowLive(tr);
+      var firstInput = tr.querySelector("input"); if (firstInput) firstInput.focus();
+    } else if (saveBtn){
+      var tr2 = saveBtn.closest("tr");
+      saveDpRow(tr2, saveBtn.getAttribute("data-save-p"));
+      render();
+    } else if (delBtn){
+      var batch = delBtn.getAttribute("data-del-p");
+      if (confirm("Remove the local edit for " + batch + "? This reverts it to the built-in numbers (or deletes the row, if it isn't a built-in batch).")){
+        removeOverride(batch); render();
+      }
+    }
+  });
+  tbodyP.addEventListener("input", function(e){
+    var tr = e.target.closest("tr.editing"); if (tr) recomputeDpRowLive(tr);
+  });
+
+  document.getElementById("dp-add-btn").addEventListener("click", function(){
+    var name = prompt("New batch name (e.g. 1996-2000):");
+    if (!name) return;
+    name = name.trim();
+    if (!name) return;
+    var existing = mergedRows().some(function(r){ return r.batch === name; });
+    if (existing){ alert("A batch named \"" + name + "\" already exists."); return; }
+    patchOverride(name, blankRow(name));
+    render();
+    var trR = tbodyR.querySelector('tr[data-batch="' + name + '"]');
+    if (trR){ trR.classList.add("editing"); trR.innerHTML = reportEditRowHTML(findRow(name)); recomputeReportRowLive(trR); var i1=trR.querySelector("input"); if(i1) i1.focus(); }
+    var trP = tbodyP.querySelector('tr[data-batch="' + name + '"]');
+    if (trP){ trP.classList.add("editing"); trP.innerHTML = dpEditRowHTML(findRow(name)); recomputeDpRowLive(trP); }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
