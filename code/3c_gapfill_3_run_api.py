@@ -148,15 +148,9 @@ SIZE_PHRASES = [
     "above the configured base64-safe limit", "too close to or above the 1 mb gateway limit",
 ]
 
-# A selected PDF is named "<report stem><any suffix>.pdf". The report stem is "<country>_<YYYY-MM-DD>",
-# optionally followed by a Country Report number ("_CR2019-283"). Whatever comes after (_pages_5_8,
-# _page_6_table_crop_fallback, or anything else) is only used to guess how the PDF was made.
-_STEM_RE = re.compile(r"^(?P<stem>.+?_\d{4}-\d{2}-\d{2}(?:_CR\d{4}-\d+)?)(?P<suffix>_.*)?\.pdf$", re.IGNORECASE)
-# Best fidelity first (used only when there is no timing.json to say which file was sent).
-_METHOD_ORDER = [
-    "selected_pdf_direct", "selected_pdf_image_compressed",
-    "pymupdf_pillow_table_crop_fallback", "pymupdf_pillow_visual_fallback",
-]
+# The selected-PDF indexing helpers (parse_selected_name, index_selected_pdfs, reports_from_selected)
+# and the T+2/T+3 candidate-map builder now live in gapfill_lib_core.py, shared with 3b (which persists
+# the candidate map before any API call) -- see core.index_selected_pdfs / core.reports_from_selected.
 
 
 def build_gapfill_audit_prompt() -> str:
@@ -188,45 +182,7 @@ def write_json(path: Path, obj: Any) -> None:
     path.write_text(json.dumps(obj, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
 
 
-# ------------------------------------------------------- selected PDF lookup
-def parse_selected_name(name: str):
-    """(report stem, method) for a selected-PDF file name, else None if it has no <country>_<date> part."""
-    m = _STEM_RE.match(name)
-    if not m:
-        return None
-    suffix = (m.group("suffix") or "").lower()
-    if "crop" in suffix:
-        method = "pymupdf_pillow_table_crop_fallback"
-    elif "vision" in suffix or "visual" in suffix:
-        method = "pymupdf_pillow_visual_fallback"
-    elif "compress" in suffix:
-        method = "selected_pdf_image_compressed"
-    else:
-        method = "selected_pdf_direct"
-    return m.group("stem"), method
-
-
-def index_selected_pdfs(dirs: List[Path]) -> Dict[str, List[Dict[str, Any]]]:
-    """stem -> selected PDFs found in `dirs` (each with its folder rank and method rank)."""
-    idx: Dict[str, List[Dict[str, Any]]] = {}
-    for dir_rank, d in enumerate(dirs):
-        if not d.exists():
-            print(f"  WARNING: selected-PDF folder not found: {d}")
-            continue
-        ignored = []
-        for p in sorted(d.glob("*.pdf")):
-            parsed = parse_selected_name(p.name)
-            if parsed:
-                stem, method = parsed
-                idx.setdefault(stem, []).append(
-                    {"path": p, "method": method, "dir": d, "dir_rank": dir_rank,
-                     "method_rank": _METHOD_ORDER.index(method)}
-                )
-            else:
-                ignored.append(p.name)
-        if ignored:
-            print(f"  WARNING: {len(ignored)} PDF(s) in {d} have no <country>_<YYYY-MM-DD> in the name and are ignored, e.g. {ignored[:3]}")
-    return idx
+# parse_selected_name / index_selected_pdfs now live in gapfill_lib_core.py (core.*), shared with 3b.
 
 
 def read_timing(selected_dir: Path, stem: str) -> Optional[Dict[str, Any]]:
@@ -416,16 +372,6 @@ class ReportProcessor:
 
 
 # ------------------------------------------------------------------------ main
-def reports_from_selected(idx: Dict[str, List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
-    """One report record (country, date, year from the file name) per report that has a selected PDF."""
-    reports = []
-    for stem in sorted(idx):
-        rec = core.parse_report_file(Path(stem + ".pdf"))
-        if rec:
-            reports.append(rec)
-    return reports
-
-
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="list planned calls and check selected PDFs; no API")
@@ -445,8 +391,8 @@ def main() -> None:
     skip = set(pd.read_csv(SKIP_CSV)["pdf_file_name"]) if SKIP_CSV.exists() else set()
 
     print(f"Gap years selected: {len(run)} of {len(targets)}")
-    selected_index = index_selected_pdfs(SELECTED_PDF_DIRS)
-    reports = reports_from_selected(selected_index)
+    selected_index = core.index_selected_pdfs(SELECTED_PDF_DIRS)
+    reports = core.reports_from_selected(selected_index)
     idx = core.index_by_country_year(reports)
     print(f"Reports with a selected PDF: {len(reports)} in {len(SELECTED_PDF_DIRS)} folder(s); reports never used as a source: {len(skip)}")
 

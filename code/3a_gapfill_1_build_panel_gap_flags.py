@@ -10,11 +10,21 @@ Purpose
     span of observed years, i.e. gap years.
 
 Input (needs only one CSV)
-    INPUT_CSV at the top of the file, or --input on the command line. E.g.
-    output/2016-2020/compiled_csv/dsa_decomposition_labels_2016-2020_sa.csv
+    INPUT_CSV at the top of the file, or --input on the command line. Once a batch's Round 1 + Round 2 +
+    human review are all done and merged into one unified panel, that is what this should point at
+    (same columns as a single round's compiled CSV, below); until then it can still point at one round's
+    own compiled CSV, e.g. output/2016-2020/compiled_csv/dsa_decomposition_labels_2016-2020_sa.csv.
     Columns used: json_file, pdf_file_name, table_found, last_actual_year, level, top_category, value,
     hierarchy_id, parent_label, label_verbatim, column_header_audit_json,
     manual_review_required, actual_column_validation_status, confidence, framework
+    (column_header_audit_json missing or blank for a given row -- e.g. a human-reviewed row -- is fine:
+    it only feeds the non-authoritative preview in step 6 below, which degrades to "no audit evidence"
+    rather than erroring.)
+
+    Unique row key is (json_file, last_actual_year, hierarchy_id), not (json_file, hierarchy_id): once
+    gap-fill's own output is folded back into this input, one real report can legitimately appear under
+    two different last_actual_year values -- its own normal extraction, and a gap-fill row-group at an
+    earlier year it was also used to source -- so json_file alone no longer identifies one observation.
 
 Output (written by default to <batch folder>/gap_year_check/, filenames suffixed _<STAMP>)
     panel_structure_country_year   country x year skeleton. status = observed (has data) or GAP (missing)
@@ -45,6 +55,9 @@ Core steps
     6. Use each report's own column_header_audit_json (every year column in the table and its
        actual/estimate/projection status) to predict: in which report is that year a standalone
        actual/historical column (fillable), versus only an estimate / projection / merged-range column.
+       This checks only the same T+2-then-T+3, latest-publication-date-first candidates Step 2/3 would
+       actually try (gapfill_lib_core.build_candidates()) -- it is a preview of their result, not a
+       separate, looser guess that could point at a different report.
     7. Write out the files above.
 
 Usage
@@ -103,9 +116,12 @@ MAX_PLAUSIBLE_LAG = 4
 PRELIM_EST = {"preliminary", "estimate"}
 
 # ------------------------------------------------ country names and year labels
-# normalize_country() and parse_year_label() live in gapfill_lib_core.py (same folder).
+# normalize_country(), parse_year_label() and build_candidates() live in gapfill_lib_core.py (same
+# folder). build_candidates() is reused here (not a separate implementation) so Step 1's preview of
+# "which report can fill this year" is an honest forecast of what Step 2/3 actually try (T+2 first,
+# then T+3, latest publication date first) rather than a second, looser guess that can disagree with it.
 sys.path.insert(0, str(HERE))
-from gapfill_lib_core import normalize_country, parse_year_label  # noqa: E402
+from gapfill_lib_core import normalize_country, parse_year_label, build_candidates  # noqa: E402
 
 def to_float(x):
     if x is None or (isinstance(x, float) and pd.isna(x)):
@@ -119,7 +135,11 @@ def to_float(x):
 
 # ------------------------------------------------------------------ loading
 def build_report_table(df: pd.DataFrame) -> pd.DataFrame:
-    r = df.sort_values("json_file").drop_duplicates("json_file", keep="first").copy()
+    # Unique key is (json_file, last_actual_year), not json_file alone: once gap-fill output is folded
+    # back into this input, the same real report can legitimately carry two row-groups -- its own normal
+    # extraction at its own last_actual_year, and a gap-fill row-group at an earlier year it also
+    # supplied as a T+2/T+3 source -- so json_file alone no longer identifies one observation.
+    r = df.sort_values(["json_file", "last_actual_year"]).drop_duplicates(["json_file", "last_actual_year"], keep="first").copy()
     m = r["pdf_file_name"].str.extract(r"^(?P<prefix>.*?)_(?P<date>\d{4}-\d{2}-\d{2})")
     r["country_raw"] = m["prefix"]
     r["report_date"] = pd.to_datetime(m["date"])
@@ -143,7 +163,10 @@ def build_report_table(df: pd.DataFrame) -> pd.DataFrame:
 def top_level_values(df: pd.DataFrame) -> pd.DataFrame:
     top = df[df["level"].astype(str).isin(["0", "0.0"]) & df["top_category"].isin(TOP_CATEGORIES)].copy()
     top["value_num"] = top["value"].apply(to_float)
-    wide = top.pivot_table(index="json_file", columns="top_category", values="value_num", aggfunc="first")
+    # Keyed like build_report_table(): (json_file, last_actual_year), so a report that supplies two
+    # different years (its own, plus one it filled via gap-fill) doesn't have its two years' top-level
+    # values collapsed into a single json_file row.
+    wide = top.pivot_table(index=["json_file", "last_actual_year"], columns="top_category", values="value_num", aggfunc="first")
     return wide.reindex(columns=TOP_CATEGORIES)
 
 
@@ -191,8 +214,16 @@ def main(input_csv: Path = INPUT_CSV, out_dir: Path | None = OUT_DIR):
 
     reports = build_report_table(all_df)
     wide = top_level_values(all_df)
-    reports = reports.merge(wide, left_on="json_file", right_index=True, how="left")
+    reports = reports.merge(wide, left_on=["json_file", "last_actual_year"], right_index=True, how="left")
     reports["audit_cols"] = reports["column_header_audit_json"].apply(audit_columns)
+
+    # (country, report publication year) -> reports, for the T+2/T+3 candidate lookup below. Built from
+    # the already-parsed report_date (not re-parsed from the filename), one entry per real report.
+    pub_year_idx: dict = {}
+    for _, rep in reports.iterrows():
+        pub_year_idx.setdefault((rep["country"], rep["report_date"].year), []).append(
+            {"pdf_file_name": rep["pdf_file_name"], "date": rep["report_date"].strftime("%Y-%m-%d")}
+        )
 
     # ------------------------------------------------ report usage status
     def status(row):
@@ -208,6 +239,9 @@ def main(input_csv: Path = INPUT_CSV, out_dir: Path | None = OUT_DIR):
         return "observation"
 
     reports["report_status"] = reports.apply(status, axis=1)
+    # Reports Step 2/3 would also skip as a candidate source (no table, or a multi-country document) --
+    # excluded here too so the T+2/T+3 preview below matches what Step 2/3 will actually try.
+    skip_reports = set(reports.loc[reports["report_status"].isin(["no_table", "excluded_non_country"]), "pdf_file_name"])
     obs = reports[reports["report_status"] == "observation"].copy()
     obs["obs_year"] = obs["obs_year"].astype(int)
 
@@ -287,10 +321,16 @@ def main(input_csv: Path = INPUT_CSV, out_dir: Path | None = OUT_DIR):
             months = (next_rep["report_date"] - prev_rep["report_date"]).days / 30.44
 
             for y in span:
+                # Same T+2-then-T+3, latest-publication-date-first order Step 2/3 actually try (see
+                # gapfill_lib_core.build_candidates()) -- this is a preview, not a second guess, so the
+                # candidates considered here are restricted to exactly the reports Step 2/3 would reach.
+                ordered_cands = build_candidates(country, y, pub_year_idx, skip_reports)
                 cands = []
-                for _, rep in creps.iterrows():
-                    if not rep["table_found_bool"]:
+                for oc in ordered_cands:
+                    match = creps[creps["pdf_file_name"] == oc["pdf_file_name"]]
+                    if match.empty or not match.iloc[0]["table_found_bool"]:
                         continue
+                    rep = match.iloc[0]
                     for c in rep["audit_cols"]:
                         if c["kind"] == "single" and c["y0"] == y:
                             cands.append((rep, c, "single"))
@@ -313,9 +353,10 @@ def main(input_csv: Path = INPUT_CSV, out_dir: Path | None = OUT_DIR):
                     fill_status = "status_unknown"
                 else:
                     fill_status = "not_visible_in_any_report"
+                # cands is already in T+2-then-T+3, latest-first order (it was built by walking
+                # ordered_cands), so the first eligible one is exactly what Step 2/3 would pick.
                 pool = actual or prelim or []
-                pool_sorted = sorted(pool, key=lambda t: t[0]["report_date"])
-                pref = pool_sorted[0] if pool_sorted else None
+                pref = pool[0] if pool else None
                 gap_rows.append({
                     "gap_id": span_id,
                     "country": country,
@@ -379,12 +420,17 @@ def main(input_csv: Path = INPUT_CSV, out_dir: Path | None = OUT_DIR):
     panel = pd.DataFrame(panel_rows)
 
     # ------------------------------------------------ children long table
+    # (json_file, last_actual_year) identifies one kept observation; json_file alone is not unique once
+    # a real report can carry rows for more than one year (its own, plus any gap year it was used to
+    # fill), so both the membership filter and the join key below use the pair, not json_file alone.
+    keep_pairs = set(zip(kept_obs["json_file"], kept_obs["last_actual_year"]))
+    all_df_keys = pd.Series(list(zip(all_df["json_file"], all_df["last_actual_year"])), index=all_df.index)
     children_src = all_df[
-        all_df["json_file"].isin(kept_obs["json_file"])
+        all_df_keys.isin(keep_pairs)
         & (all_df["level"].astype(str).isin(["1", "1.0", "2", "2.0", "3", "3.0"]))
-    ][["json_file", "pdf_file_name", "top_category", "hierarchy_id", "level", "parent_label", "label_verbatim", "value"]].copy()
-    key = kept_obs.set_index("json_file")[["country", "obs_year"]]
-    children = children_src.join(key, on="json_file")
+    ][["json_file", "last_actual_year", "pdf_file_name", "top_category", "hierarchy_id", "level", "parent_label", "label_verbatim", "value"]].copy()
+    key = kept_obs.set_index(["json_file", "last_actual_year"])[["country", "obs_year"]]
+    children = children_src.join(key, on=["json_file", "last_actual_year"])
     children = children.rename(columns={"obs_year": "year"})[
         ["country", "year", "pdf_file_name", "top_category", "hierarchy_id", "level", "parent_label", "label_verbatim", "value"]
     ].sort_values(["country", "year", "hierarchy_id"])

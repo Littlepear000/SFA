@@ -12,10 +12,12 @@ Runs the three gap-fill scripts, in this order, with runpy:
 All settings shared by the three scripts are declared once, in the CONFIG section below.
 Before running, comment out the CONFIG block of each script (the lines that define these names):
     in 3a: INPUT_CSV, OUT_DIR, STAMP
-    in 3b: CHECK_DIR, STAMP
+    in 3b: CHECK_DIR, STAMP, SELECTED_PDF_DIRS
     in 3c: BASE_DIR, SELECTED_PDF_DIRS, STEP1_SCRIPT, GAPFILL_PROMPT_FILE, ENV_FILE, STAMP, CHECK_DIR,
            TARGETS_CSV, SKIP_CSV, PANEL_CSV, OUTPUT_DIR, MAX_WORKERS
 Otherwise their own values overwrite the ones given here.
+3b now also builds and persists the Step 2 candidate map (gapfill_candidate_map_<STAMP>.csv), so it
+needs the same SELECTED_PDF_DIRS as 3c.
 
 The scripts run in this same process, so command-line options are shared. 3c reads --dry-run,
 --limit-gaps N, --countries "A,B" and --collect-only; 3a and 3b ignore options they do not know.
@@ -52,7 +54,10 @@ SELECTED_PDF_DIRS = [
     BASE_DIR / "output" / "2016-2020" / "round1_20260921_run1" / "selected_pdf_pages",
     BASE_DIR / "output" / "2021-2026" / "round1_20260921_run1" / "selected_pdf_pages",
 ]
-STEP1_SCRIPT = HERE / "2a_step_1_revised_on_problematic_reports_sl.py"  # its API functions are reused by 3c
+STEP1_SCRIPT = HERE / "1a_two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py"
+# 1a on purpose, not 2a: gap-fill only needs call_pdf_json / make_api_session / add_table_crop_header_instruction,
+# identical in both; 2a's extra accuracy is specifically about *choosing* last_actual_year, which gap-fill
+# never does (the target year is already given). See 3c_gapfill_3_run_api.py's own CONFIG for the same note.
 GAPFILL_PROMPT_FILE = BASE_DIR / "gapfill_extraction_prompt_v2.txt"
 ENV_FILE = BASE_DIR / ".env"
 TARGETS_CSV = CHECK_DIR / f"gapfill_targets_{STAMP}.csv"

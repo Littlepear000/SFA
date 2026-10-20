@@ -22,6 +22,8 @@ def _load(path, name):
 
 _HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
 run = _load(_HERE / "3c_gapfill_3_run_api.py", "gapfill_run_api")
+three_a = _load(_HERE / "3a_gapfill_1_build_panel_gap_flags.py", "gapfill_3a_test")
+three_b = _load(_HERE / "3b_gapfill_2_build_targets.py", "gapfill_3b_test")
 
 
 def rep(name, country, date):
@@ -211,22 +213,22 @@ def touch(path, size=10):
 
 
 def test_selected_name_parsing():
-    assert run.parse_selected_name("Angola_2017-02-06_pages_45_49.pdf") == ("Angola_2017-02-06", "selected_pdf_direct")
-    assert run.parse_selected_name("Angola_2017-02-06_pages_45_49_image_compressed.pdf")[1] == "selected_pdf_image_compressed"
-    assert run.parse_selected_name("Angola_2017-02-06_page_47_table_crop_fallback.pdf")[1] == "pymupdf_pillow_table_crop_fallback"
-    assert run.parse_selected_name("Angola_2017-02-06_pages_45_49_vision_fallback.pdf")[1] == "pymupdf_pillow_visual_fallback"
-    assert run.parse_selected_name("Angola_2017-02-06_timing.json") is None
+    assert run.core.parse_selected_name("Angola_2017-02-06_pages_45_49.pdf") == ("Angola_2017-02-06", "selected_pdf_direct")
+    assert run.core.parse_selected_name("Angola_2017-02-06_pages_45_49_image_compressed.pdf")[1] == "selected_pdf_image_compressed"
+    assert run.core.parse_selected_name("Angola_2017-02-06_page_47_table_crop_fallback.pdf")[1] == "pymupdf_pillow_table_crop_fallback"
+    assert run.core.parse_selected_name("Angola_2017-02-06_pages_45_49_vision_fallback.pdf")[1] == "pymupdf_pillow_visual_fallback"
+    assert run.core.parse_selected_name("Angola_2017-02-06_timing.json") is None
     # any other suffix still maps to the right report
-    assert run.parse_selected_name("Angola_2017-02-06_pages_45_49_v2_final.pdf") == ("Angola_2017-02-06", "selected_pdf_direct")
-    assert run.parse_selected_name("Angola_2017-02-06.pdf") == ("Angola_2017-02-06", "selected_pdf_direct")
-    assert run.parse_selected_name("Angola_2017-02-06_selected.PDF") == ("Angola_2017-02-06", "selected_pdf_direct")
-    assert run.parse_selected_name("Angola_2017-02-06_p47_cropped.pdf")[1] == "pymupdf_pillow_table_crop_fallback"
+    assert run.core.parse_selected_name("Angola_2017-02-06_pages_45_49_v2_final.pdf") == ("Angola_2017-02-06", "selected_pdf_direct")
+    assert run.core.parse_selected_name("Angola_2017-02-06.pdf") == ("Angola_2017-02-06", "selected_pdf_direct")
+    assert run.core.parse_selected_name("Angola_2017-02-06_selected.PDF") == ("Angola_2017-02-06", "selected_pdf_direct")
+    assert run.core.parse_selected_name("Angola_2017-02-06_p47_cropped.pdf")[1] == "pymupdf_pillow_table_crop_fallback"
     # names with a Country Report number keep it in the stem; names with several words / an apostrophe work too
-    assert run.parse_selected_name("Maldives_2019-09-03_CR2019-283_pages_5_8.pdf") == ("Maldives_2019-09-03_CR2019-283", "selected_pdf_direct")
-    assert run.parse_selected_name("Maldives_2019-09-03_pages_5_8.pdf")[0] == "Maldives_2019-09-03"
-    assert run.parse_selected_name("Democratic Republic of São Tomé and Príncipe_2017-12-18_pages_3_6.pdf")[0] == "Democratic Republic of São Tomé and Príncipe_2017-12-18"
-    assert run.parse_selected_name("Kingdom of the Netherlands—Aruba_2019-06-05_page_8_table_crop_fallback.pdf")[0] == "Kingdom of the Netherlands—Aruba_2019-06-05"
-    assert run.parse_selected_name("notes.pdf") is None
+    assert run.core.parse_selected_name("Maldives_2019-09-03_CR2019-283_pages_5_8.pdf") == ("Maldives_2019-09-03_CR2019-283", "selected_pdf_direct")
+    assert run.core.parse_selected_name("Maldives_2019-09-03_pages_5_8.pdf")[0] == "Maldives_2019-09-03"
+    assert run.core.parse_selected_name("Democratic Republic of São Tomé and Príncipe_2017-12-18_pages_3_6.pdf")[0] == "Democratic Republic of São Tomé and Príncipe_2017-12-18"
+    assert run.core.parse_selected_name("Kingdom of the Netherlands—Aruba_2019-06-05_page_8_table_crop_fallback.pdf")[0] == "Kingdom of the Netherlands—Aruba_2019-06-05"
+    assert run.core.parse_selected_name("notes.pdf") is None
 
 
 def test_selected_pdf_resolution():
@@ -250,7 +252,7 @@ def test_selected_pdf_resolution():
         (d / "cur" / "json_output" / "D_2019-01-01_timing.json").write_text(json.dumps({
             "pdf_sent_to_api": str(cur / "D_2019-01-01_page_6_table_crop_fallback.pdf"), "extraction_method": "pymupdf_pillow_table_crop_fallback",
             "selected_original_pages": [6]}))
-        idx = run.index_selected_pdfs([rerun, orig, cur])
+        idx = run.core.index_selected_pdfs([rerun, orig, cur])
         dd = run.resolve_selected_pdf("D_2019-01-01", idx)
         assert dd["source"] == "timing" and dd["path"].name.endswith("table_crop_fallback.pdf") and dd["pages"] == [6], dd
         a = run.resolve_selected_pdf("A_2018-03-01", idx)
@@ -260,7 +262,7 @@ def test_selected_pdf_resolution():
         c = run.resolve_selected_pdf("C_2019-01-01", idx)
         assert c["path"].parent == rerun, c
         assert run.resolve_selected_pdf("nope_2019-01-01", idx) is None
-        reports = run.reports_from_selected(idx)
+        reports = run.core.reports_from_selected(idx)
         assert {r["pdf_file_name"] for r in reports} == {"A_2018-03-01.pdf", "B_2019-01-01.pdf", "C_2019-01-01.pdf", "D_2019-01-01.pdf"}
         assert {r["country"] for r in reports} == {"A", "B", "C", "D"}
 
@@ -288,7 +290,7 @@ def test_processor_end_to_end():
         (d / "step1" / "A_2018-03-01_timing.json").write_text(json.dumps({
             "pdf_sent_to_api": str(sel_dir / "A_2018-03-01_pages_5_8.pdf"), "extraction_method": "selected_pdf_direct",
             "selected_original_pages": [5, 6, 7, 8]}))
-        idx = run.index_selected_pdfs([sel_dir])
+        idx = run.core.index_selected_pdfs([sel_dir])
         report = {"pdf_file_name": "A_2018-03-01.pdf", "country": "A", "date": "2018-03-01", "year": 2018}
 
         extract = {
@@ -328,7 +330,7 @@ def test_processor_end_to_end():
         assert proc(rb, [2016])[2016]["status"] == "selected_pdf_not_found" and s1.api_calls == []
 
         # request too large for the gateway -> pdf_too_large (cascade moves on), other errors -> api_error (cascade stops)
-        touch(sel_dir / "C_2019-01-01_pages_5_8.pdf"); idx.update(run.index_selected_pdfs([sel_dir]))
+        touch(sel_dir / "C_2019-01-01_pages_5_8.pdf"); idx.update(run.core.index_selected_pdfs([sel_dir]))
         rc = {"pdf_file_name": "C_2019-01-01.pdf", "country": "C", "date": "2019-01-01", "year": 2019}
         big = run.ReportProcessor(FakeStep1({}, fail_with="The complete encoded request is 1,200,000 bytes, which is too close to or above the 1 MB gateway limit"), "u", None, "m", "p", idx)
         assert big(rc, [2016])[2016]["status"] == "pdf_too_large"
@@ -336,6 +338,100 @@ def test_processor_end_to_end():
         bad = run.ReportProcessor(FakeStep1({}, fail_with="API error 500"), "u", None, "m", "p", idx)
         assert bad(rc, [2016])[2016]["status"] == "api_error"
         assert "pdf_too_large" not in core.STOP_STATUSES and "api_error" in core.STOP_STATUSES
+
+
+def test_candidate_map_rows():
+    idx = {
+        ("Angola", 2017): [
+            {"pdf_file_name": "Angola_2017-03-01.pdf", "date": "2017-03-01"},
+            {"pdf_file_name": "Angola_2017-09-01.pdf", "date": "2017-09-01"},  # later in the same year -> ranks first
+        ],
+        ("Angola", 2018): [{"pdf_file_name": "Angola_2018-06-01.pdf", "date": "2018-06-01"}],
+    }
+    gap_items = [
+        {"gap_id": "G0001", "country": "Angola", "gap_year": 2015},  # T+2=2017 (2 candidates), T+3=2018
+        {"gap_id": "G0002", "country": "Angola", "gap_year": 2030},  # no candidate at all
+    ]
+    rows = core.build_candidate_map_rows(gap_items, idx, skip=set())
+    assert rows[0]["candidate_report"] == "Angola_2017-09-01.pdf" and rows[0]["rank"] == 1
+    assert rows[1]["candidate_report"] == "Angola_2017-03-01.pdf" and rows[1]["rank"] == 2
+    assert rows[2]["candidate_report"] == "Angola_2018-06-01.pdf" and rows[2]["offset_years"] == 3
+    assert rows[3]["rank"] is None and rows[3]["candidate_report"] is None
+
+
+def test_3b_candidate_map_end_to_end():
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        check_dir = d / "gap_year_check"; check_dir.mkdir()
+        stamp = "test1"
+        gaps = pd.DataFrame([{"gap_id": "G0001", "country": "Angola", "gap_year": 2015, "gap_span": "2015",
+                               "primary_cause": "lag_between_consecutive_reports",
+                               "fill_status": "fillable_actual_column_visible",
+                               "preferred_source_report": "Angola_2017-09-01.pdf"}])
+        gaps.to_csv(check_dir / f"gap_years_{stamp}.csv", index=False)
+        inv = pd.DataFrame([
+            {"pdf_file_name": "Angola_2010-01-01.pdf", "report_status": "no_table"},
+            {"pdf_file_name": "Angola_2017-09-01.pdf", "report_status": "observation"},
+        ])
+        inv.to_csv(check_dir / f"report_inventory_{stamp}.csv", index=False)
+        sel_dir = d / "selected_pdf_pages"; sel_dir.mkdir()
+        (sel_dir / "Angola_2017-09-01_pages_5_8.pdf").write_bytes(b"%PDF-1.4 fake")
+
+        three_b.main(check_dir=check_dir, stamp=stamp, selected_pdf_dirs=[sel_dir])
+
+        cmap = pd.read_csv(check_dir / f"gapfill_candidate_map_{stamp}.csv")
+        assert len(cmap) == 1 and cmap.iloc[0]["candidate_report"] == "Angola_2017-09-01.pdf"
+        assert (check_dir / f"gapfill_targets_{stamp}.csv").exists()
+        assert (check_dir / f"gapfill_skip_reports_{stamp}.csv").exists()
+
+
+def test_3a_same_real_report_two_years():
+    """
+    The case the (json_file, last_actual_year) dedup fix exists for: one real report can legitimately
+    carry two row-groups once gap-fill output is folded back in -- its own normal extraction at its own
+    last_actual_year, and a gap-fill row-group at an earlier year it was also used to source. Before the
+    fix, grouping by json_file alone silently collapsed the two years into one.
+    """
+    cols = ["json_file", "pdf_file_name", "table_found", "last_actual_year", "level", "top_category", "value",
+            "hierarchy_id", "parent_label", "label_verbatim", "column_header_audit_json",
+            "manual_review_required", "actual_column_validation_status", "confidence", "framework"]
+    roles = ["change_in_debt", "identified_flows", "primary_balance", "automatic_debt_dynamics",
+             "other_identified_flows", "residual"]
+
+    def mkrow(json_file, pdf, year, top_cat, value):
+        r = dict.fromkeys(cols, "")
+        r.update(json_file=json_file, pdf_file_name=pdf, table_found="TRUE", last_actual_year=year,
+                 level="0", top_category=top_cat, value=value, hierarchy_id="1",
+                 manual_review_required="No", actual_column_validation_status="accepted",
+                 confidence="high", framework="MAC_DSA")
+        return r
+
+    rows = []
+    for i, role in enumerate(roles, start=1):
+        rows.append(mkrow("France_2021-05-01_dsa.json", "France_2021-05-01.pdf", "2021", role, str(10 + i)))
+    for i, role in enumerate(roles, start=1):  # same real report, also used to source a gap-fill year
+        rows.append(mkrow("France_2021-05-01_dsa.json", "France_2021-05-01.pdf", "2019", role, str(20 + i)))
+    for i, role in enumerate(roles, start=1):
+        rows.append(mkrow("France_2017-05-01_dsa.json", "France_2017-05-01.pdf", "2017", role, str(30 + i)))
+    df = pd.DataFrame(rows)
+
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        csv_path = d / "input.csv"
+        df.to_csv(csv_path, index=False, encoding="utf-8-sig")
+        out_dir = d / "out"
+        three_a.main(csv_path, out_dir)
+
+        panel = pd.read_csv(out_dir / f"panel_structure_country_year_{three_a.STAMP}.csv")
+        inv = pd.read_csv(out_dir / f"report_inventory_{three_a.STAMP}.csv")
+        fr = panel[panel["country"] == "France"].sort_values("year")
+
+        assert set(fr["year"]) >= {2017, 2019, 2021}
+        assert (fr[fr["year"] == 2021]["status"] == "observed").all()
+        assert (fr[fr["year"] == 2019]["status"] == "observed").all(), "2019 must be 'observed', not GAP"
+        assert fr[fr["year"] == 2021]["change_in_debt"].iloc[0] == 11.0
+        assert fr[fr["year"] == 2019]["change_in_debt"].iloc[0] == 21.0, "2019 and 2021 values must not collapse together"
+        assert (inv["pdf_file_name"] == "France_2021-05-01.pdf").sum() == 2, "the shared report appears once per year it supplies"
 
 
 if __name__ == "__main__":

@@ -1,11 +1,22 @@
 """
-Pure logic for the gap-year fill run (no API, no PDF, no network).
+Pure logic for the gap-year fill run (no API, no network; reads existing files only).
 
 Kept separate from 3c_gapfill_3_run_api.py so it can be unit-tested on any machine:
-  * candidate report ordering (T+2 first, then T+3; latest report of a year first)
+  * candidate report ordering (T+2 first, then T+3; latest report of a year first), and the Step 2
+    candidate-map table built from it (also used by 3b and by 3a's own preview, so there is exactly one
+    place that decides what counts as a candidate report)
+  * the selected-PDF inventory (shared by 3b, to persist the candidate map, and 3c, to run the API)
   * the resolve/cascade loop across rounds
   * validation that an extracted column is an ACTUAL / HISTORICAL year
-  * flattening results and writing the output tables
+  * flattening results and writing the output tables, in the same column shape as the rest of the
+    pipeline (json_file, pdf_file_name, country, year, top_category, hierarchy_id, level, parent_label,
+    label_verbatim, value, source_category="Gap Fill") so the result is a plain pd.concat onto the
+    unified panel, not a separate reconciliation step. The row keeps the REAL source report's identity
+    (json_file/pdf_file_name) -- never a synthetic one -- because later steps may need to go back and
+    read other things from that same PDF. This means one real report can legitimately own two row-groups
+    in the unified table: its own normal extraction at its own year, and a gap-fill row-group at an
+    earlier year it also supplied -- so the unique row key is country + report + year + hierarchy, not
+    country + report + hierarchy.
 """
 from __future__ import annotations
 
@@ -192,6 +203,98 @@ def build_candidates(
                 continue
             out.append({**r, "offset": off})
     return out
+
+
+def build_candidate_map_rows(
+    gap_items: List[Dict[str, Any]],
+    idx: Dict[Tuple[str, int], List[Dict[str, Any]]],
+    skip: set,
+    offsets: Tuple[int, ...] = OFFSETS,
+) -> List[Dict[str, Any]]:
+    """
+    One row per (gap year, candidate rank): the exact ordered candidate list build_candidates() would
+    try for that gap year, as a persistable table (Step 2's "map of gap year -> report", written before
+    any API call). A gap year with no candidate at all gets one row with rank=None so it still shows up.
+    """
+    rows: List[Dict[str, Any]] = []
+    for g in gap_items:
+        country, gap_year = g["country"], int(g["gap_year"])
+        cands = build_candidates(country, gap_year, idx, skip, offsets=offsets)
+        if not cands:
+            rows.append({
+                "gap_id": g.get("gap_id"), "country": country, "gap_year": gap_year,
+                "rank": None, "candidate_report": None, "offset_years": None, "publication_date": None,
+            })
+            continue
+        for rank, c in enumerate(cands, start=1):
+            rows.append({
+                "gap_id": g.get("gap_id"), "country": country, "gap_year": gap_year,
+                "rank": rank, "candidate_report": c["pdf_file_name"], "offset_years": c["offset"],
+                "publication_date": c["date"],
+            })
+    return rows
+
+
+# ------------------------------------------------------- selected PDF lookup
+# A selected PDF is named "<report stem><any suffix>.pdf". The report stem is "<country>_<YYYY-MM-DD>",
+# optionally followed by a Country Report number ("_CR2019-283"). Whatever comes after (_pages_5_8,
+# _page_6_table_crop_fallback, or anything else) is only used to guess how the PDF was made.
+_STEM_RE = re.compile(r"^(?P<stem>.+?_\d{4}-\d{2}-\d{2}(?:_CR\d{4}-\d+)?)(?P<suffix>_.*)?\.pdf$", re.IGNORECASE)
+# Best fidelity first (used only when there is no timing.json to say which file was sent).
+_METHOD_ORDER = [
+    "selected_pdf_direct", "selected_pdf_image_compressed",
+    "pymupdf_pillow_table_crop_fallback", "pymupdf_pillow_visual_fallback",
+]
+
+
+def parse_selected_name(name: str):
+    """(report stem, method) for a selected-PDF file name, else None if it has no <country>_<date> part."""
+    m = _STEM_RE.match(name)
+    if not m:
+        return None
+    suffix = (m.group("suffix") or "").lower()
+    if "crop" in suffix:
+        method = "pymupdf_pillow_table_crop_fallback"
+    elif "vision" in suffix or "visual" in suffix:
+        method = "pymupdf_pillow_visual_fallback"
+    elif "compress" in suffix:
+        method = "selected_pdf_image_compressed"
+    else:
+        method = "selected_pdf_direct"
+    return m.group("stem"), method
+
+
+def index_selected_pdfs(dirs: List[Path]) -> Dict[str, List[Dict[str, Any]]]:
+    """stem -> selected PDFs found in `dirs` (each with its folder rank and method rank)."""
+    idx: Dict[str, List[Dict[str, Any]]] = {}
+    for dir_rank, d in enumerate(dirs):
+        if not d.exists():
+            print(f"  WARNING: selected-PDF folder not found: {d}")
+            continue
+        ignored = []
+        for p in sorted(d.glob("*.pdf")):
+            parsed = parse_selected_name(p.name)
+            if parsed:
+                stem, method = parsed
+                idx.setdefault(stem, []).append(
+                    {"path": p, "method": method, "dir": d, "dir_rank": dir_rank,
+                     "method_rank": _METHOD_ORDER.index(method)}
+                )
+            else:
+                ignored.append(p.name)
+        if ignored:
+            print(f"  WARNING: {len(ignored)} PDF(s) in {d} have no <country>_<YYYY-MM-DD> in the name and are ignored, e.g. {ignored[:3]}")
+    return idx
+
+
+def reports_from_selected(idx: Dict[str, List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
+    """One report record (country, date, year from the file name) per report that has a selected PDF."""
+    reports = []
+    for stem in sorted(idx):
+        rec = parse_report_file(Path(stem + ".pdf"))
+        if rec:
+            reports.append(rec)
+    return reports
 
 
 # ---------------------------------------------------------------- validation
@@ -469,8 +572,15 @@ def write_outputs(
             out = res["outcome"]
             decomp = out.get("decomposition")
             meta_src = out.get("meta", {})
+            pdf_file_name = res["report"]
+            json_file = Path(pdf_file_name).stem + "_dsa.json"
             for r in flatten_decomposition(decomp):
-                long_rows.append({"country": st["country"], "year": st["gap_year"], "source_report": res["report"], **r})
+                long_rows.append({
+                    "json_file": json_file, "pdf_file_name": pdf_file_name,
+                    "country": st["country"], "year": st["gap_year"],
+                    "table_found": "TRUE", "source_category": "Gap Fill",
+                    **r,
+                })
             wide_rows.append({
                 "country": st["country"], "year": st["gap_year"], "gap_id": st.get("gap_id"),
                 "source_report": res["report"], "source_offset_years": res["offset"],
