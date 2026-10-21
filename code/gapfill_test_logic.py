@@ -12,18 +12,27 @@ import gapfill_lib_core as core  # noqa: E402
 import importlib.util  # noqa: E402
 
 
-def _load(path, name):
+def _load(path, name, defaults=None):
+    """Load a script as a module. `defaults` pre-seeds module-level names before the module body runs
+    (mirrors runpy's init_globals) -- needed for 3a/3b, whose own CONFIG block is commented out on a
+    real run (the controller injects it instead), which would otherwise make `def main(x=INPUT_CSV)`
+    raise NameError at import time when loaded standalone, as this test file does."""
     spec = importlib.util.spec_from_file_location(name, str(path))
     mod = importlib.util.module_from_spec(spec)
     sys.modules[name] = mod
+    if defaults:
+        for k, v in defaults.items():
+            setattr(mod, k, v)
     spec.loader.exec_module(mod)
     return mod
 
 
 _HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
 run = _load(_HERE / "3c_gapfill_3_run_api.py", "gapfill_run_api")
-three_a = _load(_HERE / "3a_gapfill_1_build_panel_gap_flags.py", "gapfill_3a_test")
-three_b = _load(_HERE / "3b_gapfill_2_build_targets.py", "gapfill_3b_test")
+three_a = _load(_HERE / "3a_gapfill_1_build_panel_gap_flags.py", "gapfill_3a_test",
+                 defaults={"INPUT_CSV": Path("/dev/null"), "OUT_DIR": None, "STAMP": "test"})
+three_b = _load(_HERE / "3b_gapfill_2_build_targets.py", "gapfill_3b_test",
+                 defaults={"CHECK_DIR": Path("/dev/null"), "STAMP": "test"})
 
 
 def rep(name, country, date):
@@ -268,8 +277,10 @@ def test_selected_pdf_resolution():
 
 
 class FakeStep1:
-    def __init__(self, answers, fail_with=None):
+    def __init__(self, answers, fail_with=None, locator_answer=None):
         self.answers, self.api_calls, self.fail_with, self.last_text = answers, [], fail_with, ""
+        self.locator_answer = locator_answer
+        self.PdfReader = lambda p: type("FakePdfReader", (), {"pages": [None] * 20})()
 
     def add_table_crop_header_instruction(self, text, method): return text
 
@@ -279,6 +290,24 @@ class FakeStep1:
         self.api_calls.append("audit" if "INDEPENDENT HEADER AUDIT" in prompt else "extract")
         self.last_text = user_text
         return self.answers["audit"] if "INDEPENDENT HEADER AUDIT" in prompt else self.answers["extract"]
+
+    # ---- Step 1 locate machinery, used only by the fresh-locate fallback (no cached selected PDF)
+    def extract_full_text(self, pdf_path):
+        return "full text of " + pdf_path.name, ["page one", "page two"]
+
+    def prepare_step1_input(self, full_text, name):
+        return full_text
+
+    def keyword_candidates(self, pages):
+        return []
+
+    def call_text_json(self, url, tm, model, prompt, user_input):
+        self.api_calls.append("locate")
+        return self.locator_answer
+
+    def create_uploadable_subset(self, pdf_path, out_path, start_page, end_page, primary_page):
+        touch(out_path)
+        return list(range(start_page, end_page + 1)), []
 
 
 def test_processor_end_to_end():
@@ -340,6 +369,65 @@ def test_processor_end_to_end():
         assert "pdf_too_large" not in core.STOP_STATUSES and "api_error" in core.STOP_STATUSES
 
 
+def test_processor_fresh_locate_fallback():
+    """
+    The new behaviour this session added: when resolve_selected_pdf() finds no cache for a candidate
+    report, ReportProcessor locates it fresh from the original PDF (report["path"]) using 1a's own
+    locate machinery, instead of giving up with selected_pdf_not_found. A second gap year for the same
+    report must reuse the cached fresh selection rather than locating it twice.
+    """
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        run.OUTPUT_DIR = d / "out"
+        original_pdf = d / "originals" / "E_2019-05-01.pdf"
+        touch(original_pdf)
+        report = {"pdf_file_name": "E_2019-05-01.pdf", "country": "E", "date": "2019-05-01", "year": 2019,
+                  "path": str(original_pdf)}
+
+        extract = {
+            "table_found": True,
+            "source": {"framework": "MAC_DSA", "column_header_audit": audit(("2016", "actual"))["column_header_audit"]},
+            "targets": [target(2016)],
+        }
+        locator_answer = {"dsa_section_found": True, "recommended_start_page": 3, "recommended_end_page": 5,
+                           "primary_table_page": 4, "notes": ""}
+        s1 = FakeStep1({"extract": extract, "audit": audit(("2016", "actual"))}, locator_answer=locator_answer)
+        idx = {}  # empty: no cached selected PDF anywhere for this report
+        fresh_dir = d / "out" / "fresh_selected_pdf"
+        proc = run.ReportProcessor(s1, "u", None, "m", "prompt", idx, prompt1="locator prompt", fresh_dir=fresh_dir)
+
+        out = proc(report, [2016])
+        assert out[2016]["status"] == "resolved" and out[2016]["decomposition"]
+        assert s1.api_calls == ["locate", "extract"], s1.api_calls
+        selected_files = list(fresh_dir.glob("E_2019-05-01_pages_*.pdf"))
+        assert len(selected_files) == 1, selected_files
+
+        # a second gap year for the same report must reuse the fresh selection, not locate again
+        s1.api_calls.clear()
+        (d / "out" / "reports" / "E_2019-05-01_gapfill.json").unlink()
+        extract["targets"] = [target(2017, "2017", "actual", "Actual 2017")]
+        extract["source"]["column_header_audit"] = audit(("2017", "actual"))["column_header_audit"]
+        out2 = proc(report, [2017])
+        assert out2[2017]["status"] == "resolved"
+        assert s1.api_calls == ["extract"], s1.api_calls  # no second "locate"
+
+        # Step 1 finds no DSA section at all -> no_dsa_table_in_source, not selected_pdf_not_found
+        no_table_pdf = d / "originals" / "F_2019-05-01.pdf"
+        touch(no_table_pdf)
+        s1_none = FakeStep1({"extract": {}, "audit": {}}, locator_answer={"dsa_section_found": False, "notes": "no DSA"})
+        proc_none = run.ReportProcessor(s1_none, "u", None, "m", "prompt", {}, prompt1="locator prompt", fresh_dir=fresh_dir)
+        report_f = {"pdf_file_name": "F_2019-05-01.pdf", "country": "F", "date": "2019-05-01", "year": 2019,
+                    "path": str(no_table_pdf)}
+        out3 = proc_none(report_f, [2016])
+        assert out3[2016]["status"] == "no_dsa_table_in_source"
+
+        # report that genuinely does not exist on disk at all (not even an original PDF) -> selected_pdf_not_found
+        report_missing = {"pdf_file_name": "G_2019-05-01.pdf", "country": "G", "date": "2019-05-01", "year": 2019,
+                           "path": str(d / "originals" / "G_2019-05-01.pdf")}
+        out4 = proc_none(report_missing, [2016])
+        assert out4[2016]["status"] == "selected_pdf_not_found"
+
+
 def test_candidate_map_rows():
     idx = {
         ("Angola", 2017): [
@@ -360,6 +448,7 @@ def test_candidate_map_rows():
 
 
 def test_3b_candidate_map_end_to_end():
+    """Candidate exists both as a real PDF under STAFF_REPORTS_DIR and as an already-cached selected PDF."""
     with tempfile.TemporaryDirectory() as d:
         d = Path(d)
         check_dir = d / "gap_year_check"; check_dir.mkdir()
@@ -374,15 +463,80 @@ def test_3b_candidate_map_end_to_end():
             {"pdf_file_name": "Angola_2017-09-01.pdf", "report_status": "observation"},
         ])
         inv.to_csv(check_dir / f"report_inventory_{stamp}.csv", index=False)
+        staff_dir = d / "staff_reports" / "2016-2020"; staff_dir.mkdir(parents=True)
+        (staff_dir / "Angola_2017-09-01.pdf").write_bytes(b"%PDF-1.4 fake original")
         sel_dir = d / "selected_pdf_pages"; sel_dir.mkdir()
-        (sel_dir / "Angola_2017-09-01_pages_5_8.pdf").write_bytes(b"%PDF-1.4 fake")
+        (sel_dir / "Angola_2017-09-01_pages_5_8.pdf").write_bytes(b"%PDF-1.4 fake selected")
 
-        three_b.main(check_dir=check_dir, stamp=stamp, selected_pdf_dirs=[sel_dir])
+        three_b.main(check_dir=check_dir, stamp=stamp, staff_reports_dir=d / "staff_reports", selected_pdf_dirs=[sel_dir])
 
         cmap = pd.read_csv(check_dir / f"gapfill_candidate_map_{stamp}.csv")
         assert len(cmap) == 1 and cmap.iloc[0]["candidate_report"] == "Angola_2017-09-01.pdf"
+        assert bool(cmap.iloc[0]["has_cached_selected_pdf"]) is True
         assert (check_dir / f"gapfill_targets_{stamp}.csv").exists()
         assert (check_dir / f"gapfill_skip_reports_{stamp}.csv").exists()
+
+        targets = pd.read_csv(check_dir / f"gapfill_targets_{stamp}.csv")
+        assert bool(targets.iloc[0]["has_candidate_report"]) is True
+        assert bool(targets.iloc[0]["audit_vs_real_candidate_mismatch"]) is False
+
+
+def test_3b_candidate_exists_but_no_cache():
+    """
+    The common case once candidates come from STAFF_REPORTS_DIR rather than SELECTED_PDF_DIRS: the real
+    PDF exists, but Step 1 never produced a selected PDF for it in any run that is configured. This is
+    NOT flagged as a mismatch -- Step 3 handles it by locating the table fresh -- but gapfill_candidate_map
+    must show has_cached_selected_pdf=False so the cost (one extra locator call) is visible up front.
+    """
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        check_dir = d / "gap_year_check"; check_dir.mkdir()
+        stamp = "test1"
+        gaps = pd.DataFrame([{"gap_id": "G0001", "country": "Armenia", "gap_year": 2017, "gap_span": "2017",
+                               "primary_cause": "lag_between_consecutive_reports",
+                               "fill_status": "fillable_actual_column_visible",
+                               "preferred_source_report": "Armenia_2019-06-05.pdf"}])
+        gaps.to_csv(check_dir / f"gap_years_{stamp}.csv", index=False)
+        inv = pd.DataFrame([{"pdf_file_name": "Armenia_2019-06-05.pdf", "report_status": "observation"}])
+        inv.to_csv(check_dir / f"report_inventory_{stamp}.csv", index=False)
+        staff_dir = d / "staff_reports" / "2016-2020"; staff_dir.mkdir(parents=True)
+        (staff_dir / "Armenia_2019-06-05.pdf").write_bytes(b"%PDF-1.4 fake original")
+        sel_dir = d / "selected_pdf_pages"; sel_dir.mkdir()  # empty: no cached selection anywhere
+
+        three_b.main(check_dir=check_dir, stamp=stamp, staff_reports_dir=d / "staff_reports", selected_pdf_dirs=[sel_dir])
+
+        targets = pd.read_csv(check_dir / f"gapfill_targets_{stamp}.csv")
+        assert bool(targets.iloc[0]["has_candidate_report"]) is True
+        assert bool(targets.iloc[0]["audit_vs_real_candidate_mismatch"]) is False
+        cmap = pd.read_csv(check_dir / f"gapfill_candidate_map_{stamp}.csv")
+        assert bool(cmap.iloc[0]["has_cached_selected_pdf"]) is False
+
+
+def test_3b_audit_vs_real_candidate_mismatch():
+    """
+    The predicted report cannot be found as a real PDF under STAFF_REPORTS_DIR at all (e.g. a parsing
+    mismatch, or it genuinely is not among the batches scanned) -- the one case still worth flagging,
+    since no fresh locate is possible without a real PDF to locate it from.
+    """
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        check_dir = d / "gap_year_check"; check_dir.mkdir()
+        stamp = "test1"
+        gaps = pd.DataFrame([{"gap_id": "G0001", "country": "Armenia", "gap_year": 2017, "gap_span": "2017",
+                               "primary_cause": "lag_between_consecutive_reports",
+                               "fill_status": "fillable_actual_column_visible",
+                               "preferred_source_report": "Armenia_2019-06-05.pdf"}])
+        gaps.to_csv(check_dir / f"gap_years_{stamp}.csv", index=False)
+        inv = pd.DataFrame([{"pdf_file_name": "Armenia_2019-06-05.pdf", "report_status": "observation"}])
+        inv.to_csv(check_dir / f"report_inventory_{stamp}.csv", index=False)
+        staff_dir = d / "staff_reports" / "2016-2020"; staff_dir.mkdir(parents=True)  # empty: no real PDF at all
+        sel_dir = d / "selected_pdf_pages"; sel_dir.mkdir()
+
+        three_b.main(check_dir=check_dir, stamp=stamp, staff_reports_dir=d / "staff_reports", selected_pdf_dirs=[sel_dir])
+
+        targets = pd.read_csv(check_dir / f"gapfill_targets_{stamp}.csv")
+        assert bool(targets.iloc[0]["has_candidate_report"]) is False
+        assert bool(targets.iloc[0]["audit_vs_real_candidate_mismatch"]) is True
 
 
 def test_3a_same_real_report_two_years():
@@ -432,6 +586,51 @@ def test_3a_same_real_report_two_years():
         assert fr[fr["year"] == 2021]["change_in_debt"].iloc[0] == 11.0
         assert fr[fr["year"] == 2019]["change_in_debt"].iloc[0] == 21.0, "2019 and 2021 values must not collapse together"
         assert (inv["pdf_file_name"] == "France_2021-05-01.pdf").sum() == 2, "the shared report appears once per year it supplies"
+
+
+def test_3a_cross_batch_edge_gap():
+    """
+    A gap sitting at a batch's edge is invisible from that batch alone: find_gap_years() only flags a
+    year "missing in the middle" of a country's observed years, and a single batch's last observed year
+    has nothing after it to call "the middle." Passing the next batch's CSV too (as a list) must make
+    the edge gap visible, without having to hand-merge the files first.
+    """
+    cols = ["json_file", "pdf_file_name", "table_found", "last_actual_year", "level", "top_category", "value",
+            "hierarchy_id", "parent_label", "label_verbatim", "column_header_audit_json",
+            "manual_review_required", "actual_column_validation_status", "confidence", "framework"]
+    roles = ["change_in_debt", "identified_flows", "primary_balance", "automatic_debt_dynamics",
+             "other_identified_flows", "residual"]
+
+    def mkrow(json_file, pdf, year, top_cat, value):
+        r = dict.fromkeys(cols, "")
+        r.update(json_file=json_file, pdf_file_name=pdf, table_found="TRUE", last_actual_year=year,
+                 level="0", top_category=top_cat, value=value, hierarchy_id="1",
+                 manual_review_required="No", actual_column_validation_status="accepted",
+                 confidence="high", framework="MAC_DSA")
+        return r
+
+    batch_a_rows = [mkrow("Spain_2019-05-01_dsa.json", "Spain_2019-05-01.pdf", "2018", role, "1.0") for role in roles]
+    batch_b_rows = [mkrow("Spain_2023-05-01_dsa.json", "Spain_2023-05-01.pdf", "2022", role, "2.0") for role in roles]
+
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        csv_a = d / "batch_a.csv"; pd.DataFrame(batch_a_rows).to_csv(csv_a, index=False, encoding="utf-8-sig")
+        csv_b = d / "batch_b.csv"; pd.DataFrame(batch_b_rows).to_csv(csv_b, index=False, encoding="utf-8-sig")
+
+        out_single = d / "out_single"
+        three_a.main(csv_a, out_single)
+        panel_single = pd.read_csv(out_single / f"panel_structure_country_year_{three_a.STAMP}.csv")
+        sp_single = panel_single[panel_single["country"] == "Spain"]
+        assert list(sp_single["year"]) == [2018] and list(sp_single["status"]) == ["observed"], \
+            "with only one observed year there is no 'middle' at all -- Spain has just that one row, no GAP rows"
+
+        out_both = d / "out_both"
+        three_a.main([csv_a, csv_b], out_both)
+        panel_both = pd.read_csv(out_both / f"panel_structure_country_year_{three_a.STAMP}.csv")
+        sp = panel_both[panel_both["country"] == "Spain"].sort_values("year")
+        assert list(sp["year"]) == [2018, 2019, 2020, 2021, 2022]
+        assert list(sp["status"]) == ["observed", "GAP", "GAP", "GAP", "observed"], \
+            "2019-2021 must now show as GAP once the next batch's 2022 observation makes them visible"
 
 
 if __name__ == "__main__":

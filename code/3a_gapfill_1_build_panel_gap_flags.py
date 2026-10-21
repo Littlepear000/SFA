@@ -9,11 +9,22 @@ Purpose
     panel skeleton, and flag the years "missing in the middle" of each country's
     span of observed years, i.e. gap years.
 
-Input (needs only one CSV)
-    INPUT_CSV at the top of the file, or --input on the command line. Once a batch's Round 1 + Round 2 +
-    human review are all done and merged into one unified panel, that is what this should point at
-    (same columns as a single round's compiled CSV, below); until then it can still point at one round's
-    own compiled CSV, e.g. output/2016-2020/compiled_csv/dsa_decomposition_labels_2016-2020_sa.csv.
+Input (usually one CSV; can be more than one -- see below)
+    INPUT_CSV at the top of the file, or --input on the command line (repeat --input to pass more than
+    one). Once a batch's Round 1 + Round 2 + human review are all done and merged into one unified
+    panel, that is what this should point at (same columns as a single round's compiled CSV, below);
+    until then it can still point at one round's own compiled CSV, e.g.
+    output/2016-2020/compiled_csv/dsa_decomposition_labels_2016-2020_sa.csv.
+
+    Gaps at a batch's edge need the ADJACENT batch's data too: find_gap_years() only flags a year that
+    is "missing in the middle" of a country's observed years, so e.g. a gap at 2020 is invisible from
+    the 2016-2020 batch alone -- there is nothing in it to call "the middle" without the next real
+    observation (e.g. 2022, from the 2021-2026 batch). Pass that next batch's compiled CSV too
+    (INPUT_CSV as a list, or a second --input) whenever a gap could be sitting at the edge of the
+    batch being checked; the two (or more) CSVs are concatenated before anything else runs, using the
+    exact same (json_file, last_actual_year) dedup as a single CSV, so passing more than one is always
+    safe even when a report happens to appear in both.
+
     Columns used: json_file, pdf_file_name, table_found, last_actual_year, level, top_category, value,
     hierarchy_id, parent_label, label_verbatim, column_header_audit_json,
     manual_review_required, actual_column_validation_status, confidence, framework
@@ -202,15 +213,25 @@ def audit_columns(audit_json):
     return out
 
 
-def main(input_csv: Path = INPUT_CSV, out_dir: Path | None = OUT_DIR):
-    input_csv = Path(input_csv)
-    if not input_csv.exists():
-        raise FileNotFoundError(f"Input CSV not found: {input_csv}  (edit INPUT_CSV or pass --input)")
-    out_dir = Path(out_dir) if out_dir else default_out_dir(input_csv)
+def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
+    """
+    input_csv is usually one compiled CSV (or the unified panel), but can also be a list of CSVs -- e.g.
+    this batch's compiled CSV plus the next batch's -- which are concatenated before anything else runs.
+    This is the fix for gaps at a batch's edge: find_gap_years() only flags a year "missing in the
+    middle" of a country's observed years, so a gap at e.g. 2020 is invisible unless some LATER
+    observation (e.g. 2022, from the next batch) is also loaded, giving 3a something to call "the
+    middle." A single later batch's CSV is normally enough -- only years inside the gap need the next
+    real observation, not the whole of every later batch.
+    """
+    input_csvs = [Path(p) for p in input_csv] if isinstance(input_csv, (list, tuple)) else [Path(input_csv)]
+    missing = [p for p in input_csvs if not p.exists()]
+    if missing:
+        raise FileNotFoundError(f"Input CSV(s) not found: {missing}  (edit INPUT_CSV or pass --input)")
+    out_dir = Path(out_dir) if out_dir else default_out_dir(input_csvs[0])
     out_dir.mkdir(parents=True, exist_ok=True)
-    print(f"Input : {input_csv}\nOutput: {out_dir}")
+    print(f"Input : {'; '.join(str(p) for p in input_csvs)}\nOutput: {out_dir}")
 
-    all_df = pd.read_csv(input_csv, dtype=str)
+    all_df = pd.concat([pd.read_csv(p, dtype=str) for p in input_csvs], ignore_index=True)
 
     reports = build_report_table(all_df)
     wide = top_level_values(all_df)
@@ -492,7 +513,11 @@ if __name__ == "__main__":
     import argparse
 
     ap = argparse.ArgumentParser()
-    ap.add_argument("--input", default=None, help="compiled CSV to analyse (default: INPUT_CSV above)")
+    ap.add_argument("--input", action="append", default=None,
+                    help="compiled CSV to analyse (default: INPUT_CSV above); repeat to pass more than "
+                         "one, e.g. --input this_batch.csv --input next_batch.csv, so gaps at this "
+                         "batch's edge (which need the next batch's first observation to even be "
+                         "visible as 'the middle') are detected")
     ap.add_argument("--out-dir", default=None, help="output folder (default: gap_year_check next to the CSV's batch folder)")
     a, _ = ap.parse_known_args()  # tolerant: extra args injected by IPython/Spyder are ignored
-    main(Path(a.input) if a.input else INPUT_CSV, Path(a.out_dir) if a.out_dir else OUT_DIR)
+    main([Path(p) for p in a.input] if a.input else INPUT_CSV, Path(a.out_dir) if a.out_dir else OUT_DIR)

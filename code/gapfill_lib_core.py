@@ -297,6 +297,27 @@ def reports_from_selected(idx: Dict[str, List[Dict[str, Any]]]) -> List[Dict[str
     return reports
 
 
+def list_staff_reports(root_dir: Path) -> List[Dict[str, Any]]:
+    """
+    Every real staff-report PDF under root_dir -- the ORIGINAL PDFs, laid out one subfolder per batch
+    (e.g. staff_reports/pdf staff reports/2016-2020/<Country>_<date>.pdf), not the selected/cropped
+    subsets Step 1 produces. This is the candidate universe: it does not depend on Step 1 ever having
+    successfully located a table in a report in any particular run, and it is batch-agnostic (a T+2/T+3
+    candidate can come from any batch folder under root_dir, found by build_candidates() the same way
+    regardless of which subfolder it is actually in).
+    """
+    reports = []
+    seen = set()
+    for pdf_path in sorted(Path(root_dir).rglob("*.pdf")):
+        if pdf_path.name in seen:
+            continue
+        seen.add(pdf_path.name)
+        rec = parse_report_file(pdf_path)
+        if rec:
+            reports.append(rec)
+    return reports
+
+
 # ---------------------------------------------------------------- validation
 def classify_header_text(value: Any) -> str:
     text = re.sub(r"\s+", " ", str(value or "")).strip().lower()
