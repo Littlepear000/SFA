@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "KINGDOM OF ESWATINI",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE KINGDOM OF ESWATINI",
+    "country_report_number": "20/41",
+    "publication_date": "February 2020",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Kingdom of Eswatini_2020-02-11.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 52,
+      "end_page": 54,
+      "reason": "The public debt DSA annex begins on physical page 48, and the qualifying row-and-column public debt decomposition table is visible on physical page 53 as Figure A3.3, titled Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario. It includes explicit rows such as Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Exchange rate depreciation, Other identified debt-creating flows, and Residual, including asset changes, with aligned year/value columns.",
+      "matched_phrases": [
+        "Annex III. Debt Sustainability Analysis",
+        "Public Debt",
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 53,
+  "recommended_start_page": 52,
+  "recommended_end_page": 54,
+  "confidence": "high",
+  "notes": "The selected target is the public debt decomposition table on physical page 53. The report also contains an External Debt Sustainability Framework on physical pages 56-57, but it is excluded because a qualifying public debt decomposition table exists."
+}

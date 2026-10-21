@@ -1,0 +1,143 @@
+{
+  "pdf_file_name": "Ecuador_2019-12-20.pdf",
+  "country": "Ecuador",
+  "report_date": "2019-12-20",
+  "per_target": {
+    "2016": {
+      "status": "merged_range_only",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": "Actual 2008-2016",
+      "not_extractable_reason": "year_only_in_merged_range",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "Values were not extracted because the absolute rule allows extraction only from a single actual or historical target-year column, and 2016 appears only inside the merged range column.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+        "table_number": null,
+        "page_pdf": 58,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        56,
+        57,
+        58,
+        59,
+        60
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "ECUADOR",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": null,
+          "table_title": "Ecuador Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+          "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+          "page_pdf": 58,
+          "page_printed": 54,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2008-2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is a merged year-range column under the visible 'Actual' group heading."
+              },
+              {
+                "position": 2,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible 'Actual' group heading and appears before the 'Projections' group."
+              },
+              {
+                "position": 3,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible 'Actual' group heading and appears before the 'Projections' group."
+              },
+              {
+                "position": 4,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 5,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": "Actual 2008-2016",
+            "status_basis": "The target year 2016 is covered only by the merged multi-year range column '2008-2016' under the visible 'Actual' group heading. No separate single-year 2016 column is visible.",
+            "extractable": false,
+            "not_extractable_reason": "year_only_in_merged_range",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "Values were not extracted because the absolute rule allows extraction only from a single actual or historical target-year column, and 2016 appears only inside the merged range column."
+          }
+        ],
+        "extraction_notes": "A qualifying public debt decomposition table is visible on original physical PDF page 58, printed page 54, titled 'Ecuador Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario' with the decomposition block 'Contribution to Changes in Public Debt'. The graphical 'Debt-Creating Flows' panel below the table was not used because it is a chart/visualization rather than the qualifying row-and-column extraction target. The target year 2016 appears only in the merged Actual range column '2008-2016'; no single-year 2016 column is visible, so the requested target is not extractable."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 75.03
+}

@@ -1,0 +1,32 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF EQUATORIAL GUINEA",
+    "report_title": "REQUEST FOR AN EXTENDED ARRANGEMENT UNDER THE EXTENTED FUND FACILITY AND SECOND REVIEW UNDER THE STAFF-MONITORED PROGRAM—PRESS RELEASE, STAFF REPORT, AND STATEMENT BY THE EXECUTIVE DIRECTOR",
+    "country_report_number": "19/384",
+    "publication_date": "December 2019",
+    "consultation_type": "REQUEST FOR AN EXTENDED ARRANGEMENT UNDER THE EXTENDED FUND FACILITY AND SECOND REVIEW UNDER THE STAFF-MONITORED PROGRAM",
+    "pdf_file_name": "Republic of Equatorial Guinea_2019-12-20.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 58,
+      "end_page": 60,
+      "reason": "The public debt sustainability annex begins on page 52, and the standard MAC DSA public baseline scenario object is titled on physical page 59 as Figure 3. This is the likely row-and-column Public DSA baseline scenario table containing the decomposition of changes in public debt, though the extracted text omits the numeric body.",
+      "matched_phrases": [
+        "Annex IV. Debt Sustainability Analysis",
+        "Public sector debt sustainability analysis",
+        "Figure 3. Equatorial Guinea: Public DSA—Baseline Scenario",
+        "Percent of GDP, unless otherwise indicated"
+      ],
+      "likely_image_based": true
+    }
+  ],
+  "primary_table_page": 59,
+  "recommended_start_page": 58,
+  "recommended_end_page": 60,
+  "confidence": "high",
+  "notes": "Annex IV starts on physical page 52. The public MAC DSA baseline scenario table/figure is identified on physical page 59, but the table body appears to be embedded as an image because almost no numeric table text is extracted from that page. External debt sustainability material appears later, including page 63, and is excluded."
+}

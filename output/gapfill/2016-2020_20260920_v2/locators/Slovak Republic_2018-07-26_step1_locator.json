@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "SLOVAK REPUBLIC",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE SLOVAK REPUBLIC",
+    "country_report_number": "18/241",
+    "publication_date": "July 2018",
+    "consultation_type": "2018 Article IV Consultation",
+    "pdf_file_name": "Slovak Republic_2018-07-26.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 39,
+      "end_page": 40,
+      "reason": "Page 39 begins Annex I, Public Debt Sustainability Analysis (DSA), and contains a qualifying row-and-column public debt decomposition table under Figure 1, Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario. The table includes aligned year/value columns and explicit rows such as Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, including asset changes. Page 40 continues the public DSA annex with composition and alternative scenarios.",
+      "matched_phrases": [
+        "Annex I. Public Debt Sustainability Analysis (DSA)",
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 39,
+  "recommended_start_page": 39,
+  "recommended_end_page": 40,
+  "confidence": "high",
+  "notes": "The target is the public debt DSA decomposition table on physical PDF page 39. Although labeled as a Figure, it is visibly formatted as a row-and-column table with printed values, so it qualifies under the tabular-structure rule. No external-debt DSA target was selected."
+}

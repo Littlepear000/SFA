@@ -1,0 +1,307 @@
+{
+  "pdf_file_name": "Cyprus_2017-12-14.pdf",
+  "country": "Cyprus",
+  "report_date": "2017-12-14",
+  "per_target": {
+    "2015": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2015",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "107.5",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "0.0"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "2.3"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "-2.5",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "38.6",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "36.1",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "2.0",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "2.0",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "4.1",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-2.1",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "2.7",
+          "children": [
+            {
+              "label_verbatim": "Privatization/Drawdown of Deposits (+ reduces financing needs)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Other debt-creating flows",
+              "value": "2.7",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-2.2",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "The accounting identity check for 2015 gives identified debt-creating flows 2.3 plus residual -2.2 = 0.1, compared with the printed change in gross public sector debt of 0.0; values are preserved as printed and the difference appears attributable to rounding.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+        "table_number": null,
+        "page_pdf": 66,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2015
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        65,
+        66,
+        67
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "CYPRUS",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": null,
+          "table_title": "Cyprus: Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+          "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+          "page_pdf": 66,
+          "page_printed": 62,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2006-2014",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The merged range column is under the visible 'Actual' group heading and lies to the left of the 'Projections' group."
+              },
+              {
+                "position": 2,
+                "year_label": "2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2015 column is under the visible 'Actual' group heading and lies to the left of the 'Projections' group."
+              },
+              {
+                "position": 3,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2016 column is under the visible 'Actual' group heading and lies to the left of the 'Projections' group."
+              },
+              {
+                "position": 4,
+                "year_label": "2017",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2017 column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 5,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2018 column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2019 column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is under the visible 'Projections' group heading."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2015,
+            "column_found": true,
+            "matched_year_label": "2015",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2015",
+            "status_basis": "The 2015 column is visibly part of the 'Actual' column group, before the 'Projections' columns beginning in 2017.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "107.5",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "0.0"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "2.3"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "-2.5",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "38.6",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "36.1",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "2.0",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "2.0",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "4.1",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-2.1",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "2.7",
+                "children": [
+                  {
+                    "label_verbatim": "Privatization/Drawdown of Deposits (+ reduces financing needs)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Other debt-creating flows",
+                    "value": "2.7",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-2.2",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "The accounting identity check for 2015 gives identified debt-creating flows 2.3 plus residual -2.2 = 0.1, compared with the printed change in gross public sector debt of 0.0; values are preserved as printed and the difference appears attributable to rounding."
+          }
+        ],
+        "extraction_notes": "The qualifying row-and-column public debt decomposition table is on original physical PDF page 66, printed page 62. Surrounding chart panels on pages 65 and 67 were not used because the extraction target is the tabular DSA decomposition table. Rows outside the decomposition block, such as public gross financing needs and macroeconomic assumptions, were excluded."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 108.1
+}

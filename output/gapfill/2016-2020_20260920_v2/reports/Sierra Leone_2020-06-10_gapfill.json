@@ -1,0 +1,172 @@
+{
+  "pdf_file_name": "Sierra Leone_2020-06-10.pdf",
+  "country": "Sierra Leone",
+  "report_date": "2020-06-10",
+  "per_target": {
+    "2017": {
+      "status": "year_not_in_table",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": null,
+      "not_extractable_reason": "year_not_in_table",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "The target year 2017 does not appear as a single-year column in the table.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+        "table_number": "Table 2.",
+        "page_pdf": 40,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    },
+    "2018": {
+      "status": "year_not_in_table",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": null,
+      "not_extractable_reason": "year_not_in_table",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "The target year 2018 does not appear as a single-year column in the table.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+        "table_number": "Table 2.",
+        "page_pdf": 40,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2017,
+        2018
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        40
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Sierra Leone",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "LIC_DSF",
+          "table_number": "Table 2.",
+          "table_title": "Sierra Leone: Public Sector Debt Sustainability Framework, Baseline Scenario, 2019–40",
+          "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+          "page_pdf": 40,
+          "page_printed": 8,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2019",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The year 2019 appears under the visible group heading \"Actual\"."
+              },
+              {
+                "position": 2,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2020 appears under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 3,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2021 appears under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 4,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2022 appears under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 5,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2023 appears under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 6,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2024 appears under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 7,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2025 appears under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 8,
+                "year_label": "2030",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2030 appears under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 9,
+                "year_label": "2040",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2040 appears under the visible group heading \"Projections\"."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2017,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": null,
+            "status_basis": "No single-year column labeled 2017 is visible. The visible year columns are 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2030, and 2040.",
+            "extractable": false,
+            "not_extractable_reason": "year_not_in_table",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "The target year 2017 does not appear as a single-year column in the table."
+          },
+          {
+            "target_year": 2018,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": null,
+            "status_basis": "No single-year column labeled 2018 is visible. The visible year columns are 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2030, and 2040.",
+            "extractable": false,
+            "not_extractable_reason": "year_not_in_table",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "The target year 2018 does not appear as a single-year column in the table."
+          }
+        ],
+        "extraction_notes": "Reviewed the qualifying row-and-column public debt decomposition table titled \"Table 2. Sierra Leone: Public Sector Debt Sustainability Framework, Baseline Scenario, 2019–40\" on original physical PDF page 40. The table contains the decomposition block beginning with \"Public sector debt 1/\" and including \"Change in public sector debt\", \"Identified debt-creating flows\", \"Primary deficit /2\", \"Automatic debt dynamics\", \"Other identified debt-creating flows\", and \"Residual\". The target years 2017 and 2018 are not visible as columns. The visible year columns are 2019 under \"Actual\" and 2020, 2021, 2022, 2023, 2024, 2025, 2030, and 2040 under \"Projections\". Non-year average columns labeled \"Historical\" and \"Projections\" under \"Average 8/\" were ignored as summary columns, not target-year columns."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 47.91
+}

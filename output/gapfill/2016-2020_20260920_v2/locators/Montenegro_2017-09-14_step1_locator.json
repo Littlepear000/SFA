@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "MONTENEGRO",
+    "report_title": "2017 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR MONTENEGRO",
+    "country_report_number": "17/276",
+    "publication_date": "September 2017",
+    "consultation_type": "ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Montenegro_2017-09-14.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 50,
+      "end_page": 54,
+      "reason": "Annex II is titled Public Debt Sustainability Analysis and contains a qualifying row-and-column public debt decomposition table on page 53 titled Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario, with rows for Contribution to Changes in Public Debt, Change in gross public sector debt, Identified debt-creating flows, Automatic debt dynamics, Primary deficit, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Annex II. Public Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 53,
+  "recommended_start_page": 50,
+  "recommended_end_page": 54,
+  "confidence": "high",
+  "notes": "The target public DSA decomposition table is visible as a row-and-column table on physical PDF page 53. An External Debt Sustainability Analysis also appears later starting on page 58, including an external debt framework table on page 60, but it is excluded because a qualifying public DSA table exists."
+}

@@ -1,0 +1,287 @@
+{
+  "pdf_file_name": "Suriname_2018-12-20.pdf",
+  "country": "Suriname",
+  "report_date": "2018-12-20",
+  "per_target": {
+    "2016": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2016",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "78.5",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "35.2"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "29.9"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "4.5",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "17.6",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "22.1",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "10.6",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-5.5",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "-7.5",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "2.0",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "16.2",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "14.7",
+          "children": [
+            {
+              "label_verbatim": "Of which: net increase in selected assets",
+              "value": "13.1",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "5.3",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "The extracted accounting identity holds for the target year: 35.2 = 29.9 + 5.3. The subtotal of identified-flow components differs from the printed identified-flows value by 0.1, consistent with rounding in the printed table.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(Percent of GDP unless otherwise indicated)",
+        "table_number": "Figure A2.3.",
+        "page_pdf": 50,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        49,
+        50,
+        51
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "SURINAME",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure A2.3.",
+          "table_title": "Suriname Public DSA – Baseline Scenario",
+          "units_verbatim": "(Percent of GDP unless otherwise indicated)",
+          "page_pdf": 50,
+          "page_printed": 44,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2007-2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The year-range column is under the visible 'Actual' group heading."
+              },
+              {
+                "position": 2,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2016 column is under the visible 'Actual' group heading."
+              },
+              {
+                "position": 3,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2017 column is under the visible 'Actual' group heading."
+              },
+              {
+                "position": 4,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2018 column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 5,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2019 column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2023 column is under the visible 'Projections' group heading."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2016",
+            "status_basis": "The 2016 column is a single-year column under the visible 'Actual' group heading, to the left of the 'Projections' group beginning at 2018.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "78.5",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "35.2"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "29.9"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "4.5",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "17.6",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "22.1",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "10.6",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-5.5",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "-7.5",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "2.0",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "16.2",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "14.7",
+                "children": [
+                  {
+                    "label_verbatim": "Of which: net increase in selected assets",
+                    "value": "13.1",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "5.3",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "The extracted accounting identity holds for the target year: 35.2 = 29.9 + 5.3. The subtotal of identified-flow components differs from the printed identified-flows value by 0.1, consistent with rounding in the printed table."
+          }
+        ],
+        "extraction_notes": "Located the qualifying row-and-column public debt decomposition table in Figure A2.3 on original physical PDF page 50, printed page 44. The header shows Actual columns 2007-2015, 2016, and 2017, followed by Projections columns 2018-2023; 2007-2015 is a merged multi-year range column and was listed in the audit but not used as a target-year column. Non-decomposition rows in the same figure, including public gross financing needs and macroeconomic indicators, were ignored. Figure A2.2 was rejected as forecast-track-record, fiscal-adjustment, and boom-bust chart visualizations rather than a qualifying decomposition table. Figure A2.4 was rejected as composition/alternative-scenario charts and assumptions tables rather than the baseline public debt decomposition block."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 104.81
+}

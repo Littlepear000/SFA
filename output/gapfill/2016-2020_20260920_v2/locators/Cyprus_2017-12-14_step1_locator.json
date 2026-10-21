@@ -1,0 +1,37 @@
+{
+  "report_metadata": {
+    "country": "CYPRUS",
+    "report_title": "2017 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR CYPRUS",
+    "country_report_number": "17/375",
+    "publication_date": "December 2017",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Cyprus_2017-12-14.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 65,
+      "end_page": 67,
+      "reason": "The public DSA annex begins on physical page 61, and the qualifying row-and-column public debt decomposition table is visible on physical page 66 under the title 'Cyprus: Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario'. The table contains 'Contribution to Changes in Public Debt' with aligned year columns and rows including 'Change in gross public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'. Pages 65-67 provide a narrow range centered on the target table.",
+      "matched_phrases": [
+        "Annex VI. Public Sector Debt Sustainability Analysis",
+        "Public DSA framework for Market-Access Countries",
+        "Cyprus: Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 66,
+  "recommended_start_page": 65,
+  "recommended_end_page": 67,
+  "confidence": "high",
+  "notes": "The report also contains an External Debt Sustainability Analysis and External Debt Sustainability Framework on pages 56-60, but those are explicitly excluded because a qualifying public debt decomposition table exists. Graphical DSA pages and charts were not selected as targets."
+}

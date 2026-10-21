@@ -1,0 +1,17 @@
+{
+  "pdf_file_name": "The Federal Democratic Republic of Ethiopia_2018-12-04.pdf",
+  "country": "Ethiopia",
+  "report_date": "2018-12-04",
+  "per_target": {
+    "2016": {
+      "status": "api_error",
+      "errors": [
+        "RuntimeError: no PDF preparation level produced an uploadable file: direct: not usable (Single page 62 is still 1,223,122 bytes.) | image_compressed: not usable (code=2: cannot open file 'C:\\Users\\xli7\\OneDrive - International Monetary Fund (PRD)\\Shelley_My Projects\\SFA\\output\\gapfill\\2016-2020_20260920_v2\\selected_pdf_pages\\.The Federal Democratic Republic of Ethiopia_2018-12-04_pages_61_62_image_compressed.efbbe3d7097b4) | table_crop: not usable (code=2: cannot open file 'C:\\Users\\xli7\\OneDrive - International Monetary Fund (PRD)\\Shelley_My Projects\\SFA\\output\\gapfill\\2016-2020_20260920_v2\\selected_pdf_pages\\.The Federal Democratic Republic of Ethiopia_2018-12-04_page_62_table_crop_fallback.e64462c7f6fb49) | visual: not usable (code=2: cannot open file 'C:\\Users\\xli7\\OneDrive - International Monetary Fund (PRD)\\Shelley_My Projects\\SFA\\output\\gapfill\\2016-2020_20260920_v2\\selected_pdf_pages\\.The Federal Democratic Republic of Ethiopia_2018-12-04_pages_61_62_vision_fallback.9f0a847fa1e447)"
+      ],
+      "warnings": []
+    }
+  },
+  "calls": [],
+  "locator_source": "rerun",
+  "timing_seconds": 38.24
+}

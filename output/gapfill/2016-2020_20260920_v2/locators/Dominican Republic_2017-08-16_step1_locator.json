@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "DOMINICAN REPUBLIC",
+    "report_title": "2017 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE DOMINICAN REPUBLIC",
+    "country_report_number": "17/254",
+    "publication_date": "August 2017",
+    "consultation_type": "ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Dominican Republic_2017-08-16.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 47,
+      "end_page": 49,
+      "reason": "Public DSA annex contains a qualifying row-and-column decomposition table on page 48 titled Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario, with rows for Contribution to Changes in Public Debt, Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Exchange rate depreciation, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Annex III. Debt Sustainability Analysis: An Update",
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 48,
+  "recommended_start_page": 47,
+  "recommended_end_page": 49,
+  "confidence": "high",
+  "notes": "The public DSA annex begins on page 44, and the qualifying tabular public debt decomposition appears on page 48. An external debt sustainability figure/table appears earlier in Annex I around pages 41-42, but it is excluded because a public DSA decomposition table exists."
+}

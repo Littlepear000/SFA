@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "VANUATU",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR VANUATU",
+    "country_report_number": "19/162",
+    "publication_date": "June 2019",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Vanuatu_2019-06-13.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 77,
+      "end_page": 79,
+      "reason": "The Debt Sustainability Analysis section begins on page 69. The qualifying public debt decomposition table is on page 78: Table 2, Vanuatu: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016–39, with year columns and rows including Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual.",
+      "matched_phrases": [
+        "Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 78,
+  "recommended_start_page": 77,
+  "recommended_end_page": 79,
+  "confidence": "high",
+  "notes": "Target is the public-sector LIC DSF decomposition table on physical PDF page 78. Page 77 is the external debt framework and is included only as surrounding DSA context; it is not the target. Page 83 contains a graphical Drivers of Debt Dynamics figure and was not selected as the qualifying tabular object."
+}

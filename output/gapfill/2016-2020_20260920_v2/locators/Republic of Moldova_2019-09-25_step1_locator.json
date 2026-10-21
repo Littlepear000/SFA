@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF MOLDOVA",
+    "report_title": "FOURTH AND FIFTH REVIEWS UNDER THE EXTENDED CREDIT FACILITY AND EXTENDED FUND FACILITY ARRANGEMENTS, COMPLETION OF THE INFLATION CONSULTATION, AND REQUEST FOR EXTENSION OF THE ARRANGEMENTS AND REPHASING OF ACCESS—PRESS RELEASE; STAFF REPORT; DEBT SUSTAINABILITY ANALYSIS, AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF MOLDOVA",
+    "country_report_number": "19/305",
+    "publication_date": "September 2019",
+    "consultation_type": "FOURTH AND FIFTH REVIEWS UNDER THE EXTENDED CREDIT FACILITY AND EXTENDED FUND FACILITY ARRANGEMENTS, COMPLETION OF THE INFLATION CONSULTATION, AND REQUEST FOR EXTENSION OF THE ARRANGEMENTS AND REPHASING OF ACCESS",
+    "pdf_file_name": "Republic of Moldova_2019-09-25.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 77,
+      "end_page": 77,
+      "reason": "Exact qualifying public-debt row-and-column decomposition table appears on this page: Table 2, Moldova: Public Sector Debt Sustainability Framework, Baseline Scenario, 2018–2039. It includes year columns and rows for Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Other identified debt-creating flows, and Residual.",
+      "matched_phrases": [
+        "Table 2. Moldova: Public Sector Debt Sustainability Framework, Baseline Scenario, 2018–2039",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 77,
+  "recommended_start_page": 77,
+  "recommended_end_page": 77,
+  "confidence": "high",
+  "notes": "The DSA begins on page 67 and is a LIC DSF, with low risk of external and overall debt distress and Composite Indicator/debt-carrying-capacity discussion. Page 76 is the external debt sustainability framework and is excluded as the target. Page 82 contains a graphical Drivers of Debt Dynamics figure and is not selected. The target public baseline decomposition table appears complete on page 77 with no continued or concluded page indicated."
+}

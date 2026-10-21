@@ -1,0 +1,48 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF MADAGASCAR",
+    "report_title": "FIFTH REVIEW UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR REPUBLIC OF MADAGASCAR",
+    "country_report_number": "19/262",
+    "publication_date": "August 2019",
+    "consultation_type": "Fifth Review Under the Extended Credit Facility Arrangement",
+    "pdf_file_name": "Republic of Madagascar_2019-08-01.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 97,
+      "end_page": 98,
+      "reason": "Page 97 contains a qualifying public debt decomposition table titled 'Table 2. Madagascar: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016-2039' with visible row labels and aligned year columns, including 'Change in public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', 'Other identified debt-creating flows', and 'Residual'. Page 98 is adjacent context but is not the extraction target.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 85,
+      "end_page": 89,
+      "reason": "The Debt Sustainability Analysis annex begins on page 85 and includes LIC-DSF context, risk ratings, and public debt coverage, but the main qualifying public-sector decomposition table appears later on page 97.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "risk of external debt distress",
+        "Overall risk of debt distress",
+        "PUBLIC DEBT COVERAGE",
+        "Composite Indicator"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 97,
+  "recommended_start_page": 97,
+  "recommended_end_page": 98,
+  "confidence": "high",
+  "notes": "The public DSA table is present and visibly tabular on page 97. External DSA Table 1 appears on page 96 and is not selected as the target. Graphical public debt figures appear on pages 98-99 but are not extraction targets."
+}

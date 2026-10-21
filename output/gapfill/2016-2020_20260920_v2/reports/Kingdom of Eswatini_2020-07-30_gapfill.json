@@ -1,0 +1,141 @@
+{
+  "pdf_file_name": "Kingdom of Eswatini_2020-07-30.pdf",
+  "country": "Eswatini",
+  "report_date": "2020-07-30",
+  "per_target": {
+    "2017": {
+      "status": "merged_range_only",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": null,
+      "not_extractable_reason": "year_only_in_merged_range",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "No values were extracted because the target year is not available as a discrete single-year actual or historical column.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(In percent of GDP unless otherwise indicated)",
+        "table_number": "Figure A3.",
+        "page_pdf": 33,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2017
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        32,
+        33,
+        34
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Eswatini",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure A3.",
+          "table_title": "Eswatini: Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+          "units_verbatim": "(In percent of GDP unless otherwise indicated)",
+          "page_pdf": 33,
+          "page_printed": 29,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2009-2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading \"Actual\" and is a merged multi-year range column before the Projections group."
+              },
+              {
+                "position": 2,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading \"Actual\" and appears before the Projections group."
+              },
+              {
+                "position": 3,
+                "year_label": "2019",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading \"Actual\" and appears before the Projections group."
+              },
+              {
+                "position": 4,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 5,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 6,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 7,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 8,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 9,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2017,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": null,
+            "status_basis": "The target year 2017 is included only within the merged Actual range column labeled \"2009-2017\"; there is no separate single-year column labeled 2017.",
+            "extractable": false,
+            "not_extractable_reason": "year_only_in_merged_range",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "No values were extracted because the target year is not available as a discrete single-year actual or historical column."
+          }
+        ],
+        "extraction_notes": "The qualifying public debt decomposition table is the row-and-column table in Figure A3 on original physical PDF page 33, headed \"Contribution to Changes in Public Debt,\" with explicit rows such as \"Change in gross public sector debt,\" \"Identified debt-creating flows,\" \"Primary deficit,\" \"Automatic debt dynamics,\" and \"Residual, including asset changes.\" The target year 2017 appears only inside the merged Actual range column \"2009-2017,\" so the absolute rule prevents extraction. Figure A2 on page 32 consists of realism charts and histograms and was rejected as visualization content rather than a qualifying decomposition table. The lower debt-creating-flows panel in Figure A3 is a chart and was not used. Figure A4 on page 34 consists mainly of composition and alternative-scenario charts plus assumptions tables, not the selected public-debt decomposition block."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 72.6
+}

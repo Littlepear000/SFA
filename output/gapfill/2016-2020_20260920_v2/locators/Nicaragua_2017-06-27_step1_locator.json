@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "NICARAGUA",
+    "report_title": "2017 ARTICLE IV CONSULTATION—PRESS RELEASE AND STAFF REPORT",
+    "country_report_number": "17/173",
+    "publication_date": "June 2017",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Nicaragua_2017-06-27.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 81,
+      "end_page": 82,
+      "reason": "Page 81 contains the qualifying public debt decomposition table titled 'Table 3. Nicaragua: Public Sector Debt Sustainability Framework—Baseline Scenario 2017–37', with explicit year columns and row labels including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual. Page 82 contains the adjacent public debt sensitivity table.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework—Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 81,
+  "recommended_start_page": 81,
+  "recommended_end_page": 82,
+  "confidence": "high",
+  "notes": "The DSA begins on page 69. External debt framework tables appear on pages 78–80 and are excluded. The public debt decomposition table is the target on page 81. The report uses the LIC DSF framework, indicated by the risk of external debt distress language and the Public Sector Debt Sustainability Framework table."
+}

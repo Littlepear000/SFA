@@ -1,0 +1,139 @@
+{
+  "pdf_file_name": "Republic of Moldova_2020-04-22.pdf",
+  "country": "Moldova",
+  "report_date": "2020-04-22",
+  "per_target": {
+    "2017": {
+      "status": "year_not_in_table",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": null,
+      "not_extractable_reason": "year_not_in_table",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "Target year 2017 is not present as a visible single-year column in the selected public debt decomposition table.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+        "table_number": "Table 2",
+        "page_pdf": 26,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2017
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        26
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Moldova",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "LIC_DSF",
+          "table_number": "Table 2",
+          "table_title": "Moldova: Public Sector Debt Sustainability Framework, Baseline Scenario, 2019–2040",
+          "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+          "page_pdf": 26,
+          "page_printed": "22",
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2019",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The header shows the group label \"Actual\" directly above the 2019 column."
+              },
+              {
+                "position": 2,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The header shows the group label \"Projections\" spanning the 2020 and later year columns."
+              },
+              {
+                "position": 3,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The header shows the group label \"Projections\" spanning the 2020 and later year columns."
+              },
+              {
+                "position": 4,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The header shows the group label \"Projections\" spanning the 2020 and later year columns."
+              },
+              {
+                "position": 5,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The header shows the group label \"Projections\" spanning the 2020 and later year columns."
+              },
+              {
+                "position": 6,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The header shows the group label \"Projections\" spanning the 2020 and later year columns."
+              },
+              {
+                "position": 7,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The header shows the group label \"Projections\" spanning the 2020 and later year columns."
+              },
+              {
+                "position": 8,
+                "year_label": "2030",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The header shows the group label \"Projections\" spanning the 2020 and later year columns."
+              },
+              {
+                "position": 9,
+                "year_label": "2040",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The header shows the group label \"Projections\" spanning the 2020 and later year columns."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2017,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": null,
+            "status_basis": "No visible single-year column labeled 2017 appears in the table. The visible year columns are 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2030, and 2040.",
+            "extractable": false,
+            "not_extractable_reason": "year_not_in_table",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "Target year 2017 is not present as a visible single-year column in the selected public debt decomposition table."
+          }
+        ],
+        "extraction_notes": "The qualifying public debt decomposition table is Table 2, titled \"Moldova: Public Sector Debt Sustainability Framework, Baseline Scenario, 2019–2040\". It contains the required decomposition rows, including Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Other identified debt-creating flows, and Residual. The target year 2017 is not visible as a single-year column, and no merged multi-year range column containing 2017 is visible. Average columns labeled Historical and Projections were ignored as non-year summary columns."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 93.28
+}

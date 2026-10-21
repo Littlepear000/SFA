@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "LEBANON",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; INFORMATIONAL ANNEX; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR LEBANON",
+    "country_report_number": "19/312",
+    "publication_date": "October 2019",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Lebanon_2019-10-17.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 43,
+      "end_page": 45,
+      "reason": "Page 44 contains the qualifying public DSA row-and-column decomposition table in Figure 3, titled 'Public Sector Debt Sustainability (DSA) Analysis—Baseline Scenario', including 'Contribution to Changes in Public Debt', 'Identified debt-creating flows', 'Automatic debt dynamics', 'Primary deficit', and 'Residual, including asset changes'. Pages 43 and 45 provide immediate surrounding context.",
+      "matched_phrases": [
+        "Annex V. Public Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability (DSA) Analysis—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 44,
+  "recommended_start_page": 43,
+  "recommended_end_page": 45,
+  "confidence": "high",
+  "notes": "The public DSA annex begins on page 40. The target tabular decomposition is on page 44. The object is figure-numbered but visibly contains a row-and-column public debt decomposition table, so it qualifies under the tabular-structure rule. An External Debt Sustainability Analysis begins on page 47 and is excluded."
+}

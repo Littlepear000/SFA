@@ -1,0 +1,49 @@
+{
+  "report_metadata": {
+    "country": "UNION OF THE COMOROS",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE UNION OF THE COMOROS",
+    "country_report_number": "18/189",
+    "publication_date": "June 2018",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Union of the Comoros_2018-06-29.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 54,
+      "end_page": 55,
+      "reason": "Page 54 contains the qualifying public debt decomposition table titled 'Table 3. Comoros: Public Sector Debt Sustainability Framework, Baseline Scenario, 2015-2038' with row labels including 'Public sector debt', 'Change in public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'. Page 55 contains the related public debt sensitivity table.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 61,
+      "end_page": 62,
+      "reason": "Page 61 contains a second qualifying public debt decomposition table titled 'Table 7. Comoros: Public Sector Debt Sustainability Framework, Policy Adjustments Scenario, 2015-2038' with the same public debt decomposition structure, but it is a policy adjustment scenario rather than the baseline scenario. Page 62 contains the related public debt sensitivity table.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Policy Adjustments Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 54,
+  "recommended_start_page": 54,
+  "recommended_end_page": 55,
+  "confidence": "high",
+  "notes": "Annex IV begins on page 45 as 'External Debt Sustainability' and includes external debt tables on pages 50, 52-53, 57, and 59-60, which are excluded as targets. The qualifying public DSA baseline decomposition table is on page 54. Public debt charts appear on pages 56 and 63, but figures are not selected as extraction targets."
+}

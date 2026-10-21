@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "CABO VERDE",
+    "report_title": "STAFF REPORT FOR THE 2019 ARTICLE IV CONSULTATION AND REQUEST FOR AN EIGHTEEN-MONTH POLICY COORDINATION INSTRUMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR CABO VERDE",
+    "country_report_number": "19/255",
+    "publication_date": "July 2019",
+    "consultation_type": "2019 Article IV Consultation and Request for an Eighteen-Month Policy Coordination Instrument",
+    "pdf_file_name": "Cabo Verde_2019-07-31.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 95,
+      "end_page": 97,
+      "reason": "The public debt decomposition table is visible on physical page 96 as Table 2, titled Public Sector Debt Sustainability Framework, Baseline Scenario. It is a row-and-column table with year columns and rows including Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Other identified debt-creating flows, and Residual. Page 95 provides immediate public-debt context and page 97 is the next DSA table page.",
+      "matched_phrases": [
+        "Table 2. Cabo Verde: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016–2039",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual",
+        "Public sector debt"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 96,
+  "recommended_start_page": 95,
+  "recommended_end_page": 97,
+  "confidence": "high",
+  "notes": "The DSA begins on physical page 84. The qualifying public-debt decomposition table is Table 2 on physical page 96. Table 1 on page 94 is an External Debt Sustainability Framework table and is excluded. Figure 3 on page 99 is titled Drivers of Debt Dynamics - Baseline Scenario but is graphical and is not the extraction target."
+}

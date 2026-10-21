@@ -1,0 +1,231 @@
+{
+  "pdf_file_name": "Republic of Croatia_2020-02-19.pdf",
+  "country": "Croatia",
+  "report_date": "2020-02-19",
+  "per_target": {
+    "2018": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual 2018",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "74.7",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "-2.9"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "-3.6"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "-2.4",
+          "children": []
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "-1.5",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-1.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "-0.5",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "0.3",
+          "children": []
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "0.7",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Values were copied from the 2018 Actual column. The accounting identity holds: -2.9 = -3.6 + 0.7.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+        "table_number": "Figure 1",
+        "page_pdf": 40,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2018
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        39,
+        40,
+        41
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "REPUBLIC OF CROATIA",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 1",
+          "table_title": "Croatia: Public Sector Sustainability Analysis (DSA) – Baseline Scenario",
+          "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+          "page_pdf": 40,
+          "page_printed": 34,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2009-2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible multi-level header places the 2009-2017 range column under the group heading \"Actual\"; it is a merged multi-year range column, not a single target-year column."
+              },
+              {
+                "position": 2,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible multi-level header places the 2018 column under the group heading \"Actual\", before the \"Projections\" group begins."
+              },
+              {
+                "position": 3,
+                "year_label": "2019",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible multi-level header places the 2019 column under the group heading \"Actual\", before the \"Projections\" group begins."
+              },
+              {
+                "position": 4,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places the 2020 column under the group heading \"Projections\"."
+              },
+              {
+                "position": 5,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places the 2021 column under the group heading \"Projections\"."
+              },
+              {
+                "position": 6,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places the 2022 column under the group heading \"Projections\"."
+              },
+              {
+                "position": 7,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places the 2023 column under the group heading \"Projections\"."
+              },
+              {
+                "position": 8,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places the 2024 column under the group heading \"Projections\"."
+              },
+              {
+                "position": 9,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places the 2025 column under the group heading \"Projections\"."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2018,
+            "column_found": true,
+            "matched_year_label": "2018",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual 2018",
+            "status_basis": "The 2018 column is a single-year column visibly grouped under \"Actual\" and positioned before the \"Projections\" columns beginning with 2020.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "74.7",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "-2.9"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "-3.6"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "-2.4",
+                "children": []
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "-1.5",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-1.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "-0.5",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "0.3",
+                "children": []
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "0.7",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Values were copied from the 2018 Actual column. The accounting identity holds: -2.9 = -3.6 + 0.7."
+          }
+        ],
+        "extraction_notes": "The qualifying object is Figure 1, which passes the mandatory tabular-structure gate because it contains a visible row-and-column DSA table with explicit row labels, year columns, and printed cell values. The graphical debt-creating-flows panel and the risk assessment charts were not used. Non-decomposition rows in the same figure, including public gross financing needs and macroeconomic indicator rows, were excluded per scope."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 78.12
+}

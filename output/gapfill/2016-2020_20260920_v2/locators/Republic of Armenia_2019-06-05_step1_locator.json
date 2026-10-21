@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF ARMENIA",
+    "report_title": "2019 ARTICLE IV CONSULTATION AND REQUEST FOR A STAND-BY ARRANGEMENT—PRESS RELEASES; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF ARMENIA",
+    "country_report_number": "19/154",
+    "publication_date": "June 2019",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION AND REQUEST FOR A STAND-BY ARRANGEMENT",
+    "pdf_file_name": "Republic of Armenia_2019-06-05.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 64,
+      "end_page": 68,
+      "reason": "Annex V is titled Public Debt Sustainability Analysis and includes a qualifying row-and-column public debt decomposition table in Figure A1, titled Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario, with rows such as Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Annex V. Public Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 66,
+  "recommended_start_page": 64,
+  "recommended_end_page": 68,
+  "confidence": "high",
+  "notes": "The target is the public DSA, not the external DSA. The qualifying public debt decomposition table is on physical PDF page 66, formatted as a row-and-column table despite being labeled Figure A1. External debt sustainability material appears later in Annex VI and is excluded."
+}

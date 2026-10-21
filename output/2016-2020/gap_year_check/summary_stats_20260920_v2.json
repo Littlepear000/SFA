@@ -26,9 +26,8 @@
   },
   "fill_status_by_gap_year": {
     "fillable_actual_column_visible": 105,
-    "only_in_merged_range_column": 6,
-    "only_projection": 5,
-    "only_preliminary_or_estimate": 4
+    "not_visible_in_any_report": 9,
+    "only_in_merged_range_column": 6
   },
   "n_dup_country_years": 80,
   "n_dup_values_disagree": 64,

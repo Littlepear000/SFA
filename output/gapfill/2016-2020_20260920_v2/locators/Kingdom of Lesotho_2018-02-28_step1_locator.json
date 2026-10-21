@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "KINGDOM OF LESOTHO",
+    "report_title": "2017 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE KINGDOM OF LESOTHO",
+    "country_report_number": "18/54",
+    "publication_date": "February 2018",
+    "consultation_type": "2017 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Kingdom of Lesotho_2018-02-28.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 57,
+      "end_page": 59,
+      "reason": "The qualifying public debt decomposition table is Table 3, 'Lesotho: Public Sector Debt Sustainability Framework, Baseline Scenario, 2014–37', on physical page 58. It is visibly a row-and-column table with year columns and rows including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual. Page 57 is a graphical public debt figure and page 59 is a related public debt sensitivity table, included only as narrow surrounding context.",
+      "matched_phrases": [
+        "Annex VI. Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability",
+        "Table 3. Lesotho: Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 58,
+  "recommended_start_page": 57,
+  "recommended_end_page": 59,
+  "confidence": "high",
+  "notes": "Annex VI Debt Sustainability Analysis begins on physical page 47. External debt DSA tables appear on pages 54–56 and are excluded. The target public-sector debt decomposition table is Table 3 on page 58. Figure 2 on page 57 is graphical and not an extraction target."
+}

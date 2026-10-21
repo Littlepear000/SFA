@@ -1,0 +1,49 @@
+{
+  "report_metadata": {
+    "country": "NEPAL",
+    "report_title": "NEPAL—REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR NEPAL",
+    "country_report_number": "20/155",
+    "publication_date": "May 2020",
+    "consultation_type": "Request for Disbursement Under the Rapid Credit Facility",
+    "pdf_file_name": "Nepal_2020-05-11.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 33,
+      "end_page": 33,
+      "reason": "The qualifying public debt decomposition table is visible on this page: Table 2, titled 'Nepal: Public Sector Debt Sustainability Framework, Baseline Scenario, 2019-2040'. It is a row-and-column public sector debt table with rows including 'Change in public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual'.",
+      "matched_phrases": [
+        "Table 2. Nepal: Public Sector Debt Sustainability Framework, Baseline Scenario, 2019-2040",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 30,
+      "end_page": 34,
+      "reason": "The Debt Sustainability Analysis section begins on page 30 and includes the LIC DSA overview, the external debt table on page 32, and the qualifying public sector debt sustainability framework table on page 33.",
+      "matched_phrases": [
+        "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY—DEBT SUSTAINABILITY ANALYSIS",
+        "Joint Bank-Fund Debt Sustainability Analysis",
+        "risk of external debt distress",
+        "Overall risk of debt distress",
+        "Composite indicator",
+        "Public Sector Debt Sustainability Framework, Baseline Scenario"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 33,
+  "recommended_start_page": 33,
+  "recommended_end_page": 33,
+  "confidence": "high",
+  "notes": "The public DSA target is the row-and-column table on physical PDF page 33. Page 32 contains the external debt sustainability framework and is not the target. Page 36 contains a graphical 'Drivers of Debt Dynamics - Baseline Scenario' figure and was not selected because graphical decomposition figures are not eligible extraction targets."
+}

@@ -1,0 +1,37 @@
+{
+  "report_metadata": {
+    "country": "TUNISIA",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR TUNISIA",
+    "country_report_number": "20/103",
+    "publication_date": "April 2020",
+    "consultation_type": "Request for Purchase Under the Rapid Financing Instrument",
+    "pdf_file_name": "Tunisia_2020-04-14.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 31,
+      "end_page": 33,
+      "reason": "The public debt DSA annex begins on page 27, and the qualifying row-and-column public debt decomposition table is visible on page 32 as Annex Table I.3, titled Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario. It includes explicit year columns and rows for Contribution to Changes in Public Debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, including asset changes. Pages 31-33 provide narrow surrounding context around the target table.",
+      "matched_phrases": [
+        "Annex I. Public Debt Sustainability Analysis",
+        "Annex Table I.3. Tunisia: Public Sector Debt Sustainability Analysis (DSA)",
+        "Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 32,
+  "recommended_start_page": 31,
+  "recommended_end_page": 33,
+  "confidence": "high",
+  "notes": "Selected the public debt DSA table, not the external debt sustainability analysis. Annex II on pages 35-38 contains an external DSA and an external debt-creating flows table, but it is excluded because the qualifying public debt decomposition table exists in Annex I. The target is the MAC DSA-style public sector baseline scenario table on page 32."
+}

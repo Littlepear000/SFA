@@ -1,0 +1,33 @@
+{
+  "report_metadata": {
+    "country": "CHAD",
+    "report_title": "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY AND CANCELLATION OF THE EXTENDED CREDIT FACILITY ARRANGEMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR CHAD",
+    "country_report_number": "20/231",
+    "publication_date": "August 2020",
+    "consultation_type": "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY AND CANCELLATION OF THE EXTENDED CREDIT FACILITY ARRANGEMENT",
+    "pdf_file_name": "Chad_2020-08-05.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 34,
+      "end_page": 36,
+      "reason": "The public debt target is the LIC DSF Table 2 titled \"Chad: Public Sector Debt Sustainability Framework, Baseline Scenario, 2017–2040\" on physical page 34. The extracted text shows the title but not the table body, suggesting the table is embedded or poorly extracted. The range starts at page 34 to avoid the external debt framework table on page 33 and includes the adjacent public-debt sensitivity page.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "Risk of external debt distress",
+        "Overall risk of debt distress",
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Drivers of Debt Dynamics—Baseline Scenario"
+      ],
+      "likely_image_based": true
+    }
+  ],
+  "primary_table_page": 34,
+  "recommended_start_page": 34,
+  "recommended_end_page": 36,
+  "confidence": "high",
+  "notes": "The DSA annex begins on physical page 27. The relevant public-sector LIC DSF baseline framework table is on page 34. Page 31 contains a graphical \"Drivers of Debt Dynamics—Baseline Scenario\" figure and is not selected as a tabular extraction target. Page 33 is an External Debt Sustainability Framework table and is excluded."
+}

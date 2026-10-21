@@ -1,0 +1,306 @@
+{
+  "pdf_file_name": "Slovak Republic_2018-07-26.pdf",
+  "country": "Slovak Republic",
+  "report_date": "2018-07-26",
+  "per_target": {
+    "2016": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual 2016",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "51.8",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "-0.5"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "0.5"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "0.8",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "39.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "39.9",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "0.3",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "0.2",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "1.9",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-1.7",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.1",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "-0.6",
+          "children": [
+            {
+              "label_verbatim": "Privatization/Drawdown of Deposits (+ reduces financing need) (negative)",
+              "value": "-0.6",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Other debt-creating flows (specify) (+ increases financing need)",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-1.1",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Values were read from the Actual 2016 column. Accounting check: change in debt is -0.5, while identified debt-creating flows 0.5 plus residual -1.1 equals -0.6; the 0.1 difference is consistent with rounding, and printed values were preserved.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+        "table_number": "Figure 1",
+        "page_pdf": 39,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        39,
+        40
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "SLOVAK REPUBLIC",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 1",
+          "table_title": "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+          "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+          "page_pdf": 39,
+          "page_printed": 33,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2007-2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The multi-year range column is under the visible Actual group heading and lies to the left of the Projections group."
+              },
+              {
+                "position": 2,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2016 column is under the visible Actual group heading and lies to the left of the Projections group beginning at 2018."
+              },
+              {
+                "position": 3,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2017 column is under the visible Actual group heading and lies immediately to the left of the Projections group beginning at 2018."
+              },
+              {
+                "position": 4,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2018 column is under the visible Projections group heading."
+              },
+              {
+                "position": 5,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2019 column is under the visible Projections group heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is under the visible Projections group heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is under the visible Projections group heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is under the visible Projections group heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2023 column is under the visible Projections group heading."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual 2016",
+            "status_basis": "The 2016 column is under the visible Actual group heading and precedes the Projections group beginning at 2018.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "51.8",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "-0.5"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "0.5"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "0.8",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "39.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "39.9",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "0.3",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "0.2",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "1.9",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-1.7",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.1",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "-0.6",
+                "children": [
+                  {
+                    "label_verbatim": "Privatization/Drawdown of Deposits (+ reduces financing need) (negative)",
+                    "value": "-0.6",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Other debt-creating flows (specify) (+ increases financing need)",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-1.1",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Values were read from the Actual 2016 column. Accounting check: change in debt is -0.5, while identified debt-creating flows 0.5 plus residual -1.1 equals -0.6; the 0.1 difference is consistent with rounding, and printed values were preserved."
+          }
+        ],
+        "extraction_notes": "Figure 1 is figure-numbered but passes the tabular-structure gate because it contains explicit row labels, year columns, and printed cell values. The debt-level row was taken from the same Figure 1 table; gross financing needs, net public debt, macroeconomic indicators, market indicators, cumulative/debt-stabilizing columns, charts, footnotes, and Figure 2 alternative-scenario charts/tables were outside the decomposition block and were not extracted."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 116.98
+}

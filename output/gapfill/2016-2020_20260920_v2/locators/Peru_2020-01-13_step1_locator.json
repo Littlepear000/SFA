@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "PERU",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; STAFF STATEMENT AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR PERU",
+    "country_report_number": "20/3",
+    "publication_date": "January 2020",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Peru_2020-01-13.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 51,
+      "end_page": 52,
+      "reason": "Annex V is titled Public Sector Debt Sustainability Analysis. Page 51 contains a visible row-and-column public debt decomposition table headed Contribution to Changes in Public Debt, with rows including Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Exchange rate depreciation, Other identified debt-creating flows, and Residual, including asset changes. Page 52 continues the public DSA with composition and alternative scenarios.",
+      "matched_phrases": [
+        "Annex V. Public Sector Debt Sustainability Analysis",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes",
+        "Public DSA – Composition of Public Debt and Alternative Scenarios"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 51,
+  "recommended_start_page": 51,
+  "recommended_end_page": 52,
+  "confidence": "high",
+  "notes": "The report also contains an External Debt Sustainability Framework on page 43 and external debt bound tests on page 33, but these are excluded because a qualifying public debt DSA decomposition table is present in Annex V."
+}

@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF SOUTH SUDAN",
+    "report_title": "STAFF-MONITORED PROGRAM AND REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF SOUTH SUDAN",
+    "country_report_number": "21/70",
+    "publication_date": "April 2021",
+    "consultation_type": "STAFF-MONITORED PROGRAM AND REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY",
+    "pdf_file_name": "Republic of South Sudan_2021-04-02.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 64,
+      "end_page": 64,
+      "reason": "Page 64 contains the qualifying public debt decomposition table titled \"Table 2. Republic of South Sudan: Public Sector Debt Sustainability Framework, Baseline Scenario, FY2020–41\" with aligned year columns and rows including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, other identified debt-creating flows, and residual.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 64,
+  "recommended_start_page": 64,
+  "recommended_end_page": 64,
+  "confidence": "high",
+  "notes": "The DSA annex begins on page 53. The report uses the LIC DSF framework, with markers including risk of external debt distress, overall risk of debt distress, and debt-carrying capacity/composite indicator. Page 63 contains the external debt sustainability framework and is excluded. The target public debt decomposition table is on page 64."
+}

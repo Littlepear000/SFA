@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF KOREA",
+    "report_title": "2017 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF KOREA",
+    "country_report_number": "18/40",
+    "publication_date": "February 2018",
+    "consultation_type": "2017 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Republic of Korea_2018-02-13.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 43,
+      "end_page": 44,
+      "reason": "Annex III is titled Debt Sustainability Analysis and page 43 contains a qualifying public-sector row-and-column DSA table headed 'Korea Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario' with a 'Contribution to Changes in Public Debt' decomposition including identified debt-creating flows, primary deficit, automatic debt dynamics, and residual. Page 44 continues the public DSA with composition, alternative scenarios, and underlying assumptions.",
+      "matched_phrases": [
+        "Annex III. Debt Sustainability Analysis",
+        "Korea Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes",
+        "Korea Public DSA - Composition of Public Debt and Alternative Scenarios"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 43,
+  "recommended_start_page": 43,
+  "recommended_end_page": 44,
+  "confidence": "high",
+  "notes": "A qualifying public debt DSA decomposition table is visible on physical PDF page 43. The DSA annex spans pages 43-44; page 45 begins Annex IV and is unrelated. No external-debt DSA was selected."
+}

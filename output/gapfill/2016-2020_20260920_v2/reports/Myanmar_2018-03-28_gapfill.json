@@ -1,0 +1,168 @@
+{
+  "pdf_file_name": "Myanmar_2018-03-28.pdf",
+  "country": "Myanmar",
+  "report_date": "2018-03-28",
+  "per_target": {
+    "2016": {
+      "status": "rejected_not_actual",
+      "errors": [],
+      "warnings": [],
+      "column_status": "estimate",
+      "column_header_verbatim": "Estimate 2016",
+      "not_extractable_reason": "column_is_estimate",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "The target year appears as a single-year column, but it is labeled Estimate. Under the absolute rule, estimate columns are not extracted.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+        "table_number": "Table 4c.",
+        "page_pdf": 70,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        70,
+        71
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Myanmar",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "LIC_DSF",
+          "table_number": "Table 4c.",
+          "table_title": "Myanmar: Public Sector Debt Sustainability Framework, Baseline Scenario, 2014–2037",
+          "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+          "page_pdf": 70,
+          "page_printed": 12,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2014",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible header separates the early historical columns under an Actual group before the Estimate and Projections groups."
+              },
+              {
+                "position": 2,
+                "year_label": "2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible header separates the early historical columns under an Actual group before the Estimate and Projections groups."
+              },
+              {
+                "position": 3,
+                "year_label": "2016",
+                "group_label": "Estimate",
+                "status": "estimate",
+                "status_basis": "The visible multi-level header shows an Estimate heading applying to the 2016 column, before the Projections columns begin."
+              },
+              {
+                "position": 4,
+                "year_label": "2017",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2017 column appears in the projections block following the Estimate column."
+              },
+              {
+                "position": 5,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the Projections group heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the Projections group heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the Projections group heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the Projections group heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the Projections group heading."
+              },
+              {
+                "position": 10,
+                "year_label": "2017-22 Average",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "This is a multi-year average column shown within the projections block, not a discrete target-year column."
+              },
+              {
+                "position": 11,
+                "year_label": "2027",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the Projections group heading."
+              },
+              {
+                "position": 12,
+                "year_label": "2037",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the Projections group heading."
+              },
+              {
+                "position": 13,
+                "year_label": "2023-37 Average",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "This is a multi-year average column shown within the projections block, not a discrete target-year column."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "estimate",
+            "column_header_verbatim": "Estimate 2016",
+            "status_basis": "The visible multi-level column header places 2016 under the Estimate heading, while the projections block begins to the right.",
+            "extractable": false,
+            "not_extractable_reason": "column_is_estimate",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "The target year appears as a single-year column, but it is labeled Estimate. Under the absolute rule, estimate columns are not extracted."
+          }
+        ],
+        "extraction_notes": "The qualifying public-debt decomposition table is Table 4c on original physical PDF page 70. The decomposition block begins with \"Public sector debt\" and runs through \"Residual, including asset changes.\" The target year 2016 was not extracted because the visible header classifies that column as Estimate. Non-year summary columns \"Average 5/\" and \"Standard Deviation 5/\" were ignored for target-year selection. Page 71 contains Table 4d, a sensitivity analysis table, and was not used as the decomposition table."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 166.48
+}

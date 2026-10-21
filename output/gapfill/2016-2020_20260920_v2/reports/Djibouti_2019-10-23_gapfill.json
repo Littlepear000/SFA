@@ -1,0 +1,608 @@
+{
+  "pdf_file_name": "Djibouti_2019-10-23.pdf",
+  "country": "Djibouti",
+  "report_date": "2019-10-23",
+  "per_target": {
+    "2016": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2016",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Public sector debt 1/",
+          "value": "63.9",
+          "children": [
+            {
+              "label_verbatim": "of which: external debt",
+              "value": "62.9",
+              "children": []
+            },
+            {
+              "label_verbatim": "of which: local-currency denominated",
+              "value": null,
+              "children": []
+            }
+          ]
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in public sector debt",
+          "value": "14.1"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "14.1"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "16.1",
+          "children": [
+            {
+              "label_verbatim": "Revenue and grants",
+              "value": "25.9",
+              "children": [
+                {
+                  "label_verbatim": "of which: grants",
+                  "value": "3.2",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "42.0",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics",
+          "value": "-2.1",
+          "children": [
+            {
+              "label_verbatim": "Contribution from interest rate/growth differential",
+              "value": "-2.5",
+              "children": [
+                {
+                  "label_verbatim": "of which: contribution from average real interest rate",
+                  "value": "0.7",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "of which: contribution from real GDP growth",
+                  "value": "-3.2",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Contribution from real exchange rate depreciation",
+              "value": "0.4",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "0.0",
+          "children": [
+            {
+              "label_verbatim": "Privatization receipts (negative)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Recognition of contingent liabilities (e.g., bank recapitalization)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Debt relief (HIPC and other)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Other debt creating or reducing flow (please specify)",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual",
+          "value": "0.0",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "All values are from the 2016 Actual column.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+        "table_number": "Table 4",
+        "page_pdf": 70,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    },
+    "2017": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2017",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Public sector debt 1/",
+          "value": "71.2",
+          "children": [
+            {
+              "label_verbatim": "of which: external debt",
+              "value": "70.5",
+              "children": []
+            },
+            {
+              "label_verbatim": "of which: local-currency denominated",
+              "value": null,
+              "children": []
+            }
+          ]
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in public sector debt",
+          "value": "7.3"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "7.4"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "9.5",
+          "children": [
+            {
+              "label_verbatim": "Revenue and grants",
+              "value": "25.1",
+              "children": [
+                {
+                  "label_verbatim": "of which: grants",
+                  "value": "1.8",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "34.5",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics",
+          "value": "-2.1",
+          "children": [
+            {
+              "label_verbatim": "Contribution from interest rate/growth differential",
+              "value": "-2.9",
+              "children": [
+                {
+                  "label_verbatim": "of which: contribution from average real interest rate",
+                  "value": "0.2",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "of which: contribution from real GDP growth",
+                  "value": "-3.1",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Contribution from real exchange rate depreciation",
+              "value": "0.8",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "0.0",
+          "children": [
+            {
+              "label_verbatim": "Privatization receipts (negative)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Recognition of contingent liabilities (e.g., bank recapitalization)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Debt relief (HIPC and other)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Other debt creating or reducing flow (please specify)",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual",
+          "value": "0.0",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "All values are from the 2017 Actual column. The printed accounting identity check gives Change in public sector debt 7.3 versus Identified debt-creating flows 7.4 plus Residual 0.0; the discrepancy is preserved as printed.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+        "table_number": "Table 4",
+        "page_pdf": 70,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016,
+        2017
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        69,
+        70,
+        71
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "DJIBOUTI",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "LIC_DSF",
+          "table_number": "Table 4",
+          "table_title": "Djibouti: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016–2039",
+          "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+          "page_pdf": 70,
+          "page_printed": 13,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading 'Actual' spanning 2016–2018."
+              },
+              {
+                "position": 2,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading 'Actual' spanning 2016–2018."
+              },
+              {
+                "position": 3,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading 'Actual' spanning 2016–2018."
+              },
+              {
+                "position": 4,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections' spanning 2019–2039."
+              },
+              {
+                "position": 5,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections' spanning 2019–2039."
+              },
+              {
+                "position": 6,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections' spanning 2019–2039."
+              },
+              {
+                "position": 7,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections' spanning 2019–2039."
+              },
+              {
+                "position": 8,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections' spanning 2019–2039."
+              },
+              {
+                "position": 9,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections' spanning 2019–2039."
+              },
+              {
+                "position": 10,
+                "year_label": "2029",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections' spanning 2019–2039."
+              },
+              {
+                "position": 11,
+                "year_label": "2039",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections' spanning 2019–2039."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2016",
+            "status_basis": "The 2016 column is visibly under the group heading 'Actual', before the 'Projections' group begins at 2019.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Public sector debt 1/",
+                "value": "63.9",
+                "children": [
+                  {
+                    "label_verbatim": "of which: external debt",
+                    "value": "62.9",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "of which: local-currency denominated",
+                    "value": null,
+                    "children": []
+                  }
+                ]
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in public sector debt",
+                "value": "14.1"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "14.1"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "16.1",
+                "children": [
+                  {
+                    "label_verbatim": "Revenue and grants",
+                    "value": "25.9",
+                    "children": [
+                      {
+                        "label_verbatim": "of which: grants",
+                        "value": "3.2",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "42.0",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics",
+                "value": "-2.1",
+                "children": [
+                  {
+                    "label_verbatim": "Contribution from interest rate/growth differential",
+                    "value": "-2.5",
+                    "children": [
+                      {
+                        "label_verbatim": "of which: contribution from average real interest rate",
+                        "value": "0.7",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "of which: contribution from real GDP growth",
+                        "value": "-3.2",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Contribution from real exchange rate depreciation",
+                    "value": "0.4",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "0.0",
+                "children": [
+                  {
+                    "label_verbatim": "Privatization receipts (negative)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Recognition of contingent liabilities (e.g., bank recapitalization)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Debt relief (HIPC and other)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Other debt creating or reducing flow (please specify)",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual",
+                "value": "0.0",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "All values are from the 2016 Actual column."
+          },
+          {
+            "target_year": 2017,
+            "column_found": true,
+            "matched_year_label": "2017",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2017",
+            "status_basis": "The 2017 column is visibly under the group heading 'Actual', before the 'Projections' group begins at 2019.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Public sector debt 1/",
+                "value": "71.2",
+                "children": [
+                  {
+                    "label_verbatim": "of which: external debt",
+                    "value": "70.5",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "of which: local-currency denominated",
+                    "value": null,
+                    "children": []
+                  }
+                ]
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in public sector debt",
+                "value": "7.3"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "7.4"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "9.5",
+                "children": [
+                  {
+                    "label_verbatim": "Revenue and grants",
+                    "value": "25.1",
+                    "children": [
+                      {
+                        "label_verbatim": "of which: grants",
+                        "value": "1.8",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "34.5",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics",
+                "value": "-2.1",
+                "children": [
+                  {
+                    "label_verbatim": "Contribution from interest rate/growth differential",
+                    "value": "-2.9",
+                    "children": [
+                      {
+                        "label_verbatim": "of which: contribution from average real interest rate",
+                        "value": "0.2",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "of which: contribution from real GDP growth",
+                        "value": "-3.1",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Contribution from real exchange rate depreciation",
+                    "value": "0.8",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "0.0",
+                "children": [
+                  {
+                    "label_verbatim": "Privatization receipts (negative)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Recognition of contingent liabilities (e.g., bank recapitalization)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Debt relief (HIPC and other)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Other debt creating or reducing flow (please specify)",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual",
+                "value": "0.0",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "All values are from the 2017 Actual column. The printed accounting identity check gives Change in public sector debt 7.3 versus Identified debt-creating flows 7.4 plus Residual 0.0; the discrepancy is preserved as printed."
+          }
+        ],
+        "extraction_notes": "Selected Table 4 on original physical PDF page 70. Table 3 on original physical PDF page 69 is an external debt sustainability table and was not used. The figure on original physical PDF page 71 is a chart/visualization, not the qualifying row-and-column public debt decomposition table. The decomposition block was extracted from 'Public sector debt 1/' through 'Residual'; rows below the residual, including sustainability indicators and macroeconomic assumptions, were excluded. The 2017 accounting identity does not exactly hold using the printed values because 7.3 does not equal 7.4 + 0.0, likely due to rounding; values were not altered."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 88.97
+}

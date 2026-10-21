@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "DEMOCRATIC REPUBLIC OF SÃO TOMÉ AND PRÍNCIPE",
+    "report_title": "REQUEST FOR A 40-MONTH ARRANGEMENT UNDER THE EXTENDED CREDIT FACILITY—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR DEMOCRATIC REPUBLIC OF SÃO TOMÉ AND PRÍNCIPE",
+    "country_report_number": "19/315",
+    "publication_date": "October 2019",
+    "consultation_type": "REQUEST FOR A 40-MONTH ARRANGEMENT UNDER THE EXTENDED CREDIT FACILITY",
+    "pdf_file_name": "Democratic Republic of Sao Tome and Principe_2019-10-29.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 118,
+      "end_page": 120,
+      "reason": "Page 119 contains the qualifying public debt decomposition table titled \"Table 2. São Tomé and Príncipe: Public Sector Debt Sustainability Framework, Baseline Scenario, 2017–2039\" with visible row-and-column structure and rows decomposing the change in public sector debt into identified debt-creating flows, primary deficit, automatic debt dynamics, other identified debt-creating flows, and residual. Pages 118 and 120 provide adjacent DSA context.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 119,
+  "recommended_start_page": 118,
+  "recommended_end_page": 120,
+  "confidence": "high",
+  "notes": "The Debt Sustainability Analysis begins on page 108 and is clearly a LIC DSF, with markers including risk of external debt distress, overall risk of debt distress, and Composite Indicator. The external debt framework table on page 118 is excluded as the target because it is external debt. The recommended range centers on the public sector debt sustainability framework table on page 119. Graphical figures on nearby pages are not selected as extraction targets."
+}

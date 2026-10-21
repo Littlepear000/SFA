@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "JAMAICA",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR JAMAICA",
+    "country_report_number": "20/167",
+    "publication_date": "May 2020",
+    "consultation_type": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT",
+    "pdf_file_name": "Jamaica_2020-05-18.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 24,
+      "end_page": 26,
+      "reason": "Public DSA annex begins on page 22, and the qualifying row-and-column public debt decomposition table is visible on page 25 under Figure 2, titled Public Sector Debt Sustainability (DSA)—Baseline Scenario. It includes explicit year columns and rows such as Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Annex I. Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 25,
+  "recommended_start_page": 24,
+  "recommended_end_page": 26,
+  "confidence": "high",
+  "notes": "The target is a public debt DSA decomposition table, despite being labeled as Figure 2. It is visibly laid out as a row-and-column table with numeric cells. External debt tables were not selected."
+}

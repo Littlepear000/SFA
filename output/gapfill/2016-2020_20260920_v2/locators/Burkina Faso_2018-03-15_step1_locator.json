@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "BURKINA FASO",
+    "report_title": "REQUEST FOR A THREE-YEAR ARRANGEMENT UNDER THE EXTENDED CREDIT FACILITY—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR BURKINA FASO",
+    "country_report_number": "18/81",
+    "publication_date": "March 2018",
+    "consultation_type": "REQUEST FOR A THREE-YEAR ARRANGEMENT UNDER THE EXTENDED CREDIT FACILITY",
+    "pdf_file_name": "Burkina Faso_2018-03-15.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 83,
+      "end_page": 85,
+      "reason": "The qualifying public debt decomposition table is visible on page 84: Table 2, 'Public Sector Debt Sustainability Framework, Baseline Scenario, 2014-2037', with aligned year columns and rows including Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual. Page 83 is the external framework table and page 85 is a related sensitivity table, included only as narrow surrounding context.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 84,
+  "recommended_start_page": 83,
+  "recommended_end_page": 85,
+  "confidence": "high",
+  "notes": "The DSA appendix begins on page 73. The external debt sustainability framework table appears on page 83 and is not the target. The public sector debt decomposition table is on page 84 and is the recommended extraction target. Graphical public debt indicators on page 82 were not selected."
+}

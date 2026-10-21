@@ -1,0 +1,50 @@
+{
+  "report_metadata": {
+    "country": "SIERRA LEONE",
+    "report_title": "THIRD AND FOURTH REVIEWS UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT, REQUESTS FOR EXTENSION AND REPHASING OF THE ARRANGEMENT, WAIVERS OF NONOBSERVANCE OF PERFORMANCE CRITERIA, AND FINANCING ASSURANCES REVIEW—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR SIERRA LEONE",
+    "country_report_number": "21/183",
+    "publication_date": "August 2021",
+    "consultation_type": "Third and Fourth Reviews Under the Extended Credit Facility Arrangement",
+    "pdf_file_name": "Sierra Leone_2021-08-13.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 108,
+      "end_page": 111,
+      "reason": "The DSA annex begins on physical page 94 and contains LIC-DSF markers including risk of external debt distress, overall risk of debt distress, Composite Indicator, and Public Sector Debt Sustainability Framework tables. The qualifying public debt decomposition table is on page 109: Table 2, Sierra Leone: Public Sector Debt Sustainability Framework, Baseline Scenario, 2020–41, with rows such as Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual arranged against year columns.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "Risk of external debt distress",
+        "Overall risk of debt distress",
+        "Composite Indicator",
+        "Table 2. Sierra Leone: Public Sector Debt Sustainability Framework, Baseline Scenario, 2020–41",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 104,
+      "end_page": 106,
+      "reason": "These pages contain DSA figures, including public debt indicators and a Drivers of Debt Dynamics figure. They are not the preferred extraction target because they are graphical figures rather than the qualifying row-and-column public debt decomposition table.",
+      "matched_phrases": [
+        "Figure 2. Sierra Leone: Indicators of Public Debt Under Alternative Scenarios, 2021–31",
+        "Figure 3. Sierra Leone: Drivers of Debt Dynamics, Baseline Scenario, 2016–31",
+        "Debt-creating flows"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 109,
+  "recommended_start_page": 108,
+  "recommended_end_page": 111,
+  "confidence": "high",
+  "notes": "The public DSA table is selected, not the external debt sustainability framework on page 108. Although page 106 contains a Drivers of Debt Dynamics figure, it is graphical and not the target under the tabular-structure rule."
+}

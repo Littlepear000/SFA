@@ -1,0 +1,306 @@
+{
+  "pdf_file_name": "Republic of North Macedonia_2020-04-21.pdf",
+  "country": "North Macedonia",
+  "report_date": "2020-04-21",
+  "per_target": {
+    "2018": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Contribution to Changes in Public Debt — Actual: 2018",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": null,
+          "value": null,
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "1.4"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "0.9"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "1.2",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "28.6",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "29.8",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "-1.7",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-1.7",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "-0.5",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-1.2",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "1.4",
+          "children": [
+            {
+              "label_verbatim": "Privatization receipts (negative)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Changes in cash, deposits, and securities held for liquidity purposes",
+              "value": "1.5",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "0.4",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "For 2018, the printed identity change in debt = identified flows + residual gives 1.4 versus 0.9 + 0.4 = 1.3, a 0.1 difference attributable to rounding; printed values were preserved.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+        "table_number": "Figure 1",
+        "page_pdf": 13,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2018
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        12,
+        13
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "REPUBLIC OF NORTH MACEDONIA",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 1",
+          "table_title": "North Macedonia Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+          "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+          "page_pdf": 13,
+          "page_printed": 9,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2009-2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is a merged multi-year range column under the visible group heading 'Actual', before the 'Projections' group begins."
+              },
+              {
+                "position": 2,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2018 column is under the visible group heading 'Actual' and lies to the left of the 'Projections' group."
+              },
+              {
+                "position": 3,
+                "year_label": "2019",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2019 column is under the visible group heading 'Actual' and lies immediately before the 'Projections' group."
+              },
+              {
+                "position": 4,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 5,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 6,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 7,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2023 column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 8,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2024 column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 9,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2025 column is under the visible group heading 'Projections'."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2018,
+            "column_found": true,
+            "matched_year_label": "2018",
+            "column_status": "actual",
+            "column_header_verbatim": "Contribution to Changes in Public Debt — Actual: 2018",
+            "status_basis": "The 2018 column appears under the visible 'Actual' group heading and before the 'Projections' group beginning with 2020.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": null,
+                "value": null,
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "1.4"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "0.9"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "1.2",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "28.6",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "29.8",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "-1.7",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-1.7",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "-0.5",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-1.2",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "1.4",
+                "children": [
+                  {
+                    "label_verbatim": "Privatization receipts (negative)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Changes in cash, deposits, and securities held for liquidity purposes",
+                    "value": "1.5",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "0.4",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "For 2018, the printed identity change in debt = identified flows + residual gives 1.4 versus 0.9 + 0.4 = 1.3, a 0.1 difference attributable to rounding; printed values were preserved."
+          }
+        ],
+        "extraction_notes": "The qualifying object is Figure 1, which is visibly a row-and-column public sector DSA table despite being figure-numbered. The decomposition block read is the lower table section titled 'Contribution to Changes in Public Debt', beginning with 'Change in gross public sector debt' and ending with 'Residual, including asset changes 8/'. The separate upper 'Debt, Economic and Market Indicators' panel and the heat map were not part of the decomposition block. The 2009-2017 column is a merged actual range column and was listed in the audit but was not used for the target year."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 101.89
+}

@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "RWANDA",
+    "report_title": "STAFF REPORT FOR THE 2019 ARTICLE IV CONSULTATION AND REQUEST FOR A THREE-YEAR POLICY COORDINATION INSTRUMENT––PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR RWANDA",
+    "country_report_number": "19/211",
+    "publication_date": "July 2019",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION AND REQUEST FOR A THREE-YEAR POLICY COORDINATION INSTRUMENT",
+    "pdf_file_name": "Rwanda_2019-07-03.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 86,
+      "end_page": 88,
+      "reason": "Physical page 86 contains the qualifying public debt decomposition table: Table 2. Rwanda: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016–39. It is visibly a row-and-column table with year columns and rows including Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual. The preceding Table 1 on page 85 is an External Debt Sustainability Framework table and is excluded as the target.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 86,
+  "recommended_start_page": 86,
+  "recommended_end_page": 88,
+  "confidence": "high",
+  "notes": "The standalone Debt Sustainability Analysis begins on physical page 75. The public decomposition table is fully visible on page 86 and no continued or concluded pages are visible. Pages 86–88 provide a narrow extract around the target table; page 86 is the extraction target."
+}

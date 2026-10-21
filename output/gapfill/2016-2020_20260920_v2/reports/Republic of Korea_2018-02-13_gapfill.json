@@ -1,0 +1,306 @@
+{
+  "pdf_file_name": "Republic of Korea_2018-02-13.pdf",
+  "country": "Korea",
+  "report_date": "2018-02-13",
+  "per_target": {
+    "2015": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2015",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross central government debt",
+          "value": "35.6",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross central government debt",
+          "value": "1.7"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "5.9"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "1.7",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "16.3",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "18.0",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "-1.7",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-1.7",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "-0.8",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-0.9",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "5.8",
+          "children": [
+            {
+              "label_verbatim": "Net privatization proceeds (negative)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "5.8",
+              "children": []
+            },
+            {
+              "label_verbatim": "Please specify (2) (e.g., ESM and Euroarea",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-4.2",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Accounting identity holds for 2015: change in gross central government debt 1.7 equals identified debt-creating flows 5.9 plus residual -4.2.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+        "table_number": "Annex III",
+        "page_pdf": 43,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2015
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        43,
+        44
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "REPUBLIC OF KOREA",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Annex III",
+          "table_title": "Korea Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+          "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+          "page_pdf": 43,
+          "page_printed": 38,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2006-2014",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is a visible multi-year range under the group heading 'Actual', before the 'Projections' group."
+              },
+              {
+                "position": 2,
+                "year_label": "2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2015 column is under the visible group heading 'Actual', before the 'Projections' group."
+              },
+              {
+                "position": 3,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2016 column is under the visible group heading 'Actual', before the 'Projections' group."
+              },
+              {
+                "position": 4,
+                "year_label": "2017",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2017 column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 5,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2018 column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 6,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2019 column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 7,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 8,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 9,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is under the visible group heading 'Projections'."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2015,
+            "column_found": true,
+            "matched_year_label": "2015",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2015",
+            "status_basis": "The 2015 column is visibly placed under the 'Actual' heading and to the left of the 'Projections' group.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross central government debt",
+                "value": "35.6",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross central government debt",
+                "value": "1.7"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "5.9"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "1.7",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "16.3",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "18.0",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "-1.7",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-1.7",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "-0.8",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-0.9",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "5.8",
+                "children": [
+                  {
+                    "label_verbatim": "Net privatization proceeds (negative)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "5.8",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Please specify (2) (e.g., ESM and Euroarea",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-4.2",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Accounting identity holds for 2015: change in gross central government debt 1.7 equals identified debt-creating flows 5.9 plus residual -4.2."
+          }
+        ],
+        "extraction_notes": "The qualifying public debt decomposition table is the row-and-column table titled 'Korea Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario' on original physical PDF page 43, specifically the 'Contribution to Changes in Public Debt' block together with the visible debt stock row. Charts on pages 43-44, including the debt-creating flows bar chart and the composition/alternative scenario charts, were not used because they are visualizations rather than qualifying row-and-column decomposition tables. Rows outside the decomposition block, such as gross financing needs and macroeconomic indicators, were ignored."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 64.26
+}

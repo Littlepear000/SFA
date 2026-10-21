@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "SEYCHELLES",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR SEYCHELLES",
+    "country_report_number": "20/170",
+    "publication_date": "May 2020",
+    "consultation_type": "Request for Purchase Under the Rapid Financing Instrument",
+    "pdf_file_name": "Seychelles_2020-05-19.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 26,
+      "end_page": 28,
+      "reason": "Annex I is titled Debt Sustainability Analysis. The qualifying public-debt decomposition table is on physical page 27 under 'Figure 3. Seychelles: Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario' and is visibly a row-and-column table with year columns and rows including 'Change in gross public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'. Page 30 is an External Debt Sustainability Framework and is excluded.",
+      "matched_phrases": [
+        "Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 27,
+  "recommended_start_page": 26,
+  "recommended_end_page": 28,
+  "confidence": "high",
+  "notes": "The public DSA annex starts on page 22. The main eligible public debt decomposition table is on page 27. External debt sustainability material begins on page 30 and was not selected."
+}

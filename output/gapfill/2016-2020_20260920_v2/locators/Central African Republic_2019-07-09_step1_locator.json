@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "CENTRAL AFRICAN REPUBLIC",
+    "report_title": "SIXTH REVIEW UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT, REQUESTS FOR WAIVERS OF NONOBSERVANCE OF PERFORMANCE CRITERIA AND FINANCING ASSURANCES REVIEW—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE CENTRAL AFRICAN REPUBLIC",
+    "country_report_number": "19/216",
+    "publication_date": "July 2019",
+    "consultation_type": "SIXTH REVIEW UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT",
+    "pdf_file_name": "Central African Republic_2019-07-09.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 70,
+      "end_page": 70,
+      "reason": "Page 70 contains the qualifying public debt decomposition table titled Public Sector Debt Sustainability Framework, Baseline Scenario, with rows for change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, other identified debt-creating flows, and residual. The table is visibly a row-and-column table with year columns and numeric cells.",
+      "matched_phrases": [
+        "Table 2. Central African Republic: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016–39",
+        "Public sector debt",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 70,
+  "recommended_start_page": 70,
+  "recommended_end_page": 70,
+  "confidence": "high",
+  "notes": "The Debt Sustainability Analysis begins on page 61 and is a LIC DSF, with markers including risk of external debt distress, overall risk of debt distress, and composite indicator. The external debt sustainability framework table on page 69 is excluded. The qualifying public sector debt decomposition table is on page 70 and does not appear to continue onto another page."
+}

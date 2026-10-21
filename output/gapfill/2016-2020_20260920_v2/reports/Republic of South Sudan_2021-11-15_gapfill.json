@@ -1,0 +1,139 @@
+{
+  "pdf_file_name": "Republic of South Sudan_2021-11-15.pdf",
+  "country": "South Sudan",
+  "report_date": "2021-11-15",
+  "per_target": {
+    "2019": {
+      "status": "year_not_in_table",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": null,
+      "not_extractable_reason": "year_not_in_table",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "Target year 2019 does not appear as a single-year column in the public sector debt sustainability framework table.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+        "table_number": "Table 4.",
+        "page_pdf": 55,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2019
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        55
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Republic of South Sudan",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "LIC_DSF",
+          "table_number": "Table 4.",
+          "table_title": "Republic of South Sudan: Public Sector Debt Sustainability Framework, Baseline Scenario, FY2021–42",
+          "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+          "page_pdf": 55,
+          "page_printed": 11,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2021",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column headed 2021 appears under the visible group heading “Actual”."
+              },
+              {
+                "position": 2,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column headed 2022 appears under the visible group heading “Projections”."
+              },
+              {
+                "position": 3,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column headed 2023 appears under the visible group heading “Projections”."
+              },
+              {
+                "position": 4,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column headed 2024 appears under the visible group heading “Projections”."
+              },
+              {
+                "position": 5,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column headed 2025 appears under the visible group heading “Projections”."
+              },
+              {
+                "position": 6,
+                "year_label": "2026",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column headed 2026 appears under the visible group heading “Projections”."
+              },
+              {
+                "position": 7,
+                "year_label": "2027",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column headed 2027 appears under the visible group heading “Projections”."
+              },
+              {
+                "position": 8,
+                "year_label": "2032",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column headed 2032 appears under the visible group heading “Projections”."
+              },
+              {
+                "position": 9,
+                "year_label": "2042",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column headed 2042 appears under the visible group heading “Projections”."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2019,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": null,
+            "status_basis": "No single-year column labeled 2019 is visible in the table. The visible year columns are 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2032, and 2042.",
+            "extractable": false,
+            "not_extractable_reason": "year_not_in_table",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "Target year 2019 does not appear as a single-year column in the public sector debt sustainability framework table."
+          }
+        ],
+        "extraction_notes": "A qualifying row-and-column public debt decomposition table is visible: Table 4, “Republic of South Sudan: Public Sector Debt Sustainability Framework, Baseline Scenario, FY2021–42.” The table contains an Actual column for 2021 and Projection columns for 2022, 2023, 2024, 2025, 2026, 2027, 2032, and 2042, plus non-year average columns labeled Historical and Projections. The requested target year 2019 is not present as a single-year column, so no decomposition values were extracted."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 71.69
+}

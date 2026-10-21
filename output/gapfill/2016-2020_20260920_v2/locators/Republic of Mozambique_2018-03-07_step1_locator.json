@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF MOZAMBIQUE",
+    "report_title": "2017 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF MOZAMBIQUE",
+    "country_report_number": "18/65",
+    "publication_date": "March 2018",
+    "consultation_type": "2017 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Republic of Mozambique_2018-03-07.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 85,
+      "end_page": 87,
+      "reason": "The public debt DSA decomposition table is visible on page 86 as 'Table 3. Mozambique: Public Sector Debt Sustainability Framework, Baseline Scenario, 2014-2037'. It is a row-and-column table with year columns and rows including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual. Adjacent pages include the related public debt figure and sensitivity table.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 86,
+  "recommended_start_page": 85,
+  "recommended_end_page": 87,
+  "confidence": "high",
+  "notes": "The DSA begins on physical PDF page 68. External debt DSA tables appear earlier in the DSA, but a qualifying public sector debt decomposition table exists on page 86, so the public table is selected."
+}

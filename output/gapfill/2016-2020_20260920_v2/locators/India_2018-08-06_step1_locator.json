@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "INDIA",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR INDIA",
+    "country_report_number": "18/254",
+    "publication_date": "August 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "India_2018-08-06.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 59,
+      "end_page": 63,
+      "reason": "Appendix IV is titled Public and External Debt Sustainability Analysis. The public DSA baseline table appears on page 61 as Figure 1, with a visible row-and-column decomposition headed Contribution to Changes in Public Debt and rows such as Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Exchange rate depreciation, Other identified debt-creating flows, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Appendix IV. Public and External Debt Sustainability Analysis",
+        "Public Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 61,
+  "recommended_start_page": 59,
+  "recommended_end_page": 63,
+  "confidence": "high",
+  "notes": "The qualifying public debt decomposition table is on physical PDF page 61. It is numbered as a Figure but is visibly laid out as a row-and-column table with year/value columns and debt-creating-flow row labels. External debt sustainability material also appears on pages 66-67, but it is excluded because a public DSA decomposition table exists."
+}

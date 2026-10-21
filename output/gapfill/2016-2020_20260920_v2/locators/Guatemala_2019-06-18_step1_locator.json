@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "GUATEMALA",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE AND STAFF REPORT",
+    "country_report_number": "19/168",
+    "publication_date": "June 2019",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Guatemala_2019-06-18.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 47,
+      "end_page": 49,
+      "reason": "Annex III is the public debt sustainability analysis. The qualifying target is on page 48: Figure III.1 is visibly formatted as a row-and-column public DSA table and includes a decomposition headed 'Contribution to Changes in Public Debt' with row labels and year/value columns.",
+      "matched_phrases": [
+        "Annex III. Public Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 48,
+  "recommended_start_page": 47,
+  "recommended_end_page": 49,
+  "confidence": "high",
+  "notes": "The public DSA annex begins on page 45, and the main qualifying tabular decomposition is on page 48. An external debt sustainability annex appears later on pages 53-54, but it is excluded because a public-debt decomposition table is present."
+}

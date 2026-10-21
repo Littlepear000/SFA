@@ -1,0 +1,37 @@
+{
+  "report_metadata": {
+    "country": "SURINAME",
+    "report_title": "2018 ARTICLE IV CONSULTATION; PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR SURINAME",
+    "country_report_number": "18/376",
+    "publication_date": "December 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Suriname_2018-12-20.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 49,
+      "end_page": 51,
+      "reason": "The public DSA annex contains a qualifying row-and-column public debt decomposition table on physical page 50 under Figure A2.3, with explicit year columns and rows decomposing the change in gross public sector debt into identified debt-creating flows, primary deficit, automatic debt dynamics, exchange rate depreciation, other flows, and residual.",
+      "matched_phrases": [
+        "Annex II. Debt Sustainability Analysis",
+        "A. Public Sector DSA",
+        "Figure A2.3. Suriname Public DSA – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 50,
+  "recommended_start_page": 49,
+  "recommended_end_page": 51,
+  "confidence": "high",
+  "notes": "The target is the public DSA baseline decomposition table on physical page 50. The DSA annex starts on physical page 44, but the qualifying tabular decomposition is later in Figure A2.3. External debt sustainability material appears on physical pages 53-54, including an external debt sustainability framework table, but it is excluded because a public debt decomposition table exists."
+}

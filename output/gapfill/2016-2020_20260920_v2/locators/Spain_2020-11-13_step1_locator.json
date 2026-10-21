@@ -1,0 +1,50 @@
+{
+  "report_metadata": {
+    "country": "SPAIN",
+    "report_title": "2020 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR SPAIN",
+    "country_report_number": "20/298",
+    "publication_date": "November 2020",
+    "consultation_type": "2020 Article IV Consultation",
+    "pdf_file_name": "Spain_2020-11-13.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 61,
+      "end_page": 63,
+      "reason": "Public debt DSA annex is present, and the qualifying row-and-column public debt decomposition table titled 'Spain Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario' appears on physical page 62 with rows including 'Change in gross public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', 'Interest rate/growth differential', and 'Residual, including asset changes'.",
+      "matched_phrases": [
+        "Annex IV. Debt Sustainability Analysis",
+        "Public Debt Sustainability Analysis",
+        "Spain Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 56,
+      "end_page": 60,
+      "reason": "This range contains the beginning of Annex IV, 'Debt Sustainability Analysis', with public debt sustainability narrative and a MAC DSA risk assessment/heat map, but not the main qualifying decomposition table.",
+      "matched_phrases": [
+        "Annex IV. Debt Sustainability Analysis",
+        "Public Debt Sustainability Analysis",
+        "Heat Map",
+        "Debt Profile Vulnerabilities"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 62,
+  "recommended_start_page": 61,
+  "recommended_end_page": 63,
+  "confidence": "high",
+  "notes": "The target public DSA decomposition table is on delimiter page 62. External debt sustainability analysis begins later on page 65 and is excluded because a public debt decomposition table exists."
+}

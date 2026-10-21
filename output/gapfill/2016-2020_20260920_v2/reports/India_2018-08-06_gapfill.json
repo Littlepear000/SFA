@@ -1,0 +1,307 @@
+{
+  "pdf_file_name": "India_2018-08-06.pdf",
+  "country": "India",
+  "report_date": "2018-08-06",
+  "per_target": {
+    "2016": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual; 2016",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "68.9",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "-0.7"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "-0.3"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "1.9",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "20.8",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "22.6",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "-1.9",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-1.9",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "2.6",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-4.5",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "-0.3",
+          "children": [
+            {
+              "label_verbatim": "Consolidated General Govt - Domestic Financ",
+              "value": "-0.3",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Please specify (2) (e.g., ESM and Euroarea loa",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-0.3",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Accounting identity check for 2016: change_in_debt -0.7 differs from identified_flows plus residual (-0.3 + -0.3 = -0.6) by 0.1, consistent with rounding; printed values were preserved.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(In percent of GDP unless otherwise indicated)",
+        "table_number": "Figure 1",
+        "page_pdf": 61,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        60,
+        61,
+        62
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "INDIA",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 1",
+          "table_title": "India Public Debt Sustainability Analysis (DSA) – Baseline Scenario",
+          "units_verbatim": "(In percent of GDP unless otherwise indicated)",
+          "page_pdf": 61,
+          "page_printed": 55,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2007-2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The year-range column is in the historical/Actual block to the left of the group labeled Projections."
+              },
+              {
+                "position": 2,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2016 single-year column is in the historical/Actual block to the left of the Projections group, which begins at 2018."
+              },
+              {
+                "position": 3,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2017 single-year column is in the historical/Actual block to the left of the Projections group, which begins at 2018."
+              },
+              {
+                "position": 4,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2018 column is under the visible group heading Projections."
+              },
+              {
+                "position": 5,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2019 column is under the visible group heading Projections."
+              },
+              {
+                "position": 6,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is under the visible group heading Projections."
+              },
+              {
+                "position": 7,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is under the visible group heading Projections."
+              },
+              {
+                "position": 8,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is under the visible group heading Projections."
+              },
+              {
+                "position": 9,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2023 column is under the visible group heading Projections."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual; 2016",
+            "status_basis": "The 2016 column is a single-year column in the historical/Actual block, before the Projections group beginning at 2018.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "68.9",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "-0.7"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "-0.3"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "1.9",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "20.8",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "22.6",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "-1.9",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-1.9",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "2.6",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-4.5",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "-0.3",
+                "children": [
+                  {
+                    "label_verbatim": "Consolidated General Govt - Domestic Financ",
+                    "value": "-0.3",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Please specify (2) (e.g., ESM and Euroarea loa",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-0.3",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Accounting identity check for 2016: change_in_debt -0.7 differs from identified_flows plus residual (-0.3 + -0.3 = -0.6) by 0.1, consistent with rounding; printed values were preserved."
+          }
+        ],
+        "extraction_notes": "Figure 1 is figure-numbered but qualifies because it is visibly a row-and-column DSA table with explicit row labels, year columns, and printed cell values. The extraction uses the public debt decomposition block headed Contribution to Changes in Public Debt, with the debt-level row Nominal gross public debt taken from the same visible DSA table. Rows outside the decomposition scope, such as Public gross financing needs and macroeconomic indicators, were ignored. Figure 2 on the following page consists of composition/alternative-scenario charts and underlying-assumption tables rather than the qualifying public-debt decomposition block and was not extracted."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 136.29
+}

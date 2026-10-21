@@ -1,0 +1,37 @@
+{
+  "report_metadata": {
+    "country": "IRAQ",
+    "report_title": "2019 ARTICLE IV CONSULTATION AND PROPOSAL FOR POST-PROGRAM MONITORING—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR IRAQ",
+    "country_report_number": "19/248",
+    "publication_date": "July 2019",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION AND PROPOSAL FOR POST-PROGRAM MONITORING",
+    "pdf_file_name": "Iraq_2019-07-26.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 52,
+      "end_page": 54,
+      "reason": "The qualifying public debt DSA decomposition table is visible on physical PDF page 53 under 'Figure 1. Iraq: Public Debt Sustainability Analysis—Baseline Scenario'. It is laid out as a row-and-column table with year columns and rows including 'Contribution to Changes in Public Debt', 'Change in gross public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'. Pages 52–54 provide surrounding public DSA pages while avoiding the later external debt sustainability framework.",
+      "matched_phrases": [
+        "Annex IV. Public and External Debt Sustainability Analysis",
+        "Public Debt Sustainability Analysis",
+        "Figure 1. Iraq: Public Debt Sustainability Analysis—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 53,
+  "recommended_start_page": 52,
+  "recommended_end_page": 54,
+  "confidence": "high",
+  "notes": "The public DSA annex begins on physical PDF page 49, but the target tabular decomposition is on page 53. The external debt sustainability framework appears later on pages 58–59 and is excluded."
+}

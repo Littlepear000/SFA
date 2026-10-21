@@ -1,0 +1,307 @@
+{
+  "pdf_file_name": "Republic of Armenia_2019-06-05.pdf",
+  "country": "Armenia",
+  "report_date": "2019-06-05",
+  "per_target": {
+    "2017": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual 2017",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "58.9",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "2.1"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "-0.6"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "1.5",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "21.2",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "22.8",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "-2.9",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-3.0",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "0.9",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-3.9",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "0.8",
+          "children": [
+            {
+              "label_verbatim": "Domestic net lend./drawdown of gov. dep.",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "External net lending",
+              "value": "0.8",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "2.8",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Values are copied from the 2017 Actual column. Accounting check: identified flows (-0.6) plus residual (2.8) gives 2.2, while the printed change in gross public sector debt is 2.1; this appears to be a rounding discrepancy and the printed values were preserved.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+        "table_number": "Figure A1.",
+        "page_pdf": 66,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2017
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        65,
+        66,
+        67
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "REPUBLIC OF ARMENIA",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure A1.",
+          "table_title": "Armenia Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+          "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+          "page_pdf": 66,
+          "page_printed": 55,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2008-2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible header places the merged 2008-2016 range in the Actual block, before the Projections group."
+              },
+              {
+                "position": 2,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible header places the 2017 column in the Actual block, to the left of the Projections group beginning with 2019."
+              },
+              {
+                "position": 3,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible header places the 2018 column in the Actual block, immediately before the Projections group beginning with 2019."
+              },
+              {
+                "position": 4,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections heading spans the 2019-2024 columns."
+              },
+              {
+                "position": 5,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections heading spans the 2019-2024 columns."
+              },
+              {
+                "position": 6,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections heading spans the 2019-2024 columns."
+              },
+              {
+                "position": 7,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections heading spans the 2019-2024 columns."
+              },
+              {
+                "position": 8,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections heading spans the 2019-2024 columns."
+              },
+              {
+                "position": 9,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections heading spans the 2019-2024 columns."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2017,
+            "column_found": true,
+            "matched_year_label": "2017",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual 2017",
+            "status_basis": "The 2017 column is visibly under the Actual heading and to the left of the Projections group that begins with 2019.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "58.9",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "2.1"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "-0.6"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "1.5",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "21.2",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "22.8",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "-2.9",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-3.0",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "0.9",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-3.9",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "0.8",
+                "children": [
+                  {
+                    "label_verbatim": "Domestic net lend./drawdown of gov. dep.",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "External net lending",
+                    "value": "0.8",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "2.8",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Values are copied from the 2017 Actual column. Accounting check: identified flows (-0.6) plus residual (2.8) gives 2.2, while the printed change in gross public sector debt is 2.1; this appears to be a rounding discrepancy and the printed values were preserved."
+          }
+        ],
+        "extraction_notes": "Figure A1 is a qualifying row-and-column public DSA table despite being labeled as a figure. The adjacent debt-creating-flows chart in Figure A1 and the charts in Figure A2 were not extracted. Non-decomposition indicator rows such as public gross financing needs, net public debt, macroeconomic indicators, sovereign spreads/ratings, and non-year columns such as cumulative and debt-stabilizing primary balance were excluded. Child rows were assigned according to the visible indentation in the table."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 134.26
+}

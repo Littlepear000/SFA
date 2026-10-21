@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "GUINEA",
+    "report_title": "FIRST REVIEW OF THE ARRANGEMENT UNDER THE THREE-YEAR EXTENDED CREDIT FACILITY, FINANCING ASSURANCES REVIEW, AND REQUEST FOR MODIFICATION AND FOR WAIVERS OF NONOBSERVANCE OF PERFORMANCE CRITERIA—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR GUINEA",
+    "country_report_number": "18/234",
+    "publication_date": "July 2018",
+    "consultation_type": "First Review of the Arrangement Under the Three-Year Extended Credit Facility",
+    "pdf_file_name": "Guinea_2018-07-20.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 128,
+      "end_page": 130,
+      "reason": "The qualifying public debt decomposition table is visible on page 129 as Table 7, 'Guinea: Public Sector Sustainability Framework, Baseline Scenario, 2014–38', with row-and-column structure and rows including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual. Page 130 contains the related public debt sensitivity table; page 128 is included as immediate context.",
+      "matched_phrases": [
+        "Debt Sustainability Analysis Update",
+        "Public Sector Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 129,
+  "recommended_start_page": 128,
+  "recommended_end_page": 130,
+  "confidence": "high",
+  "notes": "The DSA update begins on delimiter page 114. The relevant public debt decomposition table is Table 7 on delimiter page 129. External debt sustainability tables on pages 126–128 are excluded as external debt targets, and graphical figures on pages 123–125 are not valid extraction targets."
+}

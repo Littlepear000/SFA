@@ -1,0 +1,50 @@
+{
+  "report_metadata": {
+    "country": "KINGDOM OF THE NETHERLANDS—CURAÇAO AND SINT MAARTEN",
+    "report_title": "2018 ARTICLE IV CONSULTATION DISCUSSIONS—PRESS RELEASE AND STAFF REPORT",
+    "country_report_number": "19/23",
+    "publication_date": "January 2019",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION DISCUSSIONS",
+    "pdf_file_name": "Kingdom of the Netherlands—Curaçao and Sint Maarten_2019-01-25.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 52,
+      "end_page": 55,
+      "reason": "Pages 52 and 55 contain qualifying public DSA baseline scenario row-and-column decomposition tables for Curaçao and Sint Maarten, respectively, with rows such as Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, including asset changes. The 4-page range captures both public-debt decomposition tables while remaining narrow.",
+      "matched_phrases": [
+        "Figure 1A. Curaçao: Public DSA—Baseline Scenario",
+        "Figure 4A. Sint Maarten: Public DSA—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 49,
+      "end_page": 53,
+      "reason": "Annex VII, Public Debt Sustainability Analysis, begins on page 49 and includes the Curaçao public DSA baseline table on page 52. This range captures the annex introduction and the first qualifying public-debt decomposition table but does not include the Sint Maarten baseline table on page 55.",
+      "matched_phrases": [
+        "Annex VII. Public Debt Sustainability Analysis",
+        "Curaçao: Baseline Scenario",
+        "Figure 1A. Curaçao: Public DSA—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 52,
+  "recommended_start_page": 52,
+  "recommended_end_page": 55,
+  "confidence": "high",
+  "notes": "The public DSA annex is visible in the table of contents on physical page 10 and starts on physical page 49. The qualifying public-debt decomposition tables are on physical pages 52 and 55. Annex VIII External Debt Sustainability Analysis starts on physical page 57 and is excluded."
+}

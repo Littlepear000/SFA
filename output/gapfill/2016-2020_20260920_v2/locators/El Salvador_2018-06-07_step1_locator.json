@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "EL SALVADOR",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR EL SALVADOR",
+    "country_report_number": "18/151",
+    "publication_date": "June 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "El Salvador_2018-06-07.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 42,
+      "end_page": 46,
+      "reason": "Annex I is titled Debt Sustainability Analysis and contains the public debt DSA. The qualifying row-and-column decomposition table appears on page 45 under Figure 1, titled Public Sector Debt Sustainability Analysis Baseline Scenario, with rows for contribution to changes in public debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual, aligned across year columns.",
+      "matched_phrases": [
+        "Annex I. Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 45,
+  "recommended_start_page": 42,
+  "recommended_end_page": 46,
+  "confidence": "high",
+  "notes": "The selected public DSA is the pre-2022 market-access template, with MAC_DSA markers including Public DSA figures, debt profile vulnerabilities, a heat map, and residual including asset changes. An external DSA appears later in the annex on pages 51-53, but it is explicitly excluded because the public debt decomposition table exists."
+}

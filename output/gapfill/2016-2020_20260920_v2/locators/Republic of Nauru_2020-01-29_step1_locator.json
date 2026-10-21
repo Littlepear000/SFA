@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF NAURU",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF NAURU",
+    "country_report_number": "20/31",
+    "publication_date": "January 2020",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Republic of Nauru_2020-01-29.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 40,
+      "end_page": 44,
+      "reason": "Public debt DSA target begins on physical PDF page 40 with the title 'Figure 2. Nauru: Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario'. The surrounding pages contain the public DSA composition, realism, stress tests, heat map, and debt profile vulnerabilities. The DSA annex begins on page 36, but pages 38-39 are external debt DSA material and are excluded from the recommended public DSA range.",
+      "matched_phrases": [
+        "Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Public DSA",
+        "Heat Map",
+        "Debt Profile Vulnerabilities",
+        "The MAC DSA is used"
+      ],
+      "likely_image_based": true
+    }
+  ],
+  "primary_table_page": 40,
+  "recommended_start_page": 40,
+  "recommended_end_page": 44,
+  "confidence": "high",
+  "notes": "The qualifying public DSA baseline object is on page 40 and appears to be the standard pre-2022 MAC DSA baseline table, but its numeric body is not captured in the text extraction, indicating it is likely image-based. A visible external debt sustainability framework table appears on page 38 with 'Identified external debt-creating flows' and is excluded because the target is public debt."
+}

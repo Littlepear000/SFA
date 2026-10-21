@@ -1,0 +1,51 @@
+{
+  "report_metadata": {
+    "country": "FORMER YUGOSLAV REPUBLIC OF MACEDONIA",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR FORMER YUGOSLAV REPUBLIC OF MACEDONIA",
+    "country_report_number": "19/32",
+    "publication_date": "January 2019",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Former Yugoslav Republic of Macedonia_2019-01-29.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 62,
+      "end_page": 64,
+      "reason": "Page 63 contains the qualifying public sector debt DSA baseline table, labeled as a figure but visibly laid out as a row-and-column table with year columns and rows decomposing changes in public debt into identified debt-creating flows, primary deficit, automatic debt dynamics, and residual. The range is centered on the table page and includes adjacent DSA pages.",
+      "matched_phrases": [
+        "Public Sector General Government Debt Sustainability (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 58,
+      "end_page": 59,
+      "reason": "Page 58 contains a qualifying general government debt DSA baseline decomposition table, also labeled as a figure but visibly structured as rows and year/value columns with the standard MAC DSA debt-creating-flow rows.",
+      "matched_phrases": [
+        "General Government Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 63,
+  "recommended_start_page": 62,
+  "recommended_end_page": 64,
+  "confidence": "high",
+  "notes": "Annex III, Debt Sustainability Analysis, begins on page 54. The best public-sector decomposition target is on page 63; a narrower general-government decomposition table is on page 58. The external debt sustainability framework begins on page 67 and is excluded."
+}

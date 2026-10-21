@@ -1,0 +1,376 @@
+{
+  "pdf_file_name": "Guinea_2018-07-20.pdf",
+  "country": "Guinea",
+  "report_date": "2018-07-20",
+  "per_target": {
+    "2016": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual 2016",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Public sector debt 1/",
+          "value": "41.8",
+          "children": [
+            {
+              "label_verbatim": "of which: foreign-currency denominated",
+              "value": "22.5",
+              "children": []
+            }
+          ]
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in public sector debt",
+          "value": "-1.8"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "-3.3"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "-0.7",
+          "children": [
+            {
+              "label_verbatim": "Revenue and grants",
+              "value": "15.6",
+              "children": [
+                {
+                  "label_verbatim": "of which: grants",
+                  "value": "0.9",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "14.9",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics",
+          "value": "-2.7",
+          "children": [
+            {
+              "label_verbatim": "Contribution from interest rate/growth differential",
+              "value": "-5.7",
+              "children": [
+                {
+                  "label_verbatim": "of which: contribution from average real interest rate",
+                  "value": "-1.6",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "of which: contribution from real GDP growth",
+                  "value": "-4.1",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Contribution from real exchange rate depreciation",
+              "value": "3.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "0.0",
+          "children": [
+            {
+              "label_verbatim": "Privatization receipts (negative)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Recognition of implicit or contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Debt relief (HIPC and other)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Other (specify, e.g. bank recapitalization)",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes",
+          "value": "1.5",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Accounting identity holds for 2016: change in public sector debt -1.8 equals identified debt-creating flows -3.3 plus residual 1.5.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+        "table_number": "Table 7",
+        "page_pdf": 129,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        128,
+        129,
+        130
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "GUINEA",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "LIC_DSF",
+          "table_number": "Table 7",
+          "table_title": "Guinea: Public Sector Sustainability Framework, Baseline Scenario, 2014–38",
+          "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+          "page_pdf": 129,
+          "page_printed": 16,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2014",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2014 column is in the historical/actual block to the left of the Estimate and Projections headings."
+              },
+              {
+                "position": 2,
+                "year_label": "2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2015 column is in the historical/actual block to the left of the Estimate and Projections headings."
+              },
+              {
+                "position": 3,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2016 column is in the historical/actual block under the visible Actual heading, before the Estimate column and before the Projections block."
+              },
+              {
+                "position": 4,
+                "year_label": "2017",
+                "group_label": "Estimate",
+                "status": "estimate",
+                "status_basis": "The visible Estimate heading applies to the completed-year column immediately before the projections begin."
+              },
+              {
+                "position": 5,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2018 column appears under the visible Projections heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2019 column appears under the visible Projections heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column appears under the visible Projections heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column appears under the visible Projections heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column appears under the visible Projections heading."
+              },
+              {
+                "position": 10,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2023 column appears under the visible Projections heading."
+              },
+              {
+                "position": 11,
+                "year_label": "2018-23 Average",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "This visible multi-year average column is associated with the Projections block."
+              },
+              {
+                "position": 12,
+                "year_label": "2028",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2028 column appears under the visible Projections heading."
+              },
+              {
+                "position": 13,
+                "year_label": "2038",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2038 column appears under the visible Projections heading."
+              },
+              {
+                "position": 14,
+                "year_label": "2024-38 Average",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "This visible multi-year average column is associated with the Projections block."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual 2016",
+            "status_basis": "The 2016 column is a single-year column in the historical/actual block, before the Estimate column and the Projections block.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Public sector debt 1/",
+                "value": "41.8",
+                "children": [
+                  {
+                    "label_verbatim": "of which: foreign-currency denominated",
+                    "value": "22.5",
+                    "children": []
+                  }
+                ]
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in public sector debt",
+                "value": "-1.8"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "-3.3"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "-0.7",
+                "children": [
+                  {
+                    "label_verbatim": "Revenue and grants",
+                    "value": "15.6",
+                    "children": [
+                      {
+                        "label_verbatim": "of which: grants",
+                        "value": "0.9",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "14.9",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics",
+                "value": "-2.7",
+                "children": [
+                  {
+                    "label_verbatim": "Contribution from interest rate/growth differential",
+                    "value": "-5.7",
+                    "children": [
+                      {
+                        "label_verbatim": "of which: contribution from average real interest rate",
+                        "value": "-1.6",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "of which: contribution from real GDP growth",
+                        "value": "-4.1",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Contribution from real exchange rate depreciation",
+                    "value": "3.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "0.0",
+                "children": [
+                  {
+                    "label_verbatim": "Privatization receipts (negative)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Recognition of implicit or contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Debt relief (HIPC and other)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Other (specify, e.g. bank recapitalization)",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes",
+                "value": "1.5",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Accounting identity holds for 2016: change in public sector debt -1.8 equals identified debt-creating flows -3.3 plus residual 1.5."
+          }
+        ],
+        "extraction_notes": "Selected Table 7 on original physical PDF page 129 because it is the visible tabular public sector debt sustainability framework with decomposition rows from Public sector debt through Residual, including asset changes. Table 6 on page 128 is an external debt sensitivity table and was not used. Table 8 on page 130 is a public debt sensitivity table, not the baseline debt decomposition block, and was not used. Rows after the residual row, including Other Sustainability Indicators and macroeconomic and fiscal assumptions, were outside the decomposition block and excluded."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 119.53
+}

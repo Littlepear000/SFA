@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "SOLOMON ISLANDS",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE SOLOMON ISLANDS",
+    "country_report_number": "18/309",
+    "publication_date": "November 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Solomon Islands_2018-11-08.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 68,
+      "end_page": 68,
+      "reason": "Page 68 contains the qualifying public debt decomposition table: \"Table 2. Solomon Islands: Public Sector Debt Sustainability Framework, Baseline Scenario, 2015–38\". It is visibly a row-and-column table with aligned year columns and rows including Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Other identified debt-creating flows, and Residual.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 68,
+  "recommended_start_page": 68,
+  "recommended_end_page": 68,
+  "confidence": "high",
+  "notes": "The full Debt Sustainability Analysis begins on page 59 and is a LIC DSF, with markers including risk of external debt distress, overall risk of debt distress, Composite Indicator, and Public Sector Debt Sustainability Framework. Page 67 contains the External Debt Sustainability Framework and is excluded. Pages 69–70 and 73 contain DSA figures/charts and are not selected because the qualifying public decomposition table is on page 68."
+}

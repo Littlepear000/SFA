@@ -1,0 +1,49 @@
+{
+  "report_metadata": {
+    "country": "ST. LUCIA",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR ST. LUCIA",
+    "country_report_number": "18/179",
+    "publication_date": "June 2018",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "St. Lucia_2018-06-20.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 50,
+      "end_page": 51,
+      "reason": "Page 50 contains the qualifying public-sector DSA baseline scenario laid out as a row-and-column table, including the decomposition section 'Contribution to Changes in Public Debt' with rows such as 'Change in gross public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'. Page 51 is adjacent context but the primary table is on page 50.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 43,
+      "end_page": 47,
+      "reason": "Annex IV, Debt Sustainability Analysis, begins on page 43 and contains the public debt sustainability narrative and risk assessment before the baseline decomposition table. This range is useful for section context but does not contain the main decomposition table until page 50.",
+      "matched_phrases": [
+        "Annex IV. Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis",
+        "heat map",
+        "fan charts",
+        "debt sustainability"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 50,
+  "recommended_start_page": 50,
+  "recommended_end_page": 51,
+  "confidence": "high",
+  "notes": "The target public debt decomposition table is on physical PDF page 50. The external debt sustainability framework appears later on pages 53-54 and is excluded because a qualifying public DSA decomposition table exists."
+}

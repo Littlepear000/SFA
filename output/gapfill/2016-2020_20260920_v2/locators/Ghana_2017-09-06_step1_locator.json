@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "GHANA",
+    "report_title": "2017 ARTICLE IV CONSULTATION, FOURTH REVIEW UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT, REQUEST FOR WAIVER FOR NONOBSERVANCE OF PERFORMANCE CRITERIA, AND REQUEST FOR EXTENSION AND REPHASING OF THE ARRANGEMENT—PRESS RELEASE; STAFF REPORT; STAFF SUPPLEMENT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR GHANA",
+    "country_report_number": "17/262",
+    "publication_date": "September 2017",
+    "consultation_type": "2017 ARTICLE IV CONSULTATION, FOURTH REVIEW UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT, REQUEST FOR WAIVER FOR NONOBSERVANCE OF PERFORMANCE CRITERIA, AND REQUEST FOR EXTENSION AND REPHASING OF THE ARRANGEMENT",
+    "pdf_file_name": "Ghana_2017-09-06.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 111,
+      "end_page": 111,
+      "reason": "Physical page 111 contains the qualifying public-debt decomposition table titled \"Table 2. Ghana: Public Sector Debt Sustainability Framework, Baseline Scenario, 2014–37\" with row labels and aligned year columns, including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 111,
+  "recommended_start_page": 111,
+  "recommended_end_page": 111,
+  "confidence": "high",
+  "notes": "The DSA begins on physical page 105. The target public debt decomposition table is on physical page 111. The external debt sustainability framework table on page 110 and external debt sensitivity tables on pages 112–113 are excluded. Graphical public debt figures on later pages are not selected because the qualifying row-and-column public debt table exists."
+}

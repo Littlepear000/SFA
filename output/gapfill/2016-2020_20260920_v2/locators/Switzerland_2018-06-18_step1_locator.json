@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "SWITZERLAND",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR SWITZERLAND",
+    "country_report_number": "18/173",
+    "publication_date": "June 2018",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Switzerland_2018-06-18.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 53,
+      "end_page": 56,
+      "reason": "Annex III is titled Public Sector Debt Sustainability Analysis on page 53. The qualifying public debt decomposition table appears on page 54 as Figure 1, Switzerland Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario, with visible row-and-column structure including Contribution to Changes in Public Debt, Change in gross public sector debt, Identified debt-creating flows, Automatic debt dynamics, and Residual, including asset changes. Pages 55-56 contain related public DSA alternative scenarios and stress tests.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 54,
+  "recommended_start_page": 53,
+  "recommended_end_page": 56,
+  "confidence": "high",
+  "notes": "The target is the public sector DSA, not the external sector assessment. Although the decomposition object is numbered as a Figure, it is visibly a row-and-column table with explicit row labels and aligned year/value columns, so it qualifies under the tabular-structure rule."
+}

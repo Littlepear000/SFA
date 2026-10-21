@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "JAMAICA",
+    "report_title": "2018 ARTICLE IV CONSULTATION, THIRD REVIEW UNDER THE STAND-BY ARRANGEMENT AND REQUEST FOR MODIFICATION OF PERFORMANCE CRITERIA — PRESS RELEASE AND STAFF REPORT",
+    "country_report_number": "18/103",
+    "publication_date": "April 2018",
+    "consultation_type": "2018 Article IV Consultation, Third Review Under the Stand-By Arrangement and Request for Modification of Performance Criteria",
+    "pdf_file_name": "Jamaica_2018-04-16.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 55,
+      "end_page": 57,
+      "reason": "The public debt DSA annex begins on page 51, and the qualifying row-and-column public debt decomposition table is visible on page 56. Although numbered as Figure 3, it is formatted as a table and contains the baseline public sector debt sustainability analysis with rows for contribution to changes in public debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual.",
+      "matched_phrases": [
+        "Annex II. Debt Sustainability Analysis",
+        "Public Debt Sustainability Analysis",
+        "Figure 3. Jamaica Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 56,
+  "recommended_start_page": 55,
+  "recommended_end_page": 57,
+  "confidence": "high",
+  "notes": "The target is the public debt DSA baseline decomposition table on page 56. The external debt sustainability framework appears later on page 60 but is excluded because a qualifying public debt decomposition table exists."
+}

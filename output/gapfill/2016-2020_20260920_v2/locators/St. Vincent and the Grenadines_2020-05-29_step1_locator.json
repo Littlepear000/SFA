@@ -1,0 +1,52 @@
+{
+  "report_metadata": {
+    "country": "ST. VINCENT AND THE GRENADINES",
+    "report_title": "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR ST. VINCENT AND THE GRENADINES",
+    "country_report_number": "20/179",
+    "publication_date": "May 2020",
+    "consultation_type": "Request for Disbursement Under the Rapid Credit Facility",
+    "pdf_file_name": "St. Vincent and the Grenadines_2020-05-29.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 41,
+      "end_page": 44,
+      "reason": "The Debt Sustainability Analysis annex begins on page 27 and contains the LIC DSF public debt decomposition table. The qualifying public-debt target is on page 42: 'Table 2. St. Vincent & the Grenadines: Public Sector Debt Sustainability Framework, Baseline Scenario, 2019-2040', with rows including 'Change in public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', 'Other identified debt-creating flows', and 'Residual'. Pages 43-44 contain related sensitivity tables; page 41 contains the preceding external framework table.",
+      "matched_phrases": [
+        "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY—DEBT SUSTAINABILITY ANALYSIS",
+        "risk of external debt distress",
+        "Overall risk of debt distress",
+        "Composite Indicator",
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 37,
+      "end_page": 40,
+      "reason": "Contains DSA figures, including 'Figure 2. Indicators of Public Debt Under Alternative Scenarios' and 'Figure 3. Drivers of Debt Dynamics - Baseline Scenario'. Figure 3 includes debt dynamics labels but is graphical and therefore not the preferred extraction target when the qualifying row-and-column public sector debt sustainability table exists on page 42.",
+      "matched_phrases": [
+        "Indicators of Public Debt Under Alternative Scenarios",
+        "Drivers of Debt Dynamics - Baseline Scenario",
+        "Public debt",
+        "Debt-creating flows",
+        "Primary deficit"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 42,
+  "recommended_start_page": 41,
+  "recommended_end_page": 44,
+  "confidence": "high",
+  "notes": "The target is the public sector debt sustainability framework table on physical PDF page 42, not the external debt table on page 41 and not the graphical figures on pages 37-40. The DSA framework is LIC_DSF, indicated by the risk of external and overall debt distress ratings and Composite Indicator discussion."
+}

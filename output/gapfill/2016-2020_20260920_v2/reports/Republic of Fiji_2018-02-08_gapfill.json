@@ -1,0 +1,307 @@
+{
+  "pdf_file_name": "Republic of Fiji_2018-02-08.pdf",
+  "country": "Fiji",
+  "report_date": "2018-02-08",
+  "per_target": {
+    "2015": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual 2015",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "46.2",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "-2.0"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "-0.4"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "0.9",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "27.9",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "28.8",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "0.8",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-0.3",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "1.5",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-1.7",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "1.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "-2.1",
+          "children": [
+            {
+              "label_verbatim": "Please specify (1) (e.g., privatization rece",
+              "value": "-2.1",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Please specify (2) (e.g., other debt flows)",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-1.6",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Accounting identity holds for 2015: Change in gross public sector debt -2.0 equals Identified debt-creating flows -0.4 plus Residual -1.6. Values are copied from the 2015 Actual column without sign changes.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+        "table_number": null,
+        "page_pdf": 40,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2015
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        39,
+        40,
+        41
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "REPUBLIC OF FIJI",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": null,
+          "table_title": "Fiji: Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+          "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+          "page_pdf": 40,
+          "page_printed": 35,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2006-2014",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The year-range column is under the visible Actual group heading; it is a merged range column and not a single target-year column."
+              },
+              {
+                "position": 2,
+                "year_label": "2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2015 column is under the visible Actual group heading and lies to the left of the Projections group."
+              },
+              {
+                "position": 3,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2016 column is under the visible Actual group heading and lies to the left of the Projections group."
+              },
+              {
+                "position": 4,
+                "year_label": "2017",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2017 column is under the visible Projections group heading."
+              },
+              {
+                "position": 5,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2018 column is under the visible Projections group heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2019 column is under the visible Projections group heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is under the visible Projections group heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is under the visible Projections group heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is under the visible Projections group heading."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2015,
+            "column_found": true,
+            "matched_year_label": "2015",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual 2015",
+            "status_basis": "The 2015 column is a single-year column under the visible Actual group heading, before the Projections columns.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "46.2",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "-2.0"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "-0.4"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "0.9",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "27.9",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "28.8",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "0.8",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-0.3",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "1.5",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-1.7",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "1.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "-2.1",
+                "children": [
+                  {
+                    "label_verbatim": "Please specify (1) (e.g., privatization rece",
+                    "value": "-2.1",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Please specify (2) (e.g., other debt flows)",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-1.6",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Accounting identity holds for 2015: Change in gross public sector debt -2.0 equals Identified debt-creating flows -0.4 plus Residual -1.6. Values are copied from the 2015 Actual column without sign changes."
+          }
+        ],
+        "extraction_notes": "Selected the row-and-column public DSA table on original physical page 40. The decomposition block includes the debt stock row, change in debt, identified flows, primary deficit with its visibly indented revenue and expenditure rows, automatic debt dynamics with nested interest/growth and exchange-rate rows, other identified debt-creating flows with its indented detail rows, and residual. Non-decomposition rows in the same table, including public gross financing needs and macroeconomic indicators, were ignored. The graphical Debt-Creating Flows panel on page 40 and the composition/alternative-scenario charts on page 41 were not extracted because they are visualizations or non-decomposition material, not the qualifying tabular decomposition block. The first 'Please specify' child label is preserved as visibly printed/truncated in the table text."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 99.52
+}

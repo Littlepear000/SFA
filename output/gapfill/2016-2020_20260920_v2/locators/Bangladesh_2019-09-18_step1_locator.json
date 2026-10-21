@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "BANGLADESH",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR BANGLADESH",
+    "country_report_number": "19/299",
+    "publication_date": "September 2019",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Bangladesh_2019-09-18.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 70,
+      "end_page": 70,
+      "reason": "Qualifying public debt decomposition table is visible on page 70: Table 2, Bangladesh: Public Sector Debt Sustainability Framework, Baseline Scenario. It is a row-and-column table with year columns and rows including Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Other identified debt-creating flows, and Residual.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Other identified debt-creating flows",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 70,
+  "recommended_start_page": 70,
+  "recommended_end_page": 70,
+  "confidence": "high",
+  "notes": "The DSA annex begins on page 58 and uses the LIC DSF, with low risk of external debt distress, low overall risk of debt distress, and Composite Index language. The target public-sector decomposition table is on page 70. Adjacent external-debt tables, including Table 1 on page 69 and external sensitivity analysis on page 71, are excluded as targets. Figure 3 on page 67 is a graphical Drivers of Debt Dynamics figure and is not a qualifying tabular extraction target. No continuation page for Table 2 is visible."
+}

@@ -67,8 +67,8 @@ sys.path.insert(0, str(HERE))
 from gapfill_lib_core import index_by_country_year, index_selected_pdfs, reports_from_selected, build_candidate_map_rows  # noqa: E402
 
 # ------------------------------------------------------------------ CONFIG
-CHECK_DIR = BASE / "output" / "2016-2020" / "gap_year_check"  # folder with the step-1 outputs
-STAMP = "20260920_v2"  # must match the STAMP used by 3a_gapfill_1_build_panel_gap_flags.py
+# CHECK_DIR = BASE / "output" / "2016-2020" / "gap_year_check"  # folder with the step-1 outputs
+# STAMP = "20260920_v2"  # must match the STAMP used by 3a_gapfill_1_build_panel_gap_flags.py
 
 # Same folders as 3c's SELECTED_PDF_DIRS (keep the two lists in sync): Step 1's "selected_pdf_pages"
 # folders, one per batch. The first folder that holds a report's selected PDF wins, so list re-run

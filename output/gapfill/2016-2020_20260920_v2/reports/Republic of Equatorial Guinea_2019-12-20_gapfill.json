@@ -1,0 +1,374 @@
+{
+  "pdf_file_name": "Republic of Equatorial Guinea_2019-12-20.pdf",
+  "country": "Equatorial Guinea",
+  "report_date": "2019-12-20",
+  "per_target": {
+    "2016": {
+      "status": "merged_range_only",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": "Actual / 2008-2016",
+      "not_extractable_reason": "year_only_in_merged_range",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "The absolute actual-year rule was applied: the merged 2008-2016 range column was not used as a substitute for a single-year 2016 column.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+        "table_number": "Figure 3",
+        "page_pdf": 59,
+        "confidence": "medium",
+        "extraction_method": "selected_pdf_direct"
+      }
+    },
+    "2017": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2017",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "30.0",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "-5.4"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "-4.5"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "2.3",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "17.2",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "19.5",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "-3.7",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-2.6",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "-4.5",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "1.9",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "-1.1",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "-3.2",
+          "children": [
+            {
+              "label_verbatim": "Net privatization proceeds",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Other liabilities (bank recap. and IPP settlement)",
+              "value": "-3.2",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-0.9",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Values are copied from the Actual 2017 column. The accounting identity change in debt = identified flows + residual holds as printed: -5.4 = -4.5 + -0.9. The subtotal of primary deficit, automatic debt dynamics, and other identified flows differs from identified flows by 0.1 due to rounding.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+        "table_number": "Figure 3",
+        "page_pdf": 59,
+        "confidence": "medium",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016,
+        2017
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        58,
+        59
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "REPUBLIC OF EQUATORIAL GUINEA",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 3",
+          "table_title": "Equatorial Guinea: Public DSA—Baseline Scenario",
+          "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+          "page_pdf": 59,
+          "page_printed": 51,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2008-2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading Actual and is to the left of the Projections group; it is a merged multi-year range column."
+              },
+              {
+                "position": 2,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading Actual, between the merged 2008-2016 range column and the 2018 actual column."
+              },
+              {
+                "position": 3,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading Actual and immediately precedes the Projections group."
+              },
+              {
+                "position": 4,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              },
+              {
+                "position": 5,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              },
+              {
+                "position": 6,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              },
+              {
+                "position": 7,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              },
+              {
+                "position": 8,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              },
+              {
+                "position": 9,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              },
+              {
+                "position": 10,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              },
+              {
+                "position": 11,
+                "year_label": "2026",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              },
+              {
+                "position": 12,
+                "year_label": "2027",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              },
+              {
+                "position": 13,
+                "year_label": "2028",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              },
+              {
+                "position": 14,
+                "year_label": "2029",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading Projections."
+              }
+            ]
+          },
+          "confidence": "medium"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": "Actual / 2008-2016",
+            "status_basis": "No single-year 2016 column is visible. The target year is included only within the merged multi-year range column labeled 2008-2016 under the Actual heading.",
+            "extractable": false,
+            "not_extractable_reason": "year_only_in_merged_range",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "The absolute actual-year rule was applied: the merged 2008-2016 range column was not used as a substitute for a single-year 2016 column."
+          },
+          {
+            "target_year": 2017,
+            "column_found": true,
+            "matched_year_label": "2017",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2017",
+            "status_basis": "The 2017 column is a single-year column under the visible Actual group heading, before the Projections group begins.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "30.0",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "-5.4"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "-4.5"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "2.3",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "17.2",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "19.5",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "-3.7",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-2.6",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "-4.5",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "1.9",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "-1.1",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "-3.2",
+                "children": [
+                  {
+                    "label_verbatim": "Net privatization proceeds",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Other liabilities (bank recap. and IPP settlement)",
+                    "value": "-3.2",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-0.9",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Values are copied from the Actual 2017 column. The accounting identity change in debt = identified flows + residual holds as printed: -5.4 = -4.5 + -0.9. The subtotal of primary deficit, automatic debt dynamics, and other identified flows differs from identified flows by 0.1 due to rounding."
+          }
+        ],
+        "extraction_notes": "Figure 2 on original physical page 58 contains charts/visualizations and was rejected under the mandatory tabular-structure gate. Figure 3 on original physical page 59 contains a visible row-and-column public DSA baseline table with explicit row labels, year columns, and printed cell values; the tabular portion was used and the lower debt-creating-flows chart was not extracted. Rows outside the decomposition block, including public gross financing needs and macroeconomic indicators, were ignored. Confidence is medium because the compressed rendering makes the final child label under other identified debt-creating flows small; it is read as \"Other liabilities (bank recap. and IPP settlement)\"."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 175.47
+}

@@ -35,10 +35,10 @@ except NameError:  # run from an IPython / PyCharm console: look for the code fo
                 BASE_DIR / "code")
 
 BATCH = "2016-2020"
-STAMP = "20260920_v2"  # version tag added to every file name written by 3a, 3b and 3c
+STAMP = "202601020_test"  # version tag added to every file name written by 3a, 3b and 3c
 
 # used by 3a: the ONE compiled CSV to analyse
-INPUT_CSV = BASE_DIR / "output" / BATCH / "compiled_csv" / "dsa_decomposition_labels_2016-2020_sa.csv"
+INPUT_CSV = BASE_DIR / "output" / BATCH / "round1_check_20261002" / "round1_check_matched_rows_20261002.csv"
 
 # where 3a writes the gap-year files, and where 3b and 3c read them
 CHECK_DIR = BASE_DIR / "output" / BATCH / "gap_year_check"

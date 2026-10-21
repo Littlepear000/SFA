@@ -1,0 +1,288 @@
+{
+  "pdf_file_name": "Paraguay_2020-04-22.pdf",
+  "country": "Paraguay",
+  "report_date": "2020-04-22",
+  "per_target": {
+    "2018": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2018",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "22.2",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "2.3"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "3.3"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "0.6",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "18.8",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "19.4",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics",
+          "value": "1.0",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential",
+              "value": "0.0",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "0.7",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-0.7",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation",
+              "value": "1.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "1.7",
+          "children": [
+            {
+              "label_verbatim": "NFPS asset accumulation",
+              "value": "1.7",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual",
+          "value": "-0.9",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Accounting identity check for 2018: 2.3 equals 3.3 plus -0.9 after rounding discrepancy of 0.1; printed values are preserved exactly.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+        "table_number": null,
+        "page_pdf": 23,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2018
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        22,
+        23,
+        24,
+        25
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Paraguay",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": null,
+          "table_title": "Paraguay: Public Sector Debt Sustainability Analysis - Baseline Scenario",
+          "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+          "page_pdf": 23,
+          "page_printed": 19,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2009-2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The year-range column is visibly under the group heading 'Actual' and to the left of the 'Projections' group."
+              },
+              {
+                "position": 2,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2018 column is visibly under the group heading 'Actual' and to the left of the 'Projections' group."
+              },
+              {
+                "position": 3,
+                "year_label": "2019",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2019 column is visibly under the group heading 'Actual' and to the left of the 'Projections' group."
+              },
+              {
+                "position": 4,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is visibly under the group heading 'Projections'."
+              },
+              {
+                "position": 5,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is visibly under the group heading 'Projections'."
+              },
+              {
+                "position": 6,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is visibly under the group heading 'Projections'."
+              },
+              {
+                "position": 7,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2023 column is visibly under the group heading 'Projections'."
+              },
+              {
+                "position": 8,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2024 column is visibly under the group heading 'Projections'."
+              },
+              {
+                "position": 9,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2025 column is visibly under the group heading 'Projections'."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2018,
+            "column_found": true,
+            "matched_year_label": "2018",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2018",
+            "status_basis": "The 2018 column is visibly grouped under the 'Actual' heading, before the 'Projections' columns beginning with 2020.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "22.2",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "2.3"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "3.3"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "0.6",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "18.8",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "19.4",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics",
+                "value": "1.0",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential",
+                    "value": "0.0",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "0.7",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-0.7",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation",
+                    "value": "1.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "1.7",
+                "children": [
+                  {
+                    "label_verbatim": "NFPS asset accumulation",
+                    "value": "1.7",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual",
+                "value": "-0.9",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Accounting identity check for 2018: 2.3 equals 3.3 plus -0.9 after rounding discrepancy of 0.1; printed values are preserved exactly."
+          }
+        ],
+        "extraction_notes": "The qualifying tabular public DSA decomposition table appears on original physical PDF page 23, printed page 19. The decomposition block was extracted from the row-and-column table titled 'Paraguay: Public Sector Debt Sustainability Analysis - Baseline Scenario'. Rows outside the decomposition scope, including public gross financing needs and macroeconomic indicators, were ignored. A figure-numbered public DSA object on original physical PDF page 24 also contains a tabular repetition plus a debt-creating-flows chart; the row-and-column baseline table on page 23 was used, and chart elements were not extracted."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 63.09
+}

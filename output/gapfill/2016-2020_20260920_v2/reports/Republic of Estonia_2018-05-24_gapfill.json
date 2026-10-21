@@ -1,0 +1,303 @@
+{
+  "pdf_file_name": "Republic of Estonia_2018-05-24.pdf",
+  "country": "Estonia",
+  "report_date": "2018-05-24",
+  "per_target": {
+    "2016": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2016",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "9.6",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "-0.7"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "0.1"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "0.4",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "40.2",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "40.6",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "-0.3",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-0.3",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "-0.1",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-0.2",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "0.0",
+          "children": [
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Please specify (2) (e.g., ESM and Euroarea",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-0.8",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Accounting identity holds for 2016: change in gross public sector debt -0.7 equals identified debt-creating flows 0.1 plus residual -0.8. The child row label beginning 'Please specify (2) (e.g., ESM and Euroarea' is copied as visibly legible in the crop.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+        "table_number": "Figure 6.",
+        "page_pdf": 33,
+        "confidence": "high",
+        "extraction_method": "pymupdf_pillow_table_crop_fallback"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "pymupdf_pillow_table_crop_fallback",
+      "selected_original_pages": [
+        33
+      ],
+      "table_crop_box_points": [
+        12.0,
+        24.29,
+        600.0,
+        587.59
+      ],
+      "ladder_notes": [
+        "direct: not usable (Single page 33 is still 974,704 bytes.)",
+        "image_compressed: not usable ([WinError 5] Access is denied: 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\.Republic of Estonia_2018-05-24_pages_33_34_image_compressed.8a489abe73574f01a6af1305d43c06f2.tmp.pdf' -> 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\Republic of Estonia_2018-05-24_pages_33_34_image_compressed.pdf')"
+      ],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "REPUBLIC OF ESTONIA",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 6.",
+          "table_title": "Estonia: Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+          "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+          "page_pdf": 33,
+          "page_printed": null,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2007-2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading 'Actual'; it is a merged multi-year range column."
+              },
+              {
+                "position": 2,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading 'Actual', before the separate 'Projections' group begins."
+              },
+              {
+                "position": 3,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading 'Actual', before the separate 'Projections' group begins."
+              },
+              {
+                "position": 4,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 5,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 6,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 7,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 8,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections'."
+              },
+              {
+                "position": 9,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading 'Projections'."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2016",
+            "status_basis": "The 2016 column is a single-year column under the visible 'Actual' group heading; the 'Projections' group begins at 2018.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "9.6",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "-0.7"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "0.1"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "0.4",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "40.2",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "40.6",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "-0.3",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-0.3",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "-0.1",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-0.2",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "0.0",
+                "children": [
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Please specify (2) (e.g., ESM and Euroarea",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-0.8",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Accounting identity holds for 2016: change in gross public sector debt -0.7 equals identified debt-creating flows 0.1 plus residual -0.8. The child row label beginning 'Please specify (2) (e.g., ESM and Euroarea' is copied as visibly legible in the crop."
+          }
+        ],
+        "extraction_notes": "The qualifying object is figure-numbered but contains a visible row-and-column public debt DSA table with explicit row labels, year columns, and printed numeric cells. The decomposition block was extracted from the debt-level row 'Nominal gross public debt' and the 'Contribution to Changes in Public Debt' section through 'Residual, including asset changes 8/'. Rows outside the decomposition block such as public gross financing needs and macroeconomic/market indicators were ignored. The lower 'Debt-Creating Flows' graphical chart panel and legend were not extracted because they are a visualization, not qualifying tabular rows."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 64.24
+}

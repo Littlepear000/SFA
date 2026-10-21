@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF FIJI",
+    "report_title": "2017 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF FIJI",
+    "country_report_number": "18/34",
+    "publication_date": "February 2018",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Republic of Fiji_2018-02-08.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 39,
+      "end_page": 41,
+      "reason": "Annex II begins with 'Public Sector Debt Sustainability Analysis' on physical page 39. The qualifying row-and-column public debt decomposition table is on physical page 40, titled 'Fiji: Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario' and includes 'Contribution to Changes in Public Debt', 'Change in gross public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'. Page 41 contains related public DSA composition and alternative scenarios.",
+      "matched_phrases": [
+        "Annex II. Public Sector Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 40,
+  "recommended_start_page": 39,
+  "recommended_end_page": 41,
+  "confidence": "high",
+  "notes": "The public DSA table is present and should be selected over the external debt sustainability framework, which appears later on pages 44-45 and is explicitly external."
+}

@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "BOLIVIA",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT",
+    "country_report_number": "20/182",
+    "publication_date": "May 2020",
+    "consultation_type": "Request for Purchase Under the Rapid Financing Instrument",
+    "pdf_file_name": "Bolivia_2020-05-29.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 24,
+      "end_page": 25,
+      "reason": "Annex I is titled Public Debt Sustainability Assessment (DSA), and page 25 contains a qualifying row-and-column public-sector DSA baseline table with explicit year columns and a debt decomposition section titled Contribution to Changes in Public Debt, including rows such as Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Public Debt Sustainability Assessment (DSA)",
+        "Bolivia Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes",
+        "Heat Map"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 25,
+  "recommended_start_page": 24,
+  "recommended_end_page": 25,
+  "confidence": "high",
+  "notes": "The public DSA annex begins on physical PDF page 24 and the qualifying public debt decomposition table is visible on physical PDF page 25. No external-debt DSA target was selected."
+}

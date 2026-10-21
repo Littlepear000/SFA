@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "THE KINGDOM OF ESWATINI",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE KINGDOM OF ESWATINI",
+    "country_report_number": "20/229",
+    "publication_date": "July 2020",
+    "consultation_type": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT",
+    "pdf_file_name": "Kingdom of Eswatini_2020-07-30.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 32,
+      "end_page": 34,
+      "reason": "The public DSA annex is found under Annex I. Debt Sustainability Analysis. The qualifying public-debt decomposition table is on page 33 in Figure A3, titled Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario, with a visible row-and-column section headed Contribution to Changes in Public Debt and rows such as Primary deficit, Automatic debt dynamics, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Annex I. Debt Sustainability Analysis",
+        "Public DSA Risk Assessment",
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 33,
+  "recommended_start_page": 32,
+  "recommended_end_page": 34,
+  "confidence": "high",
+  "notes": "The target is the public MAC_DSA baseline scenario table on delimiter page 33. The object is numbered as a figure but is visibly formatted as a row-and-column DSA table with printed values, so it qualifies. The external debt sustainability framework appears on pages 36-37 but is excluded because a public-debt decomposition table exists. Graphical public-debt charts outside the target table were not selected."
+}

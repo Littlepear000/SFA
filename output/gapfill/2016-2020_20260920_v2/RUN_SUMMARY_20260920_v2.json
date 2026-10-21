@@ -1,0 +1,13 @@
+{
+  "gap_years": 120,
+  "final_status_counts": {
+    "unresolved_no_candidate_reports": 120
+  },
+  "runtime_seconds": 3.0,
+  "outputs": {
+    "gapfill_attempts": "C:\\Users\\xli7\\OneDrive - International Monetary Fund (PRD)\\Shelley_My Projects\\SFA\\output\\gapfill\\2016-2020_20260920_v2\\gapfill_attempts_20260920_v2.csv",
+    "gapfill_resolution": "C:\\Users\\xli7\\OneDrive - International Monetary Fund (PRD)\\Shelley_My Projects\\SFA\\output\\gapfill\\2016-2020_20260920_v2\\gapfill_resolution_20260920_v2.csv",
+    "gapfill_values_long": "C:\\Users\\xli7\\OneDrive - International Monetary Fund (PRD)\\Shelley_My Projects\\SFA\\output\\gapfill\\2016-2020_20260920_v2\\gapfill_values_long_20260920_v2.csv",
+    "gapfill_values_wide": "C:\\Users\\xli7\\OneDrive - International Monetary Fund (PRD)\\Shelley_My Projects\\SFA\\output\\gapfill\\2016-2020_20260920_v2\\gapfill_values_wide_20260920_v2.csv"
+  }
+}

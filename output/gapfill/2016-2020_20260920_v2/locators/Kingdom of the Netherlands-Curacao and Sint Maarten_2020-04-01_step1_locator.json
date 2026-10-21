@@ -1,0 +1,64 @@
+{
+  "report_metadata": {
+    "country": "KINGDOM OF THE NETHERLANDS—CURACAO AND SINT MAARTEN",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE KINGDOM OF NETHERLAND-CURACAO AND SINT MAARTEN",
+    "country_report_number": "20/94",
+    "publication_date": "April 2020",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Kingdom of the Netherlands-Curacao and Sint Maarten_2020-04-01.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 70,
+      "end_page": 74,
+      "reason": "This narrow range captures the qualifying public DSA baseline decomposition tables for both Curaçao and Sint Maarten. Page 70 contains the Curaçao public sector DSA baseline table with a visible row-and-column 'Contribution to Changes in Public Debt' decomposition. Page 74 contains the Sint Maarten public sector DSA baseline table with the same decomposition structure.",
+      "matched_phrases": [
+        "Curaçao: Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Sint Maarten Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 67,
+      "end_page": 70,
+      "reason": "Annex V, Debt Sustainability Analysis, begins on page 67 with the public debt discussion and leads to the Curaçao public sector DSA baseline decomposition table on page 70.",
+      "matched_phrases": [
+        "Annex V. Debt Sustainability Analysis",
+        "A. Public Debt",
+        "Public Debt",
+        "Curaçao: Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 3,
+      "start_page": 74,
+      "end_page": 75,
+      "reason": "Page 74 contains the Sint Maarten public sector DSA baseline decomposition table; page 75 is the following public DSA composition and alternative scenarios page.",
+      "matched_phrases": [
+        "Sint Maarten Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 70,
+  "recommended_start_page": 70,
+  "recommended_end_page": 74,
+  "confidence": "high",
+  "notes": "Public DSA tables are found in Annex V. The recommended 5-page range includes the Curaçao baseline decomposition table on page 70 and the Sint Maarten baseline decomposition table on page 74. External debt sustainability material appears later on pages 78-79 and is excluded."
+}

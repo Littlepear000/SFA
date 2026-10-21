@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "NEW ZEALAND",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR NEW ZEALAND",
+    "country_report_number": "18/202",
+    "publication_date": "July 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "New Zealand_2018-07-03.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 48,
+      "end_page": 49,
+      "reason": "Page 48 contains a qualifying public DSA row-and-column table within Figure 2 titled 'New Zealand: Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario'. The table includes the decomposition block 'Contribution to Changes in Public Debt' with year columns and rows such as 'Change in gross public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'. Page 49 contains related Public DSA alternative scenarios.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 48,
+  "recommended_start_page": 48,
+  "recommended_end_page": 49,
+  "confidence": "high",
+  "notes": "Annex V begins on page 46 as 'External and Fiscal DSAs'. Pages 46-47 contain external debt sustainability material, including an external debt framework table, which is excluded because a public DSA decomposition table exists on page 48. The selected target is the public DSA table on page 48; although figure-numbered, it is visibly laid out as a row-and-column table with explicit row labels, year/value columns, and printed cell values."
+}

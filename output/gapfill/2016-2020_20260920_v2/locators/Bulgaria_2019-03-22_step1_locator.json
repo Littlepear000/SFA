@@ -1,0 +1,48 @@
+{
+  "report_metadata": {
+    "country": "BULGARIA",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; STAFF SUPPLEMENT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR BULGARIA",
+    "country_report_number": "19/83",
+    "publication_date": "March 2019",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Bulgaria_2019-03-22.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 48,
+      "end_page": 50,
+      "reason": "Qualifying public debt DSA baseline table is visible on page 48 with row-and-column structure and explicit decomposition rows under 'Contribution to Changes in Public Debt', including change in gross public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, interest rate/growth differential, exchange rate depreciation, other identified debt-creating flows, and residual. Pages 49-50 contain related Public DSA composition, alternative scenarios, and stress tests.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 44,
+      "end_page": 48,
+      "reason": "Annex IV Debt Sustainability Analysis begins on page 44, with a Public DSA narrative on pages 44-45 and the qualifying public DSA baseline table on page 48. Pages 46-47 are external DSA material and are not the target, but this range captures the annex lead-in if needed.",
+      "matched_phrases": [
+        "Annex IV. Debt Sustainability Analysis",
+        "Public DSA",
+        "General government gross debt is projected to decline over the medium term",
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 48,
+  "recommended_start_page": 48,
+  "recommended_end_page": 50,
+  "confidence": "high",
+  "notes": "The report also contains an External DSA framework on pages 44-47, including an external debt decomposition table, but the selected target is the public debt DSA table on page 48. The public DSA table is visibly a row-and-column table despite extraction spacing issues and is not merely a graphical figure."
+}

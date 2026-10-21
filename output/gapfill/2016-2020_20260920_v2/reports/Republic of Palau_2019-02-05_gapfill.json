@@ -1,0 +1,320 @@
+{
+  "pdf_file_name": "Republic of Palau_2019-02-05.pdf",
+  "country": "Palau",
+  "report_date": "2019-02-05",
+  "per_target": {
+    "2016": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual 2016",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "32.0",
+          "children": [
+            {
+              "label_verbatim": "Of which: guarantees",
+              "value": "10.6",
+              "children": []
+            }
+          ]
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "4.8"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "-2.6"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "-3.7",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "41.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "37.3",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "-0.7",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-0.7",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "-0.5",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-0.1",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "1.7",
+          "children": [
+            {
+              "label_verbatim": "Change in government domestic currency an",
+              "value": "1.7",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Other debt flows (e.g., ESM and Euroarea loa",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "7.4",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "For 2016, the main identity holds: change in gross public sector debt 4.8 equals identified debt-creating flows -2.6 plus residual 7.4. The identified-flow subtotal differs from the rounded sum of primary deficit, automatic debt dynamics, and other identified debt-creating flows by 0.1.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+        "table_number": "Figure 1.",
+        "page_pdf": 47,
+        "confidence": "medium",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        45,
+        46,
+        47,
+        48
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "REPUBLIC OF PALAU",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 1.",
+          "table_title": "Palau: Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+          "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+          "page_pdf": 47,
+          "page_printed": 42,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2007-2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The merged year-range column is under the visible group heading \"Actual\" and appears before the \"Projections\" group."
+              },
+              {
+                "position": 2,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The single-year column 2016 is under the visible group heading \"Actual\" and to the left of the \"Projections\" group."
+              },
+              {
+                "position": 3,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The single-year column 2017 is under the visible group heading \"Actual\" and immediately before the \"Projections\" group."
+              },
+              {
+                "position": 4,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The single-year column 2018 is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 5,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The single-year column 2019 is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 6,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The single-year column 2020 is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 7,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The single-year column 2021 is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 8,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The single-year column 2022 is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 9,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The single-year column 2023 is under the visible group heading \"Projections\"."
+              }
+            ]
+          },
+          "confidence": "medium"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual 2016",
+            "status_basis": "The 2016 column is a single-year column under the visible \"Actual\" group heading and precedes the \"Projections\" columns.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "32.0",
+                "children": [
+                  {
+                    "label_verbatim": "Of which: guarantees",
+                    "value": "10.6",
+                    "children": []
+                  }
+                ]
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "4.8"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "-2.6"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "-3.7",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "41.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "37.3",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "-0.7",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-0.7",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "-0.5",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-0.1",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "1.7",
+                "children": [
+                  {
+                    "label_verbatim": "Change in government domestic currency an",
+                    "value": "1.7",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Other debt flows (e.g., ESM and Euroarea loa",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "7.4",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "For 2016, the main identity holds: change in gross public sector debt 4.8 equals identified debt-creating flows -2.6 plus residual 7.4. The identified-flow subtotal differs from the rounded sum of primary deficit, automatic debt dynamics, and other identified debt-creating flows by 0.1."
+          }
+        ],
+        "extraction_notes": "Figure 1 is figure-numbered but visibly contains a row-and-column public debt decomposition table and was selected. Rows outside the decomposition block, including public gross financing needs and macroeconomic indicator rows, were ignored. The graphical debt-creating-flows panel within Figure 1 and the Figure 2 composition/scenario charts were not used because they are visualizations or scenario-assumption material rather than the qualifying baseline decomposition table. Two long child-row labels under other identified debt-creating flows appear clipped in the visible table; they were copied only as visible, without completing them from template knowledge."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 138.07
+}

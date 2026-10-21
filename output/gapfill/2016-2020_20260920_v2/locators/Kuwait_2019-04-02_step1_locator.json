@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "KUWAIT",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR KUWAIT",
+    "country_report_number": "19/95",
+    "publication_date": "April 2019",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Kuwait_2019-04-02.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 45,
+      "end_page": 46,
+      "reason": "Annex III is titled Public Sector Debt Sustainability Analysis. Page 45 contains a qualifying row-and-column public DSA table titled Kuwait: Public Debt Sustainability Analysis (DSA)-Baseline Scenario, including the section Contribution to Changes in Public Debt with rows such as Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Annex III. Public Sector Debt Sustainability Analysis",
+        "Public Debt Sustainability Analysis (DSA)-Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 45,
+  "recommended_start_page": 45,
+  "recommended_end_page": 46,
+  "confidence": "high",
+  "notes": "The public debt decomposition table is visible on physical PDF page 45. Page 46 continues Annex III with public debt figures and underlying assumptions, so pages 45-46 are the narrow recommended range. Annex V is an External Sector Assessment and is not the target."
+}

@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "KINGDOM OF THE NETHERLANDS—NETHERLANDS",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE KINGDOM OF THE NETHERLANDS—NETHERLANDS",
+    "country_report_number": "18/130",
+    "publication_date": "May 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Kingdom of the Netherlands—Netherlands_2018-05-28.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 43,
+      "end_page": 47,
+      "reason": "Annex V is titled Public Debt Sustainability Analysis and begins on page 43. The qualifying public-debt decomposition table is on page 45 in Figure A1, which is visibly a row-and-column Public Sector Debt Sustainability Analysis baseline table with aligned year columns and rows for contribution to changes in public debt, identified debt-creating flows, automatic debt dynamics, primary deficit, and residual.",
+      "matched_phrases": [
+        "Annex V. Public Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 45,
+  "recommended_start_page": 43,
+  "recommended_end_page": 47,
+  "confidence": "high",
+  "notes": "The target is the public DSA annex, not an external debt sustainability analysis. Although the main qualifying object is numbered as a figure, Figure A1 on page 45 is formatted as a row-and-column table and contains the required public debt decomposition. Later pages include graphical DSA stress tests and risk assessment material, but the primary extraction target is page 45."
+}

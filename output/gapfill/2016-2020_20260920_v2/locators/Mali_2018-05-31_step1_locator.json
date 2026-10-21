@@ -1,0 +1,32 @@
+{
+  "report_metadata": {
+    "country": "MALI",
+    "report_title": "2018 ARTICLE IV CONSULATION AND EIGHTH AND NINTH REVIEWS UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR MALI",
+    "country_report_number": "18/141",
+    "publication_date": "May 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULATION AND EIGHTH AND NINTH REVIEWS UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT",
+    "pdf_file_name": "Mali_2018-05-31.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 112,
+      "end_page": 113,
+      "reason": "Page 112 contains the target public debt table title, \"Table 2a. Mali: Public Sector Debt Sustainability Framework, Baseline Scenario, 2018–38\". Page 113 contains the following public debt sensitivity table. The DSA section begins on page 99, but the qualifying public debt framework table is on page 112.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "Risk of external debt distress: Moderate",
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Sensitivity Analysis for Key Indicators of Public Debt"
+      ],
+      "likely_image_based": true
+    }
+  ],
+  "primary_table_page": 112,
+  "recommended_start_page": 112,
+  "recommended_end_page": 113,
+  "confidence": "high",
+  "notes": "The DSA update starts on physical page 99. External debt tables appear on pages 109-111 and are excluded. Figure 2 on page 108 is graphical and not a valid extraction target. The public debt table title is visible on page 112, but the extracted text contains almost no table-body numeric values, suggesting the table is image-based or poorly extracted."
+}

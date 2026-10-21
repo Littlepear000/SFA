@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF ESTONIA",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; AND STAFF REPORT",
+    "country_report_number": "18/125",
+    "publication_date": "May 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Republic of Estonia_2018-05-24.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 33,
+      "end_page": 34,
+      "reason": "Page 33 contains the qualifying public debt DSA baseline table, visibly laid out with row labels and aligned year/value columns, including the debt decomposition section 'Contribution to Changes in Public Debt'. Page 34 contains the related public DSA composition and alternative scenarios figure.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes",
+        "Public DSA—Composition of Public Debt and Alternative Scenarios"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 33,
+  "recommended_start_page": 33,
+  "recommended_end_page": 34,
+  "confidence": "high",
+  "notes": "The target is a public-sector DSA decomposition table embedded in a figure-numbered object, which is eligible because the visible structure is a row-and-column table with explicit labels and numeric cells. No external DSA was selected."
+}

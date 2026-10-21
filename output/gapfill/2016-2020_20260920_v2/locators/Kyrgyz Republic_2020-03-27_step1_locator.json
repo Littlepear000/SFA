@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "KYRGYZ REPUBLIC",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT AND DISBURSEMENT UNDER THE RAPID CREDIT FACILITY—PRESS RELEASE; STAFF REPORT; INFORMATIONAL ANNEX; AND DEBT SUSTAINABILITY ANALYSIS",
+    "country_report_number": "20/90",
+    "publication_date": "March 2020",
+    "consultation_type": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT AND DISBURSEMENT UNDER THE RAPID CREDIT FACILITY",
+    "pdf_file_name": "Kyrgyz Republic_2020-03-27.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 52,
+      "end_page": 52,
+      "reason": "Qualifying public debt DSA decomposition table is visible on page 52: Table 2, Public Sector Debt Sustainability Framework, Baseline Scenario. It includes row-and-column values for public sector debt, change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, other identified debt-creating flows, and residual.",
+      "matched_phrases": [
+        "Table 2. Kyrgyz Republic: Public Sector Debt Sustainability Framework, Baseline Scenario, 2017-2040",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 52,
+  "recommended_start_page": 52,
+  "recommended_end_page": 52,
+  "confidence": "high",
+  "notes": "The DSA begins on physical PDF page 44 and is a low-income country Debt Sustainability Framework, with markers including risk of external debt distress, overall risk of debt distress, Composite Indicator, and Public Sector Debt Sustainability Framework. Page 51 contains the external debt framework and is excluded. Page 52 contains the target public sector debt sustainability framework table. Graphical figures on pages 53, 54, 57, 58, and 59 are not selected."
+}

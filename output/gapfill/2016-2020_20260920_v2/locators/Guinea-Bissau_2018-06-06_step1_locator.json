@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "GUINEA-BISSAU",
+    "report_title": "FIFTH REVIEW UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT, REQUESTS FOR EXTENSION AND AUGMENTATION OF ACCESS, AND FINANCING ASSURANCES REVIEW—PRESS RELEASE AND STAFF REPORT",
+    "country_report_number": "18/147",
+    "publication_date": "June 2018",
+    "consultation_type": "Fifth Review Under the Extended Credit Facility Arrangement, Requests for Extension and Augmentation of Access, and Financing Assurances Review",
+    "pdf_file_name": "Guinea-Bissau_2018-06-06.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 82,
+      "end_page": 84,
+      "reason": "The qualifying public debt decomposition table is visible on page 83 as Table 3, 'Public Sector Sustainability Framework, Baseline Scenario, 2015–38'. It is a row-and-column table with year/value columns and rows including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual. Pages 80–82 contain external debt tables, which are excluded except as immediate context; page 84 contains related public debt sensitivity analysis.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "Public Sector Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 83,
+  "recommended_start_page": 82,
+  "recommended_end_page": 84,
+  "confidence": "high",
+  "notes": "The DSA annex begins on physical PDF page 73. External Debt Sustainability Framework tables appear on pages 80–82 and are not selected. The target public debt decomposition table is on physical PDF page 83 and qualifies as a tabular public sector debt decomposition under the LIC DSF framework."
+}

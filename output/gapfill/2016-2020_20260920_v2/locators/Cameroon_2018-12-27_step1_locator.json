@@ -1,0 +1,48 @@
+{
+  "report_metadata": {
+    "country": "CAMEROON",
+    "report_title": "THIRD REVIEW UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT AND REQUESTS FOR A WAIVER OF NONOBSERVANCE OF A PERFORMANCE CRITERION AND MODIFICATION OF PERFORMANCE CRITERIA—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR CAMEROON",
+    "country_report_number": "18/378",
+    "publication_date": "December 2018",
+    "consultation_type": "THIRD REVIEW UNDER THE EXTENDED CREDIT FACILITY ARRANGEMENT",
+    "pdf_file_name": "Cameroon_2018-12-27.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 103,
+      "end_page": 106,
+      "reason": "The qualifying public debt decomposition table appears on page 104 as Table 2, titled \"Cameroon: Public Sector Debt Sustainability Framework, Baseline Scenario, 2015-2038,\" with rows including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, other identified debt-creating flows, and residual. The surrounding pages contain the adjacent external table and public debt figures.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 90,
+      "end_page": 94,
+      "reason": "This is the start of the Debt Sustainability Analysis section, including the DSA cover and public debt coverage discussion. It is useful context but does not contain the main public debt decomposition table.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "Joint Bank-Fund Debt Sustainability Analysis",
+        "risk of external debt distress",
+        "Overall risk of debt distress",
+        "Composite Index"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 104,
+  "recommended_start_page": 103,
+  "recommended_end_page": 106,
+  "confidence": "high",
+  "notes": "The report contains both an external DSA table on page 103 and the target public sector debt DSA table on page 104. The recommended range centers on the qualifying public table and includes nearby pages for context. Graphical DSA figures on pages 105-106 and 109 are not the primary extraction target."
+}

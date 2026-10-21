@@ -1,0 +1,37 @@
+{
+  "report_metadata": {
+    "country": "DJIBOUTI",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR DJIBOUTI",
+    "country_report_number": "19/314",
+    "publication_date": "October 2019",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Djibouti_2019-10-23.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 69,
+      "end_page": 71,
+      "reason": "The DSA begins on physical page 58 and uses the LIC DSF template. The qualifying public debt decomposition table is on physical page 70: 'Table 4. Djibouti: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016–2039'. It is visibly a row-and-column table with year columns and rows including 'Change in public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual'. Page 69 contains the external debt framework table and should not be the extraction target; page 71 contains graphical public-debt indicators and should not be treated as the table.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "Risk of external debt distress",
+        "Overall risk of debt distress",
+        "Table 4. Djibouti: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016–2039",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 70,
+  "recommended_start_page": 69,
+  "recommended_end_page": 71,
+  "confidence": "high",
+  "notes": "Select the public DSA table on physical page 70. Do not use Table 3 on page 69 because it is the External Debt Sustainability Framework. Do not use Figure 2 on page 72 or Figure 3 on page 75 because those are graphical figures rather than qualifying row-and-column decomposition tables."
+}

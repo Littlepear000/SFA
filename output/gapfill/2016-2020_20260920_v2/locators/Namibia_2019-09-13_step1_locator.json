@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "NAMIBIA",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE AND STAFF REPORT",
+    "country_report_number": "19/295",
+    "publication_date": "September 2019",
+    "consultation_type": "ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Namibia_2019-09-13.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 53,
+      "end_page": 55,
+      "reason": "The public debt DSA is in Annex III, beginning on delimiter page 49. The qualifying row-and-column public debt decomposition table is on delimiter page 54, titled \"Figure 3. Namibia: Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario,\" with rows for change in gross public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, exchange rate depreciation, and residual, aligned across year columns.",
+      "matched_phrases": [
+        "Annex III. Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 54,
+  "recommended_start_page": 53,
+  "recommended_end_page": 55,
+  "confidence": "high",
+  "notes": "The target is the public MAC DSA baseline table on delimiter page 54. Although it is numbered as a figure, it is visibly a row-and-column table and qualifies. External debt sustainability material appears on delimiter pages 57–58 and is excluded because a qualifying public debt decomposition table is present."
+}

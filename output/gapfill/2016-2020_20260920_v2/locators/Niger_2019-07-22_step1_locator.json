@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "NIGER",
+    "report_title": "2019 ARTICLE IV CONSULTATION, FOURTH REVIEW UNDER THE EXTENDED CREDIT FACILITY, AND REQUESTS FOR WAIVER OF NONOBSERVANCE OF A PERFORMANCE CRITERION, MODIFICATION OF PERFORMANCE CRITERIA, AND EXTENSION AND REPHASING OF THE EXTENDED CREDIT FACILITY ARRANGEMENT—PRESS RELEASE, STAFF REPORT AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR NIGER",
+    "country_report_number": "19/239",
+    "publication_date": "July 2019",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION, FOURTH REVIEW UNDER THE EXTENDED CREDIT FACILITY, AND REQUESTS FOR WAIVER OF NONOBSERVANCE OF A PERFORMANCE CRITERION, MODIFICATION OF PERFORMANCE CRITERIA, AND EXTENSION AND REPHASING OF THE EXTENDED CREDIT FACILITY ARRANGEMENT",
+    "pdf_file_name": "Niger_2019-07-22.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 112,
+      "end_page": 114,
+      "reason": "Physical page 112 contains the qualifying public debt decomposition table titled \"Table 2. Niger: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016–39\" with year columns and rows including Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Other identified debt-creating flows, and Residual. Pages 113-114 include adjacent DSA sensitivity tables, with page 114 covering public debt indicators.",
+      "matched_phrases": [
+        "Table 2. Niger: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016–39",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual",
+        "Public sector debt"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 112,
+  "recommended_start_page": 112,
+  "recommended_end_page": 114,
+  "confidence": "high",
+  "notes": "The Joint Bank-Fund Debt Sustainability Analysis begins on physical page 95. The relevant PUBLIC debt row-and-column decomposition table is on physical page 112. External debt tables on pages 111 and 113 are not the target. Graphical DSA figures on pages 106-110 were not selected as extraction targets."
+}

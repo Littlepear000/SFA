@@ -1,0 +1,33 @@
+{
+  "report_metadata": {
+    "country": "BOSNIA AND HERZEGOVINA",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR BOSNIA AND HERZEGOVINA",
+    "country_report_number": "20/126",
+    "publication_date": "April 2020",
+    "consultation_type": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT",
+    "pdf_file_name": "Bosnia and Herzegovina_2020-04-23.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 21,
+      "end_page": 24,
+      "reason": "Public DSA annex begins on page 21, with Heat Map on page 22 and the public DSA table title visible on page 23. Page 24 contains the related Public DSA composition and alternative scenarios table. The table body is not captured in the extracted text, suggesting the DSA tables may be embedded as images.",
+      "matched_phrases": [
+        "Annex I. Public Debt Sustainability Analysis",
+        "Public debt remains low and sustainable",
+        "Heat Map",
+        "Table 1. Bosnia and Herzegovina: Public Sector Debt Sustainability Analysis (DSA)",
+        "Table 2. Bosnia and Herzegovina: Public DSA – Composition of Public Debt and Alternative Scenarios"
+      ],
+      "likely_image_based": true
+    }
+  ],
+  "primary_table_page": 23,
+  "recommended_start_page": 21,
+  "recommended_end_page": 24,
+  "confidence": "medium",
+  "notes": "Selected the public debt sustainability annex, not an external DSA. The pre-2022 public DSA template is indicated by the Heat Map and Public DSA table titles. The extracted text shows the relevant table titles but almost no numeric table body on pages 23–24, so the tables are likely image-based in the PDF."
+}

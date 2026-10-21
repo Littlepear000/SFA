@@ -1,0 +1,48 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF MOLDOVA",
+    "report_title": "STAFF REPORT FOR THE 2020 ARTICLE IV CONSULTATION AND SIXTH REVIEWS UNDER THE EXTENDED CREDIT FACILITY AND EXTENDED FUND FACILITY ARRANGEMENTS—PRESS RELEASES; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF MOLDOVA",
+    "country_report_number": "20/76",
+    "publication_date": "March 2020",
+    "consultation_type": "2020 Article IV Consultation and Sixth Reviews Under the Extended Credit Facility and Extended Fund Facility Arrangements",
+    "pdf_file_name": "Republic of Moldova_2020-03-18.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 108,
+      "end_page": 108,
+      "reason": "Page 108 contains the qualifying public debt decomposition table titled \"Table 2. Moldova: Public Sector Debt Sustainability Framework, Baseline Scenario, 2018–2039\" with rows including \"Change in public sector debt\", \"Identified debt-creating flows\", \"Primary deficit\", \"Automatic debt dynamics\", \"Other identified debt-creating flows\", and \"Residual\" arranged across year columns.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 97,
+      "end_page": 101,
+      "reason": "The Debt Sustainability Analysis update begins on page 97 and the surrounding pages describe public debt coverage, macroeconomic assumptions, debt carrying capacity, and DSA context, but the target row-and-column public debt decomposition table appears later on page 108.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "Risk of external debt distress",
+        "Overall risk of debt distress",
+        "PUBLIC DEBT COVERAGE",
+        "Composite Indicator"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 108,
+  "recommended_start_page": 108,
+  "recommended_end_page": 108,
+  "confidence": "high",
+  "notes": "The report contains a LIC DSF Debt Sustainability Analysis update beginning on physical PDF page 97. The public debt baseline decomposition table is on physical PDF page 108. Page 107 is the external debt framework and is not the target."
+}

@@ -1,0 +1,295 @@
+{
+  "pdf_file_name": "Portugal_2017-09-15.pdf",
+  "country": "Portugal",
+  "report_date": "2017-09-15",
+  "per_target": {
+    "2015": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2015",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "129.0",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "-1.6"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "-2.7"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "-0.2",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "44.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "43.8",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "-0.1",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-0.1",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "1.9",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-2.0",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "-2.4",
+          "children": [
+            {
+              "label_verbatim": "Privatization revenue (negative)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Increase in deposits and other (- means drawn down of deposits)",
+              "value": "-2.4",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "1.1",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "The accounting identity holds for 2015: change in debt -1.6 equals identified debt-creating flows -2.7 plus residual 1.1.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+        "table_number": "Figure 3",
+        "page_pdf": 44,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2015
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        44
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "PORTUGAL",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 3",
+          "table_title": "Portugal: Public Sector Debt Sustainability Analysis (DSA) Baseline Scenario, 2006–2022",
+          "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+          "page_pdf": 44,
+          "page_printed": 40,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2006-2014",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible header places the 2006-2014 range column under the Actual group; Projections begins at 2017."
+              },
+              {
+                "position": 2,
+                "year_label": "2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2015 column is under the visible Actual group heading and lies before the Projections group."
+              },
+              {
+                "position": 3,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2016 column is under the visible Actual group heading and lies before the Projections group."
+              },
+              {
+                "position": 4,
+                "year_label": "2017",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group begins at 2017 and spans the columns through 2022."
+              },
+              {
+                "position": 5,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group spans the 2018 column."
+              },
+              {
+                "position": 6,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group spans the 2019 column."
+              },
+              {
+                "position": 7,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group spans the 2020 column."
+              },
+              {
+                "position": 8,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group spans the 2021 column."
+              },
+              {
+                "position": 9,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group spans the 2022 column."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2015,
+            "column_found": true,
+            "matched_year_label": "2015",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2015",
+            "status_basis": "The 2015 column is visibly under the Actual group heading; the Projections group begins at 2017.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "129.0",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "-1.6"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "-2.7"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "-0.2",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "44.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "43.8",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "-0.1",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-0.1",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "1.9",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-2.0",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "-2.4",
+                "children": [
+                  {
+                    "label_verbatim": "Privatization revenue (negative)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Increase in deposits and other (- means drawn down of deposits)",
+                    "value": "-2.4",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "1.1",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "The accounting identity holds for 2015: change in debt -1.6 equals identified debt-creating flows -2.7 plus residual 1.1."
+          }
+        ],
+        "extraction_notes": "The qualifying object is the row-and-column DSA table within Figure 3. The graphical Debt-Creating Flows bar chart below the table was ignored as a visualization rather than a qualifying extraction target. The debt-level value is taken from the visible 'Nominal gross public debt' row; gross financing needs, macroeconomic indicators, market indicators, ratings, cumulative, and debt-stabilizing primary balance fields were outside the decomposition scope."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 101.31
+}

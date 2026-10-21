@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "HAITI",
+    "report_title": "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR HAITI",
+    "country_report_number": "20/123",
+    "publication_date": "April 2020",
+    "consultation_type": "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY",
+    "pdf_file_name": "Haiti_2020-04-20_CR2020-123.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 34,
+      "end_page": 34,
+      "reason": "Page 34 contains the qualifying public debt decomposition table: Table 2, Haiti: Public Sector Debt Sustainability Framework, Baseline Scenario, 2017–40. It is visibly a row-and-column table with public sector debt, change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, other debt-creating flows, and residual rows with year columns and numeric cells.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Public sector debt",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 34,
+  "recommended_start_page": 34,
+  "recommended_end_page": 34,
+  "confidence": "high",
+  "notes": "The DSA annex begins on page 27. Figures on pages 29–32 are graphical and are not valid extraction targets. Page 33 contains the external debt sustainability framework and is excluded. The public debt decomposition table is fully visible on page 34, so a single-page range is recommended to avoid unrelated external-debt material."
+}

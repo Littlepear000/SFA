@@ -1,0 +1,49 @@
+{
+  "report_metadata": {
+    "country": "COSTA RICA",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR COSTA RICA",
+    "country_report_number": "19/101",
+    "publication_date": "April 2019",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Costa Rica_2019-04-13.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 68,
+      "end_page": 70,
+      "reason": "The public debt sustainability annex begins on page 66, and the qualifying row-and-column public debt decomposition table is visible on page 69 under Figure VI.2, titled Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario. It includes rows such as Contribution to Changes in Public Debt, Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, with aligned year columns and numeric cells.",
+      "matched_phrases": [
+        "Annex VI. Public Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 66,
+      "end_page": 70,
+      "reason": "This wider range captures the beginning of Annex VI and the main baseline DSA decomposition table on page 69, with surrounding public DSA context and adjacent DSA figures.",
+      "matched_phrases": [
+        "Annex VI. Public Debt Sustainability Analysis",
+        "Debt definition",
+        "Results and Assessment",
+        "Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 69,
+  "recommended_start_page": 68,
+  "recommended_end_page": 70,
+  "confidence": "high",
+  "notes": "The target is the public debt DSA table in Annex VI, not the External Debt Sustainability Assessment beginning on page 74. Although the qualifying object is numbered as a Figure, it is visibly formatted as a row-and-column table and uses the pre-2022 MAC DSA template."
+}

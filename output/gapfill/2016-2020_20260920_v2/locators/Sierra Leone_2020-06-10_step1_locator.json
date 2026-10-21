@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "SIERRA LEONE",
+    "report_title": "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR SIERRA LEONE",
+    "country_report_number": "20/196",
+    "publication_date": "June 2020",
+    "consultation_type": "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY",
+    "pdf_file_name": "Sierra Leone_2020-06-10.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 40,
+      "end_page": 40,
+      "reason": "Page 40 contains a qualifying row-and-column public debt decomposition table titled \"Table 2. Sierra Leone: Public Sector Debt Sustainability Framework, Baseline Scenario, 2019–40\" with year/value columns and rows including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 40,
+  "recommended_start_page": 40,
+  "recommended_end_page": 40,
+  "confidence": "high",
+  "notes": "The DSA annex begins on page 33. The applicable framework is the LIC DSF, indicated by references to risk of external debt distress, overall risk of debt distress, and the Composite Indicator. External debt tables on page 39 are excluded. Graphical DSA figures on pages 35–37 are not extraction targets. The qualifying public-sector baseline decomposition table is fully visible on page 40 and does not appear to continue."
+}

@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "THE FEDERAL DEMOCRATIC REPUBLIC OF ETHIOPIA",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE FEDERAL DEMOCRATIC REPUBLIC OF ETHIOPIA",
+    "country_report_number": "18/354",
+    "publication_date": "December 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "The Federal Democratic Republic of Ethiopia_2018-12-04.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 61,
+      "end_page": 62,
+      "reason": "The public debt decomposition table is visible on physical page 62 as Table 2, titled \"Ethiopia: Public Sector Debt Sustainability Framework, Baseline Scenario, 2017/18–2038/39\". It is a row-and-column public sector debt table with rows including Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 62,
+  "recommended_start_page": 61,
+  "recommended_end_page": 62,
+  "confidence": "high",
+  "notes": "Debt Sustainability Analysis starts on physical page 48. The qualifying public debt decomposition table is on physical page 62. The external debt sustainability framework table on page 61 is excluded as the target but included only as nearby context in the recommended narrow range. Graphical public debt figures on later pages are not selected."
+}

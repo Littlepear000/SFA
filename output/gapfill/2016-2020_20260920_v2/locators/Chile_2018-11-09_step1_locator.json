@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "CHILE",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR CHILE",
+    "country_report_number": "18/311",
+    "publication_date": "November 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Chile_2018-11-09.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 53,
+      "end_page": 54,
+      "reason": "Annex IV is titled Debt Sustainability Analysis and page 53 contains a qualifying row-and-column public debt decomposition table titled 'Chile Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario' with 'Contribution to Changes in Public Debt', including rows such as change in gross public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual.",
+      "matched_phrases": [
+        "Annex IV. Debt Sustainability Analysis",
+        "Chile Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 53,
+  "recommended_start_page": 53,
+  "recommended_end_page": 54,
+  "confidence": "high",
+  "notes": "The public DSA decomposition table is on physical PDF page 53. Pages 55-56 contain external debt sustainability material and are excluded from the recommended public DSA range."
+}

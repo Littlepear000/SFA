@@ -1,0 +1,37 @@
+{
+  "report_metadata": {
+    "country": "GUYANA",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR GUYANA",
+    "country_report_number": "19/296",
+    "publication_date": "September 2019",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Guyana_2019-09-17.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 79,
+      "end_page": 82,
+      "reason": "The DSA begins on page 68, and the qualifying public debt decomposition table is visible on page 80 as Table 2, titled Guyana: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016−2039. It is a row-and-column table with year columns and rows including Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual.",
+      "matched_phrases": [
+        "STAFF REPORT FOR THE 2019 ARTICLE IV CONSULTATION—DEBT SUSTAINABILITY ANALYSIS",
+        "risk of external debt distress",
+        "Overall risk of debt distress",
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 80,
+  "recommended_start_page": 79,
+  "recommended_end_page": 82,
+  "confidence": "high",
+  "notes": "The report contains a LIC DSF DSA annex starting on page 68. Page 79 is an external debt sustainability framework table and is not the target, but it is included as surrounding context. The target public sector debt decomposition table is on page 80. Pages 83–85 contain graphical debt indicator and drivers figures, which are not selected as extraction targets."
+}

@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF MOLDOVA",
+    "report_title": "STAFF REPORT FOR REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY AND PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF MOLDOVA",
+    "country_report_number": "20/129",
+    "publication_date": "April 2020",
+    "consultation_type": "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY AND PURCHASE UNDER THE RAPID FINANCING INSTRUMENT",
+    "pdf_file_name": "Republic of Moldova_2020-04-22.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 26,
+      "end_page": 26,
+      "reason": "Physical page 26 contains the qualifying public debt decomposition table titled \"Table 2. Moldova: Public Sector Debt Sustainability Framework, Baseline Scenario, 2019–2040\" with aligned year columns and rows including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, other identified debt-creating flows, and residual.",
+      "matched_phrases": [
+        "Debt Sustainability Analysis—Update",
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 26,
+  "recommended_start_page": 26,
+  "recommended_end_page": 26,
+  "confidence": "high",
+  "notes": "The DSA annex begins on physical page 22, but the public debt decomposition target is complete on physical page 26 with no visible continuation. The external debt sustainability framework on page 25 and graphical public/external debt figures on later pages were excluded as non-targets."
+}

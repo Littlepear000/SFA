@@ -1,0 +1,38 @@
+{
+  "report_metadata": {
+    "country": "JORDAN",
+    "report_title": "SECOND REVIEW UNDER THE EXTENDED ARRANGEMENT UNDER THE EXTENDED FUND FACILITY, REQUESTS FOR A WAIVER OF NONOBSERVANCE OF PERFORMANCE CRITERION, AN EXTENSION OF THE ARRANGEMENT, AND REPHASING OF ACCESS—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR JORDAN",
+    "country_report_number": "19/127",
+    "publication_date": "May 2019",
+    "consultation_type": "Second Review Under the Extended Arrangement Under the Extended Fund Facility, Requests for a Waiver of Nonobservance of Performance Criterion, an Extension of the Arrangement, and Rephasing of Access",
+    "pdf_file_name": "Jordan_2019-05-15.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 58,
+      "end_page": 62,
+      "reason": "The public DSA annex contains the pre-2022 MAC DSA template. Page 60 has a visibly tabular public debt decomposition titled \"Figure 3. Jordan: Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario\" with the section \"Contribution to Changes in Public Debt\" and rows including \"Change in gross public sector debt\", \"Identified debt-creating flows\", \"Primary deficit\", \"Automatic debt dynamics\", \"Other identified debt-creating flows\", and \"Residual, including asset changes\" across actual and projection year columns. Adjacent pages include related public DSA risk assessment, realism, alternative scenarios, and stress tests.",
+      "matched_phrases": [
+        "Annex I. Debt Sustainability Analysis",
+        "Public Sector DSA",
+        "Public DSA Risk Assessment",
+        "Public DSA - Realism of Baseline Assumptions",
+        "Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 60,
+  "recommended_start_page": 58,
+  "recommended_end_page": 62,
+  "confidence": "high",
+  "notes": "A qualifying public debt decomposition table is visible on physical PDF page 60. The external debt sustainability framework appears later on pages 63-64, but it is excluded because the public DSA decomposition table exists."
+}

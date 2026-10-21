@@ -1,0 +1,308 @@
+{
+  "pdf_file_name": "Kingdom of the Netherlands—Curaçao and Sint Maarten_2019-01-25.pdf",
+  "country": "Curaçao and Sint Maarten",
+  "report_date": "2019-01-25",
+  "per_target": {
+    "2016": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2016",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "45.5",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "1.3"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "4.9"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "3.4",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "42.7",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "46.1",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "1.5",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "1.5",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "1.1",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "0.4",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "0.0",
+          "children": [
+            {
+              "label_verbatim": "Please specify (1) (e.g., drawdown of de",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Please specify (2) (e.g., ESM and Euroare",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-3.6",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "The printed accounting identity holds for 2016: change in debt 1.3 equals identified debt-creating flows 4.9 plus residual -3.6.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+        "table_number": "Figure 1A.",
+        "page_pdf": 52,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        52,
+        53,
+        54,
+        55
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Curaçao",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 1A.",
+          "table_title": "Curaçao: Public DSA—Baseline Scenario",
+          "units_verbatim": "(Percent of GDP, unless otherwise indicated)",
+          "page_pdf": 52,
+          "page_printed": 45,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2007-2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "Visible merged year-range column under the Actual group heading; it summarizes multiple actual years and is not a single target-year column."
+              },
+              {
+                "position": 2,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "Visible single-year column under the Actual group heading and to the left of the Projections group."
+              },
+              {
+                "position": 3,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "Visible single-year column under the Actual group heading and to the left of the Projections group."
+              },
+              {
+                "position": 4,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "Visible single-year column under the Projections group heading."
+              },
+              {
+                "position": 5,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "Visible single-year column under the Projections group heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "Visible single-year column under the Projections group heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "Visible single-year column under the Projections group heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "Visible single-year column under the Projections group heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "Visible single-year column under the Projections group heading."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2016",
+            "status_basis": "The 2016 column is a visible single-year column under the Actual group heading, before the Projections group begins.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "45.5",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "1.3"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "4.9"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "3.4",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "42.7",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "46.1",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "1.5",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "1.5",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "1.1",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "0.4",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "0.0",
+                "children": [
+                  {
+                    "label_verbatim": "Please specify (1) (e.g., drawdown of de",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Please specify (2) (e.g., ESM and Euroare",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-3.6",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "The printed accounting identity holds for 2016: change in debt 1.3 equals identified debt-creating flows 4.9 plus residual -3.6."
+          }
+        ],
+        "extraction_notes": "Figure 1A on original physical PDF page 52, printed page 45, is a qualifying row-and-column public DSA table: it has explicit row labels, visible year columns, and printed cell values. The decomposition block was extracted from the debt stock row and the Contribution to Changes in Public Debt rows; macroeconomic indicator rows and gross financing needs were excluded. Figure 4A. Sint Maarten: Public DSA—Baseline Scenario on original physical PDF page 55 is another qualifying public-debt decomposition table in the selected pages but was not extracted because Figure 1A is the primary located table. Figure 2A stress-test panels and Figure 3A risk-assessment panels are charts/visualizations or summary risk displays and were not used for decomposition extraction."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 131.92
+}

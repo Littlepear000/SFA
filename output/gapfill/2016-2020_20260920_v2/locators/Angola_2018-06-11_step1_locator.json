@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "ANGOLA",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR ANGOLA",
+    "country_report_number": "18/156",
+    "publication_date": "June 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Angola_2018-06-11.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 66,
+      "end_page": 68,
+      "reason": "The qualifying public debt decomposition table is visible on page 67 under Figure 3, 'Angola: Public DSA—Baseline Scenario', with row-and-column values for 'Contribution to Changes in Public Debt', including 'Change in gross public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'. Pages 66–68 include immediate surrounding DSA context.",
+      "matched_phrases": [
+        "Public DSA—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 67,
+  "recommended_start_page": 66,
+  "recommended_end_page": 68,
+  "confidence": "high",
+  "notes": "The Debt Sustainability Analysis begins on page 60 and the Public Debt Sustainability Analysis starts on page 61. The target public debt decomposition table is on page 67. External debt sustainability material appears later, including an external framework table on page 71, but it is excluded because a qualifying public DSA table exists."
+}

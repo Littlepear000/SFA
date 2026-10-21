@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF AZERBAIJAN",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF AZERBAIJAN",
+    "country_report_number": "19/301",
+    "publication_date": "September 2019",
+    "consultation_type": "2019 Article IV Consultation",
+    "pdf_file_name": "Republic of Azerbaijan_2019-09-18.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 34,
+      "end_page": 35,
+      "reason": "Page 34 contains the qualifying public DSA baseline table, including a visible row-and-column decomposition titled 'Contribution to Changes in Public Debt' with rows such as 'Change in gross public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'. Page 35 contains the related Public DSA composition and alternative scenarios page.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes",
+        "Public DSA - Composition of Public Debt and Alternative Scenarios"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 34,
+  "recommended_start_page": 34,
+  "recommended_end_page": 35,
+  "confidence": "high",
+  "notes": "The public debt decomposition table is figure-numbered but visibly formatted as a row-and-column table, so it qualifies. External debt DSA material appears on pages 36 and 44 but is excluded because a public DSA decomposition table exists."
+}

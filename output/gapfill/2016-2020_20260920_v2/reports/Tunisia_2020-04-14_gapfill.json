@@ -1,0 +1,352 @@
+{
+  "pdf_file_name": "Tunisia_2020-04-14.pdf",
+  "country": "Tunisia",
+  "report_date": "2020-04-14",
+  "per_target": {
+    "2017": {
+      "status": "merged_range_only",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": "Actual 2009-2017",
+      "not_extractable_reason": "year_only_in_merged_range",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "No values extracted because the only visible reference to 2017 is the merged Actual range column 2009-2017.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(Percent of GDP)",
+        "table_number": "Annex Table I.3.",
+        "page_pdf": 32,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    },
+    "2018": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual 2018",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "78.2",
+          "children": [
+            {
+              "label_verbatim": "Of which: guarantees",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "7.6"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "8.7"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "1.9",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "26.2",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "28.1",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "6.0",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-3.4",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "-1.6",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-1.7",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "9.4",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "0.7",
+          "children": [
+            {
+              "label_verbatim": "Privatization, confiscated asset sales, and other (negative)",
+              "value": "-0.1",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Change in deposits",
+              "value": "0.9",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-1.1",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Extracted from the 2018 Actual column. The accounting identity holds: 7.6 = 8.7 + -1.1.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(Percent of GDP)",
+        "table_number": "Annex Table I.3.",
+        "page_pdf": 32,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2017,
+        2018
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        31,
+        32,
+        33
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Tunisia",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Annex Table I.3.",
+          "table_title": "Tunisia: Public Sector Debt Sustainability Analysis (DSA) − Baseline Scenario",
+          "units_verbatim": "(Percent of GDP)",
+          "page_pdf": 32,
+          "page_printed": 28,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2009-2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The merged range column is visibly within the Actual group and lies before the Projections group; it summarizes multiple years and is not a single-year target column."
+              },
+              {
+                "position": 2,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2018 column appears in the Actual block to the left of the Projections group."
+              },
+              {
+                "position": 3,
+                "year_label": "2019",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2019 column appears in the Actual block to the left of the Projections group."
+              },
+              {
+                "position": 4,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column appears under the Projections group heading."
+              },
+              {
+                "position": 5,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column appears under the Projections group heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column appears under the Projections group heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2023 column appears under the Projections group heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2024 column appears under the Projections group heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2025 column appears under the Projections group heading."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2017,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": "Actual 2009-2017",
+            "status_basis": "The target year 2017 appears only within the merged multi-year range column labeled 2009-2017 under the Actual group; no separate single-year 2017 column is printed.",
+            "extractable": false,
+            "not_extractable_reason": "year_only_in_merged_range",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "No values extracted because the only visible reference to 2017 is the merged Actual range column 2009-2017."
+          },
+          {
+            "target_year": 2018,
+            "column_found": true,
+            "matched_year_label": "2018",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual 2018",
+            "status_basis": "The 2018 column is visibly in the Actual block, before the Projections group that begins at 2020.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "78.2",
+                "children": [
+                  {
+                    "label_verbatim": "Of which: guarantees",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "7.6"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "8.7"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "1.9",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "26.2",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "28.1",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "6.0",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-3.4",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "-1.6",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-1.7",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "9.4",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "0.7",
+                "children": [
+                  {
+                    "label_verbatim": "Privatization, confiscated asset sales, and other (negative)",
+                    "value": "-0.1",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Change in deposits",
+                    "value": "0.9",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-1.1",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Extracted from the 2018 Actual column. The accounting identity holds: 7.6 = 8.7 + -1.1."
+          }
+        ],
+        "extraction_notes": "Selected Annex Table I.3, a visible row-and-column public debt DSA baseline table. The decomposition block was extracted through the residual row. Non-decomposition indicator rows in the same table, such as public gross financing needs and macroeconomic assumptions, were ignored. Annex Table I.2 on the preceding page consists of realism charts, and Annex Table I.4 on the following page contains composition/alternative-scenario charts and assumptions rather than the qualifying decomposition block; these were not extracted."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 98.2
+}

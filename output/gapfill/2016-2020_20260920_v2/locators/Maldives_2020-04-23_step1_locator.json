@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "MALDIVES",
+    "report_title": "REQUEST FOR DISBURSEMENT UNDER THE RAPID CREDIT FACILITY—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR MALDIVES",
+    "country_report_number": "20/133",
+    "publication_date": "April 2020",
+    "consultation_type": "Request for Disbursement under the Rapid Credit Facility",
+    "pdf_file_name": "Maldives_2020-04-23.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 46,
+      "end_page": 48,
+      "reason": "The public debt decomposition table is visible on page 47 as 'Table 2. Maldives: Public Sector Debt Sustainability Framework, Baseline Scenario, 2017–2040'. It is a row-and-column table with year columns and decomposition rows including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, other identified debt-creating flows, and residual.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Other identified debt-creating flows",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 47,
+  "recommended_start_page": 46,
+  "recommended_end_page": 48,
+  "confidence": "high",
+  "notes": "The DSA annex begins on page 34. The relevant public debt decomposition table is Table 2 on page 47. Page 44 contains a graphical 'Drivers of Debt Dynamics – Baseline Scenario' figure and was not selected because figures/charts are not valid extraction targets. Page 46 is the external debt sustainability framework and is not the target, but it is included only as a narrow surrounding page for PDF extraction context."
+}

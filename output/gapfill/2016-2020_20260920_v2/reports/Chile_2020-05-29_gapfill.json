@@ -1,0 +1,308 @@
+{
+  "pdf_file_name": "Chile_2020-05-29.pdf",
+  "country": "Chile",
+  "report_date": "2020-05-29",
+  "per_target": {
+    "2018": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual 2018",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "25.6",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "2.0"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "1.5"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "1.3",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "21.5",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "22.8",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "0.0",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-0.6",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "0.3",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-0.9",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.5",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "0.3",
+          "children": [
+            {
+              "label_verbatim": "Net acquistion of Financial Assets (negative)",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Net Repayment of Recognition Bond",
+              "value": "0.3",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "0.4",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "The accounting identity has a small rounding discrepancy for 2018: change in gross public sector debt is 2.0, while identified debt-creating flows plus residual equals 1.5 + 0.4 = 1.9. Identified flows also differ from the sum of primary deficit, automatic debt dynamics, and other identified debt-creating flows by rounding: 1.3 + 0.0 + 0.3 = 1.6 versus printed identified flows of 1.5.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+        "table_number": "Figure 1",
+        "page_pdf": 55,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2018
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        55,
+        56,
+        57,
+        58
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "CHILE",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 1",
+          "table_title": "Chile: Macro-Fiscal Stress Tests",
+          "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+          "page_pdf": 55,
+          "page_printed": 51,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2009-2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is a visible multi-year range under the Actual heading and before the Projections group."
+              },
+              {
+                "position": 2,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2018 column is under the Actual heading, to the left of the Projections group that begins at 2020."
+              },
+              {
+                "position": 3,
+                "year_label": "2019",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2019 column is under the Actual heading, to the left of the Projections group that begins at 2020."
+              },
+              {
+                "position": 4,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is under the Projections heading."
+              },
+              {
+                "position": 5,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is under the Projections heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is under the Projections heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2023 column is under the Projections heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2024 column is under the Projections heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2025 column is under the Projections heading."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2018,
+            "column_found": true,
+            "matched_year_label": "2018",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual 2018",
+            "status_basis": "The 2018 column is visibly in the Actual block, after the 2009-2017 range column and before the Projections block beginning with 2020.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "25.6",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "2.0"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "1.5"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "1.3",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "21.5",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "22.8",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "0.0",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-0.6",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "0.3",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-0.9",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.5",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "0.3",
+                "children": [
+                  {
+                    "label_verbatim": "Net acquistion of Financial Assets (negative)",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Net Repayment of Recognition Bond",
+                    "value": "0.3",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "0.4",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "The accounting identity has a small rounding discrepancy for 2018: change in gross public sector debt is 2.0, while identified debt-creating flows plus residual equals 1.5 + 0.4 = 1.9. Identified flows also differ from the sum of primary deficit, automatic debt dynamics, and other identified debt-creating flows by rounding: 1.3 + 0.0 + 0.3 = 1.6 versus printed identified flows of 1.5."
+          }
+        ],
+        "extraction_notes": "Extracted the row-and-column public debt decomposition table within Figure 1. The debt-level row was taken from the visible Debt, Economic and Market Indicators block; the decomposition rows were taken from the visible Contribution to Changes in Public Debt block. Rows outside the decomposition block, including public gross financing needs, macroeconomic assumptions, sovereign spreads, ratings, cumulative values, and the debt-stabilizing primary balance value, were ignored. Graphical panels in Figures 1-4, including debt-creating flows charts, composition charts, alternative scenario charts, stress-test charts, heat map, predictive density charts, and debt-profile charts, were not used because they are visualizations rather than qualifying row-and-column decomposition tables."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 113.72
+}

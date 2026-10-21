@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF KOSOVO",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT FOR THE REPUBLIC OF KOSOVO",
+    "country_report_number": "20/112",
+    "publication_date": "April 2020",
+    "consultation_type": "Request for Purchase under the Rapid Financing Instrument",
+    "pdf_file_name": "Republic of Kosovo_2020-04-16.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 20,
+      "end_page": 24,
+      "reason": "Annex I is titled Debt Sustainability Analysis and contains a Public DSA subsection. The qualifying row-and-column public debt decomposition appears on page 22 in Figure 1, with rows such as Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Interest rate/growth differential, Other identified debt-creating flows, and Residual, with aligned year columns and printed values.",
+      "matched_phrases": [
+        "Annex I. Debt Sustainability Analysis",
+        "Public DSA",
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 22,
+  "recommended_start_page": 20,
+  "recommended_end_page": 24,
+  "confidence": "high",
+  "notes": "The target is the public debt DSA decomposition table on physical PDF page 22. It is numbered as a figure but is visibly a row-and-column MAC DSA table with explicit row labels and year/value columns; graphical components on the same page are not the extraction target. No external DSA was selected."
+}

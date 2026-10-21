@@ -1,0 +1,180 @@
+{
+  "pdf_file_name": "Republic of Moldova_2019-09-25.pdf",
+  "country": "Moldova",
+  "report_date": "2019-09-25",
+  "per_target": {
+    "2016": {
+      "status": "year_not_in_table",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": null,
+      "not_extractable_reason": "year_not_in_table",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "Target year 2016 is not present as a single-year column in the visible table.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "Percent of GDP",
+        "table_number": "Table 2",
+        "page_pdf": 77,
+        "confidence": "high",
+        "extraction_method": "pymupdf_pillow_table_crop_fallback"
+      }
+    },
+    "2017": {
+      "status": "year_not_in_table",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": null,
+      "not_extractable_reason": "year_not_in_table",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "Target year 2017 is not present as a single-year column in the visible table.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "Percent of GDP",
+        "table_number": "Table 2",
+        "page_pdf": 77,
+        "confidence": "high",
+        "extraction_method": "pymupdf_pillow_table_crop_fallback"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016,
+        2017
+      ],
+      "extraction_method": "pymupdf_pillow_table_crop_fallback",
+      "selected_original_pages": [
+        77
+      ],
+      "table_crop_box_points": [
+        12.0,
+        136.22,
+        780.0,
+        612.0
+      ],
+      "ladder_notes": [
+        "direct: not usable (Single page 77 is still 1,030,566 bytes.)",
+        "image_compressed: not usable ([WinError 5] Access is denied: 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\.Republic of Moldova_2019-09-25_pages_77_77_image_compressed.f15471245dd54e66852329fe67c89138.tmp.pdf' -> 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\Republic of Moldova_2019-09-25_pages_77_77_image_compressed.pdf')"
+      ],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Moldova",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "LIC_DSF",
+          "table_number": "Table 2",
+          "table_title": "Moldova: Public Sector Debt Sustainability Framework, Baseline Scenario, 2018-2039",
+          "units_verbatim": "Percent of GDP",
+          "page_pdf": 77,
+          "page_printed": "11",
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2018 column appears as the single completed-year column before the projections block and is marked as the actual column in the table header."
+              },
+              {
+                "position": 2,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2019 column is under the projections group heading."
+              },
+              {
+                "position": 3,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is under the projections group heading."
+              },
+              {
+                "position": 4,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is under the projections group heading."
+              },
+              {
+                "position": 5,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is under the projections group heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2023 column is under the projections group heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2024 column is under the projections group heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2029",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2029 column is under the projections group heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2039",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2039 column is under the projections group heading."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": null,
+            "status_basis": "No visible single-year column labeled 2016 appears in the table. The visible year columns are 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2029, and 2039.",
+            "extractable": false,
+            "not_extractable_reason": "year_not_in_table",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "Target year 2016 is not present as a single-year column in the visible table."
+          },
+          {
+            "target_year": 2017,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": null,
+            "status_basis": "No visible single-year column labeled 2017 appears in the table. The visible year columns are 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2029, and 2039.",
+            "extractable": false,
+            "not_extractable_reason": "year_not_in_table",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "Target year 2017 is not present as a single-year column in the visible table."
+          }
+        ],
+        "extraction_notes": "Reviewed the visible public-sector debt sustainability framework table on original physical page 77. The table is a qualifying row-and-column public debt decomposition table with explicit rows including Public sector debt, Change in public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Other identified debt-creating flows, and Residual. The visible table begins with the 2018 actual column and then projection columns for 2019 onward; target years 2016 and 2017 do not appear as single-year columns, so no decomposition values were extracted for them. Non-table charts on the right side of the crop were ignored as visualizations rather than decomposition table rows."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 93.12
+}

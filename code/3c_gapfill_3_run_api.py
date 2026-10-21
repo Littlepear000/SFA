@@ -113,34 +113,34 @@ except ModuleNotFoundError as exc:
     ) from exc
 
 # =============================================================== CONFIG (edit)
-BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
-
-# Step 1's "selected_pdf_pages" folders, one per batch. The first folder that holds a report's
-# selected PDF wins, so list re-run folders (e.g. .../2016-2020/rerun_20260910/selected_pdf_pages)
-# BEFORE the original ones. The Step 1 "<report>_timing.json" files are expected in the folder
-# above each of these (or in a "json_output" folder next to it).
-SELECTED_PDF_DIRS: List[Path] = [
-    BASE_DIR / "output" / "2011-2015" / "round1_20260921_run1" / "selected_pdf_pages",
-    BASE_DIR / "output" / "2016-2020" / "round2_20260921_run1" / "selected_pdf_pages",
-    BASE_DIR / "output" / "2016-2020" / "round1_20260921_run1" / "selected_pdf_pages",
-    BASE_DIR / "output" / "2021-2026" / "round1_20260921_run1" / "selected_pdf_pages",
-]
-
-STEP1_SCRIPT = HERE / "1a_two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py"
-# 1a (not 2a/round2's pipeline) on purpose: gap-fill only needs call_pdf_json / make_api_session /
-# add_table_crop_header_instruction, identical in both; 2a's extra accuracy is specifically about
-# *choosing* last_actual_year, which gap-fill never does (the target year is already given).
-GAPFILL_PROMPT_FILE = BASE_DIR / "gapfill_extraction_prompt_v2.txt"
-ENV_FILE = BASE_DIR / ".env"
-
-STAMP = "20260920_v2"  # must match the STAMP of 3a / 3b
-CHECK_DIR = BASE_DIR / "output" / "2016-2020" / "gap_year_check"
-TARGETS_CSV = CHECK_DIR / f"gapfill_targets_{STAMP}.csv"
-SKIP_CSV = CHECK_DIR / f"gapfill_skip_reports_{STAMP}.csv"
-PANEL_CSV: Optional[Path] = CHECK_DIR / f"panel_structure_country_year_{STAMP}.csv"  # None = do not build the filled panel
-OUTPUT_DIR = BASE_DIR / "output" / "gapfill" / f"2016-2020_{STAMP}"
-
-MAX_WORKERS = 4
+# BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
+#
+# # Step 1's "selected_pdf_pages" folders, one per batch. The first folder that holds a report's
+# # selected PDF wins, so list re-run folders (e.g. .../2016-2020/rerun_20260910/selected_pdf_pages)
+# # BEFORE the original ones. The Step 1 "<report>_timing.json" files are expected in the folder
+# # above each of these (or in a "json_output" folder next to it).
+# SELECTED_PDF_DIRS: List[Path] = [
+#     BASE_DIR / "output" / "2011-2015" / "round1_20260921_run1" / "selected_pdf_pages",
+#     BASE_DIR / "output" / "2016-2020" / "round2_20260921_run1" / "selected_pdf_pages",
+#     BASE_DIR / "output" / "2016-2020" / "round1_20260921_run1" / "selected_pdf_pages",
+#     BASE_DIR / "output" / "2021-2026" / "round1_20260921_run1" / "selected_pdf_pages",
+# ]
+#
+# STEP1_SCRIPT = HERE / "1a_two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py"
+# # 1a (not 2a/round2's pipeline) on purpose: gap-fill only needs call_pdf_json / make_api_session /
+# # add_table_crop_header_instruction, identical in both; 2a's extra accuracy is specifically about
+# # *choosing* last_actual_year, which gap-fill never does (the target year is already given).
+# GAPFILL_PROMPT_FILE = BASE_DIR / "gapfill_extraction_prompt_v2.txt"
+# ENV_FILE = BASE_DIR / ".env"
+#
+# STAMP = "20260920_v2"  # must match the STAMP of 3a / 3b
+# CHECK_DIR = BASE_DIR / "output" / "2016-2020" / "gap_year_check"
+# TARGETS_CSV = CHECK_DIR / f"gapfill_targets_{STAMP}.csv"
+# SKIP_CSV = CHECK_DIR / f"gapfill_skip_reports_{STAMP}.csv"
+# PANEL_CSV: Optional[Path] = CHECK_DIR / f"panel_structure_country_year_{STAMP}.csv"  # None = do not build the filled panel
+# OUTPUT_DIR = BASE_DIR / "output" / "gapfill" / f"2016-2020_{STAMP}"
+#
+# MAX_WORKERS = 4
 # ==============================================================================
 
 SIZE_PHRASES = [

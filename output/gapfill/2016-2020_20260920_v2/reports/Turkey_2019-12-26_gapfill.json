@@ -1,0 +1,313 @@
+{
+  "pdf_file_name": "Turkey_2019-12-26.pdf",
+  "country": "Turkey",
+  "report_date": "2019-12-26",
+  "per_target": {
+    "2017": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2017",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": null,
+          "value": null,
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "-0.1"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "1.0"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "0.9",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "30.8",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "31.7",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "-0.8",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-1.6",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "0.2",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-1.8",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "0.8",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "1.0",
+          "children": [
+            {
+              "label_verbatim": "General Government: Net Privatization Proceeds (negative)",
+              "value": "-0.4",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "General Government: Financing: Net Acquisition of Financial Assets",
+              "value": "1.4",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-1.1",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Accounting identity holds for 2017: change in gross public sector debt -0.1 equals identified debt-creating flows 1.0 plus residual -1.1.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": null,
+        "table_number": null,
+        "page_pdf": 56,
+        "confidence": "high",
+        "extraction_method": "pymupdf_pillow_table_crop_fallback"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2017
+      ],
+      "extraction_method": "pymupdf_pillow_table_crop_fallback",
+      "selected_original_pages": [
+        56
+      ],
+      "table_crop_box_points": [
+        12.0,
+        100.66,
+        600.0,
+        507.29
+      ],
+      "ladder_notes": [
+        "direct: not usable (Single page 56 is still 1,159,996 bytes.)",
+        "image_compressed: not usable ([WinError 5] Access is denied: 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\.Turkey_2019-12-26_pages_55_57_image_compressed.f2fa1cd9488c45a28f1adcb44c1dac93.tmp.pdf' -> 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\Turkey_2019-12-26_pages_55_57_image_compressed.pdf')"
+      ],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Turkey",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": null,
+          "table_title": "Contribution to Changes in Public Debt",
+          "units_verbatim": null,
+          "page_pdf": 56,
+          "page_printed": null,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2008-2016 2/",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible 'Actual' group heading. It is a merged multi-year range column, not a single-year target column."
+              },
+              {
+                "position": 2,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible 'Actual' group heading, to the left of the 'Projections' group beginning at 2019."
+              },
+              {
+                "position": 3,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible 'Actual' group heading, to the left of the 'Projections' group beginning at 2019."
+              },
+              {
+                "position": 4,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 5,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 6,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 7,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 8,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              },
+              {
+                "position": 9,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible 'Projections' group heading."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2017,
+            "column_found": true,
+            "matched_year_label": "2017",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2017",
+            "status_basis": "The 2017 column is an individual year column under the visible 'Actual' group heading and is before the 'Projections' group that begins at 2019.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": null,
+                "value": null,
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "-0.1"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "1.0"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "0.9",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "30.8",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "31.7",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "-0.8",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-1.6",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "0.2",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-1.8",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "0.8",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "1.0",
+                "children": [
+                  {
+                    "label_verbatim": "General Government: Net Privatization Proceeds (negative)",
+                    "value": "-0.4",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "General Government: Financing: Net Acquisition of Financial Assets",
+                    "value": "1.4",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-1.1",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Accounting identity holds for 2017: change in gross public sector debt -0.1 equals identified debt-creating flows 1.0 plus residual -1.1."
+          }
+        ],
+        "extraction_notes": "The visible object contains a qualifying row-and-column public debt decomposition table titled 'Contribution to Changes in Public Debt'. The lower debt-creating-flows chart visible beneath the table was not used because it is a visualization rather than the qualifying row-and-column table. Rows above the decomposition block in the visible 'Debt, Economic and Market Indicators' section were excluded as indicators outside the decomposition block."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 89.82
+}

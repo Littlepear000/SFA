@@ -1,0 +1,319 @@
+{
+  "pdf_file_name": "Jamaica_2018-04-16.pdf",
+  "country": "Jamaica",
+  "report_date": "2018-04-16",
+  "per_target": {
+    "2016": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual; 2016",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt",
+          "value": "113.9",
+          "children": [
+            {
+              "label_verbatim": "Of which: guarantees",
+              "value": "2.1",
+              "children": []
+            }
+          ]
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "-2.5"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "-1.9"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "-7.6",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "28.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "20.4",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 5/",
+          "value": "5.6",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "1.8",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "3.2",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-1.4",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "3.7",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "0.2",
+          "children": [
+            {
+              "label_verbatim": "Privatization Receipts and Deposits Drawdown (negative)",
+              "value": "0.2",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Other debt flows (incl. ESM and Euroarea loans)",
+              "value": "0.0",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "-0.6",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "Values were copied from the 2016 Actual column. The accounting identity holds for the extracted top-line decomposition: -2.5 = -1.9 + -0.6.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+        "table_number": "Figure 3",
+        "page_pdf": 56,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        55,
+        56,
+        57
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "JAMAICA",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Figure 3",
+          "table_title": "Jamaica Public Sector Debt Sustainability Analysis (DSA) – Baseline Scenario",
+          "units_verbatim": "(in percent of GDP unless otherwise indicated)",
+          "page_pdf": 56,
+          "page_printed": 48,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2007-2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible multi-level header places the merged 2007-2015 range column under the Actual group; this is a range column and not a single target-year column."
+              },
+              {
+                "position": 2,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible multi-level header places the 2016 single-year column under the Actual group, before the Projections group begins."
+              },
+              {
+                "position": 3,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible multi-level header places the 2017 single-year column under the Actual group, before the Projections group begins."
+              },
+              {
+                "position": 4,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group begins at the 2018 column."
+              },
+              {
+                "position": 5,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group spans the 2019 column."
+              },
+              {
+                "position": 6,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group spans the 2020 column."
+              },
+              {
+                "position": 7,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group spans the 2021 column."
+              },
+              {
+                "position": 8,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group spans the 2022 column."
+              },
+              {
+                "position": 9,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible Projections group spans the 2023 column."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual; 2016",
+            "status_basis": "The 2016 column is a visible single-year column under the Actual group heading and lies to the left of the Projections columns beginning in 2018.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt",
+                "value": "113.9",
+                "children": [
+                  {
+                    "label_verbatim": "Of which: guarantees",
+                    "value": "2.1",
+                    "children": []
+                  }
+                ]
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "-2.5"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "-1.9"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "-7.6",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "28.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "20.4",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 5/",
+                "value": "5.6",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "1.8",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "3.2",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-1.4",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "3.7",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "0.2",
+                "children": [
+                  {
+                    "label_verbatim": "Privatization Receipts and Deposits Drawdown (negative)",
+                    "value": "0.2",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Other debt flows (incl. ESM and Euroarea loans)",
+                    "value": "0.0",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "-0.6",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "Values were copied from the 2016 Actual column. The accounting identity holds for the extracted top-line decomposition: -2.5 = -1.9 + -0.6."
+          }
+        ],
+        "extraction_notes": "The qualifying object is Figure 3 because its upper portions are visibly row-and-column tables with explicit row labels, year columns, and printed cell values. The debt-level row was taken from the visible debt stock portion of Figure 3, and the decomposition rows were taken from the visible 'Contribution to Changes in Public Debt' block. Rows outside the decomposition scope, including public gross financing needs and macroeconomic indicator rows, were ignored. The chart panels in Figures 2, the lower chart panel of Figure 3, and Figure 4 were not used for extraction because they are visualizations or alternative-scenario charts rather than the qualifying decomposition table."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 164.86
+}

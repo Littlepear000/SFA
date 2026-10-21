@@ -1,0 +1,313 @@
+{
+  "pdf_file_name": "Chile_2018-11-09.pdf",
+  "country": "Chile",
+  "report_date": "2018-11-09",
+  "per_target": {
+    "2016": {
+      "status": "resolved",
+      "errors": [],
+      "warnings": [],
+      "column_status": "actual",
+      "column_header_verbatim": "Actual / 2016",
+      "not_extractable_reason": null,
+      "decomposition": {
+        "debt_level": {
+          "label_verbatim": "Nominal gross public debt (EOP)",
+          "value": "21.0",
+          "children": []
+        },
+        "change_in_debt": {
+          "label_verbatim": "Change in gross public sector debt",
+          "value": "3.8"
+        },
+        "identified_flows": {
+          "label_verbatim": "Identified debt-creating flows",
+          "value": "3.0"
+        },
+        "primary_balance": {
+          "label_verbatim": "Primary deficit",
+          "value": "2.4",
+          "children": [
+            {
+              "label_verbatim": "Primary (noninterest) revenue and grants",
+              "value": "20.4",
+              "children": []
+            },
+            {
+              "label_verbatim": "Primary (noninterest) expenditure",
+              "value": "22.8",
+              "children": []
+            }
+          ]
+        },
+        "automatic_debt_dynamics": {
+          "label_verbatim": "Automatic debt dynamics 6/",
+          "value": "-0.4",
+          "children": [
+            {
+              "label_verbatim": "Interest rate/growth differential 6/",
+              "value": "-0.2",
+              "children": [
+                {
+                  "label_verbatim": "Of which: real interest rate",
+                  "value": "0.0",
+                  "children": []
+                },
+                {
+                  "label_verbatim": "Of which: real GDP growth",
+                  "value": "-0.2",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label_verbatim": "Exchange rate depreciation 7/",
+              "value": "-0.2",
+              "children": []
+            }
+          ]
+        },
+        "other_identified_flows": {
+          "label_verbatim": "Other identified debt-creating flows",
+          "value": "1.0",
+          "children": [
+            {
+              "label_verbatim": "Net acquisition of Financial Assets (negative)",
+              "value": "0.6",
+              "children": []
+            },
+            {
+              "label_verbatim": "Contingent liabilities",
+              "value": "0.0",
+              "children": []
+            },
+            {
+              "label_verbatim": "Net Repayment of Recognition Bond",
+              "value": "0.4",
+              "children": []
+            }
+          ]
+        },
+        "residual": {
+          "label_verbatim": "Residual, including asset changes 8/",
+          "value": "0.7",
+          "children": []
+        }
+      },
+      "unmapped_rows": [],
+      "notes": "All 2016 values were read from the single-year 2016 Actual column. Accounting identity check using printed values: change in debt 3.8 versus identified flows 3.0 plus residual 0.7 equals 3.7; the difference appears to be due to rounding.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": null,
+        "table_number": null,
+        "page_pdf": 53,
+        "confidence": "high",
+        "extraction_method": "pymupdf_pillow_table_crop_fallback"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "pymupdf_pillow_table_crop_fallback",
+      "selected_original_pages": [
+        53
+      ],
+      "table_crop_box_points": [
+        12.0,
+        130.28,
+        600.0,
+        604.35
+      ],
+      "ladder_notes": [
+        "direct: not usable (Single page 53 is still 959,766 bytes.)",
+        "image_compressed: not usable ([WinError 5] Access is denied: 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\.Chile_2018-11-09_pages_53_54_image_compressed.89e7ecf39630474cab23193f3dce67c0.tmp.pdf' -> 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\Chile_2018-11-09_pages_53_54_image_compressed.pdf')"
+      ],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Chile",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": null,
+          "table_title": "Contribution to Changes in Public Debt",
+          "units_verbatim": null,
+          "page_pdf": 53,
+          "page_printed": null,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2007-2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible group heading 'Actual' spans the 2007-2015, 2016, and 2017 columns; this is a merged multi-year range column."
+              },
+              {
+                "position": 2,
+                "year_label": "2016",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible group heading 'Actual' spans the 2007-2015, 2016, and 2017 columns, before the 'Projections' group begins at 2018."
+              },
+              {
+                "position": 3,
+                "year_label": "2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible group heading 'Actual' spans the 2007-2015, 2016, and 2017 columns, before the 'Projections' group begins at 2018."
+              },
+              {
+                "position": 4,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible group heading 'Projections' spans the 2018 through 2023 columns."
+              },
+              {
+                "position": 5,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible group heading 'Projections' spans the 2018 through 2023 columns."
+              },
+              {
+                "position": 6,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible group heading 'Projections' spans the 2018 through 2023 columns."
+              },
+              {
+                "position": 7,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible group heading 'Projections' spans the 2018 through 2023 columns."
+              },
+              {
+                "position": 8,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible group heading 'Projections' spans the 2018 through 2023 columns."
+              },
+              {
+                "position": 9,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible group heading 'Projections' spans the 2018 through 2023 columns."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "actual",
+            "column_header_verbatim": "Actual / 2016",
+            "status_basis": "The 2016 column is a single-year column under the visible 'Actual' group heading, which spans 2007-2015, 2016, and 2017; the 'Projections' group starts at 2018.",
+            "extractable": true,
+            "not_extractable_reason": null,
+            "decomposition": {
+              "debt_level": {
+                "label_verbatim": "Nominal gross public debt (EOP)",
+                "value": "21.0",
+                "children": []
+              },
+              "change_in_debt": {
+                "label_verbatim": "Change in gross public sector debt",
+                "value": "3.8"
+              },
+              "identified_flows": {
+                "label_verbatim": "Identified debt-creating flows",
+                "value": "3.0"
+              },
+              "primary_balance": {
+                "label_verbatim": "Primary deficit",
+                "value": "2.4",
+                "children": [
+                  {
+                    "label_verbatim": "Primary (noninterest) revenue and grants",
+                    "value": "20.4",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Primary (noninterest) expenditure",
+                    "value": "22.8",
+                    "children": []
+                  }
+                ]
+              },
+              "automatic_debt_dynamics": {
+                "label_verbatim": "Automatic debt dynamics 6/",
+                "value": "-0.4",
+                "children": [
+                  {
+                    "label_verbatim": "Interest rate/growth differential 6/",
+                    "value": "-0.2",
+                    "children": [
+                      {
+                        "label_verbatim": "Of which: real interest rate",
+                        "value": "0.0",
+                        "children": []
+                      },
+                      {
+                        "label_verbatim": "Of which: real GDP growth",
+                        "value": "-0.2",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "label_verbatim": "Exchange rate depreciation 7/",
+                    "value": "-0.2",
+                    "children": []
+                  }
+                ]
+              },
+              "other_identified_flows": {
+                "label_verbatim": "Other identified debt-creating flows",
+                "value": "1.0",
+                "children": [
+                  {
+                    "label_verbatim": "Net acquisition of Financial Assets (negative)",
+                    "value": "0.6",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Contingent liabilities",
+                    "value": "0.0",
+                    "children": []
+                  },
+                  {
+                    "label_verbatim": "Net Repayment of Recognition Bond",
+                    "value": "0.4",
+                    "children": []
+                  }
+                ]
+              },
+              "residual": {
+                "label_verbatim": "Residual, including asset changes 8/",
+                "value": "0.7",
+                "children": []
+              }
+            },
+            "unmapped_rows": [],
+            "notes": "All 2016 values were read from the single-year 2016 Actual column. Accounting identity check using printed values: change in debt 3.8 versus identified flows 3.0 plus residual 0.7 equals 3.7; the difference appears to be due to rounding."
+          }
+        ],
+        "extraction_notes": "The visible crop contains a qualifying row-and-column public debt decomposition table headed 'Contribution to Changes in Public Debt.' The stock row 'Nominal gross public debt (EOP)' was treated as the debt_level row. Other indicator and macroeconomic rows above the contribution block were excluded. The bar chart labeled 'Debt-Creating Flows' below the table was ignored because it is a visualization, not a qualifying tabular decomposition table."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 109.96
+}

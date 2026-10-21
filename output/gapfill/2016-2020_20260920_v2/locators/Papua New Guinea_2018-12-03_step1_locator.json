@@ -1,0 +1,54 @@
+{
+  "report_metadata": {
+    "country": "PAPUA NEW GUINEA",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR PAPUA NEW GUINEA",
+    "country_report_number": "18/352",
+    "publication_date": "December 2018",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Papua New Guinea_2018-12-03.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 63,
+      "end_page": 66,
+      "reason": "The DSA annex begins on page 54, and the qualifying public debt decomposition table is visible on page 64 as 'Table 2. Papua New Guinea: Public Sector Debt Sustainability Framework, Baseline Scenario, 2015-2038'. It is a row-and-column table with year columns and rows including 'Change in public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual'. Pages 63-66 provide surrounding DSA tables while keeping the range narrow.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "risk of external debt distress",
+        "Overall risk of debt distress",
+        "Composite Indicator",
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 54,
+      "end_page": 58,
+      "reason": "This range contains the opening of the DSA annex and LIC-DSF classification discussion, including risk ratings and public debt coverage, but not the main public-sector debt decomposition table itself.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "Risk of external debt distress",
+        "Overall risk of debt distress",
+        "PUBLIC DEBT COVERAGE",
+        "COUNTRY CLASSIFICATION",
+        "LIC-DSF",
+        "composite indicator"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 64,
+  "recommended_start_page": 63,
+  "recommended_end_page": 66,
+  "confidence": "high",
+  "notes": "The public DSA table is present and should be selected over the external debt table on page 63. Figure 2 and Figure 3 are graphical/chart objects and are not the extraction target. The eligible target is the row-and-column public sector debt sustainability framework table on page 64."
+}

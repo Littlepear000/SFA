@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "MALAYSIA",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR MALAYSIA",
+    "country_report_number": "18/61",
+    "publication_date": "March 2018",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Malaysia_2018-03-07.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 47,
+      "end_page": 50,
+      "reason": "Appendix IV is the Public Debt Sustainability Analysis. The qualifying public-debt decomposition table appears on physical page 49 under Figure 1, titled Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario, with explicit year columns and rows including Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual.",
+      "matched_phrases": [
+        "Appendix IV. Public Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 49,
+  "recommended_start_page": 47,
+  "recommended_end_page": 50,
+  "confidence": "high",
+  "notes": "The public DSA starts on physical page 47, and the main eligible decomposition table is on physical page 49. It is figure-numbered but visibly structured as a row-and-column table with printed cells, so it qualifies. The graphical debt-creating flows chart on the same page is not the target. An External Debt Sustainability Analysis appears later on pages 56–59 and is excluded because a public debt DSA table exists."
+}

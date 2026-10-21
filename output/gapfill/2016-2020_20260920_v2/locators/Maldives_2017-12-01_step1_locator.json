@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "MALDIVES",
+    "report_title": "2017 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR MALDIVES",
+    "country_report_number": "17/357",
+    "publication_date": "December 2017",
+    "consultation_type": "2017 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Maldives_2017-12-01.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 83,
+      "end_page": 84,
+      "reason": "Page 83 contains the qualifying public debt decomposition table titled 'Table 3. Maldives: Public Sector Debt Sustainability Framework, Baseline Scenario, 2014–37' with visible row-and-column structure and rows including 'Change in public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'. Page 84 contains the related public debt sensitivity table and provides immediate continuation context.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 83,
+  "recommended_start_page": 83,
+  "recommended_end_page": 84,
+  "confidence": "high",
+  "notes": "The DSA section begins on physical PDF page 69. The report uses the LIC debt sustainability framework, with references to high risk of external debt distress and IMF-World Bank/IDA preparation. External debt sustainability tables appear on pages 80–82 but are excluded because the target is the public debt decomposition table. The qualifying public debt decomposition table is on page 83."
+}

@@ -93,9 +93,9 @@ HERE = _here()
 BASE = HERE.parent if HERE.name == "code" else HERE
 
 # ------------------------------------------------------------------ CONFIG
-INPUT_CSV = BASE / "output" / "2016-2020" / "compiled_csv" / "dsa_decomposition_labels_2016-2020_sa.csv"
-OUT_DIR = None  # None -> "gap_year_check" folder next to the CSV's batch folder
-STAMP = "20260920_v2"
+# INPUT_CSV = BASE / "output" / "2016-2020" / "compiled_csv" / "dsa_decomposition_labels_2016-2020_sa.csv"
+# OUT_DIR = None  # None -> "gap_year_check" folder next to the CSV's batch folder
+# STAMP = "20260920_v2"
 
 
 def default_out_dir(input_csv: Path) -> Path:

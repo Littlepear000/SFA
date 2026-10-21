@@ -1,0 +1,34 @@
+{
+  "report_metadata": {
+    "country": "THE GAMBIA",
+    "report_title": "REQUEST FOR A STAFF–MONITORED PROGRAM—PRESS RELEASE AND STAFF REPORT",
+    "country_report_number": "19/128",
+    "publication_date": "May 2019",
+    "consultation_type": "REQUEST FOR A STAFF-MONITORED PROGRAM",
+    "pdf_file_name": "The Gambia_2019-05-08.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 95,
+      "end_page": 95,
+      "reason": "Page 95 contains the qualifying public debt decomposition table, titled 'Table 2. The Gambia: Public Sector Debt Sustainability Framework, Baseline Scenario, 2016–39'. It is visibly a row-and-column table with year columns and rows including change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, other identified debt-creating flows, and residual.",
+      "matched_phrases": [
+        "Table 2. The Gambia: Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 95,
+  "recommended_start_page": 95,
+  "recommended_end_page": 95,
+  "confidence": "high",
+  "notes": "The DSA begins on physical PDF page 74. The framework is LIC_DSF, indicated by the Joint Bank-Fund Debt Sustainability Analysis, risk of external debt distress, overall risk of debt distress, Composite Indicator, and Public Sector Debt Sustainability Framework. External debt framework tables appear on page 94 and are excluded as targets. Graphical DSA figures on nearby pages are not selected. The public debt table appears complete on page 95 with no visible continued or concluded pages."
+}

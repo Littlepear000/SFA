@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "GRENADA",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR GRENADA",
+    "country_report_number": "18/236",
+    "publication_date": "July 2018",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Grenada_2018-07-25.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 73,
+      "end_page": 75,
+      "reason": "The DSA annex begins on page 67 and includes a qualifying public debt decomposition table on page 74 titled 'Table 2. Grenada: Public Sector Debt Sustainability Framework, Baseline Scenario, 2015–2038'. The table is visibly row-and-column formatted with explicit rows including 'Change in public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual, including asset changes'.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "LIC-DSA",
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 74,
+  "recommended_start_page": 73,
+  "recommended_end_page": 75,
+  "confidence": "high",
+  "notes": "The public DSA decomposition table is Table 2 on physical PDF page 74. Page 73 contains the external debt framework and page 75 begins external sensitivity analysis; the recommended range is centered on the public table while preserving immediate context."
+}

@@ -1,0 +1,50 @@
+{
+  "report_metadata": {
+    "country": "MYANMAR",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR MYANMAR",
+    "country_report_number": "19/100",
+    "publication_date": "April 2019",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Myanmar_2019-04-10.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 84,
+      "end_page": 86,
+      "reason": "The qualifying public debt decomposition table is visible on page 84 as Table 2, titled \"Myanmar: Public Sector Debt Sustainability Framework, Baseline Scenario, 2015–38\". It is a row-and-column table with explicit year columns and rows including \"Change in public sector debt\", \"Identified debt-creating flows\", \"Primary deficit\", \"Automatic debt dynamics\", and \"Residual\". Pages 85–86 provide adjacent sensitivity tables, including the public debt sensitivity table on page 86.",
+      "matched_phrases": [
+        "Public Sector Debt Sustainability Framework, Baseline Scenario",
+        "Public sector debt",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    },
+    {
+      "rank": 2,
+      "start_page": 69,
+      "end_page": 73,
+      "reason": "The Debt Sustainability Analysis annex begins on page 69 and contains LIC DSF markers including risk ratings for external and overall debt distress, public debt coverage, country classification, and background on debt. This range is useful for DSA context but does not contain the target public debt decomposition table.",
+      "matched_phrases": [
+        "DEBT SUSTAINABILITY ANALYSIS",
+        "Risk of external debt distress",
+        "Overall risk of debt distress",
+        "PUBLIC DEBT COVERAGE",
+        "low-income country debt sustainability framework",
+        "Composite indicator"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 84,
+  "recommended_start_page": 84,
+  "recommended_end_page": 86,
+  "confidence": "high",
+  "notes": "The report uses the LIC DSF. Page 83 contains an External Debt Sustainability Framework table and is not the target. Page 81 contains a drivers-of-debt-dynamics figure/chart and is not selected as the extraction target because the eligible public debt decomposition table exists on page 84."
+}

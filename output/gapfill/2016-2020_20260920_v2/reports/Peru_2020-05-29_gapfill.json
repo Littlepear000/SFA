@@ -1,0 +1,147 @@
+{
+  "pdf_file_name": "Peru_2020-05-29.pdf",
+  "country": "Peru",
+  "report_date": "2020-05-29",
+  "per_target": {
+    "2017": {
+      "status": "merged_range_only",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": null,
+      "not_extractable_reason": "year_only_in_merged_range",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "No values were extracted because 2017 is covered only by the merged Actual range column 2009-2017, which is not a discrete target-year column.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": null,
+        "table_number": null,
+        "page_pdf": 52,
+        "confidence": "high",
+        "extraction_method": "pymupdf_pillow_table_crop_fallback"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2017
+      ],
+      "extraction_method": "pymupdf_pillow_table_crop_fallback",
+      "selected_original_pages": [
+        52
+      ],
+      "table_crop_box_points": [
+        12.0,
+        136.5,
+        600.0,
+        602.56
+      ],
+      "ladder_notes": [
+        "direct: not usable (Single page 52 is still 1,183,379 bytes.)",
+        "image_compressed: not usable ([WinError 5] Access is denied: 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\.Peru_2020-05-29_pages_52_54_image_compressed.82ef0d0a0c664452b8c78f2d9c735aa9.tmp.pdf' -> 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\Peru_2020-05-29_pages_52_54_image_compressed.pdf')"
+      ],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Peru",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": null,
+          "table_title": "Contribution to Changes in Public Debt",
+          "units_verbatim": null,
+          "page_pdf": 52,
+          "page_printed": null,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2009-2017",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The merged range column 2009-2017 is under the visible group heading Actual, before the Projections group begins."
+              },
+              {
+                "position": 2,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2018 column is under the visible group heading Actual, before the Projections group begins."
+              },
+              {
+                "position": 3,
+                "year_label": "2019",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The 2019 column is under the visible group heading Actual, before the Projections group begins."
+              },
+              {
+                "position": 4,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2020 column is under the visible group heading Projections."
+              },
+              {
+                "position": 5,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2021 column is under the visible group heading Projections."
+              },
+              {
+                "position": 6,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2022 column is under the visible group heading Projections."
+              },
+              {
+                "position": 7,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2023 column is under the visible group heading Projections."
+              },
+              {
+                "position": 8,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2024 column is under the visible group heading Projections."
+              },
+              {
+                "position": 9,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The 2025 column is under the visible group heading Projections."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2017,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": null,
+            "status_basis": "The target year 2017 appears only within the merged Actual range column labeled 2009-2017; there is no separate single-year 2017 column visible.",
+            "extractable": false,
+            "not_extractable_reason": "year_only_in_merged_range",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "No values were extracted because 2017 is covered only by the merged Actual range column 2009-2017, which is not a discrete target-year column."
+          }
+        ],
+        "extraction_notes": "The visible crop contains a qualifying row-and-column public debt decomposition table titled Contribution to Changes in Public Debt. The lower Debt-Creating Flows panel is a chart/visualization and was not used. The table header shows Actual columns 2009-2017, 2018, and 2019, followed by Projections columns 2020 through 2025. The requested target year 2017 is included only in the merged 2009-2017 Actual range column, so the absolute rule prohibits extracting values for 2017."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 99.31
+}

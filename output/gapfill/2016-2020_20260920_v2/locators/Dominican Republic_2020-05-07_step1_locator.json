@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "DOMINICAN REPUBLIC",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE DOMINICAN REPUBLIC",
+    "country_report_number": "20/154",
+    "publication_date": "May 2020",
+    "consultation_type": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT",
+    "pdf_file_name": "Dominican Republic_2020-05-07.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 27,
+      "end_page": 28,
+      "reason": "Annex I is titled Public Debt Sustainability Assessment (DSA). The following page contains Figure AI.1, Dominican Republic: Public Sector DSA – Baseline Scenario, visibly formatted as a row-and-column table with the public debt decomposition rows, including Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Interest rate/growth differential, Exchange rate depreciation, Other identified debt-creating flows, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Annex I. Public Debt Sustainability Assessment (DSA)",
+        "Public Sector DSA – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes",
+        "Heat Map"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 28,
+  "recommended_start_page": 27,
+  "recommended_end_page": 28,
+  "confidence": "high",
+  "notes": "Selected the public-sector DSA annex and the qualifying row-and-column public debt decomposition table on physical PDF page 28. Although numbered as a Figure, the object is visibly tabular and contains the public debt-creating flows decomposition. No external-debt DSA was selected."
+}

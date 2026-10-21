@@ -1,0 +1,139 @@
+{
+  "pdf_file_name": "Nepal_2019-02-17.pdf",
+  "country": "Nepal",
+  "report_date": "2019-02-17",
+  "per_target": {
+    "2017": {
+      "status": "year_not_in_table",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": null,
+      "not_extractable_reason": "year_not_in_table",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "Target year 2017 does not appear as a single-year column in the visible public debt decomposition table.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+        "table_number": "Table 2",
+        "page_pdf": 67,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2017
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        67
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Nepal",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "LIC_DSF",
+          "table_number": "Table 2",
+          "table_title": "Nepal: Public Sector Debt Sustainability Framework, Baseline Scenario, 2018–2039",
+          "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+          "page_pdf": 67,
+          "page_printed": 13,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2018",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The column is under the visible group heading \"Actual\"."
+              },
+              {
+                "position": 2,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 3,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 4,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 5,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 6,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 7,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 8,
+                "year_label": "2029",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              },
+              {
+                "position": 9,
+                "year_label": "2039",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The column is under the visible group heading \"Projections\"."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2017,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": null,
+            "status_basis": "No single-year 2017 column is visible in the table. The visible year columns are 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2029, and 2039.",
+            "extractable": false,
+            "not_extractable_reason": "year_not_in_table",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "Target year 2017 does not appear as a single-year column in the visible public debt decomposition table."
+          }
+        ],
+        "extraction_notes": "The selected page contains the qualifying tabular public-sector debt decomposition table titled \"Table 2. Nepal: Public Sector Debt Sustainability Framework, Baseline Scenario, 2018–2039\". The decomposition block begins at \"Public sector debt 1/\" and includes rows such as \"Change in public sector debt\", \"Identified debt-creating flows\", \"Primary deficit\", \"Automatic debt dynamics\", \"Other identified debt-creating flows\", and \"Residual\". The requested target year 2017 is not present as a single-year column, so no values were extracted."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 82.99
+}

@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "TURKEY",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR TURKEY",
+    "country_report_number": "19/395",
+    "publication_date": "December 2019",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Turkey_2019-12-26.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 55,
+      "end_page": 57,
+      "reason": "Public DSA annex is present, and the qualifying row-and-column public debt decomposition table appears on page 56 under Figure 1, with rows such as Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, Exchange rate depreciation, Other identified debt-creating flows, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Annex III. Public Debt Sustainability Analysis",
+        "Turkey Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 56,
+  "recommended_start_page": 55,
+  "recommended_end_page": 57,
+  "confidence": "high",
+  "notes": "The public DSA begins on physical PDF page 53, and the target public debt decomposition table is visible on physical PDF page 56. Annex IV External Debt Sustainability also appears later, but it is excluded because a qualifying public debt decomposition table exists."
+}

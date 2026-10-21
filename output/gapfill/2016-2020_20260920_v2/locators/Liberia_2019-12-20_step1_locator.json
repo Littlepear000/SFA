@@ -1,0 +1,37 @@
+{
+  "report_metadata": {
+    "country": "LIBERIA",
+    "report_title": "REQUEST FOR A FOUR-YEAR ARRANGEMENT UNDER THE EXTENDED CREDIT FACILITY—PRESS RELEASE; STAFF REPORT; STAFF STATEMENT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR LIBERIA",
+    "country_report_number": "19/381",
+    "publication_date": "December 2019",
+    "consultation_type": "REQUEST FOR A FOUR-YEAR ARRANGEMENT UNDER THE EXTENDED CREDIT FACILITY",
+    "pdf_file_name": "Liberia_2019-12-20.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "LIC_DSF",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 146,
+      "end_page": 149,
+      "reason": "The Debt Sustainability Analysis begins on page 131, and the qualifying public debt decomposition table is visible on page 147 as 'Table 2. Liberia: Public Sector Debt Sustainability Framework, Baseline Scenario, 2017–40'. It is a row-and-column table with year columns and rows including 'Change in public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', and 'Residual'. Pages 146-149 capture the adjacent external table and the public table plus sensitivity tables, while remaining narrow.",
+      "matched_phrases": [
+        "Debt Sustainability Analysis",
+        "Overall risk of debt distress",
+        "Composite Indicator",
+        "Table 2. Liberia: Public Sector Debt Sustainability Framework, Baseline Scenario, 2017–40",
+        "Change in public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 147,
+  "recommended_start_page": 146,
+  "recommended_end_page": 149,
+  "confidence": "high",
+  "notes": "Selected the public-sector LIC-DSF baseline table, not the external debt sustainability framework on page 146. Graphical DSA figures also appear on pages 141-144, but the target is the qualifying row-and-column public debt table on page 147."
+}

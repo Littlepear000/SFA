@@ -1,0 +1,147 @@
+{
+  "pdf_file_name": "Nepal_2020-04-06.pdf",
+  "country": "Nepal",
+  "report_date": "2020-04-06",
+  "per_target": {
+    "2017": {
+      "status": "year_not_in_table",
+      "errors": [],
+      "warnings": [],
+      "column_status": null,
+      "column_header_verbatim": null,
+      "not_extractable_reason": "year_not_in_table",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "Target year 2017 was not extracted because no single-year 2017 column is visible in the table.",
+      "meta": {
+        "framework": "LIC_DSF",
+        "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+        "table_number": "Table 2",
+        "page_pdf": 67,
+        "confidence": "high",
+        "extraction_method": "pymupdf_pillow_table_crop_fallback"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2017
+      ],
+      "extraction_method": "pymupdf_pillow_table_crop_fallback",
+      "selected_original_pages": [
+        67
+      ],
+      "table_crop_box_points": [
+        12.0,
+        129.34,
+        780.0,
+        545.27
+      ],
+      "ladder_notes": [
+        "direct: not usable (Single page 67 is still 1,445,121 bytes.)",
+        "image_compressed: not usable ([WinError 5] Access is denied: 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\.Nepal_2020-04-06_pages_66_68_image_compressed.4e3185aada1a4c12927a8723bb6bb0cc.tmp.pdf' -> 'C:\\\\Users\\\\xli7\\\\OneDrive - International Monetary Fund (PRD)\\\\Shelley_My Projects\\\\SFA\\\\output\\\\gapfill\\\\2016-2020_20260920_v2\\\\selected_pdf_pages\\\\Nepal_2020-04-06_pages_66_68_image_compressed.pdf')"
+      ],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "Nepal",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "LIC_DSF",
+          "table_number": "Table 2",
+          "table_title": "Nepal: Public Sector Debt Sustainability Framework, Baseline Scenario, 2017-2040",
+          "units_verbatim": "(In percent of GDP, unless otherwise indicated)",
+          "page_pdf": 67,
+          "page_printed": null,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2019",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The year 2019 is visibly under the group heading \"Actual\"."
+              },
+              {
+                "position": 2,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2020 is visibly under the group heading \"Projections\"."
+              },
+              {
+                "position": 3,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2021 is visibly under the group heading \"Projections\"."
+              },
+              {
+                "position": 4,
+                "year_label": "2022",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2022 is visibly under the group heading \"Projections\"."
+              },
+              {
+                "position": 5,
+                "year_label": "2023",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2023 is visibly under the group heading \"Projections\"."
+              },
+              {
+                "position": 6,
+                "year_label": "2024",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2024 is visibly under the group heading \"Projections\"."
+              },
+              {
+                "position": 7,
+                "year_label": "2025",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2025 is visibly under the group heading \"Projections\"."
+              },
+              {
+                "position": 8,
+                "year_label": "2030",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2030 is visibly under the group heading \"Projections\"."
+              },
+              {
+                "position": 9,
+                "year_label": "2040",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The year 2040 is visibly under the group heading \"Projections\"."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2017,
+            "column_found": false,
+            "matched_year_label": null,
+            "column_status": null,
+            "column_header_verbatim": null,
+            "status_basis": "No visible single-year column labeled 2017 appears in the table. The visible year columns are 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2030, and 2040.",
+            "extractable": false,
+            "not_extractable_reason": "year_not_in_table",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "Target year 2017 was not extracted because no single-year 2017 column is visible in the table."
+          }
+        ],
+        "extraction_notes": "The selected page contains a qualifying row-and-column public sector debt sustainability framework table with explicit decomposition rows including public sector debt, change in public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, other identified debt-creating flows, and residual. The visible column header distinguishes one Actual year, 2019, from Projections covering 2020 through 2040. The far-right Average columns are non-year summary columns and were ignored. No single-year 2017 column is visible, so the requested target year is not extractable."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 144.12
+}

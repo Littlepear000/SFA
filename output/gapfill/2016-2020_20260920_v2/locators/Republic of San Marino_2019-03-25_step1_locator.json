@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF SAN MARINO",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF SAN MARINO",
+    "country_report_number": "19/85",
+    "publication_date": "March 2019",
+    "consultation_type": "2019 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Republic of San Marino_2019-03-25.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 39,
+      "end_page": 43,
+      "reason": "Annex V is titled Debt Sustainability Analysis and contains a qualifying public-sector debt decomposition table on page 41 titled Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario, with visible row labels and year/value columns including Contribution to Changes in Public Debt, Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual.",
+      "matched_phrases": [
+        "Annex V. Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 41,
+  "recommended_start_page": 39,
+  "recommended_end_page": 43,
+  "confidence": "high",
+  "notes": "The public DSA appears in Annex V starting on physical PDF page 39. The qualifying decomposition table is visible on page 41 even though it is labeled as Figure A5.1; it is laid out as a row-and-column table with numeric cells. External debt sustainability material appears later, including Table A5.1 on page 46, but it is excluded because a public-debt decomposition table exists."
+}

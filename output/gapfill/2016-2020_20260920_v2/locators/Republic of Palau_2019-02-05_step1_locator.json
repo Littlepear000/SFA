@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF PALAU",
+    "report_title": "2018 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF PALAU",
+    "country_report_number": "19/43",
+    "publication_date": "February 2019",
+    "consultation_type": "2018 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "Republic of Palau_2019-02-05.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 45,
+      "end_page": 48,
+      "reason": "Appendix VII is titled Debt Sustainability Analysis and contains the public debt DSA. Page 47 has a visibly table-formatted object titled 'Figure 1. Palau: Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario' with aligned year columns and rows including change in gross public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, and residual.",
+      "matched_phrases": [
+        "Appendix VII. Debt Sustainability Analysis",
+        "Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Primary deficit",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 47,
+  "recommended_start_page": 45,
+  "recommended_end_page": 48,
+  "confidence": "high",
+  "notes": "Selected the public debt DSA appendix rather than external sector assessment or graphical fiscal-summary figures. The target is figure-numbered but visibly laid out as a row-and-column public debt decomposition table; page 48 contains related public DSA alternative-scenario material."
+}

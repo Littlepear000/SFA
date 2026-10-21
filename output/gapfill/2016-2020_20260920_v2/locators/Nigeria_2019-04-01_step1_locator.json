@@ -1,0 +1,35 @@
+{
+  "report_metadata": {
+    "country": "NIGERIA",
+    "report_title": "2019 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR NIGERIA",
+    "country_report_number": "19/92",
+    "publication_date": "April 2019",
+    "consultation_type": "Article IV",
+    "pdf_file_name": "Nigeria_2019-04-01.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 64,
+      "end_page": 68,
+      "reason": "Annex IV is titled Debt Sustainability and begins with Public Debt Sustainability Analysis. The qualifying public debt decomposition is on page 66 in a figure-numbered but visibly tabular object titled Nigeria Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario, with aligned year columns and rows including Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Annex IV. Debt Sustainability",
+        "Public Debt Sustainability Analysis",
+        "Nigeria Public Sector Debt Sustainability Analysis (DSA) - Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 66,
+  "recommended_start_page": 64,
+  "recommended_end_page": 68,
+  "confidence": "high",
+  "notes": "The target public DSA table is on physical PDF page 66. It is numbered as Figure 1 but is formatted as a row-and-column table and qualifies under the tabular-structure rule. The external debt sustainability analysis starts later on page 71 and the external debt table on page 73; these are excluded because a public debt decomposition table exists."
+}

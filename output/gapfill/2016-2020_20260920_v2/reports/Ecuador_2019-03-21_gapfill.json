@@ -1,0 +1,143 @@
+{
+  "pdf_file_name": "Ecuador_2019-03-21.pdf",
+  "country": "Ecuador",
+  "report_date": "2019-03-21",
+  "per_target": {
+    "2016": {
+      "status": "rejected_not_actual",
+      "errors": [],
+      "warnings": [],
+      "column_status": "projection",
+      "column_header_verbatim": "Projections / 2016",
+      "not_extractable_reason": "column_is_projection",
+      "decomposition": null,
+      "unmapped_rows": null,
+      "notes": "No values were extracted because the target-year column is a projection column.",
+      "meta": {
+        "framework": "MAC_DSA",
+        "units_verbatim": "(In percent of GDP unless otherwise indicated)",
+        "table_number": "Table 1",
+        "page_pdf": 68,
+        "confidence": "high",
+        "extraction_method": "selected_pdf_direct"
+      }
+    }
+  },
+  "calls": [
+    {
+      "target_years": [
+        2016
+      ],
+      "extraction_method": "selected_pdf_direct",
+      "selected_original_pages": [
+        66,
+        67,
+        68,
+        69,
+        70
+      ],
+      "table_crop_box_points": null,
+      "ladder_notes": [],
+      "model_output": {
+        "table_found": true,
+        "source": {
+          "country": "ECUADOR",
+          "publication_date": null,
+          "consultation_type": null,
+          "framework": "MAC_DSA",
+          "table_number": "Table 1",
+          "table_title": "Public Sector Debt Sustainability Analysis (DSA)―Baseline Scenario",
+          "units_verbatim": "(In percent of GDP unless otherwise indicated)",
+          "page_pdf": 68,
+          "page_printed": 62,
+          "column_header_audit": {
+            "columns": [
+              {
+                "position": 1,
+                "year_label": "2005-2013",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible multi-level header places the range column 2005-2013 under the group heading 'Actual'."
+              },
+              {
+                "position": 2,
+                "year_label": "2014",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible multi-level header places 2014 under the group heading 'Actual'."
+              },
+              {
+                "position": 3,
+                "year_label": "2015",
+                "group_label": "Actual",
+                "status": "actual",
+                "status_basis": "The visible multi-level header places 2015 under the group heading 'Actual', before the separate 'Projections' group begins."
+              },
+              {
+                "position": 4,
+                "year_label": "2016",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places 2016 under the group heading 'Projections'."
+              },
+              {
+                "position": 5,
+                "year_label": "2017",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places 2017 under the group heading 'Projections'."
+              },
+              {
+                "position": 6,
+                "year_label": "2018",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places 2018 under the group heading 'Projections'."
+              },
+              {
+                "position": 7,
+                "year_label": "2019",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places 2019 under the group heading 'Projections'."
+              },
+              {
+                "position": 8,
+                "year_label": "2020",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places 2020 under the group heading 'Projections'."
+              },
+              {
+                "position": 9,
+                "year_label": "2021",
+                "group_label": "Projections",
+                "status": "projection",
+                "status_basis": "The visible multi-level header places 2021 under the group heading 'Projections'."
+              }
+            ]
+          },
+          "confidence": "high"
+        },
+        "targets": [
+          {
+            "target_year": 2016,
+            "column_found": true,
+            "matched_year_label": "2016",
+            "column_status": "projection",
+            "column_header_verbatim": "Projections / 2016",
+            "status_basis": "The column labeled 2016 is visibly grouped under the 'Projections' heading in Table 1, to the right of the Actual columns 2005-2013, 2014, and 2015.",
+            "extractable": false,
+            "not_extractable_reason": "column_is_projection",
+            "decomposition": null,
+            "unmapped_rows": [],
+            "notes": "No values were extracted because the target-year column is a projection column."
+          }
+        ],
+        "extraction_notes": "The qualifying public debt decomposition table is Table 1, 'Public Sector Debt Sustainability Analysis (DSA)―Baseline Scenario', on original physical PDF page 68. The decomposition block is headed 'Contribution to Changes in Public Debt' and includes rows such as 'Change in gross public sector debt', 'Identified debt-creating flows', 'Primary deficit', 'Automatic debt dynamics', 'Other identified debt-creating flows', and 'Residual, including asset changes'. The requested target year 2016 is present as a single-year column, but it is under the visible 'Projections' group heading, so the absolute actual/historical-only rule prevents extraction. Surrounding graphical panels and figures were not used."
+      }
+    }
+  ],
+  "locator_source": "rerun",
+  "timing_seconds": 83.3
+}

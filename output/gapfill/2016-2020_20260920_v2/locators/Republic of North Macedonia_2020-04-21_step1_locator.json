@@ -1,0 +1,37 @@
+{
+  "report_metadata": {
+    "country": "REPUBLIC OF NORTH MACEDONIA",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE REPUBLIC OF NORTH MACEDONIA",
+    "country_report_number": "20/113",
+    "publication_date": "April 2020",
+    "consultation_type": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT",
+    "pdf_file_name": "Republic of North Macedonia_2020-04-21.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 12,
+      "end_page": 13,
+      "reason": "Public debt sustainability assessment appears on page 12, followed by a qualifying row-and-column public debt decomposition table on page 13 within Figure 1. The table includes aligned year columns and rows such as Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Debt Sustainability Assessment",
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Change in gross public sector debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes",
+        "Heat Map"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 13,
+  "recommended_start_page": 12,
+  "recommended_end_page": 13,
+  "confidence": "high",
+  "notes": "The target is the public sector DSA decomposition table on physical PDF page 13. Although numbered as Figure 1, it is visibly a row-and-column table and therefore qualifies. No external-debt DSA target was selected."
+}

@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "PANAMA",
+    "report_title": "REQUEST FOR PURCHASE UNDER THE RAPID FINANCING INSTRUMENT—PRESS RELEASE; STAFF REPORT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR PANAMA",
+    "country_report_number": "20/147",
+    "publication_date": "May 2020",
+    "consultation_type": "Request for Purchase under the Rapid Financing Instrument",
+    "pdf_file_name": "Panama_2020-05-01.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 19,
+      "end_page": 20,
+      "reason": "Annex I is titled Public Debt Sustainability Assessment (DSA), followed by a visibly tabular Figure 1 titled Panama: Public Sector DSA – Baseline Scenario. The page contains a row-and-column decomposition table headed Contribution to Changes in Public Debt, with rows including Change in gross public sector debt, Identified debt-creating flows, Primary deficit, Automatic debt dynamics, and Residual, including asset changes.",
+      "matched_phrases": [
+        "Annex I. Public Debt Sustainability Assessment (DSA)",
+        "Public Sector DSA – Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes",
+        "Heat Map"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 20,
+  "recommended_start_page": 19,
+  "recommended_end_page": 20,
+  "confidence": "high",
+  "notes": "The qualifying public debt decomposition table is on physical PDF page 20, within Annex I beginning on page 19. It is a MAC DSA-style public sector DSA table, not an external debt DSA."
+}

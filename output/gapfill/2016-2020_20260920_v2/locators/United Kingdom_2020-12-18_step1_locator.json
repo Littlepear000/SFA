@@ -1,0 +1,36 @@
+{
+  "report_metadata": {
+    "country": "UNITED KINGDOM",
+    "report_title": "2020 ARTICLE IV CONSULTATION—PRESS RELEASE; STAFF REPORT; STAFF SUPPLEMENT; AND STATEMENT BY THE EXECUTIVE DIRECTOR FOR THE UNITED KINGDOM",
+    "country_report_number": "20/320",
+    "publication_date": "December 2020",
+    "consultation_type": "2020 ARTICLE IV CONSULTATION",
+    "pdf_file_name": "United Kingdom_2020-12-18.pdf"
+  },
+  "dsa_section_found": true,
+  "framework_hint": "MAC_DSA",
+  "candidates": [
+    {
+      "rank": 1,
+      "start_page": 66,
+      "end_page": 70,
+      "reason": "Annex III is titled Debt Sustainability Analysis and contains Figure 1, United Kingdom: Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario, with a visible row-and-column decomposition table headed Contribution to Changes in Public Debt, including rows for change in gross public sector debt, identified debt-creating flows, primary deficit, automatic debt dynamics, other identified debt-creating flows, and residual.",
+      "matched_phrases": [
+        "Annex III. Debt Sustainability Analysis",
+        "Baseline Scenario",
+        "Public Sector Debt Sustainability Analysis (DSA)—Baseline Scenario",
+        "Contribution to Changes in Public Debt",
+        "Identified debt-creating flows",
+        "Automatic debt dynamics",
+        "Primary deficit",
+        "Residual, including asset changes"
+      ],
+      "likely_image_based": false
+    }
+  ],
+  "primary_table_page": 69,
+  "recommended_start_page": 66,
+  "recommended_end_page": 70,
+  "confidence": "high",
+  "notes": "The qualifying public debt decomposition table is on physical PDF page 69 within Annex III. Annex VI contains an External Debt Sustainability Analysis on pages 79-81, including an external debt sustainability framework, but it is excluded because a public debt DSA decomposition table exists."
+}
