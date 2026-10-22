@@ -2,7 +2,7 @@
 Pure logic for the gap-year fill run (no API, no network; reads existing files only).
 
 Kept separate from 3c_gapfill_3_run_api.py so it can be unit-tested on any machine:
-  * candidate report ordering (T+2 first, then T+3; latest report of a year first), and the Step 2
+  * candidate report ordering (T+2 first, then T+3, then T+4; latest report of a year first), and the Step 2
     candidate-map table built from it (also used by 3b and by 3a's own preview, so there is exactly one
     place that decides what counts as a candidate report)
   * the selected-PDF inventory (shared by 3b, to persist the candidate map, and 3c, to run the API)
@@ -122,7 +122,7 @@ def parse_year_label(value):
     return "invalid", None, None, f"unparsed_{text}"
 
 # ------------------------------------------------------------------ settings
-OFFSETS = (2, 3)  # report year = gap year + 2, then + 3. Stop after that.
+OFFSETS = (2, 3, 4)  # report year = gap year + 2, then + 3, then + 4. Stop after that.
 ELIGIBLE = {"actual", "historical"}
 NOT_ACTUAL = {"preliminary", "estimate", "projection"}
 ROLES = [
@@ -190,7 +190,7 @@ def build_candidates(
     skip: set,
     offsets: Tuple[int, ...] = OFFSETS,
 ) -> List[Dict[str, Any]]:
-    """Ordered source reports for one gap year: T+2 (latest first), then T+3."""
+    """Ordered source reports for one gap year: T+2 (latest first), then T+3, then T+4."""
     out: List[Dict[str, Any]] = []
     for off in offsets:
         reps = sorted(
@@ -302,7 +302,7 @@ def list_staff_reports(root_dir: Path) -> List[Dict[str, Any]]:
     Every real staff-report PDF under root_dir -- the ORIGINAL PDFs, laid out one subfolder per batch
     (e.g. staff_reports/pdf staff reports/2016-2020/<Country>_<date>.pdf), not the selected/cropped
     subsets Step 1 produces. This is the candidate universe: it does not depend on Step 1 ever having
-    successfully located a table in a report in any particular run, and it is batch-agnostic (a T+2/T+3
+    successfully located a table in a report in any particular run, and it is batch-agnostic (a T+2/T+3/T+4
     candidate can come from any batch folder under root_dir, found by build_candidates() the same way
     regardless of which subfolder it is actually in).
     """

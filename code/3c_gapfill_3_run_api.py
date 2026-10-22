@@ -7,11 +7,12 @@ Purpose
         the report published in year T+2 (if there is more than one that year, try the latest first,
         then earlier ones)
         -> the report published in year T+3 (again, latest first)
+        -> the report published in year T+4 (again, latest first)
     Read the column for year T in these reports' DSA decomposition tables. Only actual / historical
-    columns are accepted; preliminary / estimate / projection are never accepted. If T+3 also fails to
-    yield the year, the gap is marked unresolved and no further years (T+4, ...) are tried.
+    columns are accepted; preliminary / estimate / projection are never accepted. If T+4 also fails to
+    yield the year, the gap is marked unresolved and no further years (T+5, ...) are tried.
 
-    The candidate universe is every real PDF under STAFF_REPORTS_DIR -- batch-agnostic (a T+2/T+3
+    The candidate universe is every real PDF under STAFF_REPORTS_DIR -- batch-agnostic (a T+2/T+3/T+4
     candidate from an adjacent batch's subfolder is found exactly the same way as one from the batch
     being checked) and independent of whether Step 1 ever successfully located a table in it in any
     repeated run. For each candidate actually tried: if Step 1 already produced a selected PDF for it
@@ -57,7 +58,7 @@ Output (OUTPUT_DIR = output/gapfill/<batch>_<STAMP>/)
 
 Core steps
     1. Read targets and skip, scan STAFF_REPORTS_DIR for the candidate universe, and build the
-       candidate-report order for each gap year (T+2 -> T+3, skipping reports listed in skip).
+       candidate-report order for each gap year (T+2 -> T+3 -> T+4, skipping reports listed in skip).
     2. Process in waves: in each wave, the gap years that currently land on the same report are merged
        into a single API call.
     3. For each report: find a cached selected PDF in SELECTED_PDF_DIRS (preferring the one recorded in
@@ -133,7 +134,7 @@ except ModuleNotFoundError as exc:
 # BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA")
 #
 # # Root of the ORIGINAL staff-report PDFs, one subfolder per batch -- the candidate universe (same
-# # config as 3b's STAFF_REPORTS_DIR; keep the two in sync). A T+2/T+3 candidate is any real PDF found
+# # config as 3b's STAFF_REPORTS_DIR; keep the two in sync). A T+2/T+3/T+4 candidate is any real PDF found
 # # anywhere under here, whether or not Step 1 ever located a table in it in any run, and regardless of
 # # which batch subfolder it is actually in.
 # STAFF_REPORTS_DIR = BASE_DIR / "staff_reports" / "pdf staff reports"
@@ -180,7 +181,7 @@ SIZE_PHRASES = [
 ]
 
 # The selected-PDF indexing helpers (parse_selected_name, index_selected_pdfs, reports_from_selected)
-# and the T+2/T+3 candidate-map builder now live in gapfill_lib_core.py, shared with 3b (which persists
+# and the T+2/T+3/T+4 candidate-map builder now live in gapfill_lib_core.py, shared with 3b (which persists
 # the candidate map before any API call) -- see core.index_selected_pdfs / core.reports_from_selected.
 
 

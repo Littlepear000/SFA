@@ -5,7 +5,7 @@
 Purpose
     Turn the gap list produced by Step 1 into the files Step 3 needs, and -- the actual "map of gap
     year -> candidate report" -- persist it as its own CSV so it can be sanity-checked before Step 3
-    spends any API calls. The candidate order (T+2 first, then T+3, latest publication date first) is
+    spends any API calls. The candidate order (T+2 first, then T+3, then T+4, latest publication date first) is
     computed with the exact same gapfill_lib_core.build_candidates() that Step 3 uses, so this map is
     an honest preview of what Step 3 will actually try, not a separate guess.
 
@@ -18,7 +18,7 @@ Input
                                                           found under it counts as a candidate, whether
                                                           or not Step 1 ever located a table in it in any
                                                           run, and regardless of which batch it is in --
-                                                          a T+2/T+3 candidate from an adjacent batch is
+                                                          a T+2/T+3/T+4 candidate from an adjacent batch is
                                                           found exactly the same way as one from the
                                                           batch being checked.
     SELECTED_PDF_DIRS                                     same config as 3c: Step 1's selected_pdf_pages
@@ -33,7 +33,7 @@ Output (written to CHECK_DIR)
     gapfill_targets_<STAMP>.csv        one row per gap year: gap_id, country, gap_year, gap_span, primary_cause,
                                        audit_fill_status (Step 1's prediction), audit_expected_source_report
                                        (the predicted source report), has_candidate_report (does at least
-                                       one real T+2/T+3 report exist under STAFF_REPORTS_DIR),
+                                       one real T+2/T+3/T+4 report exist under STAFF_REPORTS_DIR),
                                        audit_vs_real_candidate_mismatch (Step 1 predicted fillable but no
                                        such report actually exists on disk at all -- unusual; normally
                                        means the predicted report's filename/date could not be parsed, or

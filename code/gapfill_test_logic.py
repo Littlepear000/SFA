@@ -73,13 +73,16 @@ def test_candidates():
     ]
     idx = core.index_by_country_year(reps)
     c = core.build_candidates("A", 2016, idx, set())
-    assert [x["pdf_file_name"] for x in c] == ["A_2018-11-05.pdf", "A_2018-03-01.pdf", "A_2019-06-01.pdf"], c
-    assert [x["offset"] for x in c] == [2, 2, 3]
+    assert [x["pdf_file_name"] for x in c] == [
+        "A_2018-11-05.pdf", "A_2018-03-01.pdf", "A_2019-06-01.pdf", "A_2020-06-01.pdf",
+    ], c
+    assert [x["offset"] for x in c] == [2, 2, 3, 4]
     c = core.build_candidates("A", 2016, idx, {"A_2018-11-05.pdf"})
     assert [x["pdf_file_name"] for x in c][0] == "A_2018-03-01.pdf"
     assert core.build_candidates("A", 2017, idx, set())[0]["pdf_file_name"] == "A_2019-06-01.pdf"
-    assert core.build_candidates("A", 2015, idx, set()) [-1]["offset"] == 3  # 2018 reports at T+3, none at T+2
-    assert core.build_candidates("A", 2010, idx, set()) == []  # no T+4 fallback
+    # 2015: no T+2 (2017), T+3 (2018) has two reports, T+4 (2019) has one -> last candidate is T+4
+    assert core.build_candidates("A", 2015, idx, set())[-1]["offset"] == 4
+    assert core.build_candidates("A", 2010, idx, set()) == []  # no report at T+2, T+3 or T+4 either
 
 
 def test_country_from_filename():
@@ -174,8 +177,8 @@ def test_cascade():
         ("A_2018-11-05.pdf", 2016): bad("rejected_not_actual"), ("A_2018-03-01.pdf", 2016): ok(),
         # B 2016: T+2 (2018) none; T+3 (2019) resolves.  B 2017: T+2 2019 fails, T+3 2020 resolves
         ("B_2019-01-01.pdf", 2016): ok(), ("B_2019-01-01.pdf", 2017): bad("year_not_in_table"), ("B_2020-01-01.pdf", 2017): ok(),
-        # C 2016: T+3 fails -> unresolved (no T+4)
-        ("C_2019-01-01.pdf", 2016): bad("rejected_not_actual"),
+        # C 2016: T+2 none, T+3 fails, T+4 resolves
+        ("C_2019-01-01.pdf", 2016): bad("rejected_not_actual"), ("C_2020-01-01.pdf", 2016): ok(),
         # D 2016: API error stops the cascade
         ("D_2019-01-01.pdf", 2016): bad("api_error"),
     }
@@ -193,13 +196,15 @@ def test_cascade():
     ]
     state = core.run_cascade(items, lambda c, y: core.build_candidates(c, y, idx, set()), process, max_workers=1, log=lambda s: None)
     fin = {s["gap_id"]: s["final_status"] for s in state}
-    assert fin == {"G1": "resolved", "G2": "resolved", "G3": "resolved", "G4": "unresolved",
+    assert fin == {"G1": "resolved", "G2": "resolved", "G3": "resolved", "G4": "resolved",
                    "G5": "pending_api_error", "G6": "unresolved_no_candidate_reports"}, fin
     src = {s["gap_id"]: s["resolved"]["report"] for s in state if s["resolved"]}
-    assert src == {"G1": "A_2018-03-01.pdf", "G2": "B_2019-01-01.pdf", "G3": "B_2020-01-01.pdf"}, src
+    assert src == {"G1": "A_2018-03-01.pdf", "G2": "B_2019-01-01.pdf", "G3": "B_2020-01-01.pdf",
+                   "G4": "C_2020-01-01.pdf"}, src
     # B_2019 serves G2 (as its first choice) and G3 (as its first choice): one call, both years
     assert ("B_2019-01-01.pdf", (2016, 2017)) in calls, calls
-    assert [s for s in state if s["gap_id"] == "G4"][0]["attempts"][-1]["offset"] == 3
+    # G4 (country C) falls through T+3 to resolve at T+4 -- the new offset this test exercises
+    assert [s for s in state if s["gap_id"] == "G4"][0]["attempts"][-1]["offset"] == 4
 
     with tempfile.TemporaryDirectory() as d:
         meta = pd.DataFrame([{"country": "A", "gap_year": 2016, "audit_fill_status": "x", "audit_expected_source_report": "A_2018-03-01.pdf"}])

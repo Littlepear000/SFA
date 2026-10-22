@@ -66,7 +66,7 @@ Core steps
     6. Use each report's own column_header_audit_json (every year column in the table and its
        actual/estimate/projection status) to predict: in which report is that year a standalone
        actual/historical column (fillable), versus only an estimate / projection / merged-range column.
-       This checks only the same T+2-then-T+3, latest-publication-date-first candidates Step 2/3 would
+       This checks only the same T+2-then-T+3-then-T+4, latest-publication-date-first candidates Step 2/3 would
        actually try (gapfill_lib_core.build_candidates()) -- it is a preview of their result, not a
        separate, looser guess that could point at a different report.
     7. Write out the files above.
@@ -149,7 +149,7 @@ def build_report_table(df: pd.DataFrame) -> pd.DataFrame:
     # Unique key is (json_file, last_actual_year), not json_file alone: once gap-fill output is folded
     # back into this input, the same real report can legitimately carry two row-groups -- its own normal
     # extraction at its own last_actual_year, and a gap-fill row-group at an earlier year it also
-    # supplied as a T+2/T+3 source -- so json_file alone no longer identifies one observation.
+    # supplied as a T+2/T+3/T+4 source -- so json_file alone no longer identifies one observation.
     r = df.sort_values(["json_file", "last_actual_year"]).drop_duplicates(["json_file", "last_actual_year"], keep="first").copy()
     m = r["pdf_file_name"].str.extract(r"^(?P<prefix>.*?)_(?P<date>\d{4}-\d{2}-\d{2})")
     r["country_raw"] = m["prefix"]
@@ -238,7 +238,7 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
     reports = reports.merge(wide, left_on=["json_file", "last_actual_year"], right_index=True, how="left")
     reports["audit_cols"] = reports["column_header_audit_json"].apply(audit_columns)
 
-    # (country, report publication year) -> reports, for the T+2/T+3 candidate lookup below. Built from
+    # (country, report publication year) -> reports, for the T+2/T+3/T+4 candidate lookup below. Built from
     # the already-parsed report_date (not re-parsed from the filename), one entry per real report.
     pub_year_idx: dict = {}
     for _, rep in reports.iterrows():
@@ -261,7 +261,7 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
 
     reports["report_status"] = reports.apply(status, axis=1)
     # Reports Step 2/3 would also skip as a candidate source (no table, or a multi-country document) --
-    # excluded here too so the T+2/T+3 preview below matches what Step 2/3 will actually try.
+    # excluded here too so the T+2/T+3/T+4 preview below matches what Step 2/3 will actually try.
     skip_reports = set(reports.loc[reports["report_status"].isin(["no_table", "excluded_non_country"]), "pdf_file_name"])
     obs = reports[reports["report_status"] == "observation"].copy()
     obs["obs_year"] = obs["obs_year"].astype(int)
@@ -342,7 +342,7 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
             months = (next_rep["report_date"] - prev_rep["report_date"]).days / 30.44
 
             for y in span:
-                # Same T+2-then-T+3, latest-publication-date-first order Step 2/3 actually try (see
+                # Same T+2-then-T+3-then-T+4, latest-publication-date-first order Step 2/3 actually try (see
                 # gapfill_lib_core.build_candidates()) -- this is a preview, not a second guess, so the
                 # candidates considered here are restricted to exactly the reports Step 2/3 would reach.
                 ordered_cands = build_candidates(country, y, pub_year_idx, skip_reports)
@@ -374,7 +374,7 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
                     fill_status = "status_unknown"
                 else:
                     fill_status = "not_visible_in_any_report"
-                # cands is already in T+2-then-T+3, latest-first order (it was built by walking
+                # cands is already in T+2-then-T+3-then-T+4, latest-first order (it was built by walking
                 # ordered_cands), so the first eligible one is exactly what Step 2/3 would pick.
                 pool = actual or prelim or []
                 pref = pool[0] if pool else None

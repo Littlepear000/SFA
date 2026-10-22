@@ -7,7 +7,7 @@ Runs the three gap-fill scripts, in this order, with runpy:
     2. 3b_gapfill_2_build_targets.py
        (turn the gap list into the task list for the API run)
     3. 3c_gapfill_3_run_api.py
-       (call the API to read each gap year from the T+2 / T+3 staff reports, and fill the panel)
+       (call the API to read each gap year from the T+2 / T+3 / T+4 staff reports, and fill the panel)
 
 All settings shared by the three scripts are declared once, in the CONFIG section below.
 Before running, comment out the CONFIG block of each script (the lines that define these names):
@@ -49,7 +49,7 @@ OUT_DIR = CHECK_DIR  # the name 3a uses for the same folder
 
 # used by 3b and 3c
 # Root of the ORIGINAL staff-report PDFs, one subfolder per batch -- the candidate universe. Every real
-# PDF found under here counts as a T+2/T+3 candidate, whether or not Step 1 ever located a table in it
+# PDF found under here counts as a T+2/T+3/T+4 candidate, whether or not Step 1 ever located a table in it
 # in any run, and regardless of which batch it is in (a candidate from an adjacent batch is found the
 # same way as one from the batch being checked). Not added to git; local-only on this Mac.
 STAFF_REPORTS_DIR = BASE_DIR / "staff_reports" / "pdf staff reports"
