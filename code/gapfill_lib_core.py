@@ -6,7 +6,10 @@ Kept separate from 3c_gapfill_3_run_api.py so it can be unit-tested on any machi
     candidate-map table built from it (also used by 3b and by 3a's own preview, so there is exactly one
     place that decides what counts as a candidate report)
   * the selected-PDF inventory (shared by 3b, to persist the candidate map, and 3c, to run the API)
-  * the resolve/cascade loop across rounds
+  * the resolve/cascade loop across rounds, with a checkpoint/resume hook (save_checkpoint,
+    load_checkpoint, run_cascade's on_progress) so a long run that gets killed, loses network, or stalls
+    through a laptop sleep does not have to start over -- re-running with the same OUTPUT_DIR/STAMP picks
+    up the checkpoint and only retries gap years that were not already resolved
   * validation that an extracted column is an ACTUAL / HISTORICAL year
   * flattening results and writing the output tables, in the same column shape as the rest of the
     pipeline (json_file, pdf_file_name, country, year, top_category, hierarchy_id, level, parent_label,
@@ -20,6 +23,7 @@ Kept separate from 3c_gapfill_3_run_api.py so it can be unit-tested on any machi
 """
 from __future__ import annotations
 
+import json
 import re
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -455,17 +459,48 @@ def audit_confirms(audit_result: Dict[str, Any], year: int) -> Tuple[bool, str]:
 
 
 # ------------------------------------------------------------------- cascade
+def _json_safe(obj: Any) -> Any:
+    """Recursively convert pandas/numpy scalars (and NaN) to plain JSON-able Python values."""
+    if isinstance(obj, dict):
+        return {k: _json_safe(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [_json_safe(v) for v in obj]
+    if isinstance(obj, float) and pd.isna(obj):
+        return None
+    if hasattr(obj, "item"):  # numpy scalar (int64, float64, bool_, ...)
+        return obj.item()
+    return obj
+
+
+def save_checkpoint(state: List[Dict[str, Any]], path: Path) -> None:
+    """Persist run_cascade()'s current state so a later run can resume from it (see load_checkpoint)."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(_json_safe(state), ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp.replace(path)  # atomic on both POSIX and Windows -- never leaves a half-written checkpoint
+
+
+def load_checkpoint(path: Path) -> List[Dict[str, Any]]:
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
+
+
 def run_cascade(
     gap_items: List[Dict[str, Any]],
     candidates_fn: Callable[[str, int], List[Dict[str, Any]]],
     process_fn: Callable[[Dict[str, Any], List[int]], Dict[int, Dict[str, Any]]],
     max_workers: int = 4,
     log: Callable[[str], None] = print,
+    on_progress: Optional[Callable[[List[Dict[str, Any]]], None]] = None,
 ) -> List[Dict[str, Any]]:
     """
     Try each gap year's candidate reports in order until one gives an
     actual/historical value. One call per report per wave, covering every gap
     year of that country that is pointed at that report in this wave.
+
+    on_progress(state), when given, is called after every wave with the current state of every gap
+    year passed in (resolved, still pending, or exhausted so far) -- the caller's hook for checkpointing
+    an in-progress run so a crash, sleep/wake stall, or a killed console loses at most one wave's worth
+    of work, not the whole run.
     """
     state = []
     for g in gap_items:
@@ -526,6 +561,9 @@ def run_cascade(
                     st["stopped"] = out["status"]
                 else:
                     st["next"] += 1
+
+        if on_progress is not None:
+            on_progress(state)
     return state
 
 

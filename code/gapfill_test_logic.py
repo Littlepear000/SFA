@@ -220,6 +220,104 @@ def test_cascade():
         assert filled.loc[filled.year == 2017, "status"].iloc[0] == "observed"
 
 
+def test_checkpoint_roundtrip():
+    """save_checkpoint/load_checkpoint must survive the pandas-ish types a real state list carries:
+    numpy scalars (from a DataFrame .to_dict("records")) and NaN (a missing optional value)."""
+    import numpy as np
+
+    state = [{
+        "gap_id": "G1", "country": "A", "gap_year": np.int64(2016), "final_status": "resolved",
+        "cands": [{"pdf_file_name": "A_2018-03-01.pdf", "offset": np.int64(2)}],
+        "attempts": [{"attempt_no": 1, "status": "resolved", "errors": "", "warnings": ""}],
+        "resolved": {"report": "A_2018-03-01.pdf", "offset": 2,
+                     "outcome": {"status": "resolved", "decomposition": {"value": float("nan")}, "meta": {}}},
+        "stopped": None,
+    }]
+    with tempfile.TemporaryDirectory() as d:
+        p = Path(d) / "gapfill_checkpoint_test.json"
+        core.save_checkpoint(state, p)
+        loaded = core.load_checkpoint(p)
+        assert loaded[0]["gap_year"] == 2016 and isinstance(loaded[0]["gap_year"], int)
+        assert loaded[0]["cands"][0]["offset"] == 2
+        assert loaded[0]["resolved"]["outcome"]["decomposition"]["value"] is None  # NaN -> JSON null -> None
+        assert core.load_checkpoint(Path(d) / "missing.json") == []  # no checkpoint yet -> clean start
+
+
+def test_resume_skips_already_resolved():
+    """
+    The scenario the whole feature exists for: a run gets interrupted (killed console, lost network, a
+    laptop sleeping mid-call) after only a checkpoint from an earlier wave made it to disk. Re-running
+    must (a) treat every gap year already RESOLVED in that checkpoint as done, never calling its report
+    again, and (b) only re-run the cascade for whatever is left.
+    """
+    reps = [
+        rep("A_2018-01-01.pdf", "A", "2018-01-01"),
+        rep("B_2018-01-01.pdf", "B", "2018-01-01"), rep("B_2019-01-01.pdf", "B", "2019-01-01"),
+    ]
+    idx = core.index_by_country_year(reps)
+    items = [
+        {"gap_id": "G1", "country": "A", "gap_year": 2016},
+        {"gap_id": "G2", "country": "B", "gap_year": 2016},
+    ]
+
+    def ok():
+        return {"status": "resolved", "errors": [], "warnings": [], "decomposition": decomp(), "meta": {}}
+
+    def bad(status):
+        return {"status": status, "errors": [status], "warnings": []}
+
+    plan = {
+        ("A_2018-01-01.pdf", 2016): ok(),
+        # B's first candidate (T+2) fails; its second (T+3) resolves -- this spans two waves
+        ("B_2018-01-01.pdf", 2016): bad("year_not_in_table"), ("B_2019-01-01.pdf", 2016): ok(),
+    }
+
+    def candidates_fn(c, y):
+        return core.build_candidates(c, y, idx, set())
+
+    calls_first = []
+    snapshots = []
+
+    def process1(report, years):
+        calls_first.append(report["pdf_file_name"])
+        return {y: plan[(report["pdf_file_name"], y)] for y in years}
+
+    state1 = core.run_cascade(items, candidates_fn, process1, max_workers=1, log=lambda s: None,
+                               on_progress=lambda s: snapshots.append([dict(x) for x in s]))
+    assert {s["gap_id"]: s["final_status"] for s in state1} == {"G1": "resolved", "G2": "resolved"}
+    assert len(snapshots) == 2, snapshots  # wave 1: A resolves, B's first candidate fails; wave 2: B resolves
+
+    with tempfile.TemporaryDirectory() as d:
+        # Simulate: the console died right after wave 1 -- only that snapshot made it to the checkpoint.
+        checkpoint_path = Path(d) / "gapfill_checkpoint_test.json"
+        core.save_checkpoint(snapshots[0], checkpoint_path)
+
+        prev_state = core.load_checkpoint(checkpoint_path)
+        done_state = [s for s in prev_state if s["final_status"] in core.RESOLVED]
+        done_keys = {(s["country"], int(s["gap_year"])) for s in done_state}
+        assert done_keys == {("A", 2016)}  # B hadn't resolved yet when the checkpoint was taken
+
+        todo_items = [g for g in items if (g["country"], int(g["gap_year"])) not in done_keys]
+        assert [g["gap_id"] for g in todo_items] == ["G2"]
+
+        calls_second = []
+
+        def process2(report, years):
+            calls_second.append(report["pdf_file_name"])
+            return {y: plan[(report["pdf_file_name"], y)] for y in years}
+
+        new_state = core.run_cascade(todo_items, candidates_fn, process2, max_workers=1, log=lambda s: None)
+        merged = done_state + new_state
+        assert {s["gap_id"]: s["final_status"] for s in merged} == {"G1": "resolved", "G2": "resolved"}
+        # A's report is never called again on resume -- the checkpointed result is reused as-is. B is not
+        # fully skipped (it had only failed its first candidate, not resolved, when the checkpoint was
+        # taken), so its cascade restarts from T+2 -- in the real pipeline ReportProcessor's own per-report
+        # cache (reports/*.json) makes that restart a free cache hit, not a real API call; this bare test
+        # stub has no such cache, so it just re-returns the same planned outcome.
+        assert "A_2018-01-01.pdf" not in calls_second
+        assert calls_second == ["B_2018-01-01.pdf", "B_2019-01-01.pdf"]
+
+
 # ----------------------------------------- selected PDF lookup and the processor
 def touch(path, size=10):
     path.parent.mkdir(parents=True, exist_ok=True)

@@ -46,10 +46,21 @@ Input (paths set in the CONFIG below)
 Output (OUTPUT_DIR = output/gapfill/<batch>_<STAMP>/)
     reports/<report>_gapfill.json       one per report that was called: the model's raw answer and the
                                         validation result for each target year (also the resume cache)
+    gapfill_checkpoint_<STAMP>.json     the full cascade state (which candidate each gap year is on,
+                                        every attempt so far, final_status) -- written after every wave,
+                                        not just at the end. A killed console, a lost network connection,
+                                        or a laptop sleeping mid-run all just pause this file's progress;
+                                        nothing is lost except whatever call was in flight at that moment,
+                                        and that one call becomes api_error on the specific gap year(s) it
+                                        covered (see run_cascade's STOP_STATUSES) -- it is retried, not the
+                                        whole run. Re-running with the same OUTPUT_DIR + STAMP reads this
+                                        checkpoint and only re-tries gap years not already RESOLVED there.
     fresh_selected_pdf/                 selected-pages PDFs this step located itself (no cache existed);
                                         reused on a later run instead of re-locating
     gapfill_resolution_<STAMP>.csv      the final result for each gap year (resolved / resolved_with_warning /
-                                        unresolved ...) and its source report
+                                        unresolved ...) and its source report -- rewritten after every wave,
+                                        so it reflects real progress while a long run is still going, not
+                                        only once everything finishes
     gapfill_attempts_<STAMP>.csv        a record of each attempt: which report, what status, failure reason
     gapfill_values_long_<STAMP>.csv     the extracted values, long format (including child-item level)
     gapfill_values_wide_<STAMP>.csv     the extracted values, wide format (the six top-level variables)
@@ -79,7 +90,10 @@ Core steps
        the API; a report whose call errored is not cached, so a rerun retries it automatically. A selected
        PDF that, together with this step's prompt, exceeds the gateway's request-body limit is recorded as
        pdf_too_large and the next report is tried.
-    6. Once everything is done, the summary files above are written.
+    6. On top of that per-report cache, gap years already RESOLVED in a previous run (read from
+       gapfill_checkpoint_<STAMP>.json, if it exists for this OUTPUT_DIR + STAMP) are skipped before the
+       cascade even starts -- a rerun only walks the gap years that are not yet done.
+    7. The summary files are (re)written after every wave, not only once everything finishes.
 
 Usage (set up CONFIG first)
     python 3c_gapfill_3_run_api.py --dry-run                     list the planned calls and check that every
@@ -567,7 +581,26 @@ def main() -> None:
                                       prompt1=prompt1, fresh_dir=OUTPUT_DIR / "fresh_selected_pdf")
         workers = MAX_WORKERS
 
-    state = core.run_cascade(gap_items, candidates_fn, process_fn, max_workers=workers)
+    # Resume support: same OUTPUT_DIR + STAMP as an earlier, interrupted run (killed console, lost
+    # network, laptop slept mid-call, ...) picks up its checkpoint -- only gap years not already
+    # RESOLVED there are retried. A different STAMP (or no checkpoint yet) starts clean, as before.
+    checkpoint_path = OUTPUT_DIR / f"gapfill_checkpoint_{STAMP}.json"
+    prev_state = core.load_checkpoint(checkpoint_path)
+    done_state = [s for s in prev_state if s.get("final_status") in core.RESOLVED]
+    done_keys = {(s["country"], int(s["gap_year"])) for s in done_state}
+    todo_items = [g for g in gap_items if (g["country"], int(g["gap_year"])) not in done_keys]
+    if done_keys:
+        print(f"Resuming from checkpoint {checkpoint_path.name}: {len(done_keys)} gap year(s) already "
+              f"resolved, skipping. {len(todo_items)} of {len(gap_items)} remaining.")
+
+    def on_progress(partial_state: List[Dict[str, Any]]) -> None:
+        merged = done_state + partial_state
+        core.save_checkpoint(merged, checkpoint_path)
+        core.write_outputs(merged, targets, OUTPUT_DIR, STAMP, PANEL_CSV)
+
+    new_state = core.run_cascade(todo_items, candidates_fn, process_fn, max_workers=workers, on_progress=on_progress)
+    state = done_state + new_state
+    core.save_checkpoint(state, checkpoint_path)
     paths = core.write_outputs(state, targets, OUTPUT_DIR, STAMP, PANEL_CSV)
 
     counts: Dict[str, int] = {}
