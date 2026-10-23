@@ -26,9 +26,13 @@ Input (paths set in the CONFIG below)
     TARGETS_CSV, SKIP_CSV     the two CSVs from Step 2
     STAFF_REPORTS_DIR         root of the ORIGINAL staff-report PDFs, one subfolder per batch (e.g.
                               staff_reports/pdf staff reports/2016-2020/...). The candidate universe.
-    SELECTED_PDF_DIRS         Step 1's selected_pdf_pages folders (several batches/runs can be listed;
-                              earlier ones take priority) -- the fast-path cache, not the candidate
-                              universe. A selected PDF's file name is
+    SELECTED_PDF_DIRS         one selected_pdf_pages folder per batch, built by
+                              discover_selected_pdf_dirs() from the output/ folder itself rather than a
+                              hand-maintained list -- it handles both output/<batch>/selected_pdf_pages/
+                              directly and output/<batch>/round1_<stamp>_run1/selected_pdf_pages/, since
+                              different people's machines have produced either layout; see that
+                              function's own docstring for the exact preference order. Only the
+                              fast-path cache, not the candidate universe. A selected PDF's file name is
                               <country>_<date>[_CR number]<any suffix>.pdf; it is matched to a report by
                               the leading country_date(_CR number) part, and the suffix can be anything
                               (e.g. _pages_5_8, _page_6_table_crop_fallback). The json_output folder next
@@ -158,18 +162,13 @@ except ModuleNotFoundError as exc:
 # # which batch subfolder it is actually in.
 # STAFF_REPORTS_DIR = BASE_DIR / "staff_reports" / "pdf staff reports"
 #
-# # Step 1's "selected_pdf_pages" folders, one per batch/run (same config as 3b's SELECTED_PDF_DIRS). The
-# # first folder that holds a report's selected PDF wins, so list re-run folders (e.g.
-# # .../2016-2020/rerun_20260910/selected_pdf_pages) BEFORE the original ones. The Step 1
-# # "<report>_timing.json" files are expected in the folder above each of these (or in a "json_output"
-# # folder next to it). Only used for the FAST path: a candidate report with no selected PDF here is not
-# # skipped -- it is located fresh from STAFF_REPORTS_DIR instead (one extra locator API call).
-# SELECTED_PDF_DIRS: List[Path] = [
-#     BASE_DIR / "output" / "2011-2015" / "round1_20260921_run1" / "selected_pdf_pages",
-#     BASE_DIR / "output" / "2016-2020" / "round2_20260921_run1" / "selected_pdf_pages",
-#     BASE_DIR / "output" / "2016-2020" / "round1_20260921_run1" / "selected_pdf_pages",
-#     BASE_DIR / "output" / "2021-2026" / "round1_20260921_run1" / "selected_pdf_pages",
-# ]
+# # One "selected_pdf_pages" source per batch, auto-discovered under output/ (same config as 3b's
+# # SELECTED_PDF_DIRS -- keep the two in sync). Handles both output/<batch>/selected_pdf_pages/ directly
+# # and output/<batch>/round1_<stamp>_run1/selected_pdf_pages/, which differ across people's machines;
+# # see discover_selected_pdf_dirs()'s own docstring for the exact preference order. Only used for the
+# # FAST path: a candidate report with no selected PDF here is not skipped -- it is located fresh from
+# # STAFF_REPORTS_DIR instead (one extra locator API call).
+# SELECTED_PDF_DIRS: List[Path] = core.discover_selected_pdf_dirs(BASE_DIR / "output")
 #
 # STEP1_SCRIPT = HERE / "1a_two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py"
 # # 1a (not 2a/round2's pipeline) on purpose: gap-fill only needs call_pdf_json / make_api_session /

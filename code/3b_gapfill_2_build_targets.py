@@ -96,6 +96,7 @@ if "gapfill_lib_core" in sys.modules:
     importlib.reload(sys.modules["gapfill_lib_core"])
 from gapfill_lib_core import (  # noqa: E402
     index_by_country_year, index_selected_pdfs, list_staff_reports, build_candidates, build_candidate_map_rows,
+    discover_selected_pdf_dirs,
 )
 
 # ------------------------------------------------------------------ CONFIG
@@ -106,16 +107,12 @@ from gapfill_lib_core import (  # noqa: E402
 # as 3c's STAFF_REPORTS_DIR; keep the two in sync).
 STAFF_REPORTS_DIR = BASE / "staff_reports" / "pdf staff reports"
 
-# Same folders as 3c's SELECTED_PDF_DIRS (keep the two lists in sync): Step 1's "selected_pdf_pages"
-# folders, one per batch/run. The first folder that holds a report's selected PDF wins. Only used here
-# to flag, per candidate, whether Step 3 can take the fast cached path -- not to decide what counts as a
-# candidate (STAFF_REPORTS_DIR does that).
-SELECTED_PDF_DIRS: List[Path] = [
-    BASE / "output" / "2011-2015" / "round1_20260921_run1" / "selected_pdf_pages",
-    BASE / "output" / "2016-2020" / "round2_20260921_run1" / "selected_pdf_pages",
-    BASE / "output" / "2016-2020" / "round1_20260921_run1" / "selected_pdf_pages",
-    BASE / "output" / "2021-2026" / "round1_20260921_run1" / "selected_pdf_pages",
-]
+# Same folders as 3c's SELECTED_PDF_DIRS (keep the two lists in sync): one "selected_pdf_pages" source
+# per batch, auto-discovered under output/ (see discover_selected_pdf_dirs()'s own docstring -- it
+# handles both output/<batch>/selected_pdf_pages/ directly and output/<batch>/round1_<stamp>_run1/...,
+# which differ across people's machines). Only used here to flag, per candidate, whether Step 3 can take
+# the fast cached path -- not to decide what counts as a candidate (STAFF_REPORTS_DIR does that).
+SELECTED_PDF_DIRS: List[Path] = discover_selected_pdf_dirs(BASE / "output")
 
 
 def main(

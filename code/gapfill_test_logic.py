@@ -343,6 +343,43 @@ def test_selected_name_parsing():
     assert run.core.parse_selected_name("notes.pdf") is None
 
 
+def test_discover_selected_pdf_dirs():
+    """
+    output/ holds a different layout per batch, depending on whose machine produced it:
+      - 2016-2020: a plain selected_pdf_pages/ directly under the batch root (a colleague's layout)
+      - 2011-2015: round1/round2 x run1/2/3 subfolders -- round1_run1 (the most recent stamp) wins over
+        round2 and over a later run, and a batch with no round1_run1 at all falls back to the lowest
+        (round, run) pair actually present
+      - 2021-2026: neither layout -- contributes nothing, not an error
+    """
+    with tempfile.TemporaryDirectory() as d:
+        root = Path(d)
+
+        direct = root / "2016-2020" / "selected_pdf_pages"
+        touch(direct / "placeholder.pdf")
+
+        b = root / "2011-2015"
+        touch(b / "round1_20260101_run1" / "selected_pdf_pages" / "x.pdf")
+        touch(b / "round1_20260910_run1" / "selected_pdf_pages" / "x.pdf")  # later stamp -- should win
+        touch(b / "round1_20260101_run2" / "selected_pdf_pages" / "x.pdf")  # same round, later run -- loses
+        touch(b / "round2_20261231_run1" / "selected_pdf_pages" / "x.pdf")  # round 2 -- loses to round 1
+
+        c = root / "2021-2026"
+        c.mkdir()  # batch folder exists, but has neither layout
+
+        e = root / "2006-2010"
+        touch(e / "round2_20260601_run1" / "selected_pdf_pages" / "x.pdf")  # no round1 at all -> fallback
+
+        dirs = core.discover_selected_pdf_dirs(root)
+        # batch folders are walked in name order: 2006-2010, 2011-2015, 2016-2020, (2021-2026 skipped)
+        assert dirs == [
+            e / "round2_20260601_run1" / "selected_pdf_pages",
+            b / "round1_20260910_run1" / "selected_pdf_pages",
+            direct,
+        ], dirs
+        assert core.discover_selected_pdf_dirs(root / "does-not-exist") == []
+
+
 def test_selected_pdf_resolution():
     with tempfile.TemporaryDirectory() as d:
         d = Path(d)

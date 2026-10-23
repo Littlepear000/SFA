@@ -27,6 +27,7 @@ The scripts run in this same process, so command-line options are shared. 3c rea
 If any script stops with an error, the next one is not started.
 """
 import runpy
+import sys
 from pathlib import Path
 
 # =============================================================== CONFIG
@@ -36,6 +37,12 @@ try:
 except NameError:  # run from an IPython / PyCharm console: look for the code folder
     HERE = next((c for c in (Path.cwd(), Path.cwd() / "code", BASE_DIR / "code") if (c / "3a_gapfill_1_build_panel_gap_flags.py").exists()),
                 BASE_DIR / "code")
+
+sys.path.insert(0, str(HERE))
+import importlib  # noqa: E402
+if "gapfill_lib_core" in sys.modules:  # long-lived IPython/Spyder console: pick up code changes
+    importlib.reload(sys.modules["gapfill_lib_core"])
+import gapfill_lib_core as core  # noqa: E402
 
 BATCH = "all"
 STAMP = "202601022"  # version tag added to every file name written by 3a, 3b and 3c
@@ -55,17 +62,13 @@ OUT_DIR = CHECK_DIR  # the name 3a uses for the same folder
 STAFF_REPORTS_DIR = BASE_DIR / "staff_reports" / "pdf staff reports"
 
 # used by 3c
-# The "selected_pdf_pages" folders of the Step 1 runs to use, one per batch (edit: name the run folder you want to use).
-# Step 1's *_timing.json files are looked up in the "json_output" folder next to each of these.
-# For a report found in several folders the first one wins, so list round-2 folders BEFORE the round-1 folder of the same batch.
-# Only used as a fast-path cache check (does this candidate already have a selected PDF from Step 1) --
+# The "selected_pdf_pages" folder to use for each batch, auto-discovered under output/ -- handles both
+# layouts seen across different people's machines: output/<batch>/selected_pdf_pages/ directly, or
+# output/<batch>/round1_<stamp>_run1/selected_pdf_pages/ (the earliest, most-recent-stamp Round 1 run;
+# see discover_selected_pdf_dirs()'s own docstring for the exact preference order). Only used as a
+# fast-path cache check (does this candidate already have a selected PDF from Step 1) --
 # STAFF_REPORTS_DIR above decides what counts as a candidate, not this.
-SELECTED_PDF_DIRS = [
-    BASE_DIR / "output" / "2011-2015" / "round1_20260921_run1" / "selected_pdf_pages",
-    BASE_DIR / "output" / "2016-2020" / "round2_20260921_run1" / "selected_pdf_pages",
-    BASE_DIR / "output" / "2016-2020" / "round1_20260921_run1" / "selected_pdf_pages",
-    BASE_DIR / "output" / "2021-2026" / "round1_20260921_run1" / "selected_pdf_pages",
-]
+SELECTED_PDF_DIRS = core.discover_selected_pdf_dirs(BASE_DIR / "output")
 STEP1_SCRIPT = HERE / "1a_two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py"
 # 1a on purpose, not 2a: gap-fill only needs call_pdf_json / make_api_session / add_table_crop_header_instruction,
 # identical in both; 2a's extra accuracy is specifically about *choosing* last_actual_year, which gap-fill

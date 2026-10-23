@@ -268,6 +268,45 @@ def parse_selected_name(name: str):
     return m.group("stem"), method
 
 
+_ROUND_RUN_RE = re.compile(r"^round(\d+)_(\d{4,8})_run(\d+)$")
+
+
+def discover_selected_pdf_dirs(output_dir: Path) -> List[Path]:
+    """
+    One selected_pdf_pages source per batch folder directly under output_dir (e.g. output/2016-2020/),
+    in either of the two layouts different people's machines have produced:
+      - output/<batch>/selected_pdf_pages/ directly -- a simpler layout some colleagues used, with no
+        round/run subfolders.
+      - output/<batch>/round{1,2}_<YYYYMMDD>_run{1,2,3}/selected_pdf_pages/ -- the two-round/three-run
+        layout. The DSA table's position in a given PDF does not change between rounds or runs, so
+        round 1's first run is as good a page-location source as any; it is picked consistently (over
+        round 2 or a later run) so the result does not depend on whichever run happened to finish last
+        on a given machine. If several round1_*_run1 folders exist (reruns on different dates), the most
+        recent one wins; if round1_run1 itself is missing for a batch, the lowest available (round, run)
+        pair is used instead (most recent stamp among those).
+    A batch folder with neither layout is skipped (contributes nothing -- not an error).
+    """
+    dirs: List[Path] = []
+    root = Path(output_dir)
+    if not root.is_dir():
+        return dirs
+    for batch_dir in sorted(p for p in root.iterdir() if p.is_dir()):
+        direct = batch_dir / "selected_pdf_pages"
+        if direct.is_dir():
+            dirs.append(direct)
+            continue
+        candidates = []
+        for d in batch_dir.iterdir():
+            m = d.is_dir() and _ROUND_RUN_RE.match(d.name)
+            if m and (d / "selected_pdf_pages").is_dir():
+                round_no, stamp, run_no = int(m.group(1)), m.group(2), int(m.group(3))
+                candidates.append((round_no, run_no, -int(stamp), d))
+        if candidates:
+            best = min(candidates)  # lowest round, then lowest run, then most recent stamp (negated)
+            dirs.append(best[3] / "selected_pdf_pages")
+    return dirs
+
+
 def index_selected_pdfs(dirs: List[Path]) -> Dict[str, List[Dict[str, Any]]]:
     """stem -> selected PDFs found in `dirs` (each with its folder rank and method rank)."""
     idx: Dict[str, List[Dict[str, Any]]] = {}
