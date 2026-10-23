@@ -37,14 +37,14 @@ except NameError:  # run from an IPython / PyCharm console: look for the code fo
     HERE = next((c for c in (Path.cwd(), Path.cwd() / "code", BASE_DIR / "code") if (c / "3a_gapfill_1_build_panel_gap_flags.py").exists()),
                 BASE_DIR / "code")
 
-BATCH = "2016-2020"
-STAMP = "202601020_test2"  # version tag added to every file name written by 3a, 3b and 3c
+BATCH = "all"
+STAMP = "202601022"  # version tag added to every file name written by 3a, 3b and 3c
 
 # used by 3a: the ONE compiled CSV to analyse
-INPUT_CSV = BASE_DIR / "output" / BATCH / "round1_check_20261002" / "round1_check_matched_rows_20261002.csv"
+INPUT_CSV = BASE_DIR / "output" / "gapfill" / "input" / "final_all_batches.csv"
 
 # where 3a writes the gap-year files, and where 3b and 3c read them
-CHECK_DIR = BASE_DIR / "output" / BATCH / "gap_year_check"
+CHECK_DIR = BASE_DIR / "output" / "gapfill" / "gap_year_check" / f"{BATCH}_{STAMP}"
 OUT_DIR = CHECK_DIR  # the name 3a uses for the same folder
 
 # used by 3b and 3c
@@ -78,7 +78,7 @@ ENV_FILE = BASE_DIR / ".env"
 TARGETS_CSV = CHECK_DIR / f"gapfill_targets_{STAMP}.csv"
 SKIP_CSV = CHECK_DIR / f"gapfill_skip_reports_{STAMP}.csv"
 PANEL_CSV = CHECK_DIR / f"panel_structure_country_year_{STAMP}.csv"  # None = do not build the filled panel
-OUTPUT_DIR = BASE_DIR / "output" / "gapfill" / f"{BATCH}_{STAMP}"
+OUTPUT_DIR = BASE_DIR / "output" / "gapfill" / "output" / f"{BATCH}_{STAMP}"
 MAX_WORKERS = 4
 # ==============================================================================
 
