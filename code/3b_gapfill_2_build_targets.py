@@ -65,6 +65,7 @@ Usage
 """
 from __future__ import annotations
 
+import importlib
 import sys
 from pathlib import Path
 from typing import List
@@ -88,6 +89,11 @@ def _here() -> Path:
 HERE = _here()
 BASE = HERE.parent if HERE.name == "code" else HERE
 sys.path.insert(0, str(HERE))
+# A long-lived IPython/Spyder console keeps gapfill_lib_core cached in sys.modules across repeated runs
+# of this script via 0_run_gapfill.py -- without this, a code change (e.g. a git pull) would not take
+# effect until the console itself is restarted. Reload it in place before pulling names from it.
+if "gapfill_lib_core" in sys.modules:
+    importlib.reload(sys.modules["gapfill_lib_core"])
 from gapfill_lib_core import (  # noqa: E402
     index_by_country_year, index_selected_pdfs, list_staff_reports, build_candidates, build_candidate_map_rows,
 )

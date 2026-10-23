@@ -78,6 +78,7 @@ Usage
 """
 from __future__ import annotations
 
+import importlib
 import json
 import re
 import sys
@@ -132,6 +133,11 @@ PRELIM_EST = {"preliminary", "estimate"}
 # "which report can fill this year" is an honest forecast of what Step 2/3 actually try (T+2 first,
 # then T+3, latest publication date first) rather than a second, looser guess that can disagree with it.
 sys.path.insert(0, str(HERE))
+# A long-lived IPython/Spyder console keeps gapfill_lib_core cached in sys.modules across repeated runs
+# of this script via 0_run_gapfill.py -- without this, a code change (e.g. a git pull) would not take
+# effect until the console itself is restarted. Reload it in place before pulling names from it.
+if "gapfill_lib_core" in sys.modules:
+    importlib.reload(sys.modules["gapfill_lib_core"])
 from gapfill_lib_core import normalize_country, parse_year_label, build_candidates  # noqa: E402
 
 def to_float(x):

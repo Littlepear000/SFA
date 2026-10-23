@@ -136,6 +136,11 @@ def _here() -> Path:
 
 HERE = _here()
 sys.path.insert(0, str(HERE))
+# A long-lived IPython/Spyder console keeps gapfill_lib_core cached in sys.modules across repeated runs
+# of this script via 0_run_gapfill.py -- without this, a code change (e.g. a git pull) would not take
+# effect until the console itself is restarted. Reload it in place before importing it.
+if "gapfill_lib_core" in sys.modules:
+    importlib.reload(sys.modules["gapfill_lib_core"])
 try:
     import gapfill_lib_core as core  # noqa: E402
 except ModuleNotFoundError as exc:
