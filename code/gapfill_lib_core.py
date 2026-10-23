@@ -501,6 +501,10 @@ def run_cascade(
     year passed in (resolved, still pending, or exhausted so far) -- the caller's hook for checkpointing
     an in-progress run so a crash, sleep/wake stall, or a killed console loses at most one wave's worth
     of work, not the whole run.
+
+    Every gap year logs a running "[done/total] country year: final_status" line the moment it reaches
+    a final status (processing happens per-wave, many gap years at once, so this counts completions as
+    they land rather than claiming a single in-progress item -- there is no one "current" item to name).
     """
     state = []
     for g in gap_items:
@@ -509,6 +513,11 @@ def run_cascade(
             **g, "gap_year": int(g["gap_year"]), "cands": cands, "next": 0,
             "attempts": [], "final_status": None, "resolved": None, "stopped": None,
         })
+    total = len(state)
+
+    def _log_done(st: Dict[str, Any]) -> None:
+        done = sum(1 for s in state if s["final_status"] is not None)
+        log(f"  [{done}/{total}] {st['country']} {st['gap_year']}: {st['final_status']}")
 
     wave_no = 0
     while True:
@@ -518,6 +527,7 @@ def run_cascade(
                 continue
             if st["next"] >= len(st["cands"]):
                 st["final_status"] = "unresolved" if st["cands"] else "unresolved_no_candidate_reports"
+                _log_done(st)
                 continue
             rep = st["cands"][st["next"]]
             wave.setdefault(rep["pdf_file_name"], (rep, []))[1].append(st)
@@ -556,9 +566,11 @@ def run_cascade(
                 if out["status"] in RESOLVED:
                     st["final_status"] = out["status"]
                     st["resolved"] = {"report": name, "offset": rep["offset"], "outcome": out}
+                    _log_done(st)
                 elif out["status"] in STOP_STATUSES:
                     st["final_status"] = "pending_" + out["status"]
                     st["stopped"] = out["status"]
+                    _log_done(st)
                 else:
                     st["next"] += 1
 
