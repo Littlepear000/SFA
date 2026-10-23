@@ -55,9 +55,11 @@ from pypdf import PdfReader, PdfWriter
 # PROMPT_FILE = BASE_DIR / "two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
 # ENV_FILE = BASE_DIR / ".env"
 
-# Gateway limit is 1,048,576 bytes. Base64 encoding expands the PDF by about one-third,
-# so keep the selected PDF comfortably below the gateway limit.
-MAX_UPLOAD_BYTES = 550_000
+# Gateway limit is 1,048,576 bytes. Base64 encoding expands the PDF by about one-third, so a raw size of
+# 700,000 bytes lands at roughly 933,000 bytes encoded -- comfortably below the gateway limit, with less
+# margin than the original 550,000 (raised once a legitimate 657,250-byte selection was rejected by that
+# more conservative value; push this up further only with the same margin check in mind).
+MAX_UPLOAD_BYTES = 700_000
 
 # If the selected PDF cannot be reduced below the safe upload limit,
 # render the selected pages with PyMuPDF, compress them with Pillow, and
