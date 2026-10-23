@@ -30,6 +30,8 @@ Input (from OUTPUT_DIR, for the given STAMP)
 
 Usage
     python gapfill_retry_unresolved_cache.py --output-dir <OUTPUT_DIR> --stamp <STAMP>
+    or just edit OUTPUT_DIR / STAMP at the top of the file and run (also works from an IPython /
+    PyCharm / Spyder console, where no command-line arguments reach the script).
     Then just run 3c_gapfill_3_run_api.py (or the controller) again as usual.
 """
 from __future__ import annotations
@@ -39,6 +41,12 @@ import json
 from pathlib import Path
 
 import pandas as pd
+
+# ------------------------------------------------------------------ CONFIG
+# Edit these two and just run, instead of passing --output-dir/--stamp, when running from a console.
+OUTPUT_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\Shelley_My Projects\SFA"
+                   r"\output\gapfill\output\all_202601022")
+STAMP = "202601022"
 
 RETRY_STATUSES = {"unresolved", "unresolved_no_candidate_reports"}
 
@@ -83,7 +91,7 @@ def main(output_dir: Path, stamp: str) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--output-dir", required=True)
-    ap.add_argument("--stamp", required=True)
-    args = ap.parse_args()
-    main(Path(args.output_dir), args.stamp)
+    ap.add_argument("--output-dir", default=None)
+    ap.add_argument("--stamp", default=None)
+    args, _ = ap.parse_known_args()  # tolerant of extra args injected by IPython/PyCharm/Spyder
+    main(Path(args.output_dir) if args.output_dir else OUTPUT_DIR, args.stamp or STAMP)
