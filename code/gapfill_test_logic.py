@@ -33,6 +33,7 @@ three_a = _load(_HERE / "3a_gapfill_1_build_panel_gap_flags.py", "gapfill_3a_tes
                  defaults={"INPUT_CSV": Path("/dev/null"), "OUT_DIR": None, "STAMP": "test"})
 three_b = _load(_HERE / "3b_gapfill_2_build_targets.py", "gapfill_3b_test",
                  defaults={"CHECK_DIR": Path("/dev/null"), "STAMP": "test"})
+retry_cache = _load(_HERE / "gapfill_retry_unresolved_cache.py", "gapfill_retry_cache_test")
 
 
 def rep(name, country, date):
@@ -341,6 +342,46 @@ def test_selected_name_parsing():
     assert run.core.parse_selected_name("Democratic Republic of São Tomé and Príncipe_2017-12-18_pages_3_6.pdf")[0] == "Democratic Republic of São Tomé and Príncipe_2017-12-18"
     assert run.core.parse_selected_name("Kingdom of the Netherlands—Aruba_2019-06-05_page_8_table_crop_fallback.pdf")[0] == "Kingdom of the Netherlands—Aruba_2019-06-05"
     assert run.core.parse_selected_name("notes.pdf") is None
+
+
+def test_retry_unresolved_cache():
+    """
+    gapfill_retry_unresolved_cache.py must clear exactly the (report, year) cache entries that belong to
+    an unresolved gap year -- not resolved gap years, and not OTHER years sharing the same report file
+    (a report can legitimately be the cached source for more than one gap year).
+    """
+    with tempfile.TemporaryDirectory() as d:
+        out = Path(d)
+        stamp = "test1"
+        pd.DataFrame([
+            {"country": "X", "gap_year": 2016, "final_status": "resolved"},
+            {"country": "Y", "gap_year": 2017, "final_status": "unresolved"},
+            {"country": "Z", "gap_year": 2018, "final_status": "unresolved_no_candidate_reports"},
+            {"country": "W", "gap_year": 2019, "final_status": "resolved"},
+        ]).to_csv(out / f"gapfill_resolution_{stamp}.csv", index=False)
+        pd.DataFrame([
+            # A_2019-01-01.pdf is shared: X's resolved 2016 AND Y's unresolved 2017
+            {"country": "X", "gap_year": 2016, "report": "A_2019-01-01.pdf", "status": "resolved"},
+            {"country": "Y", "gap_year": 2017, "report": "A_2019-01-01.pdf", "status": "rejected_not_actual"},
+            {"country": "W", "gap_year": 2019, "report": "B_2020-01-01.pdf", "status": "resolved"},
+        ]).to_csv(out / f"gapfill_attempts_{stamp}.csv", index=False)
+
+        reports_dir = out / "reports"
+        reports_dir.mkdir()
+        (reports_dir / "A_2019-01-01_gapfill.json").write_text(json.dumps({
+            "per_target": {"2016": {"status": "resolved"}, "2017": {"status": "rejected_not_actual"}}
+        }), encoding="utf-8")
+        (reports_dir / "B_2020-01-01_gapfill.json").write_text(json.dumps({
+            "per_target": {"2019": {"status": "resolved"}}
+        }), encoding="utf-8")
+
+        retry_cache.main(out, stamp)
+
+        a_cache = json.loads((reports_dir / "A_2019-01-01_gapfill.json").read_text(encoding="utf-8"))
+        assert "2016" in a_cache["per_target"]  # X's resolved year untouched
+        assert "2017" not in a_cache["per_target"]  # Y's unresolved year cleared
+        b_cache = json.loads((reports_dir / "B_2020-01-01_gapfill.json").read_text(encoding="utf-8"))
+        assert "2019" in b_cache["per_target"]  # unrelated resolved report untouched
 
 
 def test_discover_selected_pdf_dirs():
