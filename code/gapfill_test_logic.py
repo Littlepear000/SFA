@@ -34,6 +34,7 @@ three_a = _load(_HERE / "3a_gapfill_1_build_panel_gap_flags.py", "gapfill_3a_tes
 three_b = _load(_HERE / "3b_gapfill_2_build_targets.py", "gapfill_3b_test",
                  defaults={"CHECK_DIR": Path("/dev/null"), "STAMP": "test"})
 retry_cache = _load(_HERE / "gapfill_retry_unresolved_cache.py", "gapfill_retry_cache_test")
+coverage = _load(_HERE / "gapfill_panel_coverage_report.py", "gapfill_coverage_test")
 
 
 def rep(name, country, date):
@@ -90,6 +91,14 @@ def test_country_from_filename():
     r = core.parse_report_file(Path("Republic of Armenia_2019-06-05.pdf"))
     assert r["country"] == "Armenia" and r["year"] == 2019
     assert core.parse_report_file(Path("Maldives_2019-09-03_CR2019-283.pdf"))["date"] == "2019-09-03"
+
+
+def test_normalize_country_kingdom_of_the_netherlands():
+    # "the" after the dash must not stop this from being recognized as the Netherlands itself
+    assert core.normalize_country("Kingdom Of The Netherlands—The Netherlands") == "Netherlands"
+    assert core.normalize_country("Kingdom of the Netherlands-Netherlands") == "Netherlands"
+    assert core.normalize_country("Kingdom of the Netherlands-Aruba") == "Aruba"
+    assert core.normalize_country("Kingdom of the Netherlands-Curacao and Sint Maarten") == "Curaçao and Sint Maarten"
 
 
 def test_validate():
@@ -382,6 +391,55 @@ def test_retry_unresolved_cache():
         assert "2017" not in a_cache["per_target"]  # Y's unresolved year cleared
         b_cache = json.loads((reports_dir / "B_2020-01-01_gapfill.json").read_text(encoding="utf-8"))
         assert "2019" in b_cache["per_target"]  # unrelated resolved report untouched
+
+
+def test_panel_coverage_report():
+    """
+    Covers the bug this script was actually caught by: a blank "year" cell reads back from pandas as the
+    float NaN, and `NaN or fallback` never falls through to the fallback (NaN is truthy in Python) --
+    so the coalesce must not be written as a bare `or` on the raw cell value. Also covers hierarchy_id
+    filtering (only the headline "5"/"6" rows, not their sub-items), country-spelling normalization, and
+    duplicate/conflict detection.
+    """
+    with tempfile.TemporaryDirectory() as d:
+        csv_path = Path(d) / "final_all_batches_with_gapfill.csv"
+        rows = [
+            # X 2016: one row, from last_actual_year (year is blank) -- the NaN-coalesce case
+            {"country": "Xland", "hierarchy_id": "6", "value": "1.5", "year": "", "last_actual_year": "2016", "source_round": "round1"},
+            # a sub-item of the same report/year must not be counted as an available top-level value
+            {"country": "Xland", "hierarchy_id": "6.1", "value": "0.4", "year": "", "last_actual_year": "2016", "source_round": "round1"},
+            # Y 2017: two reports, genuinely different values -> conflicting
+            {"country": "Yland", "hierarchy_id": "6", "value": "2.0", "year": "", "last_actual_year": "2017", "source_round": "round1"},
+            {"country": "YLAND", "hierarchy_id": "6", "value": "9.0", "year": "", "last_actual_year": "2017", "source_round": "round2"},
+            # Z 2018 (fiscal-year label): two reports, same value within tolerance -> not conflicting
+            {"country": "Zland", "hierarchy_id": "5", "value": "3.000", "year": "", "last_actual_year": "2017/18", "source_round": "round1"},
+            {"country": "Zland", "hierarchy_id": "5", "value": "3.001", "year": "", "last_actual_year": "2017/18", "source_round": "round3"},
+            # gapfill row: year is populated directly, last_actual_year is blank
+            {"country": "Xland", "hierarchy_id": "5", "value": "0.7", "year": "2015", "last_actual_year": "", "source_round": "gapfill"},
+            # no usable year at all -> excluded entirely
+            {"country": "Wland", "hierarchy_id": "6", "value": "1.0", "year": "", "last_actual_year": "", "source_round": "round1"},
+        ]
+        pd.DataFrame(rows).to_csv(csv_path, index=False)
+
+        df = coverage.load_rows(csv_path)
+        assert set(df["hierarchy_id"]) == {"5", "6"}  # the 6.1 sub-item row is gone
+        assert len(df) == 6  # 8 rows in, minus the 6.1 sub-item and the no-usable-year row
+
+        xland_2016 = df[(df["country_key"] == "xland") & (df["hierarchy_id"] == "6")]
+        assert list(xland_2016["effective_year"]) == [2016]  # fell back to last_actual_year, not dropped
+
+        summary6, detail6 = coverage.summarize(df, "6")
+        row_2016 = summary6[summary6["year"] == 2016].iloc[0]
+        assert row_2016["n_countries_available"] == 1
+        row_2017 = summary6[summary6["year"] == 2017].iloc[0]
+        assert row_2017["n_countries_available"] == 1  # Yland/YLAND is one country, not two
+        assert row_2017["n_countries_with_duplicate_rows"] == 1
+        assert row_2017["n_countries_with_conflicting_values"] == 1
+
+        summary5, detail5 = coverage.summarize(df, "5")
+        row_2018 = summary5[summary5["year"] == 2018].iloc[0]  # "2017/18" -> fiscal year end 2018
+        assert row_2018["n_countries_with_duplicate_rows"] == 1
+        assert row_2018["n_countries_with_conflicting_values"] == 0  # 3.000 vs 3.001 is not a real conflict
 
 
 def test_discover_selected_pdf_dirs():

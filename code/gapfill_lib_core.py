@@ -77,7 +77,7 @@ def normalize_country(raw: str) -> str:
         return "Hong Kong SAR, China" if "hong kong" in m.group(1) else "Macao SAR, China"
     m = re.match(r"^kingdom of the netherlands-(.+)$", low)
     if m:
-        t = m.group(1)
+        t = re.sub(r"^the\s+", "", m.group(1))  # the part after the dash can itself start with "the "
         if t == "netherlands":
             return "Netherlands"
         if t == "aruba":
