@@ -895,6 +895,68 @@ def test_3a_same_real_report_two_years():
         assert (inv["pdf_file_name"] == "France_2021-05-01.pdf").sum() == 2, "the shared report appears once per year it supplies"
 
 
+def test_3a_panel_wide_full_range():
+    """
+    The panel-wide gap definition: FULL_RANGE finds gaps outside a country's own observed bracket (which
+    the original "missing in the middle" definition never would), a prior gap-fill row (year column, no
+    last_actual_year) counts as observed via effective_year_label()'s coalesce, a gap-fill row sourced
+    T+4 out (lag 4) is not wrongly rejected as "year_implausible_vs_report_date" (that check is
+    calibrated for a normal report's own last_actual_year, not a deliberately-T+2/3/4 gap-fill source),
+    and exclude_identified_csv drops a previously-identified gap from gap_years without hiding it from
+    the panel (it is still honestly a gap there).
+    """
+    cols = ["json_file", "pdf_file_name", "table_found", "last_actual_year", "year", "source_round",
+            "level", "top_category", "value", "hierarchy_id", "parent_label", "label_verbatim",
+            "column_header_audit_json", "manual_review_required", "actual_column_validation_status",
+            "confidence", "framework"]
+    roles = ["change_in_debt", "identified_flows", "primary_balance", "automatic_debt_dynamics",
+             "other_identified_flows", "residual"]
+
+    def mkrow(json_file, pdf, last_actual_year, year, source_round, top_cat, value):
+        r = dict.fromkeys(cols, "")
+        r.update(json_file=json_file, pdf_file_name=pdf, table_found="TRUE",
+                  last_actual_year=last_actual_year, year=year, source_round=source_round,
+                  level="0", top_category=top_cat, value=value, hierarchy_id="1",
+                  manual_review_required="No", actual_column_validation_status="accepted",
+                  confidence="high", framework="MAC_DSA")
+        return r
+
+    rows = []
+    for year, pdf, src in [
+        (2010, "Freedonia_2010-06-01.pdf", "round1"),
+        (2012, "Freedonia_2012-06-01.pdf", "round1"),
+        (2014, "Freedonia_2014-06-01.pdf", "round1"),
+    ]:
+        for i, role in enumerate(roles, start=1):
+            rows.append(mkrow(f"{pdf[:-4]}_dsa.json", pdf, str(year), "", src, role, str(i)))
+    # 2013 already gap-filled by an earlier run, sourced from a report published 4 years later (T+4,
+    # the exact lag that used to be wrongly rejected as implausible for a normal report)
+    for i, role in enumerate(roles, start=1):
+        rows.append(mkrow("Freedonia_2017-06-01_dsa.json", "Freedonia_2017-06-01.pdf", "", "2013", "gapfill", role, str(i)))
+    df = pd.DataFrame(rows)
+
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        csv_path = d / "input.csv"
+        df.to_csv(csv_path, index=False, encoding="utf-8-sig")
+
+        exclude_path = d / "prior_gap_years.csv"
+        pd.DataFrame([{"country": "Freedonia", "gap_year": 2011}]).to_csv(exclude_path, index=False)
+
+        out_dir = d / "out"
+        three_a.main(csv_path, out_dir, full_range=(2008, 2016), exclude_identified_csv=exclude_path)
+
+        gaps = pd.read_csv(out_dir / f"gap_years_{three_a.STAMP}.csv")
+        gap_years = set(gaps[gaps["country"] == "Freedonia"]["gap_year"])
+        assert gap_years == {2008, 2009, 2015, 2016}, gap_years  # 2011 excluded, 2013 observed (gap-filled)
+
+        panel = pd.read_csv(out_dir / f"panel_structure_country_year_{three_a.STAMP}.csv")
+        fr = panel[panel["country"] == "Freedonia"].set_index("year")
+        assert fr.loc[2013, "status"] == "observed"  # the gap-fill row, coalesced via effective_year_label
+        assert fr.loc[2011, "status"] == "GAP"  # still honestly a gap in the panel, despite being excluded above
+        assert set(fr.index) == set(range(2008, 2017))  # FULL_RANGE drives the panel's year span too
+
+
 def test_3a_cross_batch_edge_gap():
     """
     A gap sitting at a batch's edge is invisible from that batch alone: find_gap_years() only flags a

@@ -36,6 +36,18 @@ Input (usually one CSV; can be more than one -- see below)
     gap-fill's own output is folded back into this input, one real report can legitimately appear under
     two different last_actual_year values -- its own normal extraction, and a gap-fill row-group at an
     earlier year it was also used to source -- so json_file alone no longer identifies one observation.
+    A gap-fill row's own year lives in a separate "year" column (last_actual_year is blank for it) --
+    effective_year_label() coalesces the two wherever a row needs to be identified or grouped by year, so
+    a previously gap-filled year reads as observed here, not as still missing.
+
+    FULL_RANGE / EXCLUDE_IDENTIFIED_CSV (see main()'s own docstring) switch the whole file from "gaps
+    sandwiched inside each country's own observed span" to "every missing year in a fixed panel-wide
+    range (e.g. 2001 onward), for every country with at least one observation" -- the panel-data framing,
+    where ANY missing cell counts, not only ones between two of that country's own reports. Pair it with
+    pointing INPUT_CSV at the CURRENT merged panel (including any Gap Fill output already folded in) and
+    EXCLUDE_IDENTIFIED_CSV at the prior, narrower run's own gap list, to get exactly the new gaps that
+    narrower definition could never have found (years before a country's first report, or after its most
+    recent one) without re-identifying (and so re-attempting) anything already run once.
 
 Output (written by default to <batch folder>/gap_year_check/, filenames suffixed _<STAMP>)
     panel_structure_country_year   country x year skeleton. status = observed (has data) or GAP (missing)
@@ -109,6 +121,14 @@ BASE = HERE.parent if HERE.name == "code" else HERE
 # OUT_DIR = None  # None -> "gap_year_check" folder next to the CSV's batch folder
 # STAMP = "20260920_v2"
 
+# Panel-wide gap definition (see main()'s own docstring) -- leave both None for the original, narrower
+# "missing in the middle of this country's own observed years" definition.
+FULL_RANGE = None  # e.g. (2001, 2025): every missing year in this range counts as a gap, for every
+                    # country with at least one observation anywhere
+EXCLUDE_IDENTIFIED_CSV = None  # e.g. the prior (narrower) run's gap_years_<STAMP>.csv or
+                                # gapfill_resolution_<STAMP>.csv -- drops any (country, gap_year) it
+                                # already lists, so this run only writes the INCREMENTAL new gaps
+
 
 def default_out_dir(input_csv: Path) -> Path:
     parent = Path(input_csv).resolve().parent
@@ -151,17 +171,31 @@ def to_float(x):
 
 
 # ------------------------------------------------------------------ loading
+def effective_year_label(df: pd.DataFrame) -> pd.Series:
+    """last_actual_year if present, else "year" -- the merged panel (Round 1/2/3 + Gap Fill) keeps both
+    columns but never unified them: "year" is populated only for source_round == "gapfill" rows, blank
+    for Round 1/2/3 rows, which carry their year in "last_actual_year" instead (and a CSV from before any
+    Gap Fill output was folded in may not have a "year" column at all -- .get() with a blank default
+    covers that). Used everywhere a row needs to be identified or grouped by "which year it represents",
+    so a previously gap-filled year counts as observed instead of looking like it is still missing."""
+    lay = df["last_actual_year"].fillna("").astype(str).str.strip()
+    year = df.get("year", pd.Series("", index=df.index)).fillna("").astype(str).str.strip()
+    return lay.where(lay != "", year)
+
+
 def build_report_table(df: pd.DataFrame) -> pd.DataFrame:
-    # Unique key is (json_file, last_actual_year), not json_file alone: once gap-fill output is folded
-    # back into this input, the same real report can legitimately carry two row-groups -- its own normal
-    # extraction at its own last_actual_year, and a gap-fill row-group at an earlier year it also
+    # Unique key is (json_file, effective_year_label), not json_file alone: once gap-fill output is
+    # folded back into this input, the same real report can legitimately carry two row-groups -- its own
+    # normal extraction at its own last_actual_year, and a gap-fill row-group at an earlier year it also
     # supplied as a T+2/T+3/T+4 source -- so json_file alone no longer identifies one observation.
-    r = df.sort_values(["json_file", "last_actual_year"]).drop_duplicates(["json_file", "last_actual_year"], keep="first").copy()
+    df = df.copy()
+    df["effective_year_label"] = effective_year_label(df)
+    r = df.sort_values(["json_file", "effective_year_label"]).drop_duplicates(["json_file", "effective_year_label"], keep="first").copy()
     m = r["pdf_file_name"].str.extract(r"^(?P<prefix>.*?)_(?P<date>\d{4}-\d{2}-\d{2})")
     r["country_raw"] = m["prefix"]
     r["report_date"] = pd.to_datetime(m["date"])
     r["country"] = r["country_raw"].apply(normalize_country)
-    parsed = r["last_actual_year"].apply(parse_year_label)
+    parsed = r["effective_year_label"].apply(parse_year_label)
     r["year_kind"] = parsed.apply(lambda t: t[0])
     r["obs_year"] = parsed.apply(lambda t: t[1])
     r["year_parse_note"] = parsed.apply(lambda t: t[3])
@@ -180,21 +214,38 @@ def build_report_table(df: pd.DataFrame) -> pd.DataFrame:
 def top_level_values(df: pd.DataFrame) -> pd.DataFrame:
     top = df[df["level"].astype(str).isin(["0", "0.0"]) & df["top_category"].isin(TOP_CATEGORIES)].copy()
     top["value_num"] = top["value"].apply(to_float)
-    # Keyed like build_report_table(): (json_file, last_actual_year), so a report that supplies two
+    top["effective_year_label"] = effective_year_label(top)
+    # Keyed like build_report_table(): (json_file, effective_year_label), so a report that supplies two
     # different years (its own, plus one it filled via gap-fill) doesn't have its two years' top-level
     # values collapsed into a single json_file row.
-    wide = top.pivot_table(index=["json_file", "last_actual_year"], columns="top_category", values="value_num", aggfunc="first")
+    wide = top.pivot_table(index=["json_file", "effective_year_label"], columns="top_category", values="value_num", aggfunc="first")
     return wide.reindex(columns=TOP_CATEGORIES)
 
 
 # ------------------------------------------------------------ gap detection
-def find_gap_years(obs_years_by_country: dict) -> dict:
+def find_gap_years(obs_years_by_country: dict, full_range: tuple[int, int] | None = None) -> dict:
+    """
+    full_range=None (default): a gap year is one "missing in the middle" of a country's own observed
+    years only -- a year before its first observation or after its last is never a gap, and a country
+    with fewer than 2 observed years is skipped entirely (there is no "middle" to speak of).
+
+    full_range=(start, end): every missing year in [start, end] is a gap, for every country with at
+    least one observation anywhere (no anchor at all -> nothing to build a T+2/T+3/T+4 candidate off of,
+    so still skipped) -- this is the panel-wide definition: any missing cell in the full country x year
+    grid, not just ones a country's own two bounding reports happen to sandwich.
+    """
     out = {}
     for country, years in obs_years_by_country.items():
         ys = sorted(set(years))
-        if len(ys) < 2:
-            continue
-        missing = [y for y in range(ys[0], ys[-1] + 1) if y not in set(ys)]
+        if full_range is not None:
+            if not ys:
+                continue
+            span = range(full_range[0], full_range[1] + 1)
+        else:
+            if len(ys) < 2:
+                continue
+            span = range(ys[0], ys[-1] + 1)
+        missing = [y for y in span if y not in set(ys)]
         if missing:
             out[country] = missing
     return out
@@ -219,7 +270,12 @@ def audit_columns(audit_json):
     return out
 
 
-def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
+def main(
+    input_csv: Path | list = INPUT_CSV,
+    out_dir: Path | None = OUT_DIR,
+    full_range: tuple[int, int] | None = None,
+    exclude_identified_csv: Path | None = None,
+):
     """
     input_csv is usually one compiled CSV (or the unified panel), but can also be a list of CSVs -- e.g.
     this batch's compiled CSV plus the next batch's -- which are concatenated before anything else runs.
@@ -228,6 +284,23 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
     observation (e.g. 2022, from the next batch) is also loaded, giving 3a something to call "the
     middle." A single later batch's CSV is normally enough -- only years inside the gap need the next
     real observation, not the whole of every later batch.
+
+    full_range=(start, end): switch to the panel-wide gap definition -- every missing year in that range
+    for every country with at least one observation, not just years sandwiched between that country's
+    own first and last report (see find_gap_years()'s own docstring). The panel/coverage-matrix outputs
+    also use this range (instead of each country's own [first, last] observed span) for consistency.
+    Typical use: input_csv points at the CURRENT merged panel (Round 1/2/3 + Human Review + any earlier
+    Gap Fill output already folded in -- a previously gap-filled year then counts as observed and is not
+    re-flagged), so this finds gaps the narrower, original definition could never have found: years
+    before a country's first report or after its most recent one.
+
+    exclude_identified_csv: a prior run's gap_years_<STAMP>.csv or gapfill_resolution_<STAMP>.csv (either
+    works -- both have one row per (country, gap_year) that run ever identified, resolved or not). Only
+    affects the written gap_years_<STAMP>.csv (what Step 2/3 are fed) -- a country-year already
+    identified there is dropped so it is not attempted a second time; the panel/coverage-matrix outputs
+    still show it as GAP, since it honestly still is one, just not re-submitted here. Use this together
+    with full_range to get only the INCREMENTAL gaps a broader run adds on top of a narrower run already
+    done -- never re-run (or lose track of) whatever that earlier run already attempted.
     """
     input_csvs = [Path(p) for p in input_csv] if isinstance(input_csv, (list, tuple)) else [Path(input_csv)]
     missing = [p for p in input_csvs if not p.exists()]
@@ -241,7 +314,7 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
 
     reports = build_report_table(all_df)
     wide = top_level_values(all_df)
-    reports = reports.merge(wide, left_on=["json_file", "last_actual_year"], right_index=True, how="left")
+    reports = reports.merge(wide, left_on=["json_file", "effective_year_label"], right_index=True, how="left")
     reports["audit_cols"] = reports["column_header_audit_json"].apply(audit_columns)
 
     # (country, report publication year) -> reports, for the T+2/T+3/T+4 candidate lookup below. Built from
@@ -261,7 +334,14 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
         if row["year_kind"] != "single":
             return "table_but_year_unusable"
         lag = row["report_date"].year - row["obs_year"]
-        if lag >= MAX_PLAUSIBLE_LAG or lag < 0:
+        # A Gap Fill row is BY DESIGN sourced from a report published 2-4 years after the year it fills
+        # (T+2/T+3/T+4) -- the plausible-lag window below is calibrated for a normal report's own
+        # last_actual_year (1-2 years before its own publication) and would wrongly reject every
+        # legitimate T+4 gap-fill row (lag == MAX_PLAUSIBLE_LAG exactly), so it only applies here to
+        # non-gapfill rows. A gap-fill row published BEFORE the year it supposedly filled is still
+        # nonsensical and stays flagged.
+        is_gapfill = str(row.get("source_round") or "").strip().lower() == "gapfill"
+        if lag < 0 or (not is_gapfill and lag >= MAX_PLAUSIBLE_LAG):
             return "year_implausible_vs_report_date"
         return "observation"
 
@@ -300,7 +380,7 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
     # ------------------------------------------------------- gap detection
     def gaps_for(observations: pd.DataFrame):
         d = {c: g["obs_year"].tolist() for c, g in observations.groupby("country")}
-        return find_gap_years(d)
+        return find_gap_years(d, full_range=full_range)
 
     gaps_primary = gaps_for(kept_obs)
     gaps_certain_only = gaps_for(kept_obs[~kept_obs["year_uncertain"]])
@@ -329,23 +409,40 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
         for span in spans:
             span_counter += 1
             span_id = f"G{span_counter:04d}"
-            prev_y = max(y for y in ys if y < span[0])
-            next_y = min(y for y in ys if y > span[-1])
-            prev_rows = obs[(obs["country"] == country) & (obs["obs_year"] == prev_y)]
-            next_rows = obs[(obs["country"] == country) & (obs["obs_year"] == next_y)]
-            prev_rep = prev_rows.iloc[-1]          # latest report giving prev year
-            next_rep = next_rows.iloc[0]           # earliest report giving next year
-            between = creps[(creps["report_date"] > prev_rep["report_date"]) & (creps["report_date"] < next_rep["report_date"])]
+            # A span can be one-sided when full_range reaches before the country's first observation or
+            # after its last (the panel-wide gap definition) -- there is no "prev"/"next" bounding report
+            # on that side, so the "between two reports" causes below only apply when both sides exist.
+            prev_candidates = [y for y in ys if y < span[0]]
+            next_candidates = [y for y in ys if y > span[-1]]
+            prev_y = max(prev_candidates) if prev_candidates else None
+            next_y = min(next_candidates) if next_candidates else None
+            prev_rows = obs[(obs["country"] == country) & (obs["obs_year"] == prev_y)] if prev_y is not None else obs.iloc[0:0]
+            next_rows = obs[(obs["country"] == country) & (obs["obs_year"] == next_y)] if next_y is not None else obs.iloc[0:0]
+            prev_rep = prev_rows.iloc[-1] if len(prev_rows) else None    # latest report giving prev year
+            next_rep = next_rows.iloc[0] if len(next_rows) else None     # earliest report giving next year
+            if prev_rep is not None and next_rep is not None:
+                between = creps[(creps["report_date"] > prev_rep["report_date"]) & (creps["report_date"] < next_rep["report_date"])]
+            elif prev_rep is not None:
+                between = creps[creps["report_date"] > prev_rep["report_date"]]
+            elif next_rep is not None:
+                between = creps[creps["report_date"] < next_rep["report_date"]]
+            else:
+                between = creps.iloc[0:0]
             causes = []
-            if ((~between["table_found_bool"]) & (between["report_status"] != "excluded_non_country")).any():
-                causes.append("no_table_report_in_between")
-            if (between["report_status"] == "table_but_year_unusable").any():
-                causes.append("unusable_year_report_in_between")
-            if between.empty:
-                causes.append("lag_between_consecutive_reports")
+            if prev_rep is None:
+                causes.append("before_first_observed_year")
+            if next_rep is None:
+                causes.append("after_last_observed_year")
+            if prev_rep is not None and next_rep is not None:
+                if ((~between["table_found_bool"]) & (between["report_status"] != "excluded_non_country")).any():
+                    causes.append("no_table_report_in_between")
+                if (between["report_status"] == "table_but_year_unusable").any():
+                    causes.append("unusable_year_report_in_between")
+                if between.empty:
+                    causes.append("lag_between_consecutive_reports")
             if not causes:
                 causes.append("other_reports_in_between")
-            months = (next_rep["report_date"] - prev_rep["report_date"]).days / 30.44
+            months = (next_rep["report_date"] - prev_rep["report_date"]).days / 30.44 if (prev_rep is not None and next_rep is not None) else None
 
             for y in span:
                 # Same T+2-then-T+3-then-T+4, latest-publication-date-first order Step 2/3 actually try (see
@@ -391,15 +488,18 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
                     "gap_span": f"{span[0]}-{span[-1]}" if len(span) > 1 else str(span[0]),
                     "gap_span_length": len(span),
                     "prev_observed_year": prev_y,
-                    "prev_report": prev_rep["pdf_file_name"],
+                    "prev_report": prev_rep["pdf_file_name"] if prev_rep is not None else None,
                     "next_observed_year": next_y,
-                    "next_report": next_rep["pdf_file_name"],
-                    "months_between_bounding_reports": round(months, 1),
+                    "next_report": next_rep["pdf_file_name"] if next_rep is not None else None,
+                    "months_between_bounding_reports": round(months, 1) if months is not None else None,
                     "n_reports_in_between": len(between),
                     "reports_in_between": "; ".join(between["pdf_file_name"]),
                     "primary_cause": causes[0],
                     "all_causes": "; ".join(causes),
-                    "boundary_year_uncertain": bool(prev_rep["year_uncertain"] or next_rep["year_uncertain"]),
+                    "boundary_year_uncertain": bool(
+                        (prev_rep is not None and prev_rep["year_uncertain"])
+                        or (next_rep is not None and next_rep["year_uncertain"])
+                    ),
                     "fill_status": fill_status,
                     "preferred_source_report": pref[0]["pdf_file_name"] if pref else None,
                     "preferred_source_col_label": pref[1]["label"] if pref else None,
@@ -415,7 +515,8 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
     all_countries = sorted(kept_obs["country"].unique())
     for country in all_countries:
         ys = observed_years(country)
-        for y in range(ys[0], ys[-1] + 1):
+        year_span = range(full_range[0], full_range[1] + 1) if full_range is not None else range(ys[0], ys[-1] + 1)
+        for y in year_span:
             if (country, y) in gap_lookup:
                 g = gap_lookup[(country, y)]
                 panel_rows.append({
@@ -447,17 +548,18 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
     panel = pd.DataFrame(panel_rows)
 
     # ------------------------------------------------ children long table
-    # (json_file, last_actual_year) identifies one kept observation; json_file alone is not unique once
-    # a real report can carry rows for more than one year (its own, plus any gap year it was used to
-    # fill), so both the membership filter and the join key below use the pair, not json_file alone.
-    keep_pairs = set(zip(kept_obs["json_file"], kept_obs["last_actual_year"]))
-    all_df_keys = pd.Series(list(zip(all_df["json_file"], all_df["last_actual_year"])), index=all_df.index)
+    # (json_file, effective_year_label) identifies one kept observation; json_file alone is not unique
+    # once a real report can carry rows for more than one year (its own, plus any gap year it was used
+    # to fill), so both the membership filter and the join key below use the pair, not json_file alone.
+    all_df["effective_year_label"] = effective_year_label(all_df)
+    keep_pairs = set(zip(kept_obs["json_file"], kept_obs["effective_year_label"]))
+    all_df_keys = pd.Series(list(zip(all_df["json_file"], all_df["effective_year_label"])), index=all_df.index)
     children_src = all_df[
         all_df_keys.isin(keep_pairs)
         & (all_df["level"].astype(str).isin(["1", "1.0", "2", "2.0", "3", "3.0"]))
-    ][["json_file", "last_actual_year", "pdf_file_name", "top_category", "hierarchy_id", "level", "parent_label", "label_verbatim", "value"]].copy()
-    key = kept_obs.set_index(["json_file", "last_actual_year"])[["country", "obs_year"]]
-    children = children_src.join(key, on=["json_file", "last_actual_year"])
+    ][["json_file", "effective_year_label", "pdf_file_name", "top_category", "hierarchy_id", "level", "parent_label", "label_verbatim", "value"]].copy()
+    key = kept_obs.set_index(["json_file", "effective_year_label"])[["country", "obs_year"]]
+    children = children_src.join(key, on=["json_file", "effective_year_label"])
     children = children.rename(columns={"obs_year": "year"})[
         ["country", "year", "pdf_file_name", "top_category", "hierarchy_id", "level", "parent_label", "label_verbatim", "value"]
     ].sort_values(["country", "year", "hierarchy_id"])
@@ -483,20 +585,46 @@ def main(input_csv: Path | list = INPUT_CSV, out_dir: Path | None = OUT_DIR):
     inv["report_date"] = inv["report_date"].dt.date.astype(str)
     inv = inv.sort_values(["country", "report_date"])
 
+    # ---------------------------------------- exclude already-identified gaps
+    # Only affects what gets WRITTEN to gap_years (and so fed to Step 2/3) -- panel/coverage-matrix above
+    # already reflect the full, honest state and are untouched.
+    gaps_to_write = gaps
+    n_excluded = 0
+    if exclude_identified_csv is not None and len(gaps):
+        exclude_path = Path(exclude_identified_csv)
+        if exclude_path.exists():
+            prior = pd.read_csv(exclude_path, dtype=str)
+            prior_keys = set(zip(
+                prior["country"].map(lambda c: normalize_country(str(c).strip()).casefold()),
+                prior["gap_year"].astype(int),
+            ))
+            is_new = gaps.apply(
+                lambda r: (normalize_country(str(r["country"])).casefold(), int(r["gap_year"])) not in prior_keys,
+                axis=1,
+            )
+            gaps_to_write = gaps[is_new].copy()
+            n_excluded = int((~is_new).sum())
+            print(f"Excluding {n_excluded} gap year(s) already identified in {exclude_path}; "
+                  f"{len(gaps_to_write)} new gap year(s) remain.")
+        else:
+            print(f"exclude_identified_csv not found, nothing excluded: {exclude_path}")
+
     # ------------------------------------------------------------- write
     p = lambda name: out_dir / f"{name}_{STAMP}.csv"
     panel.to_csv(p("panel_structure_country_year"), index=False, encoding="utf-8-sig")
-    gaps.to_csv(p("gap_years"), index=False, encoding="utf-8-sig")
+    gaps_to_write.to_csv(p("gap_years"), index=False, encoding="utf-8-sig")
     matrix.to_csv(p("coverage_matrix_country_year"), encoding="utf-8-sig")
     inv.to_csv(p("report_inventory"), index=False, encoding="utf-8-sig")
     children.to_csv(p("panel_children_long"), index=False, encoding="utf-8-sig")
 
     # ------------------------------------------------------------- summary
+    gaps = gaps_to_write  # stats below describe what was actually written (fed to Step 2/3)
     stats = {
         "n_reports": int(len(reports)),
         "status_counts": reports["report_status"].value_counts().to_dict(),
         "n_countries_in_panel": len(all_countries),
         "n_observed_country_years": int((panel["status"] == "observed").sum()),
+        "n_gap_years_excluded_already_identified": n_excluded,
         "n_countries_with_gap": int(gaps["country"].nunique()) if len(gaps) else 0,
         "n_gap_years": int(len(gaps)),
         "n_gap_spans": int(gaps["gap_id"].nunique()) if len(gaps) else 0,
@@ -526,4 +654,9 @@ if __name__ == "__main__":
                          "visible as 'the middle') are detected")
     ap.add_argument("--out-dir", default=None, help="output folder (default: gap_year_check next to the CSV's batch folder)")
     a, _ = ap.parse_known_args()  # tolerant: extra args injected by IPython/Spyder are ignored
-    main([Path(p) for p in a.input] if a.input else INPUT_CSV, Path(a.out_dir) if a.out_dir else OUT_DIR)
+    main(
+        [Path(p) for p in a.input] if a.input else INPUT_CSV,
+        Path(a.out_dir) if a.out_dir else OUT_DIR,
+        full_range=FULL_RANGE,
+        exclude_identified_csv=EXCLUDE_IDENTIFIED_CSV,
+    )
