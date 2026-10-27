@@ -895,6 +895,51 @@ def test_3a_same_real_report_two_years():
         assert (inv["pdf_file_name"] == "France_2021-05-01.pdf").sum() == 2, "the shared report appears once per year it supplies"
 
 
+def test_3a_slim_schema_no_audit_columns():
+    """
+    A "final answer only" merged CSV (the kind a colleague's merge script can produce once every round's
+    own audit/validation columns are no longer needed) may carry none of table_found,
+    manual_review_required, actual_column_validation_status, confidence, or column_header_audit_json --
+    only the columns needed to identify a country-year and its value. 3a must still find gap years from
+    just that, instead of raising a KeyError, and must say so honestly in fill_status rather than
+    defaulting every gap year to "not_visible_in_any_report" when it simply has no evidence to check.
+    """
+    cols = ["json_file", "pdf_file_name", "country", "last_actual_year", "top_category", "hierarchy_id",
+            "level", "parent_label", "label_verbatim", "value", "framework", "source_round"]
+    roles = ["change_in_debt", "identified_flows", "primary_balance", "automatic_debt_dynamics",
+             "other_identified_flows", "residual"]
+
+    def mkrow(json_file, pdf, year, top_cat, value):
+        r = dict.fromkeys(cols, "")
+        r.update(json_file=json_file, pdf_file_name=pdf, last_actual_year=year, level="0",
+                  top_category=top_cat, value=value, hierarchy_id="1", framework="MAC_DSA",
+                  source_round="round1")
+        return r
+
+    rows = []
+    for year, pdf in [(2010, "Ruritania_2010-06-01.pdf"), (2012, "Ruritania_2012-06-01.pdf")]:
+        for i, role in enumerate(roles, start=1):
+            rows.append(mkrow(f"{pdf[:-4]}_dsa.json", pdf, str(year), role, str(i)))
+    df = pd.DataFrame(rows)
+    assert "table_found" not in df.columns and "column_header_audit_json" not in df.columns
+
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        csv_path = d / "input.csv"
+        df.to_csv(csv_path, index=False, encoding="utf-8-sig")
+        out_dir = d / "out"
+        three_a.main(csv_path, out_dir)  # must not raise KeyError
+
+        gaps = pd.read_csv(out_dir / f"gap_years_{three_a.STAMP}.csv")
+        ru = gaps[gaps["country"] == "Ruritania"]
+        assert list(ru["gap_year"]) == [2011]
+        assert ru["fill_status"].iloc[0] == "preview_unavailable_no_audit_column"
+
+        inv = pd.read_csv(out_dir / f"report_inventory_{three_a.STAMP}.csv")
+        assert "table_found" not in inv.columns  # not fabricated into the output either
+        assert (inv["report_status"] == "observation").sum() == 2
+
+
 def test_3a_panel_wide_full_range():
     """
     The panel-wide gap definition: FULL_RANGE finds gaps outside a country's own observed bracket (which

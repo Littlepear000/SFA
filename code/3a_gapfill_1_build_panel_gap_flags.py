@@ -25,12 +25,19 @@ Input (usually one CSV; can be more than one -- see below)
     exact same (json_file, last_actual_year) dedup as a single CSV, so passing more than one is always
     safe even when a report happens to appear in both.
 
-    Columns used: json_file, pdf_file_name, table_found, last_actual_year, level, top_category, value,
-    hierarchy_id, parent_label, label_verbatim, column_header_audit_json,
-    manual_review_required, actual_column_validation_status, confidence, framework
-    (column_header_audit_json missing or blank for a given row -- e.g. a human-reviewed row -- is fine:
-    it only feeds the non-authoritative preview in step 6 below, which degrades to "no audit evidence"
-    rather than erroring.)
+    Columns required: json_file, pdf_file_name, country, last_actual_year, level, top_category, value,
+    hierarchy_id, parent_label, label_verbatim. That is enough to find gap years on its own -- a slimmer
+    "final answer only" merged CSV (e.g. one that dropped every per-attempt audit column once Round
+    1/2/3 + Human Review + Gap Fill were all folded together) works fine with just these.
+    Columns used IF PRESENT, for extra diagnostics only, each degrading gracefully (not erroring) when
+    absent from the input: table_found (missing -> every row assumed to have found its table; a row only
+    exists in a slimmer merged file because its table WAS found), manual_review_required and
+    actual_column_validation_status (missing -> year_uncertain stays False), confidence, framework,
+    source_round (missing -> MAX_PLAUSIBLE_LAG's check applies to every row; see "A Gap Fill row is BY
+    DESIGN..." in main()'s own code), column_header_audit_json (missing -> fill_status in gap_years.csv
+    reads "preview_unavailable_no_audit_column" instead of a real preview -- Step 2/3 are unaffected,
+    since they never read this column either; it only exists to flag a gap worth a second look before
+    spending any API calls on it).
 
     Unique row key is (json_file, last_actual_year, hierarchy_id), not (json_file, hierarchy_id): once
     gap-fill's own output is folded back into this input, one real report can legitimately appear under
@@ -199,10 +206,15 @@ def build_report_table(df: pd.DataFrame) -> pd.DataFrame:
     r["year_kind"] = parsed.apply(lambda t: t[0])
     r["obs_year"] = parsed.apply(lambda t: t[1])
     r["year_parse_note"] = parsed.apply(lambda t: t[3])
-    r["table_found_bool"] = r["table_found"].str.upper().eq("TRUE")
+    # table_found / manual_review_required / actual_column_validation_status are per-attempt audit columns
+    # from the long-form extraction output; a slimmer "final answer only" merged CSV (e.g. one with just
+    # json_file, country, last_actual_year, hierarchy_id, value, source_round, ...) may not carry them at
+    # all -- every row that made it into that kind of file already represents a successfully extracted,
+    # accepted value, so table_found defaults to TRUE and year_uncertain to False when they are absent.
+    r["table_found_bool"] = r.get("table_found", pd.Series("TRUE", index=r.index)).fillna("TRUE").str.upper().eq("TRUE")
     r["year_uncertain"] = (
-        r["manual_review_required"].eq("Yes")
-        | r["actual_column_validation_status"].eq("manual_review")
+        r.get("manual_review_required", pd.Series("", index=r.index)).eq("Yes")
+        | r.get("actual_column_validation_status", pd.Series("", index=r.index)).eq("manual_review")
     )
     r["year_after_report_year"] = r.apply(
         lambda x: bool(pd.notna(x["obs_year"]) and pd.notna(x["report_date"]) and x["obs_year"] > x["report_date"].year),
@@ -315,7 +327,14 @@ def main(
     reports = build_report_table(all_df)
     wide = top_level_values(all_df)
     reports = reports.merge(wide, left_on=["json_file", "effective_year_label"], right_index=True, how="left")
-    reports["audit_cols"] = reports["column_header_audit_json"].apply(audit_columns)
+    # column_header_audit_json may not exist at all in a slimmer "final answer only" merged CSV -- without
+    # it there is no per-year-column evidence to preview a fill_status from (see the loop below), so this
+    # stays empty rather than silently claiming "not visible in any report" for every gap year.
+    has_audit_data = "column_header_audit_json" in all_df.columns
+    reports["audit_cols"] = (
+        reports["column_header_audit_json"].apply(audit_columns) if has_audit_data
+        else [[] for _ in range(len(reports))]
+    )
 
     # (country, report publication year) -> reports, for the T+2/T+3/T+4 candidate lookup below. Built from
     # the already-parsed report_date (not re-parsed from the filename), one entry per real report.
@@ -465,7 +484,12 @@ def main(
                 prelim = [t for t in singles if t[1]["status"] in PRELIM_EST]
                 proj = [t for t in singles if t[1]["status"] == "projection"]
                 merged_rng = [t for t in cands if t[2] == "merged_range"]
-                if actual:
+                if not has_audit_data:
+                    # No column_header_audit_json anywhere in the input -- there is no evidence to preview
+                    # a fill_status from, so say so honestly instead of defaulting to the same outcome
+                    # "not_visible_in_any_report" would silently produce for every gap year.
+                    fill_status = "preview_unavailable_no_audit_column"
+                elif actual:
                     fill_status = "fillable_actual_column_visible"
                 elif prelim:
                     fill_status = "only_preliminary_or_estimate"
@@ -576,12 +600,15 @@ def main(
     matrix.index.name = "country"
 
     # ----------------------------------------------------- report inventory
-    inv = reports[[
+    # Some of these are audit columns a slimmer "final answer only" merged CSV may not carry at all (see
+    # build_report_table()); kept only when actually present rather than raising on a missing column.
+    inv_cols = [c for c in [
         "pdf_file_name", "country", "report_date", "report_status",
         "table_found", "last_actual_year", "obs_year", "year_parse_note",
         "year_uncertain", "year_after_report_year", "manual_review_required",
         "actual_column_validation_status", "confidence", "framework",
-    ]].copy()
+    ] if c in reports.columns]
+    inv = reports[inv_cols].copy()
     inv["report_date"] = inv["report_date"].dt.date.astype(str)
     inv = inv.sort_values(["country", "report_date"])
 
