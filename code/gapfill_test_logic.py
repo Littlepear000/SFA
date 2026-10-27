@@ -35,6 +35,7 @@ three_b = _load(_HERE / "3b_gapfill_2_build_targets.py", "gapfill_3b_test",
                  defaults={"CHECK_DIR": Path("/dev/null"), "STAMP": "test"})
 retry_cache = _load(_HERE / "gapfill_retry_unresolved_cache.py", "gapfill_retry_cache_test")
 coverage = _load(_HERE / "gapfill_panel_coverage_report.py", "gapfill_coverage_test")
+breakdown_mod = _load(_HERE / "gapfill_panel_source_breakdown.py", "gapfill_breakdown_test")
 
 
 def rep(name, country, date):
@@ -440,6 +441,39 @@ def test_panel_coverage_report():
         row_2018 = summary5[summary5["year"] == 2018].iloc[0]  # "2017/18" -> fiscal year end 2018
         assert row_2018["n_countries_with_duplicate_rows"] == 1
         assert row_2018["n_countries_with_conflicting_values"] == 0  # 3.000 vs 3.001 is not a real conflict
+
+
+def test_panel_source_breakdown():
+    """
+    total_countries must come from the WHOLE file (any hierarchy_id), not just the hierarchy "5"/"6"
+    subset -- a country with only e.g. hierarchy_id "1" data still counts toward the universe, and shows
+    up as unavailable for residual/other_identified_flows. Within available, round1 wins the priority
+    tie-break over round3 when both cover the same country-year.
+    """
+    with tempfile.TemporaryDirectory() as d:
+        csv_path = Path(d) / "final_all_batches_with_gapfill.csv"
+        rows = [
+            # Aland 2016: round1 AND round3 both cover it -> attributed to round1 (priority)
+            {"country": "Aland", "hierarchy_id": "6", "value": "1.0", "year": "", "last_actual_year": "2016", "source_round": "round1"},
+            {"country": "Aland", "hierarchy_id": "6", "value": "1.1", "year": "", "last_actual_year": "2016", "source_round": "round3"},
+            # Bland 2016: gapfill only
+            {"country": "Bland", "hierarchy_id": "6", "value": "2.0", "year": "2016", "last_actual_year": "", "source_round": "gapfill"},
+            # Cland: only ever appears with hierarchy_id "1" -> counts toward the universe, unavailable here
+            {"country": "Cland", "hierarchy_id": "1", "value": "5.0", "year": "", "last_actual_year": "2016", "source_round": "round1"},
+        ]
+        pd.DataFrame(rows).to_csv(csv_path, index=False)
+
+        total = breakdown_mod.country_universe(csv_path)
+        assert len(total) == 3  # Aland, Bland, Cland
+
+        df_field = breakdown_mod.load_rows(csv_path, {"6"})
+        table = breakdown_mod.breakdown(df_field, len(total))
+        row = table[table["year"] == 2016].iloc[0]
+        assert row["total_countries"] == 3
+        assert row["n_available"] == 2 and row["n_unavailable"] == 1  # Cland has no hierarchy "6" row
+        assert row["n_round1"] == 1 and row["n_round3_human_review"] == 0  # Aland -> round1, not round3
+        assert row["n_gapfill"] == 1  # Bland
+        assert row["n_available"] + row["n_unavailable"] == row["total_countries"]
 
 
 def test_discover_selected_pdf_dirs():

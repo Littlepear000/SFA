@@ -68,13 +68,22 @@ def _parsed_year(label: str) -> float:
     return float(y1) if kind != "invalid" else float("nan")
 
 
-def load_rows(input_csv: Path) -> pd.DataFrame:
+ALL_HIERARCHIES = object()  # sentinel for load_rows(): no hierarchy_id filter at all
+
+
+def load_rows(input_csv: Path, hierarchy_ids=FIELDS) -> pd.DataFrame:
+    """hierarchy_ids: an iterable of hierarchy_id values to keep (default: FIELDS, i.e. residual +
+    other_identified_flows only), or ALL_HIERARCHIES to keep every row regardless of hierarchy_id (used
+    to find the full country universe for gapfill_panel_source_breakdown.py)."""
     df = pd.read_csv(
         input_csv,
         usecols=["country", "hierarchy_id", "value", "year", "last_actual_year", "source_round"],
         dtype=str,
     )
-    df = df[df["hierarchy_id"].isin(FIELDS)].copy()
+    if hierarchy_ids is not ALL_HIERARCHIES:
+        df = df[df["hierarchy_id"].isin(hierarchy_ids)].copy()
+    else:
+        df = df.copy()
 
     year_s = df["year"].fillna("").str.strip()
     lay_s = df["last_actual_year"].fillna("").str.strip()
