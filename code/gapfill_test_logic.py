@@ -448,7 +448,8 @@ def test_panel_source_breakdown():
     total_countries must come from the WHOLE file (any hierarchy_id), not just the hierarchy "5"/"6"
     subset -- a country with only e.g. hierarchy_id "1" data still counts toward the universe, and shows
     up as unavailable for residual/other_identified_flows. Within available, round1 wins the priority
-    tie-break over round3 when both cover the same country-year.
+    tie-break over round3 when both cover the same country-year. Level 2b (observed vs. gap_status)
+    must land every unavailable country in exactly one of its six buckets.
     """
     with tempfile.TemporaryDirectory() as d:
         csv_path = Path(d) / "final_all_batches_with_gapfill.csv"
@@ -460,19 +461,52 @@ def test_panel_source_breakdown():
             {"country": "Bland", "hierarchy_id": "6", "value": "2.0", "year": "2016", "last_actual_year": "", "source_round": "gapfill"},
             # Cland: only ever appears with hierarchy_id "1" -> counts toward the universe, unavailable here
             {"country": "Cland", "hierarchy_id": "1", "value": "5.0", "year": "", "last_actual_year": "2016", "source_round": "round1"},
+            # 2017 cohort, each landing in a different Level-2b bucket (none has a hierarchy "6" row for 2017)
+            {"country": "Dland", "hierarchy_id": "1", "value": "0.1", "year": "", "last_actual_year": "2017", "source_round": "round1"},  # report exists, field missing
+            {"country": "Eland", "hierarchy_id": "1", "value": "0.1", "year": "", "last_actual_year": "2019", "source_round": "round1"},  # no 2017 report at all -> not a gap candidate
+            {"country": "Fland", "hierarchy_id": "1", "value": "0.1", "year": "", "last_actual_year": "2019", "source_round": "round1"},
+            {"country": "Gland", "hierarchy_id": "1", "value": "0.1", "year": "", "last_actual_year": "2019", "source_round": "round1"},
+            {"country": "Hland", "hierarchy_id": "1", "value": "0.1", "year": "", "last_actual_year": "2019", "source_round": "round1"},
+            {"country": "Iland", "hierarchy_id": "1", "value": "0.1", "year": "", "last_actual_year": "2019", "source_round": "round1"},
         ]
         pd.DataFrame(rows).to_csv(csv_path, index=False)
 
+        resolution_path = Path(d) / "gapfill_resolution_test.csv"
+        pd.DataFrame([
+            {"country": "Fland", "gap_year": 2017, "final_status": "unresolved"},
+            {"country": "Gland", "gap_year": 2017, "final_status": "unresolved_no_candidate_reports"},
+            {"country": "Hland", "gap_year": 2017, "final_status": "pending_api_error"},
+            {"country": "Iland", "gap_year": 2017, "final_status": "resolved"},  # resolved, yet still no row -> edge-case bucket
+        ]).to_csv(resolution_path, index=False)
+
         total = breakdown_mod.country_universe(csv_path)
-        assert len(total) == 3  # Aland, Bland, Cland
+        assert len(total) == 9  # Aland, Bland, Cland, Dland, Eland, Fland, Gland, Hland, Iland
 
         df_field = breakdown_mod.load_rows(csv_path, {"6"})
-        table = breakdown_mod.breakdown(df_field, len(total))
+        observed = breakdown_mod.observed_country_years(csv_path)
+        gap_status = breakdown_mod.gap_fill_status_map(resolution_path)
+        table = breakdown_mod.breakdown(df_field, total, observed, gap_status)
+
         row = table[table["year"] == 2016].iloc[0]
-        assert row["total_countries"] == 3
-        assert row["n_available"] == 2 and row["n_unavailable"] == 1  # Cland has no hierarchy "6" row
+        assert row["total_countries"] == 9
+        assert row["n_available"] == 2 and row["n_unavailable"] == 7  # Cland + the six 2017-cohort countries
         assert row["n_round1"] == 1 and row["n_round3_human_review"] == 0  # Aland -> round1, not round3
         assert row["n_gapfill"] == 1  # Bland
+
+        row17 = table[table["year"] == 2017].iloc[0]
+        assert row17["n_unavailable"] == 9  # every country is unavailable for 2017
+        assert row17["n_unavail_report_exists_field_missing"] == 1  # Dland
+        assert row17["n_unavail_not_gap_candidate"] == 4  # Aland, Bland, Cland (no 2017 report), Eland (2019 only)
+        assert row17["n_unavail_gapfill_unresolved"] == 1  # Fland
+        assert row17["n_unavail_gapfill_no_candidate_report"] == 1  # Gland
+        assert row17["n_unavail_gapfill_pending_api_error"] == 1  # Hland
+        assert row17["n_unavail_gapfill_resolved_but_field_missing"] == 1  # Iland
+        bucket_cols = [
+            "n_unavail_not_gap_candidate", "n_unavail_report_exists_field_missing",
+            "n_unavail_gapfill_unresolved", "n_unavail_gapfill_no_candidate_report",
+            "n_unavail_gapfill_pending_api_error", "n_unavail_gapfill_resolved_but_field_missing",
+        ]
+        assert row17[bucket_cols].sum() == row17["n_unavailable"]  # the six buckets fully partition it
         assert row["n_available"] + row["n_unavailable"] == row["total_countries"]
 
 
