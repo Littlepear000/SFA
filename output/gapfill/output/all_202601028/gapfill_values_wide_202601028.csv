@@ -1,0 +1,224 @@
+﻿country,year,gap_id,source_report,source_offset_years,resolution_status,column_status,column_header_verbatim,framework,units_verbatim,table_number,page_pdf,confidence,warnings,change_in_debt,identified_flows,primary_balance,automatic_debt_dynamics,other_identified_flows,residual
+Afghanistan,2004,G0001,Islamic Republic of Afghanistan_2008-07-15.pdf,4,resolved,actual,Actual 2003/04,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,75.0,high,,1.0,0.2,3.1,-2.8,-0.1,0.8
+Afghanistan,2005,G0001,Islamic Republic of Afghanistan_2008-07-15.pdf,3,resolved,actual,Actual 2004/05,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,75.0,high,,-0.3,3.2,1.4,-2.7,4.5,-3.5
+Afghanistan,2006,G0001,Islamic Republic of Afghanistan_2008-07-15.pdf,2,resolved,actual,Actual 2005/06,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,75.0,high,,169.8,-1.5,-1.0,-2.5,2.0,171.3
+Albania,2001,G0003,Albania_2005-03-10.pdf,4,resolved,actual,Actual 2001,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,65.0,high,,-4.9,-2.4,3.6,-3.8,-2.2,-2.5
+Albania,2002,G0003,Albania_2005-03-10.pdf,3,resolved,actual,Actual 2002,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a,65.0,high,,-2.0,1.6,2.6,-0.9,-0.1,-3.6
+Algeria,2001,G0007,Algeria_2004-02-10.pdf,3,resolved,actual,Actual; 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 6,34.0,high,,-4.6,-4.3,-7.4,2.6,0.5,-0.3
+Angola,2004,G0012,Angola_2007-10-25.pdf,3,resolved,actual,Actual / 2004,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 3,44.0,high,,-20.2,-39.8,-0.4,-32.9,-6.5,19.6
+Angola,2005,G0012,Angola_2007-10-25.pdf,3,resolved,actual,Actual / 2005,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 3,44.0,high,,-19.3,28.3,-8.1,-24.7,61.0,-47.6
+Antigua and Barbuda,2002,G0014,Antigua and Barbuda_2006-04-22.pdf,4,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 12.,47.0,high,,9.8,8.7,7.0,1.7,0.0,1.0
+Armenia,2002,G0020,Republic of Armenia_2006-12-11.pdf,4,resolved,actual,Actual 2002,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,55.0,high,,-1.0,-4.8,-0.4,-4.3,-0.1,3.7
+Armenia,2003,G0020,Republic of Armenia_2006-12-11.pdf,3,resolved,actual,Actual 2003,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,55.0,high,,-6.1,-8.4,0.4,-8.0,-0.7,2.2
+Armenia,2004,G0020,Republic of Armenia_2006-12-11.pdf,3,resolved,actual,Actual 2004,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,55.0,high,,-8.3,-8.8,1.2,-10.0,0.0,0.4
+Aruba,2002,G0022,Kingdom of the Netherlands—Aruba_2005-06-15.pdf,3,resolved,historical,2002,MAC_DSA,,,40.0,medium,,5.1,3.2,2.3,0.9,0.0,1.9
+Australia,2011,G0028,Australia_2014-02-12.pdf,3,resolved,actual,Actual 2011,MAC_DSA,(in percent of GDP unless otherwise indicated),,,high,,3.8,3.8,3.9,-0.1,0.0,0.0
+Austria,2001,G0030,Austria_2003-11-26.pdf,2,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 5,45.0,high,,0.2,-1.4,-3.8,2.4,0.0,1.6
+Azerbaijan,2003,G0035,Republic of Azerbaijan_2007-06-05.pdf,4,resolved,actual,Actual 2003,MAC_DSA,"(In percent of GDP, unless otherwise specified)",Table A1,37.0,high,,-1.2,-1.9,1.5,-3.2,-0.3,0.7
+Azerbaijan,2004,G0035,Republic of Azerbaijan_2007-06-05.pdf,4,resolved,actual,Actual 2004,MAC_DSA,"(In percent of GDP, unless otherwise specified)",Table A1,37.0,high,,-1.7,-4.9,-1.2,-3.4,-0.4,3.3
+Azerbaijan,2005,G0035,Republic of Azerbaijan_2007-06-05.pdf,4,resolved,actual,Actual 2005,MAC_DSA,"(In percent of GDP, unless otherwise specified)",Table A1,37.0,high,,-6.8,-9.8,-2.6,-7.1,-0.2,3.0
+Bahamas,2002,G0040,The Bahamas_2005-07-07.pdf,3,resolved,actual,Actual 2002,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",Table 1,46.0,high,,2.5,1.2,0.9,0.3,,1.3
+Bahamas,2003,G0040,The Bahamas_2005-07-07.pdf,3,resolved,actual,Actual 2003,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",Table 1,46.0,high,,3.6,3.3,1.7,1.7,,0.3
+Bangladesh,2005,G0045,Bangladesh_2008-10-15.pdf,3,resolved,actual,Actual 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,56.0,high,,-1.6,-0.8,1.4,-2.2,0.0,-0.8
+Bangladesh,2006,G0045,Bangladesh_2008-10-15.pdf,2,resolved,actual,Actual 2006,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,56.0,high,,-0.5,0.2,1.0,-0.9,0.0,-0.7
+Barbados,2001,G0046,Barbados_2003-03-05.pdf,2,resolved,actual,Actual / 2001,UNKNOWN,,,28.0,high,,13.0,4.7,-1.0,5.7,0.0,8.3
+Belarus,2001,G0048,Republic of Belarus_2004-05-19.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 8,38.0,high,,-2.5,-2.8,1.2,-4.2,0.2,0.4
+Belarus,2002,G0048,Republic of Belarus_2004-05-19.pdf,2,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 8,38.0,high,,-1.1,1.1,1.3,-2.4,2.2,-2.2
+Belgium,2001,G0050,Belgium_2003-03-04.pdf,2,resolved,actual,Actual; 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",,35.0,high,,-1.5,-3.5,-7.0,3.7,-0.3,2.0
+Belize,2001,G0054,Belize_2005-09-30.pdf,4,resolved,historical,2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 8,33.0,high,,8.3,8.3,6.9,-0.1,1.5,0.0
+Belize,2002,G0054,Belize_2005-09-30.pdf,4,resolved,historical,2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 8,33.0,high,,5.5,5.5,5.9,-1.3,0.9,0.0
+Belize,2003,G0054,Belize_2005-09-30.pdf,2,resolved,historical,2003,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 8,33.0,high,,13.5,13.5,3.3,0.1,10.1,0.0
+Benin,2004,G0056,Benin_2008-01-16.pdf,4,resolved,actual,Actual 2004,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Appendix Table 3,61.0,high,,-2.7,-0.6,3.3,-3.9,0.0,-2.1
+Benin,2005,G0056,Benin_2008-12-22.pdf,4,resolved,actual,Actual / 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated) 1/",Appendix Table 3,64.0,high,,7.4,4.0,2.2,1.8,0.0,3.5
+Bhutan,2007,G0059,Bhutan_2009-12-30.pdf,3,resolved,actual,Actual / 2006/07,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table I.3,54.0,high,,-11.2,-15.1,-2.2,-12.9,0.0,3.9
+Bolivia,2001,G0064,Bolivia_2003-08-20.pdf,2,resolved,actual,Actual / 2001,UNKNOWN,(Ratios in percent),Table 7,66.0,medium,,-5.1,5.5,4.8,0.7,,-10.6
+Bosnia and Herzegovina,2001,G0067,Bosnia and Herzegovina_2004-03-16.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 6b,52.0,high,,-10.6,0.8,2.2,-0.6,-0.7,-11.4
+Bosnia and Herzegovina,2002,G0067,Bosnia and Herzegovina_2004-03-16.pdf,3,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 6b,52.0,high,,-6.0,-6.4,1.0,-7.3,-0.1,0.4
+Botswana,2001,G0072,Botswana_2004-07-30.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 10.,40.0,high,,-0.9,-1.8,-1.3,-0.5,0.0,0.9
+Brazil,2009,G0075,Brazil_2012-07-20.pdf,4,resolved,actual,Actual 2009,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 10.,,high,,3.4,1.8,-2.2,0.8,3.1,1.6
+Brazil,2010,G0075,Brazil_2012-07-20.pdf,4,resolved,actual,Actual 2010,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 10.,,high,,-1.8,-2.8,-2.5,-3.3,3.0,1.0
+Bulgaria,2001,G0078,Bulgaria_2004-06-28.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 12,41.0,high,,-7.1,-5.5,-2.8,-3.9,1.3,-1.6
+Burundi,2004,G0084,Burundi_2006-08-21.pdf,3,resolved,actual,Actual 2004,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,94.0,high,,-15.3,-37.7,1.6,-23.1,-16.1,22.4
+Burundi,2024,G0087,Burundi_2026-06-23.pdf,2,resolved,actual,Actual; 2024,LIC_DSF,"(In Percent of GDP, unless otherwise indicated)",Table 4,111.0,high,,-6.6,-7.2,3.3,-10.5,0.0,0.6
+Cabo Verde,2010,G0088,Cabo Verde_2014-09-25.pdf,4,resolved,actual,Actual 2010,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 2a.,,high,,8.4,14.4,9.8,4.8,-0.2,-6.0
+Cabo Verde,2011,G0088,Cabo Verde_2014-09-25.pdf,4,resolved,actual,Actual 2011,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 2a.,,high,,4.8,6.8,9.7,-2.9,0.0,-2.0
+Canada,2001,G0095,Canada_2005-03-29.pdf,4,resolved,actual,Actual / 2001,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",,43.0,high,,-5.9,-5.1,-7.7,2.6,,-0.7
+Canada,2002,G0095,Canada_2005-03-29.pdf,3,resolved,actual,Actual / 2002,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",,43.0,high,,-3.0,-5.2,-6.1,0.9,,2.2
+Cape Verde,2002,G0098,Cape Verde_2005-09-06.pdf,3,resolved,actual,Actual 2002,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 5a.,53.0,high,,-1.4,-11.3,-0.1,-11.2,0.0,10.0
+Cape Verde,2003,G0098,Cape Verde_2005-09-06.pdf,3,resolved,actual,Actual 2003,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 5a.,53.0,high,,-7.1,-13.9,1.0,-14.9,0.0,6.8
+Chad,2003,G0105,Chad_2007-01-23.pdf,4,resolved,actual,Actual 2003,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,87.0,high,,-6.3,-9.6,5.3,-14.2,-0.6,3.3
+Chad,2004,G0105,Chad_2007-01-23.pdf,4,resolved,actual,Actual 2004,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,87.0,high,,-6.2,-18.5,-0.5,-17.7,-0.3,12.2
+China,2001,G0108,People’s Republic of China_2004-11-05.pdf,3,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table II.1.,47.0,high,,1.4,1.4,2.3,-1.0,0.0,0.1
+China,2002,G0108,People’s Republic of China_2004-11-05.pdf,3,resolved,actual,Actual / 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table II.1.,47.0,high,,1.5,1.6,2.7,-1.0,0.0,-0.2
+Colombia,2001,G0111,Colombia_2005-05-09.pdf,4,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 6,33.0,high,,4.1,0.9,-1.3,2.3,0.0,3.1
+Colombia,2002,G0111,Colombia_2005-05-09.pdf,3,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 6,33.0,high,,8.5,7.1,-0.5,7.5,0.1,1.3
+Colombia,2003,G0111,Colombia_2005-05-09.pdf,3,resolved,actual,Actual 2003,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 6,33.0,high,,-4.2,-4.7,-1.9,-2.8,0.1,0.5
+Comoros,2005,G0113,Union of the Comoros_2009-02-04.pdf,4,resolved,actual,Actual / 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a,85.0,high,,-8.8,4.7,-0.8,5.6,0.0,-13.5
+Comoros,2006,G0113,Union of the Comoros_2009-02-04.pdf,4,resolved,actual,Actual / 2006,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a,85.0,high,,-0.6,-6.9,1.8,-8.7,0.0,6.2
+Croatia,2002,G0119,Republic of Croatia_2004-08-12.pdf,3,resolved,actual,Actual; 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 14,52.0,high,,-0.2,0.5,2.9,-0.7,-1.8,-0.7
+Curaçao and Sint Maarten,2014,G0122,Kingdom of the Netherlands—Curaçao and Sint Maarten_2016-08-22.pdf,3,resolved,actual,Actual 2014,MAC_DSA,(in percent of GDP unless otherwise indicated),Figure 1,,high,,4.5,1.7,0.7,1.0,0.0,2.8
+Cyprus,2001,G0124,Cyprus_2003-02-14.pdf,2,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,35.0,high,,-0.2,-0.7,-0.2,-0.6,0.0,0.5
+Czech Republic,2001,G0126,Czech Republic_2004-08-17.pdf,3,resolved,actual,Actual; 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table A2,37.0,high,,2.0,1.2,4.1,-0.3,-2.7,0.8
+Denmark,2001,G0140,Denmark_2004-08-06.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table A1,45.0,high,,-2.0,-4.5,-6.9,2.3,0.0,2.5
+Denmark,2002,G0140,Denmark_2004-08-06.pdf,3,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table A1,45.0,high,,0.3,-2.7,-5.2,2.5,0.0,3.1
+Egypt,2003,G0155,Arab Republic of Egypt_2007-12-13.pdf,4,resolved,actual,Actual 2002/03,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 8,32.0,high,,8.8,10.8,3.3,7.5,0.0,-2.0
+El Salvador,2002,G0159,El Salvador_2006-11-22.pdf,4,resolved,historical,2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,40.0,high,,4.9,3.4,2.8,0.5,0.0,1.5
+Estonia,2011,G0166,Republic of Estonia_2014-05-08.pdf,4,resolved,actual,Actual / 2011,MAC_DSA,(Percent of GDP unless otherwise indicated),Figure 7,,high,,-0.5,-1.7,-1.1,-0.6,0.0,1.1
+Eswatini,2002,G0168,Kingdom of Swaziland_2006-03-13.pdf,4,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table V.1.,43.0,high,,-4.0,-5.8,3.4,-9.2,0.0,1.8
+Eswatini,2003,G0168,Kingdom of Swaziland_2006-03-13.pdf,4,resolved,actual,Actual 2003,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table V.1.,43.0,high,,-3.3,-4.4,1.6,-6.1,0.0,1.2
+Finland,2001,G0182,Finland_2005-02-07.pdf,4,resolved,actual,Actual 2001,MAC_DSA,,,33.0,medium,,-0.7,-6.7,-7.9,1.2,0.0,6.0
+France,2001,G0185,France_2004-11-03.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 3,35.0,high,,-0.3,-0.6,-1.8,1.1,,0.4
+Gabon,2001,G0189,Gabon_2004-02-05.pdf,3,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 2,84.0,high,,2.9,0.4,-12.0,12.5,-0.1,2.5
+Gambia,2002,G0192,The Gambia_2006-12-19.pdf,4,resolved,actual,Actual 2002,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table I.4.,51.0,high,,33.0,27.8,-0.6,28.5,-0.1,5.2
+Gambia,2003,G0192,The Gambia_2006-12-19.pdf,3,resolved,actual,Actual 2003,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table I.4.,51.0,high,,-3.9,-8.9,-1.3,-7.4,-0.1,5.0
+Gambia,2004,G0192,The Gambia_2006-12-19.pdf,3,resolved,actual,Actual 2004,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table I.4.,51.0,high,,-9.5,-30.8,-1.5,-29.3,0.0,21.3
+Georgia,2001,G0193,Georgia_2003-11-10.pdf,2,resolved,actual,Actual / 2001,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",,55.0,high,identity identified_flows = primary + automatic + other fails: -3.2 vs -1.1,-8.3,-3.2,0.2,-1.2,-0.1,-5.1
+Ghana,2004,G0198,Ghana_2007-06-20.pdf,4,resolved,actual,Actual / 2004,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table B.,46.0,high,,-25.4,-14.1,-0.8,-12.9,-0.4,-11.3
+Ghana,2005,G0198,Ghana_2007-06-20.pdf,4,resolved,actual,Actual / 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table B.,46.0,high,,-16.3,-13.5,-0.7,-12.6,-0.2,-2.8
+Greece,2001,G0201,Greece_2003-06-11.pdf,2,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,42.0,high,,0.8,-8.5,-5.1,0.0,-3.4,9.2
+Guatemala,2001,G0209,Guatemala_2005-10-06.pdf,4,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 15,42.0,high,,0.3,-0.3,0.8,0.3,-1.5,0.7
+Guatemala,2002,G0209,Guatemala_2005-10-06.pdf,4,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 15,42.0,high,,-1.6,-1.5,-0.6,-0.9,0.0,-0.1
+Guatemala,2003,G0209,Guatemala_2005-10-06.pdf,4,resolved,actual,Actual 2003,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 15,42.0,high,,1.6,1.6,1.0,0.6,0.0,0.1
+Guinea,2008,G0214,Guinea_2012-03-26.pdf,4,resolved,actual,Actual 2008,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,,high,,1.0,1.8,-1.3,3.5,-0.3,-0.8
+Guinea,2009,G0214,Guinea_2012-03-26.pdf,4,resolved,actual,Actual 2009,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,,high,,-0.7,-1.7,5.0,-6.8,0.0,1.1
+Guinea-Bissau,2001,G0217,Guinea-Bissau_2005-03-11.pdf,4,resolved,historical,2001,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 1a,50.0,high,,52.0,22.4,2.2,49.9,-29.7,29.6
+Guinea-Bissau,2002,G0217,Guinea-Bissau_2005-03-11.pdf,4,resolved,historical,2002,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 1a,50.0,high,,-19.2,-62.2,7.3,-51.3,-18.2,43.0
+Guyana,2007,G0219,Guyana_2010-09-17.pdf,4,resolved,actual,Actual / 2007,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 4,59.0,high,,-33.1,-30.7,3.4,-13.5,-20.5,-2.5
+Honduras,2005,G0226,Honduras_2008-07-23.pdf,3,resolved,actual,Actual / 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",,53.0,high,,-13.8,-6.1,-0.1,-4.7,-1.4,-7.7
+Honduras,2006,G0226,Honduras_2008-07-23.pdf,3,resolved,actual,Actual / 2006,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",,53.0,high,,-17.4,-4.8,0.5,-4.2,-1.1,-12.7
+"Hong Kong SAR, China",2013,G0228,People’s Republic of China—Hong Kong Special Administrative Region_2016-01-19.pdf,3,resolved,actual,Actual; 2013,MAC_DSA,,,,high,,0.0,,0.7,0.0,1.0,-1.7
+"Hong Kong SAR, China",2014,G0228,People’s Republic of China—Hong Kong Special Administrative Region_2016-01-19.pdf,3,resolved,actual,Actual; 2014,MAC_DSA,,,,high,,-0.5,,-3.5,0.0,3.2,-0.2
+"Hong Kong SAR, China",2015,G0228,People's Republic of China-Hong Kong Special Administrative Region_2017-01-12.pdf,2,resolved,actual,Actual / 2015,UNKNOWN,,,,high,,0.0,,-0.6,0.0,0.6,0.0
+"Hong Kong SAR, China",2016,G0228,People's Republic of China-Hong Kong Special Administrative Region_2018-01-22.pdf,2,resolved,actual,Actual / 2016,MAC_DSA,(In percent of GDP unless otherwise indicated),,,high,,0.0,,-3.6,0.0,4.5,-0.8
+"Hong Kong SAR, China",2017,G0228,People's Republic of China-Hong Kong Special Administrative Region_2019-12-30.pdf,2,resolved,actual,Actual / 2017,MAC_DSA,,,,high,,0.0,,-4.8,0.0,5.6,-0.8
+Iceland,2001,G0234,Iceland_2005-10-14.pdf,4,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table A1.,36.0,high,,5.8,-0.1,-4.0,4.1,-0.1,5.9
+Iceland,2002,G0234,Iceland_2005-10-14.pdf,3,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table A1.,36.0,high,,-3.4,-9.7,-3.6,-4.6,-1.5,6.3
+Iceland,2003,G0234,Iceland_2005-10-14.pdf,3,resolved,actual,Actual 2003,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table A1.,36.0,high,,-2.2,-5.2,-2.6,-1.1,-1.5,3.0
+India,2002,G0237,India_2006-02-21.pdf,4,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table I.1.,53.0,high,,4.4,3.6,3.4,0.2,0.0,0.8
+India,2003,G0237,India_2006-02-21.pdf,4,resolved,actual,Actual 2003,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table I.1.,53.0,high,,1.1,0.4,2.8,-2.7,0.3,0.7
+Indonesia,2001,G0240,Indonesia_2004-07-02.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Annex Table 3,53.0,high,,-7.4,-7.5,-2.9,-2.5,-2.1,0.1
+Indonesia,2002,G0240,Indonesia_2004-07-02.pdf,3,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Annex Table 3,53.0,high,,-10.6,-16.0,-3.8,-9.1,-3.1,5.5
+Iraq,2007,G0244,Iraq_2011-03-28.pdf,4,resolved,actual,Actual 2007,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 11,,high,,-23.1,-42.5,-13.3,-29.2,0.0,19.4
+Jamaica,2001,G0256,Jamaica_2004-08-16.pdf,3,resolved,historical,2000/01,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 8,32.0,high,,-1.9,-9.8,-11.5,7.1,-5.5,7.9
+Japan,2001,G0259,Japan_2003-09-05.pdf,2,resolved,actual,Actual 2001,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",,43.0,high,,5.1,6.8,4.7,2.1,0.0,-1.7
+Kazakhstan,2005,G0265,Republic of Kazakhstan_2009-10-06.pdf,4,resolved,actual,Actual; 2005,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",,34.0,high,,-6.1,-6.4,-6.2,0.0,-0.2,0.3
+Kazakhstan,2006,G0265,Republic of Kazakhstan_2009-10-06.pdf,3,resolved,actual,Actual 2006,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",,34.0,high,,-4.7,-6.6,-7.5,1.3,-0.5,1.9
+Kazakhstan,2007,G0265,Republic of Kazakhstan_2009-10-06.pdf,2,resolved,actual,Actual 2007,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",,34.0,high,,-3.5,-3.6,-4.9,1.8,-0.5,0.2
+Kenya,2005,G0268,Kenya_2008-10-17.pdf,4,resolved,actual,Actual / 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,37.0,high,,-7.5,-6.0,-0.6,-5.2,-0.3,-1.5
+Kenya,2006,G0268,Kenya_2008-10-17.pdf,4,resolved,actual,Actual / 2006,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,37.0,high,,-3.4,-4.2,0.1,-4.5,0.3,0.8
+Kiribati,2007,G0272,Kiribati_2011-05-24.pdf,4,resolved,actual,Actual 2007,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 1.,,high,,-2.3,13.2,13.2,0.0,0.0,-15.5
+Kiribati,2008,G0272,Kiribati_2011-05-24.pdf,3,resolved,actual,Actual 2008,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 1,,high,,2.3,21.5,17.2,4.3,0.0,-19.2
+Korea,2001,G0275,Republic of Korea_2004-02-25.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,44.0,high,,1.4,-1.3,-2.0,0.7,0.0,2.7
+Kosovo,2007,G0280,Republic of Kosovo_2011-12-30.pdf,4,resolved,actual,Actual 2007,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table A2.,,high,,-3.4,-21.2,-7.2,-2.3,-11.7,17.8
+Kosovo,2008,G0280,Republic of Kosovo_2011-12-30.pdf,4,resolved,actual,Actual 2008,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table A2.,,high,,-3.9,-13.6,0.2,-3.0,-10.8,9.6
+Kosovo,2009,G0280,Republic of Kosovo_2011-12-30.pdf,4,resolved,actual,Actual 2009,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table A2.,,high,,-3.7,0.5,0.7,-0.2,0.0,-4.2
+Kyrgyz Republic,2004,G0285,Kyrgyz Republic_2007-11-28.pdf,3,resolved,actual,Actual 2004,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,72.0,high,,-10.8,-13.6,3.1,-12.7,-4.0,2.8
+Kyrgyz Republic,2005,G0285,Kyrgyz Republic_2007-11-28.pdf,2,resolved,actual,Actual 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,72.0,high,,-11.0,-5.8,2.2,-7.8,-0.2,-5.3
+Latvia,2001,G0289,Republic of Latvia_2003-04-28.pdf,2,resolved,actual,Actual / 2001,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",,52.0,high,,1.8,0.8,1.3,0.0,-0.6,1.1
+Lebanon,2003,G0293,Lebanon_2007-12-14.pdf,4,resolved,actual,Actual 2003,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 11,37.0,high,,4.4,5.2,-3.3,7.6,0.9,-0.8
+Lebanon,2004,G0293,Lebanon_2007-12-14.pdf,4,resolved,actual,Actual 2004,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 11,37.0,high,,-1.4,-6.0,-3.5,-0.9,-1.6,4.6
+Lebanon,2005,G0293,Lebanon_2007-12-14.pdf,2,resolved,actual,Actual 2005,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 11,37.0,high,,11.6,8.0,-2.1,10.1,0.0,3.6
+Lesotho,2004,G0298,Kingdom of Lesotho_2008-04-21.pdf,4,resolved,actual,Actual 2004,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 3,58.0,high,,-16.8,-19.6,-7.7,-11.9,0.0,2.8
+Lithuania,2001,G0306,Republic of Lithuania_2003-09-11.pdf,2,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 8,55.0,medium,,-1.2,0.4,0.3,-0.1,0.2,-1.7
+Luxembourg,2001,G0310,Luxembourg_2004-05-05.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table,37.0,high,,0.0,-6.3,-6.4,0.1,0.0,6.4
+Luxembourg,2002,G0310,Luxembourg_2004-05-05.pdf,3,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table,37.0,high,,0.2,-2.6,-2.7,0.1,0.0,2.7
+Madagascar,2003,G0313,Republic of Madagascar_2006-08-16.pdf,4,resolved,actual,Actual / 2003,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 2a.,108.0,high,,-7.9,-18.9,2.0,-18.9,-2.0,11.0
+Madagascar,2004,G0313,Republic of Madagascar_2006-08-16.pdf,2,resolved,actual,Actual / 2004,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 2a.,108.0,high,,-6.8,23.4,2.0,23.8,-2.4,-30.2
+Malawi,2005,G0316,Malawi_2008-01-04.pdf,3,resolved,actual,Actual 2005,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 3,66.0,high,,-8.2,-9.7,-3.4,-4.8,-1.5,1.5
+Malaysia,2005,G0318,Malaysia_2009-08-14.pdf,4,resolved,actual,Actual 2005,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table I.2.,43.0,high,,-4.0,-7.6,-4.6,-3.0,0.0,3.6
+Malaysia,2006,G0318,Malaysia_2009-08-14.pdf,4,resolved,actual,Actual 2006,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table I.2.,43.0,high,,-5.1,-6.1,-2.5,-3.6,0.0,1.0
+Malaysia,2007,G0318,Malaysia_2009-08-14.pdf,4,resolved,actual,Actual 2007,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table I.2.,43.0,high,,-4.6,-8.0,-3.9,-4.1,0.0,3.4
+Maldives,2005,G0321,Maldives_2009-03-17.pdf,4,resolved,actual,Actual 2005,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table I-1.,31.0,high,,9.6,12.4,9.3,3.2,0.0,-2.9
+Maldives,2006,G0321,Maldives_2009-03-17.pdf,4,resolved,actual,Actual 2006,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table I-1.,31.0,high,,-1.8,-2.8,5.1,-7.8,0.0,1.0
+Mali,2004,G0324,Mali_2008-03-27.pdf,4,resolved,actual,Actual 2004,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2,58.0,high,,-1.9,-2.6,1.7,-4.3,0.0,0.7
+Malta,2001,G0326,Malta_2003-09-03.pdf,2,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,42.0,high,,3.0,2.9,1.6,1.2,0.0,0.1
+Marshall Islands,2010,G0330,Republic of the Marshall Islands_2014-02-03.pdf,4,resolved,actual,Actual FY2010,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,,high,,-5.3,-8.4,-5.7,-2.7,0.0,3.0
+Marshall Islands,2011,G0330,Republic of the Marshall Islands_2014-02-03.pdf,4,resolved,actual,Actual FY2011,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,,high,,-3.6,-5.2,-3.7,-1.4,0.0,1.6
+Mauritania,2002,G0333,Islamic Republic of Mauritania_2006-07-07.pdf,4,resolved,actual,Actual 2002,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,56.0,high,,-26.7,-27.7,-11.8,-10.3,-5.6,1.0
+Mauritania,2003,G0333,Islamic Republic of Mauritania_2006-07-07.pdf,4,resolved,actual,Actual 2003,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,56.0,high,,-12.7,3.3,30.2,-22.6,-4.3,-16.0
+Mauritius,2001,G0336,Mauritius_2003-10-14.pdf,2,resolved,actual,Actual 2000/01,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Appendix 1. Table 1,43.0,high,,-0.5,7.6,1.3,0.6,5.7,-8.1
+Micronesia,2011,G0340,Federated States of Micronesia_2015-05-15.pdf,4,resolved,actual,Actual / 2011,LIC_DSF,,,,high,,0.6,-0.9,-0.2,-0.7,0.0,1.5
+Micronesia,2012,G0340,Federated States of Micronesia_2015-05-15.pdf,4,resolved,actual,Actual / 2012,LIC_DSF,,,,high,,-1.5,-2.3,-1.5,-0.9,0.0,0.8
+Moldova,2001,G0345,Republic of Moldova_2004-02-18.pdf,3,resolved,actual,Actual / 2001,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 4,69.0,high,,-14.2,0.7,-3.9,-6.7,11.3,-14.9
+Montenegro,2004,G0352,Republic of Montenegro_2008-02-04.pdf,4,resolved,actual,Actual 2004,MAC_DSA,"(Percent of GDP, unless otherwise indicated)",Table A1.,39.0,high,,-5.9,-0.5,1.1,-0.9,-0.7,-5.4
+Montenegro,2005,G0352,Republic of Montenegro_2008-02-04.pdf,4,resolved,actual,Actual 2005,MAC_DSA,"(Percent of GDP, unless otherwise indicated)",Table A1.,39.0,high,,-4.4,-9.4,0.6,-1.6,-8.4,5.0
+Morocco,2001,G0355,Morocco_2003-05-28.pdf,2,resolved,actual,Actual / 2001,UNKNOWN,,,40.0,high,,-6.8,-4.7,0.8,0.6,-6.1,-2.1
+Morocco,2002,G0355,Morocco_2004-06-09.pdf,2,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 6,35.0,high,,-3.3,-1.2,0.2,-1.2,-0.2,-2.1
+Myanmar,2008,G0360,Myanmar_2012-05-07.pdf,4,resolved,actual,Actual 2008,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,,high,,-6.2,-10.6,1.3,-11.7,-0.2,4.4
+Myanmar,2009,G0360,Myanmar_2012-05-07.pdf,4,resolved,actual,Actual 2009,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,,high,,2.9,-0.1,3.9,-3.8,-0.2,3.0
+Namibia,2001,G0362,Namibia_2005-03-11.pdf,4,resolved,actual,Actual 2000/01,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",Table 1,48.0,high,,-1.3,-0.9,-0.7,-0.2,0.0,-0.3
+Namibia,2002,G0362,Namibia_2005-03-11.pdf,4,resolved,actual,Actual 2001/02,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",Table 1,48.0,high,,3.1,3.2,2.5,0.7,0.0,-0.1
+Namibia,2003,G0362,Namibia_2005-03-11.pdf,4,resolved,actual,Actual 2002/03,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",Table 1,48.0,high,,-1.2,-1.0,0.9,-1.9,0.0,-0.2
+Nauru,2015,G0364,Republic of Nauru_2017-04-03.pdf,4,resolved,actual,Actual / 2015,MAC_DSA,(In percent of GDP unless otherwise indicated),,,high,,-1.3,-8.3,-9.4,5.3,-4.2,7.1
+Nepal,2001,G0368,Nepal_2003-09-05.pdf,2,resolved,historical,Annual / 2001,UNKNOWN,"(In percent of GDP, unless otherwise indicated)",,29.0,high,,-0.8,1.0,3.4,-2.3,0.0,-1.9
+Netherlands,2001,G0370,Kingdom of the Netherlands—Netherlands_2003-08-08.pdf,2,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",,38.0,high,,-3.0,-3.8,-3.6,0.0,-0.2,0.8
+New Zealand,2011,G0373,New Zealand_2014-06-09.pdf,3,resolved,actual,Actual / 2011,MAC_DSA,,Annex I.,,high,,5.0,4.9,4.8,0.1,0.0,0.2
+Niger,2004,G0377,Niger_2007-12-20.pdf,4,resolved,actual,Actual 2004,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,74.0,high,,-9.4,4.2,3.0,1.1,0.0,-13.6
+Niger,2005,G0377,Niger_2007-12-20.pdf,2,resolved,actual,Actual 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2a.,74.0,high,,-2.5,4.7,1.4,3.3,0.0,-7.2
+Nigeria,2001,G0379,Nigeria_2004-08-06.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 2,71.0,high,,-4.0,-7.7,-4.1,-2.0,-1.6,3.7
+Nigeria,2002,G0379,Nigeria_2004-08-06.pdf,2,resolved,actual,Actual / 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 2,71.0,high,,6.6,6.9,-0.2,7.4,-0.3,-0.2
+Norway,2012,G0384,Norway_2014-08-29.pdf,3,resolved,actual,Actual / 2012,MAC_DSA,,,,high,,0.9,-12.8,-12.0,-0.8,0.0,13.7
+Oman,2019,G0386,Oman_2021-09-12.pdf,4,resolved,actual,Actual / 2019,MAC_DSA,(In percent of GDP unless otherwise indicated),Figure 1,54.0,high,,9.3,7.9,3.4,4.7,-0.2,1.4
+Pakistan,2001,G0388,Pakistan_2004-12-20.pdf,3,resolved,actual,Actual / 2000/01,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 4,66.0,high,,5.1,0.3,-2.3,2.6,0.0,4.8
+Palau,2012,G0390,Republic of Palau_2014-05-06.pdf,3,resolved,actual,Actual / 2012,MAC_DSA,,,,high,,0.7,-1.1,-1.2,-1.9,1.9,1.8
+Panama,2002,G0395,Panama_2006-01-06.pdf,4,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 4,57.0,high,,-0.9,1.1,-1.0,2.1,0.0,-2.1
+Peru,2001,G0403,Peru_2004-05-28.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1b,61.0,high,,0.7,0.4,0.1,0.9,-0.6,0.3
+Philippines,2001,G0405,Philippines_2005-03-21.pdf,4,resolved,actual,Actual 2001,MAC_DSA,"(Moderate reform scenario; in percent of GDP, unless otherwise indicated)",Table A1,39.0,high,,-0.7,-1.3,-1.3,0.6,-0.6,0.6
+Philippines,2002,G0405,Philippines_2005-03-21.pdf,4,resolved,actual,Actual 2002,MAC_DSA,"(Moderate reform scenario; in percent of GDP, unless otherwise indicated)",Table A1,39.0,high,,5.5,-0.3,-0.1,-0.1,-0.1,5.8
+Portugal,2001,G0411,Portugal_2004-03-22.pdf,3,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,40.0,high,,2.2,0.7,1.1,-0.1,-0.3,1.5
+Portugal,2002,G0411,Portugal_2004-03-22.pdf,2,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,40.0,high,,2.5,-0.2,-0.3,0.1,0.0,2.7
+Qatar,2012,G0420,Qatar_2014-05-06.pdf,3,resolved,actual,Actual 2012,MAC_DSA,"(calendar year, in percent of GDP unless otherwise indicated)",,,high,,2.6,-14.9,-12.7,-2.2,0.0,17.5
+Republic of Congo,2005,G0423,Republic of Congo_2007-06-18.pdf,2,resolved,actual,Actual 2005,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 5,50.0,high,,-92.8,-58.2,-20.9,-34.0,-3.3,-34.5
+Republic of Congo,2006,G0423,Republic of Congo_2009-03-02.pdf,3,resolved,actual,Actual 2006,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 1a.,70.0,high,,-31.5,-52.7,-21.5,-27.8,-3.4,21.2
+Rwanda,2005,G0432,Rwanda_2008-03-10.pdf,3,resolved,actual,Actual 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,78.0,high,,0.2,-15.5,-1.4,-13.2,-0.9,15.7
+Samoa,2007,G0433,Samoa_2010-07-16.pdf,4,resolved,actual,Actual / 2007,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 1a.,31.0,high,,-3.0,-6.2,-1.4,-4.8,0.0,3.2
+Samoa,2008,G0433,Samoa_2010-07-16.pdf,4,resolved,actual,Actual / 2008,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 1a.,31.0,high,,-6.8,-1.2,1.6,-2.8,0.0,-5.5
+San Marino,2001,G0435,San Marino_2004-08-13.pdf,3,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 4,41.0,high,,1.2,3.3,3.3,-0.1,0.0,-2.1
+Saudi Arabia,2012,G0438,Saudi Arabia_2014-09-23.pdf,4,resolved,actual,Actual 2012,MAC_DSA,,,,high,,-1.8,-2.4,-12.2,-0.3,10.1,0.5
+Senegal,2003,G0440,Senegal_2007-09-26.pdf,4,resolved,actual,Actual 2003,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,45.0,high,,-13.4,-13.9,0.5,-13.2,-1.1,0.5
+Senegal,2004,G0440,Senegal_2007-09-26.pdf,4,resolved,actual,Actual 2004,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,45.0,high,,-7.0,-6.9,1.8,-6.1,-2.6,-0.1
+Serbia,2003,G0442,Republic of Serbia_2006-10-27.pdf,4,resolved,actual,Actual 2003,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,51.0,high,,-6.0,-18.3,3.8,-17.6,-4.5,12.3
+Serbia,2004,G0442,Republic of Serbia_2006-10-27.pdf,4,resolved,actual,Actual 2004,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,51.0,high,,-11.1,-9.3,-0.6,-8.2,-0.6,-1.7
+Serbia and Montenegro,2002,G0444,Serbia and Montenegro_2006-02-16.pdf,4,resolved,actual,Actual 2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,90.0,high,,-37.8,-38.2,2.4,-38.5,-2.2,0.5
+Seychelles,2005,G0446,Seychelles_2008-12-02.pdf,4,resolved,actual,Actual / 2005,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 2a.,71.0,high,,-15.1,-11.0,-7.3,-2.4,-1.3,-4.1
+Seychelles,2006,G0446,Seychelles_2008-12-02.pdf,4,resolved,actual,Actual / 2006,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 2a.,71.0,high,,-7.6,-5.6,0.6,-7.5,1.3,-2.0
+Singapore,2012,G0453,Singapore_2015-07-22.pdf,3,resolved,actual,"Actual
+2012",MAC_DSA,,,,high,,-4.0,-4.4,-2.8,-3.1,1.5,0.4
+Singapore,2013,G0453,Singapore_2015-07-22.pdf,2,resolved,actual,Actual 2013,MAC_DSA,,,,high,,-3.0,-6.9,-4.0,-4.5,1.6,3.8
+Slovak Republic,2001,G0455,Slovak Republic_2003-08-05.pdf,2,resolved,actual,Actual 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table A3,38.0,high,,5.7,15.3,4.1,-0.5,11.7,-9.6
+South Africa,2001,G0466,South Africa_2004-12-02.pdf,3,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 3,57.0,high,,-1.4,-1.1,-3.2,2.5,-0.4,-0.3
+South Sudan,2011,G0469,Republic of South Sudan_2014-12-17.pdf,4,resolved,actual,Actual 2011,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,,high,,0.0,,-4.5,,0.0,
+South Sudan,2012,G0469,Republic of South Sudan_2014-12-17.pdf,4,resolved,actual,Actual 2012,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,,high,,4.9,,15.7,,0.0,
+St. Kitts and Nevis,2004,G0479,St. Kitts and Nevis_2008-04-08.pdf,4,resolved,historical,2004,UNKNOWN,,,39.0,medium,,18.5,22.2,15.9,6.5,-0.2,-3.7
+St.Vincent and the Grenadines,2008,G0491,St.Vincent and the Grenadines_2011-12-06.pdf,4,resolved,actual,Actual / 2008,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 1a,,high,,1.5,-2.0,-3.8,1.8,0.0,3.5
+St.Vincent and the Grenadines,2009,G0491,St.Vincent and the Grenadines_2011-12-06.pdf,4,resolved,actual,Actual / 2009,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 1a,,high,,7.9,7.0,1.4,5.6,0.0,0.9
+Sudan,2004,G0493,Sudan_2007-10-11.pdf,3,resolved,actual,Actual 2004,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,66.0,high,,-24.1,-26.2,-3.0,-23.2,0.0,2.1
+Sudan,2005,G0493,Sudan_2007-10-11.pdf,2,resolved,actual,Actual 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,66.0,high,,-13.1,-25.4,0.5,-25.9,0.0,12.2
+Suriname,2001,G0495,Suriname_2003-11-19.pdf,2,resolved,actual,Actual / 2001,MAC_DSA,(In percent of GDP; unless otherwise indicated),,29.0,high,,-24.1,-25.1,-6.1,-19.0,,1.0
+Switzerland,2001,G0502,Switzerland_2004-06-18.pdf,3,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",,42.0,medium,,0.6,-1.0,-1.8,1.0,-0.1,1.6
+Syrian Arab Republic,2001,G0505,Syrian Arab Republic_2005-10-03.pdf,4,resolved,actual,Actual 2001,MAC_DSA,,,49.0,medium,,2.7,-3.5,-3.1,-0.4,0.0,6.2
+Syrian Arab Republic,2002,G0505,Syrian Arab Republic_2005-10-03.pdf,4,resolved,actual,Actual 2002,MAC_DSA,,,49.0,medium,,3.8,0.3,0.9,-0.6,0.0,3.5
+Syrian Arab Republic,2003,G0505,Syrian Arab Republic_2005-10-03.pdf,4,resolved,actual,Actual 2003,MAC_DSA,,,49.0,medium,,0.9,1.6,2.0,-0.4,0.0,-0.7
+Tajikistan,2007,G0511,Tajikistan_2010-07-09.pdf,4,resolved,actual,Actual / 2007,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,51.0,high,,-0.7,-3.6,5.0,-8.5,-0.1,2.9
+Tanzania,2004,G0514,United Republic of Tanzania_2007-07-20.pdf,3,resolved,actual,Actual 2003/04,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 3,67.0,high,,1.1,-4.1,2.3,-6.5,0.0,5.3
+Tanzania,2005,G0514,United Republic of Tanzania_2007-07-20.pdf,2,resolved,actual,Actual 2004/05,LIC_DSF,"(Percent of GDP, unless otherwise indicated)",Table 3,67.0,high,,-8.2,-6.9,2.7,-9.1,-0.5,-1.3
+Thailand,2006,G0517,Thailand_2010-12-01.pdf,4,resolved,actual,Actual 2006,MAC_DSA,"(In percent of FY GDP, unless otherwise indicated)",Table A1,35.0,high,,-3.9,-4.2,-4.4,-1.6,1.8,0.3
+Thailand,2007,G0517,Thailand_2010-12-01.pdf,4,resolved,actual,Actual 2007,MAC_DSA,"(In percent of FY GDP, unless otherwise indicated)",Table A1,35.0,high,,-3.9,-2.3,-2.0,-1.7,1.3,-1.6
+Timor-Leste,2007,G0520,Democratic Republic of Timor-Leste_2011-03-08.pdf,4,resolved,actual,Actual / 2007,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,,high,,-19.4,,-7.0,,0.0,
+Timor-Leste,2008,G0520,Democratic Republic of Timor-Leste_2011-03-08.pdf,3,resolved,actual,Actual / 2008,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,,high,,-23.7,,3.2,,0.0,
+Tonga,2003,G0525,Tonga_2006-06-28.pdf,4,resolved,actual,Actual 2002/03,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,38.0,high,,1.0,-3.1,2.4,-6.6,1.2,4.0
+Tonga,2004,G0525,Tonga_2006-06-28.pdf,4,resolved,actual,Actual 2003/04,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,38.0,high,,-5.7,-9.4,-1.7,-5.8,-1.9,3.7
+Trinidad and Tobago,2001,G0527,Trinidad and Tobago_2005-01-05.pdf,4,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 8,31.0,medium,,1.1,3.8,3.3,0.5,0.0,-2.7
+Tuvalu,2009,G0535,Tuvalu_2012-09-04.pdf,4,resolved,actual,Actual 2009,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2,,high,,5.2,-1.8,1.2,-8.8,5.8,7.0
+Tuvalu,2010,G0535,Tuvalu_2012-09-04.pdf,2,resolved,actual,Actual 2010,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2,,high,,-3.9,59.6,28.6,-3.7,34.6,-63.4
+Türkiye,2020,G0538,Republic of Türkiye_2023-01-18.pdf,4,resolved,actual,Actual; 2020,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Figure 1,66.0,high,,7.0,5.4,3.2,0.8,1.4,1.6
+Ukraine,2001,G0544,Ukraine_2003-06-19.pdf,2,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1,52.0,high,,-8.6,-8.1,-0.4,-6.5,-1.3,-0.4
+United States,2001,G0553,United States_2004-07-30.pdf,3,resolved,historical,2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1a.,44.0,high,,-6.4,-5.0,-3.3,-1.7,0.0,-1.5
+United States,2002,G0553,United States_2004-07-30.pdf,2,resolved,historical,2002,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 1a.,44.0,high,,1.0,1.3,0.2,1.0,0.0,-0.3
+Uruguay,2001,G0555,Uruguay_2004-10-20.pdf,3,resolved,actual,Actual / 2001,MAC_DSA,"(In percent of GDP, unless otherwise indicated)",Table 4,54.0,high,,7.6,10.2,1.0,9.2,0.0,-2.6
+Uzbekistan,2015,G0559,Republic of Uzbekistan_2018-05-11.pdf,4,resolved,actual,Actual 2015,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 3,,high,,-17.8,-0.8,-0.7,0.0,-0.1,-17.0
+Vanuatu,2005,G0561,Vanuatu_2009-05-27.pdf,4,resolved,actual,Actual / 2005,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table I.2a,40.0,high,,-5.6,-3.7,-2.8,-0.9,0.0,-1.9
+Vanuatu,2006,G0561,Vanuatu_2009-05-27.pdf,3,resolved,actual,Actual 2006,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table I.2a.,40.0,high,,-4.6,-4.9,-1.2,-3.6,0.0,0.3
+Zambia,2002,G0570,Zambia_2006-02-03.pdf,4,resolved,actual,Actual 2002,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table A3.,103.0,high,,-19.9,-11.0,1.0,-9.0,-3.0,-8.9
+Zambia,2003,G0570,Zambia_2006-02-03.pdf,3,resolved,actual,Actual 2003,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table A3.,103.0,high,,-2.2,-13.0,2.2,-14.7,-0.5,10.9
+Zimbabwe,2008,G0574,Zimbabwe_2011-06-14.pdf,3,resolved,actual,Actual / 2008,LIC_DSF,"(In percent of GDP, unless otherwise indicated)",Table 2,77.0,high,,47.3,26.8,-0.3,27.1,0.0,20.5

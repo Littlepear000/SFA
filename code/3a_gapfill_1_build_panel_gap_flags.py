@@ -130,9 +130,9 @@ BASE = HERE.parent if HERE.name == "code" else HERE
 
 # Panel-wide gap definition (see main()'s own docstring) -- leave both None for the original, narrower
 # "missing in the middle of this country's own observed years" definition.
-FULL_RANGE = None  # e.g. (2001, 2025): every missing year in this range counts as a gap, for every
+FULL_RANGE = (2001, 2025)  # e.g. (2001, 2025): every missing year in this range counts as a gap, for every
                     # country with at least one observation anywhere
-EXCLUDE_IDENTIFIED_CSV = None  # e.g. the prior (narrower) run's gap_years_<STAMP>.csv or
+EXCLUDE_IDENTIFIED_CSV = r"output\gapfill\output\all_202601022\gapfill_resolution_202601022.csv"  # e.g. the prior (narrower) run's gap_years_<STAMP>.csv or
                                 # gapfill_resolution_<STAMP>.csv -- drops any (country, gap_year) it
                                 # already lists, so this run only writes the INCREMENTAL new gaps
 

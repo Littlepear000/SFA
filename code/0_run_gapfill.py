@@ -45,10 +45,10 @@ if "gapfill_lib_core" in sys.modules:  # long-lived IPython/Spyder console: pick
 import gapfill_lib_core as core  # noqa: E402
 
 BATCH = "all"
-STAMP = "202601022"  # version tag added to every file name written by 3a, 3b and 3c
+STAMP = "202601028"  # version tag added to every file name written by 3a, 3b and 3c
 
 # used by 3a: the ONE compiled CSV to analyse
-INPUT_CSV = BASE_DIR / "output" / "gapfill" / "input" / "final_all_batches.csv"
+INPUT_CSV = BASE_DIR / "output" / "final" / "final_all_batches_with_gapfill_20261026.csv"
 
 # where 3a writes the gap-year files, and where 3b and 3c read them
 CHECK_DIR = BASE_DIR / "output" / "gapfill" / "gap_year_check" / f"{BATCH}_{STAMP}"
