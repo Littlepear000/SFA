@@ -92,8 +92,11 @@ Core steps
        is missing this year, or contradicts its own answer. Failing validation -> the next report is tried.
     5. Each report's result is cached in reports/*.json: resuming after an interruption does not re-call
        the API; a report whose call errored is not cached, so a rerun retries it automatically. A selected
-       PDF that, together with this step's prompt, exceeds the gateway's request-body limit is recorded as
-       pdf_too_large and the next report is tried.
+       PDF that the API refuses for size (gateway 413 / request-body limit) is rebuilt smaller from the
+       original PDF once, like 1a (table crop first, then the compressed full-page visual fallback, page
+       range from the Step 1 locator JSON); if that is not possible or is refused too, it is recorded as
+       pdf_too_large and the next report is tried. A cached selected PDF above 1a's upload limit is never
+       reused.
     6. On top of that per-report cache, gap years already RESOLVED in a previous run (read from
        gapfill_checkpoint_<STAMP>.json, if it exists for this OUTPUT_DIR + STAMP) are skipped before the
        cascade even starts -- a rerun only walks the gap years that are not yet done.
@@ -198,6 +201,22 @@ SIZE_PHRASES = [
     "above the configured base64-safe limit", "too close to or above the 1 mb gateway limit",
 ]
 
+# Same upload limit as 1a (overwritten from 1a itself in load_step1()). A cached selected PDF above it
+# would be refused by 1a's call_pdf_json anyway, so it is never reused -- e.g. the oversized
+# "<stem>_pages_S_E.pdf" that create_uploadable_subset leaves behind when even one page is too large.
+MAX_UPLOAD_BYTES = 700_000
+
+
+def fits_upload(path: Path) -> bool:
+    try:
+        return path.stat().st_size <= MAX_UPLOAD_BYTES
+    except OSError:
+        return False
+
+
+def is_size_error(exc: Exception) -> bool:
+    return any(p in str(exc).lower() for p in SIZE_PHRASES)
+
 # The selected-PDF indexing helpers (parse_selected_name, index_selected_pdfs, reports_from_selected)
 # and the T+2/T+3/T+4 candidate-map builder now live in gapfill_lib_core.py, shared with 3b (which persists
 # the candidate map before any API call) -- see core.index_selected_pdfs / core.reports_from_selected.
@@ -224,6 +243,8 @@ def load_step1():
     sys.modules["step1_module"] = mod
     spec.loader.exec_module(mod)
     mod.ENV_FILE = ENV_FILE
+    global MAX_UPLOAD_BYTES
+    MAX_UPLOAD_BYTES = getattr(mod, "MAX_UPLOAD_BYTES", MAX_UPLOAD_BYTES)
     return mod
 
 
@@ -252,7 +273,8 @@ def resolve_selected_pdf(stem: str, idx: Dict[str, List[Dict[str, Any]]]) -> Opt
     The selected PDF to send for one report.
     1. The file Step 1's timing.json says was sent to the API (also gives the page mapping,
        rendering method and crop box). Folders are tried in SELECTED_PDF_DIRS order.
-    2. Otherwise the best-fidelity selected PDF by file name (no page mapping available).
+    2. Otherwise the best-fidelity selected PDF by file name (no page mapping available), skipping any
+       file above MAX_UPLOAD_BYTES. If every file is above it, None (the report is then located fresh).
     """
     found = idx.get(stem, [])
     if not found:
@@ -268,7 +290,10 @@ def resolve_selected_pdf(stem: str, idx: Dict[str, List[Dict[str, Any]]]) -> Opt
                     "pages": timing.get("selected_original_pages"), "dpi": timing.get("vision_fallback_dpi"),
                     "quality": timing.get("vision_fallback_jpeg_quality"), "box": timing.get("table_crop_box_points"),
                 }
-    best = min(found, key=lambda f: (f["dir_rank"], f["method_rank"], f["path"].name))
+    usable = [f for f in found if fits_upload(f["path"])]
+    if not usable:
+        return None
+    best = min(usable, key=lambda f: (f["dir_rank"], f["method_rank"], f["path"].name))
     return {"path": best["path"], "source": "filename", "method": best["method"],
             "pages": None, "dpi": None, "quality": None, "box": None}
 
@@ -326,11 +351,14 @@ class ReportProcessor:
         s1, fresh_dir = self.s1, self.fresh_dir
         fresh_dir.mkdir(parents=True, exist_ok=True)
 
-        cached = (
-            sorted(fresh_dir.glob(f"{stem}_pages_*.pdf"))
-            + sorted(fresh_dir.glob(f"{stem}_page_*_table_crop_fallback.pdf"))
-            + sorted(fresh_dir.glob(f"{stem}_pages_*_vision_fallback.pdf"))
-        )
+        cached = [
+            p for p in (
+                sorted(fresh_dir.glob(f"{stem}_pages_*.pdf"))
+                + sorted(fresh_dir.glob(f"{stem}_page_*_table_crop_fallback.pdf"))
+                + sorted(fresh_dir.glob(f"{stem}_pages_*_vision_fallback.pdf"))
+            )
+            if fits_upload(p)  # skip an oversized leftover from a failed direct selection
+        ]
         if cached:
             p = cached[0]
             method = ("pymupdf_pillow_table_crop_fallback" if "table_crop_fallback" in p.name
@@ -360,16 +388,10 @@ class ReportProcessor:
         if not locator.get("dsa_section_found"):
             write_json(no_dsa_marker, {"notes": locator.get("notes")})
             return None
+        # kept so a later size retry (see _rebuild_smaller) knows the page range and primary table page
+        write_json(fresh_dir / f"{stem}_step1_locator.json", locator)
 
-        total_pages = len(s1.PdfReader(str(pdf_path)).pages)
-        start_page = max(1, int(locator["recommended_start_page"]))
-        end_page = min(total_pages, int(locator["recommended_end_page"]))
-        try:
-            primary_page = int(locator.get("primary_table_page"))
-        except (TypeError, ValueError):
-            primary_page = (start_page + end_page) // 2
-        if not (start_page <= primary_page <= end_page):
-            primary_page = (start_page + end_page) // 2
+        start_page, end_page, primary_page = self._page_range(locator, pdf_path)
 
         selected_pdf = fresh_dir / f"{stem}_pages_{start_page}_{end_page}.pdf"
         table_crop_pdf = fresh_dir / f"{stem}_page_{primary_page}_table_crop_fallback.pdf"
@@ -393,6 +415,68 @@ class ReportProcessor:
         included, _, dpi, quality = s1.create_visual_fallback_pdf(
             source_pdf=pdf_path, output_pdf=visual_pdf, start_page=start_page, end_page=end_page, primary_page=primary_page)
         return {"path": visual_pdf, "source": "fresh_locate", "method": "pymupdf_pillow_visual_fallback",
+                "pages": included, "dpi": dpi, "quality": quality, "box": None}
+
+    def _page_range(self, locator: Dict[str, Any], pdf_path: Path):
+        """(start, end, primary) page from a Step 1 locator, clamped exactly as 1a's process_pdf() does."""
+        total_pages = len(self.s1.PdfReader(str(pdf_path)).pages)
+        start_page = max(1, int(locator["recommended_start_page"]))
+        end_page = min(total_pages, int(locator["recommended_end_page"]))
+        try:
+            primary_page = int(locator.get("primary_table_page"))
+        except (TypeError, ValueError):
+            primary_page = (start_page + end_page) // 2
+        if not (start_page <= primary_page <= end_page):
+            primary_page = (start_page + end_page) // 2
+        return start_page, end_page, primary_page
+
+    def _find_locator(self, sel: Dict[str, Any], stem: str) -> Optional[Dict[str, Any]]:
+        """The Step 1 locator JSON for the PDF in sel: next to a fresh selection, or in 1a's own output
+        (json_output/ next to selected_pdf_pages/, or the folder above it in the older layout)."""
+        folder = Path(sel["path"]).parent
+        for p in (folder / f"{stem}_step1_locator.json",
+                  folder.parent / "json_output" / f"{stem}_step1_locator.json",
+                  folder.parent / f"{stem}_step1_locator.json"):
+            if p.exists():
+                try:
+                    loc = json.loads(p.read_text(encoding="utf-8"))
+                except json.JSONDecodeError:
+                    continue
+                if loc.get("dsa_section_found") and loc.get("recommended_start_page") and loc.get("recommended_end_page"):
+                    return loc
+        return None
+
+    def _rebuild_smaller(self, sel: Dict[str, Any], stem: str, pdf_path: Optional[Path]) -> Optional[Dict[str, Any]]:
+        """
+        The API refused sel for size (e.g. a gateway 413). Like 1a, rebuild it smaller from the original PDF:
+        a table crop of the primary page first, then the compressed full-page visual fallback. Built into
+        fresh_dir (never into Step 1's own folders). None if no smaller form is possible or the original
+        PDF / locator is missing.
+        """
+        if sel["method"] == "pymupdf_pillow_visual_fallback" or not pdf_path or not pdf_path.exists():
+            return None
+        locator = self._find_locator(sel, stem)
+        if locator is None:
+            return None
+        s1 = self.s1
+        start_page, end_page, primary_page = self._page_range(locator, pdf_path)
+        out_dir = self.fresh_dir or (OUTPUT_DIR / "fresh_selected_pdf")
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+        if sel["method"] != "pymupdf_pillow_table_crop_fallback":
+            try:
+                crop_pdf = out_dir / f"{stem}_page_{primary_page}_table_crop_fallback.pdf"
+                included, _, dpi, quality, box = s1.create_table_crop_fallback_pdf(
+                    source_pdf=pdf_path, output_pdf=crop_pdf, primary_page=primary_page)
+                return {"path": crop_pdf, "source": "size_retry", "method": "pymupdf_pillow_table_crop_fallback",
+                        "pages": included, "dpi": dpi, "quality": quality, "box": box}
+            except Exception:
+                pass
+
+        visual_pdf = out_dir / f"{stem}_pages_{start_page}_{end_page}_vision_fallback.pdf"
+        included, _, dpi, quality = s1.create_visual_fallback_pdf(
+            source_pdf=pdf_path, output_pdf=visual_pdf, start_page=start_page, end_page=end_page, primary_page=primary_page)
+        return {"path": visual_pdf, "source": "size_retry", "method": "pymupdf_pillow_visual_fallback",
                 "pages": included, "dpi": dpi, "quality": quality, "box": None}
 
     def user_text(self, sel: Dict[str, Any], stem: str, country: str, report_date: str, years: List[int]) -> str:
@@ -425,9 +509,9 @@ class ReportProcessor:
         if not todo:
             return cached
 
+        pdf_path = Path(report["path"]) if report.get("path") else None
         sel = resolve_selected_pdf(stem, self.selected_index)
         if sel is None:
-            pdf_path = Path(report.get("path") or "") if report.get("path") else None
             if not pdf_path or not pdf_path.exists():
                 return {**cached, **{y: {"status": "selected_pdf_not_found",
                         "errors": [f"no cached selected PDF, and the original PDF was not found at {pdf_path}"],
@@ -452,10 +536,27 @@ class ReportProcessor:
         try:
             outcomes.update(self._extract(sel, stem, report, todo, record))
         except Exception as exc:
-            size_related = any(p in str(exc).lower() for p in SIZE_PHRASES)
-            status = "pdf_too_large" if size_related else "api_error"
-            for y in todo:
-                outcomes[y] = {"status": status, "errors": [f"{type(exc).__name__}: {exc}"], "warnings": []}
+            # Refused for size: like 1a, rebuild a table crop (then a visual fallback) and retry once.
+            smaller = None
+            if is_size_error(exc):
+                try:
+                    smaller = self._rebuild_smaller(sel, stem, pdf_path)
+                except Exception as rebuild_exc:
+                    record["size_retry_error"] = f"{type(rebuild_exc).__name__}: {rebuild_exc}"
+            if smaller is not None:
+                print(f"  {stem}: {Path(sel['path']).name} refused for size; retrying with {smaller['path'].name}")
+                record["size_retry"] = {"refused_pdf": str(sel["path"]), "refusal": str(exc)}
+                record.update({"selected_pdf": str(smaller["path"]), "selected_pdf_source": smaller["source"],
+                               "extraction_method": smaller["method"], "selected_original_pages": smaller["pages"]})
+                try:
+                    outcomes.update(self._extract(smaller, stem, report, todo, record))
+                    exc = None
+                except Exception as retry_exc:
+                    exc = retry_exc
+            if exc is not None:
+                status = "pdf_too_large" if is_size_error(exc) else "api_error"
+                for y in todo:
+                    outcomes[y] = {"status": status, "errors": [f"{type(exc).__name__}: {exc}"], "warnings": []}
 
         for y, o in outcomes.items():
             record["per_target"][str(y)] = o

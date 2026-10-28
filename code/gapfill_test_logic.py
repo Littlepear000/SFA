@@ -616,6 +616,27 @@ class FakeStep1:
         touch(out_path)
         return list(range(start_page, end_page + 1)), []
 
+    def create_table_crop_fallback_pdf(self, source_pdf, output_pdf, primary_page):
+        touch(output_pdf)
+        return [primary_page], [], 240, 92, [1, 2, 3, 4]
+
+    def create_visual_fallback_pdf(self, source_pdf, output_pdf, start_page, end_page, primary_page):
+        touch(output_pdf)
+        return list(range(start_page, end_page + 1)), [], 150, 82
+
+
+class FailFirstStep1(FakeStep1):
+    """call_pdf_json refuses the first PDF it is given for size (a gateway 413), then answers normally."""
+    def __init__(self, answers, **kw):
+        super().__init__(answers, **kw)
+        self.sent = []
+
+    def call_pdf_json(self, url, tm, model, prompt, user_text, pdf_path):
+        self.sent.append(Path(pdf_path).name)
+        if len(self.sent) == 1:
+            raise RuntimeError("PDF API error 413: Request Entity Too Large")
+        return super().call_pdf_json(url, tm, model, prompt, user_text, pdf_path)
+
 
 def test_processor_end_to_end():
     with tempfile.TemporaryDirectory() as d:
@@ -733,6 +754,66 @@ def test_processor_fresh_locate_fallback():
                            "path": str(d / "originals" / "G_2019-05-01.pdf")}
         out4 = proc_none(report_missing, [2016])
         assert out4[2016]["status"] == "selected_pdf_not_found"
+
+
+def test_oversized_cache_is_skipped():
+    """A cached selected PDF above the upload limit (e.g. the leftover of a failed direct selection) is never reused."""
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        big = b"x" * (run.MAX_UPLOAD_BYTES + 1)
+        # layer 1 (Step 1 output, no timing.json): the oversized direct file loses to the crop next to it
+        sel_dir = d / "step1" / "selected_pdf_pages"
+        (sel_dir).mkdir(parents=True)
+        (sel_dir / "H_2019-01-01_pages_5_8.pdf").write_bytes(big)
+        touch(sel_dir / "H_2019-01-01_page_6_table_crop_fallback.pdf")
+        (sel_dir / "J_2019-01-01_pages_5_8.pdf").write_bytes(big)  # only an oversized file -> treated as no cache
+        idx = run.core.index_selected_pdfs([sel_dir])
+        h = run.resolve_selected_pdf("H_2019-01-01", idx)
+        assert h["method"] == "pymupdf_pillow_table_crop_fallback", h
+        assert run.resolve_selected_pdf("J_2019-01-01", idx) is None
+
+        # layer 2 (fresh_selected_pdf): same rule
+        run.OUTPUT_DIR = d / "out"
+        fresh_dir = d / "out" / "fresh_selected_pdf"; fresh_dir.mkdir(parents=True)
+        (fresh_dir / "K_2019-01-01_pages_3_5.pdf").write_bytes(big)
+        touch(fresh_dir / "K_2019-01-01_page_4_table_crop_fallback.pdf")
+        proc = run.ReportProcessor(FakeStep1({}), "u", None, "m", "p", {}, prompt1="x", fresh_dir=fresh_dir)
+        sel = proc._locate_and_select_fresh(d / "K_2019-01-01.pdf", "K_2019-01-01")
+        assert sel["path"].name == "K_2019-01-01_page_4_table_crop_fallback.pdf", sel
+
+
+def test_size_retry_rebuilds_crop():
+    """API refuses the cached direct PDF for size -> table crop rebuilt from the original PDF, retried once."""
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        run.OUTPUT_DIR = d / "out"
+        sel_dir = d / "step1" / "selected_pdf_pages"
+        touch(sel_dir / "L_2019-01-01_pages_5_8.pdf")
+        (d / "step1" / "json_output").mkdir(parents=True)
+        (d / "step1" / "json_output" / "L_2019-01-01_step1_locator.json").write_text(json.dumps({
+            "dsa_section_found": True, "recommended_start_page": 5, "recommended_end_page": 8, "primary_table_page": 6}))
+        original = d / "originals" / "L_2019-01-01.pdf"; touch(original)
+        report = {"pdf_file_name": "L_2019-01-01.pdf", "country": "L", "date": "2019-01-01", "year": 2019, "path": str(original)}
+        extract = {"table_found": True,
+                   "source": {"framework": "MAC_DSA", "column_header_audit": audit(("2016", "actual"))["column_header_audit"]},
+                   "targets": [target(2016)]}
+        s1 = FailFirstStep1({"extract": extract, "audit": audit(("2016", "actual"))})
+        fresh_dir = d / "out" / "fresh_selected_pdf"
+        proc = run.ReportProcessor(s1, "u", None, "m", "p", run.core.index_selected_pdfs([sel_dir]), fresh_dir=fresh_dir)
+        out = proc(report, [2016])
+        assert out[2016]["status"] == "resolved", out
+        assert s1.sent == ["L_2019-01-01_pages_5_8.pdf", "L_2019-01-01_page_6_table_crop_fallback.pdf"], s1.sent
+        assert (fresh_dir / "L_2019-01-01_page_6_table_crop_fallback.pdf").exists()
+        assert not (sel_dir / "L_2019-01-01_page_6_table_crop_fallback.pdf").exists()  # Step 1 folders untouched
+        rec = json.loads((d / "out" / "reports" / "L_2019-01-01_gapfill.json").read_text())
+        assert rec["extraction_method"] == "pymupdf_pillow_table_crop_fallback" and rec["size_retry"]
+
+        # no locator JSON anywhere -> cannot rebuild -> pdf_too_large as before
+        touch(sel_dir / "M_2019-01-01_pages_5_8.pdf"); touch(d / "originals" / "M_2019-01-01.pdf")
+        s1b = FailFirstStep1({"extract": extract, "audit": {}})
+        proc_b = run.ReportProcessor(s1b, "u", None, "m", "p", run.core.index_selected_pdfs([sel_dir]), fresh_dir=fresh_dir)
+        rm = {**report, "pdf_file_name": "M_2019-01-01.pdf", "path": str(d / "originals" / "M_2019-01-01.pdf")}
+        assert proc_b(rm, [2016])[2016]["status"] == "pdf_too_large"
 
 
 def test_candidate_map_rows():
