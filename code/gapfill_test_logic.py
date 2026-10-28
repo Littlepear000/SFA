@@ -816,6 +816,61 @@ def test_size_retry_rebuilds_crop():
         assert proc_b(rm, [2016])[2016]["status"] == "pdf_too_large"
 
 
+def test_normalize_country_spelling_variants():
+    """Spellings that used to become separate "countries" (and so phantom panel gaps in 3a)."""
+    same = [
+        ["St.Vincent and the Grenadines", "St. Vincent and the Grenadines"],
+        ["Republic Of T\u00fcrki\u0307ye", "T\u00fcrkiye", "Turkey", "Republic of Turkey"],
+        ["Cape Verde", "Cabo Verde"],
+        ["Democratic Republic Of Congo", "Democratic Republic of the Congo"],
+        ["Democratic Republic of S\u00e3o Tom\u00e9", "S\u00e3o Tom\u00e9 and Pr\u00edncipe"],
+        ["Kingdom of the Netherland-Cura\u00e7ao and Sint Maarten", "Cura\u00e7ao and Sint Maarten"],
+        ["Kingdom Of Netherlands-The Netherlands", "Netherlands"],
+    ]
+    for group in same:
+        keys = {core.normalize_country(n).casefold() for n in group}
+        assert len(keys) == 1, (group, keys)
+    assert core.normalize_country("Republic of Congo") == "Republic of Congo"  # not the DRC
+
+
+def test_panel_source_breakdown_two_runs():
+    """Slim merged file (no "year" column, gap-fill year in last_actual_year) with rows from two Gap Fill
+    runs: n_gapfill splits by run, targets of both runs feed Level 2b, and a target listed twice keeps
+    its resolved row."""
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        csv_path = d / "merged.csv"
+        pd.DataFrame([
+            {"country": "Aland", "hierarchy_id": "6", "value": "1.0", "last_actual_year": "2016", "source_round": "round1", "gapfill_run": ""},
+            {"country": "Bland", "hierarchy_id": "6", "value": "2.0", "last_actual_year": "2016", "source_round": "gapfill", "gapfill_run": "r1"},
+            {"country": "Cland", "hierarchy_id": "6", "value": "3.0", "last_actual_year": "2016", "source_round": "gapfill", "gapfill_run": "r2"},
+            {"country": "Dland", "hierarchy_id": "1", "value": "0.1", "last_actual_year": "2019", "source_round": "round1", "gapfill_run": ""},
+            {"country": "Eland", "hierarchy_id": "1", "value": "0.1", "last_actual_year": "2019", "source_round": "round1", "gapfill_run": ""},
+        ]).to_csv(csv_path, index=False)
+        r1, r2 = d / "res_r1.csv", d / "res_r2.csv"
+        pd.DataFrame([{"country": "Bland", "gap_year": 2016, "final_status": "resolved"},
+                      {"country": "Dland", "gap_year": 2016, "final_status": "unresolved"}]).to_csv(r1, index=False)
+        pd.DataFrame([{"country": "Cland", "gap_year": 2016, "final_status": "resolved"},
+                      {"country": "Eland", "gap_year": 2016, "final_status": "unresolved_no_candidate_reports"},
+                      {"country": "Eland", "gap_year": 2016, "final_status": "unresolved"}]).to_csv(r2, index=False)
+        runs = {"r1": r1, "r2": r2}
+
+        df_field = breakdown_mod.load_rows(csv_path, {"6"})
+        assert sorted(df_field["effective_year"]) == [2016, 2016, 2016]
+        res = breakdown_mod.load_resolutions(runs)
+        assert len(res) == 4  # Eland 2016 listed twice in r2 -> one row kept ...
+        assert res[res["country_key"] == "eland"]["final_status"].item() == "unresolved"  # ... the more informative one
+        gap_status = dict(zip(zip(res["country_key"], res["gap_year"]), res["final_status"]))
+        gap_run = dict(zip(zip(res["country_key"], res["gap_year"]), res["gapfill_run"]))
+        table = breakdown_mod.breakdown(df_field, breakdown_mod.country_universe(csv_path),
+                                        breakdown_mod.observed_country_years(csv_path), gap_status, gap_run, years=(2016, 2016))
+        row = table.iloc[0]
+        assert row["n_available"] == 3 and row["n_round1"] == 1 and row["n_gapfill"] == 2
+        assert row["n_gapfill_run_r1"] == 1 and row["n_gapfill_run_r2"] == 1
+        assert row["n_unavail_gapfill_unresolved"] == 2  # Dland (r1), Eland (r2)
+        assert row["n_unavail_gap_target_run_r1"] == 1 and row["n_unavail_gap_target_run_r2"] == 1
+
+
 def test_candidate_map_rows():
     idx = {
         ("Angola", 2017): [

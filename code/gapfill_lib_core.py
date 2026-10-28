@@ -37,6 +37,8 @@ _ALIASES = {
     "côte d'ivoire": "Côte d'Ivoire",
     "democratic republic of sao tome and principe": "São Tomé and Príncipe",
     "democratic republic of são tomé and príncipe": "São Tomé and Príncipe",
+    "democratic republic of são tomé": "São Tomé and Príncipe",  # truncated in some PDF file names
+    "democratic republic of sao tome": "São Tomé and Príncipe",
     "democratic republic of timor-leste": "Timor-Leste",
     "republic of timor-leste": "Timor-Leste",
     "democratic republic of the congo": "Democratic Republic of the Congo",
@@ -61,6 +63,12 @@ _ALIASES = {
     "federal democratic republic of ethiopia": "Ethiopia",
     "brunei darussalam": "Brunei",
     "republic of korea": "Korea",
+    # same country under an older / alternative official name
+    "cape verde": "Cabo Verde",
+    "turkey": "Türkiye",
+    "democratic republic of congo": "Democratic Republic of the Congo",
+    "principality of andorra": "Andorra",
+    "principality of liechtenstein": "Liechtenstein",
 }
 _REPUBLIC_OF = re.compile(r"^republic of (.+)$", re.I)
 
@@ -68,6 +76,10 @@ _REPUBLIC_OF = re.compile(r"^republic of (.+)$", re.I)
 def normalize_country(raw: str) -> str:
     """Canonical country label from the PDF-filename prefix."""
     s = str(raw).strip().replace("’", "'")
+    # "Türki̇ye" spelled with a combining dot above the i (U+0307, what lower-casing "İ" produces) vs plain
+    # "Türkiye"; "St.Vincent" vs "St. Vincent" -- otherwise each spelling becomes a separate country.
+    s = s.replace("\u0130", "I").replace("\u0307", "")
+    s = re.sub(r"\bSt\.(?=\S)", "St. ", s)
     s = re.sub(r"[–—]+", "-", s)
     s = re.sub(r"\s*-\s*", "-", s)
     s = re.sub(r"^the\s+", "", s, flags=re.I)
@@ -75,7 +87,7 @@ def normalize_country(raw: str) -> str:
     m = re.match(r"^people's republic of china-(.+)$", low)
     if m:
         return "Hong Kong SAR, China" if "hong kong" in m.group(1) else "Macao SAR, China"
-    m = re.match(r"^kingdom of the netherlands-(.+)$", low)
+    m = re.match(r"^kingdom of (?:the )?netherlands?-(.+)$", low)  # "Netherland-" / "Kingdom Of Netherlands-" variants
     if m:
         t = re.sub(r"^the\s+", "", m.group(1))  # the part after the dash can itself start with "the "
         if t == "netherlands":
@@ -83,13 +95,14 @@ def normalize_country(raw: str) -> str:
         if t == "aruba":
             return "Aruba"
         return "Curaçao and Sint Maarten"
-    if low == "kingdom of the netherlands":
+    if re.match(r"^kingdom of (?:the )?netherlands?$", low):
         return "Netherlands"
     if low in _ALIASES:
         return _ALIASES[low]
     m = _REPUBLIC_OF.match(s)
     if m:
-        return m.group(1).strip()
+        rest = m.group(1).strip()
+        return _ALIASES.get(rest.lower(), rest)  # e.g. "Republic of Turkey" -> "Türkiye"
     return s
 
 

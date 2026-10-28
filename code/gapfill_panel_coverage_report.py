@@ -50,8 +50,8 @@ sys.path.insert(0, str(HERE))
 import gapfill_lib_core as core  # noqa: E402
 
 # ------------------------------------------------------------------ CONFIG
-INPUT_CSV = HERE.parent / "output" / "gapfill" / "final_all_batches_with_gapfill.csv"
-OUT_DIR = INPUT_CSV.parent
+INPUT_CSV = HERE.parent / "output" / "gapfill" / "final_all_batches_with_gapfill_20261028.csv"
+OUT_DIR = HERE.parent / "output" / "gapfill" / "summary_stats" / "20261028_gapfill_run1_run2" / "coverage"
 
 FIELDS = {"6": "residual", "5": "other_identified_flows"}
 # values within this far apart are treated as the same observation re-reported, not a genuine conflict
@@ -75,11 +75,14 @@ def load_rows(input_csv: Path, hierarchy_ids=FIELDS) -> pd.DataFrame:
     """hierarchy_ids: an iterable of hierarchy_id values to keep (default: FIELDS, i.e. residual +
     other_identified_flows only), or ALL_HIERARCHIES to keep every row regardless of hierarchy_id (used
     to find the full country universe for gapfill_panel_source_breakdown.py)."""
-    df = pd.read_csv(
-        input_csv,
-        usecols=["country", "hierarchy_id", "value", "year", "last_actual_year", "source_round"],
-        dtype=str,
-    )
+    # "year" (gap-fill rows' own year) and "gapfill_run" only exist in some versions of the merged file;
+    # the slim 20261026+ files keep a gap-fill row's year in last_actual_year instead.
+    wanted = ["country", "hierarchy_id", "value", "year", "last_actual_year", "source_round", "gapfill_run"]
+    present = set(pd.read_csv(input_csv, nrows=0).columns)
+    df = pd.read_csv(input_csv, usecols=[c for c in wanted if c in present], dtype=str)
+    for c in ("year", "gapfill_run"):
+        if c not in df.columns:
+            df[c] = None
     if hierarchy_ids is not ALL_HIERARCHIES:
         df = df[df["hierarchy_id"].isin(hierarchy_ids)].copy()
     else:
@@ -125,7 +128,10 @@ def summarize(df: pd.DataFrame, hierarchy_id: str) -> tuple[pd.DataFrame, pd.Dat
             detail_rows.append({
                 "field": FIELDS[hierarchy_id], "year": year, "country": group["country_label"].iloc[0],
                 "n_rows": len(group), "values": "; ".join(f"{v:g}" for v in vals),
-                "source_rounds": "; ".join(group["source_round"].fillna("")),
+                "source_rounds": "; ".join(
+                    r if r != "gapfill" or pd.isna(g) else f"gapfill_{g}"
+                    for r, g in zip(group["source_round"].fillna(""), group["gapfill_run"])
+                ),
                 "conflicting": conflicting,
             })
         rows.append({
