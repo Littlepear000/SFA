@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "round": "round2",
+    "run_date": "20260928",
+    "n_runs": 3,
+    "run_csvs": [
+      "dsa_decomposition_1999_2005_51_reports_with_inconsistencies_01.csv",
+      "dsa_decomposition_1999_2005_51_reports_with_inconsistencies_02.csv",
+      "dsa_decomposition_1999_2005_51_reports_with_inconsistencies_03.csv"
+    ],
+    "n_reports_total": 51,
+    "counts_by_group": {
+      "fully_match": 30,
+      "partial_match": 4,
+      "table_found_differs": 1,
+      "last_actual_year_differs": 15,
+      "missing_in_run": 0,
+      "extraction_failed_in_all_runs": 0,
+      "no_table_in_all_runs": 1
+    },
+    "compared": "presence in every run, table_found, last_actual_year, and every line item (row present, value equal), lined up by hierarchy_id",
+    "not_compared": "label text, confidence, manual_review_required, extraction_notes, extraction_method, audit and validation fields",
+    "n_fully_match": 30
+  },
+  "fully_match_reports": [
+    "Algeria_2004-02-10.pdf",
+    "Antigua and Barbuda_2004-11-24.pdf",
+    "Arab Republic of Egypt_2005-06-07.pdf",
+    "Argentina_2000-12-19.pdf",
+    "Austria_2003-11-26.pdf",
+    "Austria_2005-07-25.pdf",
+    "Bosnia and Herzegovina_2005-06-15.pdf",
+    "Cambodia_2003-03-06.pdf",
+    "Cyprus_2003-02-14.pdf",
+    "Czech Republic_2004-08-17.pdf",
+    "France_2005-11-07.pdf",
+    "Georgia_2003-11-10.pdf",
+    "Grenada_2005-08-12.pdf",
+    "Israel_2003-03-17.pdf",
+    "Kingdom of the Netherlands—Aruba_2005-06-15.pdf",
+    "Malta_2003-09-03.pdf",
+    "Mexico_2004-12-23.pdf",
+    "Peru_2004-05-28.pdf",
+    "Republic of Lithuania_2003-09-11.pdf",
+    "Russian Federation_2003-05-30.pdf",
+    "Sierra Leone_2005-01-24.pdf",
+    "Sweden_2005-09-15.pdf",
+    "Switzerland_2004-06-18.pdf",
+    "Syrian Arab Republic_2005-10-03.pdf",
+    "Trinidad and Tobago_2005-01-05.pdf",
+    "Turkey_2002-12-02.pdf",
+    "Turkey_2003-10-16.pdf",
+    "United Kingdom_2003-03-03.pdf",
+    "United Kingdom_2004-03-05.pdf",
+    "Uruguay_2005-01-14.pdf"
+  ]
+}

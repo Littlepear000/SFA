@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "round": "round2",
+    "run_date": "20260928",
+    "n_runs": 3,
+    "run_csvs": [
+      "dsa_decomposition_1999_2005_51_reports_with_inconsistencies_01.csv",
+      "dsa_decomposition_1999_2005_51_reports_with_inconsistencies_02.csv",
+      "dsa_decomposition_1999_2005_51_reports_with_inconsistencies_03.csv"
+    ],
+    "n_reports_total": 51,
+    "counts_by_group": {
+      "fully_match": 30,
+      "partial_match": 4,
+      "table_found_differs": 1,
+      "last_actual_year_differs": 15,
+      "missing_in_run": 0,
+      "extraction_failed_in_all_runs": 0,
+      "no_table_in_all_runs": 1
+    },
+    "compared": "presence in every run, table_found, last_actual_year, and every line item (row present, value equal), lined up by hierarchy_id",
+    "not_compared": "label text, confidence, manual_review_required, extraction_notes, extraction_method, audit and validation fields",
+    "n_to_check": 21,
+    "matched_rows_source_run": "dsa_decomposition_1999_2005_51_reports_with_inconsistencies_01.csv"
+  },
+  "category_a_disagreement": {
+    "description": "Reports where the runs disagree: some rows differ (partial_match), a different table_found or last_actual_year, or the report is missing from a run's CSV.",
+    "count": 20,
+    "reports": [
+      {
+        "json_file": "Bolivia_2004-01-14_dsa.json",
+        "pdf_file_name": "Bolivia_2004-01-14.pdf",
+        "country": "Bolivia",
+        "group": "partial_match",
+        "rows_differing": 3
+      },
+      {
+        "json_file": "Botswana_2004-07-30_dsa.json",
+        "pdf_file_name": "Botswana_2004-07-30.pdf",
+        "country": "Botswana",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Hungary_2003-05-09_dsa.json",
+        "pdf_file_name": "Hungary_2003-05-09.pdf",
+        "country": "Hungary",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Israel_2005-04-18_dsa.json",
+        "pdf_file_name": "Israel_2005-04-18.pdf",
+        "country": "Israel",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Nigeria_2004-08-06_dsa.json",
+        "pdf_file_name": "Nigeria_2004-08-06.pdf",
+        "country": "Nigeria",
+        "group": "table_found_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Pakistan_2004-12-20_dsa.json",
+        "pdf_file_name": "Pakistan_2004-12-20.pdf",
+        "country": "Pakistan",
+        "group": "last_actual_year_differs",
+        "rows_differing": 14
+      },
+      {
+        "json_file": "Republic Of Belarus_2005-06-28_dsa.json",
+        "pdf_file_name": "Republic Of Belarus_2005-06-28.pdf",
+        "country": "Republic Of Belarus",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Republic of Latvia_2003-04-28_dsa.json",
+        "pdf_file_name": "Republic of Latvia_2003-04-28.pdf",
+        "country": "Republic Of Latvia",
+        "group": "partial_match",
+        "rows_differing": 1
+      },
+      {
+        "json_file": "Republic of Lithuania_2005-03-31_dsa.json",
+        "pdf_file_name": "Republic of Lithuania_2005-03-31.pdf",
+        "country": "Republic Of Lithuania",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Republic of Moldova_2004-02-18_dsa.json",
+        "pdf_file_name": "Republic of Moldova_2004-02-18.pdf",
+        "country": "Republic Of Moldova",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Republic of Poland_2003-06-25_dsa.json",
+        "pdf_file_name": "Republic of Poland_2003-06-25.pdf",
+        "country": "Republic Of Poland",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Russian Federation_2004-09-30_dsa.json",
+        "pdf_file_name": "Russian Federation_2004-09-30.pdf",
+        "country": "Russian Federation",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "San Marino_2004-08-13_dsa.json",
+        "pdf_file_name": "San Marino_2004-08-13.pdf",
+        "country": "San Marino",
+        "group": "partial_match",
+        "rows_differing": 1
+      },
+      {
+        "json_file": "Slovak Republic_2003-08-05_dsa.json",
+        "pdf_file_name": "Slovak Republic_2003-08-05.pdf",
+        "country": "Slovak Republic",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Spain_2005-02-17_dsa.json",
+        "pdf_file_name": "Spain_2005-02-17.pdf",
+        "country": "Spain",
+        "group": "last_actual_year_differs",
+        "rows_differing": 12
+      },
+      {
+        "json_file": "St. Lucia_2004-12-08_dsa.json",
+        "pdf_file_name": "St. Lucia_2004-12-08.pdf",
+        "country": "St. Lucia",
+        "group": "last_actual_year_differs",
+        "rows_differing": 12
+      },
+      {
+        "json_file": "St. Vincent and the Grenadines_2005-07-06_dsa.json",
+        "pdf_file_name": "St. Vincent and the Grenadines_2005-07-06.pdf",
+        "country": "St. Vincent And The Grenadines",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Suriname_2003-11-19_dsa.json",
+        "pdf_file_name": "Suriname_2003-11-19.pdf",
+        "country": "Suriname",
+        "group": "last_actual_year_differs",
+        "rows_differing": 12
+      },
+      {
+        "json_file": "Sweden_2003-08-05_dsa.json",
+        "pdf_file_name": "Sweden_2003-08-05.pdf",
+        "country": "Sweden",
+        "group": "partial_match",
+        "rows_differing": 2
+      },
+      {
+        "json_file": "Tunisia_2003-08-21_dsa.json",
+        "pdf_file_name": "Tunisia_2003-08-21.pdf",
+        "country": "Tunisia",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      }
+    ]
+  },
+  "category_b_no_table_in_all_runs": {
+    "description": "Reports for which no run found a DSA table.",
+    "count": 1,
+    "reports": [
+      {
+        "json_file": "Turkey_2002-10-23_dsa.json",
+        "pdf_file_name": "Turkey_2002-10-23.pdf",
+        "country": "Turkey",
+        "group": "no_table_in_all_runs",
+        "rows_differing": 0
+      }
+    ]
+  },
+  "category_c_extraction_failed_in_all_runs": {
+    "description": "Reports for which no run produced a successful extraction (*_dsa.json); each run's json_output folder has a *_ERROR.json for them instead. See error_by_run in the report summary CSV for the failure reason.",
+    "count": 0,
+    "reports": []
+  }
+}
