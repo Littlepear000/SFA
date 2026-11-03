@@ -1,0 +1,463 @@
+{
+  "meta": {
+    "round": "round2",
+    "run_date": "20261006",
+    "n_runs": 3,
+    "run_csvs": [
+      "dsa_decomposition_wh_round2_20261006_run1.csv",
+      "dsa_decomposition_wh_round2_20261006_run2.csv",
+      "dsa_decomposition_wh_round2_20261006_run3.csv"
+    ],
+    "n_reports_total": 169,
+    "counts_by_group": {
+      "fully_match": 109,
+      "partial_match": 19,
+      "table_found_differs": 4,
+      "last_actual_year_differs": 36,
+      "missing_in_run": 0,
+      "extraction_failed_in_all_runs": 1,
+      "no_table_in_all_runs": 0
+    },
+    "compared": "presence in every run, table_found, last_actual_year, and every line item (row present, value equal), lined up by hierarchy_id",
+    "not_compared": "label text, confidence, manual_review_required, extraction_notes, extraction_method, audit and validation fields",
+    "n_to_check": 60,
+    "matched_rows_source_run": "dsa_decomposition_wh_round2_20261006_run1.csv"
+  },
+  "category_a_disagreement": {
+    "description": "Reports where the runs disagree: some rows differ (partial_match), a different table_found or last_actual_year, or the report is missing from a run's CSV.",
+    "count": 59,
+    "reports": [
+      {
+        "json_file": "Albania_2014-03-19_dsa.json",
+        "pdf_file_name": "Albania_2014-03-19.pdf",
+        "country": "Albania",
+        "group": "partial_match",
+        "rows_differing": 2
+      },
+      {
+        "json_file": "Angola_2014-09-05_dsa.json",
+        "pdf_file_name": "Angola_2014-09-05.pdf",
+        "country": "Angola",
+        "group": "table_found_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Australia_2014-02-12_dsa.json",
+        "pdf_file_name": "Australia_2014-02-12.pdf",
+        "country": "Australia",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Botswana_2014-07-15_dsa.json",
+        "pdf_file_name": "Botswana_2014-07-15.pdf",
+        "country": "Botswana",
+        "group": "partial_match",
+        "rows_differing": 2
+      },
+      {
+        "json_file": "Bulgaria_2011-07-15_dsa.json",
+        "pdf_file_name": "Bulgaria_2011-07-15.pdf",
+        "country": "Bulgaria",
+        "group": "last_actual_year_differs",
+        "rows_differing": 13
+      },
+      {
+        "json_file": "Cameroon_2014-07-17_dsa.json",
+        "pdf_file_name": "Cameroon_2014-07-17.pdf",
+        "country": "Cameroon",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Cyprus_2014-04-01_dsa.json",
+        "pdf_file_name": "Cyprus_2014-04-01.pdf",
+        "country": "Cyprus",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Democratic Republic of São Tomé and Príncipe_2012-02-08_dsa.json",
+        "pdf_file_name": "Democratic Republic of São Tomé and Príncipe_2012-02-08.pdf",
+        "country": "Democratic Republic Of São Tomé And Príncipe",
+        "group": "last_actual_year_differs",
+        "rows_differing": 18
+      },
+      {
+        "json_file": "Democratic Republic of São Tomé and Príncipe_2014-01-06_dsa.json",
+        "pdf_file_name": "Democratic Republic of São Tomé and Príncipe_2014-01-06.pdf",
+        "country": "Democratic Republic Of São Tomé And Príncipe",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Democratic Republic of the Congo_2013-04-03_dsa.json",
+        "pdf_file_name": "Democratic Republic of the Congo_2013-04-03.pdf",
+        "country": "Democratic Republic Of The Congo",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Dominica_2011-11-14_dsa.json",
+        "pdf_file_name": "Dominica_2011-11-14.pdf",
+        "country": "Dominica",
+        "group": "last_actual_year_differs",
+        "rows_differing": 13
+      },
+      {
+        "json_file": "Dominica_2012-02-27_dsa.json",
+        "pdf_file_name": "Dominica_2012-02-27.pdf",
+        "country": "Dominica",
+        "group": "last_actual_year_differs",
+        "rows_differing": 13
+      },
+      {
+        "json_file": "El Salvador_2013-05-22_dsa.json",
+        "pdf_file_name": "El Salvador_2013-05-22.pdf",
+        "country": "El Salvador",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Finland_2014-05-28_dsa.json",
+        "pdf_file_name": "Finland_2014-05-28.pdf",
+        "country": "Finland",
+        "group": "partial_match",
+        "rows_differing": 2
+      },
+      {
+        "json_file": "Former Yugoslav Republic of Macedonia_2015-09-03_dsa.json",
+        "pdf_file_name": "Former Yugoslav Republic of Macedonia_2015-09-03.pdf",
+        "country": "Former Yugoslav Republic Of Macedonia",
+        "group": "partial_match",
+        "rows_differing": 7
+      },
+      {
+        "json_file": "Georgia_2015-01-20_dsa.json",
+        "pdf_file_name": "Georgia_2015-01-20.pdf",
+        "country": "Georgia",
+        "group": "partial_match",
+        "rows_differing": 4
+      },
+      {
+        "json_file": "Ghana_2015-09-04_dsa.json",
+        "pdf_file_name": "Ghana_2015-09-04.pdf",
+        "country": "Ghana",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Guatemala_2014-09-18_dsa.json",
+        "pdf_file_name": "Guatemala_2014-09-18.pdf",
+        "country": "Guatemala",
+        "group": "partial_match",
+        "rows_differing": 3
+      },
+      {
+        "json_file": "Guinea-Bissau_2011-12-14_dsa.json",
+        "pdf_file_name": "Guinea-Bissau_2011-12-14.pdf",
+        "country": "Guinea-Bissau",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Hungary_2015-04-03_dsa.json",
+        "pdf_file_name": "Hungary_2015-04-03.pdf",
+        "country": "Hungary",
+        "group": "partial_match",
+        "rows_differing": 2
+      },
+      {
+        "json_file": "India_2012-04-18_dsa.json",
+        "pdf_file_name": "India_2012-04-18.pdf",
+        "country": "India",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Indonesia_2015-03-19_dsa.json",
+        "pdf_file_name": "Indonesia_2015-03-19.pdf",
+        "country": "Indonesia",
+        "group": "partial_match",
+        "rows_differing": 1
+      },
+      {
+        "json_file": "Ireland_2015-03-25_dsa.json",
+        "pdf_file_name": "Ireland_2015-03-25.pdf",
+        "country": "Ireland",
+        "group": "partial_match",
+        "rows_differing": 6
+      },
+      {
+        "json_file": "Islamic Republic of Afghanistan_2012-08-20_dsa.json",
+        "pdf_file_name": "Islamic Republic of Afghanistan_2012-08-20.pdf",
+        "country": "Islamic Republic Of Afghanistan",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Jamaica_2015-09-24_dsa.json",
+        "pdf_file_name": "Jamaica_2015-09-24.pdf",
+        "country": "Jamaica",
+        "group": "partial_match",
+        "rows_differing": 1
+      },
+      {
+        "json_file": "Kenya_2013-04-30_dsa.json",
+        "pdf_file_name": "Kenya_2013-04-30.pdf",
+        "country": "Kenya",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Lao People’s Democratic Republic_2015-02-26_dsa.json",
+        "pdf_file_name": "Lao People’s Democratic Republic_2015-02-26.pdf",
+        "country": "Lao People'S Democratic Republic",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Malaysia_2015-03-03_dsa.json",
+        "pdf_file_name": "Malaysia_2015-03-03.pdf",
+        "country": "Malaysia",
+        "group": "partial_match",
+        "rows_differing": 3
+      },
+      {
+        "json_file": "Mexico_2014-11-12_dsa.json",
+        "pdf_file_name": "Mexico_2014-11-12.pdf",
+        "country": "Mexico",
+        "group": "partial_match",
+        "rows_differing": 2
+      },
+      {
+        "json_file": "Myanmar_2012-05-07_dsa.json",
+        "pdf_file_name": "Myanmar_2012-05-07.pdf",
+        "country": "Myanmar",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Myanmar_2014-10-06_dsa.json",
+        "pdf_file_name": "Myanmar_2014-10-06.pdf",
+        "country": "Myanmar",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Namibia_2015-10-01_dsa.json",
+        "pdf_file_name": "Namibia_2015-10-01.pdf",
+        "country": "Namibia",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Nepal_2014-07-18_dsa.json",
+        "pdf_file_name": "Nepal_2014-07-18.pdf",
+        "country": "Nepal",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Nicaragua_2013-12-27_dsa.json",
+        "pdf_file_name": "Nicaragua_2013-12-27.pdf",
+        "country": "Nicaragua",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Niger_2015-03-11_dsa.json",
+        "pdf_file_name": "Niger_2015-03-11.pdf",
+        "country": "Niger",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Papua New Guinea_2012-06-01_dsa.json",
+        "pdf_file_name": "Papua New Guinea_2012-06-01.pdf",
+        "country": "Papua New Guinea",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Republic of Armenia_2015-11-19_dsa.json",
+        "pdf_file_name": "Republic of Armenia_2015-11-19.pdf",
+        "country": "Republic Of Armenia",
+        "group": "partial_match",
+        "rows_differing": 2
+      },
+      {
+        "json_file": "Republic of Congo_2011-08-17_dsa.json",
+        "pdf_file_name": "Republic of Congo_2011-08-17.pdf",
+        "country": "Republic Of Congo",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Republic of Congo_2014-09-04_dsa.json",
+        "pdf_file_name": "Republic of Congo_2014-09-04.pdf",
+        "country": "Republic Of Congo",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Republic of Kosovo_2011-08-01_dsa.json",
+        "pdf_file_name": "Republic of Kosovo_2011-08-01.pdf",
+        "country": "Republic Of Kosovo",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Republic of Lithuania_2013-03-28_dsa.json",
+        "pdf_file_name": "Republic of Lithuania_2013-03-28.pdf",
+        "country": "Republic Of Lithuania",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Republic of Moldova_2012-10-22_dsa.json",
+        "pdf_file_name": "Republic of Moldova_2012-10-22.pdf",
+        "country": "Republic Of Moldova",
+        "group": "table_found_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Republic of Poland_2011-01-21_dsa.json",
+        "pdf_file_name": "Republic of Poland_2011-01-21.pdf",
+        "country": "Republic Of Poland",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Republic of Poland_2011-07-08_dsa.json",
+        "pdf_file_name": "Republic of Poland_2011-07-08.pdf",
+        "country": "Republic Of Poland",
+        "group": "last_actual_year_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Republic of San Marino_2015-04-08_dsa.json",
+        "pdf_file_name": "Republic of San Marino_2015-04-08.pdf",
+        "country": "Republic Of San Marino",
+        "group": "partial_match",
+        "rows_differing": 2
+      },
+      {
+        "json_file": "Republic of Slovenia_2014-01-17_dsa.json",
+        "pdf_file_name": "Republic of Slovenia_2014-01-17.pdf",
+        "country": "Republic Of Slovenia",
+        "group": "partial_match",
+        "rows_differing": 2
+      },
+      {
+        "json_file": "Republic of the Marshall Islands_2014-02-03_dsa.json",
+        "pdf_file_name": "Republic of the Marshall Islands_2014-02-03.pdf",
+        "country": "Republic Of The Marshall Islands",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Romania_2011-06-29_dsa.json",
+        "pdf_file_name": "Romania_2011-06-29.pdf",
+        "country": "Romania",
+        "group": "table_found_differs",
+        "rows_differing": 15
+      },
+      {
+        "json_file": "Romania_2015-03-27_dsa.json",
+        "pdf_file_name": "Romania_2015-03-27.pdf",
+        "country": "Romania",
+        "group": "partial_match",
+        "rows_differing": 1
+      },
+      {
+        "json_file": "Russian Federation_2015-08-03_dsa.json",
+        "pdf_file_name": "Russian Federation_2015-08-03.pdf",
+        "country": "Russian Federation",
+        "group": "partial_match",
+        "rows_differing": 1
+      },
+      {
+        "json_file": "Senegal_2013-06-24_dsa.json",
+        "pdf_file_name": "Senegal_2013-06-24.pdf",
+        "country": "Senegal",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Sierra Leone_2015-11-24_dsa.json",
+        "pdf_file_name": "Sierra Leone_2015-11-24.pdf",
+        "country": "Sierra Leone",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "St. Kitts and Nevis_2015-09-04_dsa.json",
+        "pdf_file_name": "St. Kitts and Nevis_2015-09-04.pdf",
+        "country": "St. Kitts And Nevis",
+        "group": "partial_match",
+        "rows_differing": 1
+      },
+      {
+        "json_file": "The Federal Democratic Republic of Ethiopia_2012-10-18_dsa.json",
+        "pdf_file_name": "The Federal Democratic Republic of Ethiopia_2012-10-18.pdf",
+        "country": "The Federal Democratic Republic Of Ethiopia",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "The Gambia_2012-06-06_dsa.json",
+        "pdf_file_name": "The Gambia_2012-06-06.pdf",
+        "country": "The Gambia",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Turkey_2014-12-05_dsa.json",
+        "pdf_file_name": "Turkey_2014-12-05.pdf",
+        "country": "Turkey",
+        "group": "partial_match",
+        "rows_differing": 2
+      },
+      {
+        "json_file": "Tuvalu_2012-09-04_dsa.json",
+        "pdf_file_name": "Tuvalu_2012-09-04.pdf",
+        "country": "Tuvalu",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "Uganda_2014-12-12_dsa.json",
+        "pdf_file_name": "Uganda_2014-12-12.pdf",
+        "country": "Uganda",
+        "group": "table_found_differs",
+        "rows_differing": 17
+      },
+      {
+        "json_file": "United Republic of Tanzania_2011-05-11_dsa.json",
+        "pdf_file_name": "United Republic of Tanzania_2011-05-11.pdf",
+        "country": "United Republic Of Tanzania",
+        "group": "last_actual_year_differs",
+        "rows_differing": 17
+      }
+    ]
+  },
+  "category_b_no_table_in_all_runs": {
+    "description": "Reports for which no run found a DSA table.",
+    "count": 0,
+    "reports": []
+  },
+  "category_c_extraction_failed_in_all_runs": {
+    "description": "Reports for which no run produced a successful extraction (*_dsa.json); each run's json_output folder has a *_ERROR.json for them instead. See error_by_run in the report summary CSV for the failure reason.",
+    "count": 1,
+    "reports": [
+      {
+        "json_file": "Kingdom of the Netherlands—Curaçao and Sint Maarten_2014-08-27_dsa.json",
+        "pdf_file_name": "Kingdom of the Netherlands—Curaçao and Sint Maarten_2014-08-27.pdf",
+        "country": "Kingdom of the Netherlands—Curaçao and Sint Maarten",
+        "group": "extraction_failed_in_all_runs",
+        "rows_differing": 0
+      }
+    ]
+  }
+}
