@@ -194,16 +194,23 @@
 (function(){
   "use strict";
 
-  // ---- built-in data (snapshot from the claude.ai dashboard, 2026-10-19) ----
+  // ---- built-in data (from each batch's round1/round2 check report summaries; 1999-2005 added 2026-11-03) ----
   // no_table, extraction_failed, comparable, round1_matched, round2_matched -> reports table raw inputs
   // dp_round1_matched, dp_round2_matched, dp_differing -> data points table raw inputs
+  // 1999-2005: Round 2 re-ran only the 51 Round 1 disagreements (not the 420 no-table reports), so
+  // no_table = 420 from Round 1 + 1 that Round 2 found to have no table.
+  // 2011-2015: likewise Round 2 re-ran only the 169 Round 1 disagreements; no_table = the 169 from Round 1,
+  // extraction_failed = 1 report that failed in all Round 2 runs. (added 2026-11-03)
   var BUILTIN = [
+    {"batch":"1999-2005","r1_run_date":"2026-09-25","r2_run_date":"2026-09-28",
+     "no_table":421,"extraction_failed":0,"comparable":177,"round1_matched":127,"round2_matched":30,
+     "dp_round1_matched":1860,"dp_round2_matched":475,"dp_differing":241},
     {"batch":"2006-2010","r1_run_date":"2026-09-24","r2_run_date":"2026-09-27",
      "no_table":386,"extraction_failed":1,"comparable":457,"round1_matched":304,"round2_matched":78,
      "dp_round1_matched":4783,"dp_round2_matched":1279,"dp_differing":1048},
-    {"batch":"2011-2015","r1_run_date":"2026-10-05","r2_run_date":null,
-     "no_table":169,"extraction_failed":0,"comparable":533,"round1_matched":364,"round2_matched":0,
-     "dp_round1_matched":6194,"dp_round2_matched":0,"dp_differing":2113},
+    {"batch":"2011-2015","r1_run_date":"2026-10-05","r2_run_date":"2026-10-06",
+     "no_table":169,"extraction_failed":1,"comparable":532,"round1_matched":364,"round2_matched":109,
+     "dp_round1_matched":5683,"dp_round2_matched":1920,"dp_differing":695},
     {"batch":"2016-2020","r1_run_date":"2026-10-02","r2_run_date":"2026-10-02",
      "no_table":111,"extraction_failed":7,"comparable":794,"round1_matched":668,"round2_matched":54,
      "dp_round1_matched":10326,"dp_round2_matched":1117,"dp_differing":885},
