@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DSA Consistency Report</title>
+<title>DSA Extraction Summary</title>
 <style>
   :root{
     color-scheme: light dark;
@@ -38,17 +38,6 @@
   .dp-topbar{ display:flex; justify-content:space-between; align-items:flex-start; gap:var(--gap-md); flex-wrap:wrap; }
   .dp-head h1{ font-family:var(--font-sans); font-weight:600; font-size:var(--fs-title); margin:0; text-wrap:balance; }
 
-  button.dp-btn{
-    font-family:var(--font-sans); font-size:var(--fs-caption); font-weight:600; cursor:pointer;
-    border:1px solid var(--color-border-line); background:var(--color-panel); color:var(--color-fg);
-    border-radius:999px; padding:.5em 1.1em; white-space:nowrap;
-  }
-  button.dp-btn:hover{ border-color:var(--accent); color:var(--accent); }
-  button.dp-btn.primary{ background:var(--accent); border-color:var(--accent); color:#fff; }
-  .dp-editbar{ display:flex; flex-direction:column; gap:.4em; align-items:flex-end; }
-  .dp-editbar .meta{ font-size:var(--fs-caption); color:var(--color-fg-muted); }
-  .dp-editbar .meta a{ color:var(--accent); cursor:pointer; text-decoration:underline; }
-
   .dp-tiles{ display:grid; gap:var(--gap-md); grid-template-columns:repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); align-items:stretch; }
   .dp-tile{ background:var(--color-panel); border:1px solid var(--color-border-line); border-radius:var(--radius); padding:var(--pad-lg); display:flex; flex-direction:column; gap:.3em; }
   .dp-tile .lbl{ font-size:var(--fs-caption); color:var(--color-fg-muted); letter-spacing:.02em; }
@@ -65,6 +54,17 @@
   .dp-card .note{ font-size:var(--fs-caption); color:var(--color-fg-muted); margin:0 0 .2em 0; }
 
   .dp-tablewrap{ overflow-x:auto; }
+  /* column hide buttons: invisible until the header row is hovered, so screenshots stay clean */
+  table.dp-table th{ position:relative; }
+  button.col-hide{
+    position:absolute; top:2px; right:2px; width:1.35em; height:1.35em; padding:0; line-height:1;
+    border:1px solid var(--color-border-line); border-radius:4px; background:var(--color-panel);
+    color:var(--color-fg-muted); font-size:.8rem; cursor:pointer; opacity:0; transition:opacity .12s;
+  }
+  table.dp-table thead:hover button.col-hide, button.col-hide:focus-visible{ opacity:1; }
+  button.col-hide:hover{ color:var(--color-danger); border-color:var(--color-danger); }
+  .col-bar{ font-size:var(--fs-caption); color:var(--color-fg-muted); min-height:1.2em; }
+  .col-bar a{ color:var(--accent); cursor:pointer; text-decoration:underline; }
   table.dp-table{ border-collapse:collapse; width:100%; font-variant-numeric:tabular-nums; }
   table.dp-table th, table.dp-table td{ padding:var(--pad-sm) var(--pad-md); text-align:right; white-space:nowrap; border-bottom:1px solid var(--color-border-line); color:var(--color-fg); }
   table.dp-table th{ font-size:var(--fs-caption); color:var(--color-fg-muted); font-weight:600; vertical-align:bottom; }
@@ -72,50 +72,28 @@
   table.dp-table th.grp-start, table.dp-table td.grp-start{ border-left:1px solid var(--color-border-line); }
   table.dp-table tbody tr:last-child td{ border-bottom:none; }
   table.dp-table tfoot td{ border-top:2px solid var(--color-border-line); border-bottom:none; font-weight:700; }
-  table.dp-table tr.edited{ background:color-mix(in srgb, var(--accent) 6%, transparent); }
-  table.dp-table tr.editing{ background:color-mix(in srgb, var(--accent) 10%, transparent); }
-  .dp-editedtag{ font-size:.7em; color:var(--accent); font-weight:600; margin-left:.4em; }
 
   table.dp-table th.col-matchrate, table.dp-table td.col-matchrate{ color:var(--col-matchrate); }
   table.dp-table th.col-muted, table.dp-table td.col-muted{ color:var(--color-fg-muted); }
   table.dp-table tfoot td.col-matchrate, table.dp-table tfoot td.col-muted{ color:inherit; }
-
-  table.dp-table input[type=number]{
-    font:inherit; font-size:var(--fs-body); font-variant-numeric:tabular-nums; text-align:right;
-    width:4.6rem; padding:.3em .4em; border-radius:6px; border:1px solid var(--color-border-line);
-    background:var(--color-bg); color:var(--color-fg);
-  }
-  table.dp-table input[type=number]::placeholder{ color:var(--color-fg-muted); }
-  .dp-calc{ color:var(--color-fg-muted); }
-
-  .dp-actions{ display:flex; gap:.3em; justify-content:flex-end; }
-  button.dp-rowbtn{
-    border:1px solid var(--color-border-line); background:var(--color-panel); color:var(--color-fg-muted);
-    border-radius:6px; width:1.8em; height:1.8em; line-height:1; cursor:pointer; font-size:.95em; padding:0;
-  }
-  button.dp-rowbtn:hover{ border-color:var(--accent); color:var(--accent); }
-  button.dp-rowbtn.danger:hover{ border-color:var(--color-danger); color:var(--color-danger); }
-  button.dp-rowbtn.save{ border-color:var(--col-matchrate); color:var(--col-matchrate); }
 
   .dp-foot{ font-size:var(--fs-caption); color:var(--color-fg-muted); line-height:1.6; }
   .dp-foot code{ font-size:.95em; } .dp-foot ul{ margin:.3em 0 0 0; padding-left:1.2em; }
 
   @media (max-width: 640px){
     table.dp-table th, table.dp-table td{ padding:.4em .55em; }
-    table.dp-table input[type=number]{ width:3.6rem; }
   }
 
   /* ---- stacked column chart ---- */
-  :root{ --s-round1:#15803d; --s-round2:#86d39b; --s-round3:#2563eb; --s-gapfill:#f5b800; --s-unavail:#c4c4cc; }
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --s-round1:#22a04f; --s-round2:#8fe0a6; --s-round3:#5b8cf5; --s-gapfill:#fcc934; --s-unavail:#55555f; } }
-  :root[data-theme="dark"]{ --s-round1:#22a04f; --s-round2:#8fe0a6; --s-round3:#5b8cf5; --s-gapfill:#fcc934; --s-unavail:#55555f; }
+  :root{ --s-round1:#3f82ab; --s-round2:#6cbdae; --s-round3:#b9c96a; --s-gapfill:#e59d72; --s-unavail:#d2d2d8; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --s-round1:#5596c2; --s-round2:#74c6b7; --s-round3:#bfcf72; --s-gapfill:#e6a37c; --s-unavail:#55555f; } }
+  :root[data-theme="dark"]{ --s-round1:#5596c2; --s-round2:#74c6b7; --s-round3:#bfcf72; --s-gapfill:#e6a37c; --s-unavail:#55555f; }
   .ch-legend{ display:flex; flex-wrap:wrap; gap:.4em 1.2em; font-size:var(--fs-caption); color:var(--color-fg); }
   .ch-legend span{ display:inline-flex; align-items:center; gap:.4em; }
   .ch-legend i{ width:.85em; height:.85em; border-radius:2px; display:inline-block; }
   .ch-wrap{ position:relative; width:100%; }
   .ch-wrap svg{ display:block; width:100%; height:auto; overflow:visible; }
   .ch-wrap text{ fill:var(--color-fg-muted); font-family:var(--font-sans); font-size:11px; }
-  .ch-wrap .grid{ stroke:var(--color-border-line); stroke-width:1; }
   .ch-wrap .col-hit{ fill:transparent; cursor:default; }
   .ch-wrap .col-hit:hover{ fill:color-mix(in srgb, var(--color-fg) 6%, transparent); }
   .ch-tip{ position:absolute; pointer-events:none; background:var(--color-panel); border:1px solid var(--color-border-line);
@@ -131,11 +109,7 @@
 
   <div class="dp-topbar">
     <div class="dp-head">
-      <h1>DSA extraction: two-round consistency check</h1>
-    </div>
-    <div class="dp-editbar">
-      <button class="dp-btn primary" id="dp-add-btn" type="button">+ Add batch</button>
-      <span class="meta" id="dp-edit-meta"></span>
+      <h1>DSA extraction summary</h1>
     </div>
   </div>
 
@@ -154,7 +128,7 @@
 
   <div class="dp-card">
     <h2>Reports, by batch</h2>
-    <p class="note">No table found, Extraction failed, Comparable, Round 1 matched and Round 2 matched are entered directly; Full sample, Total matched, Needs review and Match rate are calculated from them (Full sample = No table found + Extraction failed + Comparable; Total matched = Round 1 matched + Round 2 matched; Needs review = Comparable − Total matched; Match rate = Total matched ÷ Comparable). Click the pencil to edit a row.</p>
+    <p class="note">No table found, Extraction failed, Comparable, Round 1 matched and Round 2 matched come from each batch's check results; Full sample, Total matched, Needs review and Match rate are calculated from them (Full sample = No table found + Extraction failed + Comparable; Total matched = Round 1 matched + Round 2 matched; Needs review = Comparable − Total matched; Match rate = Total matched ÷ Comparable).</p>
     <div class="dp-tablewrap">
       <table class="dp-table" id="dp-table-reports">
         <thead><tr>
@@ -162,18 +136,18 @@
           <th class="grp-start">Full<br>sample</th>
           <th class="col-muted">No table<br>found</th>
           <th class="col-muted">Extraction<br>failed</th>
-          <th class="grp-start">Comparable<br>(has table)</th>
+          <th class="grp-start">Comparable<br>(has DSA)</th>
           <th class="grp-start">Round 1<br>matched</th>
           <th>Round 2<br>matched</th>
           <th>Total<br>matched</th>
           <th>Needs<br>review</th>
           <th class="col-matchrate">Match<br>rate</th>
-          <th class="lh"></th>
         </tr></thead>
         <tbody id="dp-tbody-reports"></tbody>
         <tfoot id="dp-tfoot-reports"></tfoot>
       </table>
     </div>
+    <div class="col-bar" id="col-bar"></div>
   </div>
 
   <p class="dp-foot" id="dp-foot">Loading…</p>
@@ -191,8 +165,7 @@
 (function(){
   "use strict";
 
-  // ---- built-in data (from each batch's round1/round2 check report summaries; 1999-2005 added 2026-11-03) ----
-  // no_table, extraction_failed, comparable, round1_matched, round2_matched -> reports table raw inputs
+  // ---- report counts per batch, from each batch's round1/round2 check report summaries ----
   // 1999-2005: Round 2 re-ran only the 51 Round 1 disagreements (not the 420 no-table reports), so
   // no_table = 420 from Round 1 + 1 that Round 2 found to have no table.
   // 2011-2015: likewise Round 2 re-ran only the 169 Round 1 disagreements; no_table = the 169 from Round 1,
@@ -210,46 +183,7 @@
      "no_table":115,"extraction_failed":2,"comparable":943,"round1_matched":845,"round2_matched":46}
   ];
 
-  // Own storage key: the old dashboard's key ("dsa_dashboard_overrides_v2") held a blank 1999-2005 row added
-  // by hand before the real numbers were built in, which zeroed that batch here.
-  var LS_KEY = "dsa_report_level_overrides_v1";
-
-  function loadOverrides(){
-    try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); }
-    catch (e) { return {}; }
-  }
-  function saveOverrides(obj){
-    try { localStorage.setItem(LS_KEY, JSON.stringify(obj)); } catch (e) { /* storage unavailable: edits won't persist across reloads */ }
-  }
-  function patchOverride(batch, fields){
-    var overrides = loadOverrides();
-    overrides[batch] = Object.assign({}, overrides[batch]||{}, fields);
-    saveOverrides(overrides);
-  }
-  function removeOverride(batch){
-    var overrides = loadOverrides();
-    delete overrides[batch];
-    saveOverrides(overrides);
-  }
-
-  function blankRow(batch){
-    return {batch:batch, r1_run_date:null, r2_run_date:null,
-      no_table:0, extraction_failed:0, comparable:0, round1_matched:0, round2_matched:0};
-  }
-
-  function mergedRows(){
-    var overrides = loadOverrides();
-    var builtinByBatch = {}; BUILTIN.forEach(function(r){ builtinByBatch[r.batch] = r; });
-    var batches = Object.keys(builtinByBatch);
-    Object.keys(overrides).forEach(function(b){ if (batches.indexOf(b) === -1) batches.push(b); });
-    batches.sort();
-    return batches.map(function(b){
-      var base = builtinByBatch[b] || blankRow(b);
-      var row = Object.assign({}, base, overrides[b] || {});
-      row._edited = !!overrides[b];
-      return row;
-    });
-  }
+  var ROWS = BUILTIN.slice().sort(function(a,b){ return a.batch < b.batch ? -1 : 1; });
 
   // ---- derived numbers ----
   function computeFinal(row){
@@ -264,11 +198,10 @@
 
   function fmtN(n){ return (n === null || n === undefined || isNaN(n)) ? "—" : Math.round(n).toLocaleString("en-US"); }
   function fmtPct(x){ return (x === null || x === undefined || isNaN(x)) ? "—" : (100*x).toFixed(1) + "%"; }
-  function num(v){ return (v === null || v === undefined) ? 0 : v; }
 
   // =========================================================== REPORTS TABLE
-  function reportViewRowHTML(row, f){
-    return '<td class="batch-cell">' + row.batch + (row._edited ? '<span class="dp-editedtag">edited</span>' : '') + '</td>' +
+  function reportRowHTML(f){
+    return '<td class="batch-cell">' + f.batch + '</td>' +
       '<td class="grp-start">' + fmtN(f.full_sample) + '</td>' +
       '<td class="col-muted">' + fmtN(f.no_table) + '</td>' +
       '<td class="col-muted">' + fmtN(f.extraction_failed) + '</td>' +
@@ -277,53 +210,12 @@
       '<td>' + fmtN(f.round2_matched) + '</td>' +
       '<td>' + fmtN(f.total_matched) + '</td>' +
       '<td>' + fmtN(f.needs_review) + '</td>' +
-      '<td class="col-matchrate">' + fmtPct(f.match_rate) + '</td>' +
-      '<td class="lh"><div class="dp-actions"><button type="button" class="dp-rowbtn" data-edit-r="' + row.batch + '" title="Edit">✎</button></div></td>';
-  }
-
-  function reportEditRowHTML(row){
-    var canDelete = row._edited || BUILTIN.every(function(r){ return r.batch !== row.batch; });
-    return '<td class="batch-cell">' + row.batch + '</td>' +
-      '<td class="grp-start dp-calc" data-calc="full_sample">—</td>' +
-      '<td class="col-muted"><input type="number" min="0" step="1" data-f="no_table" value="' + num(row.no_table) + '"></td>' +
-      '<td class="col-muted"><input type="number" min="0" step="1" data-f="extraction_failed" value="' + num(row.extraction_failed) + '"></td>' +
-      '<td class="grp-start"><input type="number" min="0" step="1" data-f="comparable" value="' + num(row.comparable) + '"></td>' +
-      '<td class="grp-start"><input type="number" min="0" step="1" data-f="round1_matched" value="' + num(row.round1_matched) + '"></td>' +
-      '<td><input type="number" min="0" step="1" data-f="round2_matched" value="' + num(row.round2_matched) + '"></td>' +
-      '<td class="dp-calc" data-calc="total_matched">—</td>' +
-      '<td class="dp-calc" data-calc="needs_review">—</td>' +
-      '<td class="col-matchrate dp-calc" data-calc="match_rate">—</td>' +
-      '<td class="lh"><div class="dp-actions">' +
-        '<button type="button" class="dp-rowbtn save" data-save-r="' + row.batch + '" title="Done">✓</button>' +
-        (canDelete ? '<button type="button" class="dp-rowbtn danger" data-del-r="' + row.batch + '" title="Remove">🗑</button>' : '') +
-      '</div></td>';
-  }
-
-  function recomputeReportRowLive(tr){
-    var get = function(f){ var el = tr.querySelector('[data-f="' + f + '"]'); return el ? Number(el.value || 0) : 0; };
-    var noTable = get('no_table'), extFailed = get('extraction_failed'), comparable = get('comparable'),
-        r1m = get('round1_matched'), r2m = get('round2_matched');
-    var fullSample = noTable + extFailed + comparable;
-    var totalMatched = r1m + r2m;
-    var needsReview = comparable - totalMatched;
-    var matchRate = comparable > 0 ? totalMatched / comparable : null;
-    tr.querySelector('[data-calc="full_sample"]').textContent = fmtN(fullSample);
-    tr.querySelector('[data-calc="total_matched"]').textContent = fmtN(totalMatched);
-    tr.querySelector('[data-calc="needs_review"]').textContent = fmtN(needsReview);
-    tr.querySelector('[data-calc="match_rate"]').textContent = fmtPct(matchRate);
-  }
-
-  function saveReportRow(tr, batch){
-    var get = function(f){ var el = tr.querySelector('[data-f="' + f + '"]'); return el ? Number(el.value || 0) : 0; };
-    patchOverride(batch, {
-      no_table: get('no_table'), extraction_failed: get('extraction_failed'), comparable: get('comparable'),
-      round1_matched: get('round1_matched'), round2_matched: get('round2_matched')
-    });
+      '<td class="col-matchrate">' + fmtPct(f.match_rate) + '</td>';
   }
 
   // ================================================================ RENDER
   function render(){
-    var rows = mergedRows();
+    var rows = ROWS;
     var finals = rows.map(computeFinal);
 
     var totalReports = finals.reduce(function(a,b){ return a + b.full_sample; }, 0);
@@ -333,21 +225,10 @@
     document.getElementById("t-total").textContent = fmtN(totalReports);
     document.getElementById("t-matched").textContent = fmtPct(totalComparable > 0 ? totalMatched/totalComparable : null);
 
-    var edited = rows.filter(function(r){ return r._edited; }).length;
-    document.getElementById("dp-edit-meta").innerHTML = edited
-      ? edited + " batch" + (edited===1?"":"es") + ' edited locally <a id="dp-reset-all">(reset all)</a>'
-      : "";
-    var resetAll = document.getElementById("dp-reset-all");
-    if (resetAll) resetAll.addEventListener("click", function(){
-      if (confirm("Discard all local edits and go back to the built-in numbers?")){ saveOverrides({}); render(); }
-    });
-
     var tbodyR = document.getElementById("dp-tbody-reports"); tbodyR.innerHTML = "";
-    rows.forEach(function(row, i){
+    finals.forEach(function(f){
       var tr = document.createElement("tr");
-      tr.dataset.batch = row.batch;
-      if (row._edited) tr.className = "edited";
-      tr.innerHTML = reportViewRowHTML(row, finals[i]);
+      tr.innerHTML = reportRowHTML(f);
       tbodyR.appendChild(tr);
     });
     document.getElementById("dp-tfoot-reports").innerHTML = '<tr>' +
@@ -361,61 +242,52 @@
       '<td>' + fmtN(totalMatched) + '</td>' +
       '<td>' + fmtN(totalReview) + '</td>' +
       '<td class="col-matchrate">' + fmtPct(totalComparable>0?totalMatched/totalComparable:null) + '</td>' +
-      '<td class="lh"></td></tr>';
+      '</tr>';
 
-    var r1Dates = {}, r2Dates = {};
-    rows.forEach(function(r){ r1Dates[r.batch]=r.r1_run_date; if (r.r2_run_date) r2Dates[r.batch]=r.r2_run_date; });
     document.getElementById("dp-foot").innerHTML =
-      "Compiled by hand from each batch's <code>round1_check_summary_*.md</code> / <code>round2_check_summary_*.md</code> " +
+      "Counts from each batch's <code>round1_check_report_summary_*.csv</code> / <code>round2_check_report_summary_*.csv</code> " +
       "(3 repeated runs per round, same prompt each time)." +
-      "<ul><li>Edits made here are saved in this browser only (<code>localStorage</code>), on this computer — they do not travel with this file if you send it to someone else, and a different browser or a private window won't see them.</li>" +
+      "<ul>" +
       "<li>“Comparable” excludes reports where all 3 runs agree there is no DSA table, and reports where every run failed outright — shown on their own, not folded into the match rate.</li></ul>";
   }
 
-  // ========================================================= INTERACTIONS
-  var tbodyR = document.getElementById("dp-tbody-reports");
-
-  function findRow(batch){ return mergedRows().filter(function(r){ return r.batch === batch; })[0]; }
-
-  tbodyR.addEventListener("click", function(e){
-    var editBtn = e.target.closest("[data-edit-r]");
-    var saveBtn = e.target.closest("[data-save-r]");
-    var delBtn = e.target.closest("[data-del-r]");
-    if (editBtn){
-      var tr = editBtn.closest("tr");
-      tr.classList.add("editing");
-      tr.innerHTML = reportEditRowHTML(findRow(editBtn.getAttribute("data-edit-r")));
-      recomputeReportRowLive(tr);
-      var firstInput = tr.querySelector("input"); if (firstInput) firstInput.focus();
-    } else if (saveBtn){
-      var tr2 = saveBtn.closest("tr");
-      saveReportRow(tr2, saveBtn.getAttribute("data-save-r"));
-      render();
-    } else if (delBtn){
-      var batch = delBtn.getAttribute("data-del-r");
-      if (confirm("Remove the local edit for " + batch + "? This reverts it to the built-in numbers (or deletes the row, if it isn't a built-in batch).")){
-        removeOverride(batch); render();
-      }
-    }
-  });
-  tbodyR.addEventListener("input", function(e){
-    var tr = e.target.closest("tr.editing"); if (tr) recomputeReportRowLive(tr);
-  });
-
-  document.getElementById("dp-add-btn").addEventListener("click", function(){
-    var name = prompt("New batch name (e.g. 1996-2000):");
-    if (!name) return;
-    name = name.trim();
-    if (!name) return;
-    var existing = mergedRows().some(function(r){ return r.batch === name; });
-    if (existing){ alert("A batch named \"" + name + "\" already exists."); return; }
-    patchOverride(name, blankRow(name));
-    render();
-    var trR = tbodyR.querySelector('tr[data-batch="' + name + '"]');
-    if (trR){ trR.classList.add("editing"); trR.innerHTML = reportEditRowHTML(findRow(name)); recomputeReportRowLive(trR); var i1=trR.querySelector("input"); if(i1) i1.focus(); }
-  });
-
   render();
+
+  // ---- hide / show table columns (hover a header, click ×; choice remembered in this browser) ----
+  var HIDE_KEY = "dsa_extraction_summary_hidden_cols_v1";
+  var table = document.getElementById("dp-table-reports");
+  var headers = table.querySelectorAll("thead th");
+  var colNames = Array.prototype.map.call(headers, function(th){ return th.innerHTML.replace(/<br\s*\/?>/gi, " ").replace(/<[^>]+>/g, "").trim(); });
+  var colStyle = document.createElement("style"); document.head.appendChild(colStyle);
+  function loadHidden(){ try { return JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"); } catch (e) { return []; } }
+  function saveHidden(list){ try { localStorage.setItem(HIDE_KEY, JSON.stringify(list)); } catch (e) {} }
+  var hidden = loadHidden();
+  function applyHidden(){
+    colStyle.textContent = hidden.map(function(i){
+      return "#dp-table-reports tr > :nth-child(" + i + "){ display:none; }";
+    }).join("\n");
+    var bar = document.getElementById("col-bar");
+    if (!hidden.length){ bar.textContent = ""; return; }
+    var names = hidden.slice().sort(function(a,b){ return a-b; }).map(function(i){
+      return colNames[i-1];
+    });
+    bar.innerHTML = "Hidden: ";
+    bar.appendChild(document.createTextNode(names.join(", ") + " "));
+    var a = document.createElement("a"); a.textContent = "(show all columns)";
+    a.addEventListener("click", function(){ hidden = []; saveHidden(hidden); applyHidden(); });
+    bar.appendChild(a);
+  }
+  headers.forEach(function(th, idx){
+    if (idx === 0) return; // keep the Batch column
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "col-hide"; b.title = "Hide this column"; b.textContent = "×";
+    b.addEventListener("click", function(){
+      if (hidden.indexOf(idx + 1) === -1) hidden.push(idx + 1);
+      saveHidden(hidden); applyHidden();
+    });
+    th.appendChild(b);
+  });
+  applyHidden();
 })();
 </script>
 
@@ -496,7 +368,6 @@
     var step = niceStep(yMax);
     var ticks = []; for (var t = 0; t < yMax; t += step) ticks.push(t); ticks.push(yMax);
     ticks.forEach(function(t){
-      el("line", {x1:0, x2:iw, y1:y(t), y2:y(t), "class":"grid"}, g);
       var tx = el("text", {x:-6, y:y(t), "text-anchor":"end", "dominant-baseline":"middle"}, g); tx.textContent = t;
     });
 
