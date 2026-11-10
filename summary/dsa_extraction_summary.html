@@ -111,7 +111,6 @@
   details.dp-numbers summary{ font-size:var(--fs-caption); color:var(--accent); cursor:pointer; }
   details.dp-numbers .dp-tablewrap{ margin-top:var(--gap-sm); max-height:24rem; overflow:auto; }
   details.dp-numbers table.dp-table thead th{ position:sticky; top:0; background:var(--color-panel); }
-  .dp-key{ margin:.1em 0 0 0; padding-left:1.2em; font-size:var(--fs-body); line-height:1.55; }
 </style>
 </head>
 <body>
@@ -202,39 +201,6 @@
         <li><b>2013 has only 67 reports</b>, against 165 in 2012 and 133 in 2014, and the drop is spread over every month. The 2013 PDF folder may be incomplete. 2026 is a partial year.</li>
       </ul>
       Source: each batch's <code>round1_check_report_summary_*.csv</code> (the full list of reports per batch) and <code>output/gapfill/final_all_batches_with_gapfill_20261028.csv</code>. Numbers are copied into this page.
-    </div>
-  </div>
-
-  <div class="dp-card" id="ms-card">
-    <h2>Why country-years are still missing (residual)</h2>
-    <p class="note" id="ms-note"></p>
-    <ul class="dp-key" id="ms-key"></ul>
-    <div class="ch-legend" id="ms-legend"></div>
-    <div class="ch-wrap" id="ms-wrap"><div class="ch-tip" id="ms-tip"></div></div>
-    <details class="dp-numbers">
-      <summary>Show the numbers</summary>
-      <div class="dp-tablewrap">
-        <table class="dp-table">
-          <thead><tr>
-            <th class="lh">Panel<br>year Y</th>
-            <th class="grp-start">Missing</th>
-            <th class="grp-start">DSA table, but<br>no actual for Y</th>
-            <th>table detected,<br>not used</th>
-            <th>reports, no<br>DSA table</th>
-            <th class="col-muted">no report in<br>Y+1 to Y+4</th>
-          </tr></thead>
-          <tbody id="ms-tbody"></tbody>
-        </table>
-      </div>
-    </details>
-    <div class="dp-foot">
-      <ul>
-        <li>Missing = the gray “Unavailable” part of the coverage chart above (1,340 country-years for residual, hierarchy_id 6).</li>
-        <li>Each missing (country, Y) is put in one group by looking at that country's staff reports published in Y+1 to Y+4, the window Rounds 1–2 (Y+1, Y+2) and Gap fill (Y+2 to Y+4) take values from. The first group that applies wins: a DSA table in the final data, then a table detected but not used, then reports with no DSA table, then no report at all.</li>
-        <li>Inside “DSA table, but no actual for Y” (595): Gap fill tried every candidate and none gave an actual value for Y in 438 (most often <code>year_not_in_table</code> or <code>merged_range_only</code>; 48 failed as <code>pdf_too_large</code>). In 89, the only report in the window is the Y+1 one, and in 79 of those its last actual year is Y−1; Gap fill does not read Y+1 reports. 40 were stopped by an API error and can be retried.</li>
-        <li>2025: most Y+2 reports are not published yet, so most of its 145 are “no report”.</li>
-      </ul>
-      Source: <code>output/gapfill/summary_stats/20261028_gapfill_run1_run2/unavailable_detail/unavailable_country_years_residual.csv</code>, crossed with the report list used in the chart above. Numbers are copied into this page.
     </div>
   </div>
 </div>
@@ -552,65 +518,6 @@
     return "<tr><td class=\"lh\">" + d.year + "</td><td class=\"grp-start\">" + fmtN(d.reports) + "</td><td>" + fmtN(d.reports_dsa) +
       "</td><td class=\"grp-start\">" + fmtN(d.countries_with_report) + "</td><td>" + fmtN(d.c_dsa) + "</td><td>" + fmtN(d.c_detected_only) +
       "</td><td>" + fmtN(d.c_no_table) + "</td><td class=\"grp-start col-muted\">" + fmtN(d.c_no_report) + "</td></tr>";
-  }).join("");
-
-  // ===================================================== 3. missing country-years, by what reports exist
-  // From unavailable_country_years_residual.csv (20261028), crossed with the report list above:
-  // reports for the same country published in Y+1..Y+4; first matching group wins.
-  var MISSING = [
-    {"year":2001,"detected_not_final":0,"dsa_but_year_missing":24,"no_report":30,"reports_no_table":60},
-    {"year":2002,"detected_not_final":2,"dsa_but_year_missing":22,"no_report":24,"reports_no_table":49},
-    {"year":2003,"detected_not_final":1,"dsa_but_year_missing":32,"no_report":21,"reports_no_table":32},
-    {"year":2004,"detected_not_final":0,"dsa_but_year_missing":27,"no_report":17,"reports_no_table":30},
-    {"year":2005,"detected_not_final":0,"dsa_but_year_missing":31,"no_report":16,"reports_no_table":29},
-    {"year":2006,"detected_not_final":0,"dsa_but_year_missing":28,"no_report":15,"reports_no_table":35},
-    {"year":2007,"detected_not_final":0,"dsa_but_year_missing":22,"no_report":12,"reports_no_table":31},
-    {"year":2008,"detected_not_final":0,"dsa_but_year_missing":19,"no_report":12,"reports_no_table":26},
-    {"year":2009,"detected_not_final":0,"dsa_but_year_missing":14,"no_report":13,"reports_no_table":28},
-    {"year":2010,"detected_not_final":0,"dsa_but_year_missing":42,"no_report":13,"reports_no_table":10},
-    {"year":2011,"detected_not_final":1,"dsa_but_year_missing":46,"no_report":10,"reports_no_table":8},
-    {"year":2012,"detected_not_final":2,"dsa_but_year_missing":25,"no_report":7,"reports_no_table":3},
-    {"year":2013,"detected_not_final":0,"dsa_but_year_missing":12,"no_report":8,"reports_no_table":2},
-    {"year":2014,"detected_not_final":0,"dsa_but_year_missing":11,"no_report":9,"reports_no_table":1},
-    {"year":2015,"detected_not_final":0,"dsa_but_year_missing":6,"no_report":10,"reports_no_table":0},
-    {"year":2016,"detected_not_final":0,"dsa_but_year_missing":14,"no_report":8,"reports_no_table":1},
-    {"year":2017,"detected_not_final":0,"dsa_but_year_missing":18,"no_report":6,"reports_no_table":0},
-    {"year":2018,"detected_not_final":1,"dsa_but_year_missing":23,"no_report":7,"reports_no_table":0},
-    {"year":2019,"detected_not_final":0,"dsa_but_year_missing":18,"no_report":6,"reports_no_table":0},
-    {"year":2020,"detected_not_final":0,"dsa_but_year_missing":12,"no_report":6,"reports_no_table":1},
-    {"year":2021,"detected_not_final":0,"dsa_but_year_missing":28,"no_report":10,"reports_no_table":1},
-    {"year":2022,"detected_not_final":0,"dsa_but_year_missing":29,"no_report":9,"reports_no_table":0},
-    {"year":2023,"detected_not_final":0,"dsa_but_year_missing":22,"no_report":11,"reports_no_table":1},
-    {"year":2024,"detected_not_final":0,"dsa_but_year_missing":17,"no_report":18,"reports_no_table":0},
-    {"year":2025,"detected_not_final":0,"dsa_but_year_missing":53,"no_report":83,"reports_no_table":9}
-  ];
-  var MS_SERIES = [
-    {key:"dsa_but_year_missing", label:"DSA table, but no actual for Y",   color:"var(--r-dsa)"},
-    {key:"detected_not_final",   label:"Table detected, not used",         color:"var(--r-detected)"},
-    {key:"reports_no_table",     label:"Reports, no DSA table",            color:"var(--r-notable)"},
-    {key:"no_report",            label:"No report in Y+1 to Y+4",          color:"var(--s-unavail)"}
-  ];
-  MISSING.forEach(function(d){ d.total = MS_SERIES.reduce(function(a, s){ return a + d[s.key]; }, 0); });
-  var msSum = function(k){ return MISSING.reduce(function(a, d){ return a + d[k]; }, 0); };
-  var msTotal = msSum("total"), last = MISSING[MISSING.length-1];
-  document.getElementById("ms-note").textContent =
-    "Each column is the country-years with no residual value in year Y (" + MISSING[0].year + "–" + last.year +
-    "), split by what that country's staff reports published in Y+1 to Y+4 contain. The y-axis counts missing country-years only, so its scale differs from the charts above.";
-  document.getElementById("ms-key").innerHTML =
-    "<li><b>" + fmtN(msSum("dsa_but_year_missing")) + " of " + fmtN(msTotal) + " (" + pct(msSum("dsa_but_year_missing"), msTotal) +
-    ")</b> have a report with a DSA table, but no table gave an actual value for Y.</li>" +
-    "<li><b>" + fmtN(msSum("reports_no_table")) + " (" + pct(msSum("reports_no_table"), msTotal) + ")</b> have staff reports, but none with a DSA table; most are before 2010.</li>" +
-    "<li><b>" + fmtN(msSum("no_report")) + " (" + pct(msSum("no_report"), msTotal) + ")</b> have no staff report at all in Y+1 to Y+4 (" +
-    fmtN(last.no_report) + " of them are " + last.year + ", whose later reports are not out yet).</li>";
-  legend("ms-legend", MS_SERIES);
-  stackChart({wrap:"ms-wrap", tip:"ms-tip", data:MISSING, series:MS_SERIES,
-    total:function(d){ return d.total; },
-    head:function(d){ return d.year + " · " + d.total + " missing country-years"; },
-    aria:"Stacked columns: missing country-years per year by what staff reports exist in the following four years"});
-  document.getElementById("ms-tbody").innerHTML = MISSING.map(function(d){
-    return "<tr><td class=\"lh\">" + d.year + "</td><td class=\"grp-start\">" + fmtN(d.total) + "</td><td class=\"grp-start\">" +
-      fmtN(d.dsa_but_year_missing) + "</td><td>" + fmtN(d.detected_not_final) + "</td><td>" + fmtN(d.reports_no_table) +
-      "</td><td class=\"col-muted\">" + fmtN(d.no_report) + "</td></tr>";
   }).join("");
 })();
 </script>
