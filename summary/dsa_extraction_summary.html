@@ -161,14 +161,6 @@
 
   <p class="dp-foot" id="dp-foot">Loading…</p>
 
-  <div class="dp-card" id="ch-card">
-    <h2>Country coverage by year and source</h2>
-    <p class="note" id="ch-note">Each column is every country in the panel for that year, split by where its DSA value came from.</p>
-    <div class="ch-legend" id="ch-legend"></div>
-    <div class="ch-wrap" id="ch-wrap"><div class="ch-tip" id="ch-tip"></div></div>
-    <p class="dp-foot">Source: <code>output/gapfill/summary_stats/20261028_gapfill_run1_run2/availability/panel_source_breakdown_residual.csv</code> (columns <code>n_round1</code>, <code>n_round2</code>, <code>n_round3_human_review</code>, <code>n_gapfill</code>, <code>n_unavailable</code>; residual flow). Numbers are copied into this page; re-copy them if that file changes.</p>
-  </div>
-
   <div class="dp-card" id="rp-card">
     <h2>Staff reports and DSA tables, by publication year</h2>
     <p class="note" id="rp-note"></p>
@@ -197,11 +189,27 @@
         <li>The x-axis is the year the report was <b>published</b> (from the date in <code>pdf_file_name</code>), not the panel year. A report published in year P usually gives the actual value for P−1 (1,760 reports) or P−2 (1,013 reports).</li>
         <li><b>DSA table in final data</b>: the report has Round 1/2/3 rows in <code>final_all_batches_with_gapfill_20261028.csv</code>. <b>Table detected, not used</b>: at least one Round 1 run found a DSA table, but the report has no rows in the final data (50 reports). <b>No DSA table</b>: no run found one.</li>
         <li>A country with several reports in a year is counted once, under its best report (in the order above).</li>
-        <li>Countries are the same 190 as the coverage chart above. 16 of the 4,116 reports are left out: Brunei (5), Macao SAR (4) and Eritrea (1) never had a DSA table, so they are not in the 190; the other 6 are cluster or multi-country reports and one Anguilla report. Old names are mapped to the panel name (Swaziland → Eswatini, Azerbaijan Republic → Azerbaijan, and so on).</li>
+        <li>Countries are the same 190 as in the coverage charts below. 16 of the 4,116 reports are left out: Brunei (5), Macao SAR (4) and Eritrea (1) never had a DSA table, so they are not in the 190; the other 6 are cluster or multi-country reports and one Anguilla report. Old names are mapped to the panel name (Swaziland → Eswatini, Azerbaijan Republic → Azerbaijan, and so on).</li>
         <li><b>2013 has only 67 reports</b>, against 165 in 2012 and 133 in 2014, and the drop is spread over every month. The 2013 PDF folder may be incomplete. 2026 is a partial year.</li>
       </ul>
       Source: each batch's <code>round1_check_report_summary_*.csv</code> (the full list of reports per batch) and <code>output/gapfill/final_all_batches_with_gapfill_20261028.csv</code>. Numbers are copied into this page.
     </div>
+  </div>
+
+  <div class="dp-card" id="oif-card">
+    <h2>Country coverage by year and source: other identified flows</h2>
+    <p class="note" id="oif-note"></p>
+    <div class="ch-legend" id="oif-legend"></div>
+    <div class="ch-wrap" id="oif-wrap"><div class="ch-tip" id="oif-tip"></div></div>
+    <p class="dp-foot">Source: <code>output/gapfill/summary_stats/20261028_gapfill_run1_run2/availability/panel_source_breakdown_other_identified_flows.csv</code> (columns <code>n_round1</code>, <code>n_round2</code>, <code>n_round3_human_review</code>, <code>n_gapfill</code>, <code>n_unavailable</code>; hierarchy_id 5). Numbers are copied into this page; re-copy them if that file changes. <code>code/check_coverage.py</code> writes the same table to Excel.</p>
+  </div>
+
+  <div class="dp-card" id="ch-card">
+    <h2>Country coverage by year and source: residual</h2>
+    <p class="note" id="ch-note"></p>
+    <div class="ch-legend" id="ch-legend"></div>
+    <div class="ch-wrap" id="ch-wrap"><div class="ch-tip" id="ch-tip"></div></div>
+    <p class="dp-foot">Source: <code>output/gapfill/summary_stats/20261028_gapfill_run1_run2/availability/panel_source_breakdown_residual.csv</code> (columns <code>n_round1</code>, <code>n_round2</code>, <code>n_round3_human_review</code>, <code>n_gapfill</code>, <code>n_unavailable</code>; hierarchy_id 6). Numbers are copied into this page; re-copy them if that file changes. <code>code/check_coverage.py</code> writes the same table to Excel.</p>
   </div>
 </div>
 
@@ -450,16 +458,48 @@
     {key:"gapfill",     label:"Gap fill",                color:"var(--s-gapfill)"},
     {key:"unavailable", label:"Unavailable",             color:"var(--s-unavail)"}
   ];
-  var totals = DATA.map(function(d){ return d.total; });
-  var allSame = totals.every(function(t){ return t === totals[0]; });
-  document.getElementById("ch-note").textContent =
-    "Each column is all " + (allSame ? totals[0] + " countries" : "countries") +
-    " in the panel for that year (" + DATA[0].year + "–" + DATA[DATA.length-1].year + "), split by where its DSA value came from.";
-  legend("ch-legend", SERIES);
-  stackChart({wrap:"ch-wrap", tip:"ch-tip", data:DATA, series:SERIES,
-    total:function(d){ return d.total; },
-    head:function(d){ return d.year + " · " + d.total + " countries"; },
-    aria:"Stacked columns: countries per year by DSA source"});
+  // other identified flows (hierarchy_id 5), same columns, from panel_source_breakdown_other_identified_flows.csv
+  var DATA_OIF = [
+    {"year":2001,"total":190,"round1":8,"round2":5,"round3":3,"gapfill":52,"unavailable":122},
+    {"year":2002,"total":190,"round1":22,"round2":12,"round3":6,"gapfill":45,"unavailable":105},
+    {"year":2003,"total":190,"round1":41,"round2":6,"round3":3,"gapfill":46,"unavailable":94},
+    {"year":2004,"total":190,"round1":47,"round2":12,"round3":7,"gapfill":47,"unavailable":77},
+    {"year":2005,"total":190,"round1":51,"round2":11,"round3":8,"gapfill":44,"unavailable":76},
+    {"year":2006,"total":190,"round1":49,"round2":17,"round3":11,"gapfill":36,"unavailable":77},
+    {"year":2007,"total":190,"round1":51,"round2":12,"round3":13,"gapfill":49,"unavailable":65},
+    {"year":2008,"total":190,"round1":56,"round2":15,"round3":9,"gapfill":54,"unavailable":56},
+    {"year":2009,"total":190,"round1":60,"round2":17,"round3":3,"gapfill":56,"unavailable":54},
+    {"year":2010,"total":190,"round1":58,"round2":23,"round3":5,"gapfill":39,"unavailable":65},
+    {"year":2011,"total":190,"round1":55,"round2":20,"round3":8,"gapfill":44,"unavailable":63},
+    {"year":2012,"total":190,"round1":48,"round2":8,"round3":9,"gapfill":90,"unavailable":35},
+    {"year":2013,"total":190,"round1":84,"round2":24,"round3":8,"gapfill":54,"unavailable":20},
+    {"year":2014,"total":190,"round1":102,"round2":14,"round3":4,"gapfill":51,"unavailable":19},
+    {"year":2015,"total":190,"round1":128,"round2":0,"round3":9,"gapfill":37,"unavailable":16},
+    {"year":2016,"total":190,"round1":120,"round2":0,"round3":16,"gapfill":31,"unavailable":23},
+    {"year":2017,"total":190,"round1":114,"round2":0,"round3":8,"gapfill":45,"unavailable":23},
+    {"year":2018,"total":190,"round1":126,"round2":0,"round3":3,"gapfill":29,"unavailable":32},
+    {"year":2019,"total":190,"round1":103,"round2":3,"round3":4,"gapfill":56,"unavailable":24},
+    {"year":2020,"total":190,"round1":118,"round2":10,"round3":1,"gapfill":42,"unavailable":19},
+    {"year":2021,"total":190,"round1":127,"round2":14,"round3":1,"gapfill":9,"unavailable":39},
+    {"year":2022,"total":190,"round1":121,"round2":14,"round3":4,"gapfill":14,"unavailable":37},
+    {"year":2023,"total":190,"round1":132,"round2":8,"round3":4,"gapfill":12,"unavailable":34},
+    {"year":2024,"total":190,"round1":142,"round2":9,"round3":1,"gapfill":3,"unavailable":35},
+    {"year":2025,"total":190,"round1":42,"round2":2,"round3":1,"gapfill":0,"unavailable":145}
+  ];
+  function coverageChart(prefix, data, field){
+    var totals = data.map(function(d){ return d.total; });
+    var allSame = totals.every(function(t){ return t === totals[0]; });
+    document.getElementById(prefix + "-note").textContent =
+      "Each column is all " + (allSame ? totals[0] + " countries" : "countries") + " in the panel for that year (" +
+      data[0].year + "–" + data[data.length-1].year + "), split by where its " + field + " value came from.";
+    legend(prefix + "-legend", SERIES);
+    stackChart({wrap:prefix + "-wrap", tip:prefix + "-tip", data:data, series:SERIES,
+      total:function(d){ return d.total; },
+      head:function(d){ return d.year + " · " + d.total + " countries"; },
+      aria:"Stacked columns: countries per year by source of the " + field + " value"});
+  }
+  coverageChart("oif", DATA_OIF, "other identified flows");
+  coverageChart("ch", DATA, "residual");
 
   // ===================================================== 2. staff reports by publication year
   // Built from each batch's round1_check_report_summary_*.csv (4,116 reports; 16 outside the 190-country

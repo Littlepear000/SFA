@@ -10,7 +10,12 @@ Output: one Excel sheet named after INDICATOR (e.g. "Residual"), one row per yea
     Number of countries with data        panel countries with a value for INDICATOR for that year
                                          (same as "Available" in the coverage chart of
                                          summary/dsa_extraction_summary.html)
-plus a Notes sheet. The table is also printed.
+A second sheet, "<Indicator> by source" (e.g. "Residual by source"; just "By source" when the name
+would pass Excel's 31-character limit), is the table behind the
+"Country coverage by year and source" chart of the summary page: one row per year (DATA_YEARS), the
+number of panel countries, and how many of them got their value from Round 1 / Round 2 / Round 3
+(human review) / Gap fill, or are Unavailable (these five add up to the panel count). It always covers
+the whole panel, whichever batches are read. Plus a Notes sheet. The tables are also printed.
 
 Note on "Year": reports are counted by PUBLICATION year, data by the year the value is FOR. A report
 published in year P usually gives the actual value for P-1 or P-2, so the two are not the same year.
@@ -50,6 +55,7 @@ ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 from gapfill_lib_core import normalize_country  # noqa: E402
 from gapfill_panel_coverage_report import FIELDS, load_rows  # noqa: E402
+from gapfill_panel_source_breakdown import breakdown, country_universe  # noqa: E402
 
 # ---------------------------------------------------------------- settings
 INDICATOR = "residual"            # a name in FIELDS: "residual" (hierarchy_id 6) or "other_identified_flows" (5)
@@ -151,6 +157,22 @@ def coverage_table(pdfs: pd.DataFrame, indicator: str = INDICATOR, final_csv: Pa
     }).astype({"Number of countries with data": "Int64"})
 
 
+def source_table(indicator: str = INDICATOR, final_csv: Path = FINAL_CSV,
+                 data_years: tuple | None = DATA_YEARS) -> pd.DataFrame:
+    """Panel countries per year by where the indicator's value came from -- the same numbers as
+    gapfill_panel_source_breakdown.py's availability CSV and the summary page's coverage chart."""
+    t = breakdown(load_rows(final_csv, {hierarchy_id(indicator)}), country_universe(final_csv), years=data_years)
+    return pd.DataFrame({
+        "Year": t["year"],
+        "Countries in panel": t["total_countries"],
+        "Round 1": t["n_round1"],
+        "Round 2": t["n_round2"],
+        "Round 3 (human review)": t["n_round3_human_review"],
+        "Gap fill": t["n_gapfill"],
+        "Unavailable": t["n_unavailable"],
+    }).reset_index(drop=True)
+
+
 def notes(indicator: str, batches, n_panel: int) -> pd.DataFrame:
     return pd.DataFrame([
         ("Year", "Calendar year. Reports are counted by publication year, data by the year the value is for; "
@@ -161,6 +183,11 @@ def notes(indicator: str, batches, n_panel: int) -> pd.DataFrame:
                                              "that year; several reports in one year count once."),
         ("Number of countries with data", f"Countries (of the {n_panel}) with a value for {indicator} that year "
                                           f"in {Path(FINAL_CSV).name}. Blank outside {DATA_YEARS[0]}-{DATA_YEARS[1]}."),
+        ("By source: Round 1 ... Gap fill", f"Countries whose {indicator} value for that year came from this step. "
+                                            "If several steps cover the same country-year, one is counted, in the "
+                                            "order Round 1 > Round 2 > Round 3 > Gap fill."),
+        ("By source: Unavailable", f"Countries with no {indicator} value for that year. Round 1 + Round 2 + Round 3 "
+                                   "+ Gap fill + Unavailable = Countries in panel."),
     ], columns=["Column", "Meaning"])
 
 
@@ -193,16 +220,21 @@ def main(indicator: str = INDICATOR, batches=BATCHES, pdf_root: Path = PDF_ROOT,
     pdfs = keep_panel_reports(read_pdfs(pdf_root, batches), panel)
     all_batches = sorted(batches) == sorted(BATCHES)
     table = coverage_table(pdfs, indicator, final_csv, all_batches=all_batches)
+    by_source = source_table(indicator, final_csv)
 
     print(f"\nIndicator: {indicator} | batches: {', '.join(batches)} | panel: {len(panel)} countries")
     print(f"PDFs counted: {len(pdfs):,}\n")
     print(table.to_string(index=False))
+    print(f"\n{indicator} by source:\n")
+    print(by_source.to_string(index=False))
 
     if out_dir is not None:
         tag = "all_batches" if all_batches else "_".join(batches)
         path = Path(out_dir) / f"check_coverage_{indicator}_{tag}.xlsx"
-        sheet = indicator.replace("_", " ").capitalize()[:31]
-        write_workbook({sheet: table, "Notes": notes(indicator, batches, len(panel))}, path)
+        sheet = indicator.replace("_", " ").capitalize()
+        src_sheet = f"{sheet} by source" if len(sheet) <= 21 else "By source"  # Excel: 31 characters max
+        write_workbook({sheet[:31]: table, src_sheet: by_source,
+                        "Notes": notes(indicator, batches, len(panel))}, path)
         print(f"\nWrote {path}")
     return table
 
