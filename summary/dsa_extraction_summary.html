@@ -102,6 +102,16 @@
   .ch-tip b{ display:block; margin-bottom:.25em; }
   .ch-tip .r{ display:flex; justify-content:space-between; gap:1.2em; align-items:center; }
   .ch-tip i{ width:.7em; height:.7em; border-radius:2px; display:inline-block; margin-right:.4em; }
+  /* ---- report-coverage charts (same colors in both: what the staff reports contain) ---- */
+  :root{ --r-dsa:#2a78d6; --r-detected:#1baf7a; --r-notable:#eda100; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --r-dsa:#3987e5; --r-detected:#199e70; --r-notable:#c98500; } }
+  :root[data-theme="dark"]{ --r-dsa:#3987e5; --r-detected:#199e70; --r-notable:#c98500; }
+  .ch-tip .sep{ border-top:1px solid var(--color-border-line); margin:.3em 0 .2em; }
+  .ch-tip .r.muted{ color:var(--color-fg-muted); }
+  details.dp-numbers summary{ font-size:var(--fs-caption); color:var(--accent); cursor:pointer; }
+  details.dp-numbers .dp-tablewrap{ margin-top:var(--gap-sm); max-height:24rem; overflow:auto; }
+  details.dp-numbers table.dp-table thead th{ position:sticky; top:0; background:var(--color-panel); }
+  .dp-key{ margin:.1em 0 0 0; padding-left:1.2em; font-size:var(--fs-body); line-height:1.55; }
 </style>
 </head>
 <body>
@@ -158,6 +168,74 @@
     <div class="ch-legend" id="ch-legend"></div>
     <div class="ch-wrap" id="ch-wrap"><div class="ch-tip" id="ch-tip"></div></div>
     <p class="dp-foot">Source: <code>output/gapfill/summary_stats/20261028_gapfill_run1_run2/availability/panel_source_breakdown_residual.csv</code> (columns <code>n_round1</code>, <code>n_round2</code>, <code>n_round3_human_review</code>, <code>n_gapfill</code>, <code>n_unavailable</code>; residual flow). Numbers are copied into this page; re-copy them if that file changes.</p>
+  </div>
+
+  <div class="dp-card" id="rp-card">
+    <h2>Staff reports and DSA tables, by publication year</h2>
+    <p class="note" id="rp-note"></p>
+    <div class="ch-legend" id="rp-legend"></div>
+    <div class="ch-wrap" id="rp-wrap"><div class="ch-tip" id="rp-tip"></div></div>
+    <details class="dp-numbers">
+      <summary>Show the numbers</summary>
+      <div class="dp-tablewrap">
+        <table class="dp-table">
+          <thead><tr>
+            <th class="lh">Publication<br>year</th>
+            <th class="grp-start">Reports</th>
+            <th>with DSA table<br>in final data</th>
+            <th class="grp-start">Countries with<br>a report</th>
+            <th>with DSA table<br>in final data</th>
+            <th>table detected,<br>not used</th>
+            <th>no DSA<br>table</th>
+            <th class="grp-start col-muted">Countries with<br>no report</th>
+          </tr></thead>
+          <tbody id="rp-tbody"></tbody>
+        </table>
+      </div>
+    </details>
+    <div class="dp-foot">
+      <ul>
+        <li>The x-axis is the year the report was <b>published</b> (from the date in <code>pdf_file_name</code>), not the panel year. A report published in year P usually gives the actual value for P−1 (1,760 reports) or P−2 (1,013 reports).</li>
+        <li><b>DSA table in final data</b>: the report has Round 1/2/3 rows in <code>final_all_batches_with_gapfill_20261028.csv</code>. <b>Table detected, not used</b>: at least one Round 1 run found a DSA table, but the report has no rows in the final data (50 reports). <b>No DSA table</b>: no run found one.</li>
+        <li>A country with several reports in a year is counted once, under its best report (in the order above).</li>
+        <li>Countries are the same 190 as the coverage chart above. 16 of the 4,116 reports are left out: Brunei (5), Macao SAR (4) and Eritrea (1) never had a DSA table, so they are not in the 190; the other 6 are cluster or multi-country reports and one Anguilla report. Old names are mapped to the panel name (Swaziland → Eswatini, Azerbaijan Republic → Azerbaijan, and so on).</li>
+        <li><b>2013 has only 67 reports</b>, against 165 in 2012 and 133 in 2014, and the drop is spread over every month. The 2013 PDF folder may be incomplete. 2026 is a partial year.</li>
+      </ul>
+      Source: each batch's <code>round1_check_report_summary_*.csv</code> (the full list of reports per batch) and <code>output/gapfill/final_all_batches_with_gapfill_20261028.csv</code>. Numbers are copied into this page.
+    </div>
+  </div>
+
+  <div class="dp-card" id="ms-card">
+    <h2>Why country-years are still missing (residual)</h2>
+    <p class="note" id="ms-note"></p>
+    <ul class="dp-key" id="ms-key"></ul>
+    <div class="ch-legend" id="ms-legend"></div>
+    <div class="ch-wrap" id="ms-wrap"><div class="ch-tip" id="ms-tip"></div></div>
+    <details class="dp-numbers">
+      <summary>Show the numbers</summary>
+      <div class="dp-tablewrap">
+        <table class="dp-table">
+          <thead><tr>
+            <th class="lh">Panel<br>year Y</th>
+            <th class="grp-start">Missing</th>
+            <th class="grp-start">DSA table, but<br>no actual for Y</th>
+            <th>table detected,<br>not used</th>
+            <th>reports, no<br>DSA table</th>
+            <th class="col-muted">no report in<br>Y+1 to Y+4</th>
+          </tr></thead>
+          <tbody id="ms-tbody"></tbody>
+        </table>
+      </div>
+    </details>
+    <div class="dp-foot">
+      <ul>
+        <li>Missing = the gray “Unavailable” part of the coverage chart above (1,340 country-years for residual, hierarchy_id 6).</li>
+        <li>Each missing (country, Y) is put in one group by looking at that country's staff reports published in Y+1 to Y+4, the window Rounds 1–2 (Y+1, Y+2) and Gap fill (Y+2 to Y+4) take values from. The first group that applies wins: a DSA table in the final data, then a table detected but not used, then reports with no DSA table, then no report at all.</li>
+        <li>Inside “DSA table, but no actual for Y” (595): Gap fill tried every candidate and none gave an actual value for Y in 438 (most often <code>year_not_in_table</code> or <code>merged_range_only</code>; 48 failed as <code>pdf_too_large</code>). In 89, the only report in the window is the Y+1 one, and in 79 of those its last actual year is Y−1; Gap fill does not read Y+1 reports. 40 were stopped by an API error and can be retried.</li>
+        <li>2025: most Y+2 reports are not published yet, so most of its 145 are “no report”.</li>
+      </ul>
+      Source: <code>output/gapfill/summary_stats/20261028_gapfill_run1_run2/unavailable_detail/unavailable_country_years_residual.csv</code>, crossed with the report list used in the chart above. Numbers are copied into this page.
+    </div>
   </div>
 </div>
 
@@ -294,9 +372,84 @@
 <script>
 (function(){
   "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  function fmtN(n){ return Math.round(n).toLocaleString("en-US"); }
+  function pct(a, b){ return b > 0 ? Math.round(100 * a / b) + "%" : "—"; }
+  function el(name, attrs, parent){
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function niceStep(max){ return max > 150 ? 50 : max > 60 ? 20 : 10; }
+  function legend(id, series){
+    document.getElementById(id).innerHTML = series.map(function(s){
+      return '<span><i style="background:' + s.color + '"></i>' + s.label + '</span>';
+    }).join("");
+  }
+
+  // One stacked-column chart. o = {wrap, tip, data, series, total(d), head(d), extra(d) -> [[label, value]], aria}
+  function stackChart(o){
+    var wrap = document.getElementById(o.wrap), tip = document.getElementById(o.tip);
+    var yMax = Math.max.apply(null, o.data.map(o.total));
+    function draw(){
+      var old = wrap.querySelector("svg"); if (old) old.remove();
+      var W = Math.max(320, wrap.clientWidth), H = Math.round(Math.min(460, Math.max(280, W * 0.45)));
+      var m = {top:12, right:8, bottom:28, left:38};
+      var iw = W - m.left - m.right, ih = H - m.top - m.bottom;
+      var svg = el("svg", {viewBox:"0 0 " + W + " " + H, width:"100%", role:"img", "aria-label":o.aria});
+      wrap.insertBefore(svg, tip);
+      var g = el("g", {transform:"translate(" + m.left + "," + m.top + ")"}, svg);
+      var y = function(v){ return ih - v / yMax * ih; };
+
+      var step = niceStep(yMax), ticks = [];
+      for (var t = 0; t < yMax - step * 0.4; t += step) ticks.push(t);
+      ticks.push(yMax);
+      ticks.forEach(function(t){
+        var tx = el("text", {x:-6, y:y(t), "text-anchor":"end", "dominant-baseline":"middle"}, g); tx.textContent = t;
+      });
+
+      var n = o.data.length, band = iw / n, bw = Math.max(4, band * 0.72);
+      var labelEvery = band < 22 ? (band < 12 ? 5 : 2) : 1;
+      o.data.forEach(function(d, i){
+        var x = i * band + (band - bw) / 2, acc = 0;
+        o.series.forEach(function(s){
+          var v = d[s.key]; if (!v) return;
+          el("rect", {x:x, y:y(acc + v), width:bw, height:Math.max(0, y(acc) - y(acc + v)), fill:s.color}, g);
+          acc += v;
+        });
+        if (i % labelEvery === 0 || i === n - 1){
+          var lx = el("text", {x:x + bw/2, y:ih + 16, "text-anchor":"middle"}, g);
+          lx.textContent = labelEvery > 1 ? d.year : (band < 34 ? "’" + String(d.year).slice(2) : d.year);
+        }
+        var hit = el("rect", {x:i * band, y:0, width:band, height:ih, "class":"col-hit"}, g);
+        hit.addEventListener("mousemove", function(ev){ showTip(ev, d); });
+        hit.addEventListener("mouseleave", function(){ tip.style.display = "none"; });
+      });
+    }
+    function showTip(ev, d){
+      var extra = o.extra ? o.extra(d) : [];
+      tip.innerHTML = "<b>" + o.head(d) + "</b>" + o.series.slice().reverse().map(function(s){
+        return '<div class="r"><span><i style="background:' + s.color + '"></i>' + s.label + "</span><span>" + fmtN(d[s.key]) + "</span></div>";
+      }).join("") + (extra.length ? '<div class="sep"></div>' + extra.map(function(e){
+        return '<div class="r muted"><span>' + e[0] + "</span><span>" + e[1] + "</span></div>";
+      }).join("") : "");
+      tip.style.display = "block";
+      var r = wrap.getBoundingClientRect();
+      var px = ev.clientX - r.left + 14, py = ev.clientY - r.top + 10;
+      if (px + tip.offsetWidth > r.width) px = ev.clientX - r.left - tip.offsetWidth - 14;
+      if (px < 0) px = 0;
+      tip.style.left = px + "px"; tip.style.top = py + "px";
+    }
+    draw();
+    var rt; window.addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(draw, 120); });
+  }
+
+  // ===================================================== 1. country coverage by source
   // Countries per year by DSA source, copied from
   // output/gapfill/summary_stats/20261028_gapfill_run1_run2/availability/panel_source_breakdown_residual.csv
   // round1 = n_round1, round2 = n_round2, round3 = n_round3_human_review, gapfill = n_gapfill, unavailable = n_unavailable
+  // (checked 2026-11-10: re-running code/gapfill_panel_source_breakdown.py on the 20261028 file gives the same numbers)
   var DATA = [
     {"year":2001,"total":190,"round1":13,"round2":4,"round3":3,"gapfill":56,"unavailable":114},
     {"year":2002,"total":190,"round1":24,"round2":11,"round3":7,"gapfill":51,"unavailable":97},
@@ -331,79 +484,134 @@
     {key:"gapfill",     label:"Gap fill",                color:"var(--s-gapfill)"},
     {key:"unavailable", label:"Unavailable",             color:"var(--s-unavail)"}
   ];
-  var NS = "http://www.w3.org/2000/svg";
-  var wrap = document.getElementById("ch-wrap"), tip = document.getElementById("ch-tip");
-
   var totals = DATA.map(function(d){ return d.total; });
-  var yMax = Math.max.apply(null, totals);
   var allSame = totals.every(function(t){ return t === totals[0]; });
   document.getElementById("ch-note").textContent =
     "Each column is all " + (allSame ? totals[0] + " countries" : "countries") +
     " in the panel for that year (" + DATA[0].year + "–" + DATA[DATA.length-1].year + "), split by where its DSA value came from.";
+  legend("ch-legend", SERIES);
+  stackChart({wrap:"ch-wrap", tip:"ch-tip", data:DATA, series:SERIES,
+    total:function(d){ return d.total; },
+    head:function(d){ return d.year + " · " + d.total + " countries"; },
+    aria:"Stacked columns: countries per year by DSA source"});
 
-  document.getElementById("ch-legend").innerHTML = SERIES.map(function(s){
-    return '<span><i style="background:' + s.color + '"></i>' + s.label + '</span>';
+  // ===================================================== 2. staff reports by publication year
+  // Built from each batch's round1_check_report_summary_*.csv (4,116 reports; 16 outside the 190-country
+  // panel left out) and final_all_batches_with_gapfill_20261028.csv. c_* count countries (sum = 190),
+  // reports* count reports. A country is counted once per year, under its best report.
+  var NCOUNTRIES = 190;
+  var REPORTS = [
+    {"year":1999,"reports":24,"reports_dsa":0,"reports_detected_only":0,"reports_no_table":24,"countries_with_report":24,"c_dsa":0,"c_detected_only":0,"c_no_table":24,"c_no_report":166},
+    {"year":2000,"reports":51,"reports_dsa":1,"reports_detected_only":0,"reports_no_table":50,"countries_with_report":51,"c_dsa":1,"c_detected_only":0,"c_no_table":50,"c_no_report":139},
+    {"year":2001,"reports":83,"reports_dsa":0,"reports_detected_only":0,"reports_no_table":83,"countries_with_report":80,"c_dsa":0,"c_detected_only":0,"c_no_table":80,"c_no_report":110},
+    {"year":2002,"reports":100,"reports_dsa":8,"reports_detected_only":1,"reports_no_table":91,"countries_with_report":89,"c_dsa":8,"c_detected_only":0,"c_no_table":81,"c_no_report":101},
+    {"year":2003,"reports":107,"reports_dsa":38,"reports_detected_only":0,"reports_no_table":69,"countries_with_report":103,"c_dsa":38,"c_detected_only":0,"c_no_table":65,"c_no_report":87},
+    {"year":2004,"reports":106,"reports_dsa":57,"reports_detected_only":0,"reports_no_table":49,"countries_with_report":94,"c_dsa":52,"c_detected_only":0,"c_no_table":42,"c_no_report":96},
+    {"year":2005,"reports":126,"reports_dsa":73,"reports_detected_only":0,"reports_no_table":53,"countries_with_report":115,"c_dsa":69,"c_detected_only":0,"c_no_table":46,"c_no_report":75},
+    {"year":2006,"reports":141,"reports_dsa":83,"reports_detected_only":3,"reports_no_table":55,"countries_with_report":126,"c_dsa":76,"c_detected_only":3,"c_no_table":47,"c_no_report":64},
+    {"year":2007,"reports":151,"reports_dsa":82,"reports_detected_only":1,"reports_no_table":68,"countries_with_report":129,"c_dsa":75,"c_detected_only":1,"c_no_table":53,"c_no_report":61},
+    {"year":2008,"reports":171,"reports_dsa":83,"reports_detected_only":6,"reports_no_table":82,"countries_with_report":126,"c_dsa":78,"c_detected_only":2,"c_no_table":46,"c_no_report":64},
+    {"year":2009,"reports":190,"reports_dsa":106,"reports_detected_only":3,"reports_no_table":81,"countries_with_report":138,"c_dsa":87,"c_detected_only":1,"c_no_table":50,"c_no_report":52},
+    {"year":2010,"reports":191,"reports_dsa":103,"reports_detected_only":5,"reports_no_table":83,"countries_with_report":150,"c_dsa":89,"c_detected_only":4,"c_no_table":57,"c_no_report":40},
+    {"year":2011,"reports":180,"reports_dsa":111,"reports_detected_only":0,"reports_no_table":69,"countries_with_report":134,"c_dsa":95,"c_detected_only":0,"c_no_table":39,"c_no_report":56},
+    {"year":2012,"reports":165,"reports_dsa":121,"reports_detected_only":0,"reports_no_table":44,"countries_with_report":127,"c_dsa":104,"c_detected_only":0,"c_no_table":23,"c_no_report":63},
+    {"year":2013,"reports":67,"reports_dsa":50,"reports_detected_only":0,"reports_no_table":17,"countries_with_report":54,"c_dsa":43,"c_detected_only":0,"c_no_table":11,"c_no_report":136},
+    {"year":2014,"reports":133,"reports_dsa":121,"reports_detected_only":1,"reports_no_table":11,"countries_with_report":127,"c_dsa":117,"c_detected_only":1,"c_no_table":9,"c_no_report":63},
+    {"year":2015,"reports":152,"reports_dsa":129,"reports_detected_only":0,"reports_no_table":23,"countries_with_report":132,"c_dsa":122,"c_detected_only":0,"c_no_table":10,"c_no_report":58},
+    {"year":2016,"reports":192,"reports_dsa":151,"reports_detected_only":13,"reports_no_table":28,"countries_with_report":148,"c_dsa":134,"c_detected_only":8,"c_no_table":6,"c_no_report":42},
+    {"year":2017,"reports":187,"reports_dsa":154,"reports_detected_only":8,"reports_no_table":25,"countries_with_report":149,"c_dsa":138,"c_detected_only":6,"c_no_table":5,"c_no_report":41},
+    {"year":2018,"reports":172,"reports_dsa":149,"reports_detected_only":3,"reports_no_table":20,"countries_with_report":138,"c_dsa":128,"c_detected_only":2,"c_no_table":8,"c_no_report":52},
+    {"year":2019,"reports":188,"reports_dsa":163,"reports_detected_only":4,"reports_no_table":21,"countries_with_report":143,"c_dsa":138,"c_detected_only":2,"c_no_table":3,"c_no_report":47},
+    {"year":2020,"reports":168,"reports_dsa":151,"reports_detected_only":2,"reports_no_table":15,"countries_with_report":114,"c_dsa":108,"c_detected_only":2,"c_no_table":4,"c_no_report":76},
+    {"year":2021,"reports":167,"reports_dsa":154,"reports_detected_only":0,"reports_no_table":13,"countries_with_report":136,"c_dsa":132,"c_detected_only":0,"c_no_table":4,"c_no_report":54},
+    {"year":2022,"reports":174,"reports_dsa":158,"reports_detected_only":0,"reports_no_table":16,"countries_with_report":136,"c_dsa":130,"c_detected_only":0,"c_no_table":6,"c_no_report":54},
+    {"year":2023,"reports":197,"reports_dsa":173,"reports_detected_only":0,"reports_no_table":24,"countries_with_report":146,"c_dsa":143,"c_detected_only":0,"c_no_table":3,"c_no_report":44},
+    {"year":2024,"reports":202,"reports_dsa":180,"reports_detected_only":0,"reports_no_table":22,"countries_with_report":147,"c_dsa":146,"c_detected_only":0,"c_no_table":1,"c_no_report":43},
+    {"year":2025,"reports":204,"reports_dsa":178,"reports_detected_only":0,"reports_no_table":26,"countries_with_report":152,"c_dsa":144,"c_detected_only":0,"c_no_table":8,"c_no_report":38},
+    {"year":2026,"reports":111,"reports_dsa":100,"reports_detected_only":0,"reports_no_table":11,"countries_with_report":106,"c_dsa":97,"c_detected_only":0,"c_no_table":9,"c_no_report":84}
+  ];
+  var RP_SERIES = [
+    {key:"c_dsa",           label:"DSA table in final data",     color:"var(--r-dsa)"},
+    {key:"c_detected_only", label:"Table detected, not used",    color:"var(--r-detected)"},
+    {key:"c_no_table",      label:"Report, no DSA table",        color:"var(--r-notable)"},
+    {key:"c_no_report",     label:"No report this year",         color:"var(--s-unavail)"}
+  ];
+  var rpSum = function(k){ return REPORTS.reduce(function(a, d){ return a + d[k]; }, 0); };
+  document.getElementById("rp-note").textContent =
+    "Each column is the same " + NCOUNTRIES + " countries, split by what that country's staff reports published in that year contain. " +
+    "Across " + REPORTS[0].year + "–" + REPORTS[REPORTS.length-1].year + ", " + fmtN(rpSum("reports")) + " reports, of which " +
+    fmtN(rpSum("reports_dsa")) + " (" + pct(rpSum("reports_dsa"), rpSum("reports")) + ") have a DSA table in the final data. Hover a column for the report counts.";
+  legend("rp-legend", RP_SERIES);
+  stackChart({wrap:"rp-wrap", tip:"rp-tip", data:REPORTS, series:RP_SERIES,
+    total:function(){ return NCOUNTRIES; },
+    head:function(d){ return d.year + " · " + d.countries_with_report + " of " + NCOUNTRIES + " countries have a report"; },
+    extra:function(d){ return [["Reports published", fmtN(d.reports)], ["with DSA table in final data", fmtN(d.reports_dsa)],
+      ["table detected, not used", fmtN(d.reports_detected_only)], ["no DSA table", fmtN(d.reports_no_table)]]; },
+    aria:"Stacked columns: countries per publication year by whether their staff reports have a DSA table"});
+  document.getElementById("rp-tbody").innerHTML = REPORTS.map(function(d){
+    return "<tr><td class=\"lh\">" + d.year + "</td><td class=\"grp-start\">" + fmtN(d.reports) + "</td><td>" + fmtN(d.reports_dsa) +
+      "</td><td class=\"grp-start\">" + fmtN(d.countries_with_report) + "</td><td>" + fmtN(d.c_dsa) + "</td><td>" + fmtN(d.c_detected_only) +
+      "</td><td>" + fmtN(d.c_no_table) + "</td><td class=\"grp-start col-muted\">" + fmtN(d.c_no_report) + "</td></tr>";
   }).join("");
 
-  function el(name, attrs, parent){
-    var e = document.createElementNS(NS, name);
-    for (var k in attrs) e.setAttribute(k, attrs[k]);
-    if (parent) parent.appendChild(e);
-    return e;
-  }
-
-  function niceStep(max){ return max > 150 ? 50 : max > 60 ? 20 : 10; }
-
-  function draw(){
-    var old = wrap.querySelector("svg"); if (old) old.remove();
-    var W = Math.max(320, wrap.clientWidth), H = Math.round(Math.min(460, Math.max(280, W * 0.45)));
-    var m = {top:12, right:8, bottom:28, left:38};
-    var iw = W - m.left - m.right, ih = H - m.top - m.bottom;
-    var svg = el("svg", {viewBox:"0 0 " + W + " " + H, width:"100%", role:"img",
-      "aria-label":"Stacked columns: countries per year by DSA source"});
-    wrap.insertBefore(svg, tip);
-    var g = el("g", {transform:"translate(" + m.left + "," + m.top + ")"}, svg);
-    var y = function(v){ return ih - v / yMax * ih; };
-
-    var step = niceStep(yMax);
-    var ticks = []; for (var t = 0; t < yMax; t += step) ticks.push(t); ticks.push(yMax);
-    ticks.forEach(function(t){
-      var tx = el("text", {x:-6, y:y(t), "text-anchor":"end", "dominant-baseline":"middle"}, g); tx.textContent = t;
-    });
-
-    var n = DATA.length, band = iw / n, bw = Math.max(4, band * 0.72);
-    var labelEvery = band < 22 ? (band < 12 ? 5 : 2) : 1;
-    DATA.forEach(function(d, i){
-      var x = i * band + (band - bw) / 2, acc = 0;
-      SERIES.forEach(function(s){
-        var v = d[s.key]; if (!v) return;
-        el("rect", {x:x, y:y(acc + v), width:bw, height:Math.max(0, y(acc) - y(acc + v)), fill:s.color}, g);
-        acc += v;
-      });
-      if (i % labelEvery === 0 || i === n - 1){
-        var lx = el("text", {x:x + bw/2, y:ih + 16, "text-anchor":"middle"}, g);
-        lx.textContent = labelEvery > 1 ? d.year : (band < 34 ? "’" + String(d.year).slice(2) : d.year);
-      }
-      var hit = el("rect", {x:i * band, y:0, width:band, height:ih, "class":"col-hit"}, g);
-      hit.addEventListener("mousemove", function(ev){ showTip(ev, d); });
-      hit.addEventListener("mouseleave", function(){ tip.style.display = "none"; });
-    });
-  }
-
-  function showTip(ev, d){
-    tip.innerHTML = "<b>" + d.year + " · " + d.total + " countries</b>" + SERIES.slice().reverse().map(function(s){
-      return '<div class="r"><span><i style="background:' + s.color + '"></i>' + s.label + "</span><span>" + d[s.key] + "</span></div>";
-    }).join("");
-    tip.style.display = "block";
-    var r = wrap.getBoundingClientRect();
-    var px = ev.clientX - r.left + 14, py = ev.clientY - r.top + 10;
-    if (px + tip.offsetWidth > r.width) px = ev.clientX - r.left - tip.offsetWidth - 14;
-    if (px < 0) px = 0;
-    tip.style.left = px + "px"; tip.style.top = py + "px";
-  }
-
-  draw();
-  var rt; window.addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(draw, 120); });
+  // ===================================================== 3. missing country-years, by what reports exist
+  // From unavailable_country_years_residual.csv (20261028), crossed with the report list above:
+  // reports for the same country published in Y+1..Y+4; first matching group wins.
+  var MISSING = [
+    {"year":2001,"detected_not_final":0,"dsa_but_year_missing":24,"no_report":30,"reports_no_table":60},
+    {"year":2002,"detected_not_final":2,"dsa_but_year_missing":22,"no_report":24,"reports_no_table":49},
+    {"year":2003,"detected_not_final":1,"dsa_but_year_missing":32,"no_report":21,"reports_no_table":32},
+    {"year":2004,"detected_not_final":0,"dsa_but_year_missing":27,"no_report":17,"reports_no_table":30},
+    {"year":2005,"detected_not_final":0,"dsa_but_year_missing":31,"no_report":16,"reports_no_table":29},
+    {"year":2006,"detected_not_final":0,"dsa_but_year_missing":28,"no_report":15,"reports_no_table":35},
+    {"year":2007,"detected_not_final":0,"dsa_but_year_missing":22,"no_report":12,"reports_no_table":31},
+    {"year":2008,"detected_not_final":0,"dsa_but_year_missing":19,"no_report":12,"reports_no_table":26},
+    {"year":2009,"detected_not_final":0,"dsa_but_year_missing":14,"no_report":13,"reports_no_table":28},
+    {"year":2010,"detected_not_final":0,"dsa_but_year_missing":42,"no_report":13,"reports_no_table":10},
+    {"year":2011,"detected_not_final":1,"dsa_but_year_missing":46,"no_report":10,"reports_no_table":8},
+    {"year":2012,"detected_not_final":2,"dsa_but_year_missing":25,"no_report":7,"reports_no_table":3},
+    {"year":2013,"detected_not_final":0,"dsa_but_year_missing":12,"no_report":8,"reports_no_table":2},
+    {"year":2014,"detected_not_final":0,"dsa_but_year_missing":11,"no_report":9,"reports_no_table":1},
+    {"year":2015,"detected_not_final":0,"dsa_but_year_missing":6,"no_report":10,"reports_no_table":0},
+    {"year":2016,"detected_not_final":0,"dsa_but_year_missing":14,"no_report":8,"reports_no_table":1},
+    {"year":2017,"detected_not_final":0,"dsa_but_year_missing":18,"no_report":6,"reports_no_table":0},
+    {"year":2018,"detected_not_final":1,"dsa_but_year_missing":23,"no_report":7,"reports_no_table":0},
+    {"year":2019,"detected_not_final":0,"dsa_but_year_missing":18,"no_report":6,"reports_no_table":0},
+    {"year":2020,"detected_not_final":0,"dsa_but_year_missing":12,"no_report":6,"reports_no_table":1},
+    {"year":2021,"detected_not_final":0,"dsa_but_year_missing":28,"no_report":10,"reports_no_table":1},
+    {"year":2022,"detected_not_final":0,"dsa_but_year_missing":29,"no_report":9,"reports_no_table":0},
+    {"year":2023,"detected_not_final":0,"dsa_but_year_missing":22,"no_report":11,"reports_no_table":1},
+    {"year":2024,"detected_not_final":0,"dsa_but_year_missing":17,"no_report":18,"reports_no_table":0},
+    {"year":2025,"detected_not_final":0,"dsa_but_year_missing":53,"no_report":83,"reports_no_table":9}
+  ];
+  var MS_SERIES = [
+    {key:"dsa_but_year_missing", label:"DSA table, but no actual for Y",   color:"var(--r-dsa)"},
+    {key:"detected_not_final",   label:"Table detected, not used",         color:"var(--r-detected)"},
+    {key:"reports_no_table",     label:"Reports, no DSA table",            color:"var(--r-notable)"},
+    {key:"no_report",            label:"No report in Y+1 to Y+4",          color:"var(--s-unavail)"}
+  ];
+  MISSING.forEach(function(d){ d.total = MS_SERIES.reduce(function(a, s){ return a + d[s.key]; }, 0); });
+  var msSum = function(k){ return MISSING.reduce(function(a, d){ return a + d[k]; }, 0); };
+  var msTotal = msSum("total"), last = MISSING[MISSING.length-1];
+  document.getElementById("ms-note").textContent =
+    "Each column is the country-years with no residual value in year Y (" + MISSING[0].year + "–" + last.year +
+    "), split by what that country's staff reports published in Y+1 to Y+4 contain. The y-axis counts missing country-years only, so its scale differs from the charts above.";
+  document.getElementById("ms-key").innerHTML =
+    "<li><b>" + fmtN(msSum("dsa_but_year_missing")) + " of " + fmtN(msTotal) + " (" + pct(msSum("dsa_but_year_missing"), msTotal) +
+    ")</b> have a report with a DSA table, but no table gave an actual value for Y.</li>" +
+    "<li><b>" + fmtN(msSum("reports_no_table")) + " (" + pct(msSum("reports_no_table"), msTotal) + ")</b> have staff reports, but none with a DSA table; most are before 2010.</li>" +
+    "<li><b>" + fmtN(msSum("no_report")) + " (" + pct(msSum("no_report"), msTotal) + ")</b> have no staff report at all in Y+1 to Y+4 (" +
+    fmtN(last.no_report) + " of them are " + last.year + ", whose later reports are not out yet).</li>";
+  legend("ms-legend", MS_SERIES);
+  stackChart({wrap:"ms-wrap", tip:"ms-tip", data:MISSING, series:MS_SERIES,
+    total:function(d){ return d.total; },
+    head:function(d){ return d.year + " · " + d.total + " missing country-years"; },
+    aria:"Stacked columns: missing country-years per year by what staff reports exist in the following four years"});
+  document.getElementById("ms-tbody").innerHTML = MISSING.map(function(d){
+    return "<tr><td class=\"lh\">" + d.year + "</td><td class=\"grp-start\">" + fmtN(d.total) + "</td><td class=\"grp-start\">" +
+      fmtN(d.dsa_but_year_missing) + "</td><td>" + fmtN(d.detected_not_final) + "</td><td>" + fmtN(d.reports_no_table) +
+      "</td><td class=\"col-muted\">" + fmtN(d.no_report) + "</td></tr>";
+  }).join("");
 })();
 </script>
 </body>
