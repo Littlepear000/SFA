@@ -34,7 +34,7 @@ from pathlib import Path
 import pandas as pd
 
 # ---------------------------------------------------------------- settings
-PDF_FOLDER = Path(r"staff_reports/pdf staff reports")  # the folder to count
+PDF_FOLDER = Path(r"staff_reports/pdf staff reports/2011-2015")  # the folder to count
 RECURSIVE = True       # also look inside sub-folders (e.g. the 5-year batch folders)
 YEARS = None           # e.g. (2001, 2025) to keep only those publication years; None = every year
 OUT_DIR = Path(r"output/pdf_inventory")  # where the two CSVs go; None = print only
