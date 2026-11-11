@@ -58,10 +58,10 @@ from gapfill_panel_coverage_report import FIELDS, load_rows  # noqa: E402
 from gapfill_panel_source_breakdown import breakdown, country_universe  # noqa: E402
 
 # ---------------------------------------------------------------- settings
-INDICATOR = "residual"            # a name in FIELDS: "residual" (hierarchy_id 6) or "other_identified_flows" (5)
+INDICATOR = "other_identified_flows"            # a name in FIELDS: "residual" (hierarchy_id 6) or "other_identified_flows" (5)
 PDF_ROOT = ROOT / "staff_reports" / "pdf staff reports"
-BATCHES = ["1999-2005", "2006-2010", "2011-2015", "2016-2020", "2021-2026"]  # batch folders under PDF_ROOT
-FINAL_CSV = ROOT / "output" / "gapfill" / "final_all_batches_with_gapfill_20261028.csv"
+BATCHES = ["1996-2000", "2001-2005", "2006-2010", "2011-2015", "2016-2020", "2021-2026"]  # batch folders under PDF_ROOT
+FINAL_CSV = ROOT / "output" / "final" / "final_all_batches_with_gapfill_20261028.csv"
 DATA_YEARS = (2001, 2025)         # years the panel covers; "countries with data" is left blank outside them
 OUT_DIR = ROOT / "output" / "coverage"  # workbook: check_coverage_<indicator>_<batches>.xlsx
 

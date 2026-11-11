@@ -61,12 +61,12 @@ from gapfill_lib_core import normalize_country  # noqa: E402
 from gapfill_panel_coverage_report import ALL_HIERARCHIES, load_rows  # noqa: E402
 
 # ---------------------------------------------------------------- settings
-FINAL_CSV = ROOT / "output" / "gapfill" / "final_all_batches_with_gapfill_20261028.csv"
+FINAL_CSV = ROOT / "output" / "final" / "final_all_batches_with_gapfill_20261028.csv"
 PDF_ROOT = ROOT / "staff_reports" / "pdf staff reports"   # holds one sub-folder per batch
-BATCHES = ["1999-2005", "2006-2010", "2011-2015", "2016-2020", "2021-2026"]  # batch folders read, all together
+BATCHES = ["1996-2000", "2001-2005", "2006-2010", "2011-2015", "2016-2020", "2021-2026"]  # batch folders read, all together
 YEARS = (2001, 2025)                      # panel years, one row per country per year
 # Indicator column(s) shown in the "By year" sheet: one name or a list (see the docstring)
-INDICATORS = ["h5_other_identified_flows", "h6_residual"]
+INDICATORS = ["h5_other_identified_flows"]
 OUT_XLSX = ROOT / "output" / "coverage" / "coverage_database.xlsx"
 
 # Old or alternative names that normalize_country() does not merge -> the panel's name (lower case)
