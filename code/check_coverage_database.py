@@ -14,7 +14,11 @@ Part 1 -- "Coverage" sheet (190 countries x 2001-2025 = 4,750 rows)
 Every cell after country/year is "Yes" or "No".
 
 Part 2 -- "By year" sheet: per year, the number of panel countries, and how many of them have a staff
-    report, a DSA table, and a value for each indicator in ANALYSIS_INDICATORS (default: h5 and h6).
+    report, a DSA table (these four columns are always there), then one column per indicator in
+    INDICATORS: how many countries have a value for it. INDICATORS is one Coverage column name or a list
+    of them, e.g. "h5_other_identified_flows" or ["h5_other_identified_flows", "h6_residual"]
+    (default). Case and spaces do not matter ("H5 other identified flows" works), and the short form
+    "h5" / "h3_1" picks that hierarchy_id's column.
 
 Also an "Indicators" sheet (column name -> hierarchy_id, level, top category, the most common labels,
 how many country-years have it) and a "Notes" sheet.
@@ -35,6 +39,8 @@ Staff reports
 Usage
     python check_coverage_database.py
     python check_coverage_database.py --pdf-root "D:/path/to/pdf staff reports"
+    python check_coverage_database.py --indicators h5_other_identified_flows
+    python check_coverage_database.py --indicators h5_other_identified_flows h6_residual h1_change_in_debt
     or edit the settings below and run the file from a console.
 """
 from __future__ import annotations
@@ -59,7 +65,8 @@ FINAL_CSV = ROOT / "output" / "gapfill" / "final_all_batches_with_gapfill_202610
 PDF_ROOT = ROOT / "staff_reports" / "pdf staff reports"   # holds one sub-folder per batch
 BATCHES = ["1999-2005", "2006-2010", "2011-2015", "2016-2020", "2021-2026"]  # batch folders read, all together
 YEARS = (2001, 2025)                      # panel years, one row per country per year
-ANALYSIS_INDICATORS = ["5", "6"]          # hierarchy_ids counted in the "By year" sheet
+# Indicator column(s) shown in the "By year" sheet: one name or a list (see the docstring)
+INDICATORS = ["h5_other_identified_flows", "h6_residual"]
 OUT_XLSX = ROOT / "output" / "coverage" / "coverage_database.xlsx"
 
 # Old or alternative names that normalize_country() does not merge -> the panel's name (lower case)
@@ -217,17 +224,36 @@ def build(final_csv: Path = FINAL_CSV, years: tuple = YEARS, pdf_root: Path = PD
     return cov, ind
 
 
-def by_year(cov: pd.DataFrame, ind: pd.DataFrame, analysis=ANALYSIS_INDICATORS) -> pd.DataFrame:
-    col_of = dict(zip(ind["hierarchy_id"], ind["column"]))
-    missing = [h for h in analysis if h not in col_of]
-    if missing:
-        raise ValueError(f"ANALYSIS_INDICATORS not in the final data: {missing}")
+def pick_indicator_columns(ind: pd.DataFrame, indicators) -> list:
+    """Coverage column names for INDICATORS (one name or a list), matched loosely: case and spaces do not
+    matter, and "h5" / "h3_1" stands for that hierarchy_id's column."""
+    if isinstance(indicators, str):
+        indicators = [indicators]
+    columns = list(ind["column"])
+    short = {"h" + hid.replace(".", "_"): col for hid, col in zip(ind["hierarchy_id"], ind["column"])}
+    picked, unknown = [], []
+    for name in indicators:
+        key = re.sub(r"[\s\-]+", "_", str(name).strip().lower())
+        col = key if key in columns else short.get(key)
+        if col is None:
+            unknown.append(name)
+        elif col not in picked:
+            picked.append(col)
+    if unknown:
+        raise ValueError(f"INDICATORS not found: {unknown}. Available columns: {', '.join(columns)}")
+    return picked
+
+
+def by_year(cov: pd.DataFrame, ind: pd.DataFrame, indicators=INDICATORS) -> pd.DataFrame:
+    def n_yes(col):
+        return g[col].apply(lambda s: (s == "Yes").sum()).values
+
     g = cov.groupby("year")
     out = pd.DataFrame({"Year": g.size().index, "Countries in panel": g.size().values,
-                        "Countries with staff report": g["has_staff_report"].apply(lambda s: (s == "Yes").sum()).values,
-                        "Countries with DSA table": g["has_dsa_table"].apply(lambda s: (s == "Yes").sum()).values})
-    for h in analysis:
-        out[f"Countries with {col_of[h]}"] = g[col_of[h]].apply(lambda s: (s == "Yes").sum()).values
+                        "Countries with staff report": n_yes("has_staff_report"),
+                        "Countries with DSA table": n_yes("has_dsa_table")})
+    for col in pick_indicator_columns(ind, indicators):
+        out[f"Countries with {col}"] = n_yes(col)
     return out
 
 
@@ -269,9 +295,10 @@ def write_workbook(sheets: dict, path: Path) -> None:
                         cell.alignment = Alignment(wrap_text=True, vertical="top")
 
 
-def main(final_csv: Path = FINAL_CSV, pdf_root: Path = PDF_ROOT, out_xlsx: Path | None = OUT_XLSX):
+def main(final_csv: Path = FINAL_CSV, pdf_root: Path = PDF_ROOT, out_xlsx: Path | None = OUT_XLSX,
+         indicators=INDICATORS):
     cov, ind = build(final_csv, YEARS, pdf_root)
-    summary = by_year(cov, ind)
+    summary = by_year(cov, ind, indicators)
     print(f"\nCoverage: {len(cov):,} rows ({cov['country'].nunique()} countries x {cov['year'].nunique()} years), "
           f"{len(ind)} indicator columns\n")
     print(summary.to_string(index=False))
@@ -285,6 +312,8 @@ def main(final_csv: Path = FINAL_CSV, pdf_root: Path = PDF_ROOT, out_xlsx: Path 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="Country-year data-coverage database (Yes/No).")
     ap.add_argument("--pdf-root", default=PDF_ROOT, help="folder holding the batch folders")
+    ap.add_argument("--indicators", nargs="+", default=INDICATORS,
+                    help='indicator column(s) for the "By year" sheet, e.g. h5_other_identified_flows h6_residual')
     ap.add_argument("--no-excel", action="store_true", help="print only, write no workbook")
     a, _ = ap.parse_known_args()  # parse_known_args: consoles can pass their own extra arguments
-    main(pdf_root=Path(a.pdf_root), out_xlsx=None if a.no_excel else OUT_XLSX)
+    main(pdf_root=Path(a.pdf_root), out_xlsx=None if a.no_excel else OUT_XLSX, indicators=a.indicators)
