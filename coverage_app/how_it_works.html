@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coverage App Flow</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f6f6f4; --panel:#fff; --fg:#17171a; --fg-2:#4f4f57; --muted:#75757e; --line:#e2e2e6; --line-2:#cdcdd3;
+  --accent:#1d4ed8;
+  --l-browser:#2a78d6; --l-server:#eda100; --l-script:#1baf7a; --l-file:#8a8a95;
+  --l-browser-soft:#e9f1fb; --l-server-soft:#fdf4e1; --l-script-soft:#e5f6ef; --l-file-soft:#f0f0f2;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141416; --panel:#1d1d21; --fg:#efeff2; --fg-2:#c4c4cb; --muted:#9a9aa3; --line:#2e2e35; --line-2:#44444d;
+  --accent:#7b9bff;
+  --l-browser:#3987e5; --l-server:#c98500; --l-script:#199e70; --l-file:#8a8a95;
+  --l-browser-soft:#1b2738; --l-server-soft:#2e2615; --l-script-soft:#152a22; --l-file-soft:#26262b;
+}}
+:root[data-theme="dark"]{
+  --bg:#141416; --panel:#1d1d21; --fg:#efeff2; --fg-2:#c4c4cb; --muted:#9a9aa3; --line:#2e2e35; --line-2:#44444d;
+  --accent:#7b9bff;
+  --l-browser:#3987e5; --l-server:#c98500; --l-script:#199e70; --l-file:#8a8a95;
+  --l-browser-soft:#1b2738; --l-server-soft:#2e2615; --l-script-soft:#152a22; --l-file-soft:#26262b;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--bg); color:var(--fg); font:15px/1.55 var(--font); }
+main{ max-width:62rem; margin:0 auto; padding:32px 16px 64px; }
+h1{ font-size:24px; margin:0 0 6px; }
+h2{ font-size:19px; margin:44px 0 6px; }
+h3{ font-size:15px; margin:0; }
+p{ margin:8px 0; }
+.lead{ color:var(--fg-2); max-width:46rem; }
+.muted{ color:var(--muted); }
+code{ font-family:var(--mono); font-size:13px; }
+.card{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
+.legend{ display:flex; flex-wrap:wrap; gap:6px 18px; font-size:13px; margin:14px 0 10px; }
+.legend span{ display:inline-flex; align-items:center; gap:6px; }
+.legend i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+.setting{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:13px; color:var(--fg-2); margin-top:10px; }
+.setting select{ font:inherit; padding:3px 6px; border-radius:6px; border:1px solid var(--line-2); background:var(--panel); color:var(--fg); }
+
+/* overview diagram */
+.diagram svg{ display:block; width:100%; height:auto; }
+.diagram text{ font-family:var(--font); fill:var(--fg); }
+.diagram .lane-t{ font-size:13px; font-weight:650; }
+.diagram .lane-s{ font-size:11.5px; fill:var(--muted); font-family:var(--mono); }
+.diagram .box-t{ font-size:12.5px; font-weight:600; }
+.diagram .box-s{ font-size:11px; fill:var(--fg-2); font-family:var(--mono); }
+.diagram .num{ font-size:11px; font-weight:700; fill:#fff; }
+.diagram .arr{ fill:none; stroke-width:1.6; }
+.diagram .gen{ stroke:var(--fg-2); }
+.diagram .dash{ stroke:var(--fg-2); stroke-dasharray:4 3; }
+.diagram .sep{ stroke:var(--line-2); stroke-dasharray:2 4; }
+.diagram .flow-t{ font-size:12px; font-weight:700; fill:var(--muted); letter-spacing:.06em; }
+
+/* steps */
+.steps{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:0; }
+.step{ position:relative; display:grid; grid-template-columns:34px 1fr; gap:12px; padding-bottom:14px; }
+.step:not(:last-child)::before{ content:""; position:absolute; left:16px; top:34px; bottom:0; width:2px; background:var(--line-2); }
+.dot{ width:34px; height:34px; border-radius:50%; display:grid; place-items:center; color:#fff; font-weight:700; font-size:13px; }
+.step .card{ padding:12px 14px; border-left:4px solid var(--lane); }
+.step .head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 10px; }
+.tag{ font-size:11px; font-weight:650; padding:1px 8px; border-radius:999px; background:var(--lane-soft); color:var(--fg); border:1px solid var(--lane); }
+.loc{ display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; margin-top:6px; font-size:13px; }
+.loc a{ color:var(--accent); text-decoration:none; font-family:var(--mono); font-size:12.5px; word-break:break-all; }
+.loc a:hover{ text-decoration:underline; }
+a.inline{ color:var(--accent); }
+.loc .fn{ font-family:var(--mono); font-size:12.5px; color:var(--fg-2); }
+.step p{ margin:6px 0 0; font-size:14px; color:var(--fg-2); }
+.step ul{ margin:6px 0 0; padding-left:18px; font-size:14px; color:var(--fg-2); }
+.browser{ --lane:var(--l-browser); --lane-soft:var(--l-browser-soft); }
+.server{ --lane:var(--l-server); --lane-soft:var(--l-server-soft); }
+.script{ --lane:var(--l-script); --lane-soft:var(--l-script-soft); }
+.file{ --lane:var(--l-file); --lane-soft:var(--l-file-soft); }
+.browser .dot{ background:var(--l-browser); } .server .dot{ background:var(--l-server); }
+.script .dot{ background:var(--l-script); } .file .dot{ background:var(--l-file); }
+
+.callout{ border-left:4px solid var(--accent); background:var(--panel); border-radius:8px; padding:12px 14px; margin:14px 0; font-size:14px; }
+table{ border-collapse:collapse; width:100%; font-size:13.5px; }
+th, td{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+th{ font-size:12px; color:var(--fg-2); }
+.tw{ overflow-x:auto; background:var(--panel); border:1px solid var(--line); border-radius:10px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>How the coverage app works</h1>
+  <p class="lead">Two flows: what happens when you press <b>Generate coverage database</b> (on the Generate tab), and
+    where the numbers on the <b>Dashboard</b> come from. Every step names the file, the line and the function;
+    click a location to open it in your editor.</p>
+
+  <div class="legend">
+    <span><i style="background:var(--l-browser)"></i>Browser: <code>coverage_app/static/</code></span>
+    <span><i style="background:var(--l-server)"></i>App server: <code>coverage_app/server.py</code></span>
+    <span><i style="background:var(--l-script)"></i>Python script: <code>code/check_coverage_database.py</code></span>
+    <span><i style="background:var(--l-file)"></i>Files on disk</span>
+  </div>
+  <div class="setting">Open links in
+    <select id="editor"><option value="cursor">Cursor</option><option value="vscode">VS Code</option><option value="none">(show path only)</option></select>
+    <span class="muted" id="root-note"></span>
+  </div>
+
+  <h2>Overview</h2>
+  <div class="card diagram">
+    <svg viewBox="0 0 960 560" role="img" aria-label="Overview: the browser calls server.py, which runs check_coverage_database.py to write the workbook; the dashboard reads the workbook back through server.py and computes the counts in app.js">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-2)"/>
+        </marker>
+      </defs>
+      <!-- lanes -->
+      <g>
+        <rect x="10" y="10" width="220" height="540" rx="10" style="fill:var(--l-browser-soft)"/>
+        <rect x="250" y="10" width="220" height="540" rx="10" style="fill:var(--l-server-soft)"/>
+        <rect x="490" y="10" width="220" height="540" rx="10" style="fill:var(--l-script-soft)"/>
+        <rect x="730" y="10" width="220" height="540" rx="10" style="fill:var(--l-file-soft)"/>
+        <text class="lane-t" x="120" y="34" text-anchor="middle">Browser</text>
+        <text class="lane-s" x="120" y="50" text-anchor="middle">index.html + app.js</text>
+        <text class="lane-t" x="360" y="34" text-anchor="middle">App server</text>
+        <text class="lane-s" x="360" y="50" text-anchor="middle">server.py</text>
+        <text class="lane-t" x="600" y="34" text-anchor="middle">Python script</text>
+        <text class="lane-s" x="600" y="50" text-anchor="middle">check_coverage_database.py</text>
+        <text class="lane-t" x="840" y="34" text-anchor="middle">Files</text>
+        <text class="lane-s" x="840" y="50" text-anchor="middle">inputs and outputs</text>
+      </g>
+
+      <text class="flow-t" x="20" y="80">A · GENERATE</text>
+      <!-- A boxes -->
+      <g>
+        <rect x="25" y="92" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-browser);stroke-width:1.5"/>
+        <text class="box-t" x="37" y="114">Generate button</text>
+        <text class="box-s" x="37" y="132">click handler → api()</text>
+
+        <rect x="265" y="92" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-server);stroke-width:1.5"/>
+        <text class="box-t" x="277" y="114">POST /api/generate</text>
+        <text class="box-s" x="277" y="132">start_job → thread</text>
+
+        <rect x="265" y="168" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-server);stroke-width:1.5"/>
+        <text class="box-t" x="277" y="190">_run_job()</text>
+        <text class="box-s" x="277" y="208">calls ccd.main(...)</text>
+
+        <rect x="505" y="168" width="190" height="70" rx="8" style="fill:var(--panel);stroke:var(--l-script);stroke-width:1.5"/>
+        <text class="box-t" x="517" y="190">main() → build()</text>
+        <text class="box-s" x="517" y="208">country × year facts</text>
+        <text class="box-s" x="517" y="224">write_workbook()</text>
+
+        <rect x="745" y="92" width="190" height="62" rx="8" style="fill:var(--panel);stroke:var(--l-file);stroke-width:1.5"/>
+        <text class="box-t" x="757" y="114">Inputs</text>
+        <text class="box-s" x="757" y="132">final_all_..._1028.csv</text>
+        <text class="box-s" x="757" y="146">pdf staff reports/&lt;batch&gt;/</text>
+
+        <rect x="745" y="232" width="190" height="62" rx="8" style="fill:var(--panel);stroke:var(--l-file);stroke-width:1.5"/>
+        <text class="box-t" x="757" y="254">Output (one version)</text>
+        <text class="box-s" x="757" y="272">coverage_database_</text>
+        <text class="box-s" x="757" y="286">  &lt;STAMP&gt;.xlsx + .json</text>
+
+        <rect x="25" y="232" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-browser);stroke-width:1.5"/>
+        <text class="box-t" x="37" y="254">Progress bar</text>
+        <text class="box-s" x="37" y="272">pollJob() every 1 s</text>
+      </g>
+      <!-- A arrows -->
+      <path class="arr gen" d="M215,119 H263" marker-end="url(#ah)"/>
+      <path class="arr gen" d="M360,146 V166" marker-end="url(#ah)"/>
+      <path class="arr gen" d="M455,195 H503" marker-end="url(#ah)"/>
+      <path class="arr gen" d="M745,123 H720 Q712,123 712,131 V176 Q712,184 704,184 H697" marker-end="url(#ah)"/>
+      <path class="arr gen" d="M695,222 H716 Q724,222 724,230 V255 Q724,263 732,263 H743" marker-end="url(#ah)"/>
+      <path class="arr dash" d="M263,214 H240 Q232,214 232,222 V251 Q232,259 224,259 H217" marker-end="url(#ah)"/>
+      <text class="box-s" x="236" y="300" text-anchor="middle">GET /api/job</text>
+
+      <line class="sep" x1="20" y1="322" x2="940" y2="322"/>
+
+      <text class="flow-t" x="20" y="350">B · DASHBOARD</text>
+      <!-- B boxes -->
+      <g>
+        <rect x="25" y="362" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-browser);stroke-width:1.5"/>
+        <text class="box-t" x="37" y="384">Version select</text>
+        <text class="box-s" x="37" y="402">setActive(stamp)</text>
+
+        <rect x="265" y="362" width="190" height="70" rx="8" style="fill:var(--panel);stroke:var(--l-server);stroke-width:1.5"/>
+        <text class="box-t" x="277" y="384">GET /api/runs/&lt;s&gt;/data</text>
+        <text class="box-s" x="277" y="402">coverage_payload()</text>
+        <text class="box-s" x="277" y="418">reads the xlsx sheets</text>
+
+        <rect x="745" y="362" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-file);stroke-width:1.5"/>
+        <text class="box-t" x="757" y="384">coverage_database_</text>
+        <text class="box-s" x="757" y="402">&lt;STAMP&gt;.xlsx</text>
+
+        <rect x="25" y="452" width="190" height="86" rx="8" style="fill:var(--panel);stroke:var(--l-browser);stroke-width:2.5"/>
+        <text class="box-t" x="37" y="474">Summary statistics</text>
+        <text class="box-s" x="37" y="492">yearBreakdown()</text>
+        <text class="box-s" x="37" y="508">reportLookup()</text>
+        <text class="box-s" x="37" y="524">drawChart() → SVG</text>
+      </g>
+      <!-- B arrows -->
+      <path class="arr gen" d="M215,389 H263" marker-end="url(#ah)"/>
+      <path class="arr gen" d="M745,389 H457" marker-end="url(#ah)"/>
+      <text class="box-s" x="600" y="381" text-anchor="middle">read (pandas)</text>
+      <path class="arr gen" d="M360,432 V495 H217" marker-end="url(#ah)"/>
+      <text class="box-s" x="290" y="488" text-anchor="middle">JSON</text>
+      <text class="box-s" x="600" y="470" text-anchor="middle">(the script is not run here:</text>
+      <text class="box-s" x="600" y="486" text-anchor="middle">the dashboard only reads</text>
+      <text class="box-s" x="600" y="502" text-anchor="middle">a saved version)</text>
+    </svg>
+  </div>
+
+  <!-- ============================================================ A -->
+  <h2>A. Generate coverage database</h2>
+  <p class="muted">The button is on the <b>Generate</b> tab. The browser never runs Python itself: it sends the
+    paths to the local app server, and the server runs the script in a background thread.</p>
+  <ol class="steps">
+    <li class="step browser"><div class="dot">1</div><div class="card">
+      <div class="head"><h3>The button</h3><span class="tag">Browser</span></div>
+      <div class="loc" data-file="coverage_app/static/index.html" data-line="66"><span class="fn">&lt;button id="btn-generate"&gt;</span></div>
+      <p>Plain HTML. Next to it on the page: the Final CSV box (<code>in-csv</code>), the Staff reports folder
+        (<code>in-pdf</code>), the subfolder chips and the Version stamp.</p>
+    </div></li>
+    <li class="step browser"><div class="dot">2</div><div class="card">
+      <div class="head"><h3>Click handler: send the request</h3><span class="tag">Browser</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="147"><span class="fn">$("btn-generate").addEventListener("click", …)</span></div>
+      <p>Re-checks the paths (<code>inspectPaths()</code> → <code>POST /api/inspect</code>), collects the ticked
+        subfolders, then posts <code>{final_csv, pdf_root, batches, stamp}</code> to <code>/api/generate</code>
+        through <code>api()</code> (line 22, a small <code>fetch</code> wrapper). Then starts polling.</p>
+    </div></li>
+    <li class="step server"><div class="dot">3</div><div class="card">
+      <div class="head"><h3>Server receives the POST</h3><span class="tag">App server</span></div>
+      <div class="loc" data-file="coverage_app/server.py" data-line="308"><span class="fn">Handler.do_POST()</span></div>
+      <p>Routes <code>/api/generate</code> to <code>start_job()</code>.</p>
+    </div></li>
+    <li class="step server"><div class="dot">4</div><div class="card">
+      <div class="head"><h3>Check inputs, start a background thread</h3><span class="tag">App server</span></div>
+      <div class="loc" data-file="coverage_app/server.py" data-line="195"><span class="fn">start_job(body)</span></div>
+      <p>Checks the CSV and folders exist, the stamp is valid, and no other run is going. Makes the stamp unique
+        (<code>unique_stamp()</code>, line 93: adds <code>_2</code>, <code>_3</code> …), then starts
+        <code>_run_job</code> in a thread and answers at once, so the page does not freeze.</p>
+    </div></li>
+    <li class="step server"><div class="dot">5</div><div class="card">
+      <div class="head"><h3>The line that runs the Python code</h3><span class="tag">App server</span></div>
+      <div class="loc" data-file="coverage_app/server.py" data-line="184"><span class="fn">_run_job() → ccd.main(final_csv=…, pdf_root=…, out_dir=…, stamp=…, batches=…, progress=_progress)</span></div>
+      <p><code>ccd</code> is <code>check_coverage_database</code>, imported at
+        <a class="inline" data-file="coverage_app/server.py" data-line="46">server.py:46</a>. Its printed output is captured
+        into the job log (<code>_LogWriter</code>), and <code>_progress()</code> (line 172) updates the progress bar.
+        It is the same <code>main()</code> you get with <code>python code/check_coverage_database.py</code>.</p>
+    </div></li>
+    <li class="step script"><div class="dot">6</div><div class="card">
+      <div class="head"><h3>main(): build, write the version</h3><span class="tag">Python script</span></div>
+      <div class="loc" data-file="code/check_coverage_database.py" data-line="374"><span class="fn">main()</span></div>
+      <p>Calls <code>build()</code>, then <code>by_year()</code>, then writes the workbook and the run record (JSON with the
+        CSV's size, modified time and SHA-256).</p>
+    </div></li>
+    <li class="step script"><div class="dot">7</div><div class="card">
+      <div class="head"><h3>build(): one row per country and year</h3><span class="tag">Python script</span></div>
+      <div class="loc" data-file="code/check_coverage_database.py" data-line="242"><span class="fn">build()</span></div>
+      <ul>
+        <li><b>Values</b>: <a class="inline" data-file="code/gapfill_panel_coverage_report.py" data-line="74">load_rows()</a>
+          reads the final CSV and gives each row the year the value is for; country names via
+          <a class="inline" data-file="code/gapfill_lib_core.py" data-line="76">normalize_country()</a>.</li>
+        <li><b>Staff reports</b>: <a class="inline" data-file="code/check_coverage_database.py" data-line="122">read_pdfs()</a>
+          lists the PDFs in the chosen subfolders and reads country + publication year from the file name;
+          <a class="inline" data-file="code/check_coverage_database.py" data-line="151">keep_panel_reports()</a> drops regional
+          reports; <a class="inline" data-file="code/check_coverage_database.py" data-line="163">report_country_years()</a>
+          gives the (country, year) pairs.</li>
+        <li><b>Source of each value</b>: <a class="inline" data-file="code/check_coverage_database.py" data-line="186">value_sources()</a>
+          picks Round 1 → Round 2 → Round 3 → Gap fill when several rounds give a value.</li>
+        <li><b>Indicator columns</b>: <a class="inline" data-file="code/check_coverage_database.py" data-line="215">indicator_columns()</a>
+          names one column per hierarchy_id (<code>h6_residual</code> …).</li>
+      </ul>
+    </div></li>
+    <li class="step file"><div class="dot">8</div><div class="card">
+      <div class="head"><h3>Saved to output/coverage/</h3><span class="tag">Files</span></div>
+      <div class="loc" data-file="code/check_coverage_database.py" data-line="340"><span class="fn">write_workbook()</span></div>
+      <p><code>coverage_database_&lt;STAMP&gt;.xlsx</code> with sheets <b>Coverage</b> (Yes/No), <b>By year</b>,
+        <b>Sources</b>, <b>Report years</b>, <b>Indicators</b>, <b>Notes</b>; and <code>coverage_database_&lt;STAMP&gt;.json</code>
+        (the version record). Folder set by <code>OUT_DIR</code> in the script's settings.</p>
+    </div></li>
+    <li class="step browser"><div class="dot">9</div><div class="card">
+      <div class="head"><h3>Progress bar and version history</h3><span class="tag">Browser</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="121"><span class="fn">pollJob() → GET /api/job</span></div>
+      <p>Asks the server every second how far the run is (<code>setJobState()</code>, line 99, draws the bar).
+        When done, <code>loadRuns()</code> (line 164 → <code>GET /api/runs</code> → <code>list_runs()</code> in server.py line 65)
+        reloads the version list, which is simply every <code>coverage_database_*.xlsx</code> + <code>.json</code> in the folder.</p>
+    </div></li>
+  </ol>
+
+  <!-- ============================================================ B -->
+  <h2>B. Dashboard</h2>
+  <div class="callout">
+    <b>Where the analysis is.</b> It is split in two:
+    <br>① The <b>Python script</b> works out the facts per country and year (has a value? from which round? which
+    years have a staff report?) and saves them in the workbook, in <code>build()</code>.
+    <br>② The <b>summary statistics</b> you see (counts per year by source, Unavailable, the T+1…T+4 split, the three
+    numbers at the top) are counted <b>in the browser</b>, in <code>app.js</code>: <code>yearBreakdown()</code> and
+    <code>drawChart()</code>. That is why switching the indicator or T+k is instant: nothing is re-run in Python.
+    <br><span class="muted">The workbook's "By year" sheet (<code>by_year()</code>, script line 303) is a separate
+    summary for Excel; the Dashboard does not read it.</span>
+  </div>
+  <ol class="steps">
+    <li class="step browser"><div class="dot">1</div><div class="card">
+      <div class="head"><h3>Pick a version</h3><span class="tag">Browser</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="207"><span class="fn">setActive(stamp)</span></div>
+      <p>Runs when the Version dropdown changes (or on start). Requests <code>GET /api/runs/&lt;stamp&gt;/data</code>; the
+        answer is kept in <code>S.data</code> and feeds both the Database and the Dashboard tab.</p>
+    </div></li>
+    <li class="step server"><div class="dot">2</div><div class="card">
+      <div class="head"><h3>Route the request</h3><span class="tag">App server</span></div>
+      <div class="loc" data-file="coverage_app/server.py" data-line="271"><span class="fn">Handler.do_GET()</span></div>
+      <p>Finds the workbook for the stamp (<code>workbook_for()</code>, line 87) and calls <code>coverage_payload()</code>.</p>
+    </div></li>
+    <li class="step server"><div class="dot">3</div><div class="card">
+      <div class="head"><h3>Read the saved workbook, send it compact</h3><span class="tag">App server</span></div>
+      <div class="loc" data-file="coverage_app/server.py" data-line="106"><span class="fn">coverage_payload(path)</span></div>
+      <p>Reads the sheets with pandas and sends, for 4,750 rows: the country and year of each row; per column a string of
+        <code>1</code>/<code>0</code> (from Coverage); per indicator a string of source codes <code>1 2 3 g 0</code>
+        (from Sources); per country its publication years (from Report years). No counting happens here.</p>
+    </div></li>
+    <li class="step browser"><div class="dot">4</div><div class="card">
+      <div class="head"><h3>Indicator slicer and T+k switch</h3><span class="tag">Browser</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="349"><span class="fn">setupSlicer()</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="370"><span class="fn">setSpan(k)</span></div>
+      <p>Each change calls <code>drawChart()</code> again. The buttons themselves are in
+        <a class="inline" data-file="coverage_app/static/index.html" data-line="147">index.html:147</a>.</p>
+    </div></li>
+    <li class="step browser"><div class="dot">5</div><div class="card">
+      <div class="head"><h3>The summary statistics</h3><span class="tag">Browser</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="399"><span class="fn">yearBreakdown(ind, k)</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="383"><span class="fn">reportLookup()</span></div>
+      <ul>
+        <li>Goes through all country-year rows once. For each year: <code>total</code>, and per source
+          <code>r1 r2 r3 gf</code> from the source code of the chosen indicator; code <code>0</code> counts as
+          <code>unavail</code>.</li>
+        <li>With T+k on: for an unavailable country in year T, checks the country's report years
+          (from <code>reportLookup()</code>) for T+1 … T+k. None found → <code>nolater</code> (the hatched part, name
+          added to <code>list</code>); otherwise <code>later</code>.</li>
+        <li><code>partial</code> marks years where T+k goes past the last year with PDFs (the <code>*</code>).</li>
+      </ul>
+    </div></li>
+    <li class="step browser"><div class="dot">6</div><div class="card">
+      <div class="head"><h3>Draw it</h3><span class="tag">Browser</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="442"><span class="fn">drawChart()</span></div>
+      <p>The three numbers at the top (country-years, with data, coverage %), the stacked columns (SVG), the count above
+        each column, the tooltip, the country list when a column is clicked, and the "Show the numbers" table, all from the
+        rows of <code>yearBreakdown()</code>.</p>
+    </div></li>
+  </ol>
+
+  <h2>All files at a glance</h2>
+  <div class="tw"><table>
+    <thead><tr><th>File</th><th>Role</th><th>Key functions</th></tr></thead>
+    <tbody>
+      <tr><td><a class="inline" data-file="coverage_app/start.command" data-line="1">coverage_app/start.command</a><br><a class="inline" data-file="coverage_app/start.bat" data-line="1">coverage_app/start.bat</a></td>
+        <td>Starts the app server (Mac / Windows)</td><td>runs <code>python coverage_app/server.py</code></td></tr>
+      <tr><td><a class="inline" data-file="coverage_app/static/index.html" data-line="1">coverage_app/static/index.html</a></td>
+        <td>Page layout: tabs, form, tables, chart area</td><td>—</td></tr>
+      <tr><td><a class="inline" data-file="coverage_app/static/app.js" data-line="1">coverage_app/static/app.js</a></td>
+        <td>Everything in the browser: buttons, Database table, <b>Dashboard counts and chart</b></td>
+        <td><code>api</code>, click handler, <code>pollJob</code>, <code>setActive</code>, <code>yearBreakdown</code>, <code>drawChart</code></td></tr>
+      <tr><td><a class="inline" data-file="coverage_app/server.py" data-line="1">coverage_app/server.py</a></td>
+        <td>Local web server (127.0.0.1:8765): runs the script, lists versions, serves workbook data</td>
+        <td><code>start_job</code>, <code>_run_job</code>, <code>list_runs</code>, <code>coverage_payload</code></td></tr>
+      <tr><td><a class="inline" data-file="code/check_coverage_database.py" data-line="1">code/check_coverage_database.py</a></td>
+        <td><b>The Python that builds the database</b>; also runs on its own from the command line</td>
+        <td><code>main</code>, <code>build</code>, <code>read_pdfs</code>, <code>value_sources</code>, <code>by_year</code>, <code>write_workbook</code></td></tr>
+      <tr><td><a class="inline" data-file="code/gapfill_panel_coverage_report.py" data-line="74">code/gapfill_panel_coverage_report.py</a><br>
+        <a class="inline" data-file="code/gapfill_lib_core.py" data-line="76">code/gapfill_lib_core.py</a></td>
+        <td>Shared helpers the script imports</td><td><code>load_rows</code>, <code>normalize_country</code></td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted" style="margin-top:14px">Line numbers as of commit 851b61b (2026-11-11). If the code changes, the function names still find the place.</p>
+</main>
+<script>
+(function () {
+  // Project folder = two levels up from this page (…/SFA/coverage_app/how_it_works.html), so links work on any machine
+  var path = decodeURIComponent(location.pathname).replace(/\/[^/]*$/, "").replace(/\/[^/]*$/, "");
+  if (/^\/[A-Za-z]:\//.test(path)) path = path.slice(1);           // Windows: /C:/... -> C:/...
+  var isFile = location.protocol === "file:";
+  var sel = document.getElementById("editor");
+  try { sel.value = localStorage.getItem("flow_editor") || "cursor"; } catch (e) {}
+  document.getElementById("root-note").textContent = isFile ? "Project folder: " + path : "Open this file from disk to get editor links.";
+
+  function render() {
+    var ed = sel.value;
+    document.querySelectorAll("[data-file]").forEach(function (n) {
+      var rel = n.dataset.file, line = n.dataset.line;
+      var href = isFile && ed !== "none" ? ed + "://file/" + encodeURI(path + "/" + rel) + ":" + line : null;
+      if (n.classList.contains("loc")) {
+        var a = n.querySelector("a.src") || n.insertBefore(document.createElement("a"), n.firstChild);
+        a.className = "src"; a.textContent = rel + ":" + line;
+        if (href) a.href = href; else a.removeAttribute("href");
+      } else if (href) { n.href = href; } else { n.removeAttribute("href"); n.title = rel + ":" + line; }
+    });
+  }
+  sel.addEventListener("change", function () { try { localStorage.setItem("flow_editor", sel.value); } catch (e) {} render(); });
+  render();
+})();
+</script>
+</body>
+</html>

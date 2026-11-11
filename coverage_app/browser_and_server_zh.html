@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>浏览器与本地服务器</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f6f6f4; --panel:#fff; --fg:#17171a; --fg-2:#4f4f57; --muted:#75757e; --line:#e2e2e6; --line-2:#cdcdd3;
+  --accent:#1d4ed8;
+  --c-browser:#2a78d6; --c-server:#eda100; --c-os:#8a8a95; --c-script:#1baf7a;
+  --s-browser:#e9f1fb; --s-server:#fdf4e1; --s-os:#f0f0f2; --s-script:#e5f6ef;
+  --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141416; --panel:#1d1d21; --fg:#efeff2; --fg-2:#c4c4cb; --muted:#9a9aa3; --line:#2e2e35; --line-2:#44444d;
+  --accent:#7b9bff;
+  --c-browser:#3987e5; --c-server:#c98500; --c-os:#8a8a95; --c-script:#199e70;
+  --s-browser:#1b2738; --s-server:#2e2615; --s-os:#26262b; --s-script:#152a22;
+}}
+:root[data-theme="dark"]{
+  --bg:#141416; --panel:#1d1d21; --fg:#efeff2; --fg-2:#c4c4cb; --muted:#9a9aa3; --line:#2e2e35; --line-2:#44444d;
+  --accent:#7b9bff;
+  --c-browser:#3987e5; --c-server:#c98500; --c-os:#8a8a95; --c-script:#199e70;
+  --s-browser:#1b2738; --s-server:#2e2615; --s-os:#26262b; --s-script:#152a22;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--bg); color:var(--fg); font:15.5px/1.7 var(--font); }
+main{ max-width:58rem; margin:0 auto; padding:32px 16px 64px; }
+h1{ font-size:24px; margin:0 0 6px; }
+h2{ font-size:19px; margin:40px 0 4px; display:flex; gap:10px; align-items:baseline; }
+h2 .q{ font-size:12px; font-weight:700; color:#fff; background:var(--accent); border-radius:6px; padding:1px 8px; }
+p{ margin:8px 0; }
+.lead{ color:var(--fg-2); }
+.muted{ color:var(--muted); }
+code{ font-family:var(--mono); font-size:13px; background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:0 5px; }
+pre{ font-family:var(--mono); font-size:13px; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 12px; overflow-x:auto; margin:8px 0; }
+.ask{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px 14px; color:var(--fg-2); font-size:14.5px; }
+.ask b{ color:var(--fg); }
+.answer{ border-left:4px solid var(--accent); background:var(--panel); border-radius:8px; padding:12px 14px; margin:12px 0; font-size:16px; }
+.card{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; }
+.diagram svg{ display:block; width:100%; height:auto; }
+.diagram text{ font-family:var(--font); fill:var(--fg); }
+.diagram .t{ font-size:15px; font-weight:700; }
+.diagram .s{ font-size:12.5px; fill:var(--fg-2); }
+.diagram .m{ font-size:12px; fill:var(--fg-2); font-family:var(--mono); }
+.diagram .arr{ fill:none; stroke:var(--fg-2); stroke-width:1.7; }
+table{ border-collapse:collapse; width:100%; font-size:14.5px; }
+th, td{ text-align:left; padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+th{ font-size:13px; color:var(--fg-2); }
+.tw{ overflow-x:auto; background:var(--panel); border:1px solid var(--line); border-radius:10px; }
+.swatch{ display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:6px; vertical-align:middle; }
+ol.steps{ list-style:none; padding:0; margin:12px 0; counter-reset:s; }
+ol.steps li{ counter-increment:s; position:relative; padding:0 0 14px 44px; }
+ol.steps li::before{ content:counter(s); position:absolute; left:0; top:0; width:30px; height:30px; border-radius:50%;
+  display:grid; place-items:center; background:var(--accent); color:#fff; font-weight:700; font-size:13px; }
+ol.steps li:not(:last-child)::after{ content:""; position:absolute; left:14px; top:32px; bottom:2px; width:2px; background:var(--line-2); }
+ol.steps li > b:first-child{ display:block; }
+.proof{ display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,15rem),1fr)); gap:10px; margin-top:10px; }
+.proof .card{ font-size:14.5px; }
+.proof .card b{ display:block; margin-bottom:2px; }
+.note{ font-size:13.5px; color:var(--muted); margin-top:28px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>浏览器和本地服务器是怎么配合的</h1>
+  <p class="lead">DSA Coverage 应用（<code>coverage_app/</code>）里两个问题的回答。背景：<code>/api/generate</code> 不是 Claude 或任何云端 API，
+    而是本机上 <code>server.py</code> 自己定义的一个地址，请求不出这台电脑，也不需要网络和 API key。</p>
+
+  <!-- ============================================================ Q1 -->
+  <h2><span class="q">问题 1</span>“send request” 到底发到了哪里？</h2>
+  <div class="ask"><b>你的问题：</b>Click handler 里 send request，这不是我的 local server 吗？意思是从 local server 发请求给 local server 吗？</div>
+  <div class="answer">不是自己发给自己。你的电脑上同时运行着<b>两个独立的程序</b>：<b>浏览器</b>和 <b>Python 进程</b>。
+    “send request” 是<b>浏览器</b>发给 <b>Python 进程</b>（<code>server.py</code>）。</div>
+
+  <div class="card diagram">
+    <svg viewBox="0 0 900 330" role="img" aria-label="同一台电脑上的两个程序：浏览器运行 app.js，Python 进程运行 server.py；浏览器发送 POST /api/generate，server.py 调用 check_coverage_database.py 并返回结果">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-2)"/>
+        </marker>
+      </defs>
+      <rect x="6" y="6" width="888" height="318" rx="14" style="fill:none;stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:6 5"/>
+      <text class="s" x="24" y="32">你的电脑（127.0.0.1 = 本机）</text>
+
+      <rect x="30" y="56" width="300" height="240" rx="12" style="fill:var(--s-browser);stroke:var(--c-browser);stroke-width:1.6"/>
+      <text class="t" x="50" y="88">程序一：浏览器</text>
+      <text class="s" x="50" y="110">Chrome / Safari（客户端）</text>
+      <rect x="50" y="128" width="260" height="70" rx="8" style="fill:var(--panel);stroke:var(--line-2)"/>
+      <text class="m" x="64" y="154">index.html  页面</text>
+      <text class="m" x="64" y="178">app.js      按钮、图表</text>
+      <text class="s" x="50" y="230">你点击 Generate 后，</text>
+      <text class="s" x="50" y="252">app.js 在浏览器里运行</text>
+      <text class="m" x="50" y="276">api("/api/generate", …)</text>
+
+      <rect x="570" y="56" width="300" height="240" rx="12" style="fill:var(--s-server);stroke:var(--c-server);stroke-width:1.6"/>
+      <text class="t" x="590" y="88">程序二：Python 进程</text>
+      <text class="s" x="590" y="110">本地服务器，监听 127.0.0.1:8765</text>
+      <rect x="590" y="128" width="260" height="44" rx="8" style="fill:var(--panel);stroke:var(--line-2)"/>
+      <text class="m" x="604" y="155">server.py   do_POST → start_job</text>
+      <rect x="590" y="186" width="260" height="44" rx="8" style="fill:var(--s-script);stroke:var(--c-script)"/>
+      <text class="m" x="604" y="213">check_coverage_database.py</text>
+      <path class="arr" d="M720,172 V184" marker-end="url(#ah)"/>
+      <text class="s" x="590" y="256">真正跑 Python、读 CSV 和 PDF、</text>
+      <text class="s" x="590" y="278">写出 xlsx 的是这里</text>
+
+      <path class="arr" d="M330,150 H566" marker-end="url(#ah)"/>
+      <text class="m" x="448" y="140" text-anchor="middle">① POST /api/generate</text>
+      <text class="s" x="448" y="168" text-anchor="middle">（路径、子文件夹、版本号）</text>
+      <path class="arr" d="M570,232 H334" marker-end="url(#ah)"/>
+      <text class="m" x="452" y="222" text-anchor="middle">② 回复 + GET /api/job 进度</text>
+    </svg>
+  </div>
+
+  <div class="tw" style="margin-top:14px"><table>
+    <thead><tr><th>程序</th><th>角色</th><th>里面运行什么</th></tr></thead>
+    <tbody>
+      <tr><td><span class="swatch" style="background:var(--c-browser)"></span>浏览器</td><td>客户端：显示页面、响应你的点击</td><td><code>index.html</code>、<code>app.js</code></td></tr>
+      <tr><td><span class="swatch" style="background:var(--c-server)"></span>Python 进程</td><td>服务器：干活（跑 Python）并回复</td><td><code>server.py</code> → <code>check_coverage_database.py</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <ol class="steps">
+    <li><b>启动</b>双击 start.command，运行 <code>server.py</code>，这个 Python 程序在后台等待 127.0.0.1:8765 上的请求。</li>
+    <li><b>打开页面</b>浏览器向服务器要页面，服务器把 <code>index.html</code>、<code>app.js</code>、<code>app.css</code> 这几个文件发给浏览器。</li>
+    <li><b>代码在浏览器里运行</b>从这一刻起，<code>app.js</code> 是在<b>浏览器里</b>运行的，不是在服务器里。服务器只是把文件“递”了过去。</li>
+    <li><b>点击 Generate</b>浏览器里的 <code>app.js</code> 执行 <code>api("/api/generate", body)</code>，通过本机网络连接把请求发给 Python 进程。
+      地址里没写域名，所以默认发回打开这个页面的同一个地址：<code>http://127.0.0.1:8765/api/generate</code>。</li>
+    <li><b>Python 进程处理</b><code>server.py</code> 的 <code>do_POST</code> 收到请求，调用 <code>check_coverage_database.main()</code>。
+      浏览器里的 JavaScript 本身不能运行 Python，所以只能请 Python 进程来做。</li>
+  </ol>
+  <p class="muted">之所以感觉像“local 发给 local”，是因为两个程序在同一台电脑上，请求从不离开这台机器。但确实是两个程序在对话：浏览器提要求，Python 进程干活并回复。</p>
+
+  <!-- ============================================================ Q2 -->
+  <h2><span class="q">问题 2</span>浏览器是在 server.py 里打开的吗？</h2>
+  <div class="ask"><b>你的问题：</b>双击 start.command 会先启动 server.py，然后自动打开浏览器。那浏览器是在 server.py 里打开的吗？还是两者是分开的、同时触发的两件事？</div>
+  <div class="answer">两者都对一部分：浏览器是 <b>server.py 让 macOS 打开的</b>，但打开以后，浏览器就是<b>完全独立的程序</b>。
+    而且 start.command 并没有同时做两件事，它只做一件事（运行 server.py），后面是一条链。</div>
+
+  <div class="card diagram">
+    <svg viewBox="0 0 900 200" role="img" aria-label="启动链：start.command 运行 server.py；server.py 启动服务器，0.8 秒后调用 webbrowser.open 请 macOS 打开默认浏览器；浏览器访问 127.0.0.1:8765">
+      <defs>
+        <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-2)"/>
+        </marker>
+      </defs>
+      <rect x="10" y="40" width="180" height="84" rx="10" style="fill:var(--s-os);stroke:var(--c-os);stroke-width:1.5"/>
+      <text class="t" x="26" y="70">start.command</text>
+      <text class="s" x="26" y="94">只运行一条命令：</text>
+      <text class="m" x="26" y="114">python server.py</text>
+
+      <rect x="236" y="40" width="210" height="84" rx="10" style="fill:var(--s-server);stroke:var(--c-server);stroke-width:1.5"/>
+      <text class="t" x="252" y="70">server.py · main()</text>
+      <text class="s" x="252" y="94">① 开始监听 8765 端口</text>
+      <text class="s" x="252" y="114">② 0.8 秒后 webbrowser.open</text>
+
+      <rect x="492" y="40" width="170" height="84" rx="10" style="fill:var(--s-os);stroke:var(--c-os);stroke-width:1.5"/>
+      <text class="t" x="508" y="70">macOS</text>
+      <text class="s" x="508" y="94">“用默认浏览器</text>
+      <text class="s" x="508" y="114">打开这个网址”</text>
+
+      <rect x="708" y="40" width="182" height="84" rx="10" style="fill:var(--s-browser);stroke:var(--c-browser);stroke-width:1.5"/>
+      <text class="t" x="724" y="70">浏览器（独立）</text>
+      <text class="s" x="724" y="94">访问 127.0.0.1:8765</text>
+      <text class="s" x="724" y="114">向服务器要页面</text>
+
+      <path class="arr" d="M190,82 H232" marker-end="url(#ah2)"/>
+      <path class="arr" d="M446,82 H488" marker-end="url(#ah2)"/>
+      <path class="arr" d="M662,82 H704" marker-end="url(#ah2)"/>
+      <path class="arr" d="M799,124 V160 H341 V128" marker-end="url(#ah2)" style="stroke-dasharray:5 4"/>
+      <text class="s" x="570" y="182" text-anchor="middle">之后两者只通过 /api/… 请求对话</text>
+    </svg>
+  </div>
+
+  <p><code>coverage_app/server.py</code> 的 <code>main()</code> 里就是这一行：</p>
+  <pre>threading.Timer(0.8, lambda: webbrowser.open(url)).start()</pre>
+  <p><code>webbrowser.open(url)</code> 是 Python 自带的标准库，作用是告诉 macOS“用默认浏览器打开 <code>http://127.0.0.1:8765</code>”，
+    和你在邮件里点一个链接的效果一样。等 0.8 秒，是为了让服务器先启动好。</p>
+
+  <h3 style="font-size:15px;margin:20px 0 0">为什么说它们是分开的</h3>
+  <div class="proof">
+    <div class="card"><b>关掉浏览器标签</b>服务器照样运行。重新打开 <code>http://127.0.0.1:8765</code>，页面就回来了。</div>
+    <div class="card"><b>输入 q 停掉服务器</b>页面还开着，但按钮不再起作用，因为没有程序回复了。</div>
+    <div class="card"><b>输入 r 重启</b>不会再打开新的浏览器（带了 <code>--no-browser</code>），刷新原来的标签页即可。</div>
+  </div>
+
+  <p class="note">涉及的文件：<code>coverage_app/start.command</code>、<code>coverage_app/server.py</code>（<code>main()</code>、<code>do_POST</code>、<code>start_job</code>）、
+    <code>coverage_app/static/app.js</code>（Generate 按钮的点击处理）。完整链路和行号见 <code>coverage_app/how_it_works.html</code>。</p>
+</main>
+</body>
+</html>

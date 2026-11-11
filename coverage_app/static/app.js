@@ -450,7 +450,7 @@
     var nCountries = S.data.countries.length, rep = reportLookup();
     var parts = series.slice();
     if (k) {
-      parts.push({ key: "later", label: "Unavailable, staff report in T+1" + (k > 1 ? "…T+" + k : ""), color: "var(--s-unavail)" });
+      parts.push({ key: "later", label: "Unavailable, other reasons", color: "var(--s-unavail)" });
       parts.push({ key: "nolater", label: "Unavailable, no staff report in T+1" + (k > 1 ? "…T+" + k : ""), color: HATCH, swatch: HATCH_SWATCH });
     } else {
       parts.push({ key: "unavail", label: "Unavailable", color: "var(--s-unavail)" });
@@ -478,7 +478,7 @@
         '</span><span class="sub muted">' + fmtN(avail) + " of " + fmtN(total) + " country-years</span></div>";
 
     var yMax = nCountries;
-    var W = Math.max(320, wrap.clientWidth), H = Math.round(Math.min(440, Math.max(280, W * 0.4)));
+    var W = Math.max(320, wrap.clientWidth), H = Math.round(Math.min(520, Math.max(280, W * 0.36)));
     var m = { top: k ? 22 : 12, right: 8, bottom: 28, left: 38 }, iw = W - m.left - m.right, ih = H - m.top - m.bottom;
     var svg = el("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": "Stacked columns per year: countries by source of the " + ind + " value" });
     wrap.insertBefore(svg, tip);
@@ -531,7 +531,7 @@
       };
       var html = "<b>" + r.year + " · " + r.total + " countries</b>";
       parts.slice().reverse().forEach(function (p) {
-        var label = p.key === "later" ? { label: "Unavailable, staff report in " + spanText(r.year, k), color: p.color }
+        var label = p.key === "later" ? p
           : p.key === "nolater" ? { label: "Unavailable, no staff report in " + spanText(r.year, k), swatch: p.swatch } : p;
         html += line(label, r[p.key]);
       });
