@@ -4,7 +4,8 @@ Data-coverage database: one row per panel country and year, Yes/No for every pie
 
 Part 1 -- "Coverage" sheet (190 countries x 2001-2025 = 4,750 rows)
     country, year
-    has_staff_report   Yes if the country has at least one staff report PUBLISHED that year
+    has_staff_report   Yes if the country has at least one staff report PUBLISHED that year, from the
+                       raw PDFs in every batch folder of PDF_ROOT (BATCHES), read together
     has_dsa_table      Yes if at least one report published that year has a DSA table in the final data
                        (Round 1/2/3 rows in FINAL_CSV)
     h<id>_<name>       one column per hierarchy_id in FINAL_CSV: Yes if the country has a value for it
@@ -26,16 +27,14 @@ Read this before comparing columns
       (5.1 is "Privatization receipts" in some tables and "Contingent liabilities" in others). Each
       sub-level column is named after its most common label; the Indicators sheet lists the others.
 
-Where the reports come from (REPORT_SOURCE)
-    "pdf_folders"        the raw PDFs in the BATCHES sub-folders of PDF_ROOT (same as check_coverage.py)
-    "round1_summaries"   the report list in each batch's round1_check_report_summary_*.csv (works
-                         without the PDFs; it is the list of reports that went through extraction)
-    Either way, only the panel's countries are counted; regional reports and places outside the panel
-    are left out and listed when the script runs.
+Staff reports
+    Read from the PDF file names in the batch folders under PDF_ROOT (1999-2005, 2006-2010, ...), all
+    batches together, with check_coverage.py's read_pdfs(). Only the panel's countries are counted;
+    regional reports and places outside the panel are left out and listed when the script runs.
 
 Usage
     python check_coverage_database.py
-    python check_coverage_database.py --report-source round1_summaries
+    python check_coverage_database.py --pdf-root "D:/path/to/pdf staff reports"
     or edit the settings below and run the file from a console.
 """
 from __future__ import annotations
@@ -60,36 +59,15 @@ from gapfill_panel_coverage_report import ALL_HIERARCHIES, load_rows  # noqa: E4
 # ---------------------------------------------------------------- settings
 FINAL_CSV = ROOT / "output" / "gapfill" / "final_all_batches_with_gapfill_20261028.csv"
 YEARS = (2001, 2025)                      # panel years, one row per country per year
-REPORT_SOURCE = "pdf_folders"             # "pdf_folders" or "round1_summaries" (see the docstring)
 ANALYSIS_INDICATORS = ["5", "6"]          # hierarchy_ids counted in the "By year" sheet
 OUT_XLSX = ROOT / "output" / "coverage" / "coverage_database.xlsx"
 
 
 # ================================================================= reports
-def reports_from_round1_summaries(batches=BATCHES) -> pd.DataFrame:
-    """Every report in each batch's Round 1 check summary, in the same shape as read_pdfs()."""
-    rows = []
-    for b in batches:
-        found = sorted((ROOT / "output" / b).glob("round1_check_*/round1_check_report_summary_*.csv"))
-        if not found:
-            raise FileNotFoundError(f"no round1_check_report_summary_*.csv under output/{b}")
-        for name in pd.read_csv(found[-1], dtype=str)["pdf_file_name"].dropna():
-            m = NAME_RE.match(name)
-            if m:
-                rows.append({"pdf_file_name": name, "batch": b, "country_raw": m.group("country"),
-                             "country_key": country_key(m.group("country")), "year": int(m.group("year"))})
-    return pd.DataFrame(rows).drop_duplicates("pdf_file_name")
-
-
-def report_country_years(source: str, panel: set) -> set:
-    if source == "pdf_folders":
-        pdfs = read_pdfs(PDF_ROOT, BATCHES)
-    elif source == "round1_summaries":
-        pdfs = reports_from_round1_summaries(BATCHES)
-    else:
-        raise ValueError(f"REPORT_SOURCE must be 'pdf_folders' or 'round1_summaries', got {source!r}")
-    pdfs = keep_panel_reports(pdfs, panel)
-    print(f"Staff reports ({source}): {len(pdfs):,} PDFs of panel countries")
+def report_country_years(panel: set, pdf_root: Path = PDF_ROOT, batches=BATCHES) -> set:
+    """(country, publication year) of every raw staff-report PDF of a panel country, all batches together."""
+    pdfs = keep_panel_reports(read_pdfs(pdf_root, batches), panel)
+    print(f"Staff reports: {len(pdfs):,} PDFs of panel countries in {pdf_root} ({', '.join(batches)})")
     return set(zip(pdfs["country_key"], pdfs["year"]))
 
 
@@ -142,7 +120,7 @@ def yes_no(mask) -> list:
     return ["Yes" if v else "No" for v in mask]
 
 
-def build(final_csv: Path = FINAL_CSV, years: tuple = YEARS, report_source: str = REPORT_SOURCE):
+def build(final_csv: Path = FINAL_CSV, years: tuple = YEARS, pdf_root: Path = PDF_ROOT):
     final = pd.read_csv(final_csv, usecols=["country", "pdf_file_name", "source_round", "hierarchy_id", "level",
                                             "top_category", "label_verbatim"], dtype=str)
     panel = panel_countries(final_csv)
@@ -153,7 +131,7 @@ def build(final_csv: Path = FINAL_CSV, years: tuple = YEARS, report_source: str 
     grid = pd.MultiIndex.from_product([sorted(panel, key=lambda k: labels.get(k, k)), panel_years],
                                       names=["country_key", "year"]).to_frame(index=False)
     keys = list(zip(grid["country_key"], grid["year"]))
-    reports = report_country_years(report_source, panel)
+    reports = report_country_years(panel, pdf_root)
     dsa = dsa_country_years(final)
 
     cov = pd.DataFrame({"country": grid["country_key"].map(lambda k: labels.get(k, k)), "year": grid["year"],
@@ -168,7 +146,7 @@ def build(final_csv: Path = FINAL_CSV, years: tuple = YEARS, report_source: str 
     odd = sum(1 for k in keys if k in dsa and k not in reports)
     if odd:
         print(f"NOTE: {odd} country-year(s) have a DSA table in the final data but no staff report in the "
-              f"report list ({report_source}); check whether those PDFs are missing from it")
+              f"raw PDF folders; check whether those PDFs are missing there")
     return cov, ind
 
 
@@ -186,11 +164,11 @@ def by_year(cov: pd.DataFrame, ind: pd.DataFrame, analysis=ANALYSIS_INDICATORS) 
     return out
 
 
-def notes(report_source: str) -> pd.DataFrame:
+def notes() -> pd.DataFrame:
     return pd.DataFrame([
         ("Coverage", f"One row per panel country and year ({YEARS[0]}-{YEARS[1]}). Every cell after country/year is Yes or No."),
         ("has_staff_report", "Yes if the country has at least one staff report published that year "
-                             f"(source: {report_source}). Regional reports and places outside the panel are left out."),
+                             "(raw PDFs in all batch folders). Regional reports and places outside the panel are left out."),
         ("has_dsa_table", "Yes if at least one report published that year has a DSA table in the final data "
                           f"(Round 1/2/3 rows in {Path(FINAL_CSV).name})."),
         ("h<id>_<name>", "Yes if the country has a value for that hierarchy_id for that year (the year the value is "
@@ -203,14 +181,14 @@ def notes(report_source: str) -> pd.DataFrame:
     ], columns=["Item", "Meaning"])
 
 
-def main(final_csv: Path = FINAL_CSV, report_source: str = REPORT_SOURCE, out_xlsx: Path | None = OUT_XLSX):
-    cov, ind = build(final_csv, YEARS, report_source)
+def main(final_csv: Path = FINAL_CSV, pdf_root: Path = PDF_ROOT, out_xlsx: Path | None = OUT_XLSX):
+    cov, ind = build(final_csv, YEARS, pdf_root)
     summary = by_year(cov, ind)
     print(f"\nCoverage: {len(cov):,} rows ({cov['country'].nunique()} countries x {cov['year'].nunique()} years), "
           f"{len(ind)} indicator columns\n")
     print(summary.to_string(index=False))
     if out_xlsx is not None:
-        write_workbook({"Coverage": cov, "By year": summary, "Indicators": ind, "Notes": notes(report_source)},
+        write_workbook({"Coverage": cov, "By year": summary, "Indicators": ind, "Notes": notes()},
                        Path(out_xlsx))
         print(f"\nWrote {out_xlsx}")
     return cov, summary, ind
@@ -218,7 +196,7 @@ def main(final_csv: Path = FINAL_CSV, report_source: str = REPORT_SOURCE, out_xl
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="Country-year data-coverage database (Yes/No).")
-    ap.add_argument("--report-source", default=REPORT_SOURCE, choices=["pdf_folders", "round1_summaries"])
+    ap.add_argument("--pdf-root", default=PDF_ROOT, help="folder holding the batch folders")
     ap.add_argument("--no-excel", action="store_true", help="print only, write no workbook")
     a, _ = ap.parse_known_args()  # parse_known_args: consoles can pass their own extra arguments
-    main(report_source=a.report_source, out_xlsx=None if a.no_excel else OUT_XLSX)
+    main(pdf_root=Path(a.pdf_root), out_xlsx=None if a.no_excel else OUT_XLSX)
