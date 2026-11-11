@@ -29,7 +29,7 @@ Read this before comparing columns
 
 Staff reports
     Read from the PDF file names in the batch folders under PDF_ROOT (1999-2005, 2006-2010, ...), all
-    batches together, with check_coverage.py's read_pdfs(). Only the panel's countries are counted;
+    batches together (read_pdfs() below). Only the panel's countries are counted;
     regional reports and places outside the panel are left out and listed when the script runs.
 
 Usage
@@ -47,25 +47,92 @@ from pathlib import Path
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
-if not (HERE / "check_coverage.py").exists() and (HERE / "code" / "check_coverage.py").exists():
+if not (HERE / "gapfill_lib_core.py").exists() and (HERE / "code" / "gapfill_lib_core.py").exists():
     HERE = HERE / "code"
 ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
-from check_coverage import (  # noqa: E402
-    BATCHES, NAME_RE, PDF_ROOT, country_key, keep_panel_reports, panel_countries, read_pdfs, write_workbook,
-)
+from gapfill_lib_core import normalize_country  # noqa: E402
 from gapfill_panel_coverage_report import ALL_HIERARCHIES, load_rows  # noqa: E402
 
 # ---------------------------------------------------------------- settings
 FINAL_CSV = ROOT / "output" / "gapfill" / "final_all_batches_with_gapfill_20261028.csv"
+PDF_ROOT = ROOT / "staff_reports" / "pdf staff reports"   # holds one sub-folder per batch
+BATCHES = ["1999-2005", "2006-2010", "2011-2015", "2016-2020", "2021-2026"]  # batch folders read, all together
 YEARS = (2001, 2025)                      # panel years, one row per country per year
 ANALYSIS_INDICATORS = ["5", "6"]          # hierarchy_ids counted in the "By year" sheet
 OUT_XLSX = ROOT / "output" / "coverage" / "coverage_database.xlsx"
 
+# Old or alternative names that normalize_country() does not merge -> the panel's name (lower case)
+EXTRA_ALIASES = {
+    "azerbaijan republic": "azerbaijan",
+    "islamic state of afghanistan": "afghanistan",
+    "socialist people's libyan arab jamahiriya": "libya",
+    "swaziland": "eswatini",
+    "federal republic of yugoslavia": "serbia and montenegro",
+}
+# File-name prefixes that are not one country (matched case-insensitively)
+NOT_A_COUNTRY = re.compile(
+    r"cluster|multi-country|central and eastern europe|euro area|monetary (?:community|union)|currency union", re.I)
+# A staff-report file name: "<Country>_<YYYY-MM-DD>...pdf", e.g. "Haiti_2020-04-20_CR2020-123.pdf"
+NAME_RE = re.compile(r"^(?P<country>.+?)_(?P<year>\d{4})-\d{2}-\d{2}")
+
+
+def country_key(raw: str) -> str:
+    """One spelling per country, so different spellings in file names and in the final CSV match."""
+    key = normalize_country(str(raw).strip()).casefold()
+    return EXTRA_ALIASES.get(key, key)
+
+
+def panel_countries(final_csv: Path = FINAL_CSV) -> set:
+    """The panel: every country in the final CSV (190)."""
+    names = pd.read_csv(final_csv, usecols=["country"], dtype=str)["country"].dropna().unique()
+    return {country_key(n) for n in names}
+
 
 # ================================================================= reports
+def read_pdfs(pdf_root: Path = PDF_ROOT, batches=BATCHES) -> pd.DataFrame:
+    """List every PDF in the batch folders (all of them together) and read country and publication year
+    from its file name. One row per file name: a PDF found in two batch folders counts once."""
+    rows, unparsed = [], []
+    for b in batches:
+        folder = Path(pdf_root) / b
+        if not folder.is_dir():
+            raise FileNotFoundError(f"batch folder not found: {folder}")
+        for f in sorted(folder.rglob("*.pdf")):
+            if not f.is_file() or f.name.startswith("~$"):
+                continue
+            m = NAME_RE.match(f.name)
+            if not m:
+                unparsed.append(f"{b}/{f.relative_to(folder)}")
+                continue
+            rows.append({"pdf_file_name": f.name, "batch": b, "country_raw": m.group("country"),
+                         "country_key": country_key(m.group("country")), "year": int(m.group("year"))})
+    df = pd.DataFrame(rows, columns=["pdf_file_name", "batch", "country_raw", "country_key", "year"])
+    dup = df.duplicated("pdf_file_name")
+    if dup.any():
+        print(f"NOTE: {int(dup.sum())} PDF(s) found in more than one batch folder; each counted once")
+        df = df[~dup]
+    if unparsed:
+        print(f"NOTE: {len(unparsed)} file name(s) not in '<Country>_<YYYY-MM-DD>' form, not counted:")
+        for name in unparsed:
+            print(f"    {name}")
+    return df
+
+
+def keep_panel_reports(pdfs: pd.DataFrame, panel: set) -> pd.DataFrame:
+    """Drop regional/cluster reports and places outside the panel, and list them."""
+    regional = pdfs["country_raw"].str.contains(NOT_A_COUNTRY)
+    outside = ~regional & ~pdfs["country_key"].isin(panel)
+    for label, mask in (("regional or cluster report", regional), ("not in the panel", outside)):
+        if mask.any():
+            print(f"Left out, {label}: {int(mask.sum())} PDF(s)")
+            for name in sorted(pdfs.loc[mask, "pdf_file_name"]):
+                print(f"    {name}")
+    return pdfs[~regional & ~outside]
+
+
 def report_country_years(panel: set, pdf_root: Path = PDF_ROOT, batches=BATCHES) -> set:
-    """(country, publication year) of every raw staff-report PDF of a panel country, all batches together."""
+    """(country, publication year) pairs that have at least one raw staff-report PDF -> has_staff_report."""
     pdfs = keep_panel_reports(read_pdfs(pdf_root, batches), panel)
     print(f"Staff reports: {len(pdfs):,} PDFs of panel countries in {pdf_root} ({', '.join(batches)})")
     return set(zip(pdfs["country_key"], pdfs["year"]))
@@ -179,6 +246,27 @@ def notes() -> pd.DataFrame:
                        "can differ between DSA templates. Top-level ids (h1-h6) are comparable across all tables."),
         ("By year", "Counts of countries with Yes in each column, per year."),
     ], columns=["Item", "Meaning"])
+
+
+def write_workbook(sheets: dict, path: Path) -> None:
+    from openpyxl.styles import Alignment, Font
+    from openpyxl.utils import get_column_letter
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with pd.ExcelWriter(path, engine="openpyxl") as xw:
+        for name, df in sheets.items():
+            df.to_excel(xw, sheet_name=name, index=False)
+            ws = xw.sheets[name]
+            ws.freeze_panes = "B2"
+            for cell in ws[1]:
+                cell.font = Font(bold=True)
+                cell.alignment = Alignment(wrap_text=True, vertical="bottom")
+            for i, col in enumerate(df.columns, start=1):
+                letter = get_column_letter(i)
+                ws.column_dimensions[letter].width = 90 if name == "Notes" and i == 2 else max(10, min(len(col) * 0.75, 32))
+                if name == "Notes":
+                    for cell in ws[letter][1:]:
+                        cell.alignment = Alignment(wrap_text=True, vertical="top")
 
 
 def main(final_csv: Path = FINAL_CSV, pdf_root: Path = PDF_ROOT, out_xlsx: Path | None = OUT_XLSX):
