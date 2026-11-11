@@ -52,7 +52,7 @@ from pypdf import PdfReader, PdfWriter
 # PDF_DIR = BASE_DIR / "staff_reports" / "pdf staff reports" / "2016-2020"
 # OUTPUT_DIR = BASE_DIR / "output" / "json_dsa" / "2016-2020"
 # SELECTED_PDF_DIR = OUTPUT_DIR / "selected_pdf_pages"
-# PROMPT_FILE = BASE_DIR / "sl_revised_prompt_step_one.txt"
+# PROMPT_FILE = BASE_DIR / "prompt" / "sl_revised_prompt_step_one.txt"
 # ENV_FILE = BASE_DIR / ".env"
 
 # Optional: point this at a JSON file (e.g. a two-version comparison export)

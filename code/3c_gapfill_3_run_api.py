@@ -179,11 +179,11 @@ except ModuleNotFoundError as exc:
 # # locate+select machinery, identical (or not needed for choosing last_actual_year) in both; 2a's extra
 # # accuracy is specifically about *choosing* last_actual_year, which gap-fill never does (the target
 # # year is already given).
-# STEP1_PROMPT_FILE = BASE_DIR / "two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
+# STEP1_PROMPT_FILE = BASE_DIR / "prompt" / "two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
 # # Only SUBPROMPT 1 (the locator) is used from this file, for a fresh locate when no cached selected PDF
 # # exists; SUBPROMPT 2 (1a's own extraction prompt) is never used -- GAPFILL_PROMPT_FILE below is used
 # # for extraction instead, on whichever selected PDF (cached or freshly located) is sent.
-# GAPFILL_PROMPT_FILE = BASE_DIR / "gapfill_extraction_prompt_v2.txt"
+# GAPFILL_PROMPT_FILE = BASE_DIR / "prompt" / "gapfill_extraction_prompt_v2.txt"
 # ENV_FILE = BASE_DIR / ".env"
 #
 # STAMP = "20260920_v2"  # must match the STAMP of 3a / 3b

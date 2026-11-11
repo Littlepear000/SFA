@@ -52,7 +52,7 @@ BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\She
 PDF_DIR = BASE_DIR / "staff_reports" / "pdf staff reports"
 OUTPUT_DIR = BASE_DIR / "output" / "json_dsa"
 SELECTED_PDF_DIR = OUTPUT_DIR / "selected_pdf_pages"
-PROMPT_FILE = BASE_DIR / "two_step_selected_pdf_prompt_table_only_cropfallback_v3.txt"
+PROMPT_FILE = BASE_DIR / "prompt" / "two_step_selected_pdf_prompt_table_only_cropfallback_v3.txt"
 ENV_FILE = BASE_DIR / ".env"
 
 # Gateway limit is 1,048,576 bytes. Base64 encoding expands the PDF by about one-third,

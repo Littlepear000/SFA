@@ -73,10 +73,10 @@ STEP1_SCRIPT = HERE / "1a_two_step_selected_pdf_inline_base64_cropfallback_summa
 # 1a on purpose, not 2a: gap-fill only needs call_pdf_json / make_api_session / add_table_crop_header_instruction,
 # identical in both; 2a's extra accuracy is specifically about *choosing* last_actual_year, which gap-fill
 # never does (the target year is already given). See 3c_gapfill_3_run_api.py's own CONFIG for the same note.
-STEP1_PROMPT_FILE = BASE_DIR / "two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
+STEP1_PROMPT_FILE = BASE_DIR / "prompt" / "two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
 # only SUBPROMPT 1 (the locator) is used from this file -- when a candidate has no cached selected PDF,
 # 3c reuses 1a's own locate-the-DSA-pages step fresh against the original PDF instead of skipping it.
-GAPFILL_PROMPT_FILE = BASE_DIR / "gapfill_extraction_prompt_v2.txt"
+GAPFILL_PROMPT_FILE = BASE_DIR / "prompt" / "gapfill_extraction_prompt_v2.txt"
 ENV_FILE = BASE_DIR / ".env"
 TARGETS_CSV = CHECK_DIR / f"gapfill_targets_{STAMP}.csv"
 SKIP_CSV = CHECK_DIR / f"gapfill_skip_reports_{STAMP}.csv"

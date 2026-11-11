@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DSA Coverage</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <div>
+      <div class="brand-title">DSA Coverage</div>
+      <div class="brand-sub">Country-year coverage of the DSA database</div>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" data-tab="generate" aria-selected="true">Generate</button>
+    <button class="tab" role="tab" data-tab="database" aria-selected="false">Database</button>
+    <button class="tab" role="tab" data-tab="dashboard" aria-selected="false">Dashboard</button>
+  </nav>
+  <label class="version-pick">
+    <span>Version</span>
+    <select id="version-select" aria-label="Database version shown in Database and Dashboard"></select>
+  </label>
+</header>
+
+<main class="page">
+
+  <!-- ============================================================ GENERATE -->
+  <section class="panel" id="tab-generate" role="tabpanel">
+    <div class="card">
+      <h2>Generate coverage database</h2>
+      <p class="muted">Builds one row per panel country and year from the two inputs below and saves it as a new version.</p>
+
+      <div class="form-grid">
+        <label for="in-csv">Final CSV</label>
+        <div class="field">
+          <input id="in-csv" type="text" spellcheck="false" autocomplete="off">
+          <div class="field-status" id="st-csv"></div>
+        </div>
+
+        <label for="in-pdf">Staff reports folder</label>
+        <div class="field">
+          <input id="in-pdf" type="text" spellcheck="false" autocomplete="off">
+          <div class="field-status" id="st-pdf"></div>
+        </div>
+
+        <span class="label">Staff reports subfolders to read</span>
+        <div class="field">
+          <div class="batch-list" id="batch-list"><span class="muted">Enter the staff reports folder above; its subfolders are listed here.</span></div>
+        </div>
+
+        <label for="in-stamp">Version stamp</label>
+        <div class="field">
+          <input id="in-stamp" type="text" spellcheck="false" autocomplete="off" maxlength="40">
+          <div class="field-status muted">Date and time by default (YYYYMMDD_HHMM); you can type your own. Added to the file name; if it already exists, _2, _3 … is added, so no version is overwritten.</div>
+        </div>
+
+        <span class="label">Saved to</span>
+        <div class="field"><code id="out-dir"></code></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="btn-generate">Generate coverage database</button>
+      </div>
+      <div class="progress" id="job-progress" role="status" aria-live="polite" hidden>
+        <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="job-bar-wrap"><span id="job-bar"></span></div>
+        <div class="progress-text" id="job-text"></div>
+      </div>
+      <details class="job-details" id="job-details" hidden>
+        <summary>Details</summary>
+        <pre class="log" id="job-log"></pre>
+      </details>
+    </div>
+
+    <div class="card">
+      <h2>Version history</h2>
+      <p class="muted">Every generated database, newest first, with the inputs it was built from.</p>
+      <div class="table-wrap">
+        <table class="grid" id="runs-table">
+          <thead><tr>
+            <th>Stamp</th><th>Generated</th><th>Final CSV</th><th>PDF folders</th>
+            <th class="num">Country-years<br>with report</th><th class="num">Time</th><th></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="empty muted" id="runs-empty" hidden>No versions yet. Generate one above.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ DATABASE -->
+  <section class="panel" id="tab-database" role="tabpanel" hidden>
+    <div class="card">
+      <div class="card-head">
+        <h2>Coverage database</h2>
+        <div class="head-actions">
+          <div class="fields-anchor">
+            <button class="btn" id="btn-fields" aria-haspopup="true" aria-expanded="false" aria-controls="fields-pop">
+              Fields <span class="badge" id="fields-count"></span>
+            </button>
+            <div class="fields-pop" id="fields-pop" hidden>
+              <div class="fields-tools">
+                <button type="button" class="btn small" id="fld-top">Top level only</button>
+                <button type="button" class="btn small" id="fld-all">Select all</button>
+                <button type="button" class="btn small" id="fld-none">Clear</button>
+              </div>
+              <div class="fields-list" id="fields-list"></div>
+            </div>
+          </div>
+          <a class="btn" id="btn-download" href="#">Download workbook</a>
+        </div>
+      </div>
+      <div class="filters">
+        <label>Country <input id="f-country" type="search" placeholder="Search" autocomplete="off"></label>
+        <label>Year <select id="f-year"></select></label>
+        <label class="check"><input type="checkbox" id="f-reported"> Only countries with staff reports</label>
+        <span class="muted" id="db-count"></span>
+      </div>
+      <div class="table-wrap db-wrap">
+        <table class="grid db" id="db-table"><thead></thead><tbody></tbody></table>
+      </div>
+      <div class="pager">
+        <button class="btn" id="pg-prev">Previous</button>
+        <span id="pg-info" class="muted"></span>
+        <button class="btn" id="pg-next">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ DASHBOARD -->
+  <section class="panel" id="tab-dashboard" role="tabpanel" hidden>
+    <div class="card">
+      <div class="card-head">
+        <h2>Coverage by year and source</h2>
+        <label class="slicer">Indicator
+          <select id="ind-select"></select>
+        </label>
+      </div>
+      <p class="muted" id="ch-note"></p>
+      <div class="tiles" id="tiles"></div>
+      <div class="chart-head">
+        <div class="legend" id="ch-legend"></div>
+        <div class="span-pick">
+          <span class="span-lbl">Unavailable with no staff report in</span>
+          <div class="seg" id="span-seg" role="group" aria-label="Follow-up years checked for a staff report">
+            <button type="button" data-k="0" aria-pressed="false">Off</button>
+            <button type="button" data-k="1" aria-pressed="false" title="No staff report published in T+1">T+1</button>
+            <button type="button" data-k="2" aria-pressed="false" title="No staff report published in any of T+1, T+2">T+2</button>
+            <button type="button" data-k="3" aria-pressed="false" title="No staff report published in any of T+1 … T+3">T+3</button>
+            <button type="button" data-k="4" aria-pressed="false" title="No staff report published in any of T+1 … T+4">T+4</button>
+          </div>
+          <span class="muted span-last" id="span-last"></span>
+        </div>
+      </div>
+      <div class="chart" id="ch-wrap"><div class="tip" id="ch-tip"></div></div>
+      <div class="pick" id="ch-pick" hidden></div>
+      <details class="numbers">
+        <summary>Show the numbers</summary>
+        <div class="table-wrap"><table class="grid" id="ch-table"><thead></thead><tbody></tbody></table></div>
+      </details>
+      <p class="foot muted">
+        T is the year the value is for. With T+k picked, a country unavailable in T is hatched when no staff report
+        of it was published in any of the years T+1 … T+k (T+3 for 2005: none in 2006, 2007 and 2008). A report
+        published in year P usually carries actual values for P-1 or P-2. Where a country has values from several
+        rounds for one year, the first of Round 1, Round 2, Round 3, Gap fill is shown.
+      </p>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="alert" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>

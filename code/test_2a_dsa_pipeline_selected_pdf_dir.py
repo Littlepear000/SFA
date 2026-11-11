@@ -102,7 +102,7 @@ def test_selected_pdf_goes_to_its_own_folder():
         mod.OUTPUT_DIR.mkdir(parents=True)
         mod.SELECTED_PDF_DIR.mkdir(parents=True)
 
-        prompts = mod.load_prompts(HERE.parent / "dsa_prompt_20260924.txt")
+        prompts = mod.load_prompts(HERE.parent / "prompt" / "dsa_prompt_20260924.txt")
         pdf_path = d / "Testland_2020-01-01.pdf"
         make_pdf(pdf_path)
 

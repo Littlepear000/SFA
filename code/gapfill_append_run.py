@@ -30,14 +30,15 @@ import pandas as pd
 HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
 BASE = HERE.parent if HERE.name == "code" else HERE
 GAPFILL_DIR = BASE / "output" / "gapfill"
+FINAL_DIR = BASE / "output" / "final"   # the merged CSVs live here
 
 # ------------------------------------------------------------------ CONFIG
-PREV_MERGED_CSV = GAPFILL_DIR / "final_all_batches_with_gapfill_20261026.csv"
+PREV_MERGED_CSV = FINAL_DIR / "final_all_batches_with_gapfill_20261026.csv"
 PRIOR_RUN_STAMP = "202601022"
 PRIOR_VALUES_LONG = GAPFILL_DIR / "output" / f"all_{PRIOR_RUN_STAMP}" / f"gapfill_values_long_{PRIOR_RUN_STAMP}.csv"
 NEW_RUN_STAMP = "202601028"
 NEW_VALUES_LONG = GAPFILL_DIR / "output" / f"all_{NEW_RUN_STAMP}" / f"gapfill_values_long_{NEW_RUN_STAMP}.csv"
-OUT_CSV = GAPFILL_DIR / "final_all_batches_with_gapfill_20261028.csv"
+OUT_CSV = FINAL_DIR / "final_all_batches_with_gapfill_20261028.csv"
 # ==============================================================================
 
 COPY_COLS = ["json_file", "pdf_file_name", "country", "top_category", "hierarchy_id", "level",

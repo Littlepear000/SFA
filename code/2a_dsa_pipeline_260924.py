@@ -65,7 +65,7 @@ except ImportError:  # PyMuPDF < 1.24
 # PDF_DIR = BASE_DIR / "staff_reports" / "test_updated_prompt"
 # OUTPUT_DIR = BASE_DIR / "output" / "json_dsa" / "test_updated_prompt_2016-2020_5"
 # SELECTED_PDF_DIR = OUTPUT_DIR / "selected_pdf_pages"
-# PROMPT_FILE = BASE_DIR / "dsa_prompt_20260924.txt"
+# PROMPT_FILE = BASE_DIR / "prompt" / "dsa_prompt_20260924.txt"
 # ENV_FILE = BASE_DIR / ".env"
 
 # Optional targeted run: a JSON file listing reports to (re)process, e.g. a

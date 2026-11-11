@@ -20,8 +20,23 @@ Part 2 -- "By year" sheet: per year, the number of panel countries, and how many
     (default). Case and spaces do not matter ("H5 other identified flows" works), and the short form
     "h5" / "h3_1" picks that hierarchy_id's column.
 
+Part 3 -- "Sources" sheet: the same rows as Coverage; for every indicator column, where the value came
+    from: Round 1, Round 2, Round 3 or Gap fill (empty = no value). When rows from more than one round give
+    a value for the same country and year, one is picked in the order Round 1, Round 2, Round 3, Gap fill
+    (the same rule as gapfill_panel_source_breakdown.py).
+
+Part 4 -- "Report years" sheet: every (country, publication year) with at least one staff report, for
+    ALL years in the PDF folders (not only the panel years), so the coverage app can check whether a
+    country had a report in the years after a missing year (T+1 ... T+4).
+
 Also an "Indicators" sheet (column name -> hierarchy_id, level, top category, the most common labels,
-how many country-years have it) and a "Notes" sheet.
+how many country-years have it) and a "Notes" sheet, which starts with the run's stamp and the full
+paths of the inputs (final CSV, PDF folder and batches), as a record of what the workbook was built from.
+
+The workbook is OUT_DIR/coverage_database_<STAMP>.xlsx. STAMP is set in the settings (or --stamp);
+None = date and time of the run, YYYYMMDD_HHMM. Next to it, coverage_database_<STAMP>.json records the run (time, the
+final CSV's path / size / modified time / SHA-256, the PDF folder and batches); the coverage web app
+(coverage_app/) lists these records as its version history.
 
 Read this before comparing columns
     - has_staff_report / has_dsa_table go by PUBLICATION year; the h* columns go by the year the value
@@ -41,13 +56,17 @@ Usage
     python check_coverage_database.py --pdf-root "D:/path/to/pdf staff reports"
     python check_coverage_database.py --indicators h5_other_identified_flows
     python check_coverage_database.py --indicators h5_other_identified_flows h6_residual h1_change_in_debt
+    python check_coverage_database.py --stamp 20261111_v2
     or edit the settings below and run the file from a console.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
@@ -67,7 +86,8 @@ BATCHES = ["1996-2000", "2001-2005", "2006-2010", "2011-2015", "2016-2020", "202
 YEARS = (2001, 2025)                      # panel years, one row per country per year
 # Indicator column(s) shown in the "By year" sheet: one name or a list (see the docstring)
 INDICATORS = ["h5_other_identified_flows"]
-OUT_XLSX = ROOT / "output" / "coverage" / "coverage_database.xlsx"
+OUT_DIR = ROOT / "output" / "coverage"   # the workbook: OUT_DIR / coverage_database_<STAMP>.xlsx
+STAMP = None                             # e.g. "20261111_1203" or "final_v2"; None = date and time of the run (YYYYMMDD_HHMM)
 
 # Old or alternative names that normalize_country() does not merge -> the panel's name (lower case)
 EXTRA_ALIASES = {
@@ -76,6 +96,8 @@ EXTRA_ALIASES = {
     "socialist people's libyan arab jamahiriya": "libya",
     "swaziland": "eswatini",
     "federal republic of yugoslavia": "serbia and montenegro",
+    "hong kong special administrative region": "hong kong sar, china",   # file names without the China prefix
+    "macao special administrative region": "macao sar, china",
 }
 # File-name prefixes that are not one country (matched case-insensitively)
 NOT_A_COUNTRY = re.compile(
@@ -138,11 +160,12 @@ def keep_panel_reports(pdfs: pd.DataFrame, panel: set) -> pd.DataFrame:
     return pdfs[~regional & ~outside]
 
 
-def report_country_years(panel: set, pdf_root: Path = PDF_ROOT, batches=BATCHES) -> set:
-    """(country, publication year) pairs that have at least one raw staff-report PDF -> has_staff_report."""
+def report_country_years(panel: set, pdf_root: Path = PDF_ROOT, batches=BATCHES) -> pd.DataFrame:
+    """One row per (country, publication year) with at least one raw staff-report PDF, every year found,
+    and n_reports = how many PDFs. Feeds has_staff_report and the Report years sheet."""
     pdfs = keep_panel_reports(read_pdfs(pdf_root, batches), panel)
     print(f"Staff reports: {len(pdfs):,} PDFs of panel countries in {pdf_root} ({', '.join(batches)})")
-    return set(zip(pdfs["country_key"], pdfs["year"]))
+    return pdfs.groupby(["country_key", "year"]).size().rename("n_reports").reset_index()
 
 
 def dsa_country_years(final: pd.DataFrame) -> set:
@@ -153,6 +176,22 @@ def dsa_country_years(final: pd.DataFrame) -> set:
         m = NAME_RE.match(name)
         if m:
             out.add((country_key(m.group("country")), int(m.group("year"))))
+    return out
+
+
+# Where a value came from, best first: a country-year with values from more than one round keeps the first
+SOURCE_ORDER = [("round1", "Round 1"), ("round2", "Round 2"), ("round3", "Round 3"), ("gapfill", "Gap fill")]
+
+
+def value_sources(values: pd.DataFrame) -> dict:
+    """hierarchy_id -> {(country_key, year): "Round 1" | "Round 2" | "Round 3" | "Gap fill"}."""
+    rank = {r: i for i, (r, _) in enumerate(SOURCE_ORDER)}
+    label = dict(SOURCE_ORDER)
+    v = values.assign(_rank=values["source_round"].map(rank).fillna(len(rank)))
+    v = v.sort_values("_rank", kind="stable").drop_duplicates(["hierarchy_id", "country_key", "effective_year"])
+    out = {}
+    for hid, g in v.groupby("hierarchy_id"):
+        out[hid] = {k: label.get(r, str(r)) for k, r in zip(zip(g["country_key"], g["effective_year"]), g["source_round"])}
     return out
 
 
@@ -194,34 +233,51 @@ def yes_no(mask) -> list:
     return ["Yes" if v else "No" for v in mask]
 
 
-def build(final_csv: Path = FINAL_CSV, years: tuple = YEARS, pdf_root: Path = PDF_ROOT):
+def _step(progress, fraction: float, label: str) -> None:
+    """Report progress to a caller (e.g. the coverage web app): progress(fraction 0-1, label)."""
+    if progress is not None:
+        progress(fraction, label)
+
+
+def build(final_csv: Path = FINAL_CSV, years: tuple = YEARS, pdf_root: Path = PDF_ROOT, batches=BATCHES,
+          progress=None):
+    _step(progress, 0.05, "Reading the final CSV")
     final = pd.read_csv(final_csv, usecols=["country", "pdf_file_name", "source_round", "hierarchy_id", "level",
                                             "top_category", "label_verbatim"], dtype=str)
     panel = panel_countries(final_csv)
     values = load_rows(final_csv, ALL_HIERARCHIES)            # rows with a numeric value and a parsed year
     labels = values.groupby("country_key")["country_label"].agg(lambda s: s.value_counts().index[0])
     panel_years = list(range(years[0], years[1] + 1))
+    _step(progress, 0.40, "Reading the staff-report PDF folders")
 
     grid = pd.MultiIndex.from_product([sorted(panel, key=lambda k: labels.get(k, k)), panel_years],
                                       names=["country_key", "year"]).to_frame(index=False)
     keys = list(zip(grid["country_key"], grid["year"]))
-    reports = report_country_years(panel, pdf_root)
+    report_years = report_country_years(panel, pdf_root, batches)
+    reports = set(zip(report_years["country_key"], report_years["year"]))
     dsa = dsa_country_years(final)
+    _step(progress, 0.60, "Building the coverage table")
 
     cov = pd.DataFrame({"country": grid["country_key"].map(lambda k: labels.get(k, k)), "year": grid["year"],
                         "has_staff_report": yes_no(k in reports for k in keys),
                         "has_dsa_table": yes_no(k in dsa for k in keys)})
     ind = indicator_columns(final)
-    have = {hid: set(zip(g["country_key"], g["effective_year"])) for hid, g in values.groupby("hierarchy_id")}
+    sources = value_sources(values)
+    src = cov[["country", "year"]].copy()
     for hid, col in zip(ind["hierarchy_id"], ind["column"]):
-        cov[col] = yes_no(k in have.get(hid, set()) for k in keys)
+        got = sources.get(hid, {})
+        cov[col] = yes_no(k in got for k in keys)
+        src[col] = [got.get(k, "") for k in keys]
     ind["country_years_with_value"] = [int((cov[c] == "Yes").sum()) for c in ind["column"]]
 
     odd = sum(1 for k in keys if k in dsa and k not in reports)
     if odd:
         print(f"NOTE: {odd} country-year(s) have a DSA table in the final data but no staff report in the "
               f"raw PDF folders; check whether those PDFs are missing there")
-    return cov, ind
+    report_years = pd.DataFrame({"country": report_years["country_key"].map(lambda k: labels.get(k, k)),
+                                 "year": report_years["year"], "n_reports": report_years["n_reports"]}
+                                ).sort_values(["country", "year"], ignore_index=True)
+    return cov, ind, src, report_years
 
 
 def pick_indicator_columns(ind: pd.DataFrame, indicators) -> list:
@@ -257,8 +313,11 @@ def by_year(cov: pd.DataFrame, ind: pd.DataFrame, indicators=INDICATORS) -> pd.D
     return out
 
 
-def notes() -> pd.DataFrame:
+def notes(stamp: str, final_csv: Path, pdf_root: Path, batches=BATCHES) -> pd.DataFrame:
     return pd.DataFrame([
+        ("Run stamp", f"{stamp} (built {datetime.now():%Y-%m-%d %H:%M})"),
+        ("Input: final CSV", str(Path(final_csv).resolve())),
+        ("Input: staff-report PDFs", f"{Path(pdf_root).resolve()}  -- batch folders: {', '.join(batches)}"),
         ("Coverage", f"One row per panel country and year ({YEARS[0]}-{YEARS[1]}). Every cell after country/year is Yes or No."),
         ("has_staff_report", "Yes if the country has at least one staff report published that year "
                              "(raw PDFs in all batch folders). Regional reports and places outside the panel are left out."),
@@ -271,6 +330,10 @@ def notes() -> pd.DataFrame:
         ("Sub-levels", "Sub-level ids (e.g. 5.1) are numbered by position inside their category, so their meaning "
                        "can differ between DSA templates. Top-level ids (h1-h6) are comparable across all tables."),
         ("By year", "Counts of countries with Yes in each column, per year."),
+        ("Sources", "Same rows as Coverage. For each indicator: where the value came from (Round 1, Round 2, Round 3 or "
+                    "Gap fill; empty = no value). With values from several rounds, the first in that order is shown."),
+        ("Report years", "Every (country, publication year) with at least one staff report in the PDF folders, all "
+                         "years (also outside the panel years); n_reports = number of PDFs."),
     ], columns=["Item", "Meaning"])
 
 
@@ -295,17 +358,54 @@ def write_workbook(sheets: dict, path: Path) -> None:
                         cell.alignment = Alignment(wrap_text=True, vertical="top")
 
 
-def main(final_csv: Path = FINAL_CSV, pdf_root: Path = PDF_ROOT, out_xlsx: Path | None = OUT_XLSX,
-         indicators=INDICATORS):
-    cov, ind = build(final_csv, YEARS, pdf_root)
+def file_fingerprint(path: Path) -> dict:
+    """Size, last-modified time and a short SHA-256 of a file, so a run records exactly which file it used."""
+    path = Path(path)
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    st = path.stat()
+    return {"path": str(path.resolve()), "size_bytes": st.st_size,
+            "modified": datetime.fromtimestamp(st.st_mtime).isoformat(timespec="seconds"),
+            "sha256_16": h.hexdigest()[:16]}
+
+
+def main(final_csv: Path = FINAL_CSV, pdf_root: Path = PDF_ROOT, out_dir: Path | None = OUT_DIR,
+         indicators=INDICATORS, stamp: str | None = STAMP, batches=BATCHES, progress=None):
+    """Build the coverage database. With out_dir, also writes coverage_database_<STAMP>.xlsx and, next to
+    it, coverage_database_<STAMP>.json: the run record (when, which final CSV and PDF folders) that the
+    coverage web app lists as the version history."""
+    started = datetime.now()
+    stamp = stamp or started.strftime("%Y%m%d_%H%M")
+    batches = list(batches)
+    cov, ind, src, report_years = build(final_csv, YEARS, pdf_root, batches, progress)
     summary = by_year(cov, ind, indicators)
     print(f"\nCoverage: {len(cov):,} rows ({cov['country'].nunique()} countries x {cov['year'].nunique()} years), "
           f"{len(ind)} indicator columns\n")
     print(summary.to_string(index=False))
-    if out_xlsx is not None:
-        write_workbook({"Coverage": cov, "By year": summary, "Indicators": ind, "Notes": notes()},
-                       Path(out_xlsx))
-        print(f"\nWrote {out_xlsx}")
+    if out_dir is not None:
+        path = Path(out_dir) / f"coverage_database_{stamp}.xlsx"
+        _step(progress, 0.80, "Writing the workbook")
+        write_workbook({"Coverage": cov, "By year": summary, "Sources": src, "Report years": report_years,
+                        "Indicators": ind, "Notes": notes(stamp, final_csv, pdf_root, batches)}, path)
+        record = {
+            "stamp": stamp,
+            "created": started.isoformat(timespec="seconds"),
+            "seconds": round((datetime.now() - started).total_seconds(), 1),
+            "workbook": path.name,
+            "final_csv": file_fingerprint(final_csv),
+            "pdf_root": str(Path(pdf_root).resolve()),
+            "batches": batches,
+            "years": list(YEARS),
+            "n_countries": int(cov["country"].nunique()),
+            "n_indicator_columns": int(len(ind)),
+            "country_years_with_staff_report": int((cov["has_staff_report"] == "Yes").sum()),
+            "country_years_with_dsa_table": int((cov["has_dsa_table"] == "Yes").sum()),
+        }
+        path.with_suffix(".json").write_text(json.dumps(record, indent=2), encoding="utf-8")
+        print(f"\nWrote {path}\nWrote {path.with_suffix('.json')}")
+    _step(progress, 1.0, "Done")
     return cov, summary, ind
 
 
@@ -314,6 +414,8 @@ if __name__ == "__main__":
     ap.add_argument("--pdf-root", default=PDF_ROOT, help="folder holding the batch folders")
     ap.add_argument("--indicators", nargs="+", default=INDICATORS,
                     help='indicator column(s) for the "By year" sheet, e.g. h5_other_identified_flows h6_residual')
+    ap.add_argument("--stamp", default=STAMP, help="added to the workbook name; default: date and time of the run (YYYYMMDD_HHMM)")
     ap.add_argument("--no-excel", action="store_true", help="print only, write no workbook")
     a, _ = ap.parse_known_args()  # parse_known_args: consoles can pass their own extra arguments
-    main(pdf_root=Path(a.pdf_root), out_xlsx=None if a.no_excel else OUT_XLSX, indicators=a.indicators)
+    main(pdf_root=Path(a.pdf_root), out_dir=None if a.no_excel else OUT_DIR, indicators=a.indicators,
+         stamp=a.stamp)

@@ -52,7 +52,7 @@ from pypdf import PdfReader, PdfWriter
 # PDF_DIR = BASE_DIR / "staff_reports" / "pdf staff reports" / "2011-2015"
 # OUTPUT_DIR = BASE_DIR / "output" / "json_dsa" / "2011-2015"
 # SELECTED_PDF_DIR = OUTPUT_DIR / "selected_pdf_pages"
-# PROMPT_FILE = BASE_DIR / "two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
+# PROMPT_FILE = BASE_DIR / "prompt" / "two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
 # ENV_FILE = BASE_DIR / ".env"
 
 # Gateway limit is 1,048,576 bytes. Base64 encoding expands the PDF by about one-third, so a raw size of

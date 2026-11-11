@@ -50,7 +50,7 @@ sys.path.insert(0, str(HERE))
 import gapfill_lib_core as core  # noqa: E402
 
 # ------------------------------------------------------------------ CONFIG
-INPUT_CSV = HERE.parent / "output" / "gapfill" / "final_all_batches_with_gapfill_20261028.csv"
+INPUT_CSV = HERE.parent / "output" / "final" / "final_all_batches_with_gapfill_20261028.csv"
 OUT_DIR = HERE.parent / "output" / "gapfill" / "summary_stats" / "20261028_gapfill_run1_run2" / "coverage"
 
 FIELDS = {"6": "residual", "5": "other_identified_flows"}
