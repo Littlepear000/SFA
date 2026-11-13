@@ -2,28 +2,28 @@
 Gap-year fill controller.
 
 Runs the three gap-fill scripts, in this order, with runpy:
-    1. 3a_gapfill_1_build_panel_gap_flags.py
+    1. 4a_gapfill_1_build_panel_gap_flags.py
        (read ONE compiled CSV -> find the gap years and build the country x year panel structure)
-    2. 3b_gapfill_2_build_targets.py
+    2. 4b_gapfill_2_build_targets.py
        (turn the gap list into the task list for the API run)
-    3. 3c_gapfill_3_run_api.py
+    3. 4c_gapfill_3_run_api.py
        (call the API to read each gap year from the T+2 / T+3 / T+4 staff reports, and fill the panel)
 
 All settings shared by the three scripts are declared once, in the CONFIG section below.
 Before running, comment out the CONFIG block of each script (the lines that define these names):
-    in 3a: INPUT_CSV, OUT_DIR, STAMP
-    in 3b: CHECK_DIR, STAMP, STAFF_REPORTS_DIR, SELECTED_PDF_DIRS
-    in 3c: BASE_DIR, STAFF_REPORTS_DIR, SELECTED_PDF_DIRS, STEP1_SCRIPT, STEP1_PROMPT_FILE,
+    in 4a: INPUT_CSV, OUT_DIR, STAMP
+    in 4b: CHECK_DIR, STAMP, STAFF_REPORTS_DIR, SELECTED_PDF_DIRS
+    in 4c: BASE_DIR, STAFF_REPORTS_DIR, SELECTED_PDF_DIRS, STEP1_SCRIPT, STEP1_PROMPT_FILE,
            GAPFILL_PROMPT_FILE, ENV_FILE, STAMP, CHECK_DIR, TARGETS_CSV, SKIP_CSV, PANEL_CSV,
            OUTPUT_DIR, MAX_WORKERS
 Otherwise their own values overwrite the ones given here.
-3b now also builds and persists the Step 2 candidate map (gapfill_candidate_map_<STAMP>.csv), so it
-needs the same STAFF_REPORTS_DIR and SELECTED_PDF_DIRS as 3c: the candidate universe is every real PDF
+4b now also builds and persists the Step 2 candidate map (gapfill_candidate_map_<STAMP>.csv), so it
+needs the same STAFF_REPORTS_DIR and SELECTED_PDF_DIRS as 4c: the candidate universe is every real PDF
 under STAFF_REPORTS_DIR (batch-agnostic); SELECTED_PDF_DIRS only says which of them already have a
-cached selected PDF from Step 1 -- a candidate without one is located fresh by 3c, not skipped.
+cached selected PDF from Step 1 -- a candidate without one is located fresh by 4c, not skipped.
 
-The scripts run in this same process, so command-line options are shared. 3c reads --dry-run,
---limit-gaps N, --countries "A,B" and --collect-only; 3a and 3b ignore options they do not know.
+The scripts run in this same process, so command-line options are shared. 4c reads --dry-run,
+--limit-gaps N, --countries "A,B" and --collect-only; 4a and 4b ignore options they do not know.
 If any script stops with an error, the next one is not started.
 """
 import runpy
@@ -35,33 +35,33 @@ BASE_DIR = Path(r"C:\Users\xli7\OneDrive - International Monetary Fund (PRD)\She
 try:
     HERE = Path(__file__).resolve().parent
 except NameError:  # run from an IPython / PyCharm console: look for the code folder
-    HERE = next((c for c in (Path.cwd(), Path.cwd() / "code", BASE_DIR / "code") if (c / "3a_gapfill_1_build_panel_gap_flags.py").exists()),
+    HERE = next((c for c in (Path.cwd(), Path.cwd() / "code", BASE_DIR / "code") if (c / "4a_gapfill_1_build_panel_gap_flags.py").exists()),
                 BASE_DIR / "code")
 
 sys.path.insert(0, str(HERE))
 import importlib  # noqa: E402
-if "gapfill_lib_core" in sys.modules:  # long-lived IPython/Spyder console: pick up code changes
-    importlib.reload(sys.modules["gapfill_lib_core"])
-import gapfill_lib_core as core  # noqa: E402
+if "core" in sys.modules:  # long-lived IPython/Spyder console: pick up code changes
+    importlib.reload(sys.modules["core"])
+import core  # noqa: E402
 
 BATCH = "all"
-STAMP = "202601028"  # version tag added to every file name written by 3a, 3b and 3c
+STAMP = "202601028"  # version tag added to every file name written by 4a, 4b and 4c
 
-# used by 3a: the ONE compiled CSV to analyse
+# used by 4a: the ONE compiled CSV to analyse
 INPUT_CSV = BASE_DIR / "output" / "final" / "final_all_batches_with_gapfill_20261026.csv"
 
-# where 3a writes the gap-year files, and where 3b and 3c read them
+# where 4a writes the gap-year files, and where 4b and 4c read them
 CHECK_DIR = BASE_DIR / "output" / "gapfill" / "gap_year_check" / f"{BATCH}_{STAMP}"
-OUT_DIR = CHECK_DIR  # the name 3a uses for the same folder
+OUT_DIR = CHECK_DIR  # the name 4a uses for the same folder
 
-# used by 3b and 3c
+# used by 4b and 4c
 # Root of the ORIGINAL staff-report PDFs, one subfolder per batch -- the candidate universe. Every real
 # PDF found under here counts as a T+2/T+3/T+4 candidate, whether or not Step 1 ever located a table in it
 # in any run, and regardless of which batch it is in (a candidate from an adjacent batch is found the
 # same way as one from the batch being checked). Not added to git; local-only on this Mac.
 STAFF_REPORTS_DIR = BASE_DIR / "staff_reports" / "pdf staff reports"
 
-# used by 3c
+# used by 4c
 # The "selected_pdf_pages" folder to use for each batch, auto-discovered under output/ -- handles both
 # layouts seen across different people's machines: output/<batch>/selected_pdf_pages/ directly, or
 # output/<batch>/round1_<stamp>_run1/selected_pdf_pages/ (the earliest, most-recent-stamp Round 1 run;
@@ -72,11 +72,11 @@ SELECTED_PDF_DIRS = core.discover_selected_pdf_dirs(BASE_DIR / "output")
 STEP1_SCRIPT = HERE / "1a_two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py"
 # 1a on purpose, not 2a: gap-fill only needs call_pdf_json / make_api_session / add_table_crop_header_instruction,
 # identical in both; 2a's extra accuracy is specifically about *choosing* last_actual_year, which gap-fill
-# never does (the target year is already given). See 3c_gapfill_3_run_api.py's own CONFIG for the same note.
-STEP1_PROMPT_FILE = BASE_DIR / "prompt" / "two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
+# never does (the target year is already given). See 4c_gapfill_3_run_api.py's own CONFIG for the same note.
+STEP1_PROMPT_FILE = BASE_DIR / "prompt" / "1a_two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
 # only SUBPROMPT 1 (the locator) is used from this file -- when a candidate has no cached selected PDF,
-# 3c reuses 1a's own locate-the-DSA-pages step fresh against the original PDF instead of skipping it.
-GAPFILL_PROMPT_FILE = BASE_DIR / "prompt" / "gapfill_extraction_prompt_v2.txt"
+# 4c reuses 1a's own locate-the-DSA-pages step fresh against the original PDF instead of skipping it.
+GAPFILL_PROMPT_FILE = BASE_DIR / "prompt" / "4c_gapfill_extraction_prompt_v2.txt"
 ENV_FILE = BASE_DIR / ".env"
 TARGETS_CSV = CHECK_DIR / f"gapfill_targets_{STAMP}.csv"
 SKIP_CSV = CHECK_DIR / f"gapfill_skip_reports_{STAMP}.csv"
@@ -86,9 +86,9 @@ MAX_WORKERS = 4
 # ==============================================================================
 
 SCRIPTS = [
-    "3a_gapfill_1_build_panel_gap_flags.py",
-    "3b_gapfill_2_build_targets.py",
-    "3c_gapfill_3_run_api.py",
+    "4a_gapfill_1_build_panel_gap_flags.py",
+    "4b_gapfill_2_build_targets.py",
+    "4c_gapfill_3_run_api.py",
 ]
 
 CONFIG = {

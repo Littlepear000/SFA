@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>应用运行链路</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f6f6f4; --panel:#fff; --fg:#17171a; --fg-2:#4f4f57; --muted:#75757e; --line:#e2e2e6; --line-2:#cdcdd3;
+  --accent:#1d4ed8;
+  --l-browser:#2a78d6; --l-server:#eda100; --l-script:#1baf7a; --l-file:#8a8a95;
+  --l-browser-soft:#e9f1fb; --l-server-soft:#fdf4e1; --l-script-soft:#e5f6ef; --l-file-soft:#f0f0f2;
+  --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141416; --panel:#1d1d21; --fg:#efeff2; --fg-2:#c4c4cb; --muted:#9a9aa3; --line:#2e2e35; --line-2:#44444d;
+  --accent:#7b9bff;
+  --l-browser:#3987e5; --l-server:#c98500; --l-script:#199e70; --l-file:#8a8a95;
+  --l-browser-soft:#1b2738; --l-server-soft:#2e2615; --l-script-soft:#152a22; --l-file-soft:#26262b;
+}}
+:root[data-theme="dark"]{
+  --bg:#141416; --panel:#1d1d21; --fg:#efeff2; --fg-2:#c4c4cb; --muted:#9a9aa3; --line:#2e2e35; --line-2:#44444d;
+  --accent:#7b9bff;
+  --l-browser:#3987e5; --l-server:#c98500; --l-script:#199e70; --l-file:#8a8a95;
+  --l-browser-soft:#1b2738; --l-server-soft:#2e2615; --l-script-soft:#152a22; --l-file-soft:#26262b;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--bg); color:var(--fg); font:15px/1.7 var(--font); }
+main{ max-width:62rem; margin:0 auto; padding:32px 16px 64px; }
+h1{ font-size:24px; margin:0 0 6px; }
+h2{ font-size:19px; margin:44px 0 6px; }
+h3{ font-size:15px; margin:0; }
+p{ margin:8px 0; }
+.lead{ color:var(--fg-2); max-width:46rem; }
+.muted{ color:var(--muted); }
+code{ font-family:var(--mono); font-size:13px; }
+.card{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
+.legend{ display:flex; flex-wrap:wrap; gap:6px 18px; font-size:13px; margin:14px 0 10px; }
+.legend span{ display:inline-flex; align-items:center; gap:6px; }
+.legend i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+.setting{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:13px; color:var(--fg-2); margin-top:10px; }
+.setting select{ font:inherit; padding:3px 6px; border-radius:6px; border:1px solid var(--line-2); background:var(--panel); color:var(--fg); }
+
+/* overview diagram */
+.diagram svg{ display:block; width:100%; height:auto; }
+.diagram text{ font-family:var(--font); fill:var(--fg); }
+.diagram .lane-t{ font-size:13px; font-weight:650; }
+.diagram .lane-s{ font-size:11.5px; fill:var(--muted); font-family:var(--mono); }
+.diagram .box-t{ font-size:12.5px; font-weight:600; }
+.diagram .box-s{ font-size:11px; fill:var(--fg-2); font-family:var(--mono); }
+.diagram .num{ font-size:11px; font-weight:700; fill:#fff; }
+.diagram .arr{ fill:none; stroke-width:1.6; }
+.diagram .gen{ stroke:var(--fg-2); }
+.diagram .dash{ stroke:var(--fg-2); stroke-dasharray:4 3; }
+.diagram .sep{ stroke:var(--line-2); stroke-dasharray:2 4; }
+.diagram .flow-t{ font-size:12px; font-weight:700; fill:var(--muted); letter-spacing:.06em; }
+
+/* steps */
+.steps{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:0; }
+.step{ position:relative; display:grid; grid-template-columns:34px 1fr; gap:12px; padding-bottom:14px; }
+.step:not(:last-child)::before{ content:""; position:absolute; left:16px; top:34px; bottom:0; width:2px; background:var(--line-2); }
+.dot{ width:34px; height:34px; border-radius:50%; display:grid; place-items:center; color:#fff; font-weight:700; font-size:13px; }
+.step .card{ padding:12px 14px; border-left:4px solid var(--lane); }
+.step .head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 10px; }
+.tag{ font-size:11px; font-weight:650; padding:1px 8px; border-radius:999px; background:var(--lane-soft); color:var(--fg); border:1px solid var(--lane); }
+.loc{ display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; margin-top:6px; font-size:13px; }
+.loc a{ color:var(--accent); text-decoration:none; font-family:var(--mono); font-size:12.5px; word-break:break-all; }
+.loc a:hover{ text-decoration:underline; }
+a.inline{ color:var(--accent); }
+.loc .fn{ font-family:var(--mono); font-size:12.5px; color:var(--fg-2); }
+.step p{ margin:6px 0 0; font-size:14px; color:var(--fg-2); }
+.step ul{ margin:6px 0 0; padding-left:18px; font-size:14px; color:var(--fg-2); }
+.browser{ --lane:var(--l-browser); --lane-soft:var(--l-browser-soft); }
+.server{ --lane:var(--l-server); --lane-soft:var(--l-server-soft); }
+.script{ --lane:var(--l-script); --lane-soft:var(--l-script-soft); }
+.file{ --lane:var(--l-file); --lane-soft:var(--l-file-soft); }
+.browser .dot{ background:var(--l-browser); } .server .dot{ background:var(--l-server); }
+.script .dot{ background:var(--l-script); } .file .dot{ background:var(--l-file); }
+
+.callout{ border-left:4px solid var(--accent); background:var(--panel); border-radius:8px; padding:12px 14px; margin:14px 0; font-size:14px; }
+table{ border-collapse:collapse; width:100%; font-size:13.5px; }
+th, td{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+th{ font-size:12px; color:var(--fg-2); }
+.tw{ overflow-x:auto; background:var(--panel); border:1px solid var(--line); border-radius:10px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Coverage 应用的运行链路</h1>
+  <p class="lead">两条链路：在 <b>Generate</b> 页点击 <b>Generate coverage database</b> 后发生了什么；以及 <b>Database</b> 和
+    <b>Dashboard</b> 页上的数据和统计数字从哪里来。每一步都标出了文件、行号和函数，点击位置即可在编辑器中打开。</p>
+
+  <div class="legend">
+    <span><i style="background:var(--l-browser)"></i>浏览器：<code>coverage_app/static/</code></span>
+    <span><i style="background:var(--l-server)"></i>本地服务器：<code>coverage_app/server.py</code></span>
+    <span><i style="background:var(--l-script)"></i>Python 脚本：<code>code/check_coverage_database.py</code></span>
+    <span><i style="background:var(--l-file)"></i>磁盘上的文件</span>
+  </div>
+  <div class="setting">链接打开方式
+    <select id="editor"><option value="cursor">Cursor</option><option value="vscode">VS Code</option><option value="none">（只显示路径）</option></select>
+    <span class="muted" id="root-note"></span>
+  </div>
+
+  <h2>总览</h2>
+  <div class="card diagram">
+    <svg viewBox="0 0 960 560" role="img" aria-label="总览：浏览器调用 server.py，server.py 运行 check_coverage_database.py 写出工作簿；Dashboard 通过 server.py 读回工作簿，并在 app.js 中计算统计数字">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-2)"/>
+        </marker>
+      </defs>
+      <g>
+        <rect x="10" y="10" width="220" height="540" rx="10" style="fill:var(--l-browser-soft)"/>
+        <rect x="250" y="10" width="220" height="540" rx="10" style="fill:var(--l-server-soft)"/>
+        <rect x="490" y="10" width="220" height="540" rx="10" style="fill:var(--l-script-soft)"/>
+        <rect x="730" y="10" width="220" height="540" rx="10" style="fill:var(--l-file-soft)"/>
+        <text class="lane-t" x="120" y="34" text-anchor="middle">浏览器</text>
+        <text class="lane-s" x="120" y="50" text-anchor="middle">index.html + app.js</text>
+        <text class="lane-t" x="360" y="34" text-anchor="middle">本地服务器</text>
+        <text class="lane-s" x="360" y="50" text-anchor="middle">server.py</text>
+        <text class="lane-t" x="600" y="34" text-anchor="middle">Python 脚本</text>
+        <text class="lane-s" x="600" y="50" text-anchor="middle">check_coverage_database.py</text>
+        <text class="lane-t" x="840" y="34" text-anchor="middle">文件</text>
+        <text class="lane-s" x="840" y="50" text-anchor="middle">输入与输出</text>
+      </g>
+
+      <text class="flow-t" x="20" y="80">A · 生成数据库</text>
+      <g>
+        <rect x="25" y="92" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-browser);stroke-width:1.5"/>
+        <text class="box-t" x="37" y="114">Generate 按钮</text>
+        <text class="box-s" x="37" y="132">click handler → api()</text>
+
+        <rect x="265" y="92" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-server);stroke-width:1.5"/>
+        <text class="box-t" x="277" y="114">POST /api/generate</text>
+        <text class="box-s" x="277" y="132">start_job → 后台线程</text>
+
+        <rect x="265" y="168" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-server);stroke-width:1.5"/>
+        <text class="box-t" x="277" y="190">_run_job()</text>
+        <text class="box-s" x="277" y="208">调用 ccd.main(...)</text>
+
+        <rect x="505" y="168" width="190" height="70" rx="8" style="fill:var(--panel);stroke:var(--l-script);stroke-width:1.5"/>
+        <text class="box-t" x="517" y="190">main() → build()</text>
+        <text class="box-s" x="517" y="208">国家 × 年份 的事实</text>
+        <text class="box-s" x="517" y="224">write_workbook()</text>
+
+        <rect x="745" y="92" width="190" height="62" rx="8" style="fill:var(--panel);stroke:var(--l-file);stroke-width:1.5"/>
+        <text class="box-t" x="757" y="114">输入</text>
+        <text class="box-s" x="757" y="132">final_all_..._1028.csv</text>
+        <text class="box-s" x="757" y="146">pdf staff reports/&lt;batch&gt;/</text>
+
+        <rect x="745" y="232" width="190" height="62" rx="8" style="fill:var(--panel);stroke:var(--l-file);stroke-width:1.5"/>
+        <text class="box-t" x="757" y="254">输出（一个版本）</text>
+        <text class="box-s" x="757" y="272">coverage_database_</text>
+        <text class="box-s" x="757" y="286">  &lt;STAMP&gt;.xlsx + .json</text>
+
+        <rect x="25" y="232" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-browser);stroke-width:1.5"/>
+        <text class="box-t" x="37" y="254">进度条</text>
+        <text class="box-s" x="37" y="272">pollJob() 每秒一次</text>
+      </g>
+      <path class="arr gen" d="M215,119 H263" marker-end="url(#ah)"/>
+      <path class="arr gen" d="M360,146 V166" marker-end="url(#ah)"/>
+      <path class="arr gen" d="M455,195 H503" marker-end="url(#ah)"/>
+      <path class="arr gen" d="M745,123 H720 Q712,123 712,131 V176 Q712,184 704,184 H697" marker-end="url(#ah)"/>
+      <path class="arr gen" d="M695,222 H716 Q724,222 724,230 V255 Q724,263 732,263 H743" marker-end="url(#ah)"/>
+      <path class="arr dash" d="M263,214 H240 Q232,214 232,222 V251 Q232,259 224,259 H217" marker-end="url(#ah)"/>
+      <text class="box-s" x="236" y="300" text-anchor="middle">GET /api/job</text>
+
+      <line class="sep" x1="20" y1="322" x2="940" y2="322"/>
+
+      <text class="flow-t" x="20" y="350">B · DATABASE 与 DASHBOARD</text>
+      <g>
+        <rect x="25" y="362" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-browser);stroke-width:1.5"/>
+        <text class="box-t" x="37" y="384">选择版本</text>
+        <text class="box-s" x="37" y="402">setActive(stamp)</text>
+
+        <rect x="265" y="362" width="190" height="70" rx="8" style="fill:var(--panel);stroke:var(--l-server);stroke-width:1.5"/>
+        <text class="box-t" x="277" y="384">GET /api/runs/&lt;s&gt;/data</text>
+        <text class="box-s" x="277" y="402">coverage_payload()</text>
+        <text class="box-s" x="277" y="418">读取 xlsx 的各个 sheet</text>
+
+        <rect x="745" y="362" width="190" height="54" rx="8" style="fill:var(--panel);stroke:var(--l-file);stroke-width:1.5"/>
+        <text class="box-t" x="757" y="384">coverage_database_</text>
+        <text class="box-s" x="757" y="402">&lt;STAMP&gt;.xlsx</text>
+
+        <rect x="25" y="452" width="190" height="86" rx="8" style="fill:var(--panel);stroke:var(--l-browser);stroke-width:2.5"/>
+        <text class="box-t" x="37" y="474">表格与统计数字</text>
+        <text class="box-s" x="37" y="492">renderDatabase()</text>
+        <text class="box-s" x="37" y="508">yearBreakdown()</text>
+        <text class="box-s" x="37" y="524">drawChart() → SVG</text>
+      </g>
+      <path class="arr gen" d="M215,389 H263" marker-end="url(#ah)"/>
+      <path class="arr gen" d="M745,389 H457" marker-end="url(#ah)"/>
+      <text class="box-s" x="600" y="381" text-anchor="middle">读取（pandas）</text>
+      <path class="arr gen" d="M360,432 V495 H217" marker-end="url(#ah)"/>
+      <text class="box-s" x="290" y="488" text-anchor="middle">JSON</text>
+      <text class="box-s" x="600" y="470" text-anchor="middle">（这里不运行脚本：</text>
+      <text class="box-s" x="600" y="486" text-anchor="middle">只读取一个</text>
+      <text class="box-s" x="600" y="502" text-anchor="middle">已保存的版本）</text>
+    </svg>
+  </div>
+
+  <!-- ============================================================ A -->
+  <h2>A. 生成 coverage database</h2>
+  <p class="muted">按钮在 <b>Generate</b> 页。浏览器本身不运行 Python：它把路径发给本地服务器，由服务器在后台线程里运行脚本。</p>
+  <ol class="steps">
+    <li class="step browser"><div class="dot">1</div><div class="card">
+      <div class="head"><h3>按钮</h3><span class="tag">浏览器</span></div>
+      <div class="loc" data-file="coverage_app/static/index.html" data-line="66"><span class="fn">&lt;button id="btn-generate"&gt;</span></div>
+      <p>普通的 HTML。页面上它旁边是 Final CSV 输入框（<code>in-csv</code>）、Staff reports folder（<code>in-pdf</code>）、
+        子文件夹选择和 Version stamp。</p>
+    </div></li>
+    <li class="step browser"><div class="dot">2</div><div class="card">
+      <div class="head"><h3>点击处理：发出请求</h3><span class="tag">浏览器</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="147"><span class="fn">$("btn-generate").addEventListener("click", …)</span></div>
+      <p>先重新检查路径（<code>inspectPaths()</code> → <code>POST /api/inspect</code>），收集勾选的子文件夹，然后通过
+        <code>api()</code>（第 22 行，一个简单的 <code>fetch</code> 封装）把 <code>{final_csv, pdf_root, batches, stamp}</code>
+        发到 <code>/api/generate</code>，接着开始轮询进度。请求的接收方是本机上运行的 <code>server.py</code>，不是云端 API。</p>
+    </div></li>
+    <li class="step server"><div class="dot">3</div><div class="card">
+      <div class="head"><h3>服务器收到 POST</h3><span class="tag">本地服务器</span></div>
+      <div class="loc" data-file="coverage_app/server.py" data-line="308"><span class="fn">Handler.do_POST()</span></div>
+      <p>把 <code>/api/generate</code> 交给 <code>start_job()</code>。</p>
+    </div></li>
+    <li class="step server"><div class="dot">4</div><div class="card">
+      <div class="head"><h3>检查输入，启动后台线程</h3><span class="tag">本地服务器</span></div>
+      <div class="loc" data-file="coverage_app/server.py" data-line="195"><span class="fn">start_job(body)</span></div>
+      <p>检查 CSV 和文件夹是否存在、stamp 是否合法、是否已有任务在运行。用 <code>unique_stamp()</code>（第 93 行）保证版本号不重复
+        （已存在就加 <code>_2</code>、<code>_3</code> …），然后在线程里启动 <code>_run_job</code> 并立即回复，页面不会卡住。</p>
+    </div></li>
+    <li class="step server"><div class="dot">5</div><div class="card">
+      <div class="head"><h3>真正运行 Python 代码的那一行</h3><span class="tag">本地服务器</span></div>
+      <div class="loc" data-file="coverage_app/server.py" data-line="184"><span class="fn">_run_job() → ccd.main(final_csv=…, pdf_root=…, out_dir=…, stamp=…, batches=…, progress=_progress)</span></div>
+      <p><code>ccd</code> 就是 <code>check_coverage_database</code>，在
+        <a class="inline" data-file="coverage_app/server.py" data-line="46">server.py:46</a> 导入。脚本打印的内容被收进任务日志
+        （<code>_LogWriter</code>），<code>_progress()</code>（第 172 行）更新进度条。它和命令行运行
+        <code>python code/check_coverage_database.py</code> 用的是同一个 <code>main()</code>。</p>
+    </div></li>
+    <li class="step script"><div class="dot">6</div><div class="card">
+      <div class="head"><h3>main()：构建并保存一个版本</h3><span class="tag">Python 脚本</span></div>
+      <div class="loc" data-file="code/check_coverage_database.py" data-line="374"><span class="fn">main()</span></div>
+      <p>依次调用 <code>build()</code>、<code>by_year()</code>，然后写出工作簿和运行记录（JSON，记录 CSV 的大小、修改时间和 SHA-256）。</p>
+    </div></li>
+    <li class="step script"><div class="dot">7</div><div class="card">
+      <div class="head"><h3>build()：每个国家每一年一行</h3><span class="tag">Python 脚本</span></div>
+      <div class="loc" data-file="code/check_coverage_database.py" data-line="242"><span class="fn">build()</span></div>
+      <ul>
+        <li><b>数值</b>：<a class="inline" data-file="code/core.py" data-line="170">load_rows()</a>
+          读取 final CSV，并给每行确定“数值所属的年份”；国家名称经
+          <a class="inline" data-file="code/core.py" data-line="85">normalize_country()</a> 统一。</li>
+        <li><b>Staff report</b>：<a class="inline" data-file="code/check_coverage_database.py" data-line="122">read_pdfs()</a>
+          列出所选子文件夹里的 PDF，从文件名读出国家和发布年份；
+          <a class="inline" data-file="code/check_coverage_database.py" data-line="151">keep_panel_reports()</a> 去掉区域性报告；
+          <a class="inline" data-file="code/check_coverage_database.py" data-line="163">report_country_years()</a> 得到 (国家, 年份) 组合。</li>
+        <li><b>数值来源</b>：<a class="inline" data-file="code/check_coverage_database.py" data-line="186">value_sources()</a>
+          当多个轮次都有值时，按 Round 1 → Round 2 → Round 3 → Gap fill 的顺序取一个。</li>
+        <li><b>指标列</b>：<a class="inline" data-file="code/check_coverage_database.py" data-line="215">indicator_columns()</a>
+          为每个 hierarchy_id 命名一列（如 <code>h6_residual</code>）。</li>
+      </ul>
+    </div></li>
+    <li class="step file"><div class="dot">8</div><div class="card">
+      <div class="head"><h3>保存到 output/coverage/</h3><span class="tag">文件</span></div>
+      <div class="loc" data-file="code/check_coverage_database.py" data-line="340"><span class="fn">write_workbook()</span></div>
+      <p><code>coverage_database_&lt;STAMP&gt;.xlsx</code>，包含 <b>Coverage</b>（Yes/No）、<b>By year</b>、<b>Sources</b>、
+        <b>Report years</b>、<b>Indicators</b>、<b>Notes</b> 几个 sheet；以及 <code>coverage_database_&lt;STAMP&gt;.json</code>（版本记录）。
+        保存位置由脚本设置里的 <code>OUT_DIR</code> 决定。</p>
+    </div></li>
+    <li class="step browser"><div class="dot">9</div><div class="card">
+      <div class="head"><h3>进度条和版本历史</h3><span class="tag">浏览器</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="121"><span class="fn">pollJob() → GET /api/job</span></div>
+      <p>每秒问一次服务器任务进行到哪一步（<code>setJobState()</code>，第 99 行，负责画进度条）。完成后 <code>loadRuns()</code>
+        （第 164 行 → <code>GET /api/runs</code> → server.py 第 65 行的 <code>list_runs()</code>）刷新版本列表，
+        版本列表就是文件夹里所有的 <code>coverage_database_*.xlsx</code> + <code>.json</code>。</p>
+    </div></li>
+  </ol>
+
+  <!-- ============================================================ B -->
+  <h2>B. Database 与 Dashboard</h2>
+  <div class="callout">
+    <b>数据从哪里读、分析在哪里做。</b>
+    <br>① 查看时<b>不会重新运行</b> <code>check_coverage_database.py</code>。<code>server.py</code> 里的一个函数从本地
+    <code>output/coverage/</code> 读取<b>已保存的 xlsx</b>（不是 final CSV），转成紧凑的 JSON 发给页面。Database 和 Dashboard
+    共用这一份数据，每个版本只读一次。
+    <br>② <b>Python 脚本</b>负责算出每个国家每一年的事实（有没有值、来自哪一轮、哪些年份有 staff report），保存在工作簿里，即 <code>build()</code>。
+    <br>③ 页面上的<b>统计数字</b>（按年份和来源的计数、Unavailable、T+1…T+4 的拆分、顶部三个数字）是在<b>浏览器里</b>、在
+    <code>app.js</code> 中计算的：<code>yearBreakdown()</code> 和 <code>drawChart()</code>。所以切换指标或 T+k 是即时的，不需要再跑 Python。
+    <br><span class="muted">工作簿里的 “By year” sheet（<code>by_year()</code>，脚本第 303 行）是给 Excel 用的另一份汇总，Dashboard 不读取它。</span>
+  </div>
+  <ol class="steps">
+    <li class="step browser"><div class="dot">1</div><div class="card">
+      <div class="head"><h3>选择一个版本</h3><span class="tag">浏览器</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="207"><span class="fn">setActive(stamp)</span></div>
+      <p>在打开页面时或切换 Version 下拉框时运行（不是在点击 Database 标签时）。请求 <code>GET /api/runs/&lt;stamp&gt;/data</code>，
+        返回的数据存在 <code>S.data</code> 里，Database 和 Dashboard 两个页面都用它。</p>
+    </div></li>
+    <li class="step server"><div class="dot">2</div><div class="card">
+      <div class="head"><h3>分发请求</h3><span class="tag">本地服务器</span></div>
+      <div class="loc" data-file="coverage_app/server.py" data-line="271"><span class="fn">Handler.do_GET()</span></div>
+      <p>用 <code>workbook_for()</code>（第 87 行）找到这个版本对应的工作簿，然后调用 <code>coverage_payload()</code>。</p>
+    </div></li>
+    <li class="step server"><div class="dot">3</div><div class="card">
+      <div class="head"><h3>读取已保存的工作簿，压缩后发出</h3><span class="tag">本地服务器</span></div>
+      <div class="loc" data-file="coverage_app/server.py" data-line="106"><span class="fn">coverage_payload(path)</span></div>
+      <p>用 pandas 的 <code>read_excel</code>（第 115 行）读取各个 sheet，对 4,750 行生成：每行的国家和年份；每列一串
+        <code>1</code>/<code>0</code>（来自 Coverage）；每个指标一串来源代码 <code>1 2 3 g 0</code>（来自 Sources）；每个国家的
+        发布年份（来自 Report years）。这里不做任何统计，只是换个格式。最近读过的工作簿会缓存在内存里，文件改动后会自动重新读取。</p>
+    </div></li>
+    <li class="step browser"><div class="dot">4</div><div class="card">
+      <div class="head"><h3>Database 表格</h3><span class="tag">浏览器</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="305"><span class="fn">renderDatabase()</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="289"><span class="fn">filteredRows()</span></div>
+      <p>点击 Database 标签只是把这一部分显示出来（<code>showTab()</code>，第 35 行）。国家、年份筛选、翻页和 Fields 选择都在浏览器里完成，
+        不会再向服务器请求。Download workbook 按钮则把同一个 xlsx 原样发给你。</p>
+    </div></li>
+    <li class="step browser"><div class="dot">5</div><div class="card">
+      <div class="head"><h3>指标选择和 T+k 切换</h3><span class="tag">浏览器</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="349"><span class="fn">setupSlicer()</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="370"><span class="fn">setSpan(k)</span></div>
+      <p>每次改变都会重新调用 <code>drawChart()</code>。按钮本身在
+        <a class="inline" data-file="coverage_app/static/index.html" data-line="147">index.html:147</a>。</p>
+    </div></li>
+    <li class="step browser"><div class="dot">6</div><div class="card">
+      <div class="head"><h3>统计数字</h3><span class="tag">浏览器</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="399"><span class="fn">yearBreakdown(ind, k)</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="383"><span class="fn">reportLookup()</span></div>
+      <ul>
+        <li>把所有国家-年份行遍历一次。每一年统计：<code>total</code>，以及根据所选指标的来源代码分到
+          <code>r1 r2 r3 gf</code>；代码 <code>0</code> 计入 <code>unavail</code>。</li>
+        <li>打开 T+k 时：对第 T 年 unavailable 的国家，查它在 T+1 … T+k 年是否有 staff report（来自 <code>reportLookup()</code>）。
+          一份都没有 → <code>nolater</code>（带阴影的部分，国家名加入 <code>list</code>）；否则 → <code>later</code>（Unavailable, other reasons）。</li>
+        <li><code>partial</code> 标记 T+k 超出 PDF 最后年份的年份（图上的 <code>*</code>）。</li>
+      </ul>
+    </div></li>
+    <li class="step browser"><div class="dot">7</div><div class="card">
+      <div class="head"><h3>画图</h3><span class="tag">浏览器</span></div>
+      <div class="loc" data-file="coverage_app/static/app.js" data-line="442"><span class="fn">drawChart()</span></div>
+      <p>顶部三个数字（country-years、有数据的数量、覆盖率）、堆叠柱状图（SVG）、柱子上方的数字、悬停提示、点击柱子后的国家列表，
+        以及 “Show the numbers” 表格，全部来自 <code>yearBreakdown()</code> 的结果。</p>
+    </div></li>
+  </ol>
+
+  <h2>文件一览</h2>
+  <div class="tw"><table>
+    <thead><tr><th>文件</th><th>作用</th><th>主要函数</th></tr></thead>
+    <tbody>
+      <tr><td><a class="inline" data-file="coverage_app/start.command" data-line="1">coverage_app/start.command</a><br><a class="inline" data-file="coverage_app/start.bat" data-line="1">coverage_app/start.bat</a></td>
+        <td>启动本地服务器（Mac / Windows）</td><td>运行 <code>python coverage_app/server.py</code></td></tr>
+      <tr><td><a class="inline" data-file="coverage_app/static/index.html" data-line="1">coverage_app/static/index.html</a></td>
+        <td>页面结构：标签页、表单、表格、图表区域</td><td>—</td></tr>
+      <tr><td><a class="inline" data-file="coverage_app/static/app.js" data-line="1">coverage_app/static/app.js</a></td>
+        <td>浏览器里的全部逻辑：按钮、Database 表格、<b>Dashboard 的统计和图表</b></td>
+        <td><code>api</code>、点击处理、<code>pollJob</code>、<code>setActive</code>、<code>renderDatabase</code>、<code>yearBreakdown</code>、<code>drawChart</code></td></tr>
+      <tr><td><a class="inline" data-file="coverage_app/server.py" data-line="1">coverage_app/server.py</a></td>
+        <td>本地 Web 服务器（127.0.0.1:8765）：运行脚本、列出版本、读取工作簿数据</td>
+        <td><code>start_job</code>、<code>_run_job</code>、<code>list_runs</code>、<code>coverage_payload</code></td></tr>
+      <tr><td><a class="inline" data-file="code/check_coverage_database.py" data-line="1">code/check_coverage_database.py</a></td>
+        <td><b>生成数据库的 Python 代码</b>；也可以单独在命令行运行</td>
+        <td><code>main</code>、<code>build</code>、<code>read_pdfs</code>、<code>value_sources</code>、<code>by_year</code>、<code>write_workbook</code></td></tr>
+      <tr><td><a class="inline" data-file="code/core.py" data-line="170">code/core.py</a></td>
+        <td>脚本导入的共用函数</td><td><code>load_rows</code>、<code>normalize_country</code></td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted" style="margin-top:14px">行号对应 commit 9bcff56（2026-11-11）。代码改动后行号可能变化，按函数名搜索即可找到。
+    浏览器和本地服务器的关系另见 <code>coverage_app/browser_and_server_zh.html</code>。</p>
+</main>
+<script>
+(function () {
+  // Project folder = two levels up from this page (…/SFA/coverage_app/how_it_works.html), so links work on any machine
+  var path = decodeURIComponent(location.pathname).replace(/\/[^/]*$/, "").replace(/\/[^/]*$/, "");
+  if (/^\/[A-Za-z]:\//.test(path)) path = path.slice(1);           // Windows: /C:/... -> C:/...
+  var isFile = location.protocol === "file:";
+  var sel = document.getElementById("editor");
+  try { sel.value = localStorage.getItem("flow_editor") || "cursor"; } catch (e) {}
+  document.getElementById("root-note").textContent = isFile ? "项目文件夹：" + path : "从本地磁盘打开此文件才能使用编辑器链接。";
+
+  function render() {
+    var ed = sel.value;
+    document.querySelectorAll("[data-file]").forEach(function (n) {
+      var rel = n.dataset.file, line = n.dataset.line;
+      var href = isFile && ed !== "none" ? ed + "://file/" + encodeURI(path + "/" + rel) + ":" + line : null;
+      if (n.classList.contains("loc")) {
+        var a = n.querySelector("a.src") || n.insertBefore(document.createElement("a"), n.firstChild);
+        a.className = "src"; a.textContent = rel + ":" + line;
+        if (href) a.href = href; else a.removeAttribute("href");
+      } else if (href) { n.href = href; } else { n.removeAttribute("href"); n.title = rel + ":" + line; }
+    });
+  }
+  sel.addEventListener("change", function () { try { localStorage.setItem("flow_editor", sel.value); } catch (e) {} render(); });
+  render();
+})();
+</script>
+</body>
+</html>

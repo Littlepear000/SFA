@@ -32,16 +32,17 @@
   var S = { defaults: null, runs: [], active: null, data: null, page: 0, pageSize: 60, polling: null };
 
   // ------------------------------------------------------------------ tabs
+  // Coverage has two modules, Database (with "Generate a new version" at the top) and Dashboard; the
+  // top-level navigation (Workflow / Panel database / Coverage) lives in workflow.js, which calls this.
   function showTab(name) {
-    document.querySelectorAll(".tab").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.tab === name)); });
-    ["generate", "database", "dashboard"].forEach(function (t) { $("tab-" + t).hidden = t !== name; });
+    if (name === "generate") name = "database";
+    if (["database", "dashboard"].indexOf(name) < 0) name = "database";
+    document.querySelectorAll(".cov-tab").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.tab === name)); });
+    ["database", "dashboard"].forEach(function (t) { $("tab-" + t).hidden = t !== name; });
     store("cov_tab", name);
-    if (location.hash !== "#" + name) history.replaceState(null, "", "#" + name);
     if (name === "dashboard") drawChart();
   }
-  document.querySelectorAll(".tab").forEach(function (b) {
-    b.addEventListener("click", function () { showTab(b.dataset.tab); });
-  });
+  window.Coverage = { showTab: showTab, current: function () { return store("cov_tab") || "database"; } };
 
   // ------------------------------------------------------------------ generate
   function inspectPaths() {
@@ -172,6 +173,7 @@
       var exists = S.runs.some(function (r) { return r.stamp === keep; });
       var pick = exists ? keep : (S.runs[0] ? S.runs[0].stamp : null);
       renderRuns();
+      if (!S.runs.length) $("gen-card").open = true;  // nothing to show yet: start with Generate open
       if (pick != null) { sel.value = pick; setActive(pick); }
       else { S.active = null; S.data = null; renderDatabase(); drawChart(); }
     }).catch(function (e) { toast(e.message); });
@@ -200,7 +202,7 @@
         '<a class="btn small" href="/api/runs/' + encodeURIComponent(r.stamp) + '/download">Download</a></td></tr>';
     }).join("");
     tb.querySelectorAll("[data-view]").forEach(function (b) {
-      b.addEventListener("click", function () { $("version-select").value = b.dataset.view; setActive(b.dataset.view); showTab("dashboard"); });
+      b.addEventListener("click", function () { $("version-select").value = b.dataset.view; setActive(b.dataset.view); location.hash = "#coverage/dashboard"; });
     });
   }
 
@@ -580,8 +582,6 @@
     setDefaultStamp();
     $("out-dir").textContent = d.out_dir;
     inspectPaths();
-    var fromHash = location.hash.slice(1);
-    showTab(["generate", "database", "dashboard"].indexOf(fromHash) >= 0 ? fromHash : (store("cov_tab") || "generate"));
     return loadRuns();
   }).then(function () {
     return api("/api/job").then(function (job) { setJobState(job); if (job.state === "running") pollJob(); });

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>逐行运行 yearBreakdown</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f6f6f4; --panel:#fff; --fg:#17171a; --fg-2:#4f4f57; --muted:#75757e; --line:#e2e2e6; --line-2:#cdcdd3;
+  --accent:#1d4ed8; --warn-bg:#fdf4e1; --warn:#a86b00;
+  --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141416; --panel:#1d1d21; --fg:#efeff2; --fg-2:#c4c4cb; --muted:#9a9aa3; --line:#2e2e35; --line-2:#44444d;
+  --accent:#7b9bff; --warn-bg:#2e2615; --warn:#e0a83a;
+}}
+:root[data-theme="dark"]{
+  --bg:#141416; --panel:#1d1d21; --fg:#efeff2; --fg-2:#c4c4cb; --muted:#9a9aa3; --line:#2e2e35; --line-2:#44444d;
+  --accent:#7b9bff; --warn-bg:#2e2615; --warn:#e0a83a;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--bg); color:var(--fg); font:15.5px/1.7 var(--font); }
+main{ max-width:58rem; margin:0 auto; padding:32px 16px 64px; }
+h1{ font-size:24px; margin:0 0 6px; }
+h2{ font-size:19px; margin:40px 0 6px; display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; }
+h2 .q{ font-size:12px; font-weight:700; color:#fff; background:var(--accent); border-radius:6px; padding:1px 8px; }
+h3{ font-size:16px; margin:22px 0 4px; }
+p{ margin:8px 0; }
+.lead{ color:var(--fg-2); }
+.muted{ color:var(--muted); }
+code{ font-family:var(--mono); font-size:13px; background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:0 5px; }
+kbd{ font-family:var(--mono); font-size:12.5px; border:1px solid var(--line-2); border-bottom-width:2px; border-radius:5px; padding:0 5px; background:var(--panel); }
+.codebox{ position:relative; margin:8px 0; }
+.codebox pre{ font-family:var(--mono); font-size:13px; line-height:1.55; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; overflow-x:auto; margin:0; }
+.codebox button{ position:absolute; top:8px; right:8px; font:12.5px var(--font); color:var(--fg-2); background:var(--bg); border:1px solid var(--line-2); border-radius:6px; padding:2px 10px; cursor:pointer; }
+.codebox button:hover{ color:var(--fg); }
+.answer{ border-left:4px solid var(--accent); background:var(--panel); border-radius:8px; padding:12px 14px; margin:12px 0; font-size:16px; }
+.warn{ border-left:4px solid var(--warn); background:var(--warn-bg); border-radius:8px; padding:10px 14px; margin:12px 0; }
+.ask{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px 14px; color:var(--fg-2); font-size:14.5px; }
+.ask b{ color:var(--fg); }
+ol.steps{ list-style:none; padding:0; margin:12px 0; counter-reset:s; }
+ol.steps li{ counter-increment:s; position:relative; padding:0 0 14px 44px; }
+ol.steps li::before{ content:counter(s); position:absolute; left:0; top:0; width:30px; height:30px; border-radius:50%;
+  display:grid; place-items:center; background:var(--accent); color:#fff; font-weight:700; font-size:13px; }
+ol.steps li:not(:last-child)::after{ content:""; position:absolute; left:14px; top:32px; bottom:2px; width:2px; background:var(--line-2); }
+ol.steps li > b:first-child{ display:block; }
+table{ border-collapse:collapse; width:100%; font-size:14.5px; }
+th, td{ text-align:left; padding:8px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+th{ font-size:13px; color:var(--fg-2); }
+.tw{ overflow-x:auto; background:var(--panel); border:1px solid var(--line); border-radius:10px; }
+.mock{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; }
+.mock svg{ display:block; width:100%; height:auto; }
+.mock text{ font-family:var(--font); fill:var(--fg); }
+.note{ font-size:13.5px; color:var(--muted); margin-top:28px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>在浏览器里逐行运行 <code>yearBreakdown</code></h1>
+  <p class="lead">Dashboard 的计数由 <code>coverage_app/static/app.js</code> 的 <code>yearBreakdown()</code>（第 399 行）在浏览器里算出。
+    这页教你拿到同一份数据 <code>S.data</code>，再用 Chrome DevTools 一行一行地跑，看每一步的结果。</p>
+
+  <!-- ============================================================ Q -->
+  <h2><span class="q">问题</span>切回 Dashboard 后页面“卡住”了</h2>
+  <div class="ask"><b>你的问题：</b>按逐行运行走完第四步后，再切回 Dashboard，出现了一个奇怪的页面。</div>
+  <div class="answer">最常见的原因：<b>代码停在断点上还没继续</b>。暂停期间整个页面的 JavaScript 都冻结了，
+    点标签、点按钮都没有反应，图表也可能只画了一半或是空的。这不是坏了，按 <kbd>F8</kbd>（或页面顶部的 ▶）继续就好。</div>
+
+  <div class="mock" aria-hidden="true">
+    <svg viewBox="0 0 640 120">
+      <rect x="0" y="0" width="640" height="120" rx="8" fill="#888" opacity=".18"/>
+      <rect x="200" y="14" width="240" height="30" rx="6" fill="#fff6c8" stroke="#d9c35c"/>
+      <text x="216" y="34" font-size="13" style="fill:#3a3a3a">Paused in debugger</text>
+      <text x="370" y="34" font-size="15" style="fill:#1d4ed8">▶</text>
+      <text x="398" y="34" font-size="15" style="fill:#1d4ed8">↷</text>
+      <text x="320" y="84" font-size="13" text-anchor="middle" style="fill:var(--muted)">页面变灰、顶部出现黄条 = 代码正停在断点上</text>
+    </svg>
+  </div>
+
+  <h3>处理办法</h3>
+  <ol class="steps">
+    <li><b>继续运行</b>按 <kbd>F8</kbd> 或黄条上的 ▶。如果又停住，说明断点又被触发了，见下一步。</li>
+    <li><b>关掉断点</b>第 400 行的断点会一直留着（刷新页面也在）。每次 Dashboard 重画都会再停一次：
+      切到 Dashboard、换 Indicator、点 T+k、甚至拖动窗口大小。去掉的办法任选一个：
+      <br>· 再点一下蓝色的行号 400，取消断点；
+      <br>· 右侧 <b>Breakpoints</b> 面板里取消勾选；
+      <br>· 按 <kbd>Cmd</kbd>+<kbd>F8</kbd> 暂时停用所有断点（再按一次恢复）。</li>
+    <li><b>如果图表是空的</b>继续运行后切一下别的标签再切回 Dashboard，或刷新页面，图会重新画出来。</li>
+  </ol>
+  <p class="muted">你描述的“以下这个页面”截图没有传过来。如果看到的不是上面这种灰色暂停界面（比如报错信息或空白），把截图再发一次。</p>
+
+  <!-- ============================================================ 1 -->
+  <h2><span class="q">第一步</span>拿到 <code>S.data</code></h2>
+  <p>直接在 Console 输入 <code>S.data</code> 会报 <code>S is not defined</code>：整个 <code>app.js</code> 包在
+    <code>(function () { … })();</code> 里，<code>S</code>（第 32 行）是私有变量。两种办法：</p>
+
+  <h3>办法 1：停在断点时查看</h3>
+  <ol class="steps">
+    <li><b>设断点</b>DevTools（<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>）→ Sources → <code>app.js</code>，点第 400 行的行号。</li>
+    <li><b>触发</b>切到 Dashboard，或点一下 T+3，代码停住。</li>
+    <li><b>打印</b>在 Console 输入 <code>S.data</code> 回车。</li>
+    <li><b>存下来</b>右键打印出的对象 → <b>Store as global variable</b>，得到 <code>temp1</code>。
+      <b>做完马上按 <kbd>F8</kbd> 继续，并取消断点</b>，否则就会遇到上面的卡住问题。</li>
+  </ol>
+
+  <h3>办法 2：在 Console 里自己取（推荐）</h3>
+  <p>发的是和页面完全相同的请求（<code>app.js:213</code>），取的是 Version 下拉框里当前选中的版本：</p>
+  <div class="codebox"><button type="button" data-copy="c-fetch">复制</button><pre id="c-fetch"></pre></div>
+  <p>然后可以这样看结构：</p>
+  <div class="codebox"><button type="button" data-copy="c-look">复制</button><pre id="c-look"></pre></div>
+
+  <div class="tw"><table>
+    <thead><tr><th>字段</th><th>含义</th></tr></thead>
+    <tbody>
+      <tr><td><code>D.countries</code></td><td>国家名列表；代码里的数字 <code>c</code> 就是在这里的位置</td></tr>
+      <tr><td><code>D.row_year</code> / <code>D.row_country</code></td><td>Coverage 表每一行的年份和国家编号</td></tr>
+      <tr><td><code>D.sources[指标名]</code></td><td>每一行的来源代码：<code>"1"</code> Round 1，<code>"2"</code> Round 2，<code>"3"</code> Round 3，<code>"g"</code> Gap fill，<code>"0"</code> 没有值</td></tr>
+      <tr><td><code>D.report_years</code></td><td>每个国家发布过 staff report 的年份</td></tr>
+      <tr><td><code>D.report_year_range</code></td><td>报告年份的范围，第二个数是最后一年（2026）</td></tr>
+    </tbody>
+  </table></div>
+  <div class="warn">需要用带 Sources 和 Report years 两个 sheet 的新版本。旧版本没有 <code>D.sources</code>，下面的脚本会报错，先在 IMF 电脑上重新生成一个版本。</div>
+
+  <!-- ============================================================ 2 -->
+  <h2><span class="q">第二步</span>在 <code>D</code> 上逐行运行</h2>
+  <p>下面是 <code>yearBreakdown</code> 的学习版，逻辑和 <code>app.js</code> 一样，只改了三处：
+    以 <code>D</code> 为输入（不用 <code>S.data</code>）；关注的那一行会打印过程；<code>debugger</code> 只在那一行暂停。</p>
+  <ol class="steps">
+    <li><b>新建 Snippet</b>Sources 左栏 → <b>Snippets</b>（可能在 <code>»</code> 里）→ <b>+ New snippet</b>。</li>
+    <li><b>粘贴</b>把下面整段复制进去。先确认已在 Console 里跑过第一步，<code>D</code> 已经有了。</li>
+    <li><b>先确认没有暂停</b>页面上不能有 “Paused in debugger” 黄条。如果有，按 <kbd>F8</kbd> 继续，并点掉 <code>app.js</code> 第 400 行的断点。
+      暂停时运行 Snippet 会在 <code>yearBreakdown</code> 里面执行，报错
+      <code>Identifier … cannot be declared with 'var'</code>。不要用 <kbd>Cmd</kbd>+<kbd>F8</kbd> 停用断点，那样 <code>debugger</code> 也会失效。</li>
+    <li><b>运行</b>按 <kbd>Cmd</kbd>+<kbd>Enter</kbd>。代码停在 <code>debugger</code>（阿尔及利亚 2005 那一行），它的作用就等于一个断点，Snippet 里不用另外打断点。</li>
+    <li><b>一步步走</b><kbd>F10</kbd> 执行下一行，<kbd>F11</kbd> 进入函数内部。右侧 Scope 面板显示
+      <code>code</code>、<code>none</code>、<code>b</code> 的当前值；Console 里也能输入任意表达式，比如 <code>rep.sets[c]</code>。</li>
+    <li><b>继续</b>这一行走完后按 <kbd>F8</kbd>，不要一直按 <kbd>F10</kbd>：循环有约 5,000 行，后面的行不会再暂停。Console 会打印这一行的检查过程，最后 <code>console.table</code> 打印每年一行的结果，
+      应该和 Dashboard 里 “Show the numbers” 的数字一致。</li>
+  </ol>
+  <div class="codebox"><button type="button" data-copy="c-learn">复制</button><pre id="c-learn"></pre></div>
+  <p class="muted">想看别的国家或年份，改最后的 <code>"Algeria", 2005</code>；改成 <code>null, null</code> 就一路跑完不暂停。
+    想换指标，把 <code>IND</code> 改成 <code>Object.keys(D.sources)</code> 里的某个名字。</p>
+
+  <!-- ============================================================ 3 -->
+  <h2><span class="q">第三步</span>每一步在做什么</h2>
+  <div class="tw"><table>
+    <thead><tr><th>代码</th><th>作用</th></tr></thead>
+    <tbody>
+      <tr><td><code>rep = reportLookup(d)</code></td><td>建一张查询表：<code>rep.sets[c][2006] === 1</code> 表示国家 c 在 2006 年发布过报告</td></tr>
+      <tr><td><code>for (i …)</code></td><td>逐行遍历 Coverage 表，每行一个「国家 × 年份」</td></tr>
+      <tr><td><code>b = by[y]</code></td><td>这一年的计数桶，第一次遇到时新建，全部从 0 开始</td></tr>
+      <tr><td><code>code !== "0"</code></td><td>有值：找到对应的段（r1 / r2 / r3 / gf）加 1，跳到下一行</td></tr>
+      <tr><td><code>b.unavail++</code></td><td>没有值。开关为 Off（k = 0）时到此为止</td></tr>
+      <tr><td><code>for (j = 1 … k)</code></td><td>依次查 y+1 … y+k 有没有报告，有一年有就停</td></tr>
+      <tr><td><code>none</code></td><td><code>true</code>：一份都没有 → <code>nolater</code>（斜线），国家名进名单；<code>false</code> → <code>later</code>（实心灰）</td></tr>
+      <tr><td><code>return …sort()</code></td><td>按年份排好序返回，<code>drawChart()</code> 每个元素画一根柱子</td></tr>
+    </tbody>
+  </table></div>
+
+  <p class="note">相关代码：<code>coverage_app/static/app.js</code> — <code>S</code> 第 32 行，<code>setActive</code> 第 207 行（取数据），
+    <code>reportLookup</code> 第 383 行，<code>yearBreakdown</code> 第 399 行，<code>drawChart</code> 第 442 行（第 448 行调用 <code>yearBreakdown</code>）。
+    学习版脚本只在 DevTools 里运行，不会改动 app 或任何文件。</p>
+</main>
+
+<script type="text/plain" id="src-fetch">D = await (await fetch("/api/runs/" + encodeURIComponent(
+      document.getElementById("version-select").value) + "/data")).json();
+D</script>
+
+<script type="text/plain" id="src-look">Object.keys(D.sources)                            // 有哪些指标
+D.countries.indexOf("Algeria")                    // 阿尔及利亚的编号
+D.report_years[D.countries.indexOf("Algeria")]    // 阿尔及利亚有报告的年份</script>
+
+<script type="text/plain" id="src-learn">function reportLookup(d) {
+  var sets = d.countries.map(function () { return {}; });
+  if (d.report_years) {
+    // 新版本：每个国家发布过报告的所有年份
+    d.report_years.forEach(function (ys, c) { ys.forEach(function (y) { sets[c][y] = 1; }); });
+  } else {
+    // 旧版本：只能用 has_staff_report 列，看面板年份内哪年有报告
+    var f = d.flags.has_staff_report;
+    for (var i = 0; i < d.row_year.length; i++) if (f[i] === "1") sets[d.row_country[i]][d.row_year[i]] = 1;
+  }
+  return { sets: sets };
+}
+
+function yearBreakdownLearn(d, ind, k, watchCountry, watchYear) {
+  var by = {}, rep = reportLookup(d);
+  var src = d.sources ? d.sources[ind] : null;   // 旧版本没有 sources
+  var series = src
+    ? [{ key: "r1", code: "1" }, { key: "r2", code: "2" }, { key: "r3", code: "3" }, { key: "gf", code: "g" }]
+    : [{ key: "val", code: "v" }];               // 旧版本只分“有值 / 没值”
+  for (var i = 0; i < d.row_year.length; i++) {
+    var y = d.row_year[i], c = d.row_country[i];
+    var watch = d.countries[c] === watchCountry && y === watchYear;
+    if (watch) debugger;                       // 只在关注的那一行暂停
+
+    var b = by[y];
+    if (!b) {
+      b = by[y] = { year: y, total: 0, unavail: 0, later: 0, nolater: 0, list: [] };
+      series.forEach(function (s) { b[s.key] = 0; });
+    }
+    b.total++;
+    var code = src ? src[i] : (d.flags[ind][i] === "1" ? "v" : "0");
+    if (code !== "0") {
+      for (var s = 0; s < series.length; s++) if (series[s].code === code) { b[series[s].key]++; break; }
+      if (watch) console.log("有值，来源代码", code, JSON.parse(JSON.stringify(b)));
+      continue;
+    }
+    b.unavail++;
+    if (!k) continue;
+    var none = true;
+    for (var j = 1; j <= k; j++) {
+      if (watch) console.log("检查", y + j, "有报告吗？", !!rep.sets[c][y + j]);
+      if (rep.sets[c][y + j]) { none = false; break; }
+    }
+    if (none) { b.nolater++; b.list.push(d.countries[c]); } else b.later++;
+    if (watch) console.log("结果：none =", none, JSON.parse(JSON.stringify(b)));
+  }
+  return Object.keys(by).sort().map(function (y) { return by[y]; });
+}
+
+(async function () {
+  // 自己取数据：和页面发的请求一样，取 Version 下拉框当前选中的版本
+  var stamp = document.getElementById("version-select").value;
+  window.D = await (await fetch("/api/runs/" + encodeURIComponent(stamp) + "/data")).json();
+
+  console.log(D.sources ? "新版本：按来源分段" : "旧版本：没有 Sources / Report years，只分有值 / 没值");
+  var IND = Object.keys(D.flags).filter(function (n) { return /^h\d/.test(n); })[0];  // 第一个指标，可换成别的名字
+  var rows = yearBreakdownLearn(D, IND, 3, "Algeria", 2005);
+  console.table(rows);                         // 最终结果，每年一行
+})();</script>
+
+<script>
+[["c-fetch","src-fetch"],["c-look","src-look"],["c-learn","src-learn"]].forEach(function (p) {
+  document.getElementById(p[0]).textContent = document.getElementById(p[1]).textContent;
+});
+document.querySelectorAll("[data-copy]").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var text = document.getElementById(btn.dataset.copy).textContent;
+    var done = function () { btn.textContent = "已复制"; setTimeout(function () { btn.textContent = "复制"; }, 1500); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+  });
+});
+</script>
+</body>
+</html>

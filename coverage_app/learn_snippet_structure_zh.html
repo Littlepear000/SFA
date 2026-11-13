@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snippet 结构详解</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f6f6f4; --panel:#fff; --fg:#17171a; --fg-2:#4f4f57; --muted:#75757e; --line:#e2e2e6; --line-2:#cdcdd3;
+  --accent:#1d4ed8; --warn-bg:#fdf4e1; --warn:#a86b00; --ok:#16855c; --bad:#c2352b;
+  --c-a:#2a78d6; --c-b:#1baf7a; --c-c:#eda100;
+  --s-a:#e9f1fb; --s-b:#e5f6ef; --s-c:#fdf4e1;
+  --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141416; --panel:#1d1d21; --fg:#efeff2; --fg-2:#c4c4cb; --muted:#9a9aa3; --line:#2e2e35; --line-2:#44444d;
+  --accent:#7b9bff; --warn-bg:#2e2615; --warn:#e0a83a; --ok:#3cc28c; --bad:#ef6b60;
+  --c-a:#3987e5; --c-b:#199e70; --c-c:#c98500;
+  --s-a:#1b2738; --s-b:#152a22; --s-c:#2e2615;
+}}
+:root[data-theme="dark"]{
+  --bg:#141416; --panel:#1d1d21; --fg:#efeff2; --fg-2:#c4c4cb; --muted:#9a9aa3; --line:#2e2e35; --line-2:#44444d;
+  --accent:#7b9bff; --warn-bg:#2e2615; --warn:#e0a83a; --ok:#3cc28c; --bad:#ef6b60;
+  --c-a:#3987e5; --c-b:#199e70; --c-c:#c98500;
+  --s-a:#1b2738; --s-b:#152a22; --s-c:#2e2615;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--bg); color:var(--fg); font:15.5px/1.7 var(--font); }
+main{ max-width:60rem; margin:0 auto; padding:32px 16px 64px; }
+h1{ font-size:24px; margin:0 0 6px; }
+h2{ font-size:19px; margin:44px 0 6px; display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; }
+h2 .q{ font-size:12px; font-weight:700; color:#fff; background:var(--accent); border-radius:6px; padding:1px 8px; }
+h3{ font-size:16px; margin:24px 0 4px; }
+p{ margin:8px 0; }
+.lead{ color:var(--fg-2); }
+.muted{ color:var(--muted); }
+code{ font-family:var(--mono); font-size:13px; background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:0 5px; }
+kbd{ font-family:var(--mono); font-size:12.5px; border:1px solid var(--line-2); border-bottom-width:2px; border-radius:5px; padding:0 5px; background:var(--panel); }
+pre{ font-family:var(--mono); font-size:13px; line-height:1.55; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; overflow-x:auto; margin:8px 0; }
+.answer{ border-left:4px solid var(--accent); background:var(--panel); border-radius:8px; padding:12px 14px; margin:12px 0; font-size:16px; }
+.warn{ border-left:4px solid var(--warn); background:var(--warn-bg); border-radius:8px; padding:10px 14px; margin:12px 0; }
+.ask{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px 14px; color:var(--fg-2); font-size:14.5px; }
+.ask b{ color:var(--fg); }
+.card{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; }
+.diagram svg{ display:block; width:100%; height:auto; }
+.diagram text{ font-family:var(--font); fill:var(--fg); }
+.diagram .t{ font-size:15px; font-weight:700; }
+.diagram .s{ font-size:12.5px; fill:var(--fg-2); }
+.diagram .m{ font-size:12px; fill:var(--fg-2); font-family:var(--mono); }
+.diagram .arr{ fill:none; stroke:var(--fg-2); stroke-width:1.7; }
+table{ border-collapse:collapse; width:100%; font-size:14.5px; }
+th, td{ text-align:left; padding:8px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+th{ font-size:13px; color:var(--fg-2); white-space:nowrap; }
+td pre{ margin:0; padding:6px 8px; font-size:12.5px; }
+.tw{ overflow-x:auto; background:var(--panel); border:1px solid var(--line); border-radius:10px; }
+ol.steps{ list-style:none; padding:0; margin:12px 0; counter-reset:s; }
+ol.steps li{ counter-increment:s; position:relative; padding:0 0 14px 44px; }
+ol.steps li::before{ content:counter(s); position:absolute; left:0; top:0; width:30px; height:30px; border-radius:50%;
+  display:grid; place-items:center; background:var(--accent); color:#fff; font-weight:700; font-size:13px; }
+ol.steps li:not(:last-child)::after{ content:""; position:absolute; left:14px; top:32px; bottom:2px; width:2px; background:var(--line-2); }
+ol.steps li > b:first-child{ display:block; }
+/* the annotated snippet */
+.part{ border:1px solid var(--line); border-left-width:5px; border-radius:8px; margin:10px 0; background:var(--panel); overflow:hidden; }
+.part.a{ border-left-color:var(--c-a); } .part.b{ border-left-color:var(--c-b); } .part.c{ border-left-color:var(--c-c); }
+.part .ph{ padding:8px 14px; font-weight:700; font-size:14.5px; }
+.part.a .ph{ background:var(--s-a); } .part.b .ph{ background:var(--s-b); } .part.c .ph{ background:var(--s-c); }
+.part .ph span{ font-weight:400; color:var(--fg-2); font-size:13.5px; margin-left:6px; }
+.part pre{ border:0; border-radius:0; margin:0; }
+.tag{ display:inline-block; font-size:12px; font-weight:700; border-radius:5px; padding:0 7px; color:#fff; }
+.tag.a{ background:var(--c-a); } .tag.b{ background:var(--c-b); } .tag.c{ background:var(--c-c); }
+.ok{ color:var(--ok); font-weight:700; } .bad{ color:var(--bad); font-weight:700; }
+.console{ background:#1e1e22; color:#e8e8ec; border-color:#2e2e35; }
+.copyrow{ display:flex; justify-content:flex-end; margin-top:-2px; }
+.copyrow button{ font:13px var(--font); color:var(--fg-2); background:var(--panel); border:1px solid var(--line-2); border-radius:6px; padding:3px 12px; cursor:pointer; }
+.note{ font-size:13.5px; color:var(--muted); margin-top:28px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Snippet 的代码结构，一步步讲清楚</h1>
+  <p class="lead">配合 <code>coverage_app/learn_year_breakdown_zh.html</code> 使用。这页回答：代码哪里有问题、第一行为什么标红、整体应该怎么摆放，
+    并按 Python 的说法逐段解释这段 JavaScript。</p>
+
+  <!-- ============================================================ 1 -->
+  <h2><span class="q">问题 1</span>代码哪里有问题？第一行为什么标红？</h2>
+  <div class="answer"><b>代码本身没有问题</b>，我在测试数据上原样运行过，结果正确。
+    第一行的红色是<b>上一次运行留下的报错标记</b>，不是这一行写错了。</div>
+  <p>上一次的报错是 <code>Uncaught EvalError … at eval (Script snippet #1:1:1)</code>。最后的 <code>:1:1</code> 表示“第 1 行第 1 个字符”。
+    DevTools 会把报错发生的位置标红，并在旁边放一个红色图标，鼠标悬停能看到报错内容。</p>
+  <p>当时报错是因为页面<b>还停在 <code>app.js</code> 第 400 行的断点上</b>。那时运行 Snippet，它会被塞进 <code>yearBreakdown</code> 函数里面执行，
+    那里不允许新定义函数，所以一开头就失败了。</p>
+  <h3>怎么让红色消失</h3>
+  <ol class="steps">
+    <li><b>继续运行</b>页面顶部如果有黄色的 “Paused in debugger”，按 <kbd>F8</kbd>，直到黄条消失。</li>
+    <li><b>取消第 400 行断点</b>打开 <code>app.js</code>，点一下蓝色的行号 400，蓝色消失即取消。</li>
+    <li><b>重新运行 Snippet</b>回到 Snippet，按 <kbd>Cmd</kbd>+<kbd>Enter</kbd>。这次运行成功，红色标记就会被清掉
+      （修改一下代码也会清掉）。</li>
+  </ol>
+
+  <!-- ============================================================ 2 -->
+  <h2><span class="q">问题 2</span>整体结构应该是什么样的？</h2>
+  <p>一共涉及 DevTools 里的三个地方，各管各的事：</p>
+  <div class="tw"><table>
+    <thead><tr><th>地方</th><th>是什么</th><th>你要做的</th></tr></thead>
+    <tbody>
+      <tr><td><b>Sources → <code>app.js</code></b></td><td>页面自己的代码，<code>S.data</code> 在这里</td><td>只用来取一次数据，<b>不修改</b>。取完记得取消断点</td></tr>
+      <tr><td><b>Console</b></td><td>一个输入框，输一句、执行一句，类似 Python 交互式命令行</td><td>输入一次 <code>window.D = S.data</code>（或 fetch 那段）。之后在这里看打印结果</td></tr>
+      <tr><td><b>Sources → Snippets</b></td><td>可以保存的脚本文件，类似一个 <code>.py</code> 文件</td><td>粘贴学习脚本，<kbd>Cmd</kbd>+<kbd>Enter</kbd> 运行</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="card diagram" style="margin-top:14px">
+    <svg viewBox="0 0 900 250" role="img" aria-label="数据流：app.js 中的 S.data 通过 Console 中的 window.D = S.data 存为全局变量 D，Snippet 读取 D 并把结果打印到 Console">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor" style="color:var(--fg-2)"/></marker></defs>
+      <rect x="10" y="30" width="240" height="120" rx="10" fill="var(--s-a)" stroke="var(--c-a)" stroke-width="1.5"/>
+      <text x="30" y="60" class="t">① app.js</text>
+      <text x="30" y="84" class="s">页面自己的代码</text>
+      <text x="30" y="108" class="m">S.data（私有）</text>
+      <text x="30" y="130" class="s">停在断点时才能拿到</text>
+
+      <rect x="330" y="30" width="240" height="120" rx="10" fill="var(--s-c)" stroke="var(--c-c)" stroke-width="1.5"/>
+      <text x="350" y="60" class="t">② Console</text>
+      <text x="350" y="84" class="m">window.D = S.data</text>
+      <text x="350" y="108" class="s">D 变成全局变量</text>
+      <text x="350" y="130" class="s">刷新页面前一直都在</text>
+
+      <rect x="650" y="30" width="240" height="120" rx="10" fill="var(--s-b)" stroke="var(--c-b)" stroke-width="1.5"/>
+      <text x="670" y="60" class="t">③ Snippet</text>
+      <text x="670" y="84" class="s">学习脚本，读取 D</text>
+      <text x="670" y="108" class="m">yearBreakdownLearn(D, …)</text>
+      <text x="670" y="130" class="s">停在 debugger 处逐行走</text>
+
+      <path class="arr" d="M250,90 L326,90" marker-end="url(#ar)"/>
+      <path class="arr" d="M570,90 L646,90" marker-end="url(#ar)"/>
+      <path class="arr" d="M770,150 L770,200 L450,200 L450,154" marker-end="url(#ar)"/>
+      <text x="610" y="222" class="s" text-anchor="middle">console.log / console.table 的结果打印回 Console</text>
+    </svg>
+  </div>
+
+  <h3>完整顺序</h3>
+  <ol class="steps">
+    <li><b>打开 app，选好版本</b>双击 <code>start.command</code>，Version 下拉框选一个带 Sources 和 Report years 的新版本。</li>
+    <li><b>取数据（现在可以跳过）</b>Snippet 最后一段会自己取 <code>D</code>，这一步不做也行。想在 Console 里单独看数据时再做：<br>
+      · 没有断点时，在 Console 粘贴 fetch 那段（见学习页第一步）；<br>
+      · 或者在 <code>app.js</code> 第 400 行打断点 → 切到 Dashboard 停住 → Console 输入 <code>window.D = S.data</code>
+        → <kbd>F8</kbd> 继续 → <b>取消第 400 行断点</b>。</li>
+    <li><b>检查 D</b>Console 输入 <code>D</code> 回车，能看到一个可展开的对象，里面有 <code>sources</code> 和 <code>report_years</code>。</li>
+    <li><b>运行 Snippet</b>确认页面没有暂停黄条，打开 Snippet，<kbd>Cmd</kbd>+<kbd>Enter</kbd>。</li>
+    <li><b>逐行走</b>停在 <code>debugger</code> 后按 <kbd>F10</kbd> 一行一行走，看右侧 Scope 面板；走完这一行按 <kbd>F8</kbd>。</li>
+    <li><b>看结果</b>Console 里出现检查过程和最后的表格。</li>
+  </ol>
+
+  <!-- ============================================================ 3 -->
+  <h2><span class="q">问题 3</span>Snippet 里的代码是怎么组织的？</h2>
+  <p>整个 Snippet 分三块。和 Python 脚本一样：<b>上面先定义函数，最下面几行才真正运行</b>。</p>
+
+  <div class="card diagram">
+    <svg viewBox="0 0 900 190" role="img" aria-label="执行顺序：A 和 B 只是定义函数，不运行；C 的第二行调用 B，B 内部调用 A">
+      <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor" style="color:var(--fg-2)"/></marker></defs>
+      <rect x="10" y="20" width="270" height="70" rx="10" fill="var(--s-a)" stroke="var(--c-a)" stroke-width="1.5"/>
+      <text x="28" y="48" class="t">A  reportLookup</text>
+      <text x="28" y="72" class="s">定义：查哪年有报告的表</text>
+      <rect x="315" y="20" width="270" height="70" rx="10" fill="var(--s-b)" stroke="var(--c-b)" stroke-width="1.5"/>
+      <text x="333" y="48" class="t">B  yearBreakdownLearn</text>
+      <text x="333" y="72" class="s">定义：按年份计数</text>
+      <rect x="620" y="20" width="270" height="70" rx="10" fill="var(--s-c)" stroke="var(--c-c)" stroke-width="1.5"/>
+      <text x="638" y="48" class="t">C  最后一段</text>
+      <text x="638" y="72" class="s">真正开始运行的地方</text>
+      <path class="arr" d="M755,90 L755,140 L450,140 L450,94" marker-end="url(#ar2)"/>
+      <text x="600" y="132" class="s" text-anchor="middle">① C 调用 B</text>
+      <path class="arr" d="M400,90 L400,165 L145,165 L145,94" marker-end="url(#ar2)"/>
+      <text x="272" y="182" class="s" text-anchor="middle">② B 一开始调用 A</text>
+    </svg>
+  </div>
+  <p class="muted">所以按 <kbd>Cmd</kbd>+<kbd>Enter</kbd> 后，浏览器先“读”完 A 和 B（只记住它们，不执行），然后执行 C。C 先取数据 D，再调用 B，B 再调用 A。</p>
+
+  <div class="part a">
+    <div class="ph">A · reportLookup<span>建一张“哪个国家哪年有报告”的查询表</span></div>
+    <pre id="p-a"></pre>
+  </div>
+  <div class="part b">
+    <div class="ph">B · yearBreakdownLearn<span>主体：逐行计数（和 app.js 的 yearBreakdown 逻辑一样）</span></div>
+    <pre id="p-b"></pre>
+  </div>
+  <div class="part c">
+    <div class="ph">C · 运行<span>取数据 D → 选指标 → 调用 B → 打印表格</span></div>
+    <pre id="p-c"></pre>
+  </div>
+  <div class="copyrow"><button type="button" id="copy-all">复制完整 Snippet</button></div>
+
+  <!-- ============================================================ 4 -->
+  <h2><span class="q">问题 4</span>逐段解释（附 Python 对照）</h2>
+
+  <h3><span class="tag a">A</span> reportLookup(d)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>JavaScript</th><th>意思</th><th>Python 大致等于</th></tr></thead>
+    <tbody>
+      <tr><td><pre>function reportLookup(d) { … }</pre></td><td>定义一个函数，参数叫 <code>d</code>。花括号 <code>{ }</code> 里是函数体（Python 用缩进）</td><td><pre>def report_lookup(d):</pre></td></tr>
+      <tr><td><pre>var sets = d.countries.map(
+  function () { return {}; });</pre></td><td>每个国家对应一个空字典，组成列表。<code>map</code> 对列表每个元素调用一次函数，收集返回值</td><td><pre>sets = [{} for _ in d["countries"]]</pre></td></tr>
+      <tr><td><pre>d.report_years.forEach(function (ys, c) {
+  ys.forEach(function (y) {
+    sets[c][y] = 1; }); });</pre></td><td>两层循环：对第 c 个国家的每个报告年份 y，记 <code>sets[c][y] = 1</code></td><td><pre>for c, ys in enumerate(d["report_years"]):
+    for y in ys:
+        sets[c][y] = 1</pre></td></tr>
+      <tr><td><pre>return { sets: sets,
+  last: d.report_year_range[1] };</pre></td><td>返回一个对象，两个字段：查询表和最后一个报告年份</td><td><pre>return {"sets": sets,
+  "last": d["report_year_range"][1]}</pre></td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">脚本里还多了一个 <code>if (d.report_years) … else …</code>：旧版本没有 <code>report_years</code>，就改用 <code>has_staff_report</code> 列，只能看到面板年份内的报告。B 里的 <code>d.sources ? … : …</code> 也是同样的兼容写法（<code>条件 ? 是 : 否</code> 相当于 Python 的 <code>是 if 条件 else 否</code>）。下面的表格按新版本的写法解释。</p>
+  <p>结果举例：如果阿尔及利亚是第 2 个国家，2006 年有报告，那么 <code>rep.sets[2][2006]</code> 是 <code>1</code>；2007 年没有，<code>rep.sets[2][2007]</code> 是 <code>undefined</code>（相当于 Python 的 <code>None</code>）。</p>
+
+  <h3><span class="tag b">B</span> yearBreakdownLearn(d, ind, k, watchCountry, watchYear)</h3>
+  <p>五个参数：数据 <code>d</code>、指标名 <code>ind</code>、T+k 的 <code>k</code>、要盯住的国家和年份。</p>
+  <div class="tw"><table>
+    <thead><tr><th>JavaScript</th><th>意思</th><th>Python 大致等于</th></tr></thead>
+    <tbody>
+      <tr><td><pre>var by = {}, rep = reportLookup(d);</pre></td><td>一行声明两个变量：空字典 <code>by</code>（按年份放计数），和 A 建好的查询表 <code>rep</code></td><td><pre>by = {}
+rep = report_lookup(d)</pre></td></tr>
+      <tr><td><pre>var src = d.sources[ind];</pre></td><td>这个指标每一行的来源代码，是一长串字符，如 <code>"0g1100…"</code></td><td><pre>src = d["sources"][ind]</pre></td></tr>
+      <tr><td><pre>var series = [{ key: "r1", code: "1" }, …];</pre></td><td>来源代码和计数名的对照表</td><td><pre>series = [{"key": "r1", "code": "1"}, …]</pre></td></tr>
+      <tr><td><pre>for (var i = 0; i &lt; d.row_year.length; i++) {</pre></td><td>从 0 数到行数减 1。<code>i++</code> 就是 <code>i += 1</code></td><td><pre>for i in range(len(d["row_year"])):</pre></td></tr>
+      <tr><td><pre>var y = d.row_year[i],
+    c = d.row_country[i];</pre></td><td>第 i 行的年份和国家编号</td><td><pre>y = d["row_year"][i]
+c = d["row_country"][i]</pre></td></tr>
+      <tr><td><pre>var watch = d.countries[c] === watchCountry
+         &amp;&amp; y === watchYear;</pre></td><td>是不是要盯的那一行。<code>===</code> 是“等于”，<code>&amp;&amp;</code> 是“并且”</td><td><pre>watch = (d["countries"][c] == watch_country
+         and y == watch_year)</pre></td></tr>
+      <tr><td><pre>if (watch) debugger;</pre></td><td>是的话就在这里暂停</td><td><pre>if watch: breakpoint()</pre></td></tr>
+      <tr><td><pre>var b = by[y];
+if (!b) {
+  b = by[y] = { year: y, total: 0, … };
+  series.forEach(function (s) { b[s.key] = 0; });
+}</pre></td><td>取这一年的计数桶；没有就新建，各项从 0 开始。<code>!b</code> 是“b 不存在”</td><td><pre>b = by.get(y)
+if not b:
+    b = by[y] = {"year": y, "total": 0, …}
+    for s in series: b[s["key"]] = 0</pre></td></tr>
+      <tr><td><pre>b.total++;
+var code = src[i];</pre></td><td>总数加 1，取这一行的来源代码</td><td><pre>b["total"] += 1
+code = src[i]</pre></td></tr>
+      <tr><td><pre>if (code !== "0") {
+  for (var s = 0; s &lt; series.length; s++)
+    if (series[s].code === code) {
+      b[series[s].key]++; break; }
+  continue;
+}</pre></td><td>有值：找到对应的来源，给它加 1，跳到下一行。<code>!==</code> 是“不等于”</td><td><pre>if code != "0":
+    for s in series:
+        if s["code"] == code:
+            b[s["key"]] += 1; break
+    continue</pre></td></tr>
+      <tr><td><pre>b.unavail++;
+if (!k) continue;</pre></td><td>走到这里说明没有值。k 为 0（Off）时不再细分</td><td><pre>b["unavail"] += 1
+if not k: continue</pre></td></tr>
+      <tr><td><pre>var none = true;
+for (var j = 1; j &lt;= k; j++) {
+  if (rep.sets[c][y + j]) {
+    none = false; break; }
+}</pre></td><td><b>核心判断</b>：查 y+1 到 y+k 每一年有没有报告，有一年有就停</td><td><pre>none = True
+for j in range(1, k + 1):
+    if rep["sets"][c].get(y + j):
+        none = False; break</pre></td></tr>
+      <tr><td><pre>if (none) { b.nolater++;
+  b.list.push(d.countries[c]); }
+else b.later++;</pre></td><td>都没有 → 斜线部分加 1，国家名加入名单；否则实心灰加 1。<code>push</code> 就是 <code>append</code></td><td><pre>if none:
+    b["nolater"] += 1
+    b["list"].append(d["countries"][c])
+else:
+    b["later"] += 1</pre></td></tr>
+      <tr><td><pre>return Object.keys(by).sort()
+  .map(function (y) { return by[y]; });</pre></td><td>年份排好序，按顺序取出每年的计数，返回一个列表</td><td><pre>return [by[y] for y in sorted(by)]</pre></td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted"><code>console.log(…)</code> 那几行只在盯住的那一行打印过程，相当于 <code>print(…)</code>。
+    <code>JSON.parse(JSON.stringify(b))</code> 是把 <code>b</code> 当时的样子复制一份再打印，否则 Console 里展开时看到的会是后来被改过的值。
+    <code>!!x</code> 把任何值变成 <code>true</code> / <code>false</code>，相当于 <code>bool(x)</code>。</p>
+
+  <h3><span class="tag c">C</span> 最后一段</h3>
+  <p><code>D</code> 在这一段里自己取，所以整个 Snippet 不依赖 Console 里事先做过什么，刷新页面后也能直接运行。</p>
+  <div class="tw"><table>
+    <thead><tr><th>JavaScript</th><th>意思</th><th>Python 大致等于</th></tr></thead>
+    <tbody>
+      <tr><td><pre>(async function () { … })();</pre></td><td>定义一个“异步”函数并立刻执行。里面要用 <code>await</code>（等网络请求回来），<code>await</code> 只能写在 async 函数里</td><td><pre>async def main(): …
+asyncio.run(main())</pre></td></tr>
+      <tr><td><pre>window.D = await (await fetch(…)).json();</pre></td><td>向本机 server 请求当前版本的数据，等它回来，解析成对象，存成全局变量 <code>D</code>。和页面选版本时发的请求完全一样</td><td><pre>D = requests.get(url).json()</pre></td></tr>
+      <tr><td><pre>var IND = Object.keys(D.sources)[0];</pre></td><td>取第一个指标名。想换指标就直接写名字，如 <code>var IND = "h3_primary_balance";</code></td><td><pre>IND = list(D["sources"].keys())[0]</pre></td></tr>
+      <tr><td><pre>var rows = yearBreakdownLearn(
+  D, IND, 3, "Algeria", 2005);</pre></td><td>调用 B：用 T+3，盯住阿尔及利亚 2005</td><td><pre>rows = year_breakdown_learn(
+  D, IND, 3, "Algeria", 2005)</pre></td></tr>
+      <tr><td><pre>console.table(rows);</pre></td><td>把结果按表格打印，每年一行</td><td><pre>print(pd.DataFrame(rows))</pre></td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- ============================================================ 5 -->
+  <h2><span class="q">问题 5</span>运行成功时会看到什么</h2>
+  <ol class="steps">
+    <li><b>暂停</b>代码停在 <code>if (watch) debugger;</code> 那行，页面顶部出现黄条。右侧 Scope → Local 里能看到 <code>y = 2005</code>、<code>c</code>、<code>i</code> 等。</li>
+    <li><b>按 F10 往下走</b>每按一次，高亮行往下一行。注意 <code>code</code>：如果是 <code>"0"</code>，会走到 <code>for (var j …)</code> 那段，看 <code>none</code> 的变化。</li>
+    <li><b>按 F8 跑完</b>Console 出现类似下面的输出（这是测试数据上的结果，你的数字取决于版本和指标）。</li>
+  </ol>
+  <pre class="console">检查 2006 有报告吗？ true
+结果：none = false ▸ {year: 2005, total: 3, unavail: 2, later: 2, nolater: 0, …}
+┌─────────┬──────┬───────┬─────────┬───────┬─────────┬─────┐
+│ (index) │ year │ total │ unavail │ later │ nolater │ ... │
+├─────────┼──────┼───────┼─────────┼───────┼─────────┼─────┤
+│    4    │ 2005 │  190  │   76    │  26   │   50    │ ... │
+└─────────┴──────┴───────┴─────────┴───────┴─────────┴─────┘</pre>
+  <p>第二行里 <code>total: 3</code> 是因为走到阿尔及利亚时，2005 年才数到第 3 个国家；最后表格里 2005 年是全部 190 个国家的结果。
+    这个例子里阿尔及利亚 2005 没有值，但 2006 年有报告，所以算进 <code>later</code>（实心灰），不在斜线里。
+    表格里的数字应该和 Dashboard 选同一指标、T+3 时 “Show the numbers” 里的一致。</p>
+
+  <!-- ============================================================ 5b -->
+  <h2><span class="q">问题 6</span>定义完函数后，怎么从头逐行跑？</h2>
+  <div class="answer">先定义函数是对的。<b>定义只是登记</b>，函数里的代码在被调用之前一行都不会执行。
+    所以断点要打在<b>调用的地方</b>，停下后按 <kbd>F11</kbd> <b>走进</b>函数，里面就能一行一行走了。</div>
+  <ol class="steps">
+    <li><b>先确认能暂停</b>新建一个 Snippet，只写一行 <code>debugger; console.log("hello");</code>，<kbd>Cmd</kbd>+<kbd>Enter</kbd>。
+      不停的话，说明断点被整体停用了：看 Sources 右上角那个“斜杠箭头”图标（Deactivate breakpoints）是不是蓝色的，点一下或按 <kbd>Cmd</kbd>+<kbd>F8</kbd> 恢复。</li>
+    <li><b>在调用处打断点</b>回到学习 Snippet，点 C 段 <code>var rows = yearBreakdownLearn(…)</code> 那一行的行号，变蓝。</li>
+    <li><b>运行</b>光标先点进 Snippet 编辑区，再 <kbd>Cmd</kbd>+<kbd>Enter</kbd>。停在这一行（函数还没开始执行）。</li>
+    <li><b>F11 走进去</b>高亮跳到 B 的第一行 <code>var by = {}, …</code>。之后：
+      <br>· <kbd>F10</kbd>：执行当前行，到下一行（遇到函数调用不进去）
+      <br>· <kbd>F11</kbd>：遇到函数调用就走进去，比如在 <code>rep = reportLookup(d)</code> 这一行按，会进入 A
+      <br>· <kbd>Shift</kbd>+<kbd>F11</kbd>：从当前函数里走出来，回到调用它的地方
+      <br>· <kbd>F8</kbd>：一直跑，直到下一个断点或结束</li>
+    <li><b>想直接跳到阿尔及利亚 2005</b>在循环里逐行走要走很多遍。按 <kbd>F8</kbd>，会停在 <code>if (watch) debugger;</code>（那一行才满足条件），再接着按 <kbd>F10</kbd>。</li>
+  </ol>
+  <p class="muted">如果按 <kbd>Cmd</kbd>+<kbd>Enter</kbd> 后什么都没停，但 Console 打印出了表格，说明代码跑完了却没暂停，看第 1 步。
+    如果 Console 出现红色报错，按下面的对照表处理。</p>
+
+  <!-- ============================================================ 6 -->
+  <h2><span class="q">附</span>常见报错对照</h2>
+  <div class="tw"><table>
+    <thead><tr><th>报错</th><th>原因</th><th>怎么办</th></tr></thead>
+    <tbody>
+      <tr><td><code>S is not defined</code></td><td>没停在断点上，Console 看不到私有变量 <code>S</code></td><td>用 fetch 取数据，或先停在断点</td></tr>
+      <tr><td><code>missing ) after argument list</code></td><td>停在断点时用了 fetch 那段（里面的 <code>await</code> 在暂停时不能用）</td><td>暂停时改用 <code>window.D = S.data</code></td></tr>
+      <tr><td><code>Identifier '…' cannot be declared with 'var'</code></td><td>运行 Snippet 时页面正处于暂停状态。看报错第二行 <code>at …(app.js:行号)</code> 就知道停在哪：<code>yearBreakdown (app.js:400)</code> 是第 400 行断点；<code>setDefaultStamp (app.js:136)</code> 是没暂停时多按了一次 <kbd>F8</kbd>（这时 F8 是“暂停”），停在了每 20 秒跑一次的代码上</td><td>按一次 <kbd>F8</kbd>，确认黄条消失、右侧按钮显示 ⏸ 而不是 ▶；取消所有断点，再运行。<b>没暂停时不要按 F8</b></td></tr>
+      <tr><td><code>D is not defined</code></td><td>还没取数据，或者刷新过页面（D 被清掉了）</td><td>重新做“取数据”那一步</td></tr>
+      <tr><td><code>Cannot read properties of undefined (reading 'forEach')</code></td><td>选的是旧版本，没有 <code>report_years</code> / <code>sources</code></td><td>换一个新版本，或在 IMF 电脑上重新生成</td></tr>
+      <tr><td>运行了但没有暂停</td><td>按过 <kbd>Cmd</kbd>+<kbd>F8</kbd> 停用了断点；或国家名拼写不对；或 DevTools 没打开</td><td>再按一次 <kbd>Cmd</kbd>+<kbd>F8</kbd> 恢复；国家名照 <code>D.countries</code> 里的写</td></tr>
+    </tbody>
+  </table></div>
+
+  <p class="note">这页的脚本和学习页里的一样，只在 DevTools 里运行，不会改动 app 或任何文件。</p>
+</main>
+
+<script type="text/plain" id="src-a">function reportLookup(d) {
+  var sets = d.countries.map(function () { return {}; });
+  if (d.report_years) {
+    // 新版本：每个国家发布过报告的所有年份
+    d.report_years.forEach(function (ys, c) { ys.forEach(function (y) { sets[c][y] = 1; }); });
+  } else {
+    // 旧版本：只能用 has_staff_report 列，看面板年份内哪年有报告
+    var f = d.flags.has_staff_report;
+    for (var i = 0; i < d.row_year.length; i++) if (f[i] === "1") sets[d.row_country[i]][d.row_year[i]] = 1;
+  }
+  return { sets: sets };
+}</script>
+<script type="text/plain" id="src-b">function yearBreakdownLearn(d, ind, k, watchCountry, watchYear) {
+  var by = {}, rep = reportLookup(d);
+  var src = d.sources ? d.sources[ind] : null;   // 旧版本没有 sources
+  var series = src
+    ? [{ key: "r1", code: "1" }, { key: "r2", code: "2" }, { key: "r3", code: "3" }, { key: "gf", code: "g" }]
+    : [{ key: "val", code: "v" }];               // 旧版本只分“有值 / 没值”
+  for (var i = 0; i < d.row_year.length; i++) {
+    var y = d.row_year[i], c = d.row_country[i];
+    var watch = d.countries[c] === watchCountry && y === watchYear;
+    if (watch) debugger;                       // 只在关注的那一行暂停
+
+    var b = by[y];
+    if (!b) {
+      b = by[y] = { year: y, total: 0, unavail: 0, later: 0, nolater: 0, list: [] };
+      series.forEach(function (s) { b[s.key] = 0; });
+    }
+    b.total++;
+    var code = src ? src[i] : (d.flags[ind][i] === "1" ? "v" : "0");
+    if (code !== "0") {
+      for (var s = 0; s < series.length; s++) if (series[s].code === code) { b[series[s].key]++; break; }
+      if (watch) console.log("有值，来源代码", code, JSON.parse(JSON.stringify(b)));
+      continue;
+    }
+    b.unavail++;
+    if (!k) continue;
+    var none = true;
+    for (var j = 1; j <= k; j++) {
+      if (watch) console.log("检查", y + j, "有报告吗？", !!rep.sets[c][y + j]);
+      if (rep.sets[c][y + j]) { none = false; break; }
+    }
+    if (none) { b.nolater++; b.list.push(d.countries[c]); } else b.later++;
+    if (watch) console.log("结果：none =", none, JSON.parse(JSON.stringify(b)));
+  }
+  return Object.keys(by).sort().map(function (y) { return by[y]; });
+}</script>
+<script type="text/plain" id="src-c">(async function () {
+  // 自己取数据：和页面发的请求一样，取 Version 下拉框当前选中的版本
+  var stamp = document.getElementById("version-select").value;
+  window.D = await (await fetch("/api/runs/" + encodeURIComponent(stamp) + "/data")).json();
+
+  console.log(D.sources ? "新版本：按来源分段" : "旧版本：没有 Sources / Report years，只分有值 / 没值");
+  var IND = Object.keys(D.flags).filter(function (n) { return /^h\d/.test(n); })[0];  // 第一个指标，可换成别的名字
+  var rows = yearBreakdownLearn(D, IND, 3, "Algeria", 2005);
+  console.table(rows);                         // 最终结果，每年一行
+})();</script>
+
+<script>
+var parts = [["p-a","src-a"],["p-b","src-b"],["p-c","src-c"]];
+parts.forEach(function (p) { document.getElementById(p[0]).textContent = document.getElementById(p[1]).textContent; });
+document.getElementById("copy-all").addEventListener("click", function () {
+  var btn = this;
+  var text = parts.map(function (p) { return document.getElementById(p[1]).textContent; }).join("\n\n");
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () {
+    btn.textContent = "已复制"; setTimeout(function () { btn.textContent = "复制完整 Snippet"; }, 1500);
+  }, function () {});
+});
+</script>
+</body>
+</html>

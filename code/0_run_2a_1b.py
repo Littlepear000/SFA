@@ -60,7 +60,7 @@ CSV_PREFIX = "sl"      # compiled CSV: dsa_decomposition_<CSV_PREFIX>_round2_<RU
 
 # used by 2a
 PDF_DIR = BASE_DIR / "staff_reports" / "pdf staff reports" / BATCH
-PROMPT_FILE = BASE_DIR / "prompt" / "dsa_prompt_20260924.txt"
+PROMPT_FILE = BASE_DIR / "prompt" / "2a_dsa_prompt_20260924.txt"
 ENV_FILE = BASE_DIR / ".env"
 
 # Only the reports listed in this JSON file are re-processed: the result of the Round 1 check. None = the whole batch.

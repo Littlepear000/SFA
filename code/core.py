@@ -1,0 +1,825 @@
+"""
+Shared library for the SFA pipeline (no API, no network; reads existing files only).
+Imported by the Gap Fill scripts (0_run_gapfill, 4a-4c) and by check_coverage_database.py.
+
+General helpers, used across the pipeline:
+  * normalize_country()   one canonical country name for every spelling in PDF file names / the data
+  * parse_year_label()    a year column label (2019, 2012/13, FY2012, ...) -> (kind, y0, y1, note)
+  * load_rows()           read the merged final CSV: one effective year per row, numeric value,
+                          normalized country (used by check_coverage_database.py)
+
+Gap-year fill logic:
+
+Kept separate from 4c_gapfill_3_run_api.py so it can be unit-tested on any machine:
+  * candidate report ordering (T+2 first, then T+3, then T+4; latest report of a year first), and the Step 2
+    candidate-map table built from it (also used by 4b and by 4a's own preview, so there is exactly one
+    place that decides what counts as a candidate report)
+  * the selected-PDF inventory (shared by 4b, to persist the candidate map, and 4c, to run the API)
+  * the resolve/cascade loop across rounds, with a checkpoint/resume hook (save_checkpoint,
+    load_checkpoint, run_cascade's on_progress) so a long run that gets killed, loses network, or stalls
+    through a laptop sleep does not have to start over -- re-running with the same OUTPUT_DIR/STAMP picks
+    up the checkpoint and only retries gap years that were not already resolved
+  * validation that an extracted column is an ACTUAL / HISTORICAL year
+  * flattening results and writing the output tables, in the same column shape as the rest of the
+    pipeline (json_file, pdf_file_name, country, year, top_category, hierarchy_id, level, parent_label,
+    label_verbatim, value, source_category="Gap Fill") so the result is a plain pd.concat onto the
+    unified panel, not a separate reconciliation step. The row keeps the REAL source report's identity
+    (json_file/pdf_file_name) -- never a synthetic one -- because later steps may need to go back and
+    read other things from that same PDF. This means one real report can legitimately own two row-groups
+    in the unified table: its own normal extraction at its own year, and a gap-fill row-group at an
+    earlier year it also supplied -- so the unique row key is country + report + year + hierarchy, not
+    country + report + hierarchy.
+"""
+from __future__ import annotations
+
+import json
+import re
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
+from typing import Any, Callable, Dict, List, Optional, Tuple
+
+import pandas as pd
+
+# ------------------------------------------------ country names and year labels
+_ALIASES = {
+    "cote d'ivoire": "Côte d'Ivoire",
+    "côte d'ivoire": "Côte d'Ivoire",
+    "democratic republic of sao tome and principe": "São Tomé and Príncipe",
+    "democratic republic of são tomé and príncipe": "São Tomé and Príncipe",
+    "democratic republic of são tomé": "São Tomé and Príncipe",  # truncated in some PDF file names
+    "democratic republic of sao tome": "São Tomé and Príncipe",
+    "democratic republic of timor-leste": "Timor-Leste",
+    "republic of timor-leste": "Timor-Leste",
+    "democratic republic of the congo": "Democratic Republic of the Congo",
+    "republic of congo": "Republic of Congo",
+    "islamic republic of afghanistan": "Afghanistan",
+    "islamic republic of iran": "Iran",
+    "islamic republic of mauritania": "Mauritania",
+    "kingdom of eswatini": "Eswatini",
+    "kingdom of swaziland": "Eswatini",
+    "kingdom of lesotho": "Lesotho",
+    "lao people's democratic republic": "Lao PDR",
+    "people's republic of china": "China",
+    "former yugoslav republic of macedonia": "North Macedonia",
+    "republic of north macedonia": "North Macedonia",
+    "republic of the marshall islands": "Marshall Islands",
+    "union of comoros": "Comoros",
+    "union of the comoros": "Comoros",
+    "united republic of tanzania": "Tanzania",
+    "republic of tanzania": "Tanzania",
+    "federated states of micronesia": "Micronesia",
+    "arab republic of egypt": "Egypt",
+    "federal democratic republic of ethiopia": "Ethiopia",
+    "brunei darussalam": "Brunei",
+    "republic of korea": "Korea",
+    # same country under an older / alternative official name
+    "cape verde": "Cabo Verde",
+    "turkey": "Türkiye",
+    "democratic republic of congo": "Democratic Republic of the Congo",
+    "principality of andorra": "Andorra",
+    "principality of liechtenstein": "Liechtenstein",
+}
+_REPUBLIC_OF = re.compile(r"^republic of (.+)$", re.I)
+
+
+def normalize_country(raw: str) -> str:
+    """Canonical country label from the PDF-filename prefix."""
+    s = str(raw).strip().replace("’", "'")
+    # "Türki̇ye" spelled with a combining dot above the i (U+0307, what lower-casing "İ" produces) vs plain
+    # "Türkiye"; "St.Vincent" vs "St. Vincent" -- otherwise each spelling becomes a separate country.
+    s = s.replace("\u0130", "I").replace("\u0307", "")
+    s = re.sub(r"\bSt\.(?=\S)", "St. ", s)
+    s = re.sub(r"[–—]+", "-", s)
+    s = re.sub(r"\s*-\s*", "-", s)
+    s = re.sub(r"^the\s+", "", s, flags=re.I)
+    low = s.lower()
+    m = re.match(r"^people's republic of china-(.+)$", low)
+    if m:
+        return "Hong Kong SAR, China" if "hong kong" in m.group(1) else "Macao SAR, China"
+    m = re.match(r"^kingdom of (?:the )?netherlands?-(.+)$", low)  # "Netherland-" / "Kingdom Of Netherlands-" variants
+    if m:
+        t = re.sub(r"^the\s+", "", m.group(1))  # the part after the dash can itself start with "the "
+        if t == "netherlands":
+            return "Netherlands"
+        if t == "aruba":
+            return "Aruba"
+        return "Curaçao and Sint Maarten"
+    if re.match(r"^kingdom of (?:the )?netherlands?$", low):
+        return "Netherlands"
+    if low in _ALIASES:
+        return _ALIASES[low]
+    m = _REPUBLIC_OF.match(s)
+    if m:
+        rest = m.group(1).strip()
+        return _ALIASES.get(rest.lower(), rest)  # e.g. "Republic of Turkey" -> "Türkiye"
+    return s
+
+
+# -------------------------------------------------------------------- years
+def parse_year_label(value):
+    """Return (kind, y0, y1, note); kind in single | range | invalid.
+
+    Fiscal-year labels (2012/13, 2012-13, FY2012) map to the fiscal-year END year
+    for the two-part forms; FY2012 is taken as 2012. Multi-year spans
+    (2002-2010) are ranges and are never a single observation year.
+    """
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return "invalid", None, None, "missing"
+    text = re.sub(r"\s+", " ", str(value)).strip()
+    if not text or text.lower() == "nan":
+        return "invalid", None, None, "missing"
+    m = re.fullmatch(r"(?:FY\s?)?(\d{4})\s*[/-]\s*(\d{2}|\d{4})", text, flags=re.I)
+    if m:
+        a = int(m.group(1))
+        b_txt = m.group(2)
+        b = int(b_txt) if len(b_txt) == 4 else int(str(a)[:2] + b_txt)
+        if b - a == 1:
+            return "single", b, b, f"fiscal_year_end_of_{text}"
+        if b > a:
+            return "range", a, b, f"multi_year_range_{text}"
+        return "invalid", None, None, f"unparsed_{text}"
+    m = re.fullmatch(r"(?:FY\s?)?(\d{4})", text, flags=re.I)
+    if m:
+        return "single", int(m.group(1)), int(m.group(1)), "fy_label" if text.upper().startswith("FY") else ""
+    years = re.findall(r"\b(\d{4})\b", text)
+    if len(set(years)) == 1:
+        y = int(years[0])
+        return "single", y, y, f"extracted_from_text_{text}"
+    return "invalid", None, None, f"unparsed_{text}"
+
+
+# ------------------------------------------------------------------ merged final CSV
+FIELDS = {"6": "residual", "5": "other_identified_flows"}
+# values within this far apart are treated as the same observation re-reported, not a genuine conflict
+# (e.g. a typo-level rounding difference), well inside the identity-check tolerance used elsewhere
+VALUE_TOLERANCE = 0.05
+
+
+def _parsed_year(label: str) -> float:
+    """y1 (the single year, or a fiscal-year label's end year) from parse_year_label() above, or
+    NaN if unparseable. A pandas-missing cell reads back as the float NaN here, not the string "nan" --
+    `pd.Series.fillna("")` upstream is what prevents the classic `nan or default` truthiness trap (NaN is
+    truthy in Python, so a bare `or` never falls through to the fallback column)."""
+    kind, _y0, y1, _note = parse_year_label(label)
+    return float(y1) if kind != "invalid" else float("nan")
+
+
+ALL_HIERARCHIES = object()  # sentinel for load_rows(): no hierarchy_id filter at all
+
+
+def load_rows(input_csv: Path, hierarchy_ids=FIELDS) -> pd.DataFrame:
+    """hierarchy_ids: an iterable of hierarchy_id values to keep (default: FIELDS, i.e. residual +
+    other_identified_flows only), or ALL_HIERARCHIES to keep every row regardless of hierarchy_id (used
+    e.g. by check_coverage_database.py)."""
+    # "year" (gap-fill rows' own year) and "gapfill_run" only exist in some versions of the merged file;
+    # the slim 20261026+ files keep a gap-fill row's year in last_actual_year instead.
+    wanted = ["country", "hierarchy_id", "value", "year", "last_actual_year", "source_round", "gapfill_run"]
+    present = set(pd.read_csv(input_csv, nrows=0).columns)
+    df = pd.read_csv(input_csv, usecols=[c for c in wanted if c in present], dtype=str)
+    for c in ("year", "gapfill_run"):
+        if c not in df.columns:
+            df[c] = None
+    if hierarchy_ids is not ALL_HIERARCHIES:
+        df = df[df["hierarchy_id"].isin(hierarchy_ids)].copy()
+    else:
+        df = df.copy()
+
+    year_s = df["year"].fillna("").str.strip()
+    lay_s = df["last_actual_year"].fillna("").str.strip()
+    effective_label = year_s.where(year_s != "", lay_s)  # year if present, else last_actual_year
+    df["effective_year"] = effective_label.map(_parsed_year)
+
+    df["value_num"] = pd.to_numeric(df["value"], errors="coerce")
+    df = df.dropna(subset=["effective_year", "value_num"])
+    df["effective_year"] = df["effective_year"].astype(int)
+
+    df["country_norm"] = df["country"].map(lambda c: normalize_country(str(c).strip()))
+    df["country_key"] = df["country_norm"].str.casefold()
+    # canonical display label per casefold group: the most common normalized spelling seen for it
+    label_by_key = (
+        df.groupby("country_key")["country_norm"]
+        .agg(lambda s: s.value_counts().idxmax())
+    )
+    df["country_label"] = df["country_key"].map(label_by_key)
+    return df
+
+
+# ------------------------------------------------------------------ settings
+OFFSETS = (2, 3, 4)  # report year = gap year + 2, then + 3, then + 4. Stop after that.
+ELIGIBLE = {"actual", "historical"}
+NOT_ACTUAL = {"preliminary", "estimate", "projection"}
+ROLES = [
+    "debt_level", "change_in_debt", "identified_flows", "primary_balance",
+    "automatic_debt_dynamics", "other_identified_flows", "residual",
+]
+PANEL_ROLES = ROLES[1:]  # same six categories as the Step 1 flattening
+RESOLVED = {"resolved", "resolved_with_warning"}
+STOP_STATUSES = {"api_error", "not_run"}  # do not fall through to the next report
+IDENTITY_TOLERANCE = 0.25
+
+REASON_TO_STATUS = {
+    "year_not_in_table": "year_not_in_table",
+    "year_only_in_merged_range": "merged_range_only",
+    "column_is_preliminary": "rejected_not_actual",
+    "column_is_estimate": "rejected_not_actual",
+    "column_is_projection": "rejected_not_actual",
+    "status_unclear": "rejected_not_actual",
+    "values_unreadable": "values_unreadable",
+}
+
+_STATUS_PATTERNS = {
+    "preliminary": [r"\bprel\b", r"\bprel\.", r"\bpreliminary\b", r"\bprovisional\b"],
+    "estimate": [r"\best\b", r"\best\.", r"\bestimate\b", r"\bestimated\b"],
+    "projection": [
+        r"\bproj\b", r"\bproj\.", r"\bprojection\b", r"\bprojections\b", r"\bforecast\b",
+        r"\bmedium[- ]term projection\b", r"\bextended projection\b",
+    ],
+}
+
+
+# ------------------------------------------------------------ report indexing
+_FILE_RE = re.compile(r"^(?P<prefix>.*?)_(?P<date>\d{4}-\d{2}-\d{2})")
+
+
+def parse_report_file(path: Path) -> Optional[Dict[str, Any]]:
+    m = _FILE_RE.match(path.name)
+    if not m:
+        return None
+    date = m.group("date")
+    return {
+        "pdf_file_name": path.name,
+        "path": str(path),
+        "country": normalize_country(m.group("prefix")),
+        "date": date,
+        "year": int(date[:4]),
+    }
+
+
+def index_by_country_year(reports: List[Dict[str, Any]]) -> Dict[Tuple[str, int], List[Dict[str, Any]]]:
+    idx: Dict[Tuple[str, int], List[Dict[str, Any]]] = {}
+    seen = set()
+    for r in reports:
+        if r["pdf_file_name"] in seen:
+            continue
+        seen.add(r["pdf_file_name"])
+        idx.setdefault((r["country"], r["year"]), []).append(r)
+    return idx
+
+
+def build_candidates(
+    country: str,
+    gap_year: int,
+    idx: Dict[Tuple[str, int], List[Dict[str, Any]]],
+    skip: set,
+    offsets: Tuple[int, ...] = OFFSETS,
+) -> List[Dict[str, Any]]:
+    """Ordered source reports for one gap year: T+2 (latest first), then T+3, then T+4."""
+    out: List[Dict[str, Any]] = []
+    for off in offsets:
+        reps = sorted(
+            idx.get((country, gap_year + off), []),
+            key=lambda r: (r["date"], r["pdf_file_name"]),
+            reverse=True,
+        )
+        for r in reps:
+            if r["pdf_file_name"] in skip:
+                continue
+            out.append({**r, "offset": off})
+    return out
+
+
+def build_candidate_map_rows(
+    gap_items: List[Dict[str, Any]],
+    idx: Dict[Tuple[str, int], List[Dict[str, Any]]],
+    skip: set,
+    offsets: Tuple[int, ...] = OFFSETS,
+) -> List[Dict[str, Any]]:
+    """
+    One row per (gap year, candidate rank): the exact ordered candidate list build_candidates() would
+    try for that gap year, as a persistable table (Step 2's "map of gap year -> report", written before
+    any API call). A gap year with no candidate at all gets one row with rank=None so it still shows up.
+    """
+    rows: List[Dict[str, Any]] = []
+    for g in gap_items:
+        country, gap_year = g["country"], int(g["gap_year"])
+        cands = build_candidates(country, gap_year, idx, skip, offsets=offsets)
+        if not cands:
+            rows.append({
+                "gap_id": g.get("gap_id"), "country": country, "gap_year": gap_year,
+                "rank": None, "candidate_report": None, "offset_years": None, "publication_date": None,
+            })
+            continue
+        for rank, c in enumerate(cands, start=1):
+            rows.append({
+                "gap_id": g.get("gap_id"), "country": country, "gap_year": gap_year,
+                "rank": rank, "candidate_report": c["pdf_file_name"], "offset_years": c["offset"],
+                "publication_date": c["date"],
+            })
+    return rows
+
+
+# ------------------------------------------------------- selected PDF lookup
+# A selected PDF is named "<report stem><any suffix>.pdf". The report stem is "<country>_<YYYY-MM-DD>",
+# optionally followed by a Country Report number ("_CR2019-283"). Whatever comes after (_pages_5_8,
+# _page_6_table_crop_fallback, or anything else) is only used to guess how the PDF was made.
+_STEM_RE = re.compile(r"^(?P<stem>.+?_\d{4}-\d{2}-\d{2}(?:_CR\d{4}-\d+)?)(?P<suffix>_.*)?\.pdf$", re.IGNORECASE)
+# Best fidelity first (used only when there is no timing.json to say which file was sent).
+_METHOD_ORDER = [
+    "selected_pdf_direct", "selected_pdf_image_compressed",
+    "pymupdf_pillow_table_crop_fallback", "pymupdf_pillow_visual_fallback",
+]
+
+
+def parse_selected_name(name: str):
+    """(report stem, method) for a selected-PDF file name, else None if it has no <country>_<date> part."""
+    m = _STEM_RE.match(name)
+    if not m:
+        return None
+    suffix = (m.group("suffix") or "").lower()
+    if "crop" in suffix:
+        method = "pymupdf_pillow_table_crop_fallback"
+    elif "vision" in suffix or "visual" in suffix:
+        method = "pymupdf_pillow_visual_fallback"
+    elif "compress" in suffix:
+        method = "selected_pdf_image_compressed"
+    else:
+        method = "selected_pdf_direct"
+    return m.group("stem"), method
+
+
+_ROUND_RUN_RE = re.compile(r"^round(\d+)_(\d{4,8})_run(\d+)$")
+
+
+def discover_selected_pdf_dirs(output_dir: Path) -> List[Path]:
+    """
+    One selected_pdf_pages source per batch folder directly under output_dir (e.g. output/2016-2020/),
+    in either of the two layouts different people's machines have produced:
+      - output/<batch>/selected_pdf_pages/ directly -- a simpler layout some colleagues used, with no
+        round/run subfolders.
+      - output/<batch>/round{1,2}_<YYYYMMDD>_run{1,2,3}/selected_pdf_pages/ -- the two-round/three-run
+        layout. The DSA table's position in a given PDF does not change between rounds or runs, so
+        round 1's first run is as good a page-location source as any; it is picked consistently (over
+        round 2 or a later run) so the result does not depend on whichever run happened to finish last
+        on a given machine. If several round1_*_run1 folders exist (reruns on different dates), the most
+        recent one wins; if round1_run1 itself is missing for a batch, the lowest available (round, run)
+        pair is used instead (most recent stamp among those).
+    A batch folder with neither layout is skipped (contributes nothing -- not an error).
+    """
+    dirs: List[Path] = []
+    root = Path(output_dir)
+    if not root.is_dir():
+        return dirs
+    for batch_dir in sorted(p for p in root.iterdir() if p.is_dir()):
+        direct = batch_dir / "selected_pdf_pages"
+        if direct.is_dir():
+            dirs.append(direct)
+            continue
+        candidates = []
+        for d in batch_dir.iterdir():
+            m = d.is_dir() and _ROUND_RUN_RE.match(d.name)
+            if m and (d / "selected_pdf_pages").is_dir():
+                round_no, stamp, run_no = int(m.group(1)), m.group(2), int(m.group(3))
+                candidates.append((round_no, run_no, -int(stamp), d))
+        if candidates:
+            best = min(candidates)  # lowest round, then lowest run, then most recent stamp (negated)
+            dirs.append(best[3] / "selected_pdf_pages")
+    return dirs
+
+
+def index_selected_pdfs(dirs: List[Path]) -> Dict[str, List[Dict[str, Any]]]:
+    """stem -> selected PDFs found in `dirs` (each with its folder rank and method rank)."""
+    idx: Dict[str, List[Dict[str, Any]]] = {}
+    for dir_rank, d in enumerate(dirs):
+        if not d.exists():
+            print(f"  WARNING: selected-PDF folder not found: {d}")
+            continue
+        ignored = []
+        for p in sorted(d.glob("*.pdf")):
+            parsed = parse_selected_name(p.name)
+            if parsed:
+                stem, method = parsed
+                idx.setdefault(stem, []).append(
+                    {"path": p, "method": method, "dir": d, "dir_rank": dir_rank,
+                     "method_rank": _METHOD_ORDER.index(method)}
+                )
+            else:
+                ignored.append(p.name)
+        if ignored:
+            print(f"  WARNING: {len(ignored)} PDF(s) in {d} have no <country>_<YYYY-MM-DD> in the name and are ignored, e.g. {ignored[:3]}")
+    return idx
+
+
+def reports_from_selected(idx: Dict[str, List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
+    """One report record (country, date, year from the file name) per report that has a selected PDF."""
+    reports = []
+    for stem in sorted(idx):
+        rec = parse_report_file(Path(stem + ".pdf"))
+        if rec:
+            reports.append(rec)
+    return reports
+
+
+def list_staff_reports(root_dir: Path) -> List[Dict[str, Any]]:
+    """
+    Every real staff-report PDF under root_dir -- the ORIGINAL PDFs, laid out one subfolder per batch
+    (e.g. staff_reports/pdf staff reports/2016-2020/<Country>_<date>.pdf), not the selected/cropped
+    subsets Step 1 produces. This is the candidate universe: it does not depend on Step 1 ever having
+    successfully located a table in a report in any particular run, and it is batch-agnostic (a T+2/T+3/T+4
+    candidate can come from any batch folder under root_dir, found by build_candidates() the same way
+    regardless of which subfolder it is actually in).
+    """
+    reports = []
+    seen = set()
+    for pdf_path in sorted(Path(root_dir).rglob("*.pdf")):
+        if pdf_path.name in seen:
+            continue
+        seen.add(pdf_path.name)
+        rec = parse_report_file(pdf_path)
+        if rec:
+            reports.append(rec)
+    return reports
+
+
+# ---------------------------------------------------------------- validation
+def classify_header_text(value: Any) -> str:
+    text = re.sub(r"\s+", " ", str(value or "")).strip().lower()
+    for status, patterns in _STATUS_PATTERNS.items():
+        if any(re.search(p, text, flags=re.I) for p in patterns):
+            return status
+    if re.search(r"\bactual\b|\boutturn\b|\bfinal\b", text):
+        return "actual"
+    if re.search(r"\bhistorical\b|\bhistory\b", text):
+        return "historical"
+    return "unknown"
+
+
+def to_float(x: Any) -> Optional[float]:
+    if x is None:
+        return None
+    s = str(x).strip().replace(",", "").replace("−", "-").replace("–", "-")
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
+
+def role_value(decomp: Optional[Dict[str, Any]], role: str) -> Optional[float]:
+    node = (decomp or {}).get(role)
+    return to_float(node.get("value")) if isinstance(node, dict) else None
+
+
+def _audit_single_year_columns(source: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    audit = (source or {}).get("column_header_audit") or {}
+    cols = audit.get("columns") if isinstance(audit, dict) else None
+    out = []
+    for c in cols or []:
+        if not isinstance(c, dict):
+            continue
+        kind, y0, _y1, _ = parse_year_label(c.get("year_label"))
+        out.append({
+            "kind": kind, "year": y0,
+            "label": c.get("year_label"),
+            "status": str(c.get("status") or "unknown").strip().lower(),
+        })
+    return out
+
+
+def identity_warnings(decomp: Optional[Dict[str, Any]]) -> List[str]:
+    w = []
+    chg, idf, res = (role_value(decomp, r) for r in ("change_in_debt", "identified_flows", "residual"))
+    if None not in (chg, idf, res) and abs(chg - (idf + res)) > IDENTITY_TOLERANCE:
+        w.append(f"identity change_in_debt = identified_flows + residual fails: {chg} vs {round(idf + res, 3)}")
+    pb, ad, oth = (role_value(decomp, r) for r in ("primary_balance", "automatic_debt_dynamics", "other_identified_flows"))
+    if None not in (idf, pb, ad, oth) and abs(idf - (pb + ad + oth)) > 1.5 * IDENTITY_TOLERANCE:
+        w.append(f"identity identified_flows = primary + automatic + other fails: {idf} vs {round(pb + ad + oth, 3)}")
+    return w
+
+
+def validate_target(
+    target: Dict[str, Any], source: Optional[Dict[str, Any]]
+) -> Tuple[str, List[Tuple[str, str]], List[str]]:
+    """
+    Check one model answer for one target year.
+
+    Returns (status, errors, warnings); errors is a list of (code, message).
+    status is 'resolved' when there are no errors. 'needs_independent_audit' is
+    returned only when the sole problem is that the model's own column audit is
+    missing or disagrees; every other problem is a hard rejection, because the
+    panel must never receive a preliminary, estimate or projection value.
+    """
+    year = target.get("target_year")
+    if target.get("extractable") is not True:
+        reason = target.get("not_extractable_reason")
+        return REASON_TO_STATUS.get(reason, "not_extracted"), [], []
+
+    errors: List[Tuple[str, str]] = []
+    warnings: List[str] = []
+
+    status = str(target.get("column_status") or "").strip().lower()
+    if status not in ELIGIBLE:
+        errors.append(("status", f"column_status is '{status or 'missing'}', not actual/historical"))
+
+    kind, y0, _y1, _ = parse_year_label(target.get("matched_year_label"))
+    if kind != "single" or y0 != year:
+        errors.append(("label", f"matched_year_label '{target.get('matched_year_label')}' is not target year {year}"))
+
+    header_text = " ".join(
+        str(target.get(k) or "") for k in ("column_header_verbatim", "matched_year_label")
+    )
+    explicit = classify_header_text(header_text)
+    if explicit in NOT_ACTUAL:
+        errors.append(("header_text", f"header text is explicitly {explicit}: {header_text.strip()!r}"))
+
+    cols = _audit_single_year_columns(source)
+    matching = [c for c in cols if c["kind"] == "single" and c["year"] == year]
+    if len(matching) != 1:
+        errors.append(("audit_missing", f"column audit lists {len(matching)} single-year columns for {year}"))
+    else:
+        audit_status = matching[0]["status"]
+        if audit_status not in ELIGIBLE:
+            errors.append(("audit_status", f"column audit says {year} is '{audit_status}'"))
+        elif status in ELIGIBLE and audit_status != status:
+            warnings.append(f"column_status '{status}' differs from audit status '{audit_status}' (both eligible)")
+    later_not_actual = [
+        c for c in cols if c["kind"] == "single" and c["year"] is not None and c["year"] < year and c["status"] in NOT_ACTUAL
+    ]
+    if later_not_actual:
+        errors.append((
+            "monotonic",
+            f"year {year} is called actual but an earlier column ({later_not_actual[0]['label']}) is {later_not_actual[0]['status']}",
+        ))
+
+    decomp = target.get("decomposition")
+    if not isinstance(decomp, dict) or all(role_value(decomp, r) is None for r in PANEL_ROLES):
+        errors.append(("no_values", "no numeric value found in any of the six decomposition roles"))
+    else:
+        warnings.extend(identity_warnings(decomp))
+
+    if not errors:
+        return "resolved", [], warnings
+    if all(code in {"audit_missing", "audit_status"} for code, _ in errors) and status in ELIGIBLE:
+        return "needs_independent_audit", errors, warnings
+    return "rejected_not_actual", errors, warnings
+
+
+def audit_confirms(audit_result: Dict[str, Any], year: int) -> Tuple[bool, str]:
+    """Independent header audit: is `year` a single, actual/historical column?"""
+    cols = _audit_single_year_columns({"column_header_audit": (audit_result or {}).get("column_header_audit")})
+    matching = [c for c in cols if c["kind"] == "single" and c["year"] == year]
+    if len(matching) != 1:
+        return False, f"independent audit lists {len(matching)} single-year columns for {year}"
+    status = matching[0]["status"]
+    if status not in ELIGIBLE:
+        return False, f"independent audit says {year} is '{status}'"
+    if any(c["kind"] == "single" and c["year"] is not None and c["year"] < year and c["status"] in NOT_ACTUAL for c in cols):
+        return False, "independent audit shows an earlier year that is estimate/projection"
+    return True, f"independent audit confirms {year} as {status}"
+
+
+# ------------------------------------------------------------------- cascade
+def _json_safe(obj: Any) -> Any:
+    """Recursively convert pandas/numpy scalars (and NaN) to plain JSON-able Python values."""
+    if isinstance(obj, dict):
+        return {k: _json_safe(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [_json_safe(v) for v in obj]
+    if isinstance(obj, float) and pd.isna(obj):
+        return None
+    if hasattr(obj, "item"):  # numpy scalar (int64, float64, bool_, ...)
+        return obj.item()
+    return obj
+
+
+def save_checkpoint(state: List[Dict[str, Any]], path: Path) -> None:
+    """Persist run_cascade()'s current state so a later run can resume from it (see load_checkpoint)."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(_json_safe(state), ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp.replace(path)  # atomic on both POSIX and Windows -- never leaves a half-written checkpoint
+
+
+def load_checkpoint(path: Path) -> List[Dict[str, Any]]:
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
+
+
+def run_cascade(
+    gap_items: List[Dict[str, Any]],
+    candidates_fn: Callable[[str, int], List[Dict[str, Any]]],
+    process_fn: Callable[[Dict[str, Any], List[int]], Dict[int, Dict[str, Any]]],
+    max_workers: int = 4,
+    log: Callable[[str], None] = print,
+    on_progress: Optional[Callable[[List[Dict[str, Any]]], None]] = None,
+) -> List[Dict[str, Any]]:
+    """
+    Try each gap year's candidate reports in order until one gives an
+    actual/historical value. One call per report per wave, covering every gap
+    year of that country that is pointed at that report in this wave.
+
+    on_progress(state), when given, is called after every wave with the current state of every gap
+    year passed in (resolved, still pending, or exhausted so far) -- the caller's hook for checkpointing
+    an in-progress run so a crash, sleep/wake stall, or a killed console loses at most one wave's worth
+    of work, not the whole run.
+
+    Every gap year logs a running "[done/total] country year: final_status" line the moment it reaches
+    a final status (processing happens per-wave, many gap years at once, so this counts completions as
+    they land rather than claiming a single in-progress item -- there is no one "current" item to name).
+    """
+    state = []
+    for g in gap_items:
+        cands = candidates_fn(g["country"], int(g["gap_year"]))
+        state.append({
+            **g, "gap_year": int(g["gap_year"]), "cands": cands, "next": 0,
+            "attempts": [], "final_status": None, "resolved": None, "stopped": None,
+        })
+    total = len(state)
+
+    def _log_done(st: Dict[str, Any]) -> None:
+        done = sum(1 for s in state if s["final_status"] is not None)
+        log(f"  [{done}/{total}] {st['country']} {st['gap_year']}: {st['final_status']}")
+
+    wave_no = 0
+    while True:
+        wave: Dict[str, Tuple[Dict[str, Any], List[Dict[str, Any]]]] = {}
+        for st in state:
+            if st["final_status"] is not None:
+                continue
+            if st["next"] >= len(st["cands"]):
+                st["final_status"] = "unresolved" if st["cands"] else "unresolved_no_candidate_reports"
+                _log_done(st)
+                continue
+            rep = st["cands"][st["next"]]
+            wave.setdefault(rep["pdf_file_name"], (rep, []))[1].append(st)
+        if not wave:
+            break
+        wave_no += 1
+        log(f"Wave {wave_no}: {len(wave)} report(s) for {sum(len(v[1]) for v in wave.values())} gap year(s)")
+
+        jobs = {name: (rep, sorted({s["gap_year"] for s in sts})) for name, (rep, sts) in wave.items()}
+
+        def _run(item):
+            name, (rep, years) = item
+            try:
+                return name, process_fn(rep, years)
+            except Exception as exc:  # never lose the whole wave to one report
+                return name, {y: {"status": "api_error", "errors": [str(exc)], "warnings": []} for y in years}
+
+        if max_workers > 1 and len(jobs) > 1:
+            with ThreadPoolExecutor(max_workers=max_workers) as ex:
+                results = dict(ex.map(_run, jobs.items()))
+        else:
+            results = dict(_run(i) for i in jobs.items())
+
+        for name, (rep, sts) in wave.items():
+            res = results[name]
+            for st in sts:
+                out = res.get(st["gap_year"]) or {"status": "not_run", "errors": [], "warnings": []}
+                st["attempts"].append({
+                    "attempt_no": len(st["attempts"]) + 1,
+                    "report": name,
+                    "offset": rep["offset"],
+                    "status": out["status"],
+                    "errors": "; ".join(out.get("errors", [])),
+                    "warnings": "; ".join(out.get("warnings", [])),
+                })
+                if out["status"] in RESOLVED:
+                    st["final_status"] = out["status"]
+                    st["resolved"] = {"report": name, "offset": rep["offset"], "outcome": out}
+                    _log_done(st)
+                elif out["status"] in STOP_STATUSES:
+                    st["final_status"] = "pending_" + out["status"]
+                    st["stopped"] = out["status"]
+                    _log_done(st)
+                else:
+                    st["next"] += 1
+
+        if on_progress is not None:
+            on_progress(state)
+    return state
+
+
+# ---------------------------------------------------------------- flattening
+def flatten_node(node, rows, top_category, level, parent_label, hierarchy_id):
+    if not isinstance(node, dict):
+        return
+    rows.append({
+        "top_category": top_category, "hierarchy_id": hierarchy_id, "level": level,
+        "parent_label": parent_label,
+        "label_verbatim": node.get("label_verbatim"), "value": node.get("value"),
+    })
+    children = node.get("children")
+    if isinstance(children, list):
+        for i, child in enumerate(children, start=1):
+            flatten_node(child, rows, top_category, level + 1, node.get("label_verbatim"), f"{hierarchy_id}.{i}")
+
+
+def flatten_decomposition(decomp: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    rows: List[Dict[str, Any]] = []
+    for n, cat in enumerate(PANEL_ROLES, start=1):
+        node = (decomp or {}).get(cat)
+        if node is not None:
+            flatten_node(node, rows, cat, 0, None, str(n))
+    return rows
+
+
+# ------------------------------------------------------------------- outputs
+def write_outputs(
+    state: List[Dict[str, Any]],
+    targets_meta: Optional[pd.DataFrame],
+    out_dir: Path,
+    stamp: str,
+    panel_csv: Optional[Path] = None,
+) -> Dict[str, Path]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    paths: Dict[str, Path] = {}
+    meta = {}
+    if targets_meta is not None and len(targets_meta):
+        meta = {(r["country"], int(r["gap_year"])): r for _, r in targets_meta.iterrows()}
+
+    attempts, resolution, long_rows, wide_rows = [], [], [], []
+    for st in state:
+        for a in st["attempts"]:
+            attempts.append({"gap_id": st.get("gap_id"), "country": st["country"], "gap_year": st["gap_year"], **a})
+        m = meta.get((st["country"], st["gap_year"]))
+        last = st["attempts"][-1] if st["attempts"] else {}
+        res = st["resolved"]
+        expected = None if m is None else m.get("audit_expected_source_report")
+        resolution.append({
+            "gap_id": st.get("gap_id"), "country": st["country"], "gap_year": st["gap_year"],
+            "final_status": st["final_status"],
+            "source_report": res["report"] if res else None,
+            "source_offset_years": res["offset"] if res else None,
+            "n_attempts": len(st["attempts"]),
+            "candidate_reports": "; ".join(c["pdf_file_name"] for c in st["cands"]),
+            "last_failure_status": None if res else last.get("status"),
+            "last_failure_detail": None if res else last.get("errors"),
+            "warnings": res["outcome"].get("warnings") and "; ".join(res["outcome"]["warnings"]) if res else None,
+            "audit_fill_status": None if m is None else m.get("audit_fill_status"),
+            "audit_expected_source_report": expected,
+            "source_matches_audit_expectation": (None if not (res and isinstance(expected, str)) else res["report"] == expected),
+        })
+        if res:
+            out = res["outcome"]
+            decomp = out.get("decomposition")
+            meta_src = out.get("meta", {})
+            pdf_file_name = res["report"]
+            json_file = Path(pdf_file_name).stem + "_dsa.json"
+            for r in flatten_decomposition(decomp):
+                long_rows.append({
+                    "json_file": json_file, "pdf_file_name": pdf_file_name,
+                    "country": st["country"], "year": st["gap_year"],
+                    "table_found": "TRUE", "source_category": "Gap Fill",
+                    **r,
+                })
+            wide_rows.append({
+                "country": st["country"], "year": st["gap_year"], "gap_id": st.get("gap_id"),
+                "source_report": res["report"], "source_offset_years": res["offset"],
+                "resolution_status": st["final_status"],
+                "column_status": out.get("column_status"),
+                "column_header_verbatim": out.get("column_header_verbatim"),
+                "framework": meta_src.get("framework"), "units_verbatim": meta_src.get("units_verbatim"),
+                "table_number": meta_src.get("table_number"), "page_pdf": meta_src.get("page_pdf"),
+                "confidence": meta_src.get("confidence"),
+                "warnings": "; ".join(out.get("warnings", [])),
+                **{c: role_value(decomp, c) for c in PANEL_ROLES},
+            })
+
+    def save(name, rows):
+        p = out_dir / f"{name}_{stamp}.csv"
+        pd.DataFrame(rows).to_csv(p, index=False, encoding="utf-8-sig")
+        paths[name] = p
+
+    save("gapfill_attempts", attempts)
+    save("gapfill_resolution", resolution)
+    save("gapfill_values_long", long_rows)
+    save("gapfill_values_wide", wide_rows)
+
+    # The same values in the panel database layout (final_schema.FINAL_COLUMNS, the columns of the Round
+    # 1/2/3 rows), ready to append: last_actual_year = the gap year, report facts from the gap-fill call.
+    from final_schema import FINAL_COLUMNS, to_final  # same folder
+    by_key = {(w["country"], w["year"]): w for w in wide_rows}
+    final = to_final(pd.DataFrame(long_rows), "gapfill", gapfill_run=stamp) if long_rows else pd.DataFrame(columns=FINAL_COLUMNS)
+    if long_rows:
+        for col, key in (("framework", "framework"), ("table_number", "table_number"), ("page_pdf", "page_pdf"),
+                         ("actual_column_label", "column_header_verbatim")):
+            vals = [by_key.get((r["country"], r["year"]), {}).get(key) for r in long_rows]
+            final[col] = final[col].where(final[col].notna(), pd.Series(vals, dtype=object))
+        final["page_pdf"] = final["page_pdf"].map(lambda v: None if v is None or pd.isna(v) else str(v).removesuffix(".0"))
+    p_final = out_dir / f"gapfill_rows_final_{stamp}.csv"
+    final.to_csv(p_final, index=False, encoding="utf-8-sig")
+    paths["gapfill_rows_final"] = p_final
+
+    if panel_csv is not None and Path(panel_csv).exists() and wide_rows:
+        panel = pd.read_csv(panel_csv)
+        wide = pd.DataFrame(wide_rows).set_index(["country", "year"])
+        for idx, row in panel.iterrows():
+            key = (row["country"], row["year"])
+            if row["status"] == "GAP" and key in wide.index:
+                w = wide.loc[key]
+                panel.loc[idx, "status"] = "FILLED"
+                panel.loc[idx, "source_report"] = w["source_report"]
+                for c in PANEL_ROLES:
+                    panel.loc[idx, c] = w[c]
+        p = out_dir / f"panel_structure_filled_{stamp}.csv"
+        panel.to_csv(p, index=False, encoding="utf-8-sig")
+        paths["panel_structure_filled"] = p
+    return paths

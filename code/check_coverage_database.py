@@ -23,7 +23,7 @@ Part 2 -- "By year" sheet: per year, the number of panel countries, and how many
 Part 3 -- "Sources" sheet: the same rows as Coverage; for every indicator column, where the value came
     from: Round 1, Round 2, Round 3 or Gap fill (empty = no value). When rows from more than one round give
     a value for the same country and year, one is picked in the order Round 1, Round 2, Round 3, Gap fill
-    (the same rule as gapfill_panel_source_breakdown.py).
+    (the same rule as the archived gapfill_panel_source_breakdown.py).
 
 Part 4 -- "Report years" sheet: every (country, publication year) with at least one staff report, for
     ALL years in the PDF folders (not only the panel years), so the coverage app can check whether a
@@ -72,12 +72,11 @@ from pathlib import Path
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
-if not (HERE / "gapfill_lib_core.py").exists() and (HERE / "code" / "gapfill_lib_core.py").exists():
+if not (HERE / "core.py").exists() and (HERE / "code" / "core.py").exists():
     HERE = HERE / "code"
 ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
-from gapfill_lib_core import normalize_country  # noqa: E402
-from gapfill_panel_coverage_report import ALL_HIERARCHIES, load_rows  # noqa: E402
+from core import ALL_HIERARCHIES, load_rows, normalize_country  # noqa: E402
 
 # ---------------------------------------------------------------- settings
 FINAL_CSV = ROOT / "output" / "final" / "final_all_batches_with_gapfill_20261028.csv"

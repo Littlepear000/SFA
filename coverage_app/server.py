@@ -21,6 +21,15 @@ API
     GET  /api/runs/<stamp>/data         one version's Coverage table, compact, for the Database and
                                         Dashboard tabs
     GET  /api/runs/<stamp>/download     that version's workbook
+
+Workflow and Panel database (see workflow.py; every path starts with /api/wf/)
+    GET  settings | file?kind=code|prompt&name= | overview?r1=&r2= | job | jobs | job/<id>
+    GET  versions/<round> | review/<round>/<version> | review/<round>/<version>/report?json_file=
+    GET  hr/<version> | hr/<version>/item?json_file= | staging?r1=&r2=
+    GET  panel | panel/<stamp>/data?country=&year=&source=&top_only=&page= | panel/<stamp>/download
+    GET  gap | gap/<stamp> | pdf?path=
+    POST settings | run/round1 | run/round2 | run/gap_identify | run/gap_fill | job/stop
+    POST hr/<version>/save | panel/import | panel/append | gap/append
 """
 from __future__ import annotations
 
@@ -37,13 +46,14 @@ from datetime import datetime
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
 
 APP_DIR = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd() / "coverage_app"
 STATIC_DIR = APP_DIR / "static"
 CODE_DIR = APP_DIR.parent / "code"
 sys.path.insert(0, str(CODE_DIR))
 import check_coverage_database as ccd  # noqa: E402
+import workflow as wf  # noqa: E402  (coverage_app/workflow.py: the Workflow and Panel database tabs)
 
 import pandas as pd  # noqa: E402
 
@@ -268,13 +278,99 @@ class Handler(SimpleHTTPRequestHandler):
         except ValueError:
             return {}
 
+    def _file(self, path: Path, ctype: str, download: bool = False):
+        data = path.read_bytes()
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", ctype)
+        disp = "attachment" if download else "inline"
+        self.send_header("Content-Disposition", f'{disp}; filename="{path.name}"')
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
+    def _wf(self, method: str, route: str, q: dict, body: dict):
+        """The Workflow / Panel database API. A wf.UserError is answered with 400 and its message."""
+        try:
+            parts = route.strip("/").split("/")
+            s = wf.load_settings()
+            batch = wf.batch_name(s)
+            if method == "GET":
+                if route == "settings":
+                    return self._json(HTTPStatus.OK, wf.settings_info())
+                if route == "file":
+                    return self._json(HTTPStatus.OK, wf.read_source(q.get("kind"), q.get("name")))
+                if route == "overview":
+                    return self._json(HTTPStatus.OK, wf.overview(q.get("r1"), q.get("r2")))
+                if route == "job":
+                    return self._json(HTTPStatus.OK, {"job": wf.JOBS.latest()})
+                if route == "jobs":
+                    return self._json(HTTPStatus.OK, {"jobs": wf.JOBS.history()})
+                if parts[0] == "job" and len(parts) == 2:
+                    return self._json(HTTPStatus.OK, {"job": wf.JOBS.get(parts[1], int(q.get("lines") or 2000))})
+                if parts[0] == "versions" and len(parts) == 2:
+                    return self._json(HTTPStatus.OK, {"versions": wf.round_versions(batch, parts[1])})
+                if parts[0] == "review" and len(parts) == 3:
+                    return self._json(HTTPStatus.OK, wf.review_summary(batch, parts[1], parts[2]))
+                if parts[0] == "review" and len(parts) == 4 and parts[3] == "report":
+                    return self._json(HTTPStatus.OK, wf.report_detail(batch, parts[1], parts[2], q.get("json_file", "")))
+                if parts[0] == "hr" and len(parts) == 2:
+                    return self._json(HTTPStatus.OK, wf.hr_queue(batch, parts[1]))
+                if parts[0] == "hr" and len(parts) == 3 and parts[2] == "item":
+                    return self._json(HTTPStatus.OK, wf.hr_item(batch, parts[1], q.get("json_file", "")))
+                if route == "staging":
+                    return self._json(HTTPStatus.OK, wf.staging(batch, q.get("r1") or None, q.get("r2") or None))
+                if route == "panel":
+                    return self._json(HTTPStatus.OK, {"versions": wf.panel_versions(), "importable": wf.overview()["importable"]})
+                if parts[0] == "panel" and len(parts) == 3 and parts[2] == "data":
+                    return self._json(HTTPStatus.OK, wf.panel_data(parts[1], q))
+                if parts[0] == "panel" and len(parts) == 3 and parts[2] == "download":
+                    return self._file(wf.panel_path(parts[1]), "text/csv; charset=utf-8", download=True)
+                if route == "gap":
+                    return self._json(HTTPStatus.OK, {"runs": wf.gap_runs()})
+                if parts[0] == "gap" and len(parts) == 2:
+                    return self._json(HTTPStatus.OK, wf.gap_status(parts[1]))
+                if route == "pdf":
+                    return self._file(wf.allowed_pdf(q.get("path", "")), "application/pdf")
+            else:
+                if route == "settings":
+                    wf.save_settings(body)
+                    return self._json(HTTPStatus.OK, wf.settings_info())
+                if route in ("run/round1", "run/round2"):
+                    return self._json(HTTPStatus.ACCEPTED, {"job": wf.start_round(parts[1], body)})
+                if route == "run/gap_identify":
+                    return self._json(HTTPStatus.ACCEPTED, {"job": wf.start_gap_identify(body)})
+                if route == "run/gap_fill":
+                    return self._json(HTTPStatus.ACCEPTED, {"job": wf.start_gap_fill(body)})
+                if route == "job/stop":
+                    return self._json(HTTPStatus.OK, {"job": wf.JOBS.stop()})
+                if parts[0] == "hr" and len(parts) == 3 and parts[2] == "save":
+                    return self._json(HTTPStatus.OK, wf.hr_save(batch, parts[1], body))
+                if route == "panel/import":
+                    return self._json(HTTPStatus.OK, wf.panel_import(body))
+                if route == "panel/append":
+                    return self._json(HTTPStatus.OK, wf.panel_append_staging(body))
+                if route == "gap/append":
+                    return self._json(HTTPStatus.OK, wf.gap_append(body))
+            return self._json(HTTPStatus.NOT_FOUND, {"error": f"unknown endpoint {method} /api/wf/{route}"})
+        except wf.UserError as e:
+            return self._json(HTTPStatus.BAD_REQUEST, {"error": str(e)})
+        except (BrokenPipeError, ConnectionResetError):
+            return None
+        except Exception as e:
+            traceback.print_exc()
+            return self._json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"{type(e).__name__}: {e}"})
+
     def do_GET(self):
-        path = unquote(urlparse(self.path).path)
+        url = urlparse(self.path)
+        path = unquote(url.path)
+        if path.startswith("/api/wf/"):
+            return self._wf("GET", path[len("/api/wf/"):], {k: v[-1] for k, v in parse_qs(url.query).items()}, {})
         if not path.startswith("/api/"):
             return super().do_GET()
         if path == "/api/defaults":
+            latest = wf.panel_latest()  # the newest panel database version is the default input
             return self._json(HTTPStatus.OK, {
-                "final_csv": str(Path(ccd.FINAL_CSV).resolve()), "pdf_root": str(Path(ccd.PDF_ROOT).resolve()),
+                "final_csv": latest["file"] if latest else str(Path(ccd.FINAL_CSV).resolve()), "pdf_root": str(Path(ccd.PDF_ROOT).resolve()),
                 "batches": list(ccd.BATCHES), "out_dir": str(out_dir().resolve()), "years": list(ccd.YEARS),
                 "default_stamp": datetime.now().strftime("%Y%m%d_%H%M")})
         if path == "/api/job":
@@ -306,7 +402,9 @@ class Handler(SimpleHTTPRequestHandler):
         return self._json(HTTPStatus.NOT_FOUND, {"error": "unknown endpoint"})
 
     def do_POST(self):
-        path = urlparse(self.path).path
+        path = unquote(urlparse(self.path).path)
+        if path.startswith("/api/wf/"):
+            return self._wf("POST", path[len("/api/wf/"):], {}, self._body())
         if path == "/api/inspect":
             return self._json(HTTPStatus.OK, inspect(self._body()))
         if path == "/api/generate":

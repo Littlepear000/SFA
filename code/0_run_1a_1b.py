@@ -52,7 +52,7 @@ CSV_PREFIX = "sl"      # compiled CSV: dsa_decomposition_<CSV_PREFIX>_round1_<RU
 
 # used by 1a
 PDF_DIR = BASE_DIR / "staff_reports" / "pdf staff reports" / BATCH
-PROMPT_FILE = BASE_DIR / "prompt" / "two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
+PROMPT_FILE = BASE_DIR / "prompt" / "1a_two_step_selected_pdf_prompt_table_only_cropfallback_v5_flexible_actual.txt"
 ENV_FILE = BASE_DIR / ".env"
 # ==============================================================================
 

@@ -1,0 +1,24 @@
+{
+  "stamp": "20261112_2201",
+  "created": "2026-11-12T22:01:28",
+  "seconds": 3.3,
+  "workbook": "coverage_database_20261112_2201.xlsx",
+  "final_csv": {
+    "path": "/Users/littlepear000/Desktop/IMF projects/SFA/output/final/final_all_batches_with_gapfill_20261028.csv",
+    "size_bytes": 25565770,
+    "modified": "2026-10-28T14:35:33",
+    "sha256_16": "4147f852aac979cc"
+  },
+  "pdf_root": "/Users/littlepear000/Desktop/IMF projects/SFA/staff_reports/pdf staff reports",
+  "batches": [
+    "ad-hoc run"
+  ],
+  "years": [
+    2001,
+    2025
+  ],
+  "n_countries": 190,
+  "n_indicator_columns": 41,
+  "country_years_with_staff_report": 12,
+  "country_years_with_dsa_table": 2394
+}
