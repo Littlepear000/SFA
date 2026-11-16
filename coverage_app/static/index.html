@@ -13,7 +13,7 @@
   <div class="brand">
     <span class="brand-mark" aria-hidden="true"></span>
     <div>
-      <div class="brand-title">DSA Database</div>
+      <div class="brand-title">DSA Database <button class="app-version" id="app-version" type="button" title="What changed in each version" hidden></button></div>
       <div class="brand-sub">From staff reports to the country-year panel</div>
     </div>
   </div>
@@ -217,6 +217,14 @@
 </dialog>
 
 <div class="toast" id="toast" role="alert" hidden></div>
+<dialog class="changelog" id="changelog" aria-labelledby="changelog-title">
+  <div class="changelog-head">
+    <h2 id="changelog-title">Changelog</h2>
+    <button type="button" class="btn small" id="changelog-close">Close</button>
+  </div>
+  <div class="changelog-body" id="changelog-body"></div>
+</dialog>
+
 <script src="app.js"></script>
 <script src="workflow.js"></script>
 </body>

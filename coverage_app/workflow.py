@@ -55,6 +55,9 @@ GAP_OUT_ROOT = OUTPUT / "gapfill" / "output"
 if str(CODE_DIR) not in sys.path:
     sys.path.insert(0, str(CODE_DIR))
 import final_schema as fs  # noqa: E402
+if str(APP_DIR) not in sys.path:
+    sys.path.insert(0, str(APP_DIR))
+from version import app_version  # noqa: E402  (coverage_app/version.py)
 
 VERSION_RE = re.compile(r"^[A-Za-z0-9_\-]{1,40}$")
 ROUNDS = ("round1", "round2")
@@ -428,7 +431,7 @@ def start_round(rnd: str, body: dict) -> dict:
               "round1_version": links.get("round1_version"), "category": category}
     title = f"{'Round 1' if rnd == 'round1' else 'Round 2'} · {batch} · version {version} · {n_runs} run(s)"
     job = JOBS.start(rnd, title, steps, params, links, must_not_exist=[*run_dirs.values(), check_dir], python=python_exe(s))
-    write_json(RECORDS_DIR / safe_name(batch) / f"{rnd}_{version}.json", {**params, "job": job["id"], "started": now(), "batch": batch})
+    write_json(RECORDS_DIR / safe_name(batch) / f"{rnd}_{version}.json", {**params, "job": job["id"], "started": now(), "batch": batch, "app_version": app_version()})
     return job
 
 
@@ -1147,7 +1150,7 @@ def build_write(body: dict) -> dict:
     if path.exists():
         raise UserError(f"{path.name} already exists in the output folder. Pick another version.")
     df.to_csv(path, index=False, encoding="utf-8-sig")
-    manifest = {"version": version, "created": now(), "output_folder": str(folder),
+    manifest = {"version": version, "created": now(), "app_version": app_version(), "output_folder": str(folder),
                 "pregapfill": {"file": path.name, "written": now(), **report,
                                "components": _components(body), "remove_gapfill": bool(body.get("remove_gapfill", True))},
                 "gapfill": None}
@@ -1401,7 +1404,7 @@ def gap_write(body: dict) -> dict:
             "gap_years_filled": int(new[["country", "last_actual_year"]].drop_duplicates().shape[0]), "total": panel_stats(out)}
     man_path = folder / f"panel_{stamp}.json"
     man = read_json(man_path, {}) or {"version": stamp, "created": now(), "output_folder": str(folder), "pregapfill": None}
-    man["gapfill"] = info
+    man["gapfill"] = {**info, "app_version": app_version()}
     write_json(man_path, man)
     if (RECORDS_DIR / "builds" / f"{stamp}.json").is_file():
         write_json(RECORDS_DIR / "builds" / f"{stamp}.json", man)

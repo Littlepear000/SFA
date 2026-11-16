@@ -593,4 +593,35 @@
   }).then(function () {
     return api("/api/job").then(function (job) { setJobState(job); if (job.state === "running") pollJob(); });
   }).catch(function (e) { toast("Could not reach the app server: " + e.message); });
+
+  // ------------------------------------------------------------------ app version + changelog
+  // The version is the first heading of coverage_app/CHANGELOG.md (see version.py).
+  function mdInline(s) {
+    return esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/(^|[\s(])\*([^*\s][^*]*?)\*/g, "$1<i>$2</i>");
+  }
+  function mdToHtml(text) {
+    var out = [], inList = false;
+    String(text || "").split(/\r?\n/).forEach(function (line) {
+      var li = /^\s*-\s+(.*)$/.exec(line);
+      if (!li && inList) { out.push("</ul>"); inList = false; }
+      if (li) { if (!inList) { out.push("<ul>"); inList = true; } out.push("<li>" + mdInline(li[1]) + "</li>"); }
+      else if (/^##\s+/.test(line)) out.push("<h3>" + mdInline(line.replace(/^##\s+/, "")) + "</h3>");
+      else if (/^#\s+/.test(line) || !line.trim()) return;
+      else out.push("<p>" + mdInline(line) + "</p>");
+    });
+    if (inList) out.push("</ul>");
+    return out.join("");
+  }
+  api("/api/version").then(function (v) {
+    var b = $("app-version"), dlg = $("changelog");
+    b.textContent = "v" + v.version; b.hidden = false;
+    document.title = document.title.replace(/ v[\d.]+$/, "") + " v" + v.version;
+    b.addEventListener("click", function () {
+      $("changelog-body").innerHTML = mdToHtml(v.changelog);
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    });
+    $("changelog-close").addEventListener("click", function () { dlg.close ? dlg.close() : dlg.removeAttribute("open"); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+  }).catch(function () { /* older server without /api/version: no badge */ });
 })();

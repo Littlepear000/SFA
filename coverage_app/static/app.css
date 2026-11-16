@@ -206,3 +206,20 @@ details.numbers .table-wrap{ margin-top:8px; max-height:24rem; }
 #runs-table td{ white-space:normal; }
 #runs-table td .sub{ max-width:26rem; }
 #runs-table td:last-child, #runs-table td:nth-child(2), #runs-table td.num{ white-space:nowrap; }
+
+/* app version badge (top left) and the changelog dialog */
+.app-version{ margin-left:6px; font:500 11px/1 var(--mono); color:var(--fg-2); background:var(--bg); border:1px solid var(--line);
+  border-radius:999px; padding:3px 7px; cursor:pointer; vertical-align:2px; }
+.app-version:hover{ color:var(--fg); border-color:var(--line-strong); }
+.changelog{ width:min(46rem, calc(100vw - 32px)); max-height:min(80vh, 46rem); padding:0; border:1px solid var(--line);
+  border-radius:12px; background:var(--panel); color:var(--fg); box-shadow:0 18px 50px rgba(0,0,0,.25); }
+.changelog::backdrop{ background:rgba(0,0,0,.35); }
+.changelog-head{ position:sticky; top:0; display:flex; justify-content:space-between; align-items:center; gap:12px;
+  padding:12px 18px; background:var(--panel); border-bottom:1px solid var(--line); }
+.changelog-head h2{ margin:0; font-size:16px; }
+.changelog-body{ padding:6px 18px 18px; font-size:14px; line-height:1.6; }
+.changelog-body h3{ font-size:14.5px; margin:18px 0 4px; }
+.changelog-body ul{ margin:0; padding-left:20px; }
+.changelog-body li{ margin:4px 0; }
+.changelog-body p{ color:var(--muted); margin:10px 0 0; }
+.changelog-body code{ font-family:var(--mono); font-size:12.5px; }

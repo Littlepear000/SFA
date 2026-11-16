@@ -13,6 +13,7 @@ when, which final CSV with its size / modified time / SHA-256, which PDF folders
 the app is the list of those files, so runs made from the command line show up too.
 
 API
+    GET  /api/version                   the app's version and changelog (coverage_app/CHANGELOG.md)
     GET  /api/defaults                  default paths and batches from check_coverage_database.py
     POST /api/inspect                   {final_csv, pdf_root} -> does each exist; batch folders found
     POST /api/generate                  {final_csv, pdf_root, batches, stamp} -> starts a run
@@ -54,6 +55,7 @@ CODE_DIR = APP_DIR.parent / "code"
 sys.path.insert(0, str(CODE_DIR))
 import check_coverage_database as ccd  # noqa: E402
 import workflow as wf  # noqa: E402  (coverage_app/workflow.py: the Workflow and Panel database tabs)
+import version as appver  # noqa: E402  (coverage_app/version.py: the app's version, from CHANGELOG.md)
 
 import pandas as pd  # noqa: E402
 
@@ -184,6 +186,16 @@ def _progress(fraction: float, label: str):
         JOB.update(progress=round(float(fraction), 3), stage=label)
 
 
+def _stamp_record(path: Path):
+    """Adds the app's version to a run record written by check_coverage_database.py."""
+    try:
+        rec = json.loads(path.read_text(encoding="utf-8"))
+        rec["app_version"] = appver.app_version()
+        path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
+    except (OSError, ValueError):
+        pass
+
+
 def _run_job(final_csv: Path, pdf_root: Path, batches: list, stamp: str):
     writer = _LogWriter(JOB)
     try:
@@ -193,6 +205,7 @@ def _run_job(final_csv: Path, pdf_root: Path, batches: list, stamp: str):
             print(f"Stamp: {stamp}\n")
             ccd.main(final_csv=final_csv, pdf_root=pdf_root, out_dir=out_dir(), stamp=stamp, batches=batches,
                      progress=_progress)
+        _stamp_record(out_dir() / f"coverage_database_{stamp}.json")
         with JOB_LOCK:
             JOB.update(state="done", finished=datetime.now().isoformat(timespec="seconds"))
     except Exception as e:  # report any failure in the page instead of losing it in the console
@@ -382,6 +395,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self._wf("GET", path[len("/api/wf/"):], {k: v[-1] for k, v in parse_qs(url.query).items()}, {})
         if not path.startswith("/api/"):
             return super().do_GET()
+        if path == "/api/version":
+            return self._json(HTTPStatus.OK, appver.info())
         if path == "/api/defaults":
             latest = wf.latest_output()  # the newest file of the output folder is the default input
             return self._json(HTTPStatus.OK, {
@@ -432,7 +447,7 @@ class Handler(SimpleHTTPRequestHandler):
 def main(port: int = 8765, open_browser: bool = True):
     server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
     url = f"http://127.0.0.1:{port}"
-    print(f"DSA coverage app running at {url}  (Ctrl+C to stop)")
+    print(f"DSA coverage app v{appver.app_version()} running at {url}  (Ctrl+C to stop)")
     print(f"Workbooks and run records: {out_dir().resolve()}")
     if open_browser:
         threading.Timer(0.8, lambda: webbrowser.open(url)).start()

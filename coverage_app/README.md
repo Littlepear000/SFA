@@ -79,3 +79,21 @@ setting as in Settings). Every *Browse…* button opens the computer's own folde
 Runs from the command line (`python code/check_coverage_database.py`) write the same two files, so
 they show up in the app too. A stamp that already exists gets `_2`, `_3` … in the app, so a version is
 never overwritten.
+
+## Versions
+
+The app's version is the first `## X.Y.Z — YYYY-MM-DD` heading of `CHANGELOG.md` (read by `version.py`).
+It shows next to *DSA Database* at the top left (click it for the changelog), is printed when the server
+starts, and is stored as `app_version` in every record the app writes: the coverage run records
+(`coverage_database_<STAMP>.json`), `panel_<version>.json`, and the Round One / Round Two run records.
+
+When you change the app:
+
+1. Add a line under the top version of `CHANGELOG.md` (**Added** / **Changed** / **Fixed**: what changed, in words a user would use).
+2. For a release, start a new heading at the top: the last number up for fixes and small changes
+   (0.4.0 → 0.4.1), the middle number up for new features (0.4.0 → 0.5.0).
+3. Commit, then tag that commit and push the tag:
+   ```
+   git tag app-v0.5.0 && git push origin master app-v0.5.0
+   ```
+   `git tag -l "app-v*"` lists every release; `git checkout app-v0.4.0` goes back to one.
