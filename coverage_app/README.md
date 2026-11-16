@@ -32,26 +32,36 @@ One tab per step; the strip under the steps shows the current panel database and
 - **Human Review**: the reports Round Two's runs still disagree on, one page each: the selected PDF pages
   (or the original PDF at the table's page), the three runs' values, and a *Final value* column. Click a
   run's value (or a run's column header) to take it, edit, add or leave out line items. The hierarchy id of
-  every line item is kept. Saved per report in `output/<batch>/round3_review_<version>/reviews/`, and all
-  reviewed rows in `round3_reviewed_rows_<version>.csv`.
-  **Ready to append** (same page): Round 1 fully matched + Round 2 fully matched + Round 3 reviewed, in the
-  same 21 columns (`code/final_schema.py`), appended as a new version of the panel database.
-- **Gap Fill**: works on the panel database: every country x every year in the range (2001-2025 by
-  default), including years before a country's first report or after its last one. *Find the gaps*
-  (4a + 4b, no API), then *Fill the gaps* (4c; a dry run and a limit are available). The gap map turns green
-  as gap years are filled. *Append* adds the filled rows (`gapfill_rows_final_<version>.csv`, same 21
-  columns) as a new panel database version.
+  every line item is kept. Saved per report in `output/<batch>/round3_review_<version>/reviews/`.
+- **Build panel**: previous database (any merged CSV, e.g. the last gap-filled file; its Gap Fill rows are
+  removed, because a new staff report may now give those years directly) + the new Round 1 / Round 2 fully
+  matched reports + the Round 3 reviewed reports, of every batch ticked. *Check* shows what goes in;
+  *Write* saves `panel_pregapfill_<version>.csv` (version = YYYYMMDD_HHMM) to the **output folder**.
+  A report in both the previous database and the new results: keep the previous rows, or replace them.
+- **Gap Fill**: starts from a pre-gap-fill file of the output folder and takes its version. Every country
+  x every year in the range (2001-2025 by default). *Find the gaps* (4a + 4b, no API), then *Fill the gaps*
+  (4c); answers saved by earlier gap fill runs are reused, so a report is not asked about the same year
+  twice. *Write* saves `panel_gapfill_<version>.csv` (same version) to the output folder.
+
+The output folder (Settings) only receives these two files per version, plus `panel_<version>.json`
+(how the version was built). The **Panel database** and **Coverage** pages read from that same folder.
+
+## Intermediate data
+
+Every round's results of every batch, as kept in `output/<batch>/` (Round 1, Round 2, Round 3 review),
+plus every panel build and gap fill run: open them, or download them as CSV. They are not written to the
+output folder.
 
 ## Panel database
 
-Every version of the merged database, `output/panel_database/panel_database_<STAMP>.csv` (+ `.json`: when,
-from which version, what was added). Browse, filter, download. Start it from an existing merged CSV
-(*Import*), e.g. `output/final/final_all_batches_with_gapfill_20261028.csv`.
+Shows one file of the output folder (the newest by default): totals, country-years by year and source, and
+the rows (filter by country, year, source, hierarchy id). The folder can be changed here (it is the same
+setting as in Settings). Every *Browse…* button opens the computer's own folder / file dialog.
 
 ## Coverage
 
 - **Database**: *Generate a coverage version* (top, folded) builds the country-year coverage table from the
-  panel database and the staff report folders, and saves a new version; the version history is below it.
+  newest file of the output folder (or another file you pick) and the staff report folders, and saves a new version; the version history is below it.
   Browse a version: filter by country and year; pick the columns with *Fields*; download the workbook.
 - **Dashboard**: one stacked column per year, all 190 panel countries, split by where the value of the
   indicator in the slicer came from (Round 1 / Round 2 / Round 3 / Gap fill) or *Unavailable*. The

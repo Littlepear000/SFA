@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DSA Workflow</title>
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="app.css">
 <link rel="stylesheet" href="workflow.css">
 </head>
@@ -18,6 +19,7 @@
   </div>
   <nav class="tabs" aria-label="Main">
     <a class="tab" href="#workflow" data-main="workflow">Workflow</a>
+    <a class="tab" href="#data" data-main="data">Intermediate data</a>
     <a class="tab" href="#panel" data-main="panel">Panel database</a>
     <a class="tab" href="#coverage" data-main="coverage">Coverage</a>
   </nav>
@@ -33,12 +35,18 @@
       <a href="#workflow/round1" data-step="round1" class="step"><span class="step-no">1</span><span class="step-txt"><b>Round One</b><small id="st-round1"></small></span></a>
       <a href="#workflow/round2" data-step="round2" class="step"><span class="step-no">2</span><span class="step-txt"><b>Round Two</b><small id="st-round2"></small></span></a>
       <a href="#workflow/hr" data-step="hr" class="step"><span class="step-no">3</span><span class="step-txt"><b>Human Review</b><small id="st-hr"></small></span></a>
-      <a href="#workflow/gap" data-step="gap" class="step"><span class="step-no">4</span><span class="step-txt"><b>Gap Fill</b><small id="st-gap"></small></span></a>
+      <a href="#workflow/build" data-step="build" class="step"><span class="step-no">4</span><span class="step-txt"><b>Build panel</b><small id="st-build"></small></span></a>
+      <a href="#workflow/gap" data-step="gap" class="step"><span class="step-no">5</span><span class="step-txt"><b>Gap Fill</b><small id="st-gap"></small></span></a>
     </nav>
 
     <div class="db-strip" id="db-strip"></div>
 
     <div id="wf-view"></div>
+  </section>
+
+  <!-- ================================================================== INTERMEDIATE DATA -->
+  <section id="sec-data" class="section" hidden>
+    <div id="data-view" class="section"></div>
   </section>
 
   <!-- ================================================================== PANEL DATABASE -->
@@ -62,18 +70,20 @@
   <!-- ============================================================ DATABASE (with Generate) -->
   <section class="panel" id="tab-database" role="tabpanel">
     <details class="card gen-card" id="gen-card">
-      <summary><h2>Generate a coverage version</h2><span class="muted">Builds one row per panel country and year from the panel database and the staff report folders, and saves it as a new version.</span></summary>
+      <summary><h2>Generate a coverage version</h2><span class="muted">Builds one row per panel country and year from the newest panel database file in the output folder and the staff report folders, and saves it as a new version.</span></summary>
 
       <div class="form-grid">
-        <label for="in-csv">Panel database (CSV)</label>
+        <label for="in-csv-pick">Panel database</label>
         <div class="field">
-          <input id="in-csv" type="text" spellcheck="false" autocomplete="off">
+          <select id="in-csv-pick"></select>
+          <div class="path-input"><input id="in-csv" type="text" spellcheck="false" autocomplete="off"><button type="button" class="btn small" data-browse="in-csv" data-kind="file">Browse…</button></div>
           <div class="field-status" id="st-csv"></div>
+          <div class="field-status muted" id="st-outdir"></div>
         </div>
 
         <label for="in-pdf">Staff reports folder</label>
         <div class="field">
-          <input id="in-pdf" type="text" spellcheck="false" autocomplete="off">
+          <div class="path-input"><input id="in-pdf" type="text" spellcheck="false" autocomplete="off"><button type="button" class="btn small" data-browse="in-pdf" data-kind="dir">Browse…</button></div>
           <div class="field-status" id="st-pdf"></div>
         </div>
 

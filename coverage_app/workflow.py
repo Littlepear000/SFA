@@ -14,7 +14,10 @@ and one started from a 0_run_*.py controller look the same:
         round3_reviewed_rows_<VERSION>.csv          all reviewed rows, in the panel database layout
     output/gapfill/gap_year_check/panel_<STAMP>/   Gap Fill steps 1-2 (4a, 4b)
     output/gapfill/output/panel_<STAMP>/           Gap Fill step 3 (4c); gapfill_rows_final_<STAMP>.csv
-    output/panel_database/panel_database_<STAMP>.csv (+ .json)   the panel database, one file per version
+    <output folder>/panel_pregapfill_<VERSION>.csv   the panel database before Gap Fill (Settings: output folder)
+    <output folder>/panel_gapfill_<VERSION>.csv      the same + the gap years filled; same VERSION (date_time)
+    <output folder>/panel_<VERSION>.json             how that version was built
+    output/workflow/records/builds/, records/gapfill/   the app's own record of each build and gap fill run
     output/workflow/settings.json                  the Workflow settings
     output/workflow/jobs/<id>/                     one folder per job: spec.json, status.json, log.txt
     output/workflow/records/                       what each round version / gap fill run was started with
@@ -47,7 +50,6 @@ OUTPUT = BASE / "output"
 WF_DIR = OUTPUT / "workflow"
 JOBS_DIR = WF_DIR / "jobs"
 RECORDS_DIR = WF_DIR / "records"
-PANEL_DIR = OUTPUT / "panel_database"
 GAP_CHECK_ROOT = OUTPUT / "gapfill" / "gap_year_check"
 GAP_OUT_ROOT = OUTPUT / "gapfill" / "output"
 if str(CODE_DIR) not in sys.path:
@@ -63,6 +65,7 @@ DEFAULTS = {
     "staff_reports_root": "staff_reports/pdf staff reports",
     "env_file": ".env",
     "csv_prefix": "sl",
+    "output_folder": "output/final",  # where the panel database files are written and read
     "python": "",                     # empty = the Python running the app
     "round1": {"extract_script": "1a_two_step_selected_pdf_inline_base64_cropfallback_summary_v7_header_aware_crop_effort.py",
                "compile_script": "1b_json_to_excel_dsa_v6_flexible_actual.py",
@@ -132,6 +135,13 @@ def clean(v):
     return v
 
 
+def toint(v) -> int:
+    try:
+        return int(float(v))
+    except (TypeError, ValueError):
+        return 0
+
+
 def read_csv(path: Path, **kw) -> pd.DataFrame:
     return pd.read_csv(path, dtype=str, encoding="utf-8-sig", keep_default_na=False, na_values=[""], **kw)
 
@@ -187,6 +197,7 @@ def settings_info() -> dict:
         "staff_reports_root": {"path": str(root), "exists": root.is_dir()},
         "env_file": {"path": str(env), "exists": env.is_file()},
         "output_dir": str(OUTPUT / batch_name(s)),
+        "output_folder": {"path": str(output_folder(s)), "exists": output_folder(s).is_dir()},
     }
     return {"settings": s, "info": info, "code_files": list_code(), "prompt_files": list_prompts(), "today": today()}
 
@@ -560,8 +571,8 @@ def review_summary(batch: str, rnd: str, version: str) -> dict:
                 "json_file": jf, "pdf": clean(r.get("pdf_file_name")), "country": clean(r.get("country")),
                 "group": r["group"], "lay_by_run": clean(r.get("last_actual_year_by_run")),
                 "tf_by_run": clean(r.get("table_found_by_run")), "lay": clean(lay.get(jf)),
-                "rows_compared": int(r.get("rows_compared") or 0), "rows_matching": int(r.get("rows_matching") or 0),
-                "rows_differing": int(r.get("rows_differing") or 0), "error": clean(r.get("error_by_run")),
+                "rows_compared": toint(r.get("rows_compared")), "rows_matching": toint(r.get("rows_matching")),
+                "rows_differing": toint(r.get("rows_differing")), "error": clean(r.get("error_by_run")),
                 "top": tops.get(jf, {}),
             })
         diff_types = d["diff_type"].value_counts().to_dict() if "diff_type" in d.columns else {}
@@ -623,6 +634,38 @@ def glob_escape(s: str) -> str:
     return re.sub(r"([\[\]*?])", r"[\1]", s)
 
 
+def report_meta_fallback(rd: RoundData, json_file: str) -> dict:
+    """Report-level facts (title, date, table, page ...) for a report whose rows are not in this round's
+    matched rows (e.g. the runs chose different years): from a run's own *_dsa.json if it is on this
+    computer, else from the matched rows of another round of the same batch."""
+    for d in rd.run_dirs:
+        data = read_json(d / "json_output" / json_file)
+        if data:
+            md, src = data.get("report_metadata") or {}, data.get("source") or {}
+            return {k: clean(v) for k, v in {
+                "pdf_file_name": data.get("pdf_file_name") or md.get("pdf_file_name"),
+                "country": md.get("country") or src.get("country"),
+                "publication_date": md.get("publication_date") or src.get("publication_date"),
+                "consultation_type": md.get("consultation_type") or src.get("consultation_type"),
+                "report_title": md.get("report_title"), "country_report_number": md.get("country_report_number"),
+                "framework": src.get("framework"), "table_number": src.get("table_number"),
+                "table_title": src.get("table_title"), "page_pdf": src.get("page_pdf"),
+                "page_printed": src.get("page_printed")}.items() if v not in (None, "")}
+    for rnd in ROUNDS:
+        for v in round_versions(rd.batch, rnd):
+            if (rnd, v["version"]) == (rd.rnd, rd.version) or not v["has_check"]:
+                continue
+            try:
+                m = RoundData(rd.batch, rnd, v["version"]).matched()
+            except UserError:
+                continue
+            g = m[m["json_file"] == json_file]
+            if len(g):
+                return {c: clean(g.iloc[0].get(c)) for c in fs.REPORT_COLUMNS + ["page_printed"]
+                        if c in g.columns and c not in ("last_actual_year", "actual_column_label")}
+    return {}
+
+
 def report_detail(batch: str, rnd: str, version: str, json_file: str) -> dict:
     rd = RoundData(batch, rnd, version)
     s = rd.summary()
@@ -671,8 +714,11 @@ def report_detail(batch: str, rnd: str, version: str, json_file: str) -> dict:
         out_rows.append({"hierarchy_id": hid, "top_category": e.get("top"), "labels": e["labels"], "values": vals,
                          "same": same, "level": hid.count(".")})
     lay_by_run = (clean(srow.get("last_actual_year_by_run")) or "").split("|")
-    if not meta:
-        meta = {"json_file": json_file, "pdf_file_name": clean(srow.get("pdf_file_name")), "country": clean(srow.get("country"))}
+    if not meta or not meta.get("report_title"):
+        meta = {**report_meta_fallback(rd, json_file), **{k: v for k, v in meta.items() if v is not None}}
+    meta.setdefault("json_file", json_file)
+    meta.setdefault("pdf_file_name", clean(srow.get("pdf_file_name")))
+    meta.setdefault("country", clean(srow.get("country")))
     return {"json_file": json_file, "round": rnd, "version": version, "n_runs": n, "source": source,
             "group": srow.get("group"), "lay_by_run": lay_by_run,
             "tf_by_run": (clean(srow.get("table_found_by_run")) or "").split("|"), "error": clean(srow.get("error_by_run")),
@@ -715,7 +761,7 @@ def hr_queue(batch: str, version: str) -> dict:
     for r in todo.to_dict("records"):
         rv = reviews.get(r["json_file"])
         items.append({"json_file": r["json_file"], "pdf": clean(r.get("pdf_file_name")), "country": clean(r.get("country")),
-                      "group": r["group"], "rows_differing": int(r.get("rows_differing") or 0),
+                      "group": r["group"], "rows_differing": toint(r.get("rows_differing")),
                       "lay_by_run": clean(r.get("last_actual_year_by_run")),
                       "status": rv.get("status") if rv else "todo", "saved_at": rv.get("saved_at") if rv else None})
     order = {"partial_match": 0, "last_actual_year_differs": 1, "table_found_differs": 2, "missing_in_run": 3,
@@ -834,163 +880,133 @@ def rebuild_round3_rows(batch: str, version: str) -> int:
     return int(len(df))
 
 
-# ======================================================================= ready to append
-def staging(batch: str, r1: str | None, r2: str | None) -> dict:
-    parts, frames = [], []
-    for rnd, v in (("round1", r1), ("round2", r2)):
-        if not v:
-            continue
-        try:
-            df = RoundData(batch, rnd, v).ready_rows()
-        except UserError:
-            continue
-        frames.append(df)
-        parts.append({"source": rnd, "label": f"{'Round 1' if rnd == 'round1' else 'Round 2'} fully matched",
-                      "version": v, "rows": int(len(df)), "reports": int(df["json_file"].nunique())})
-    if r2:
-        q = None
-        try:
-            q = hr_queue(batch, r2)
-        except UserError:
-            pass
-        df = round3_frame(batch, r2) if q else pd.DataFrame(columns=fs.FINAL_COLUMNS)
-        frames.append(df)
-        parts.append({"source": "round3", "label": "Round 3 human review", "version": r2, "rows": int(len(df)),
-                      "reports": int(df["json_file"].nunique()) if len(df) else 0,
-                      "reviewed": q["counts"] if q else None, "to_review": len(q["items"]) if q else 0})
-    allrows = fs.concat_final(frames)
-    problems = fs.check_final(allrows) if len(allrows) else []
-    by_source = allrows.groupby("json_file")["source_round"].nunique() if len(allrows) else pd.Series(dtype=int)
-    overlap = sorted(by_source[by_source > 1].index)
-    if overlap:
-        problems.append(f"{len(overlap)} report(s) appear in more than one source, e.g. {overlap[:3]}")
-    latest = panel_latest()
-    already = 0
-    if latest and len(allrows):
-        base = panel_frame(latest["stamp"])
-        already = int(allrows["json_file"].isin(set(base["json_file"])).groupby(allrows["json_file"]).first().sum())
-    return {"batch": batch, "round1_version": r1, "round2_version": r2, "parts": parts, "rows": int(len(allrows)),
-            "reports": int(allrows["json_file"].nunique()) if len(allrows) else 0,
-            "columns": fs.FINAL_COLUMNS, "problems": problems, "panel_latest": latest,
-            "reports_already_in_panel": already}
 
 
-# ======================================================================= panel database
-def panel_versions() -> list:
+# ======================================================================= the output folder
+# The panel database is written to the output folder (Settings) as two files per version:
+#     panel_pregapfill_<VERSION>.csv   Round 1-3 of every batch (+ the previous database without its gap fill)
+#     panel_gapfill_<VERSION>.csv      the same rows + the gap years read by Gap Fill
+#     panel_<VERSION>.json             how that version was built (the manifest)
+# <VERSION> is the date and time the pre-gap-fill file was written (YYYYMMDD_HHMM); its gap-filled file
+# carries the same version. The Panel database and Coverage pages read these files from the folder.
+OUT_FILE_RE = re.compile(r"^panel_(?P<kind>pregapfill|gapfill)_(?P<version>[A-Za-z0-9_\-]+)\.csv$")
+
+
+def output_folder(s: dict | None = None) -> Path:
+    return proj_path((s or load_settings()).get("output_folder") or DEFAULTS["output_folder"])
+
+
+def stamp_now() -> str:
+    return datetime.now().strftime("%Y%m%d_%H%M")
+
+
+def output_files() -> list:
+    """Every CSV in the output folder, newest first: the pre-gap-fill and gap-filled versions written by the
+    app, and any other merged CSV kept there (e.g. final_all_batches_with_gapfill_20261028.csv)."""
+    folder = output_folder()
     out = []
-    for p in PANEL_DIR.glob("panel_database_*.csv") if PANEL_DIR.is_dir() else []:
-        rec = read_json(p.with_suffix(".json"), {}) or {}
-        stamp = p.stem[len("panel_database_"):]
-        out.append({"stamp": stamp, "file": str(p), "size_bytes": p.stat().st_size,
-                    "created": rec.get("created") or datetime.fromtimestamp(p.stat().st_mtime).isoformat(timespec="seconds"),
-                    **{k: rec.get(k) for k in ("rows", "reports", "countries", "country_years", "by_source", "parent", "added", "note")}})
-    return sorted(out, key=lambda r: r["created"], reverse=True)
+    for p in folder.glob("*.csv") if folder.is_dir() else []:
+        if p.name.startswith(("~$", ".")):
+            continue
+        m = OUT_FILE_RE.match(p.name)
+        st = p.stat()
+        man = read_json(folder / f"panel_{m.group('version')}.json", {}) if m else {}
+        out.append({"name": p.name, "path": str(p), "kind": m.group("kind") if m else "other",
+                    "version": m.group("version") if m else None, "size_bytes": st.st_size,
+                    "modified": datetime.fromtimestamp(st.st_mtime).isoformat(timespec="seconds"),
+                    "manifest": man or None})
+    # newest first: versioned files by version, then the others by time
+    return sorted(out, key=lambda f: (f["version"] or "", f["modified"]), reverse=True)
 
 
-def panel_latest() -> dict | None:
-    v = panel_versions()
-    return v[0] if v else None
+def latest_output(kind: str | None = None) -> dict | None:
+    files = output_files()
+    if kind:
+        files = [f for f in files if f["kind"] == kind]
+    else:  # the newest version: gap-filled if it exists, else pre-gap-fill, else any other CSV
+        rank = {"gapfill": 0, "pregapfill": 1, "other": 2}
+        versioned = [f for f in files if f["version"]]
+        if versioned:
+            top = max(f["version"] for f in versioned)
+            return min((f for f in versioned if f["version"] == top), key=lambda f: rank[f["kind"]])
+    return files[0] if files else None
 
 
-def panel_path(stamp: str) -> Path:
-    if not VERSION_RE.match(stamp or ""):
-        raise UserError("bad version")
-    p = PANEL_DIR / f"panel_database_{stamp}.csv"
+def output_path(name: str) -> Path:
+    """A file of the output folder, by name (the pages only ever send a name, not a path)."""
+    if not name or "/" in name or "\\" in name or not name.lower().endswith(".csv"):
+        raise UserError("bad file name")
+    p = output_folder() / name
     if not p.is_file():
-        raise UserError(f"panel database version {stamp} not found")
+        raise UserError(f"{name} is not in the output folder {output_folder()}")
     return p
 
 
-def panel_frame(stamp: str) -> pd.DataFrame:
-    p = panel_path(stamp)
-    return cached(("panel", str(p)), [p], lambda: read_csv(p))
+def any_csv(path_or_name: str) -> Path:
+    """A CSV named by a full path (picked with Browse) or by its name in the output folder."""
+    s = str(path_or_name or "").strip().strip('"')
+    if not s:
+        raise UserError("No file given.")
+    p = Path(s)
+    if not p.is_absolute() and ("/" in s or "\\" in s):
+        p = proj_path(s)
+    elif not p.is_absolute():
+        p = output_folder() / s
+    if not p.is_file():
+        raise UserError(f"File not found: {p}")
+    return p
 
 
-def _panel_stats(df: pd.DataFrame) -> dict:
-    lay = df["last_actual_year"].fillna("")
-    cy = df.assign(_y=lay)[["country", "_y"]].drop_duplicates()
-    return {"rows": int(len(df)), "reports": int(df["json_file"].nunique()), "countries": int(df["country"].nunique()),
-            "country_years": int(len(cy)), "by_source": df["source_round"].fillna("").value_counts().to_dict()}
+def panel_frame_at(path: Path) -> pd.DataFrame:
+    return cached(("panelf", str(path)), [path], lambda: read_csv(path))
 
 
-def _new_stamp() -> str:
-    stamp = datetime.now().strftime("%Y%m%d_%H%M")
-    cand, n = stamp, 2
-    while (PANEL_DIR / f"panel_database_{cand}.csv").exists():
-        cand, n = f"{stamp}_{n}", n + 1
-    return cand
-
-
-def _write_panel(df: pd.DataFrame, parent: str | None, added: list, note: str | None = None) -> dict:
-    PANEL_DIR.mkdir(parents=True, exist_ok=True)
-    stamp = _new_stamp()
-    path = PANEL_DIR / f"panel_database_{stamp}.csv"
-    df = df[fs.FINAL_COLUMNS]
-    df.to_csv(path, index=False, encoding="utf-8-sig")
-    rec = {"stamp": stamp, "created": now(), "parent": parent, "added": added, "note": note,
-           "columns": fs.FINAL_COLUMNS, **_panel_stats(df)}
-    write_json(path.with_suffix(".json"), rec)
-    return rec
-
-
-def panel_import(body: dict) -> dict:
-    src = proj_path(body.get("csv"))
-    if not src.is_file():
-        raise UserError(f"File not found: {src}")
-    df = read_csv(src)
+def as_final(df: pd.DataFrame) -> pd.DataFrame:
+    """Any merged CSV with a source_round column -> FINAL_COLUMNS, keeping each row's source and stamp."""
     if "source_round" not in df.columns:
         raise UserError("This CSV has no source_round column, so it is not a merged database.")
     df = df.reset_index(drop=True)
-    out = fs.to_final(df, "import")
-    out["source_round"] = df["source_round"].values          # keep each row's own source and gap-fill stamp
+    out = fs.to_final(df, "x")
+    out["source_round"] = df["source_round"].values
     out["gapfill_run"] = df["gapfill_run"].values if "gapfill_run" in df.columns else None
-    return _write_panel(out, None, [{"source": "import", "file": str(src), "rows": int(len(out))}],
-                        note=body.get("note") or f"Imported from {src.name}")
+    return out
 
 
-def panel_append_staging(body: dict) -> dict:
-    s = load_settings()
-    batch = body.get("batch") or batch_name(s)
-    r1, r2 = body.get("round1_version") or None, body.get("round2_version") or None
-    include = set(body.get("include") or ["round1", "round2", "round3"])
-    replace = bool(body.get("replace_existing"))
-    frames, added = [], []
-    for rnd, v in (("round1", r1), ("round2", r2)):
-        if v and rnd in include:
-            df = RoundData(batch, rnd, v).ready_rows()
-            frames.append(df)
-            added.append({"source": rnd, "batch": batch, "version": v, "rows": int(len(df))})
-    if r2 and "round3" in include:
-        df = round3_frame(batch, r2)
-        frames.append(df)
-        added.append({"source": "round3", "batch": batch, "version": r2, "rows": int(len(df))})
-    new = fs.concat_final(frames)
-    if not len(new):
-        raise UserError("Nothing to append.")
-    problems = [p for p in fs.check_final(new) if "columns" in p or "hierarchy_id" in p]
-    if problems:
-        raise UserError("Not appended: " + "; ".join(problems))
-    latest = panel_latest()
-    base = panel_frame(latest["stamp"]) if latest else pd.DataFrame(columns=fs.FINAL_COLUMNS)
-    dup = new["json_file"].isin(set(base["json_file"]))
-    skipped = int(new.loc[dup, "json_file"].nunique())
-    if dup.any():
-        if replace:
-            base = base[~base["json_file"].isin(set(new["json_file"]))]
-        else:
-            new = new[~dup]
-    out = fs.concat_final([base, new])
-    for a in added:
-        a["rows_appended"] = int((new["source_round"] == a["source"]).sum())
-    rec = _write_panel(out, latest["stamp"] if latest else None, added,
-                       note=body.get("note") or f"{batch}: Round 1 {r1 or '-'} / Round 2 {r2 or '-'}")
-    rec["reports_already_in_panel"] = skipped
-    rec["replaced"] = replace
-    return rec
+def norm_countries(df: pd.DataFrame) -> pd.Series:
+    """One spelling per country, read like Gap Fill (4a) reads it: from the PDF file name
+    (<Country>_<YYYY-MM-DD>...), through code/core.py's normalize_country; the country column only when the
+    file name has no date. So the counts here match the gap map."""
+    import core
+    raw = df["pdf_file_name"].fillna("").str.extract(r"^(.*?)_\d{4}-\d{2}-\d{2}")[0]
+    raw = raw.where(raw.notna() & (raw != ""), df["country"])
+    uniq = {n: core.normalize_country(str(n).strip()) for n in raw.dropna().unique()}
+    return raw.map(uniq)
 
 
-def panel_data(stamp: str, q: dict) -> dict:
-    df = panel_frame(stamp)
+def panel_stats(df: pd.DataFrame) -> dict:
+    lay = df["last_actual_year"].fillna("")
+    cn = norm_countries(df)
+    cy = pd.DataFrame({"c": cn, "y": lay}).drop_duplicates()
+    return {"rows": int(len(df)), "reports": int(df["json_file"].nunique()), "countries": int(cn.nunique()),
+            "country_years": int(len(cy)), "by_source": {str(k): int(v) for k, v in df["source_round"].fillna("").value_counts().items()}}
+
+
+def output_info() -> dict:
+    folder = output_folder()
+    files = output_files()
+    return {"folder": str(folder), "exists": folder.is_dir(), "files": files,
+            "latest": latest_output(), "latest_pregapfill": latest_output("pregapfill"),
+            "latest_gapfill": latest_output("gapfill")}
+
+
+def panel_data(name: str, q: dict) -> dict:
+    """One file of the output folder, for the Panel database page: stats, a chart of country-years by year
+    and source, and one page of rows (filtered)."""
+    path = output_path(name)
+    df = panel_frame_at(path)
+    if "source_round" not in df.columns:
+        raise UserError(f"{name} has no source_round column; it is not a panel database file.")
+    cols = [c for c in fs.FINAL_COLUMNS if c in df.columns] + [c for c in df.columns if c not in fs.FINAL_COLUMNS]
     f = df
     country = (q.get("country") or "").strip().lower()
     if country:
@@ -1004,16 +1020,149 @@ def panel_data(stamp: str, q: dict) -> dict:
     if q.get("hid"):
         f = f[f["hierarchy_id"] == q["hid"]]
     page, size = int(q.get("page") or 0), min(int(q.get("size") or 100), 500)
-    rows = f.iloc[page * size:(page + 1) * size]
-    years = sorted({y for y in df["last_actual_year"].dropna().unique() if re.fullmatch(r"\d{4}", str(y))})
-    by_year = {}
-    cy = df[df["last_actual_year"].isin(years)][["country", "last_actual_year", "source_round"]].drop_duplicates(["country", "last_actual_year"])
-    for (y, sr), n in cy.groupby(["last_actual_year", "source_round"]).size().items():
-        by_year.setdefault(y, {})[sr] = int(n)
-    return {"stamp": stamp, "stats": _panel_stats(df), "n_filtered": int(len(f)), "page": page, "size": size,
-            "columns": fs.FINAL_COLUMNS, "rows": rows.astype(object).where(rows.notna(), None).values.tolist(),
-            "years": years, "sources": fs.SOURCE_ROUNDS, "by_year": by_year,
-            "record": read_json(panel_path(stamp).with_suffix(".json"), {})}
+    rows = f[cols].iloc[page * size:(page + 1) * size]
+
+    def summary():
+        years = sorted({y for y in df["last_actual_year"].dropna().unique() if re.fullmatch(r"\d{4}", str(y))})
+        sub = df[df["last_actual_year"].isin(years)]
+        cy = pd.DataFrame({"country": norm_countries(sub), "last_actual_year": sub["last_actual_year"],
+                           "source_round": sub["source_round"]}).drop_duplicates(["country", "last_actual_year"])
+        by_year: dict = {}
+        for (y, sr), n in cy.groupby(["last_actual_year", "source_round"]).size().items():
+            by_year.setdefault(y, {})[sr] = int(n)
+        return {"stats": panel_stats(df), "years": years, "by_year": by_year}
+    sm = cached(("panelsum", str(path)), [path], summary)
+    m = OUT_FILE_RE.match(path.name)
+    return {"name": path.name, "path": str(path), "columns": cols, "n_filtered": int(len(f)), "page": page, "size": size,
+            "rows": rows.astype(object).where(rows.notna(), None).values.tolist(), "sources": fs.SOURCE_ROUNDS,
+            "manifest": read_json(path.parent / f"panel_{m.group('version')}.json", {}) if m else {}, **sm}
+
+
+# ======================================================================= build the pre-gap-fill panel
+def batches_with_rounds() -> list:
+    """Every batch folder under output/ with Round 1 or Round 2 results, with its versions and review state."""
+    out = []
+    for d in sorted(p for p in OUTPUT.iterdir() if p.is_dir()) if OUTPUT.is_dir() else []:
+        if not any(d.glob("round1_check_*")) and not any(d.glob("round2_check_*")):
+            continue
+        v1 = [v for v in round_versions(d.name, "round1") if v["has_check"]]
+        v2 = [v for v in round_versions(d.name, "round2") if v["has_check"]]
+        reviews = {}
+        for v in v2:
+            try:
+                q = hr_queue(d.name, v["version"])
+                reviews[v["version"]] = {"total": len(q["items"]), "counts": q["counts"], "rows": q["rows_ready"]}
+            except UserError:
+                pass
+        out.append({"batch": d.name, "round1": v1, "round2": v2, "reviews": reviews})
+    return out
+
+
+def _components(body: dict) -> list:
+    comps = []
+    for c in body.get("components") or []:
+        if not c.get("include", True):
+            continue
+        batch = str(c.get("batch") or "")
+        if not batch or not (OUTPUT / batch).is_dir():
+            raise UserError(f"Unknown batch: {batch}")
+        comps.append({"batch": batch, "round1": c.get("round1") or None, "round2": c.get("round2") or None,
+                      "round3": bool(c.get("round3", True)) and bool(c.get("round2"))})
+    return comps
+
+
+def build_frame(body: dict):
+    """The pre-gap-fill panel: the previous database (optionally without its gap fill rows) + the new Round
+    1/2/3 rows of the chosen batches. Returns (rows, report of what went in)."""
+    report = {"base": None, "parts": [], "problems": []}
+    base = pd.DataFrame(columns=fs.FINAL_COLUMNS)
+    if body.get("base"):
+        bpath = any_csv(body["base"])
+        base = as_final(panel_frame_at(bpath))
+        n_all = len(base)
+        by_src = {str(k): int(v) for k, v in base["source_round"].fillna("").value_counts().items()}
+        removed = 0
+        if body.get("remove_gapfill", True):
+            gap = base["source_round"] == "gapfill"
+            removed = int(gap.sum())
+            base = base[~gap]
+        report["base"] = {"file": str(bpath), "name": bpath.name, "rows": n_all, "by_source": by_src,
+                          "gapfill_removed": removed, "rows_kept": int(len(base)), "reports_kept": int(base["json_file"].nunique())}
+    new_frames = []
+    for c in _components(body):
+        for rnd in ("round1", "round2"):
+            if c[rnd]:
+                df = RoundData(c["batch"], rnd, c[rnd]).ready_rows()
+                new_frames.append(df)
+                report["parts"].append({"batch": c["batch"], "source": rnd, "version": c[rnd], "rows": int(len(df)),
+                                        "reports": int(df["json_file"].nunique())})
+        if c["round3"]:
+            df = round3_frame(c["batch"], c["round2"])
+            q = hr_queue(c["batch"], c["round2"])
+            new_frames.append(df)
+            report["parts"].append({"batch": c["batch"], "source": "round3", "version": c["round2"], "rows": int(len(df)),
+                                    "reports": int(df["json_file"].nunique()) if len(df) else 0,
+                                    "to_review": len(q["items"]), "todo": q["counts"]["todo"]})
+    new = fs.concat_final(new_frames)
+    report["problems"] = [p for p in fs.check_final(new)] if len(new) else []
+    # a report that is both in the previous database and among the new rows: keep one of the two
+    dup_ids = sorted(set(new["json_file"]) & set(base["json_file"])) if len(new) and len(base) else []
+    replace = body.get("duplicates") == "replace"
+    if dup_ids:
+        if replace:
+            base = base[~base["json_file"].isin(dup_ids)]
+        else:
+            new = new[~new["json_file"].isin(dup_ids)]
+    by_src_new = new.groupby("json_file")["source_round"].nunique() if len(new) else pd.Series(dtype=int)
+    multi = sorted(by_src_new[by_src_new > 1].index)
+    if multi:
+        report["problems"].append(f"{len(multi)} report(s) come from more than one new source, e.g. {multi[:3]}")
+    out = fs.concat_final([base, new])
+    report.update({"duplicates": len(dup_ids), "duplicates_mode": "replace" if replace else "keep_previous",
+                   "duplicate_examples": dup_ids[:5], "new_rows": int(len(new)),
+                   "new_reports": int(new["json_file"].nunique()) if len(new) else 0,
+                   "total": panel_stats(out) if len(out) else {"rows": 0}, "columns_ok": list(out.columns) == fs.FINAL_COLUMNS})
+    return out, report
+
+
+def build_preview(body: dict) -> dict:
+    _, report = build_frame(body)
+    return report
+
+
+def build_write(body: dict) -> dict:
+    folder = output_folder()
+    if not folder.is_dir():
+        raise UserError(f"The output folder in Settings does not exist: {folder}")
+    df, report = build_frame(body)
+    if not len(df):
+        raise UserError("Nothing to write: no previous database and no new rows.")
+    bad = [p for p in report["problems"] if "hierarchy_id" in p or "columns" in p]
+    if bad:
+        raise UserError("Not written: " + "; ".join(bad))
+    version = str(body.get("version") or stamp_now()).strip()
+    if not VERSION_RE.match(version):
+        raise UserError("The version may only use letters, digits, - and _.")
+    path = folder / f"panel_pregapfill_{version}.csv"
+    if path.exists():
+        raise UserError(f"{path.name} already exists in the output folder. Pick another version.")
+    df.to_csv(path, index=False, encoding="utf-8-sig")
+    manifest = {"version": version, "created": now(), "output_folder": str(folder),
+                "pregapfill": {"file": path.name, "written": now(), **report,
+                               "components": _components(body), "remove_gapfill": bool(body.get("remove_gapfill", True))},
+                "gapfill": None}
+    write_json(folder / f"panel_{version}.json", manifest)
+    write_json(RECORDS_DIR / "builds" / f"{version}.json", manifest)  # the app's own record of the build
+    return {"version": version, "file": str(path), **report}
+
+
+def builds() -> list:
+    folder = RECORDS_DIR / "builds"
+    out = []
+    for p in sorted(folder.glob("*.json"), reverse=True) if folder.is_dir() else []:
+        m = read_json(p, {}) or {}
+        out.append(m)
+    return out
 
 
 # ======================================================================= gap fill
@@ -1029,7 +1178,6 @@ def gap_runs() -> list:
         check, outd = gap_dirs(rec.get("stamp", ""))
         rec["identified"] = (check / f"gapfill_targets_{rec.get('stamp')}.csv").is_file()
         rec["filled"] = (outd / f"gapfill_resolution_{rec.get('stamp')}.csv").is_file()
-        rec["appended_as"] = rec.get("appended_as")
         out.append(rec)
     return out
 
@@ -1051,24 +1199,31 @@ def _gap_common(s: dict, stamp: str) -> dict:
 
 
 def start_gap_identify(body: dict) -> dict:
+    """Gap Fill steps 1-2 (4a, 4b) on a pre-gap-fill file of the output folder. The gap fill version is the
+    file's version, so its gap-filled file gets the same version."""
     s = load_settings()
     gcfg = s["gapfill"]
-    panel = body.get("panel_version") or (panel_latest() or {}).get("stamp")
-    if not panel:
-        raise UserError("There is no panel database yet. Append the Round 1-3 data (or import a merged CSV) first.")
-    input_csv = panel_path(panel)
-    stamp = str(body.get("stamp") or today()).strip()
+    name = str(body.get("input") or "")
+    input_csv = output_path(name)
+    m = OUT_FILE_RE.match(name)
+    stamp = m.group("version") if m and m.group("kind") == "pregapfill" else str(body.get("stamp") or stamp_now())
+    if m and m.group("kind") == "gapfill":
+        raise UserError("Pick a pre-gap-fill file: a gap-filled file already holds gap fill rows.")
     if not VERSION_RE.match(stamp):
-        raise UserError("The version may only use letters, digits, - and _.")
+        raise UserError("bad version")
     check, outd = gap_dirs(stamp)
     if check.exists():
-        raise UserError(f"Gap fill version {stamp} already exists. Pick another version.")
+        raise UserError(f"The gaps of version {stamp} were already identified; continue with it below.")
     y0, y1 = int(body.get("year_from") or gcfg["year_from"]), int(body.get("year_to") or gcfg["year_to"])
     if not 1990 <= y0 <= y1 <= 2100:
         raise UserError("Check the year range.")
     root = proj_path(s["staff_reports_root"])
     if not root.is_dir():
         raise UserError(f"The staff reports root folder in Settings was not found: {root}")
+    if "source_round" in read_csv(input_csv, nrows=5).columns and (read_csv(input_csv, usecols=["source_round"])["source_round"] == "gapfill").any():
+        note = "The input still holds gap fill rows; those country-years count as observed."
+    else:
+        note = None
     panel_countries = body.get("panel_countries_file") or None
     if panel_countries and not proj_path(panel_countries).is_file():
         raise UserError(f"Country list not found: {panel_countries}")
@@ -1079,13 +1234,48 @@ def start_gap_identify(body: dict) -> dict:
         {"label": "Find the missing country-years (4a)", "script": str(CODE_DIR / gcfg["flags_script"]), "globals": g},
         {"label": "Candidate reports for each gap (4b)", "script": str(CODE_DIR / gcfg["targets_script"]), "globals": g},
     ]
-    rec = {"stamp": stamp, "panel_version": panel, "input_csv": str(input_csv), "years": [y0, y1],
-           "panel_countries_file": panel_countries, "created": now()}
-    job = JOBS.start("gap_identify", f"Gap Fill · identify gaps · version {stamp} (panel {panel}, {y0}-{y1})", steps,
+    rec = {"stamp": stamp, "input": name, "input_csv": str(input_csv), "output_folder": str(output_folder()),
+           "years": [y0, y1], "panel_countries_file": panel_countries, "created": now(), "note": note}
+    job = JOBS.start("gap_identify", f"Gap Fill · find the gaps · version {stamp} ({y0}-{y1})", steps,
                      rec, {"gap": stamp}, must_not_exist=[check], python=python_exe(s))
     rec["identify_job"] = job["id"]
     write_json(RECORDS_DIR / "gapfill" / f"{stamp}.json", rec)
     return job
+
+
+def seed_answers(stamp: str) -> int:
+    """Copy the answers saved by earlier gap fill runs (output/gapfill/output/*/reports/*_gapfill.json) into
+    this run's cache, so a (report, year) already asked is not asked again. Answers for the same report from
+    several runs are merged; the newest run wins for the same year."""
+    _, outd = gap_dirs(stamp)
+    dest = outd / "reports"
+    dest.mkdir(parents=True, exist_ok=True)
+    runs = sorted((d for d in GAP_OUT_ROOT.glob("*") if d.is_dir() and d != outd and (d / "reports").is_dir()),
+                  key=lambda d: d.stat().st_mtime)
+    merged: dict = {}
+    for d in runs:  # oldest first, so newer answers overwrite older ones
+        for f in (d / "reports").glob("*_gapfill.json"):
+            rec = read_json(f)
+            if not isinstance(rec, dict):
+                continue
+            cur = merged.get(f.name)
+            if cur is None:
+                merged[f.name] = json.loads(json.dumps(rec))
+            else:
+                per = dict(cur.get("per_target") or {})
+                per.update(rec.get("per_target") or {})
+                merged[f.name] = {**cur, **rec, "per_target": per}
+    n = 0
+    for name, rec in merged.items():
+        target = dest / name
+        if target.exists():
+            mine = read_json(target, {}) or {}
+            per = dict(rec.get("per_target") or {})
+            per.update(mine.get("per_target") or {})  # this run's own answers win
+            rec = {**rec, **mine, "per_target": per}
+        write_json(target, rec)
+        n += 1
+    return n
 
 
 def start_gap_fill(body: dict) -> dict:
@@ -1096,7 +1286,7 @@ def start_gap_fill(body: dict) -> dict:
         raise UserError("Unknown gap fill version.")
     check, outd = gap_dirs(stamp)
     if not (check / f"gapfill_targets_{stamp}.csv").is_file():
-        raise UserError("Identify the gaps first.")
+        raise UserError("Find the gaps first.")
     mode = body.get("mode") or "fill"
     argv = []
     if mode == "dry_run":
@@ -1107,15 +1297,19 @@ def start_gap_fill(body: dict) -> dict:
         argv += ["--limit-gaps", str(int(body["limit"]))]
     if body.get("countries"):
         argv += ["--countries", str(body["countries"])]
-    if mode != "dry_run" and not proj_path(s["env_file"]).is_file() and mode != "collect":
+    if mode == "fill" and not proj_path(s["env_file"]).is_file():
         raise UserError(f"The .env file in Settings was not found: {proj_path(s['env_file'])}")
+    seeded = None
+    if mode in ("fill", "collect") and body.get("reuse_answers", True) and not rec.get("seeded"):
+        seeded = seed_answers(stamp)
+        rec["seeded"] = {"reports": seeded, "at": now()}
     g = _gap_common(s, stamp)
     label = {"fill": "Read the gap years from later reports (4c, API)", "dry_run": "Dry run: list the planned calls (4c, no API)",
              "collect": "Rebuild the result files from saved answers (4c, no API)"}[mode]
     steps = [{"label": label, "script": str(CODE_DIR / s["gapfill"]["api_script"]), "globals": g, "argv": argv,
               "watch": {"kind": "log"}}]
     job = JOBS.start("gap_fill", f"Gap Fill · {mode.replace('_', ' ')} · version {stamp}", steps,
-                     {"stamp": stamp, "mode": mode, "argv": argv}, {"gap": stamp}, python=python_exe(s))
+                     {"stamp": stamp, "mode": mode, "argv": argv, "seeded_reports": seeded}, {"gap": stamp}, python=python_exe(s))
     rec.setdefault("fill_jobs", []).append(job["id"])
     write_json(RECORDS_DIR / "gapfill" / f"{stamp}.json", rec)
     return job
@@ -1135,6 +1329,7 @@ def gap_status(stamp: str) -> dict:
     f_targets = check / f"gapfill_targets_{stamp}.csv"
     f_res = outd / f"gapfill_resolution_{stamp}.csv"
     f_final = outd / f"gapfill_rows_final_{stamp}.csv"
+    written = output_folder() / f"panel_gapfill_{stamp}.csv"
     if not f_panel.is_file():
         return {"stamp": stamp, "record": rec, "ready": False}
 
@@ -1174,32 +1369,158 @@ def gap_status(stamp: str) -> dict:
     return {"stamp": stamp, "record": rec, "ready": True, **data,
             "n_gap_targets": int(len(read_csv(f_targets))) if f_targets.is_file() else 0,
             "rows_ready": int(len(read_csv(f_final))) if f_final.is_file() else 0,
-            "rows_file": str(f_final), "summary": {k: summary.get(k) for k in ("n_reports", "n_countries_in_panel", "n_gap_years", "n_gap_spans", "cause_counts_by_span")}}
+            "rows_file": str(f_final), "written": written.name if written.is_file() else None,
+            "output_folder": str(output_folder()),
+            "summary": {k: summary.get(k) for k in ("n_reports", "n_countries_in_panel", "n_gap_years", "n_gap_spans", "cause_counts_by_span")}}
 
 
-def gap_append(body: dict) -> dict:
+def gap_write(body: dict) -> dict:
+    """panel_gapfill_<VERSION>.csv = the pre-gap-fill file the gaps were found in + the gap years filled."""
     stamp = str(body.get("stamp") or "")
     rec = read_json(RECORDS_DIR / "gapfill" / f"{safe_name(stamp)}.json")
     if not rec:
         raise UserError("Unknown gap fill version.")
-    check, outd = gap_dirs(stamp)
+    _, outd = gap_dirs(stamp)
     f_final = outd / f"gapfill_rows_final_{stamp}.csv"
     if not f_final.is_file():
-        raise UserError("No gap fill results yet (run step 3, or 'Rebuild results' if the run was made with older code).")
+        raise UserError("No gap fill results yet (fill the gaps, or 'Rebuild results' for a run made with older code).")
     new = fs.to_final(read_csv(f_final), "gapfill", gapfill_run=stamp)
-    latest = panel_latest()
-    if not latest:
-        raise UserError("There is no panel database to append to.")
-    base = panel_frame(latest["stamp"])
-    if (base["gapfill_run"] == stamp).any():
-        raise UserError(f"The latest panel database already holds gap fill {stamp}.")
+    if not len(new):
+        raise UserError("No gap year has been filled in this version yet, so there is nothing to write.")
+    src = Path(rec["input_csv"])
+    if not src.is_file():
+        raise UserError(f"The pre-gap-fill file is gone: {src}")
+    base = as_final(read_csv(src))
+    folder = output_folder()
+    path = folder / f"panel_gapfill_{stamp}.csv"
+    if path.exists() and not body.get("overwrite"):
+        raise UserError(f"{path.name} already exists. Tick 'overwrite' to write it again (e.g. after more gaps were filled).")
     out = fs.concat_final([base, new])
-    added = [{"source": "gapfill", "version": stamp, "rows": int(len(new)), "rows_appended": int(len(new)),
-              "gap_years_filled": int(new[["country", "last_actual_year"]].drop_duplicates().shape[0])}]
-    res = _write_panel(out, latest["stamp"], added, note=body.get("note") or f"Gap fill {stamp}")
-    rec["appended_as"] = res["stamp"]
+    out.to_csv(path, index=False, encoding="utf-8-sig")
+    info = {"file": path.name, "written": now(), "from": src.name, "gap_rows": int(len(new)),
+            "gap_years_filled": int(new[["country", "last_actual_year"]].drop_duplicates().shape[0]), "total": panel_stats(out)}
+    man_path = folder / f"panel_{stamp}.json"
+    man = read_json(man_path, {}) or {"version": stamp, "created": now(), "output_folder": str(folder), "pregapfill": None}
+    man["gapfill"] = info
+    write_json(man_path, man)
+    if (RECORDS_DIR / "builds" / f"{stamp}.json").is_file():
+        write_json(RECORDS_DIR / "builds" / f"{stamp}.json", man)
+    rec["written"] = info
     write_json(RECORDS_DIR / "gapfill" / f"{stamp}.json", rec)
-    return res
+    return info
+
+
+# ======================================================================= intermediate data (archive) and exports
+def archive() -> dict:
+    """Everything the rounds produced, every batch: for the Intermediate data tab."""
+    rows1, rows2, hr = [], [], []
+    for b in batches_with_rounds():
+        for v in b["round1"]:
+            rows1.append({"batch": b["batch"], **v})
+        for v in b["round2"]:
+            rows2.append({"batch": b["batch"], **v})
+            r = b["reviews"].get(v["version"])
+            if r:
+                path = hr_rows_csv(b["batch"], v["version"])
+                hr.append({"batch": b["batch"], "version": v["version"], **r,
+                           "modified": datetime.fromtimestamp(path.stat().st_mtime).isoformat(timespec="seconds") if path.is_file() else None})
+    return {"round1": rows1, "round2": rows2, "human_review": hr, "builds": builds(), "gap_runs": gap_runs(),
+            "output": output_info()}
+
+
+EXPORTS = {
+    "ready": "rows ready to append (fully matched reports, panel columns)",
+    "matched": "matched rows (as written by 1c)",
+    "diffs": "differing rows, every run's value",
+    "summary": "one row per report: group, years by run, rows compared",
+    "round3": "human review rows (panel columns)",
+    "pregapfill": "pre-gap-fill panel",
+    "gaprows": "gap fill rows (panel columns)",
+    "gapresolution": "gap fill result per gap year",
+}
+
+
+def export_file(q: dict):
+    """(file name, CSV bytes) for a download from the Intermediate data tab."""
+    kind, batch, version = q.get("kind"), q.get("batch") or "", q.get("version") or ""
+    if kind in ("ready", "matched", "diffs", "summary"):
+        rd = RoundData(batch, q.get("round") or "round1", version)
+        if kind == "ready":
+            df, name = rd.ready_rows(), f"{rd.rnd}_fully_matched_rows_{batch}_{version}.csv"
+        else:
+            path = {"matched": rd.f_matched, "diffs": rd.f_diffs, "summary": rd.f_summary}[kind]
+            return f"{batch}_{path.name}", path.read_bytes()
+    elif kind == "round3":
+        df, name = round3_frame(batch, version), f"round3_reviewed_rows_{batch}_{version}.csv"
+    elif kind == "pregapfill":
+        p = output_folder() / f"panel_pregapfill_{version}.csv"
+        if not p.is_file():
+            raise UserError(f"{p.name} is not in the output folder")
+        return p.name, p.read_bytes()
+    elif kind in ("gaprows", "gapresolution"):
+        _, outd = gap_dirs(version)
+        p = outd / (f"gapfill_rows_final_{version}.csv" if kind == "gaprows" else f"gapfill_resolution_{version}.csv")
+        if not p.is_file():
+            raise UserError(f"{p.name} not found")
+        return p.name, p.read_bytes()
+    else:
+        raise UserError("unknown export")
+    return name, df.to_csv(index=False).encode("utf-8-sig")
+
+
+# ======================================================================= choosing files and folders
+def browse_native(kind: str, start: str | None, title: str | None) -> dict:
+    """Open the computer's own file / folder dialog (Finder on a Mac, Explorer on Windows) and return the
+    path picked. Runs in a separate process, so the dialog has its own main thread."""
+    start_dir = Path(start) if start else BASE
+    if start_dir.is_file():
+        start_dir = start_dir.parent
+    if not start_dir.is_dir():
+        start_dir = BASE
+    prompt = (title or ("Choose a folder" if kind == "dir" else "Choose a file")).replace('"', "'")
+    try:
+        if sys.platform == "darwin":
+            what = "choose folder" if kind == "dir" else "choose file"
+            script = (f'tell application (path to frontmost application as text)\n'
+                      f'  set p to {what} with prompt "{prompt}" default location (POSIX file "{start_dir}")\n'
+                      f'end tell\nPOSIX path of p')
+            r = subprocess.run(["osascript", "-e", script], capture_output=True, text=True, timeout=600)
+            if r.returncode != 0:
+                if "-128" in r.stderr:  # user cancelled
+                    return {"cancelled": True}
+                raise RuntimeError(r.stderr.strip())
+            path = r.stdout.strip()
+        else:
+            code = ("import sys, tkinter as tk\nfrom tkinter import filedialog\nr = tk.Tk(); r.withdraw(); r.attributes('-topmost', True)\n"
+                    f"p = filedialog.{'askdirectory' if kind == 'dir' else 'askopenfilename'}(initialdir=sys.argv[1], title=sys.argv[2])\n"
+                    "print(p or '')")
+            r = subprocess.run([sys.executable, "-c", code, str(start_dir), prompt], capture_output=True, text=True, timeout=600)
+            if r.returncode != 0:
+                raise RuntimeError(r.stderr.strip().splitlines()[-1] if r.stderr.strip() else "dialog failed")
+            path = r.stdout.strip()
+            if not path:
+                return {"cancelled": True}
+    except Exception as e:  # no dialog on this computer: the page falls back to its own folder browser
+        return {"unavailable": True, "error": str(e)}
+    path = path.rstrip("/") if len(path) > 1 and kind == "dir" else path
+    return {"path": str(Path(path))}
+
+
+def list_dir(path: str | None) -> dict:
+    """A folder's sub-folders and files, for the page's own folder browser (when no dialog is available)."""
+    p = Path(path) if path else BASE
+    if not p.is_dir():
+        p = p.parent if p.parent.is_dir() else BASE
+    dirs, files = [], []
+    try:
+        for c in sorted(p.iterdir(), key=lambda x: x.name.lower()):
+            if c.name.startswith("."):
+                continue
+            (dirs if c.is_dir() else files).append(c.name)
+    except OSError as e:
+        raise UserError(f"Cannot open {p}: {e}")
+    roots = [str(Path.home()), str(BASE)]
+    return {"path": str(p), "parent": str(p.parent) if p.parent != p else None, "dirs": dirs, "files": files[:500], "roots": roots}
 
 
 # ======================================================================= overview
@@ -1216,15 +1537,19 @@ def overview(r1: str | None = None, r2: str | None = None) -> dict:
             hr = {"version": r2, "counts": q["counts"], "total": len(q["items"]), "rows_ready": q["rows_ready"]}
         except UserError:
             hr = None
-    stage = None
-    try:
-        stage = staging(batch, r1, r2)
-    except UserError:
-        pass
+    ready = []
+    for rnd, v in (("round1", r1), ("round2", r2)):
+        if v:
+            try:
+                df = RoundData(batch, rnd, v).ready_rows()
+                ready.append({"source": rnd, "version": v, "rows": int(len(df)), "reports": int(df["json_file"].nunique())})
+            except UserError:
+                pass
+    if hr:
+        ready.append({"source": "round3", "version": r2, "rows": hr["rows_ready"], "reviewed": hr["total"] - hr["counts"]["todo"], "total": hr["total"]})
     return {"batch": batch, "round1": v1, "round2": v2, "round1_selected": r1, "round2_selected": r2,
-            "human_review": hr, "staging": stage, "panel": panel_versions()[:10], "gap_runs": gap_runs(),
-            "job": JOBS.latest(), "importable": [str(p.relative_to(BASE)) for p in sorted((OUTPUT / "final").glob("*.csv"))]
-            if (OUTPUT / "final").is_dir() else []}
+            "human_review": hr, "ready": ready, "output": output_info(), "gap_runs": gap_runs(), "builds": builds()[:5],
+            "job": JOBS.latest()}
 
 
 def allowed_pdf(path: str) -> Path:

@@ -576,7 +576,14 @@
   // ------------------------------------------------------------------ start
   api("/api/defaults").then(function (d) {
     S.defaults = d;
-    $("in-csv").value = store("cov_csv") || d.final_csv;
+    // the input is the newest file of the output folder (shared with the Panel database page)
+    $("in-csv").value = d.final_csv;
+    var files = d.output_files || [];
+    $("in-csv-pick").innerHTML = files.map(function (f, i) {
+      return '<option value="' + esc(f.path) + '"' + (f.path === d.final_csv ? " selected" : "") + ">" + esc(f.name) + (i === 0 ? "  (newest)" : "") + "</option>";
+    }).join("") + '<option value="">Another file (type or browse below)</option>';
+    $("st-outdir").textContent = "Output folder: " + d.output_folder;
+    $("in-csv-pick").addEventListener("change", function () { if (this.value) { $("in-csv").value = this.value; inspectPaths(); } });
     $("in-pdf").value = store("cov_pdf") || d.pdf_root;
     $("in-stamp").placeholder = "YYYYMMDD_HHMM";
     setDefaultStamp();

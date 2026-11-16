@@ -25,11 +25,11 @@ API
 Workflow and Panel database (see workflow.py; every path starts with /api/wf/)
     GET  settings | file?kind=code|prompt&name= | overview?r1=&r2= | job | jobs | job/<id>
     GET  versions/<round> | review/<round>/<version> | review/<round>/<version>/report?json_file=
-    GET  hr/<version> | hr/<version>/item?json_file= | staging?r1=&r2=
-    GET  panel | panel/<stamp>/data?country=&year=&source=&top_only=&page= | panel/<stamp>/download
-    GET  gap | gap/<stamp> | pdf?path=
+    GET  hr/<version> | hr/<version>/item?json_file= | batches | archive | export?kind=&batch=&round=&version=
+    GET  output (the output folder's files) | output/data?name=&country=&year=&source=&top_only=&page= | output/download?name=
+    GET  gap | gap/<stamp> | pdf?path= | ls?path=
     POST settings | run/round1 | run/round2 | run/gap_identify | run/gap_fill | job/stop
-    POST hr/<version>/save | panel/import | panel/append | gap/append
+    POST hr/<version>/save | build/preview | build/write | gap/write | browse {kind: dir|file, start, title}
 """
 from __future__ import annotations
 
@@ -317,14 +317,27 @@ class Handler(SimpleHTTPRequestHandler):
                     return self._json(HTTPStatus.OK, wf.hr_queue(batch, parts[1]))
                 if parts[0] == "hr" and len(parts) == 3 and parts[2] == "item":
                     return self._json(HTTPStatus.OK, wf.hr_item(batch, parts[1], q.get("json_file", "")))
-                if route == "staging":
-                    return self._json(HTTPStatus.OK, wf.staging(batch, q.get("r1") or None, q.get("r2") or None))
-                if route == "panel":
-                    return self._json(HTTPStatus.OK, {"versions": wf.panel_versions(), "importable": wf.overview()["importable"]})
-                if parts[0] == "panel" and len(parts) == 3 and parts[2] == "data":
-                    return self._json(HTTPStatus.OK, wf.panel_data(parts[1], q))
-                if parts[0] == "panel" and len(parts) == 3 and parts[2] == "download":
-                    return self._file(wf.panel_path(parts[1]), "text/csv; charset=utf-8", download=True)
+                if route == "batches":
+                    return self._json(HTTPStatus.OK, {"batches": wf.batches_with_rounds(), "output": wf.output_info()})
+                if route == "archive":
+                    return self._json(HTTPStatus.OK, wf.archive())
+                if route == "export":
+                    name, data = wf.export_file(q)
+                    self.send_response(HTTPStatus.OK)
+                    self.send_header("Content-Type", "text/csv; charset=utf-8")
+                    self.send_header("Content-Disposition", f'attachment; filename="{name}"')
+                    self.send_header("Content-Length", str(len(data)))
+                    self.end_headers()
+                    self.wfile.write(data)
+                    return None
+                if route == "output":
+                    return self._json(HTTPStatus.OK, wf.output_info())
+                if route == "output/data":
+                    return self._json(HTTPStatus.OK, wf.panel_data(q.get("name", ""), q))
+                if route == "output/download":
+                    return self._file(wf.output_path(q.get("name", "")), "text/csv; charset=utf-8", download=True)
+                if route == "ls":
+                    return self._json(HTTPStatus.OK, wf.list_dir(q.get("path")))
                 if route == "gap":
                     return self._json(HTTPStatus.OK, {"runs": wf.gap_runs()})
                 if parts[0] == "gap" and len(parts) == 2:
@@ -345,12 +358,14 @@ class Handler(SimpleHTTPRequestHandler):
                     return self._json(HTTPStatus.OK, {"job": wf.JOBS.stop()})
                 if parts[0] == "hr" and len(parts) == 3 and parts[2] == "save":
                     return self._json(HTTPStatus.OK, wf.hr_save(batch, parts[1], body))
-                if route == "panel/import":
-                    return self._json(HTTPStatus.OK, wf.panel_import(body))
-                if route == "panel/append":
-                    return self._json(HTTPStatus.OK, wf.panel_append_staging(body))
-                if route == "gap/append":
-                    return self._json(HTTPStatus.OK, wf.gap_append(body))
+                if route == "build/preview":
+                    return self._json(HTTPStatus.OK, wf.build_preview(body))
+                if route == "build/write":
+                    return self._json(HTTPStatus.OK, wf.build_write(body))
+                if route == "gap/write":
+                    return self._json(HTTPStatus.OK, wf.gap_write(body))
+                if route == "browse":
+                    return self._json(HTTPStatus.OK, wf.browse_native(body.get("kind") or "dir", body.get("start"), body.get("title")))
             return self._json(HTTPStatus.NOT_FOUND, {"error": f"unknown endpoint {method} /api/wf/{route}"})
         except wf.UserError as e:
             return self._json(HTTPStatus.BAD_REQUEST, {"error": str(e)})
@@ -368,9 +383,10 @@ class Handler(SimpleHTTPRequestHandler):
         if not path.startswith("/api/"):
             return super().do_GET()
         if path == "/api/defaults":
-            latest = wf.panel_latest()  # the newest panel database version is the default input
+            latest = wf.latest_output()  # the newest file of the output folder is the default input
             return self._json(HTTPStatus.OK, {
-                "final_csv": latest["file"] if latest else str(Path(ccd.FINAL_CSV).resolve()), "pdf_root": str(Path(ccd.PDF_ROOT).resolve()),
+                "final_csv": latest["path"] if latest else str(Path(ccd.FINAL_CSV).resolve()),
+                "output_files": wf.output_files(), "output_folder": str(wf.output_folder()), "pdf_root": str(Path(ccd.PDF_ROOT).resolve()),
                 "batches": list(ccd.BATCHES), "out_dir": str(out_dir().resolve()), "years": list(ccd.YEARS),
                 "default_stamp": datetime.now().strftime("%Y%m%d_%H%M")})
         if path == "/api/job":
