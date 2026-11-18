@@ -238,6 +238,44 @@ def _pid_alive(pid: int) -> bool:
     return True
 
 
+_BOOT: list = []
+
+
+def _boot_time() -> float | None:
+    """When this computer last started (seconds since 1970), or None if it cannot be read."""
+    if _BOOT:
+        return _BOOT[0]
+    t = None
+    try:
+        if os.name == "nt":
+            import ctypes
+            ctypes.windll.kernel32.GetTickCount64.restype = ctypes.c_ulonglong
+            t = time.time() - ctypes.windll.kernel32.GetTickCount64() / 1000.0
+        elif sys.platform == "darwin":
+            out = subprocess.run(["sysctl", "-n", "kern.boottime"], capture_output=True, text=True, timeout=5).stdout
+            m = re.search(r"sec\s*=\s*(\d+)", out)
+            t = float(m.group(1)) if m else None
+        else:
+            for line in Path("/proc/stat").read_text().splitlines():
+                if line.startswith("btime"):
+                    t = float(line.split()[1])
+    except Exception:
+        t = None
+    _BOOT.append(t)
+    return t
+
+
+def _started_before_boot(meta: dict) -> bool:
+    """A job started before the computer last restarted cannot still be running, even if its old process
+    number now belongs to some other program."""
+    boot = _boot_time()
+    try:
+        created = datetime.fromisoformat(meta.get("created")).timestamp()
+    except (TypeError, ValueError):
+        return False
+    return boot is not None and created < boot
+
+
 class Jobs:
     """One job at a time. A job is a folder under output/workflow/jobs/ (spec.json, job.json, status.json,
     log.txt); its process is coverage_app/runner.py."""
@@ -256,7 +294,7 @@ class Jobs:
         state = st.get("state") or "starting"
         if state in ("running", "starting"):
             alive = (self.proc is not None and self.current == job_id and self.proc.poll() is None) or \
-                    (self.current != job_id and _pid_alive(meta.get("pid")))
+                    (self.current != job_id and _pid_alive(meta.get("pid")) and not _started_before_boot(meta))
             if not alive:
                 if meta.get("stopped"):
                     state = "stopped"

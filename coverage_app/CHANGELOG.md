@@ -2,6 +2,10 @@
 
 The app's version is the first heading below. Each release is tagged in git as `app-v<version>`.
 
+## 0.5.1 — 2026-11-18
+
+- **Fixed**: After the computer restarts, a job that was running before is always shown as stopped or interrupted (so *Resume* is offered), even if its old process number now belongs to another program.
+
 ## 0.5.0 — 2026-11-17
 
 - **Added**: **Resume** for Round One and Round Two. A version that stopped before it finished (*Stop*, the computer went to sleep or was shut down, the app was closed) shows how far each run got and a *▶ Resume* button, in the versions table and on the stopped job. Resume keeps the version, scripts, prompt and runs it was started with: in each run the reports that already have a result are not sent again, reports that only have an error are tried again, runs not started yet run in full; then every run is compiled and the runs compared. An unfinished comparison folder is moved aside as `<round>_check_<version>_incomplete_<time>`.
