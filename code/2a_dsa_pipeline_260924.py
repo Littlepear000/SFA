@@ -3,6 +3,9 @@ IMF DSA debt-decomposition extraction pipeline.
 
 For each IMF staff report PDF:
   Step 1  Extract page text (PyMuPDF) and ask the model for the public-DSA page range.
+          Words are read in the page's displayed orientation (landscape /Rotate pages
+          read row by row) and grouped into lines by vertical overlap, so a table row
+          whose cells sit at slightly different heights stays on one line.
           A weighted keyword search is used when the call fails and overrides a
           "not found" answer when strong DSA signals exist (high recall).
   Local   Build an uploadable PDF of those pages, escalating only as far as needed:
@@ -14,6 +17,10 @@ For each IMF staff report PDF:
   Step 2  Send the PDF inline (Base64) and extract the decomposition table as JSON.
           A null-heavy or unreadable result is retried once on the primary page
           rendered in three orientations (sideways LIC-DSF annex tables).
+          If Step 2 still finds no public table ("dsa_pages_not_in_input" or
+          "only_external_dsa_found"), it is re-run on the next candidate range not yet
+          sent (keyword-scored page first, then the locator's lower-ranked candidates),
+          up to CANDIDATE_RETRY_LIMIT times. Attempts are logged in "candidate_attempts".
   Verify  One independent call re-audits the column header and rereads the selected
           column. Year disagreements, self-contradictory header audits, and value
           mismatches are flagged as manual_review; printed values are never changed.
@@ -65,7 +72,7 @@ except ImportError:  # PyMuPDF < 1.24
 # PDF_DIR = BASE_DIR / "staff_reports" / "test_updated_prompt"
 # OUTPUT_DIR = BASE_DIR / "output" / "json_dsa" / "test_updated_prompt_2016-2020_5"
 # SELECTED_PDF_DIR = OUTPUT_DIR / "selected_pdf_pages"
-# PROMPT_FILE = BASE_DIR / "prompt" / "2a_dsa_prompt_20260924.txt"
+# PROMPT_FILE = BASE_DIR / "prompt" / "2a_dsa_prompt_20261117.txt"
 # ENV_FILE = BASE_DIR / ".env"
 
 # Optional targeted run: a JSON file listing reports to (re)process, e.g. a
@@ -189,6 +196,15 @@ DECOMPOSITION_PHRASES = {
     "residual",
 }
 KEYWORD_MIN_SCORE = 18
+
+# Step 1 text extraction: two words belong to the same visual line when their
+# vertical extents overlap by at least this share of the shorter word's height.
+LINE_OVERLAP_RATIO = 0.5
+
+# Step 2 candidate retry: when Step 2 reports no public table in the selected
+# pages, re-run it on the next candidate range at most this many times.
+CANDIDATE_RETRY_LIMIT = 1
+CANDIDATE_RETRY_REASONS = {"dsa_pages_not_in_input", "only_external_dsa_found"}
 
 # Country-level pipeline: currency/monetary union reports are skipped.
 EXCLUDED_UNIONS = [
@@ -474,15 +490,47 @@ class ApiClient:
 # Step 1: locate the public DSA pages
 # =============================================================================
 
+def group_words_into_lines(words: List[Tuple[float, float, float, str]]) -> str:
+    """Join (top, bottom, x0, word) boxes into visual lines, each read left to right.
+
+    Words are taken in order of their vertical centre; a word joins the current line
+    when the two vertical extents overlap by at least LINE_OVERLAP_RATIO of the
+    shorter height. Unlike grouping on an exact y coordinate, this keeps a table row
+    together when its label, row number and value cells are set at slightly
+    different heights (e.g. historical and projection columns of older DSA tables).
+    """
+    lines: List[List[Any]] = []  # [top, bottom, [(x0, word), ...]]
+    for top, bottom, x0, word in sorted(words, key=lambda w: ((w[0] + w[1]) / 2, w[2])):
+        height = max(bottom - top, 0.1)
+        if lines:
+            line = lines[-1]
+            overlap = min(bottom, line[1]) - max(top, line[0])
+            if overlap >= LINE_OVERLAP_RATIO * min(height, max(line[1] - line[0], 0.1)):
+                line[0], line[1] = min(line[0], top), max(line[1], bottom)
+                line[2].append((x0, word))
+                continue
+        lines.append([top, bottom, [(x0, word)]])
+    return "\n".join("  ".join(w for _, w in sorted(line[2])) for line in lines)
+
+
 def extract_page_texts(pdf_path: Path) -> List[str]:
-    """Return one text block per page, words grouped into visual lines left to right."""
+    """Return one text block per page, words grouped into visual lines left to right.
+
+    PyMuPDF reports word boxes in the unrotated page space. Landscape tables are
+    often stored on pages with /Rotate 90 or 270, where reading those boxes directly
+    turns every year column into a "line" and scatters the row labels. Each box is
+    therefore mapped through page.rotation_matrix into the displayed orientation first.
+    """
     texts: List[str] = []
     with PDF_LOCK, pymupdf.open(str(pdf_path)) as doc:
         for page in doc:
-            lines: Dict[float, List[Tuple[float, str]]] = {}
-            for x0, y0, _x1, _y1, word, *_ in page.get_text("words"):
-                lines.setdefault(round(y0, 1), []).append((x0, word))
-            texts.append("\n".join("  ".join(w for _, w in sorted(lines[y])) for y in sorted(lines)))
+            matrix = page.rotation_matrix
+            words: List[Tuple[float, float, float, str]] = []
+            for x0, y0, x1, y1, word, *_ in page.get_text("words"):
+                rect = pymupdf.Rect(x0, y0, x1, y1) * matrix
+                rect.normalize()
+                words.append((rect.y0, rect.y1, rect.x0, word))
+            texts.append(group_words_into_lines(words))
     return texts
 
 
@@ -522,6 +570,7 @@ def keyword_locator(pages: List[str], filename: str, note: str) -> Dict[str, Any
             "reason": f"Weighted keyword score {score} on physical page {page_no}.",
             "matched_phrases": matched,
             "likely_image_based": image_based,
+            "primary_page": page_no,
         }
         for rank, (score, page_no, matched, image_based) in enumerate(hits[:5], start=1)
     ]
@@ -562,6 +611,51 @@ def locate_dsa(api: ApiClient, prompt: str, pages: List[str], filename: str) -> 
         fallback["report_metadata"] = locator["report_metadata"]
     fallback["framework_hint"] = locator.get("framework_hint") or "UNKNOWN"
     return fallback
+
+
+def needs_candidate_retry(result: Dict[str, Any]) -> bool:
+    """True when Step 2 saw no public table in the pages it was given."""
+    return not result.get("table_found") and result.get("failure_reason") in CANDIDATE_RETRY_REASONS
+
+
+def next_candidate(
+    locator: Dict[str, Any], pages: List[str], filename: str, sent: set
+) -> Optional[Tuple[int, int, int, str]]:
+    """Return (start, end, primary, description) of the next range worth sending to Step 2.
+
+    Order: keyword-scored pages (deterministic text evidence of decomposition rows,
+    robust to a locator that returned a printed instead of a physical page number),
+    then the locator's own lower-ranked candidates. Keyword pages count only when they
+    contain decomposition-row phrases. A candidate is skipped when its primary page
+    has already been sent to Step 2.
+    """
+    total = len(pages)
+    options: List[Tuple[int, int, int, str]] = []
+    for c in keyword_locator(pages, filename, "")["candidates"]:
+        # Require decomposition-row wording on the page itself, so a contents page
+        # or narrative that only names the table title is not retried.
+        if not DECOMPOSITION_PHRASES.intersection(c["matched_phrases"]):
+            continue
+        options.append((
+            c["start_page"], c["end_page"], c["primary_page"],
+            f"keyword candidate on page {c['primary_page']} ({c['reason']})",
+        ))
+    ranked = sorted(
+        (c for c in locator.get("candidates") or [] if isinstance(c, dict)),
+        key=lambda c: c.get("rank") if isinstance(c.get("rank"), int) else 99,
+    )
+    for c in ranked[1:]:  # rank 1 is the range already tried
+        try:
+            s, e = int(c["start_page"]), int(c["end_page"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        s = max(1, min(s, total))
+        e = min(total, max(s, e))
+        options.append((s, e, (s + e) // 2, f"locator candidate rank {c.get('rank')}"))
+    for start, end, primary, description in options:
+        if primary not in sent:
+            return start, end, primary, description
+    return None
 
 
 def resolve_page_range(locator: Dict[str, Any], total_pages: int) -> Tuple[int, int, int]:
@@ -1031,33 +1125,17 @@ def attach_metadata(result: Dict[str, Any], locator: Dict[str, Any], filename: s
             source[key] = source.get(key) or metadata.get(key)
 
 
-def process_pdf(pdf_path: Path, api: ApiClient, prompts: Dict[str, str], out_dir: Path) -> Path:
-    started = time.perf_counter()
-    stem = pdf_path.stem
-    pdf_dir = SELECTED_PDF_DIR  # a folder of its own, not nested under out_dir; see module docstring
-    out_path = out_dir / f"{stem}_dsa.json"
-
-    print(f"  Step 1: locating DSA pages in {pdf_path.name}")
-    pages = extract_page_texts(pdf_path)
-    locator = locate_dsa(api, prompts["LOCATOR"], pages, pdf_path.name)
-    write_json(out_dir / f"{stem}_step1_locator.json", locator)
-
-    if not locator.get("dsa_section_found"):
-        result = {
-            "table_found": False,
-            "failure_reason": "dsa_pages_not_in_input",
-            "source": None,
-            "decomposition": None,
-            "unmapped_rows": [],
-            "extraction_notes": f"Step 1 found no public DSA. {locator.get('notes') or ''}".strip(),
-            "extraction_method": "step1_no_dsa_found",
-        }
-        attach_metadata(result, locator, pdf_path.name)
-        write_json(out_path, result)
-        return out_path
-
-    start, end, primary = resolve_page_range(locator, len(pages))
-
+def run_step2(
+    pdf_path: Path,
+    api: ApiClient,
+    prompts: Dict[str, str],
+    locator: Dict[str, Any],
+    start: int,
+    end: int,
+    primary: int,
+    pdf_dir: Path,
+) -> Tuple[Dict[str, Any], Step2Input, str, Dict[str, str]]:
+    """Run Step 2 (upload-stage escalation plus the orientation retry) on one page range."""
     # Step 2: escalate through the upload stages until one is built and accepted.
     stage_failures: Dict[str, str] = {}
     result: Optional[Dict[str, Any]] = None
@@ -1095,6 +1173,94 @@ def process_pdf(pdf_path: Path, api: ApiClient, prompts: Dict[str, str], out_dir
                 append_note(result, f"Extracted from a multi-orientation rendering of page {primary} after a null-heavy first read.")
         except Exception as exc:
             stage_failures[ROTATED] = str(exc)
+    return result, inp, user_text, stage_failures
+
+
+def process_pdf(pdf_path: Path, api: ApiClient, prompts: Dict[str, str], out_dir: Path) -> Path:
+    started = time.perf_counter()
+    stem = pdf_path.stem
+    pdf_dir = SELECTED_PDF_DIR  # a folder of its own, not nested under out_dir; see module docstring
+    out_path = out_dir / f"{stem}_dsa.json"
+
+    print(f"  Step 1: locating DSA pages in {pdf_path.name}")
+    pages = extract_page_texts(pdf_path)
+    locator = locate_dsa(api, prompts["LOCATOR"], pages, pdf_path.name)
+    write_json(out_dir / f"{stem}_step1_locator.json", locator)
+
+    if not locator.get("dsa_section_found"):
+        result = {
+            "table_found": False,
+            "failure_reason": "dsa_pages_not_in_input",
+            "source": None,
+            "decomposition": None,
+            "unmapped_rows": [],
+            "extraction_notes": f"Step 1 found no public DSA. {locator.get('notes') or ''}".strip(),
+            "extraction_method": "step1_no_dsa_found",
+        }
+        attach_metadata(result, locator, pdf_path.name)
+        write_json(out_path, result)
+        return out_path
+
+    start, end, primary = resolve_page_range(locator, len(pages))
+    result, inp, user_text, stage_failures = run_step2(
+        pdf_path, api, prompts, locator, start, end, primary, pdf_dir
+    )
+
+    # Candidate retry: Step 2 found no public table (or only the external one) in
+    # the chosen pages, e.g. because Step 1 returned a printed page number. Re-run
+    # Step 2 on the next candidate range whose primary page has not been sent yet.
+    attempts: List[Dict[str, Any]] = [{
+        "candidate": "locator rank 1", "start_page": start, "end_page": end,
+        "primary_table_page": primary, "pages_sent": sorted(set(inp.pages)),
+        "table_found": bool(result.get("table_found")), "failure_reason": result.get("failure_reason"),
+    }]
+    sent = set(inp.pages) | {primary}
+    for _ in range(CANDIDATE_RETRY_LIMIT):
+        if not needs_candidate_retry(result):
+            break
+        nxt = next_candidate(locator, pages, pdf_path.name, sent)
+        if nxt is None:
+            break
+        c_start, c_end, c_primary, c_desc = nxt
+        print(
+            f"  Step 2 returned {result.get('failure_reason')}; retrying on {c_desc}: "
+            f"pages {c_start}-{c_end}, primary {c_primary}"
+        )
+        retry_locator = {
+            **locator,
+            "primary_table_page": c_primary,
+            "recommended_start_page": c_start,
+            "recommended_end_page": c_end,
+            "notes": (
+                f"{locator.get('notes') or ''} [Pipeline retry on {c_desc} after Step 2 returned "
+                f"{result.get('failure_reason')} for pages {sorted(sent)}.]"
+            ).strip(),
+        }
+        sent.update(range(c_start, c_end + 1))
+        try:
+            r2, inp2, text2, fails2 = run_step2(
+                pdf_path, api, prompts, retry_locator, c_start, c_end, c_primary, pdf_dir
+            )
+        except Exception as exc:
+            attempts.append({"candidate": c_desc, "start_page": c_start, "end_page": c_end,
+                             "primary_table_page": c_primary, "error": str(exc)})
+            continue
+        attempts.append({
+            "candidate": c_desc, "start_page": c_start, "end_page": c_end,
+            "primary_table_page": c_primary, "pages_sent": sorted(set(inp2.pages)),
+            "table_found": bool(r2.get("table_found")), "failure_reason": r2.get("failure_reason"),
+        })
+        if r2.get("table_found"):
+            first_reason = result.get("failure_reason")
+            result, inp, user_text, stage_failures = r2, inp2, text2, fails2
+            append_note(
+                result,
+                f"Found on retry ({c_desc}) after Step 2 returned {first_reason} "
+                f"for the locator's first range {start}-{end}.",
+            )
+            break
+    if len(attempts) > 1:
+        result["candidate_attempts"] = attempts
 
     verify_result(api, prompts["VERIFICATION"], result, user_text, inp.path)
 

@@ -745,12 +745,21 @@
           <div class="card">
             <h2>1 · Previous database</h2>
             <div class="form-grid tight">
-              <label for="b-base-sel">From the output folder</label>
-              <div class="field"><select id="b-base-sel"><option value="">None — start from the new results only</option>
-                ${files.map((f) => `<option value="${esc(f.path)}"${f.name === prevDefault ? " selected" : ""}>${esc(f.name)}${f.kind === "gapfill" ? " (gap filled)" : f.kind === "pregapfill" ? " (pre gap fill)" : ""}</option>`).join("")}</select>
-                <div class="field-status muted">${esc(o.folder)}</div></div>
-              <label for="b-base">Or another file</label>
-              <div class="field">${pathInput("b-base", "", "file", "path to a merged CSV with a source_round column")}</div>
+              <span class="label">Take it from</span>
+              <div class="field">
+                <div class="seg" role="group" aria-label="Where the previous database comes from">
+                  <button type="button" data-bsrc="folder" aria-pressed="${files.length ? "true" : "false"}">The output folder</button>
+                  <button type="button" data-bsrc="file" aria-pressed="false">Another file</button>
+                  <button type="button" data-bsrc="none" aria-pressed="${files.length ? "false" : "true"}">None</button>
+                </div>
+                <div data-bpane="folder"${files.length ? "" : " hidden"}>
+                  <select id="b-base-sel">${files.map((f) => `<option value="${esc(f.path)}"${f.name === prevDefault ? " selected" : ""}>${esc(f.name)}${f.kind === "gapfill" ? " (gap filled)" : f.kind === "pregapfill" ? " (pre gap fill)" : ""}</option>`).join("") || "<option value=''>No CSV in the output folder</option>"}</select>
+                  <div class="field-status muted">${esc(o.folder)}</div></div>
+                <div data-bpane="file" hidden>${pathInput("b-base", "", "file", "path to a merged CSV with a source_round column")}
+                  <div class="field-status muted">Any merged CSV with a source_round column, e.g. a file someone sent you.</div></div>
+                <div data-bpane="none"${files.length ? " hidden" : ""}><div class="field-status muted">Start from the new results only.</div></div>
+                <div class="field-status b-chosen" id="b-chosen"></div>
+              </div>
               <span class="label">Gap fill rows</span>
               <div class="field"><label class="check"><input type="checkbox" id="b-rmgap" checked> Remove them before adding the new results (recommended)</label>
                 <div class="field-status muted">Gap Fill is run again on the new panel, so the years a new staff report now gives directly are taken from that report.</div></div>
@@ -790,6 +799,20 @@
         tr.querySelector(".b-review").innerHTML = !r2 ? "" : r ? `${fmtN(r.total - r.counts.todo)} / ${fmtN(r.total)} done${r.counts.todo ? ` · <span class="warn-txt">${fmtN(r.counts.todo)} to do</span>` : ' · <span class="ok-txt">complete</span>'}` : "";
       });
       v.querySelectorAll(".b-r2").forEach((x) => x.addEventListener("change", paintRev)); paintRev();
+      // previous database: one source at a time (output folder / another file / none), one file name shown
+      W.build.src = files.length ? "folder" : "none";
+      const showChosen = () => {
+        const f = baseChoice();
+        $("b-chosen").innerHTML = f ? `Previous database: <b>${esc(f.split(/[\\/]/).pop())}</b>` : '<span class="muted">No previous database.</span>';
+      };
+      v.querySelectorAll("[data-bsrc]").forEach((b) => b.addEventListener("click", () => {
+        W.build.src = b.dataset.bsrc;
+        v.querySelectorAll("[data-bsrc]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+        v.querySelectorAll("[data-bpane]").forEach((x) => { x.hidden = x.dataset.bpane !== W.build.src; });
+        showChosen(); $("b-report").innerHTML = '<p class="muted">Changed — Check again.</p>';
+      }));
+      ["b-base-sel", "b-base"].forEach((id) => { $(id).addEventListener("change", showChosen); $(id).addEventListener("input", showChosen); });
+      showChosen();
       v.querySelectorAll("#b-comp select, #b-comp input, #b-base-sel, #b-base, #b-rmgap, #b-dup").forEach((x) => x.addEventListener("change", () => { $("b-report").innerHTML = '<p class="muted">Changed — Check again.</p>'; }));
       $("b-preview").addEventListener("click", () => buildCall("preview"));
       $("b-write").addEventListener("click", () => buildCall("write"));
@@ -799,10 +822,14 @@
     const t = new Date(), p = (n) => (n < 10 ? "0" : "") + n;
     return `${t.getFullYear()}${p(t.getMonth() + 1)}${p(t.getDate())}_${p(t.getHours())}${p(t.getMinutes())}`;
   }
+  function baseChoice() {
+    const src = (W.build || {}).src;
+    return src === "folder" ? $("b-base-sel").value : src === "file" ? $("b-base").value.trim() : "";
+  }
   function buildBody() {
     const comps = Array.from(document.querySelectorAll("#b-comp tr[data-batch]")).map((tr) => ({
       batch: tr.dataset.batch, include: tr.querySelector(".b-inc").checked, round1: tr.querySelector(".b-r1").value, round2: tr.querySelector(".b-r2").value, round3: true }));
-    return { base: $("b-base").value.trim() || $("b-base-sel").value, remove_gapfill: $("b-rmgap").checked, duplicates: $("b-dup").value,
+    return { base: baseChoice(), remove_gapfill: $("b-rmgap").checked, duplicates: $("b-dup").value,
       components: comps, version: $("b-ver").value.trim() };
   }
   function buildCall(what) {

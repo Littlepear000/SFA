@@ -80,7 +80,7 @@ DEFAULTS = {
                "compile_script": "1b_json_to_excel_dsa_v6_flexible_actual.py",
                "check_script": "1c_round_check_compare_runs.py",
                "summary_script": "1d_round_check_summary.py",
-               "prompt": "2a_dsa_prompt_20260924.txt",
+               "prompt": "2a_dsa_prompt_20261117.txt",
                "n_runs": 3},
     "gapfill": {"flags_script": "4a_gapfill_1_build_panel_gap_flags.py",
                 "targets_script": "4b_gapfill_2_build_targets.py",

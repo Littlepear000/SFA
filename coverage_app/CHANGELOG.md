@@ -2,6 +2,11 @@
 
 The app's version is the first heading below. Each release is tagged in git as `app-v<version>`.
 
+## 0.4.1 — 2026-11-17
+
+- **Changed**: **Round Two** uses the new prompt `2a_dsa_prompt_20261117.txt` by default. Its script now reads landscape (rotated) pages in their displayed orientation, keeps table rows whose cells sit at slightly different heights on one line, and, when no public DSA table is found in the selected pages, tries the next candidate page range once.
+- **Changed**: **Build panel**: the previous database comes from one place at a time (*The output folder*, *Another file* or *None*), and the chosen file's name is shown.
+
 ## 0.4.0 — 2026-11-16
 
 - **Added**: **Version management**. The app's version shows at the top left of every page; click it for this changelog. Every record the app writes (coverage run records, `panel_<version>.json`, the Round One / Round Two run records) stores `app_version`, so each output says which version of the app built it.

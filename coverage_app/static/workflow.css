@@ -229,3 +229,6 @@ td.clip{ max-width:16rem; overflow:hidden; text-overflow:ellipsis; }
 .next-card{ flex-direction:row; align-items:center; justify-content:space-between; gap:12px; }
 .card h2 .sw{ width:12px; height:12px; }
 .lnk.dl{ font-size:12.5px; margin-right:8px; white-space:nowrap; }
+.b-chosen{ margin-top:4px; }
+[data-bpane]{ margin-top:8px; display:flex; flex-direction:column; gap:4px; }
+[data-bpane][hidden]{ display:none; }
