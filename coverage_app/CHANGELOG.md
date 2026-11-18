@@ -2,6 +2,11 @@
 
 The app's version is the first heading below. Each release is tagged in git as `app-v<version>`.
 
+## 0.5.0 — 2026-11-17
+
+- **Added**: **Resume** for Round One and Round Two. A version that stopped before it finished (*Stop*, the computer went to sleep or was shut down, the app was closed) shows how far each run got and a *▶ Resume* button, in the versions table and on the stopped job. Resume keeps the version, scripts, prompt and runs it was started with: in each run the reports that already have a result are not sent again, reports that only have an error are tried again, runs not started yet run in full; then every run is compiled and the runs compared. An unfinished comparison folder is moved aside as `<round>_check_<version>_incomplete_<time>`.
+- **Changed**: `1a` and `2a` write each `*_dsa.json` through a temporary file, so a run stopped mid-write never leaves a cut-off file; both skip the reports already done when `SKIP_EXISTING` is set (the app sets it on Resume; the default stays off, so the `0_run_*.py` controllers work as before).
+
 ## 0.4.1 — 2026-11-17
 
 - **Changed**: **Round Two** uses the new prompt `2a_dsa_prompt_20261117.txt` by default. Its script now reads landscape (rotated) pages in their displayed orientation, keeps table rows whose cells sit at slightly different heights on one line, and, when no public DSA table is found in the selected pages, tries the next candidate page range once.

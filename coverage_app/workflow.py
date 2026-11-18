@@ -367,6 +367,101 @@ def count_report_list(path: Path, category: str | None) -> int:
     return sum(len((data.get(c) or {}).get("reports", [])) for c in cats)
 
 
+def _round_steps(rnd, version, bdir, check_dir, run_dirs, pdf_dir, env, prompt, scripts, prefix,
+                 report_list, category, total, resume: bool = False) -> list:
+    """The steps of one round version: extract + compile for every run, then compare (1c) and summarise (1d).
+    resume=True: the extraction skips the reports already done in that run (SKIP_EXISTING)."""
+    steps = []
+    for n, run_dir in run_dirs.items():
+        json_dir = run_dir / "json_output"
+        g = {"BASE_DIR": P(BASE), "PDF_DIR": P(pdf_dir), "PROMPT_FILE": P(prompt), "ENV_FILE": P(env),
+             "OUTPUT_DIR": P(json_dir), "SELECTED_PDF_DIR": P(run_dir / "selected_pdf_pages"), "JSON_DIR": P(json_dir),
+             "OUTPUT_FILE": P(run_dir / "compiled_csv" / f"dsa_decomposition_{prefix}_{rnd}_{version}_run{n}.csv")}
+        if rnd == "round2":
+            g.update({"REPORT_LIST_FILE": P(report_list), "REPORT_LIST_CATEGORY": category, "RERUN_OUTPUT_DIR": P(json_dir)})
+        if resume:
+            g["SKIP_EXISTING"] = True
+        steps.append({"label": f"Run {n}: extract ({scripts['extract_script'].name})" + (" · resume" if resume else ""),
+                      "script": str(scripts["extract_script"]), "globals": g,
+                      "watch": {"kind": "files", "dir": str(json_dir), "patterns": ["*_dsa.json"], "total": total},
+                      "fail_pattern": r"^Fatal error:"})
+        steps.append({"label": f"Run {n}: compile CSV ({scripts['compile_script'].name})", "script": str(scripts["compile_script"]), "globals": g})
+    glob = {"$glob": {"dir": str(bdir), "pattern": f"{rnd}_{version}_run*/compiled_csv/dsa_decomposition_{prefix}_{rnd}_{version}_run*.csv", "run_sort": True}}
+    steps.append({"label": "Compare the runs (1c)", "script": str(scripts["check_script"]),
+                  "globals": {"ROUND": rnd, "RUN_CSVS": glob, "CHECK_DIR": P(check_dir), "RUN_DATE": version}})
+    steps.append({"label": "Summary tables (1d)", "script": str(scripts["summary_script"]),
+                  "globals": {"ROUND": rnd, "CHECK_DIR": P(check_dir), "RUN_DATE": version}})
+    return steps
+
+
+def run_progress(batch: str, rnd: str, version: str, runs: list) -> list:
+    """Per run folder of a version: how many reports have a finished *_dsa.json, and how many only an error."""
+    out = []
+    for n in runs:
+        jd = OUTPUT / batch / f"{rnd}_{version}_run{n}" / "json_output"
+        done = {p.name[:-len("_dsa.json")] for p in jd.glob("*_dsa.json")} if jd.is_dir() else set()
+        err = {p.name[:-len("_ERROR.json")] for p in jd.glob("*_ERROR.json")} if jd.is_dir() else set()
+        csv = any((jd.parent / "compiled_csv").glob("*.csv")) if jd.parent.is_dir() else False
+        out.append({"run": n, "done": len(done), "errors": len(err - done), "compiled": csv})
+    return out
+
+
+def resume_round(rnd: str, body: dict) -> dict:
+    """Carry on with a round version that stopped before it finished (stopped, computer asleep, app closed):
+    the same version, scripts, prompt and runs as when it was started. In each run, the reports that already
+    have a finished *_dsa.json are skipped and the rest are extracted (a report that only has *_ERROR.json is
+    tried again); runs not started yet run in full; then every run is compiled again and the runs compared."""
+    s = load_settings()
+    batch = batch_name(s)
+    version = str(body.get("version") or "").strip()
+    if not VERSION_RE.match(version):
+        raise UserError("bad version")
+    rec = read_json(RECORDS_DIR / safe_name(batch) / f"{rnd}_{version}.json")
+    if not rec:
+        raise UserError(f"{rnd} version {version} was not started from this app (no run record), so it cannot be resumed here.")
+    bdir, check_dir = _round_dirs(batch, rnd, version)
+    if (check_dir / f"{rnd}_check_report_summary_{version}.csv").is_file():
+        raise UserError(f"{rnd} version {version} already finished; nothing to resume.")
+    run = JOBS.running()
+    if run:
+        raise UserError("A job is still running. Wait for it to finish, or stop it first.")
+    pdf_dir, env = Path(rec["pdf_dir"]), proj_path(s["env_file"])
+    if not pdf_dir.is_dir():
+        raise UserError(f"The PDF folder this version was started with is not found: {pdf_dir}")
+    if not env.is_file():
+        raise UserError(f"The .env file in Settings was not found: {env}")
+    scripts = {k: CODE_DIR / v for k, v in rec["scripts"].items()}
+    prompt = PROMPT_DIR / rec["prompt"]
+    for p in [*scripts.values(), prompt]:
+        if not p.is_file():
+            raise UserError(f"Not found: {p} (this version was started with it)")
+    first, n_runs = int(rec.get("first_run") or 1), int(rec["n_runs"])
+    run_dirs = {n: bdir / f"{rnd}_{version}_run{n}" for n in range(first, first + n_runs)}
+    report_list, category = None, rec.get("category")
+    total = int(rec.get("n_reports") or 0)
+    if rnd == "round2":
+        r1 = rec.get("round1_version")
+        report_list = bdir / f"round1_check_{r1}" / f"round1_check_disagreement_reports_{r1}.json"
+        if not report_list.is_file():
+            raise UserError(f"The Round 1 list this version re-reads is gone: {report_list}")
+    # 1c writes nothing into a folder that already holds files: an unfinished comparison is moved aside
+    if check_dir.exists() and any(check_dir.iterdir()):
+        check_dir.rename(check_dir.with_name(f"{check_dir.name}_incomplete_{datetime.now():%Y%m%d_%H%M%S}"))
+    steps = _round_steps(rnd, version, bdir, check_dir, run_dirs, pdf_dir, env, prompt, scripts, rec.get("csv_prefix") or "sl",
+                         report_list, category, total, resume=True)
+    before = run_progress(batch, rnd, version, list(run_dirs))
+    params = {**{k: rec.get(k) for k in ("version", "n_runs", "first_run", "pdf_dir", "n_reports", "scripts", "prompt", "csv_prefix",
+                                         "round1_version", "category")}, "resume": True, "progress_before": before}
+    links = {"batch": batch, "round": rnd, "version": version}
+    if rec.get("round1_version"):
+        links["round1_version"] = rec["round1_version"]
+    title = f"{'Round 1' if rnd == 'round1' else 'Round 2'} · {batch} · version {version} · resume"
+    job = JOBS.start(rnd, title, steps, params, links, python=python_exe(s))
+    rec.setdefault("resumed", []).append({"job": job["id"], "at": now(), "progress_before": before, "app_version": app_version()})
+    write_json(RECORDS_DIR / safe_name(batch) / f"{rnd}_{version}.json", rec)
+    return job
+
+
 def start_round(rnd: str, body: dict) -> dict:
     s = load_settings()
     cfg = s[rnd]
@@ -409,23 +504,8 @@ def start_round(rnd: str, body: dict) -> dict:
         if total == 0:
             raise UserError("The Round 1 list has no reports in the chosen category; nothing to run.")
         links["round1_version"] = r1
-    steps = []
-    for n, run_dir in run_dirs.items():
-        json_dir = run_dir / "json_output"
-        g = {"BASE_DIR": P(BASE), "PDF_DIR": P(pdf_dir), "PROMPT_FILE": P(prompt), "ENV_FILE": P(env),
-             "OUTPUT_DIR": P(json_dir), "SELECTED_PDF_DIR": P(run_dir / "selected_pdf_pages"), "JSON_DIR": P(json_dir),
-             "OUTPUT_FILE": P(run_dir / "compiled_csv" / f"dsa_decomposition_{prefix}_{rnd}_{version}_run{n}.csv")}
-        if rnd == "round2":
-            g.update({"REPORT_LIST_FILE": P(report_list), "REPORT_LIST_CATEGORY": category, "RERUN_OUTPUT_DIR": P(json_dir)})
-        steps.append({"label": f"Run {n}: extract ({scripts['extract_script'].name})", "script": str(scripts["extract_script"]),
-                      "globals": g, "watch": {"kind": "files", "dir": str(json_dir), "patterns": ["*_dsa.json", "*_ERROR.json"], "total": total},
-                      "fail_pattern": r"^Fatal error:"})
-        steps.append({"label": f"Run {n}: compile CSV ({scripts['compile_script'].name})", "script": str(scripts["compile_script"]), "globals": g})
-    glob = {"$glob": {"dir": str(bdir), "pattern": f"{rnd}_{version}_run*/compiled_csv/dsa_decomposition_{prefix}_{rnd}_{version}_run*.csv", "run_sort": True}}
-    steps.append({"label": "Compare the runs (1c)", "script": str(scripts["check_script"]),
-                  "globals": {"ROUND": rnd, "RUN_CSVS": glob, "CHECK_DIR": P(check_dir), "RUN_DATE": version}})
-    steps.append({"label": "Summary tables (1d)", "script": str(scripts["summary_script"]),
-                  "globals": {"ROUND": rnd, "CHECK_DIR": P(check_dir), "RUN_DATE": version}})
+    steps = _round_steps(rnd, version, bdir, check_dir, run_dirs, pdf_dir, env, prompt, scripts, prefix,
+                         report_list, category, total)
     params = {"version": version, "n_runs": n_runs, "first_run": first, "pdf_dir": str(pdf_dir), "n_reports": total,
               "scripts": {k: v.name for k, v in scripts.items()}, "prompt": prompt.name, "csv_prefix": prefix,
               "round1_version": links.get("round1_version"), "category": category}
@@ -461,7 +541,7 @@ def round_versions(batch: str, rnd: str) -> list:
         return []
     found: dict = {}
     for d in bdir.iterdir():
-        if not d.is_dir():
+        if not d.is_dir() or "_incomplete_" in d.name:  # an unfinished comparison moved aside by a resume
             continue
         m = re.match(rf"^{rnd}_check_(.+)$", d.name)
         if m:
@@ -476,7 +556,10 @@ def round_versions(batch: str, rnd: str) -> list:
         meta = (read_json(check / f"{rnd}_check_fully_match_reports_{v}.json", {}) or {}).get("meta", {}) if check else {}
         rec = read_json(RECORDS_DIR / safe_name(batch) / f"{rnd}_{v}.json")
         when = check.stat().st_mtime if check else max((bdir / f"{rnd}_{v}_run{n}").stat().st_mtime for n in f["runs"])
-        out.append({"version": v, "has_check": bool(check and any(check.glob("*_report_summary_*.csv"))),
+        has_check = bool(check and any(check.glob("*_report_summary_*.csv")))
+        runs_all = sorted(set(f["runs"]) | (set(range(int(rec.get("first_run") or 1), int(rec.get("first_run") or 1) + int(rec["n_runs"]))) if rec and rec.get("n_runs") else set()))
+        out.append({"resumable": bool(rec) and not has_check, "progress": None if has_check else run_progress(batch, rnd, v, runs_all),
+                    "version": v, "has_check": has_check,
                     "runs": sorted(f["runs"]), "n_runs": meta.get("n_runs") or len(f["runs"]),
                     "n_reports": meta.get("n_reports_total"), "counts_by_group": meta.get("counts_by_group"),
                     "modified": datetime.fromtimestamp(when).isoformat(timespec="seconds"), "record": rec})

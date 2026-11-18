@@ -80,7 +80,7 @@
     if (["workflow", "data", "panel", "coverage"].indexOf(r.main) < 0) r.main = "workflow";
     ["workflow", "data", "panel", "coverage"].forEach((m) => { $("sec-" + m).hidden = m !== r.main; });
     // the review, human review and gap pages use the full width of the window
-    document.querySelector("main.page").classList.toggle("wide", r.main === "data" || (r.main === "workflow" && ["review", "hr", "gap"].indexOf(r.rest[0]) >= 0));
+    document.querySelector("main.page").classList.toggle("wide", r.main === "data" || (r.main === "workflow" && ["review", "hr", "gap", "round1", "round2"].indexOf(r.rest[0] || store("wf_step")) >= 0));
     document.querySelectorAll("[data-main]").forEach((a) => a.setAttribute("aria-current", String(a.dataset.main === r.main ? "page" : "false")));
     if (r.main === "coverage") { window.Coverage.showTab(r.rest[0] || window.Coverage.current()); return; }
     if (r.main === "panel") { renderPanel(r.rest[0]); return; }
@@ -192,11 +192,13 @@
     slot.innerHTML = `
       <div class="jobcard ${esc(j.state)}">
         <div class="jobcard-head"><div>${head}<div class="muted small-txt">${esc(j.title)}</div></div>
-          <div class="head-actions">${running ? '<button class="btn small danger" data-stop>Stop</button>' : ""}<button class="btn small" data-log>Full log</button></div></div>
+          <div class="head-actions">${running ? '<button class="btn small danger" data-stop>Stop</button>' : ""}${!running && j.state !== "done" && j.links && j.links.round && j.links.version ? '<button class="btn small primary" data-resume-job>▶ Resume</button>' : ""}<button class="btn small" data-log>Full log</button></div></div>
         <div class="progress ${running ? "running" : j.state}"><div class="bar"><span style="width:${(100 * p).toFixed(0)}%"></span></div></div>
         <ol class="steps">${steps}</ol>
         <pre class="log tail">${esc((j.log || []).slice(-10).join("\n"))}</pre>
       </div>`;
+    const res = slot.querySelector("[data-resume-job]");
+    if (res) res.addEventListener("click", () => resumeRound(j.links.round, j.links.version));
     const stop = slot.querySelector("[data-stop]");
     if (stop) stop.addEventListener("click", () => {
       if (!confirm("Stop this job? Reports already extracted stay on disk; the run folder is left unfinished.")) return;
@@ -405,13 +407,35 @@
         const g = groupCounts(x.counts_by_group);
         const rec = x.record || {};
         return `<tr><td><b>${esc(x.version)}</b>${rec.round1_version ? `<span class="sub">re-reads Round One ${esc(rec.round1_version)}</span>` : ""}</td>
-          <td>${x.runs.length ? x.runs.map((n) => "run" + n).join(", ") : `<span class="muted">${x.n_runs || ""} (folders not on this computer)</span>`}</td>
-          <td class="num">${fmtN(x.n_reports)}</td><td class="num ok-txt">${x.has_check ? fmtN(g.fm) : ""}</td>
+          <td>${x.progress ? runProgressHtml(x) : x.runs.length ? x.runs.map((n) => "run" + n).join(", ") : `<span class="muted">${x.n_runs || ""} (folders not on this computer)</span>`}</td>
+          <td class="num">${fmtN(x.n_reports || rec.n_reports)}</td><td class="num ok-txt">${x.has_check ? fmtN(g.fm) : ""}</td>
           <td class="num warn-txt">${x.has_check ? fmtN(g.dis) : ""}</td><td class="num">${x.has_check ? fmtN(g.none) : ""}</td><td class="num">${x.has_check ? fmtN(g.fail) : ""}</td>
           <td class="clip" title="${esc(rec.prompt || "")}">${esc(rec.prompt || "")}</td><td>${esc(fmtTime(x.modified))}</td>
-          <td class="nowrap">${x.has_check ? `<a class="btn small primary" href="#workflow/review/${rnd}/${esc(x.version)}">Review results</a>` : '<span class="muted">not compared yet</span>'}
+          <td class="nowrap">${x.has_check ? `<a class="btn small primary" href="#workflow/review/${rnd}/${esc(x.version)}">Review results</a>`
+            : versionRunning(rnd, x.version) ? '<span class="muted">running…</span>'
+            : x.resumable ? `<button class="btn small primary" data-resume="${esc(x.version)}" title="Carry on where it stopped: finished reports are not sent again">▶ Resume</button>`
+            : '<span class="muted">not compared yet</span>'}
             ${rnd === "round2" && x.has_check ? `<a class="btn small" href="#workflow/hr/${esc(x.version)}">Human review →</a>` : ""}</td></tr>`;
       }).join("")}</tbody></table></div>`;
+    box.querySelectorAll("[data-resume]").forEach((b) => b.addEventListener("click", () => resumeRound(rnd, b.dataset.resume)));
+  }
+  // a version that stopped before it finished: reports done per run, out of the reports it was started with
+  function runProgressHtml(x) {
+    const total = (x.record || {}).n_reports;
+    return `<div class="runprog">${x.progress.map((r) => {
+      const pctv = total ? Math.min(100, Math.round((100 * r.done) / total)) : 0;
+      return `<div class="rp"><span class="rp-n">run${r.run}</span><span class="rp-bar"><span style="width:${pctv}%"></span></span>
+        <span class="rp-t">${fmtN(r.done)}${total ? " / " + fmtN(total) : ""}${r.errors ? ` · <span class="bad-txt">${fmtN(r.errors)} errors</span>` : ""}</span></div>`;
+    }).join("")}</div>`;
+  }
+  function versionRunning(rnd, version) {
+    const j = W.job;
+    return !!(j && (j.state === "running" || j.state === "starting") && j.links && j.links.round === rnd && j.links.version === version);
+  }
+  function resumeRound(rnd, version) {
+    if (!confirm(`Resume ${ROUND_NAME[rnd]} version ${version}?\n\nSame scripts, prompt and runs as when it was started. Reports that already have a result are not sent again; reports that failed are tried again. Then every run is compiled and the runs are compared.`)) return;
+    api("run/resume/" + rnd, { version }).then(() => { toast("Resuming version " + version + "."); pollJob(); loadOverview().then(() => paintVersions(rnd)); })
+      .catch((e) => toast(e.message));
   }
 
   // ------------------------------------------------------------------ review results

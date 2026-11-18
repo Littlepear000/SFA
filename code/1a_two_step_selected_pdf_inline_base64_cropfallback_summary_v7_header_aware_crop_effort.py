@@ -164,8 +164,20 @@ def elapsed(start: float) -> float:
 
 
 def write_json(path: Path, obj: Dict[str, Any]) -> None:
+    """Write through a temporary file and rename it, so a run stopped mid-write never leaves a cut-off
+    JSON behind (a resumed run treats an existing *_dsa.json as done)."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
+    tmp = path.with_name(f".{path.name}.tmp")
+    tmp.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
+    tmp.replace(path)
+
+
+def is_finished_output(path: Path) -> bool:
+    """A *_dsa.json that a resumed run can keep: it exists and is a complete JSON object."""
+    try:
+        return isinstance(json.loads(path.read_text(encoding="utf-8")), dict)
+    except (OSError, ValueError):
+        return False
 
 
 def save_pymupdf_pdf_atomic(document: Any, output_path: Path) -> None:
@@ -1558,6 +1570,16 @@ def main() -> None:
 
     if not pdfs:
         raise RuntimeError("No country-level PDFs remain after union exclusions.")
+
+    # Resume an interrupted run (SKIP_EXISTING, set by the web app's Resume): reports that already have a
+    # complete *_dsa.json in OUTPUT_DIR are not sent again; a report that only has *_ERROR.json is retried.
+    if globals().get("SKIP_EXISTING"):
+        done = [pdf for pdf in pdfs if is_finished_output(OUTPUT_DIR / f"{pdf.stem}_dsa.json")]
+        pdfs = [pdf for pdf in pdfs if pdf not in done]
+        print(f"Resuming: {len(done)} report(s) already extracted in {OUTPUT_DIR} are skipped; {len(pdfs)} to do.")
+        if not pdfs:
+            print("Nothing left to extract in this run.")
+            return
 
     print(f"Processing {len(pdfs)} country-level PDF(s). Model: {model}")
     print(f"Concurrent report workers: {MAX_WORKERS}")

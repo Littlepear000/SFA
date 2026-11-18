@@ -232,3 +232,11 @@ td.clip{ max-width:16rem; overflow:hidden; text-overflow:ellipsis; }
 .b-chosen{ margin-top:4px; }
 [data-bpane]{ margin-top:8px; display:flex; flex-direction:column; gap:4px; }
 [data-bpane][hidden]{ display:none; }
+
+/* progress of an unfinished round version (versions table) */
+.runprog{ display:flex; flex-direction:column; gap:3px; min-width:15rem; }
+.rp{ display:grid; grid-template-columns:2.6rem 6rem auto; gap:6px; align-items:center; font-size:12px; }
+.rp-n{ color:var(--muted); }
+.rp-bar{ height:6px; border-radius:999px; background:var(--bg); border:1px solid var(--line); overflow:hidden; }
+.rp-bar span{ display:block; height:100%; background:var(--accent); }
+.rp-t{ white-space:nowrap; font-variant-numeric:tabular-nums; }

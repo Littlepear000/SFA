@@ -85,7 +85,8 @@ except ImportError:  # PyMuPDF < 1.24
 # RERUN_OUTPUT_DIR: Optional[Path] = None
 
 # Skip reports whose <stem>_dsa.json already exists (resume an interrupted run).
-SKIP_EXISTING = False
+# The web app's Resume sets it to True; its value wins over this default.
+SKIP_EXISTING = globals().get("SKIP_EXISTING", False)
 
 DEFAULT_MODEL = "gpt-5.5"
 REASONING_EFFORT = "high"
@@ -246,8 +247,20 @@ def elapsed(start: float) -> float:
 
 
 def write_json(path: Path, obj: Any) -> None:
+    """Write through a temporary file and rename it, so a run stopped mid-write never leaves a cut-off
+    JSON behind (a resumed run treats an existing *_dsa.json as done)."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
+    tmp = path.with_name(f".{path.name}.tmp")
+    tmp.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
+    tmp.replace(path)
+
+
+def is_finished_output(path: Path) -> bool:
+    """A *_dsa.json that a resumed run can keep: it exists and is a complete JSON object."""
+    try:
+        return isinstance(json.loads(path.read_text(encoding="utf-8")), dict)
+    except (OSError, ValueError):
+        return False
 
 
 def normalize_text(value: Any) -> str:
@@ -1329,7 +1342,7 @@ def select_reports() -> Tuple[List[Path], List[Path], Path]:
     unions = [p for p in pdfs if is_excluded_union(p)]
     pdfs = [p for p in pdfs if not is_excluded_union(p)]
     if SKIP_EXISTING:
-        done = [p for p in pdfs if (out_dir / f"{p.stem}_dsa.json").exists()]
+        done = [p for p in pdfs if is_finished_output(out_dir / f"{p.stem}_dsa.json")]
         pdfs = [p for p in pdfs if p not in done]
         print(f"Skipping {len(done)} report(s) with existing output.")
     return pdfs, unions, out_dir

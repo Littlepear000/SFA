@@ -29,7 +29,7 @@ Workflow and Panel database (see workflow.py; every path starts with /api/wf/)
     GET  hr/<version> | hr/<version>/item?json_file= | batches | archive | export?kind=&batch=&round=&version=
     GET  output (the output folder's files) | output/data?name=&country=&year=&source=&top_only=&page= | output/download?name=
     GET  gap | gap/<stamp> | pdf?path= | ls?path=
-    POST settings | run/round1 | run/round2 | run/gap_identify | run/gap_fill | job/stop
+    POST settings | run/round1 | run/round2 | run/resume/<round> {version} | run/gap_identify | run/gap_fill | job/stop
     POST hr/<version>/save | build/preview | build/write | gap/write | browse {kind: dir|file, start, title}
 """
 from __future__ import annotations
@@ -363,6 +363,8 @@ class Handler(SimpleHTTPRequestHandler):
                     return self._json(HTTPStatus.OK, wf.settings_info())
                 if route in ("run/round1", "run/round2"):
                     return self._json(HTTPStatus.ACCEPTED, {"job": wf.start_round(parts[1], body)})
+                if route in ("run/resume/round1", "run/resume/round2"):
+                    return self._json(HTTPStatus.ACCEPTED, {"job": wf.resume_round(parts[2], body)})
                 if route == "run/gap_identify":
                     return self._json(HTTPStatus.ACCEPTED, {"job": wf.start_gap_identify(body)})
                 if route == "run/gap_fill":
