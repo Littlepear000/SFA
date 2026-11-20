@@ -43,6 +43,10 @@ One tab per step; the strip under the steps shows the current panel database and
   (4c); answers saved by earlier gap fill runs are reused, so a report is not asked about the same year
   twice. *Write* saves `panel_gapfill_<version>.csv` (same version) to the output folder.
 
+Year columns: Round 1-3 and `panel_pregapfill_*` have `last_actual_year` (each report's latest historical
+year); Gap Fill rows and `panel_gapfill_*` have `year` instead (for a Round 1-3 row, its last actual year;
+for a Gap Fill row, the gap year), with no `last_actual_year`.
+
 The output folder (Settings) only receives these two files per version, plus `panel_<version>.json`
 (how the version was built). The **Panel database** and **Coverage** pages read from that same folder.
 

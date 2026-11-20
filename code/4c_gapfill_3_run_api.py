@@ -606,6 +606,7 @@ class ReportProcessor:
                 "status": status, "errors": err_msgs, "warnings": warnings,
                 "column_status": t.get("column_status"),
                 "column_header_verbatim": t.get("column_header_verbatim"),
+                "matched_year_label": t.get("matched_year_label"),
                 "not_extractable_reason": t.get("not_extractable_reason"),
                 "decomposition": t.get("decomposition") if status in core.RESOLVED else None,
                 "unmapped_rows": t.get("unmapped_rows") if status in core.RESOLVED else None,
@@ -614,6 +615,10 @@ class ReportProcessor:
                     "framework": source.get("framework"), "units_verbatim": source.get("units_verbatim"),
                     "table_number": source.get("table_number"), "page_pdf": source.get("page_pdf"),
                     "confidence": source.get("confidence"), "extraction_method": sel["method"],
+                    # report facts for the round-format output (final_schema.ROUND_COLUMNS)
+                    "table_title": source.get("table_title"), "page_printed": source.get("page_printed"),
+                    "publication_date": source.get("publication_date"), "consultation_type": source.get("consultation_type"),
+                    "country": source.get("country"), "column_header_audit": source.get("column_header_audit"),
                 },
             }
         return outcomes

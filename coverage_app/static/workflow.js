@@ -560,9 +560,12 @@
             <label class="field-inline">Round Two version <select id="hr-ver">${versions.map((x) => `<option${x.version === version ? " selected" : ""}>${esc(x.version)}</option>`).join("")}</select></label>
             <div class="hr-prog" id="hr-prog"></div>
             <div class="hr-filters">
-              <select id="hr-filter"><option value="todo">To do</option><option value="all">All</option><option value="reviewed">Reviewed</option><option value="no_table">No DSA table</option><option value="skipped">Skipped</option></select>
+              <select id="hr-filter"><option value="todo">To do</option><option value="all">All</option><option value="reviewed">Reviewed</option><option value="no_table">No DSA table</option><option value="skipped">Skipped</option><option value="dropped">Dropped</option></select>
               <input type="search" id="hr-search" placeholder="Search country" autocomplete="off">
             </div>
+            <select id="hr-group" aria-label="Show only one kind of disagreement"><option value="">Every kind of disagreement</option>
+              ${Object.keys(GROUPS).filter((k) => k !== "fully_match" && q.items.some((i) => i.group === k)).map((k) => `<option value="${k}">${GROUPS[k][0]} (${fmtN(q.items.filter((i) => i.group === k).length)})</option>`).join("")}
+              <option value="-no_table_in_all_runs">All except "No table in any run"</option></select>
             <ul class="hr-list" id="hr-list"></ul>
           </aside>
           <section class="card hr-main" id="hr-main"><p class="muted">Pick a report on the left.</p></section>
@@ -570,6 +573,9 @@
         <div class="card next-card"><div><b>When the review is done</b><div class="muted small-txt">Round 1 + Round 2 fully matched reports and the reviewed reports go into the panel in the next step, together with the previous database.</div></div>
           <a class="btn primary" href="#workflow/build">Next: build the panel →</a></div>`;
       $("hr-filter").value = W.hr.filter;
+      W.hr.group = store("hr_group") || "";
+      if (Array.from($("hr-group").options).some((o) => o.value === W.hr.group)) $("hr-group").value = W.hr.group; else W.hr.group = "";
+      $("hr-group").addEventListener("change", () => { W.hr.group = $("hr-group").value; store("hr_group", W.hr.group); paintQueue(); });
       $("hr-ver").addEventListener("change", () => { location.hash = "#workflow/hr/" + $("hr-ver").value; });
       $("hr-filter").addEventListener("change", () => { W.hr.filter = $("hr-filter").value; store("hr_filter", W.hr.filter); paintQueue(); });
       $("hr-search").addEventListener("input", () => { W.hr.search = $("hr-search").value.trim().toLowerCase(); paintQueue(); });
@@ -580,14 +586,17 @@
   }
   function queueFiltered() {
     const H = W.hr;
+    const g = H.group || "";
     return H.q.items.filter((i) => (H.filter === "all" || i.status === H.filter || (H.filter === "todo" && i.status === "todo")) &&
+      (!g || (g[0] === "-" ? i.group !== g.slice(1) : i.group === g)) &&
       (!H.search || (i.country || "").toLowerCase().indexOf(H.search) >= 0 || (i.pdf || "").toLowerCase().indexOf(H.search) >= 0));
   }
   function paintQueue() {
     const H = W.hr, c = H.q.counts, total = H.q.items.length;
     const done = total - c.todo;
-    $("hr-prog").innerHTML = `<div class="bar-multi"><span class="b-rev" style="width:${(100 * c.reviewed) / Math.max(total, 1)}%"></span><span class="b-nt" style="width:${(100 * c.no_table) / Math.max(total, 1)}%"></span><span class="b-sk" style="width:${(100 * c.skipped) / Math.max(total, 1)}%"></span></div>
-      <div class="small-txt"><b>${fmtN(done)}</b> of ${fmtN(total)} done · ${fmtN(c.reviewed)} reviewed · ${fmtN(c.no_table)} no table · ${fmtN(c.skipped)} skipped</div>`;
+    $("hr-prog").innerHTML = `<div class="bar-multi"><span class="b-rev" style="width:${(100 * c.reviewed) / Math.max(total, 1)}%"></span><span class="b-nt" style="width:${(100 * c.no_table) / Math.max(total, 1)}%"></span><span class="b-sk" style="width:${(100 * c.skipped) / Math.max(total, 1)}%"></span><span class="b-dr" style="width:${(100 * (c.dropped || 0)) / Math.max(total, 1)}%"></span></div>
+      <div class="small-txt"><b>${fmtN(done)}</b> of ${fmtN(total)} done · ${fmtN(c.reviewed)} reviewed · ${fmtN(c.no_table)} no table · ${fmtN(c.skipped)} skipped · ${fmtN(c.dropped || 0)} dropped</div>
+      ${H.group ? `<div class="small-txt muted">Showing ${fmtN(queueFiltered().length)} report(s) of this kind.</div>` : ""}`;
     const list = queueFiltered();
     $("hr-list").innerHTML = list.map((i) => `<li class="${i.json_file === H.cur ? "cur" : ""}" data-jf="${esc(i.json_file)}">
         <span class="st st-${i.status}" title="${esc(i.status)}"></span>
@@ -664,6 +673,7 @@
             <button class="btn primary" id="hr-save" title="Ctrl+Enter">✓ Save as reviewed</button>
             <button class="btn" id="hr-notable">No DSA table in this report</button>
             <button class="btn" id="hr-skip">Skip for now</button>
+            <button class="btn danger" id="hr-drop" title="None of this report's values can be used: leave all its rows out of the panel">Drop this report</button>
             <span class="muted small-txt">Saving moves on to the next report to do.</span>
           </div>
         </div>
@@ -686,6 +696,10 @@
     $("hr-save").addEventListener("click", () => saveHR("reviewed"));
     $("hr-notable").addEventListener("click", () => saveHR("no_table"));
     $("hr-skip").addEventListener("click", () => saveHR("skipped"));
+    $("hr-drop").addEventListener("click", () => {
+      if (!confirm("Drop this report?\n\nNone of its rows will go into the panel: Build panel leaves it out, also if the previous database has rows for it. You can undo this by saving the report again with another choice.")) return;
+      saveHR("dropped");
+    });
   }
   function paintHRRows() {
     const H = W.hr, n = H.item.n_runs;
@@ -732,7 +746,7 @@
     api(`hr/${encodeURIComponent(H.version)}/save`, body).then(() => {
       const it = H.q.items.find((i) => i.json_file === H.cur);
       const before = queueFiltered(); const pos = before.findIndex((i) => i.json_file === H.cur);
-      if (it) { if (it.status !== status) { H.q.counts[it.status]--; H.q.counts[status]++; } it.status = status; }
+      if (it) { if (it.status !== status) { H.q.counts[it.status]--; H.q.counts[status] = (H.q.counts[status] || 0) + 1; } it.status = status; }
       toast(status === "reviewed" ? "Saved." : "Saved as " + status.replace("_", " ") + ".");
       paintQueue(); loadOverview();
       const after = queueFiltered();
@@ -877,11 +891,14 @@
           <td class="small-txt">${fmtN(b.rows)} rows: ${srcRows(b.by_source)}${b.gapfill_removed ? ` · <b>${fmtN(b.gapfill_removed)} gap fill rows removed</b>` : ""}</td></tr>` : `<tr><td colspan="5" class="muted">No previous database.</td></tr>`}
         ${r.parts.map((p) => `<tr><td><i class="sw s-${p.source}"></i>${esc(p.batch)} · ${esc(SRC[p.source])}</td><td>${esc(p.version)}</td><td class="num">${fmtN(p.reports)}</td><td class="num">${fmtN(p.rows)}</td>
           <td class="small-txt">${p.source === "round3" && p.todo ? `<span class="warn-txt">${fmtN(p.todo)} of ${fmtN(p.to_review)} reports not reviewed yet</span>` : ""}</td></tr>`).join("")}
+        ${r.by_origin ? `<tr><td colspan="5" class="small-txt muted">update_origin: <b>${fmtN(r.by_origin.previous || 0)}</b> rows "previous" (taken over from the previous database) · <b>${fmtN(r.by_origin.new || 0)}</b> rows "new" (this update)</td></tr>` : ""}
         <tr class="tot"><td><b>Pre Gap Fill</b></td><td></td><td class="num"><b>${fmtN(t.reports)}</b></td><td class="num"><b>${fmtN(t.rows)}</b></td>
           <td class="small-txt">${fmtN(t.country_years)} country-years · ${fmtN(t.countries)} countries · ${srcRows(t.by_source)}</td></tr>
       </tbody></table></div>
+      ${r.dropped ? `<p class="small-txt"><b>${fmtN(r.dropped.reports)} report(s) dropped in Human Review</b> are left out: ${fmtN(r.dropped.rows_removed_previous)} row(s) of the previous database and ${fmtN(r.dropped.rows_removed_new)} new row(s) removed (e.g. ${r.dropped.examples.map(esc).join(", ")}).</p>` : ""}
       ${r.duplicates ? `<p class="small-txt">${fmtN(r.duplicates)} report(s) are in the previous database and in the new results: ${r.duplicates_mode === "replace" ? "the new rows replace the previous ones" : "the previous rows are kept"} (e.g. ${r.duplicate_examples.map(esc).join(", ")}).</p>` : ""}
-      ${r.problems.length ? `<p class="bad-txt small-txt">Check: ${r.problems.map(esc).join("; ")}</p>` : `<p class="ok-txt small-txt">✓ Same ${21} columns everywhere; every hierarchy id is well formed and matches its category.</p>`}`;
+      ${r.problems.length ? `<p class="bad-txt small-txt">Check: ${r.problems.map(esc).join("; ")}</p>` : `<p class="ok-txt small-txt">✓ Same ${r.n_columns} columns everywhere (the columns of a Round 1 / Round 2 run CSV + source_round + gapfill_run); every hierarchy id is well formed and matches its category.</p>`}
+      ${b && b.legacy ? `<p class="muted small-txt">The previous database is an older 21-column file: its rows keep their values, and the columns it does not have stay blank for them.</p>` : ""}`;
   }
 
   // ------------------------------------------------------------------ gap fill
@@ -973,7 +990,7 @@
           <label class="check small-txt"><input type="checkbox" id="gf-reuse" checked> Reuse the answers saved by earlier gap fill runs (a report already asked about a year is not asked again)</label>
           <div class="muted small-txt">A stopped run picks up where it left off. The map turns green as the gaps fill.</div></div>
         <div class="gstep"><b>3 · Write the gap-filled panel</b>
-          <div class="muted small-txt"><code>${esc(rec.input || "")}</code> + ${fmtN(d.rows_ready)} gap fill rows (${fmtN(filled)} country-years; same columns, <code>source_round = gapfill</code>) → <code>panel_gapfill_${esc(d.stamp)}.csv</code> in the output folder.</div>
+          <div class="muted small-txt"><code>${esc(rec.input || "")}</code> + ${fmtN(d.rows_ready)} gap fill rows (${fmtN(filled)} country-years; same columns, <code>source_round = gapfill</code>). The written panel has <code>year</code> in place of <code>last_actual_year</code> (a Round 1-3 row's year = its last actual year) → <code>panel_gapfill_${esc(d.stamp)}.csv</code> in the output folder.</div>
           <div class="inline"><button class="btn primary" id="gf-append" ${d.rows_ready ? "" : "disabled"}>Write to the output folder</button>
             ${d.written ? `<label class="check small-txt"><input type="checkbox" id="gf-over"> overwrite</label><span class="ok-txt small-txt">✓ ${esc(d.written)} written${rec.written ? " " + esc(fmtTime(rec.written.written)) : ""}</span>` : ""}</div></div>
       </div>
@@ -1079,6 +1096,7 @@
             <label>Country <input id="pd-country" type="search" placeholder="Search" autocomplete="off"></label>
             <label>Year <select id="pd-year"><option value="">All</option></select></label>
             <label>Source <select id="pd-source"><option value="">All</option>${Object.keys(SRC).map((k) => `<option value="${k}">${SRC[k]}</option>`).join("")}</select></label>
+            <label>This update <select id="pd-origin"><option value="">All</option><option value="new">New</option><option value="previous">From the previous version</option></select></label>
             <label>Hierarchy id <input id="pd-hid" type="text" placeholder="e.g. 5" style="width:6rem"></label>
             <label class="check"><input type="checkbox" id="pd-top"> Top level only</label>
             <label class="check"><input type="checkbox" id="pd-all"> All columns</label>
@@ -1099,7 +1117,7 @@
       $("pd-file").addEventListener("change", () => { location.hash = "#panel/" + encodeURIComponent($("pd-file").value); });
       if (!name) return;
       W.panel = { name, page: 0 };
-      ["pd-country", "pd-year", "pd-source", "pd-hid", "pd-top", "pd-all"].forEach((id) => $(id).addEventListener("input", () => { W.panel.page = 0; loadPanelRows(); }));
+      ["pd-country", "pd-year", "pd-source", "pd-origin", "pd-hid", "pd-top", "pd-all"].forEach((id) => $(id).addEventListener("input", () => { W.panel.page = 0; loadPanelRows(); }));
       $("pd-prev").addEventListener("click", () => { W.panel.page--; loadPanelRows(); });
       $("pd-next").addEventListener("click", () => { W.panel.page++; loadPanelRows(); });
       loadPanelRows(true);
@@ -1120,7 +1138,7 @@
   }
   function loadPanelRows(first) {
     const P = W.panel;
-    const q = { name: P.name, country: $("pd-country").value.trim(), year: $("pd-year").value, source: $("pd-source").value, hid: $("pd-hid").value.trim(), top_only: $("pd-top").checked ? "1" : "", page: P.page, size: 100 };
+    const q = { name: P.name, country: $("pd-country").value.trim(), year: $("pd-year").value, source: $("pd-source").value, origin: $("pd-origin").value, hid: $("pd-hid").value.trim(), top_only: $("pd-top").checked ? "1" : "", page: P.page, size: 100 };
     api("output/data", null, q).then((d) => {
       if (first) {
         $("pd-year").innerHTML = `<option value="">All</option>` + d.years.map((y) => `<option>${y}</option>`).join("");
@@ -1132,11 +1150,12 @@
           <div class="tile"><span class="lbl">Reports</span><span class="val">${fmtN(s.reports)}</span></div>
           <div class="tile"><span class="lbl">Countries</span><span class="val">${fmtN(s.countries)}</span></div>
           <div class="tile"><span class="lbl">Country-years</span><span class="val">${fmtN(s.country_years)}</span></div>
-          ${Object.keys(SRC).map((k) => `<div class="tile"><span class="lbl"><i class="sw s-${k}"></i>${SRC[k]}</span><span class="val">${fmtN(bs[k] || 0)}</span><span class="sub muted">rows</span></div>`).join("")}`;
+          ${Object.keys(SRC).map((k) => `<div class="tile"><span class="lbl"><i class="sw s-${k}"></i>${SRC[k]}</span><span class="val">${fmtN(bs[k] || 0)}</span><span class="sub muted">rows</span></div>`).join("")}
+          ${s.by_origin && (s.by_origin.new || s.by_origin.previous) ? `<div class="tile"><span class="lbl">New in this update</span><span class="val">${fmtN(s.by_origin.new || 0)}</span><span class="sub muted">rows · ${fmtN(s.by_origin.previous || 0)} from the previous version</span></div>` : ""}`;
         drawPanelChart(d);
       }
       // the key columns first; every column of the file with "All columns"
-      const KEY = ["country", "last_actual_year", "hierarchy_id", "label_verbatim", "value", "source_round", "top_category", "pdf_file_name", "table_title"];
+      const KEY = ["country", "year", "last_actual_year", "hierarchy_id", "label_verbatim", "value", "source_round", "update_origin", "top_category", "pdf_file_name", "table_title"];
       const cols = $("pd-all").checked ? d.columns : KEY.filter((c) => d.columns.indexOf(c) >= 0);
       const at = cols.map((c) => d.columns.indexOf(c));
       $("pd-table").querySelector("thead").innerHTML = "<tr>" + cols.map((c) => `<th>${esc(c)}</th>`).join("") + "</tr>";
@@ -1197,8 +1216,8 @@
         <div class="card"><h2><i class="sw s-round1"></i>Round One</h2>${roundTable(a.round1, "round1")}</div>
         <div class="card"><h2><i class="sw s-round2"></i>Round Two</h2>${roundTable(a.round2, "round2")}</div>
         <div class="card"><h2><i class="sw s-round3"></i>Round Three · human review</h2>
-          ${hr.length ? `<div class="table-wrap"><table class="grid"><thead><tr><th>Batch</th><th>Round Two version</th><th class="num">To review</th><th class="num">Reviewed</th><th class="num">No table</th><th class="num">Skipped</th><th class="num">Still to do</th><th class="num">Rows</th><th>Last saved</th><th>Open</th><th>Export (CSV)</th></tr></thead><tbody>
-          ${hr.map((x) => `<tr><td><b>${esc(x.batch)}</b></td><td>${esc(x.version)}</td><td class="num">${fmtN(x.total)}</td><td class="num ok-txt">${fmtN(x.counts.reviewed)}</td><td class="num">${fmtN(x.counts.no_table)}</td><td class="num">${fmtN(x.counts.skipped)}</td>
+          ${hr.length ? `<div class="table-wrap"><table class="grid"><thead><tr><th>Batch</th><th>Round Two version</th><th class="num">To review</th><th class="num">Reviewed</th><th class="num">No table</th><th class="num">Skipped</th><th class="num">Dropped</th><th class="num">Still to do</th><th class="num">Rows</th><th>Last saved</th><th>Open</th><th>Export (CSV)</th></tr></thead><tbody>
+          ${hr.map((x) => `<tr><td><b>${esc(x.batch)}</b></td><td>${esc(x.version)}</td><td class="num">${fmtN(x.total)}</td><td class="num ok-txt">${fmtN(x.counts.reviewed)}</td><td class="num">${fmtN(x.counts.no_table)}</td><td class="num">${fmtN(x.counts.skipped)}</td><td class="num">${fmtN(x.counts.dropped || 0)}</td>
             <td class="num ${x.counts.todo ? "warn-txt" : ""}">${fmtN(x.counts.todo)}</td><td class="num">${fmtN(x.rows)}</td><td class="nowrap">${esc(fmtTime(x.modified))}</td>
             <td>${x.batch === (W.ov || {}).batch ? `<a class="btn small" href="#workflow/hr/${esc(x.version)}">Human review</a>` : ""}</td>
             <td>${exportLink({ kind: "round3", batch: x.batch, version: x.version }, "Reviewed rows")}</td></tr>`).join("")}</tbody></table></div>` : `<p class="muted">None yet.</p>`}</div>

@@ -2,6 +2,19 @@
 
 The app's version is the first heading below. Each release is tagged in git as `app-v<version>`.
 
+## 0.7.0 — 2026-11-20
+
+- **Added**: **Human Review → *Drop this report***, next to *Skip for now*: for a report whose values cannot be used at all. Build panel then leaves out every row of it, also the rows the previous database has for it, and says how many it removed. Saving the report again with another choice undoes it. Dropped reports have their own status filter, a red mark in the list, and a column in Intermediate data.
+- **Added**: **Human Review list: filter by kind of disagreement** (e.g. only *Some rows differ*), or *All except "No table in any run"*; it combines with the status filter and the search, and is remembered.
+
+## 0.6.0 — 2026-11-18
+
+- **Changed**: **One column layout for every source.** The panel database files (`panel_pregapfill_*`, `panel_gapfill_*`) now have the 43 columns of a Round One / Round Two run CSV (as `1b` writes them) + `source_round` + `gapfill_run` (+ `update_origin`, below) instead of 21. Round 1 and Round 2 rows keep all their columns; Round 3 (human review) rows keep the report's facts, table, page and column-header audit (`extraction_method = human_review`; the run's own year-choice fields are left blank, the reviewer's year is used); Gap Fill rows fill the report facts, table, page, page printed, column status and header, and the column-header audit (`actual_column_validation_status` = the gap's result, e.g. `resolved`), and take the report's title, date and number from the panel when the gap-fill call did not read them. See `code/final_schema.py`.
+- **Changed**: **Year columns by stage.** Round 1, Round 2, Round 3 and the Pre Gap Fill file keep `last_actual_year` (the report's latest historical year). Gap Fill rows use `year` instead, and the panel database after Gap Fill (`panel_gapfill_*`) has only `year`, in the same position: a Round 1-3 row's `year` is its last actual year, a Gap Fill row's `year` is the gap year. A gap-filled panel used as the previous database of a new build is read back with `year` as `last_actual_year`. Coverage and Gap Fill read either column.
+- **Added**: Column **`update_origin`** (last column) for updates: `previous` = a row taken over unchanged from the previous database (its Round 1-3 rows; its Gap Fill rows are always removed first), `new` = a row from this update (the new Round 1 / 2 / 3 results and this Gap Fill run). Build panel's *Check* shows both counts; the Panel database page can filter on it. The panel database files now have 46 columns.
+- **Changed**: A merged file made before (21 columns, e.g. `final_all_batches_with_gapfill_20261028.csv`) still works as the previous database: the other columns stay blank for its rows.
+- **Changed**: With the column-header audit now in the panel, Gap Fill's first step (4a) can say, for each gap, whether a later report shows that year as an actual column.
+
 ## 0.5.1 — 2026-11-18
 
 - **Fixed**: After the computer restarts, a job that was running before is always shown as stopped or interrupted (so *Resume* is offered), even if its old process number now belongs to another program.

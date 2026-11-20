@@ -176,7 +176,7 @@ def load_rows(input_csv: Path, hierarchy_ids=FIELDS) -> pd.DataFrame:
     wanted = ["country", "hierarchy_id", "value", "year", "last_actual_year", "source_round", "gapfill_run"]
     present = set(pd.read_csv(input_csv, nrows=0).columns)
     df = pd.read_csv(input_csv, usecols=[c for c in wanted if c in present], dtype=str)
-    for c in ("year", "gapfill_run"):
+    for c in ("year", "last_actual_year", "gapfill_run"):  # the panel after Gap Fill has year, not last_actual_year
         if c not in df.columns:
             df[c] = None
     if hierarchy_ids is not ALL_HIERARCHIES:
@@ -793,17 +793,41 @@ def write_outputs(
     save("gapfill_values_long", long_rows)
     save("gapfill_values_wide", wide_rows)
 
-    # The same values in the panel database layout (final_schema.FINAL_COLUMNS, the columns of the Round
-    # 1/2/3 rows), ready to append: last_actual_year = the gap year, report facts from the gap-fill call.
-    from final_schema import FINAL_COLUMNS, to_final  # same folder
-    by_key = {(w["country"], w["year"]): w for w in wide_rows}
-    final = to_final(pd.DataFrame(long_rows), "gapfill", gapfill_run=stamp) if long_rows else pd.DataFrame(columns=FINAL_COLUMNS)
-    if long_rows:
-        for col, key in (("framework", "framework"), ("table_number", "table_number"), ("page_pdf", "page_pdf"),
-                         ("actual_column_label", "column_header_verbatim")):
-            vals = [by_key.get((r["country"], r["year"]), {}).get(key) for r in long_rows]
-            final[col] = final[col].where(final[col].notna(), pd.Series(vals, dtype=object))
-        final["page_pdf"] = final["page_pdf"].map(lambda v: None if v is None or pd.isna(v) else str(v).removesuffix(".0"))
+    # The same values in the panel database layout (final_schema.FINAL_COLUMNS: the 43 columns of a Round
+    # 1/2 compiled CSV + source_round + gapfill_run), ready to append. One row per line item, like 1b:
+    # last_actual_year = the gap year; the report facts, table, page and column-header audit come from the
+    # gap-fill call (answers saved before 0.6.0 lack some of them; the app fills the report facts it can
+    # from the panel when it writes the gap-filled file).
+    from final_schema import PANEL_COLUMNS, to_final, to_panel  # same folder
+    final_rows = []
+    for st in state:
+        res = st["resolved"]
+        if not res:
+            continue
+        out = res["outcome"]
+        m = out.get("meta", {}) or {}
+        audit = m.get("column_header_audit")
+        page = m.get("page_pdf")
+        report = {
+            "json_file": Path(res["report"]).stem + "_dsa.json", "pdf_file_name": res["report"], "country": st["country"],
+            "publication_date": m.get("publication_date"), "consultation_type": m.get("consultation_type"),
+            "table_found": "True", "framework": m.get("framework"), "table_number": m.get("table_number"),
+            "table_title": m.get("table_title"), "page_pdf": None if page is None else str(page).removesuffix(".0"),
+            "page_printed": m.get("page_printed"), "last_actual_year": str(st["gap_year"]),
+            "actual_column_label": out.get("matched_year_label") or out.get("column_header_verbatim") or str(st["gap_year"]),
+            "actual_column_status": out.get("column_status"), "actual_column_header_verbatim": out.get("column_header_verbatim"),
+            "actual_column_validation_status": st["final_status"],
+            "actual_column_validation_issues": json.dumps(out.get("warnings") or [], ensure_ascii=False),
+            "manual_review_required": "No",
+            "column_header_audit_json": json.dumps(audit, ensure_ascii=False) if audit else None,
+            "confidence": m.get("confidence"), "extraction_method": m.get("extraction_method"),
+            "extraction_notes": out.get("notes"),
+        }
+        for r in flatten_decomposition(out.get("decomposition")):
+            final_rows.append({**report, **r})
+    # written with "year" (the gap year) in place of last_actual_year: final_schema.PANEL_COLUMNS
+    final = to_panel(to_final(pd.DataFrame(final_rows), "gapfill", gapfill_run=stamp)) if final_rows else pd.DataFrame(columns=PANEL_COLUMNS)
+    final["update_origin"] = "new"  # a gap year read in this run
     p_final = out_dir / f"gapfill_rows_final_{stamp}.csv"
     final.to_csv(p_final, index=False, encoding="utf-8-sig")
     paths["gapfill_rows_final"] = p_final

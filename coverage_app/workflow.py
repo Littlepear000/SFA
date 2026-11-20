@@ -851,7 +851,9 @@ def report_detail(batch: str, rnd: str, version: str, json_file: str) -> dict:
 
 
 # ======================================================================= human review (round 3)
-REVIEW_STATUSES = ("reviewed", "no_table", "skipped")
+# dropped: the report's values cannot be used at all; Build panel leaves every row of it out of the panel,
+# including rows the previous database has for it
+REVIEW_STATUSES = ("reviewed", "no_table", "skipped", "dropped")
 
 
 def hr_dir(batch: str, version: str) -> Path:
@@ -927,7 +929,7 @@ def hr_save(batch: str, version: str, body: dict) -> dict:
     jf = str(body.get("json_file") or "")
     status = body.get("status")
     if status not in REVIEW_STATUSES:
-        raise UserError("status must be reviewed, no_table or skipped")
+        raise UserError("status must be reviewed, no_table, skipped or dropped")
     detail = report_detail(batch, "round2", version, jf)
     rows_in = body.get("rows") or []
     rows, seen, problems = [], set(), []
@@ -985,14 +987,18 @@ def round3_frame(batch: str, version: str) -> pd.DataFrame:
         meta = rv.get("meta") or {}
         for r in rv["rows"]:
             row = {c: meta.get(c) for c in fs.REPORT_COLUMNS}
+            # the year and values are the reviewer's: the run's own year choice no longer describes them
+            row.update({c: None for c in fs.SELECTION_COLUMNS})
             row.update(json_file=jf, last_actual_year=rv.get("last_actual_year"),
-                       actual_column_label=rv.get("actual_column_label") or rv.get("last_actual_year"))
+                       actual_column_label=rv.get("actual_column_label") or rv.get("last_actual_year"),
+                       table_found="True", extraction_method="human_review", actual_column_validation_status="human_review",
+                       manual_review_required="No", extraction_notes=rv.get("note"))
             if rv.get("page_pdf"):
                 row["page_pdf"] = rv["page_pdf"]
             row.update(fs.item_fields(r["hierarchy_id"], labels))
             row.update(hierarchy_id=r["hierarchy_id"], label_verbatim=r["label_verbatim"], value=r["value"] or None)
             out.append(row)
-    df = pd.DataFrame(out, columns=[c for c in fs.FINAL_COLUMNS if c not in ("source_round", "gapfill_run")])
+    df = pd.DataFrame(out, columns=fs.ROUND_COLUMNS)
     return fs.to_final(df, "round3")
 
 
@@ -1093,6 +1099,7 @@ def as_final(df: pd.DataFrame) -> pd.DataFrame:
     out = fs.to_final(df, "x")
     out["source_round"] = df["source_round"].values
     out["gapfill_run"] = df["gapfill_run"].values if "gapfill_run" in df.columns else None
+    out["update_origin"] = df["update_origin"].values if "update_origin" in df.columns else None
     return out
 
 
@@ -1107,11 +1114,18 @@ def norm_countries(df: pd.DataFrame) -> pd.Series:
     return raw.map(uniq)
 
 
+def year_col(df: pd.DataFrame) -> str:
+    """The year column of a panel file: "year" after Gap Fill, "last_actual_year" before it."""
+    return "year" if "year" in df.columns else "last_actual_year"
+
+
 def panel_stats(df: pd.DataFrame) -> dict:
-    lay = df["last_actual_year"].fillna("")
+    lay = df[year_col(df)].fillna("")
     cn = norm_countries(df)
     cy = pd.DataFrame({"c": cn, "y": lay}).drop_duplicates()
-    return {"rows": int(len(df)), "reports": int(df["json_file"].nunique()), "countries": int(cn.nunique()),
+    by_origin = ({str(k): int(v) for k, v in df["update_origin"].fillna("").value_counts().items()}
+                 if "update_origin" in df.columns else {})
+    return {"by_origin": by_origin, "rows": int(len(df)), "reports": int(df["json_file"].nunique()), "countries": int(cn.nunique()),
             "country_years": int(len(cy)), "by_source": {str(k): int(v) for k, v in df["source_round"].fillna("").value_counts().items()}}
 
 
@@ -1130,15 +1144,18 @@ def panel_data(name: str, q: dict) -> dict:
     df = panel_frame_at(path)
     if "source_round" not in df.columns:
         raise UserError(f"{name} has no source_round column; it is not a panel database file.")
-    cols = [c for c in fs.FINAL_COLUMNS if c in df.columns] + [c for c in df.columns if c not in fs.FINAL_COLUMNS]
+    order = fs.PANEL_COLUMNS if "year" in df.columns else fs.FINAL_COLUMNS
+    cols = [c for c in order if c in df.columns] + [c for c in df.columns if c not in order]
     f = df
     country = (q.get("country") or "").strip().lower()
     if country:
         f = f[f["country"].fillna("").str.lower().str.contains(re.escape(country))]
     if q.get("year"):
-        f = f[f["last_actual_year"] == q["year"]]
+        f = f[f[year_col(df)] == q["year"]]
     if q.get("source"):
         f = f[f["source_round"] == q["source"]]
+    if q.get("origin") and "update_origin" in df.columns:
+        f = f[f["update_origin"].fillna("") == ("" if q["origin"] == "none" else q["origin"])]
     if q.get("top_only") in ("1", "true"):
         f = f[~f["hierarchy_id"].fillna("").str.contains(r"\.")]
     if q.get("hid"):
@@ -1147,9 +1164,10 @@ def panel_data(name: str, q: dict) -> dict:
     rows = f[cols].iloc[page * size:(page + 1) * size]
 
     def summary():
-        years = sorted({y for y in df["last_actual_year"].dropna().unique() if re.fullmatch(r"\d{4}", str(y))})
-        sub = df[df["last_actual_year"].isin(years)]
-        cy = pd.DataFrame({"country": norm_countries(sub), "last_actual_year": sub["last_actual_year"],
+        yc = year_col(df)
+        years = sorted({y for y in df[yc].dropna().unique() if re.fullmatch(r"\d{4}", str(y))})
+        sub = df[df[yc].isin(years)]
+        cy = pd.DataFrame({"country": norm_countries(sub), "last_actual_year": sub[yc],
                            "source_round": sub["source_round"]}).drop_duplicates(["country", "last_actual_year"])
         by_year: dict = {}
         for (y, sr), n in cy.groupby(["last_actual_year", "source_round"]).size().items():
@@ -1210,7 +1228,10 @@ def build_frame(body: dict):
             gap = base["source_round"] == "gapfill"
             removed = int(gap.sum())
             base = base[~gap]
+        base = base.copy()
+        base["update_origin"] = "previous"  # taken over unchanged from the previous database
         report["base"] = {"file": str(bpath), "name": bpath.name, "rows": n_all, "by_source": by_src,
+                          "legacy": "column_header_audit_json" not in panel_frame_at(bpath).columns,
                           "gapfill_removed": removed, "rows_kept": int(len(base)), "reports_kept": int(base["json_file"].nunique())}
     new_frames = []
     for c in _components(body):
@@ -1237,15 +1258,30 @@ def build_frame(body: dict):
             base = base[~base["json_file"].isin(dup_ids)]
         else:
             new = new[~new["json_file"].isin(dup_ids)]
+    # reports dropped in Human Review: none of their rows goes into the panel, wherever they come from
+    dropped = set()
+    for c in _components(body):
+        if c["round2"]:
+            dropped |= {jf for jf, rv in hr_reviews(c["batch"], c["round2"]).items() if rv.get("status") == "dropped"}
+    if dropped:
+        rm_base, rm_new = int(base["json_file"].isin(dropped).sum()), int(new["json_file"].isin(dropped).sum())
+        base, new = base[~base["json_file"].isin(dropped)], new[~new["json_file"].isin(dropped)]
+        report["dropped"] = {"reports": len(dropped), "rows_removed_previous": rm_base, "rows_removed_new": rm_new,
+                             "examples": sorted(dropped)[:5]}
     by_src_new = new.groupby("json_file")["source_round"].nunique() if len(new) else pd.Series(dtype=int)
     multi = sorted(by_src_new[by_src_new > 1].index)
     if multi:
         report["problems"].append(f"{len(multi)} report(s) come from more than one new source, e.g. {multi[:3]}")
+    new = new.copy()
+    new["update_origin"] = "new"  # this update's Round 1 / 2 / 3 results
     out = fs.concat_final([base, new])
+    report["by_origin"] = {str(k): int(v) for k, v in out["update_origin"].fillna("").value_counts().items()}
     report.update({"duplicates": len(dup_ids), "duplicates_mode": "replace" if replace else "keep_previous",
                    "duplicate_examples": dup_ids[:5], "new_rows": int(len(new)),
                    "new_reports": int(new["json_file"].nunique()) if len(new) else 0,
-                   "total": panel_stats(out) if len(out) else {"rows": 0}, "columns_ok": list(out.columns) == fs.FINAL_COLUMNS})
+                   "total": panel_stats(out) if len(out) else {"rows": 0}, "columns_ok": list(out.columns) == fs.FINAL_COLUMNS,
+                   "n_columns": len(fs.FINAL_COLUMNS),
+                   "base_legacy": bool(report["base"]) and report["base"].get("legacy", False)})
     return out, report
 
 
@@ -1498,6 +1534,24 @@ def gap_status(stamp: str) -> dict:
             "summary": {k: summary.get(k) for k in ("n_reports", "n_countries_in_panel", "n_gap_years", "n_gap_spans", "cause_counts_by_span")}}
 
 
+REPORT_FACTS = ["publication_date", "consultation_type", "report_title", "country_report_number"]
+
+
+def fill_report_facts(rows: pd.DataFrame, panel: pd.DataFrame) -> pd.DataFrame:
+    """Gap Fill reads a later report's table, which seldom shows the report's own title, date or number; the
+    same report is usually already in the panel (from its own Round 1-3 extraction), so its facts are taken
+    from there where the gap fill rows have none."""
+    if not len(rows) or not len(panel):
+        return rows
+    known = panel.dropna(subset=["report_title"]).drop_duplicates("json_file").set_index("json_file")
+    rows = rows.copy()
+    for c in REPORT_FACTS:
+        if c in known.columns:
+            fill = rows["json_file"].map(known[c])
+            rows[c] = rows[c].where(rows[c].notna() & (rows[c].astype(str).str.strip() != ""), fill)
+    return rows
+
+
 def gap_write(body: dict) -> dict:
     """panel_gapfill_<VERSION>.csv = the pre-gap-fill file the gaps were found in + the gap years filled."""
     stamp = str(body.get("stamp") or "")
@@ -1508,21 +1562,25 @@ def gap_write(body: dict) -> dict:
     f_final = outd / f"gapfill_rows_final_{stamp}.csv"
     if not f_final.is_file():
         raise UserError("No gap fill results yet (fill the gaps, or 'Rebuild results' for a run made with older code).")
-    new = fs.to_final(read_csv(f_final), "gapfill", gapfill_run=stamp)
+    # gap fill rows and the panel after Gap Fill have "year", not last_actual_year (final_schema.PANEL_COLUMNS)
+    new = fs.to_panel(read_csv(f_final))
+    new["source_round"], new["gapfill_run"], new["update_origin"] = "gapfill", stamp, "new"
     if not len(new):
         raise UserError("No gap year has been filled in this version yet, so there is nothing to write.")
     src = Path(rec["input_csv"])
     if not src.is_file():
         raise UserError(f"The pre-gap-fill file is gone: {src}")
-    base = as_final(read_csv(src))
+    base = fs.to_panel(as_final(read_csv(src)))  # Round 1-3 rows: year = their last actual year
+    new = fill_report_facts(new, base)
     folder = output_folder()
     path = folder / f"panel_gapfill_{stamp}.csv"
     if path.exists() and not body.get("overwrite"):
         raise UserError(f"{path.name} already exists. Tick 'overwrite' to write it again (e.g. after more gaps were filled).")
-    out = fs.concat_final([base, new])
+    out = pd.concat([base, new], ignore_index=True)[fs.PANEL_COLUMNS]
     out.to_csv(path, index=False, encoding="utf-8-sig")
-    info = {"file": path.name, "written": now(), "from": src.name, "gap_rows": int(len(new)),
-            "gap_years_filled": int(new[["country", "last_actual_year"]].drop_duplicates().shape[0]), "total": panel_stats(out)}
+    info = {"file": path.name, "written": now(), "from": src.name, "gap_rows": int(len(new)), "columns": "year (no last_actual_year)",
+            "by_origin": {str(k): int(v) for k, v in out["update_origin"].fillna("").value_counts().items()},
+            "gap_years_filled": int(new[["country", "year"]].drop_duplicates().shape[0]), "total": panel_stats(out)}
     man_path = folder / f"panel_{stamp}.json"
     man = read_json(man_path, {}) or {"version": stamp, "created": now(), "output_folder": str(folder), "pregapfill": None}
     man["gapfill"] = {**info, "app_version": app_version()}

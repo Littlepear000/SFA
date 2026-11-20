@@ -193,7 +193,7 @@ def effective_year_label(df: pd.DataFrame) -> pd.Series:
     Gap Fill output was folded in may not have a "year" column at all -- .get() with a blank default
     covers that). Used everywhere a row needs to be identified or grouped by "which year it represents",
     so a previously gap-filled year counts as observed instead of looking like it is still missing."""
-    lay = df["last_actual_year"].fillna("").astype(str).str.strip()
+    lay = df.get("last_actual_year", pd.Series("", index=df.index)).fillna("").astype(str).str.strip()
     year = df.get("year", pd.Series("", index=df.index)).fillna("").astype(str).str.strip()
     return lay.where(lay != "", year)
 

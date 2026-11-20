@@ -240,3 +240,9 @@ td.clip{ max-width:16rem; overflow:hidden; text-overflow:ellipsis; }
 .rp-bar{ height:6px; border-radius:999px; background:var(--bg); border:1px solid var(--line); overflow:hidden; }
 .rp-bar span{ display:block; height:100%; background:var(--accent); }
 .rp-t{ white-space:nowrap; font-variant-numeric:tabular-nums; }
+
+/* human review: dropped reports, and the kind-of-disagreement filter */
+.st.st-dropped{ background:var(--danger); border-color:var(--danger); }
+.b-dr{ background:var(--danger); }
+#hr-group{ width:100%; }
+.gbadge.st-badge-dropped{ background:var(--bad-soft); color:var(--danger); }
