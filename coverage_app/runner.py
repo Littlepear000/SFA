@@ -48,9 +48,20 @@ class Status:
             self.write()
 
     def write(self):
+        """status.json is only for the page's progress display: if Windows keeps it locked (the app reading it
+        at that moment, OneDrive syncing it), try again briefly, then skip this update -- never stop the job."""
         tmp = self.path.with_suffix(".tmp")
-        tmp.write_text(json.dumps(self.data, ensure_ascii=False), encoding="utf-8")
-        tmp.replace(self.path)
+        for attempt in range(10):
+            try:
+                tmp.write_text(json.dumps(self.data, ensure_ascii=False), encoding="utf-8")
+                tmp.replace(self.path)
+                return
+            except PermissionError:
+                time.sleep(min(0.05 * 2 ** attempt, 1.0))
+        if self.data.get("state") != "running":  # the final state must get through
+            time.sleep(3)
+            tmp.write_text(json.dumps(self.data, ensure_ascii=False), encoding="utf-8")
+            tmp.replace(self.path)
 
 
 def decode(v):
@@ -78,6 +89,7 @@ class Tee:
     def __init__(self, stream, status: Status):
         self.stream, self.status, self.buf = stream, status, ""
         self.parse_progress, self.fail_pattern, self.failed_line = False, None, None
+        self.last_progress = 0.0
 
     def write(self, s):
         self.stream.write(s)
@@ -87,7 +99,11 @@ class Tee:
             if self.parse_progress:
                 m = re.search(r"\[(\d+)/(\d+)\]", line)
                 if m:
-                    self.status.update(done=int(m.group(1)), total=int(m.group(2)))
+                    done, total = int(m.group(1)), int(m.group(2))
+                    # at most one progress write a second: Gap Fill can log dozens of lines a second
+                    if done >= total or time.monotonic() - self.last_progress >= 1.0:
+                        self.last_progress = time.monotonic()
+                        self.status.update(done=done, total=total)
             if self.fail_pattern and self.failed_line is None and re.search(self.fail_pattern, line):
                 self.failed_line = line.strip()
         return len(s)

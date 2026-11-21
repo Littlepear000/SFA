@@ -169,7 +169,14 @@ def write_json(path: Path, obj: Dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(f".{path.name}.tmp")
     tmp.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
-    tmp.replace(path)
+    for attempt in range(20):  # OneDrive / another reader can block the rename for a moment on Windows
+        try:
+            tmp.replace(path)
+            break
+        except PermissionError:
+            if attempt == 19:
+                raise
+            time.sleep(min(0.05 * 2 ** attempt, 2.0))
 
 
 def is_finished_output(path: Path) -> bool:

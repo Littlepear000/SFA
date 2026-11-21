@@ -34,6 +34,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple
@@ -590,12 +591,26 @@ def _json_safe(obj: Any) -> Any:
     return obj
 
 
+def replace_retry(tmp: Path, path: Path, tries: int = 20) -> None:
+    """tmp.replace(path), tried again for up to ~20 s on Windows "Access is denied" / "used by another
+    process": OneDrive syncing the file, or another program (the web app showing progress, Excel) reading
+    it at that moment, briefly blocks replacing it."""
+    for i in range(tries):
+        try:
+            tmp.replace(path)
+            return
+        except PermissionError:
+            if i == tries - 1:
+                raise
+            time.sleep(min(0.05 * 2 ** i, 2.0))
+
+
 def save_checkpoint(state: List[Dict[str, Any]], path: Path) -> None:
     """Persist run_cascade()'s current state so a later run can resume from it (see load_checkpoint)."""
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(json.dumps(_json_safe(state), ensure_ascii=False, indent=2), encoding="utf-8")
-    tmp.replace(path)  # atomic on both POSIX and Windows -- never leaves a half-written checkpoint
+    replace_retry(tmp, path)  # atomic on both POSIX and Windows -- never leaves a half-written checkpoint
 
 
 def load_checkpoint(path: Path) -> List[Dict[str, Any]]:

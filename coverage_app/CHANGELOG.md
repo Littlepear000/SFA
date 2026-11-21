@@ -2,6 +2,10 @@
 
 The app's version is the first heading below. Each release is tagged in git as `app-v<version>`.
 
+## 0.7.3 — 2026-11-20
+
+- **Fixed**: On Windows, a job could stop with `PermissionError` ("Access is denied" / "used by another process") when it replaced one of its JSON files (progress, gap fill checkpoint, a report's answers) at the moment another program had it open: OneDrive syncing it, or the app reading the progress. Every such write now tries again for up to about 20 seconds; the progress file (`status.json`) never stops a job. Gap Fill's per-report answers are now written through a temporary file too. A job's progress is written at most once a second (Gap Fill logged dozens of lines a second, each one rewriting the progress file).
+
 ## 0.7.2 — 2026-11-20
 
 - **Fixed**: Gap Fill's step 3 crashed on Windows right after "Loading the API and PDF helpers" (access violation in onnxruntime): PyMuPDF with the `pymupdf-layout` add-on loads onnxruntime on import, which crashes once pandas is loaded. Every job now loads PyMuPDF first (`runner.py`), the order Round One / Two already had.

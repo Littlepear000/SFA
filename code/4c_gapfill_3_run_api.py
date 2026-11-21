@@ -250,7 +250,9 @@ def load_step1():
 
 def write_json(path: Path, obj: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
+    tmp = path.with_name(f".{path.name}.tmp")
+    tmp.write_text(json.dumps(obj, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
+    core.replace_retry(tmp, path)
 
 
 # parse_selected_name / index_selected_pdfs now live in core.py (core.*), shared with 4b.
