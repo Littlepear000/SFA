@@ -276,6 +276,28 @@ def _started_before_boot(meta: dict) -> bool:
     return boot is not None and created < boot
 
 
+# Windows exit codes of a process that died without a Python error
+_EXIT_CODES = {
+    0xC0000005: "access violation (a crash inside a C library, e.g. PDF or image code)",
+    0xC0000374: "heap corruption (a crash inside a C library)",
+    0xC0000409: "stack buffer overrun (a crash inside a C library)",
+    0xC00000FD: "stack overflow",
+    0xC000013A: "stopped by Ctrl+C or by closing the console window",
+    0xC0000017: "out of memory",
+    1: "exited with an error",
+}
+
+
+def exit_code_text(rc) -> str:
+    if rc is None:
+        return "exit code unknown"
+    code = rc & 0xFFFFFFFF if rc < 0 and os.name == "nt" else rc
+    if os.name != "nt" and rc < 0:
+        return f"killed by signal {-rc}"
+    meaning = _EXIT_CODES.get(code)
+    return f"exit code {rc} (0x{code:08X})" + (f", {meaning}" if meaning else "")
+
+
 class Jobs:
     """One job at a time. A job is a folder under output/workflow/jobs/ (spec.json, job.json, status.json,
     log.txt); its process is coverage_app/runner.py."""
@@ -300,9 +322,15 @@ class Jobs:
                     state = "stopped"
                 else:
                     rc = self.proc.poll() if (self.proc is not None and self.current == job_id) else None
+                    if rc is not None and meta.get("exit_code") is None:  # keep it: a later app session cannot see it
+                        meta["exit_code"] = rc
+                        write_json(d / "job.json", meta)
+                    rc = meta.get("exit_code", rc)
                     state = "error" if rc not in (None, 0) else ("interrupted" if state == "running" else "error")
                     if not st.get("error"):
-                        st["error"] = "The job's process ended without finishing (stopped, or the app was closed)."
+                        st["error"] = (f"The job's process stopped without a Python error: {exit_code_text(rc)}. "
+                                       "See the end of the full log." if rc not in (None, 0) else
+                                       "The job's process ended without finishing (stopped, or the app was closed).")
         return {**meta, **{k: v for k, v in st.items() if k != "state"}, "state": state}
 
     def running(self) -> dict | None:

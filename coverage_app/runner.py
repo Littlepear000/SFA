@@ -19,6 +19,7 @@ the step starts -- used for the run CSVs that 1c compares, which only exist once
 """
 from __future__ import annotations
 
+import faulthandler
 import json
 import re
 import runpy
@@ -106,6 +107,9 @@ def watch_files(status: Status, folder: Path, patterns: list, total: int, stop: 
 
 
 def main(spec_path: Path) -> int:
+    # A crash inside a C library (PDF, image, network code) ends the process without a Python error; this
+    # writes the Python stack of every thread to the log first, so the log shows where it happened.
+    faulthandler.enable(file=sys.__stderr__, all_threads=True)
     spec = json.loads(spec_path.read_text(encoding="utf-8"))
     status = Status(spec_path.with_name("status.json"), len(spec["steps"]))
     code_dir = spec.get("code_dir")

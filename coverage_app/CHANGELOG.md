@@ -2,6 +2,11 @@
 
 The app's version is the first heading below. Each release is tagged in git as `app-v<version>`.
 
+## 0.7.1 — 2026-11-20
+
+- **Fixed**: A job whose process dies without a Python error (a crash inside a C library, out of memory, a closed console) now says so on its card with the exit code and what it means, and the log ends with the Python stack of every thread at the moment of the crash (`faulthandler`), instead of only "The job's process ended without finishing".
+- **Changed**: Gap Fill's step 3 logs "Loading the API and PDF helpers …" and "Signing in to the API …" before those steps, so a stop there shows in the log.
+
 ## 0.7.0 — 2026-11-20
 
 - **Added**: **Human Review → *Drop this report***, next to *Skip for now*: for a report whose values cannot be used at all. Build panel then leaves out every row of it, also the rows the previous database has for it, and says how many it removed. Saving the report again with another choice undoes it. Dropped reports have their own status filter, a red mark in the list, and a column in Intermediate data.

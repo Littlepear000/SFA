@@ -650,6 +650,11 @@ def main() -> None:
     staff_reports = core.list_staff_reports(STAFF_REPORTS_DIR)
     idx = core.index_by_country_year(staff_reports)
     selected_index = core.index_selected_pdfs(SELECTED_PDF_DIRS)
+    # which cached selected pages are used: one folder per batch (core.discover_selected_pdf_dirs)
+    print(f"Cached selected PDF pages, {len(SELECTED_PDF_DIRS)} folder(s), {len(selected_index)} report(s) in all:")
+    for d in SELECTED_PDF_DIRS:
+        n = sum(1 for v in selected_index.values() if any(e["dir"] == Path(d) for e in v))
+        print(f"  {n:>5}  {d}")
     print(f"Real staff-report PDFs found under {STAFF_REPORTS_DIR}: {len(staff_reports)}; "
           f"reports never used as a source: {len(skip)}")
 
@@ -682,9 +687,11 @@ def main() -> None:
         process_fn = cache_only_process
         workers = 1
     else:
+        print(f"Loading the API and PDF helpers from {Path(STEP1_SCRIPT).name} ...", flush=True)
         s1 = load_step1()
         prompt1, _ = s1.load_two_subprompts(STEP1_PROMPT_FILE)
         prompt = GAPFILL_PROMPT_FILE.read_text(encoding="utf-8")
+        print("Signing in to the API (a browser window may open for the sign-in) ...", flush=True)
         url, tm, model = s1.make_api_session()
         print(f"Model: {model}")
         process_fn = ReportProcessor(s1, url, tm, model, prompt, selected_index,
